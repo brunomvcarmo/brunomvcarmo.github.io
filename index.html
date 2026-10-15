@@ -1147,6 +1147,15 @@
   .idl-bar input { width: 88px; font: inherit; font-size: 14px; padding: 5px 8px; border: 1px solid var(--line-strong); border-radius: 7px; background: var(--surface); color: var(--ink); }
   .idl-locks { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 4px 0 6px; }
   .idl-tok { position: relative; display: flex; flex-direction: column; align-items: center; flex: 0 1 96px; min-width: 0; }
+  /* V44: o campo fica visível ao trancar; caixa "quanto sobra para os outros" */
+  .idl-pitch.is-busy, .kpis.idl-stale { opacity: .55; transition: opacity .2s; }
+  .idl-flag { margin: 0 0 10px; padding: 8px 12px; border-radius: 8px; background: var(--warn-weak); color: var(--ink-2); font-size: 13px; line-height: 1.45; }
+  .idl-flag.bad { background: var(--bad-weak); }
+  .idl-view { margin: 4px 0 12px; }
+  .idl-rest { margin: 8px 0 6px; padding: 10px 12px; border: 1px solid var(--accent-mid); background: var(--accent-weak); border-radius: 10px; font-size: 13.5px; color: var(--ink-2); display: grid; gap: 8px; }
+  .idl-rest-row { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+  .idl-rest label { font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .idl-rest input { width: 88px; font: inherit; font-size: 14px; padding: 5px 8px; border: 1px solid var(--line-strong); border-radius: 7px; background: var(--surface); color: var(--ink); }
   .idl-tok .pp { flex: none; width: 100%; }
   .idl-lock { margin-top: 3px; border: 1px solid rgba(255,255,255,.5); background: rgba(255,255,255,.85); border-radius: 999px; font-size: 11px; line-height: 1; padding: 3px 7px; cursor: pointer; }
   .idl-lock.on { background: #FFE9A8; border-color: #C99400; }
@@ -8863,85 +8872,123 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   }
 
   // ---------- Interface ----------
-  const IDL = {busy: false, res: {}};
+  // V44 (15 out): o campo não desaparece ao trancar (fica a última equipa calculada, com os cadeados atualizados);
+  // dá para trancar no campo da equipa ideal ou no do teu plantel; com trancados, pode dizer-se quanto sobra
+  // para os outros jogadores (orçamento total = custo dos trancados + o que sobra).
+  const IDL = {busy: false, res: {}, shown: {}};
   function idlState() {
     const all = lsGet('fpl-ideal') || {};
     const mgr = curMgr();
     if (!all[mgr]) all[mgr] = {budget: 100, locked: [], h: 1};
-    return {all, s: all[mgr]};
+    const s = all[mgr];
+    if (!s.view) s.view = 'ideal';
+    return {all, s};
   }
   function idlSave(all) { lsSet('fpl-ideal', all); }
-  function idlKey(s) { return [curMgr(), s.h, s.budget, s.locked.slice().sort().join('-')].join('|'); }
+  const idlLockedCost = s => s.locked.reduce((t, id) => t + ((FULL_POOL_BY_ID[id] || {}).price || 0), 0);
+  // orçamento usado no cálculo: o total, ou (com "o que sobra") o custo dos trancados + o que sobra
+  const idlBudget = s => s.restMode && s.locked.length ? +(idlLockedCost(s) + (s.rest || 0)).toFixed(1) : s.budget;
+  function idlKey(s) { return [curMgr(), s.h, idlBudget(s), s.locked.slice().sort().join('-')].join('|'); }
   function renderIdeal() {
     const el = document.getElementById('ideal2'); if (!el) return;
-    const {all, s} = idlState();
+    const {all, s} = idlState(), mgr = curMgr();
     const gis = s.h === 5 ? HZ.map((g, i) => i) : [0];
     const key = idlKey(s), r = IDL.res[key];
-    const lockedP = s.locked.map(id => FULL_POOL_BY_ID[id]).filter(Boolean);
-    const mySq = squadOf(curMgr()).filter(Boolean);
+    if (r) IDL.shown[mgr] = {r, h: s.h};
+    const shown = r || (IDL.shown[mgr] && IDL.shown[mgr].h === s.h ? IDL.shown[mgr].r : null);
+    const stale = !r && !!shown;   // a equipa no campo foi calculada com outros trancados ou outro orçamento
+    const lockedP = s.locked.map(id => FULL_POOL_BY_ID[id]).filter(Boolean), lockSet = new Set(s.locked);
+    const lockedCost = idlLockedCost(s), budget = idlBudget(s);
+    const mySq = squadOf(mgr).filter(Boolean);
     const myV = gis.reduce((t, gi) => t + bestXiValue(mySq, gi), 0);
-    const simSt = STORE.sim && STORE.sim[curMgr()], simPs = simSt ? simSt.ids.map(id => FULL_POOL_BY_ID[id]).filter(Boolean) : [];
+    const myBudget = mySq.reduce((t, p) => t + p.price, 0) + SQUAD_STATE[mgr].bank;
+    const simSt = STORE.sim && STORE.sim[mgr], simPs = simSt ? simSt.ids.map(id => FULL_POOL_BY_ID[id]).filter(Boolean) : [];
     const simV = simPs.length === 15 ? gis.reduce((t, gi) => t + bestXiValue(simPs, gi), 0) : null;
+    const tok = (p, X) => `<div class="idl-tok">${pitchToken(p, 0, {cap: X && p === X.cap, vice: X && p === X.vice})}<button type="button" class="idl-lock${lockSet.has(p.id) ? ' on' : ''}" data-lock="${p.id}" aria-pressed="${lockSet.has(p.id)}" aria-label="${lockSet.has(p.id) ? 'Destrancar' : 'Trancar'} ${p.name}" title="${lockSet.has(p.id) ? 'Trancado — toca para destrancar' : 'Trancar este jogador'}">${lockSet.has(p.id) ? '🔒' : '🔓'}</button></div>`;
+    const pitchOf = ps => {
+      const X = pickXi(ps, 0), rows = ['fwd', 'mid', 'def', 'gk'].map(c => X.xi.filter(p => p.cls === c));
+      return {X, html: `<div class="pitch idl-pitch${IDL.busy ? ' is-busy' : ''}"><span class="box top"></span><span class="box bottom"></span>${rows.map(row => `<div class="pitch-row">${row.map(p => tok(p, X)).join('')}</div>`).join('')}</div>
+        <div class="bench"><div class="bench-head">Banco</div><div class="bench-row">${[...X.benchGk, ...X.benchOut].map(p => tok(p, X)).join('')}</div></div>`};
+    };
+    const viewSeg = `<div class="seg idl-view" role="group" aria-label="Que equipa mostrar no campo"><button type="button" class="seg-btn" data-iv="ideal" aria-pressed="${s.view === 'ideal'}">Equipa ideal</button><button type="button" class="seg-btn" data-iv="meu" aria-pressed="${s.view === 'meu'}">O meu plantel</button></div>`;
     let body = '';
-    if (IDL.busy) body = '<div class="skel"><span></span><span></span><span></span></div><p class="note">A procurar a melhor equipa (1-4 segundos)…</p>';
-    else if (r === null) body = '<p class="prose">Não há equipa possível com estes jogadores trancados e este orçamento. Tira um trancado ou aumenta o orçamento.</p>';
-    else if (r) {
-      const ps = r.ids.map(id => FULL_POOL_BY_ID[id]);
-      const X = pickXi(ps, 0), lockSet = new Set(s.locked);
-      const tok = p => `<div class="idl-tok">${pitchToken(p, 0, {cap: p === X.cap, vice: p === X.vice})}<button type="button" class="idl-lock${lockSet.has(p.id) ? ' on' : ''}" data-lock="${p.id}" aria-label="${lockSet.has(p.id) ? 'Destrancar' : 'Trancar'} ${p.name}" title="${lockSet.has(p.id) ? 'Trancado — toca para destrancar' : 'Trancar este jogador'}">${lockSet.has(p.id) ? '🔒' : '🔓'}</button></div>`;
-      const rows = ['fwd', 'mid', 'def', 'gk'].map(c => X.xi.filter(p => p.cls === c));
+    if (s.view === 'meu') {
+      const P = pitchOf(mySq);
+      body = `${P.html}<p class="note" style="margin-top:8px">O teu plantel atual. Toca no cadeado dos jogadores que queres manter, diz quanto tens para os outros e carrega em Calcular.</p>`;
+    } else if (shown) {
+      const ps = shown.ids.map(id => FULL_POOL_BY_ID[id]).filter(Boolean), P = pitchOf(ps);
       body = `
-        <div class="kpis" style="margin:4px 0 12px">
-          <div class="kpi"><div class="label">Pts esperados ${s.h === 5 ? `J${HZ[0]}-J${HZ[HZ.length - 1]}` : 'J' + HZ[0]}</div><div class="value">${f1(r.v)}</div><div class="hint">melhor onze + capitão${s.h === 5 ? ' em cada jornada' : ''}</div></div>
-          <div class="kpi"><div class="label">O teu plantel</div><div class="value">${f1(myV)}</div><div class="hint">${sgn(r.v - myV)} para a ideal</div></div>
-          <div class="kpi"><div class="label">Equipa simulada</div><div class="value">${simV != null ? f1(simV) : '—'}</div><div class="hint">${simV != null ? sgn(r.v - simV) + ' para a ideal' : 'ainda não completa'}</div></div>
-          <div class="kpi"><div class="label">Custo</div><div class="value">£${r.cost.toFixed(1)}M</div><div class="hint">sobra £${(s.budget - r.cost).toFixed(1)}M · formação ${X.form.join('-')}</div></div>
+        <div class="kpis${stale || IDL.busy ? ' idl-stale' : ''}" style="margin:4px 0 12px">
+          <div class="kpi"><div class="label">Pts esperados ${s.h === 5 ? `J${HZ[0]}-J${HZ[HZ.length - 1]}` : 'J' + HZ[0]}</div><div class="value">${f1(shown.v)}</div><div class="hint">melhor onze + capitão${s.h === 5 ? ' em cada jornada' : ''}</div></div>
+          <div class="kpi"><div class="label">O teu plantel</div><div class="value">${f1(myV)}</div><div class="hint">${sgn(shown.v - myV)} para a ideal</div></div>
+          <div class="kpi"><div class="label">Equipa simulada</div><div class="value">${simV != null ? f1(simV) : '—'}</div><div class="hint">${simV != null ? sgn(shown.v - simV) + ' para a ideal' : 'ainda não completa'}</div></div>
+          <div class="kpi"><div class="label">Custo</div><div class="value">£${shown.cost.toFixed(1)}M</div><div class="hint">${stale ? 'da equipa no campo' : `sobra £${Math.max(0, budget - shown.cost + 1e-9).toFixed(1)}M`} · formação ${P.X.form.join('-')}</div></div>
         </div>
-        <div class="pitch idl-pitch"><span class="box top"></span><span class="box bottom"></span>${rows.map(row => `<div class="pitch-row">${row.map(tok).join('')}</div>`).join('')}</div>
-        <div class="bench"><div class="bench-head">Banco</div><div class="bench-row">${[...X.benchGk, ...X.benchOut].map(tok).join('')}</div></div>
-        <div class="plan-actions" style="margin-top:12px"><button type="button" class="btn" id="idl-to-sim">Copiar para a equipa simulada</button><span class="note">Toca no cadeado de um jogador para o trancar e volta a calcular.</span></div>`;
-    } else body = '<p class="note">Carrega em Calcular.</p>';
+        ${IDL.busy ? '<p class="idl-flag">A procurar a melhor equipa com estes trancados (1-4 segundos)…</p>' : stale ? `<p class="idl-flag">Mudaste os trancados ou o orçamento: esta ainda é a equipa anterior. Carrega em <b>Calcular</b> para a refazer${lockedP.length ? ` com os ${lockedP.length} trancados e £${(budget - lockedCost).toFixed(1)}M para os outros` : ''}.</p>` : ''}
+        ${r === null ? '<p class="idl-flag bad">Não há equipa possível com estes trancados e este orçamento. Tira um trancado ou aumenta o orçamento.</p>' : ''}
+        ${P.html}
+        <div class="plan-actions" style="margin-top:12px"><button type="button" class="btn" id="idl-to-sim"${stale ? ' disabled' : ''}>Copiar para a equipa simulada</button><span class="note">Toca no cadeado de um jogador para o trancar.</span></div>`;
+    } else if (IDL.busy) body = '<div class="skel"><span></span><span></span><span></span></div><p class="note">A procurar a melhor equipa (1-4 segundos)…</p>';
+    else if (r === null) body = '<p class="prose">Não há equipa possível com estes trancados e este orçamento. Tira um trancado ou aumenta o orçamento.</p>';
+    else body = '<p class="note">Carrega em Calcular.</p>';
+    const free = 15 - lockedP.length, restNow = s.restMode ? (s.rest || 0) : Math.max(0, s.budget - lockedCost);
+    const restBox = lockedP.length ? `
+        <div class="idl-rest">
+          <div><b>${lockedP.length} trancado${lockedP.length === 1 ? '' : 's'}</b> custam <b>£${lockedCost.toFixed(1)}M</b>. Quanto tens para os outros ${free}?</div>
+          <div class="idl-rest-row">
+            <label>Sobra £<input type="number" id="idl-rest" min="0" max="120" step="0.1" value="${restNow.toFixed(1)}">M</label>
+            <button type="button" class="btn ghost" id="idl-rest-my" title="O valor do teu plantel mais o banco, menos o custo dos trancados">O que me sobra do meu (£${Math.max(0, myBudget - lockedCost).toFixed(1)}M)</button>
+            <span class="note">→ orçamento total £${budget.toFixed(1)}M${s.restMode ? '' : ' (o do campo de cima)'}</span>
+          </div>
+        </div>` : '';
     el.innerHTML = `
       <section class="card">
         <div class="card-head"><div><h2>Equipa ideal</h2><div class="card-sub">Os 15 com mais pontos esperados que cabem no orçamento: conta o melhor onze com capitão${s.h === 5 ? ' em cada uma das 5 jornadas' : ''}; o banco só desempata. 2-5-5-3, máximo 3 por clube.</div></div></div>
         <div class="idl-bar">
           <div class="seg" role="group" aria-label="Horizonte"><button type="button" class="seg-btn" data-ih="1" aria-pressed="${s.h === 1}">Só a J${HZ[0]}</button><button type="button" class="seg-btn" data-ih="5" aria-pressed="${s.h === 5}">J${HZ[0]} a J${HZ[HZ.length - 1]}</button></div>
-          <label>Orçamento £<input type="number" id="idl-budget" min="80" max="120" step="0.1" value="${s.budget.toFixed(1)}">M</label>
-          <button type="button" class="btn ghost" id="idl-mybudget">Usar o meu (£${(squadOf(curMgr()).filter(Boolean).reduce((t, p) => t + p.price, 0) + SQUAD_STATE[curMgr()].bank).toFixed(1)}M)</button>
-          <button type="button" class="btn primary" id="idl-go">${IDL.busy ? 'A calcular…' : r ? 'Calcular de novo' : 'Calcular'}</button>
+          <label>Orçamento £<input type="number" id="idl-budget" min="80" max="120" step="0.1" value="${budget.toFixed(1)}">M</label>
+          <button type="button" class="btn ghost" id="idl-mybudget">Usar o meu (£${myBudget.toFixed(1)}M)</button>
+          <button type="button" class="btn primary" id="idl-go"${IDL.busy ? ' disabled' : ''}>${IDL.busy ? 'A calcular…' : r ? 'Calcular de novo' : 'Calcular'}</button>
         </div>
         <div class="idl-locks">
           <span class="riv-lbl">Trancados (${lockedP.length})</span>
-          ${lockedP.map(p => `<span class="pc-chip" style="background:var(--accent)">🔒 ${shortName(p.name)} <span style="opacity:.8;font-weight:500">£${p.price.toFixed(1)}</span><button type="button" data-unlock="${p.id}" aria-label="Destrancar ${p.name}">×</button></span>`).join('') || '<span class="note">nenhum — escolhe abaixo ou toca no cadeado de um jogador da equipa</span>'}
+          ${lockedP.map(p => `<span class="pc-chip" style="background:var(--accent)">🔒 ${shortName(p.name)} <span style="opacity:.8;font-weight:500">£${p.price.toFixed(1)}</span><button type="button" data-unlock="${p.id}" aria-label="Destrancar ${p.name}">×</button></span>`).join('') || '<span class="note">nenhum — toca no cadeado de um jogador no campo, ou escreve o nome abaixo</span>'}
         </div>
         <div class="pc-add"><input list="idl-dl" id="idl-in" placeholder="Trancar um jogador (nome)" autocomplete="off"><datalist id="idl-dl">${FULL_POOL.slice().sort((a, b) => b.total - a.total).slice(0, 450).map(p => `<option value="${p.name}">${TEAMS[p.team]} · ${POS_SHORT[p.cls]} · £${p.price.toFixed(1)}</option>`).join('')}</datalist><button type="button" class="btn" id="idl-add">Trancar</button>${lockedP.length ? '<button type="button" class="btn ghost" id="idl-clear">Destrancar todos</button>' : ''}</div>
-        <p class="note" id="idl-msg"></p>
+        ${restBox}
+        <p class="note" id="idl-msg" role="status"></p>
+        ${viewSeg}
         ${body}
       </section>`;
     const msg = t => { el.querySelector('#idl-msg').textContent = t; };
     const changed = () => { idlSave(all); renderIdeal(); };
     el.querySelectorAll('[data-ih]').forEach(b => b.addEventListener('click', () => { s.h = +b.dataset.ih; changed(); }));
-    el.querySelector('#idl-budget').addEventListener('change', e => { s.budget = Math.max(80, Math.min(120, +e.target.value || 100)); changed(); });
-    el.querySelector('#idl-mybudget').addEventListener('click', () => { s.budget = +(squadOf(curMgr()).filter(Boolean).reduce((t, p) => t + p.price, 0) + SQUAD_STATE[curMgr()].bank).toFixed(1); changed(); });
+    el.querySelectorAll('[data-iv]').forEach(b => b.addEventListener('click', () => { s.view = b.dataset.iv; changed(); }));
+    el.querySelector('#idl-budget').addEventListener('change', e => { s.budget = Math.max(80, Math.min(120, +e.target.value || 100)); s.restMode = false; changed(); });
+    el.querySelector('#idl-mybudget').addEventListener('click', () => { s.budget = +myBudget.toFixed(1); s.restMode = false; changed(); });
+    const restIn = el.querySelector('#idl-rest');
+    if (restIn) restIn.addEventListener('change', e => { s.rest = Math.max(0, Math.min(120, +e.target.value || 0)); s.restMode = true; changed(); });
+    const restMy = el.querySelector('#idl-rest-my');
+    if (restMy) restMy.addEventListener('click', () => { s.rest = +Math.max(0, myBudget - lockedCost).toFixed(1); s.restMode = true; changed(); });
     const lockOne = id => {
       const p = FULL_POOL_BY_ID[id]; if (!p || s.locked.includes(id)) return;
       const ls = s.locked.map(x => FULL_POOL_BY_ID[x]);
       if (ls.filter(x => x.cls === p.cls).length >= IDL_NEED[p.cls]) return msg(`Já tens ${IDL_NEED[p.cls]} ${POS_SHORT[p.cls]} trancados.`);
       if (ls.filter(x => x.team === p.team).length >= 3) return msg(`Já tens 3 do ${SHORT(p.team)} trancados.`);
-      if (ls.reduce((t, x) => t + x.price, 0) + p.price > s.budget) return msg('Os trancados já passam o orçamento.');
+      if (!s.restMode && ls.reduce((t, x) => t + x.price, 0) + p.price > s.budget) return msg('Os trancados já passam o orçamento.');
       s.locked.push(id); changed();
     };
     el.querySelector('#idl-add').addEventListener('click', () => { const p = FULL_POOL_BY_NAME[el.querySelector('#idl-in').value.trim()]; if (p) lockOne(p.id); else msg('Escolhe um nome da lista.'); });
     el.querySelectorAll('[data-unlock]').forEach(b => b.addEventListener('click', () => { s.locked = s.locked.filter(x => x !== +b.dataset.unlock); changed(); }));
-    const clr = el.querySelector('#idl-clear'); if (clr) clr.addEventListener('click', () => { s.locked = []; changed(); });
+    const clr = el.querySelector('#idl-clear'); if (clr) clr.addEventListener('click', () => { s.locked = []; s.restMode = false; changed(); });
     el.querySelectorAll('[data-lock]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); const id = +b.dataset.lock; if (s.locked.includes(id)) { s.locked = s.locked.filter(x => x !== id); changed(); } else lockOne(id); }));
-    el.querySelector('#idl-go').addEventListener('click', () => idlRun());
+    el.querySelector('#idl-go').addEventListener('click', () => { if (s.view === 'meu') { s.view = 'ideal'; idlSave(all); } idlRun(); });
     const ts = el.querySelector('#idl-to-sim');
-    if (ts && r) ts.addEventListener('click', () => { if (STORE.sim) { STORE.sim[curMgr()] = {budget: s.budget, ids: r.ids.slice()}; simSave(); renderSim(); ts.textContent = 'Copiada ✓'; } });
+    if (ts && r) ts.addEventListener('click', () => { if (STORE.sim) { STORE.sim[mgr] = {budget, ids: r.ids.slice()}; simSave(); renderSim(); ts.textContent = 'Copiada ✓'; } });
   }
   function idlRun() {
     if (IDL.busy) return;
-    const {s} = idlState(), key = idlKey(s);
+    const {s} = idlState(), key = idlKey(s), budget = idlBudget(s);
     IDL.busy = true; renderIdeal();
     setTimeout(() => {
       try {
@@ -8949,7 +8996,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
         const seeds = [squadOf(curMgr()).filter(Boolean).map(p => p.id)];
         const simSt = STORE.sim && STORE.sim[curMgr()]; if (simSt && simSt.ids.length === 15) seeds.push(simSt.ids);
         Object.values(IDL.res).forEach(x => { if (x && x.ids) seeds.push(x.ids); });
-        IDL.res[key] = optimizeTeam({budget: s.budget, locked: s.locked, gis, seeds});
+        IDL.res[key] = optimizeTeam({budget, locked: s.locked, gis, seeds});
       } catch (e) { console.error(e); }
       IDL.busy = false; renderIdeal();
     }, 40);
