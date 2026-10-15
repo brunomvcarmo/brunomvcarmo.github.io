@@ -1153,6 +1153,41 @@
   .bud-explain { background: var(--surface-2); border-radius: 10px; padding: 12px 14px; margin: 14px 0 10px; font-size: 13.5px; line-height: 1.5; }
   .bud-explain ul { margin: 6px 0 8px; padding-left: 18px; } .bud-explain li { margin: 3px 0; }
   .linklike { background: none; border: 0; padding: 0; color: var(--accent); font: inherit; text-decoration: underline; cursor: pointer; }
+  /* Ao vivo (15 out): pontos da jornada em direto */
+  .av-dot { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: .05em; color: var(--bad); }
+  .av-dot::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--bad); animation: av-pulse 1.6s ease-in-out infinite; }
+  @keyframes av-pulse { 50% { opacity: .3; } }
+  @media (prefers-reduced-motion: reduce) { .av-dot::before { animation: none; } }
+  .av-fx { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .av-fx-i { border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; background: var(--surface-2); font-size: 13px; min-width: 0; }
+  .av-fx-i.live { border-color: var(--bad); background: var(--bad-weak); }
+  .av-fx-i .sc { font-family: var(--font-display); font-weight: 700; font-size: 16px; font-variant-numeric: tabular-nums; }
+  .av-fx-i .st { font-size: 11.5px; color: var(--muted); }
+  .av-fx-i.live .st { color: var(--bad); font-weight: 600; }
+  table.av-xi td { padding: 7px 8px; }
+  table.av-xi td.num, table.av-xi th.num { text-align: right; white-space: nowrap; }
+  table.av-xi tr.sep td { padding-top: 14px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line-strong); }
+  table.av-xi tr.off td { opacity: .55; }
+  .av-st { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 4px; white-space: nowrap; background: var(--surface-2); color: var(--ink-2); }
+  .av-st.live { background: var(--bad-weak); color: var(--bad); }
+  .av-st.done { background: var(--good-weak); color: var(--good); }
+  .av-pts { font-family: var(--font-display); font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums; }
+  .av-bp { font-size: 11px; color: var(--warn); font-weight: 600; margin-left: 3px; }
+  .av-vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; text-align: center; }
+  .av-vs .side { min-width: 0; }
+  .av-vs .nm { font-weight: 600; overflow-wrap: anywhere; }
+  .av-vs .big { font-family: var(--font-display); font-size: 44px; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .av-vs .win .big { color: var(--good); }
+  .av-vs .dash { font-size: 28px; color: var(--muted); }
+  .av-diff { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .av-diff .r { display: flex; justify-content: space-between; gap: 8px; padding: 4px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+  .av-m { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+  .av-m:last-child { border-bottom: 0; }
+  .av-m .l { text-align: right; min-width: 0; overflow-wrap: anywhere; } .av-m .r { min-width: 0; overflow-wrap: anywhere; }
+  .av-m .s { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+  .av-m.me { background: var(--accent-wash); border-radius: 6px; }
+  .av-m b.w { color: var(--good); }
+  @media (max-width: 560px) { .av-vs .big { font-size: 36px; } .av-diff { grid-template-columns: 1fr; } table.av-xi .hm { display: none; } }
 </style>
 </head>
 <body>
@@ -1180,6 +1215,7 @@
       <div class="nav-group">
         <div class="nav-label">Jornada <span class="gw-n">7</span></div>
         <button class="nav-item" data-view="resumo" type="button">Resumo <span class="nav-meta">J<span class="gw-n">7</span></span></button>
+        <button class="nav-item" data-view="aovivo" type="button">Ao vivo <span class="nav-meta" id="av-nav-meta"></span></button>
         <button class="nav-item" data-view="campo" type="button">Onze sugerido</button>
         <button class="nav-item" data-view="decisoes" type="button">Decisões <span class="nav-meta">3</span></button>
         <button class="nav-item" data-view="planeador" type="button">Planeador</button>
@@ -2105,6 +2141,23 @@
         <p>Os rivais mais próximos: o que têm que tu não tens, chips por usar e quanto a J<span class="gw-n">7</span> deve mexer na distância.</p>
       </div>
       <div class="stack" id="riv-root"></div>
+    </section>
+
+    <!-- ========== AO VIVO (15 out) ========== -->
+    <section class="view" data-view="aovivo" data-title="Ao vivo" hidden>
+      <div class="view-head">
+        <div class="eyebrow" id="av-eyebrow">Jornada em direto</div>
+        <h1>Ao vivo</h1>
+        <p>Os teus pontos, o H2H e a liga enquanto os jogos decorrem. Nos dias de jogo os dados atualizam-se sozinhos de 15 em 15 minutos.</p>
+      </div>
+      <div class="subtabs" role="tablist" aria-label="Ao vivo">
+        <button class="subtab" type="button" data-sub="equipa">A minha equipa</button>
+        <button class="subtab" type="button" data-sub="h2h">H2H em direto</button>
+        <button class="subtab" type="button" data-sub="liga">Liga em tempo real</button>
+      </div>
+      <div class="subview" data-sub="equipa"><div class="stack" id="av-equipa"></div></div>
+      <div class="subview" data-sub="h2h" hidden><div class="stack" id="av-h2h"></div></div>
+      <div class="subview" data-sub="liga" hidden><div class="stack" id="av-liga"></div></div>
     </section>
 
 
@@ -5419,6 +5472,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     });
     try { lazyRender('decisoes', renderSimulator); } catch (e) { console.error(e); }
     try { lazyRender('campo', renderPitch); renderChipPlan(); renderEuro(); CMP.a = null; renderCompare(); if (prevVisible()) renderPrevisao(); lazyRender('decisoes', renderCapH2H); renderGlance(); renderPlayers(); renderPc(); renderPlanner(); renderLogView(); renderRivals(); renderAlerts(); renderSim(); renderTodo(); renderHistKpi(); lazyRender('decisoes', renderStrategy); renderAutoPlan(); renderGlance2(); renderIdeal(); renderLigaBudgets(); lazyRender('h2h', renderH2HVis); closePlayer(); } catch (e) { console.error(e); }
+    try { renderAoVivo(); } catch (e) { console.error(e); }
     if (mgr === 'marco') {
       document.getElementById('hero-h1').textContent = 'Xarola Team';
       document.getElementById('hero-sub').textContent = 'Marco Carmo · Team ID 1973102';
@@ -7581,6 +7635,236 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   }
   renderRivals();
   loadLive();
+
+
+  // ===================================================================
+  // AO VIVO (15 out 2026) — pontos da jornada em direto. aovivo.json é escrito por scripts/fpl_live.py
+  // (GitHub Action fpl-live.yml, de 15 em 15 min, só quando há jogos). Substituições automáticas,
+  // capitão/vice, Bench Boost, Triple Captain e hits são calculados aqui, como na FPL.
+  // ===================================================================
+  var AV = {d: null};   // var (não const): refreshForManager pode chamar renderAoVivo antes deste bloco correr
+  const AV_CLS = {1: 'gk', 2: 'def', 3: 'mid', 4: 'fwd'};
+  const AV_CLS_PT = {gk: 'GR', def: 'DEF', mid: 'MED', fwd: 'AV'};
+  // "sáb 15:00" (hora de Lisboa); com data se não for nos próximos 6 dias
+  function avTime(s) {
+    const d = new Date(s), o = {timeZone: 'Europe/Lisbon'};
+    const wd = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'][new Date(d.toLocaleString('en-US', o)).getDay()];
+    const hm = d.toLocaleTimeString('pt-PT', Object.assign({hour: '2-digit', minute: '2-digit'}, o));
+    return Math.abs(d - Date.now()) < 6 * 864e5 ? `${wd} ${hm}` : `${wd} ${d.toLocaleDateString('pt-PT', Object.assign({day: 'numeric', month: 'numeric'}, o))} ${hm}`;
+  }
+  const avIsLive = () => !!(AV.d && AV.d.fixtures.some(f => f.s && !f.d));
+  function avEl(id) {
+    const a = AV.d.el[id], P = FULL_POOL_BY_ID[id] || {};
+    const name = P.name ? shortName(P.name) : a ? a[6] : '#' + id;
+    if (!a) return {id, pts: 0, min: 0, bp: 0, team: P.team, cls: P.cls || 'mid', name, st: 1};
+    // st: 0 = sem jogo na jornada, 1 = por jogar, 2 = a jogar, 3 = o jogo (ou jogos) já acabou
+    return {id, pts: a[0], min: a[1], bp: a[2], team: a[4], cls: AV_CLS[a[5]] || P.cls || 'mid', name, st: a[7]};
+  }
+  const avOut = p => p.min === 0 && (p.st === 3 || p.st === 0);   // não jogou e já não vai jogar
+  function avTeam(e) {
+    const x = AV.d && AV.d.entries[e]; if (!x) return null;
+    const P = x.picks.map(([id, pos, , c, v]) => Object.assign(avEl(id), {pos, c: !!c, v: !!v}));
+    const bb = x.chip === 'bboost', capMult = x.chip === '3xc' ? 3 : 2;
+    let xi = P.filter(p => p.pos <= 11);
+    const bench = P.filter(p => p.pos > 11), subs = [];
+    if (!bb) {
+      // substituições automáticas pela ordem do onze: GR só por GR; o banco pela ordem; só entra quem jogou;
+      // a formação tem de ficar com pelo menos 3 DEF, 2 MED e 1 AV
+      xi.slice().forEach(o => {
+        if (!avOut(o)) return;
+        const n = c => xi.filter(p => p.cls === c).length;
+        const b = bench.find(b => !b.inFor && b.min > 0 && (o.cls === 'gk') === (b.cls === 'gk') && (o.cls === 'gk' || (() => {
+          const k = {def: n('def'), mid: n('mid'), fwd: n('fwd')}; k[o.cls]--; k[b.cls]++;
+          return k.def >= 3 && k.mid >= 2 && k.fwd >= 1;
+        })()));
+        if (b) { b.inFor = o; o.outFor = b; xi = xi.map(p => p === o ? b : p); subs.push([b, o]); }
+      });
+    }
+    const count = bb ? P : xi;
+    const cap = P.find(p => p.c), vice = P.find(p => p.v);
+    const active = cap && count.includes(cap) && !avOut(cap) ? cap : vice && count.includes(vice) && !avOut(vice) ? vice : null;
+    P.forEach(p => { p.x = count.includes(p) ? (p === active ? capMult : 1) : 0; });
+    const gross = count.reduce((s, p) => s + (p.pts + p.bp) * p.x, 0);
+    return {e, x, P, count, bench: P.filter(p => !count.includes(p)).sort((a, b) => a.pos - b.pos), subs, cap, vice, active, capMult, bb,
+            gross, cost: x.cost, net: gross - x.cost,
+            playing: count.filter(p => p.st === 2).length, toPlay: count.filter(p => p.st === 1).length};
+  }
+  function avLeague() {
+    const rows = Object.keys(AV.d.entries).map(Number).map(e => { const t = avTeam(e); return {e, t, x: t.x, prev: t.x.prev, total: t.x.prev + t.net}; });
+    ['prev', 'total'].forEach(k => rows.forEach(r => { r[k + 'R'] = 1 + rows.filter(o => o[k] > r[k]).length; }));
+    return rows.sort((a, b) => a.totalR - b.totalR || b.t.net - a.t.net);
+  }
+  function avFxOf(team) { return AV.d.fixtures.filter(f => f.h === team || f.a === team); }
+  function avFxLabel(f) {
+    return f.s && !f.d ? `<span class="av-st live">${f.min}'</span>` : f.d ? `<span class="av-st done">fim</span>` : `<span class="av-st">${avTime(f.ko)}</span>`;
+  }
+  function avPlayerFx(p) {
+    const F = avFxOf(p.team);
+    if (!F.length) return '<span class="av-st">sem jogo</span>';
+    return F.map(f => { const home = f.h === p.team; return `${SHORT(home ? f.a : f.h)} (${home ? 'C' : 'F'})${f.s ? ` ${home ? f.hs : f.as}–${home ? f.as : f.hs}` : ''} ${avFxLabel(f)}`; }).join('<br>');
+  }
+  function avStatus() {
+    const d = AV.d, live = avIsLive(), prov = d.fixtures.some(f => f.s && !f.b);
+    return `J${d.event} · ${live ? '<span class="av-dot">AO VIVO</span> · ' : d.finished ? 'jornada terminada · ' : ''}dados de ${avTime(d.generated)}${prov ? ' · bónus provisório (pelo BPS) nos jogos ainda sem bónus confirmado' : ''}`;
+  }
+  function avEmpty() {
+    const onPages = /^https?:$/.test(location.protocol) && (/github\.io$/.test(location.hostname) || new URLSearchParams(location.search).has('live'));
+    return `<section class="card"><div class="card-head"><div><h2>Sem dados ao vivo</h2><div class="card-sub">${onPages
+      ? `Ainda não há pontos ao vivo. Aparecem quando começar o primeiro jogo da J${GW_META.next} (deadline ${GW_META.deadlineLabel}).`
+      : 'Os pontos ao vivo só aparecem na app publicada (brunomvcarmo.github.io).'}</div></div></div>
+      <p class="prose">Nos dias de jogo, uma tarefa automática no GitHub vai buscar à API oficial da FPL, de 15 em 15 minutos, os pontos de cada jogador e as equipas dos 20 gestores. Esta área mostra então os teus pontos com substituições automáticas e capitão, o confronto H2H em direto e a classificação da liga em tempo real.</p></section>`;
+  }
+  const avMv = d => d > 0 ? `<span class="mv up">▲${d}</span>` : d < 0 ? `<span class="mv down">▼${-d}</span>` : '';
+  function avCapTxt(t) {
+    if (!t.active) return 'sem capitão a pontuar';
+    return `${t.capMult === 3 ? 'TC' : 'C'} ${t.active.name}${t.active === t.vice && t.cap !== t.vice ? ' (vice: o capitão não jogou)' : ''}`;
+  }
+  function renderAvEquipa(el) {
+    const e = CMP_ENTRY[curMgr()], t = avTeam(e), ev = AV.d.event;
+    if (!t) { el.innerHTML = `<section class="card"><h2>Sem equipa da J${ev}</h2><p class="prose">A API ainda não tem a equipa deste gestor para a J${ev}.</p></section>`; return; }
+    const L = avLeague(), me = L.find(r => r.e === e), avg = L.reduce((s, r) => s + r.t.net, 0) / L.length;
+    const pair = (AV.d.h2h || []).find(m => m.includes(e)), opp = pair && pair.find(x => x !== e), ot = opp ? avTeam(opp) : null;
+    const kpi = (label, value, hint) => `<div class="kpi"><div class="label">${label}</div><div class="value">${value}</div><div class="hint">${hint}</div></div>`;
+    const lead = ot ? t.net - ot.net : 0;
+    const row = (p, off) => `<tr class="${off ? 'off' : ''}">
+        <td><span class="pos-badge ${p.cls}">${AV_CLS_PT[p.cls]}</span> <span class="player-name" data-pid="${p.id}">${p.name}</span>${p === t.active ? `<span class="tag cap">${t.capMult === 3 ? 'TC' : 'C'}</span>` : p.c ? '<span class="tag bench">C</span>' : p.v ? '<span class="tag vc">V</span>' : ''}${p.inFor ? `<span class="note"> · entra por ${p.inFor.name}</span>` : ''}${p.outFor ? '<span class="note"> · não jogou, saiu</span>' : ''}</td>
+        <td>${avPlayerFx(p)}</td><td class="num hm">${p.min}'</td>
+        <td class="num"><span class="av-pts">${off ? p.pts + p.bp : (p.pts + p.bp) * p.x}</span>${p.bp ? `<span class="av-bp">+${p.bp}b</span>` : ''}</td></tr>`;
+    const owners = id => L.filter(r => r.t.count.some(p => p.id === id)).length;
+    el.innerHTML = `
+      <div class="kpis">
+        ${kpi(`Pontos J${ev}`, `${t.net}<small>pts</small>`, `${t.cost ? `${t.gross} − ${t.cost} de hits · ` : ''}média da liga ${avg.toFixed(0)}`)}
+        ${kpi('Liga clássica', `${me.totalR}.º<small>de ${L.length}</small>`, `${avMv(me.prevR - me.totalR) || 'sem mudança'} desde o início da jornada · ${me.total} pts`)}
+        ${kpi('H2H', ot ? `${t.net}<small>–</small>${ot.net}` : '—', ot ? `${lead > 0 ? '<span class="up">a ganhar</span>' : lead < 0 ? '<span class="down">a perder</span>' : 'empatados'} vs. ${ot.x.player}` : 'sem confronto nesta jornada')}
+        ${kpi('Por jogar', `${t.toPlay}`, `${t.playing} em jogo agora · ${avCapTxt(t)}`)}
+      </div>
+      <section class="card">
+        <div class="card-head"><div><h2>Jogos da jornada</h2><div class="card-sub">${avStatus()}</div></div></div>
+        <div class="av-fx">${AV.d.fixtures.map(f => `<div class="av-fx-i${f.s && !f.d ? ' live' : ''}"><div>${SHORT(f.h)} <span class="sc">${f.s ? `${f.hs}–${f.as}` : 'vs'}</span> ${SHORT(f.a)}</div><div class="st">${f.s && !f.d ? `AO VIVO · ${f.min}'` : f.d ? (f.b ? 'terminado' : 'terminado · bónus provisório') : avTime(f.ko)}</div></div>`).join('')}</div>
+      </section>
+      <section class="card">
+        <div class="card-head"><div><h2>A tua equipa${t.x.chip ? ` · ${CHIP_PT[t.x.chip] || t.x.chip}` : ''}</h2><div class="card-sub">${t.x.name} · pontos já com o capitão${t.bb ? ' e o banco (Bench Boost)' : ' e as substituições automáticas'}. "b" = bónus provisório pelo BPS.</div></div></div>
+        <table class="av-xi no-cards">
+          <thead><tr><th>Jogador</th><th>Jogo</th><th class="num hm">Min</th><th class="num">Pts</th></tr></thead>
+          <tbody>${t.count.map(p => row(p, false)).join('')}
+            ${t.bench.length ? `<tr class="sep"><td colspan="4">Banco</td></tr>${t.bench.map(p => row(p, true)).join('')}` : ''}
+            <tr class="sep"><td colspan="3">Total${t.cost ? ` (−${t.cost} de hits)` : ''}</td><td class="num"><span class="av-pts">${t.net}</span></td></tr>
+          </tbody>
+        </table>
+        ${t.subs.length ? `<p class="note">Substituições automáticas: ${t.subs.map(([b, o]) => `${b.name} por ${o.name}`).join(', ')}. Só contam quando o jogo de quem sai acaba sem ele ter jogado.</p>` : ''}
+      </section>
+      <section class="card">
+        <div class="card-head"><div><h2>Os melhores da jornada</h2><div class="card-sub">Quantos dos ${L.length} gestores os têm a contar (titular ou substituto que entrou).</div></div></div>
+        <table class="av-xi no-cards"><thead><tr><th>Jogador</th><th>Jogo</th><th class="num hm">Na liga</th><th class="num">Pts</th></tr></thead>
+          <tbody>${(AV.d.top || []).map(avEl).sort((a, b) => (b.pts + b.bp) - (a.pts + a.bp)).slice(0, 8).map(({id}) => { const p = avEl(id), mine = t.count.some(q => q.id === id); return `<tr><td><span class="pos-badge ${p.cls}">${AV_CLS_PT[p.cls]}</span> <span class="player-name" data-pid="${p.id}">${p.name}</span>${mine ? ' <span class="tag mine">tens</span>' : ''}</td><td>${avPlayerFx(p)}</td><td class="num hm">${owners(id)}/${L.length}</td><td class="num"><span class="av-pts">${p.pts + p.bp}</span>${p.bp ? `<span class="av-bp">+${p.bp}b</span>` : ''}</td></tr>`; }).join('')}</tbody></table>
+      </section>`;
+  }
+  function renderAvH2h(el) {
+    const e = CMP_ENTRY[curMgr()], ev = AV.d.event, M = AV.d.h2h || [];
+    const pair = M.find(m => m.includes(e)), opp = pair && pair.find(x => x !== e);
+    const t = avTeam(e), ot = opp ? avTeam(opp) : null;
+    const nm = x => AV.d.entries[x] ? AV.d.entries[x].name : '?';
+    const res = {};
+    M.forEach(([a, b]) => { const A = avTeam(a), B = avTeam(b); if (!A || !B) return; res[a] = {n: A.net, r: A.net > B.net ? 3 : A.net === B.net ? 1 : 0}; res[b] = {n: B.net, r: B.net > A.net ? 3 : A.net === B.net ? 1 : 0}; });
+    let html = '';
+    if (t && ot) {
+      const lead = t.net - ot.net;
+      const contrib = tm => Object.fromEntries(tm.count.map(p => [p.id, p]));
+      const A = contrib(t), B = contrib(ot), ids = [...new Set([...Object.keys(A), ...Object.keys(B)])];
+      // por jogador: o que vale para ti menos o que vale para ele (multiplicador 0 se não conta, 2/3 se capitão)
+      const diffs = ids.map(id => { const a = A[id], b = B[id], ma = a ? a.x : 0, mb = b ? b.x : 0, p = a || b;
+        return {p, d: (p.pts + p.bp) * (ma - mb), m: ma - mb, pend: p.st === 1 || p.st === 2,
+                why: a && b ? `${ma === 3 ? 'TC' : ma === 2 ? 'C' : '1×'} contra ${mb === 3 ? 'TC' : mb === 2 ? 'C' : '1×'}` : a ? 'só tu' : 'só ele'}; })
+        .filter(x => x.m !== 0);
+      const side = (list, sign) => list.length ? list.map(x => `<div class="r"><span><span class="player-name" data-pid="${x.p.id}">${x.p.name}</span> <span class="note">${x.why}${x.pend ? ' · ' + (x.p.st === 2 ? 'a jogar' : 'por jogar') : ''}</span></span><b class="${sign > 0 ? 'up' : 'down'}">${x.d ? (sign > 0 ? '+' : '−') + Math.abs(x.d) : '0'}</b></div>`).join('') : '<div class="note">—</div>';
+      const mineL = diffs.filter(x => x.m > 0).sort((a, b) => b.d - a.d);
+      const hisL = diffs.filter(x => x.m < 0).sort((a, b) => a.d - b.d);
+      html += `
+      <section class="card feature">
+        <div class="card-head"><div><h2>O teu confronto da J${ev}</h2><div class="card-sub">${avStatus()}</div></div></div>
+        <div class="av-vs">
+          <div class="side${lead > 0 ? ' win' : ''}"><div class="nm">${t.x.name}</div><div class="big">${t.net}</div><div class="note">${avCapTxt(t)}<br>${t.playing} em jogo · ${t.toPlay} por jogar${t.cost ? ` · −${t.cost} hits` : ''}</div></div>
+          <div class="dash">–</div>
+          <div class="side${lead < 0 ? ' win' : ''}"><div class="nm">${ot.x.name}</div><div class="big">${ot.net}</div><div class="note">${ot.x.player} · ${avCapTxt(ot)}<br>${ot.playing} em jogo · ${ot.toPlay} por jogar${ot.cost ? ` · −${ot.cost} hits` : ''}</div></div>
+        </div>
+        <p class="prose" style="margin-top:12px">${lead > 0 ? `Estás a ganhar por <b>${lead}</b>.` : lead < 0 ? `Estás a perder por <b>${-lead}</b>.` : 'Estão empatados.'} ${t.toPlay + ot.toPlay ? `Ainda faltam jogar ${t.toPlay} dos teus e ${ot.toPlay} dos dele.` : 'Já não falta jogar ninguém.'}</p>
+      </section>
+      <section class="card">
+        <div class="card-head"><div><h2>Onde está a diferença</h2><div class="card-sub">Os jogadores que os dois têm (com o mesmo papel) anulam-se; contam os exclusivos e o capitão.</div></div></div>
+        <div class="av-diff"><div><div class="riv-lbl">A teu favor</div>${side(mineL, 1)}</div><div><div class="riv-lbl">A favor dele</div>${side(hisL, -1)}</div></div>
+      </section>`;
+    } else {
+      html += `<section class="card"><h2>Sem confronto H2H</h2><p class="prose">${t ? 'A API ainda não tem o teu confronto H2H desta jornada.' : `A API ainda não tem a tua equipa da J${ev}.`}</p><p class="note">${avStatus()}</p></section>`;
+    }
+    html += `
+      <section class="card">
+        <div class="card-head"><div><h2>Todos os confrontos da J${ev}</h2><div class="card-sub">Pontos ao vivo menos os hits (como conta a H2H).</div></div></div>
+        ${M.length ? M.map(([a, b]) => { const A = res[a], B = res[b]; return `<div class="av-m${a === e || b === e ? ' me' : ''}"><span class="l">${A && A.r === 3 ? `<b class="w">${nm(a)}</b>` : nm(a)}</span><span class="s">${A ? A.n : '—'} – ${B ? B.n : '—'}</span><span class="r">${B && B.r === 3 ? `<b class="w">${nm(b)}</b>` : nm(b)}</span></div>`; }).join('') : '<p class="note">Sem confrontos.</p>'}
+      </section>`;
+    const T = AV.d.h2h_table;
+    if (T && T.length) {
+      const rows = T.map(r => { const x = res[r.entry], add = x && r.won + r.drawn + r.lost < ev;
+        return {r, pts: r.points + (add ? x.r : 0), pf: (r.pf || 0) + (add ? x.n : 0), w: r.won + (add && x.r === 3 ? 1 : 0), d: r.drawn + (add && x.r === 1 ? 1 : 0), l: r.lost + (add && x.r === 0 ? 1 : 0), now: add ? x.r : null}; })
+        .sort((a, b) => b.pts - a.pts || b.pf - a.pf);
+      html += `
+      <section class="card">
+        <div class="card-head"><div><h2>Classificação H2H se acabasse agora</h2><div class="card-sub">3 pontos por vitória, 1 por empate; desempate pelos pontos marcados.</div></div></div>
+        <div class="table-scroll"><table class="form prev compact">
+          <thead><tr><th>#</th><th>Gestor</th><th class="num">V-E-D</th><th class="num">Pts</th></tr></thead>
+          <tbody>${rows.map((x, i) => `<tr class="${x.r.entry === CMP_ENTRY.bruno || x.r.entry === CMP_ENTRY.marco ? 'me-row' : ''}"><td>${i + 1} ${avMv(x.r.rank - (i + 1))}</td><td><b>${AV.d.entries[x.r.entry] ? AV.d.entries[x.r.entry].player : x.r.entry}</b><span class="sub" style="display:block;font-size:12px;color:var(--muted)">${nm(x.r.entry)}${x.now != null ? ` · nesta jornada: ${['derrota', 'empate', '', 'vitória'][x.now]}` : ''}</span></td><td class="num">${x.w}-${x.d}-${x.l}</td><td class="num"><b>${x.pts}</b></td></tr>`).join('')}</tbody>
+        </table></div>
+        <p class="note">▲/▼ = lugares face à classificação oficial antes desta jornada.</p>
+      </section>`;
+    }
+    el.innerHTML = html;
+  }
+  function renderAvLiga(el) {
+    const L = avLeague(), ev = AV.d.event, avg = L.reduce((s, r) => s + r.t.net, 0) / L.length;
+    el.innerHTML = `
+      <section class="card">
+        <div class="card-head"><div><h2>Liga clássica em tempo real</h2><div class="card-sub">${avStatus()}</div></div></div>
+        <div class="table-scroll"><table class="form prev compact">
+          <thead><tr><th>#</th><th>Gestor</th><th class="num">J${ev}</th><th class="num">Total</th><th class="num hm">Por jogar</th></tr></thead>
+          <tbody>${L.map(r => `<tr class="${r.e === CMP_ENTRY.bruno || r.e === CMP_ENTRY.marco ? 'me-row' : ''}">
+              <td>${r.totalR} ${avMv(r.prevR - r.totalR)}</td>
+              <td><b>${r.x.player}</b>${r.e === CMP_ENTRY[curMgr()] ? ' <span class="tag mine">tu</span>' : ''}<span class="sub" style="display:block;font-size:12px;color:var(--muted)">${r.x.name} · ${avCapTxt(r.t)}${r.x.chip ? ' · ' + (CHIP_PT[r.x.chip] || r.x.chip) : ''}${r.t.cost ? ` · −${r.t.cost}` : ''}</span></td>
+              <td class="num"><span class="pill ${r.t.net >= avg + 8 ? 'hi' : r.t.net <= avg - 8 ? 'lo' : 'mid'}">${r.t.net}</span></td>
+              <td class="num"><b>${r.total}</b></td>
+              <td class="num hm">${r.t.playing + r.t.toPlay ? `${r.t.playing ? r.t.playing + ' em jogo' : ''}${r.t.playing && r.t.toPlay ? ' · ' : ''}${r.t.toPlay ? r.t.toPlay + ' por jogar' : ''}` : '—'}</td></tr>`).join('')}
+          </tbody>
+        </table></div>
+        <p class="note">Total = pontos até à J${ev - 1} + pontos ao vivo da J${ev} (com capitão, substituições automáticas e bónus provisório), menos os hits. ▲/▼ = lugares ganhos ou perdidos desde o início da jornada. Média da liga na J${ev}: ${avg.toFixed(1)}.</p>
+      </section>`;
+  }
+  function renderAoVivo() {
+    if (!AV) return;
+    const roots = {equipa: document.getElementById('av-equipa'), h2h: document.getElementById('av-h2h'), liga: document.getElementById('av-liga')};
+    if (!roots.equipa) return;
+    const meta = document.getElementById('av-nav-meta');
+    if (!AV.d) { Object.values(roots).forEach(el => { el.innerHTML = avEmpty(); }); if (meta) meta.innerHTML = ''; return; }
+    if (meta) meta.innerHTML = avIsLive() ? '<span class="av-dot">AO VIVO</span>' : '';
+    const eb = document.getElementById('av-eyebrow');
+    if (eb) eb.textContent = `Jornada ${AV.d.event}${avIsLive() ? ' · a decorrer' : AV.d.finished ? ' · terminada' : ''}`;
+    try { renderAvEquipa(roots.equipa); } catch (e) { console.error(e); }
+    try { renderAvH2h(roots.h2h); } catch (e) { console.error(e); }
+    try { renderAvLiga(roots.liga); } catch (e) { console.error(e); }
+  }
+  async function loadAoVivo() {
+    // como o live.json: só no GitHub Pages (ou ?live=1 num servidor http, para testar)
+    if (!/^https?:$/.test(location.protocol) || !(/github\.io$/.test(location.hostname) || new URLSearchParams(location.search).has('live'))) return;
+    try {
+      const r = await fetch('aovivo.json?t=' + Date.now(), {cache: 'no-store'});
+      if (!r.ok) return;
+      const d = await r.json();
+      if (!d || !d.entries || !d.fixtures || (AV.d && AV.d.generated === d.generated)) return;
+      AV.d = d; renderAoVivo();
+    } catch (e) { /* sem aovivo.json: fica a mensagem "sem dados" */ }
+  }
+  renderAoVivo();
+  loadAoVivo();
+  // com a página aberta e visível, volta a ler o ficheiro de 3 em 3 minutos (a GitHub Action escreve-o de 15 em 15)
+  setInterval(() => { if (document.visibilityState === 'visible' && !(AV.d && AV.d.finished && AV.d.checked)) loadAoVivo(); }, 180e3);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') loadAoVivo(); });
 
 
   // ===================================================================

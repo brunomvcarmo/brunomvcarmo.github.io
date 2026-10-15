@@ -1,0 +1,47 @@
+# Área "Ao vivo": de 15 em 15 minutos grava aovivo.json com os pontos ao vivo da jornada e os picks dos 20 gestores.
+# O script só vai buscar dados quando há jogos a decorrer (nos outros dias e horas termina logo, sem commit).
+# Nota: o GitHub pode atrasar as execuções agendadas alguns minutos quando está sobrecarregado.
+name: Pontos ao vivo
+
+on:
+  schedule:
+    - cron: '*/15 11-23 * * *'   # 11:00-23:45 UTC, todos os dias (os jogos da Premier League são neste intervalo)
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Forçar a atualização mesmo sem jogos a decorrer'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fpl-live
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Ir buscar os pontos ao vivo à API da FPL
+        env:
+          FPL_FORCE: ${{ inputs.force && '1' || '' }}
+        run: python scripts/fpl_live.py
+      - name: Guardar aovivo.json no repositório
+        run: |
+          git config user.name "fpl-bot"
+          git config user.email "fpl-bot@users.noreply.github.com"
+          git add aovivo.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Sem alterações."
+          else
+            git commit -m "Ao vivo $(date -u +'%Y-%m-%d %H:%M') UTC"
+            git pull --rebase
+            git push
+          fi
