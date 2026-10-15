@@ -821,7 +821,8 @@
   .pl-table thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); box-shadow: inset 0 -1px 0 var(--line); }
   .pl-table td { vertical-align: middle; }
   .pl-table .c-chk { width: 34px; text-align: center; }
-  .pl-table input[type=checkbox] { width: 17px; height: 17px; accent-color: var(--accent); cursor: pointer; }
+  .pl-table input[type=checkbox], .pl-cmp input { width: 17px; height: 17px; accent-color: var(--accent); cursor: pointer; }
+  .pl-cmp { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--ink-2); cursor: pointer; padding: 4px 0; }
   .pl-sub { display: block; font-size: 12px; color: var(--muted); }
   .fx5 { display: inline-grid; grid-template-columns: repeat(5, 30px); gap: 2px; }
   .fx5 span { font-size: 10px; font-weight: 700; text-align: center; border-radius: 3px; padding: 2px 0; }
@@ -882,7 +883,7 @@
   .riv-gap { font-family: var(--font-display); font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .riv-gap.ahead { color: var(--bad); } .riv-gap.behind { color: var(--good); }
   .riv-meta { display: grid; gap: 3px; font-size: 12.5px; color: var(--ink-2); }
-  .riv-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .riv-cols { display: grid; grid-template-columns: 1fr; gap: 12px; }   /* V43: cartões de jogador, uma lista por baixo da outra */
   .riv-lbl { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
   .riv-p { display: grid; font-size: 13px; padding: 2px 0; }
   .riv-p [data-pid] { font-weight: 600; cursor: pointer; }
@@ -900,6 +901,7 @@
   .al-tag { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); }
   .al-new { font-size: 10.5px; background: var(--accent); color: #fff; border-radius: 4px; padding: 1px 5px; }
   .al-act { display: flex; gap: 6px; }
+  .al-card { grid-column: 1 / -1; min-width: 0; }   /* V43: cartão do jogador do aviso (toca para abrir a ficha) */
   .al-act .btn { padding: 4px 10px; font-size: 12.5px; }
   .al-txt .up { color: var(--good); } .al-txt .down { color: var(--bad); }
   @media (max-width: 560px) { .al { grid-template-columns: 1fr auto; } .al-tag { grid-column: 1 / 3; } }
@@ -1188,6 +1190,82 @@
   .av-m.me { background: var(--accent-wash); border-radius: 6px; }
   .av-m b.w { color: var(--good); }
   @media (max-width: 560px) { .av-vs .big { font-size: 36px; } .av-diff { grid-template-columns: 1fr; } table.av-xi .hm { display: none; } }
+  /* ---------- Cartão de jogador (V43): componente único, versão compacta e completa ---------- */
+  .pc-list { display: grid; gap: 8px; min-width: 0; }
+  .pc-list.cols-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 12px; }
+  .pcard { container-type: inline-size; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; cursor: pointer; min-width: 0; transition: border-color .15s, box-shadow .15s; }
+  .pcard:hover { border-color: var(--accent-mid); box-shadow: var(--shadow); }
+  .pcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .pcard.is-mine { background: linear-gradient(90deg, var(--accent-weak), var(--surface) 46%); }
+  .pcard.is-out .pc-in { opacity: .6; }
+  .pc-in { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto auto auto; grid-template-areas: "shirt id fx form ep"; align-items: center; gap: 4px 12px; padding: 8px 12px; }
+  .pc-in.has-extra { grid-template-columns: 34px minmax(0, 1fr) auto auto auto auto; grid-template-areas: "shirt id fx form ep extra"; }
+  .pc-shirt { grid-area: shirt; width: 34px; height: 34px; background: var(--surface-2); border-radius: 8px; padding: 2px; box-sizing: border-box; }
+  .pc-shirt svg { width: 100%; height: 100%; display: block; }
+  .pc-id { grid-area: id; min-width: 0; }
+  .pc-name { display: flex; align-items: center; flex-wrap: wrap; gap: 3px 5px; min-width: 0; }
+  .pc-nm { font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .pc-meta { font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; margin-top: 1px; }
+  .pc-meta .pc-price { color: var(--ink-2); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .pc-note { font-size: 12px; color: var(--ink-2); margin-top: 3px; line-height: 1.4; }
+  .pc-tag { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: .03em; padding: 1px 5px; border-radius: 4px; line-height: 1.4; white-space: nowrap; }
+  .pc-tag.cap { background: var(--accent); color: #fff; }
+  .pc-tag.vice { background: var(--surface); color: var(--accent-strong); border: 1px solid var(--accent-mid); }
+  .pc-tag.inj { background: var(--bad-weak); color: var(--bad); }
+  .pc-tag.doubt { background: var(--warn-weak); color: var(--warn); }
+  .pc-tag.mine { background: var(--accent-weak); color: var(--accent-strong); }
+  .pc-tag.diff { background: var(--good-weak); color: var(--good); }
+  .pc-fx { grid-area: fx; display: flex; gap: 3px; }
+  .pc-fxc { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 38px; height: 30px; border-radius: 5px; font-size: 10.5px; font-weight: 700; line-height: 1.05; letter-spacing: .02em; white-space: nowrap; overflow: hidden; }
+  .pc-fxc small { font-size: 9px; font-weight: 600; opacity: .8; }
+  .pc-fxc.blank { background: var(--surface-2); color: var(--muted); border: 1px dashed var(--line-strong); }
+  .pc-form { grid-area: form; display: flex; flex-direction: column; align-items: center; gap: 1px; }
+  .pc-form .lbl, .pc-ep .lbl { font-size: 9.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .pc-ep { grid-area: ep; text-align: right; min-width: 58px; }
+  .pc-ep .v { font-family: var(--font-display); font-size: 22px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .pc-ep .h { font-size: 11px; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .pc-ep .h b { color: var(--good); }
+  .pc-extra { grid-area: extra; text-align: right; font-size: 13px; white-space: nowrap; }
+  /* cartão estreito (telemóvel, colunas lado a lado): duas linhas */
+  @container (max-width: 560px) {
+    .pc-in, .pc-in.has-extra { grid-template-columns: 34px minmax(0, 1fr) auto; grid-template-areas: "shirt id ep" "fx fx form" "extra extra extra"; padding: 8px 10px; row-gap: 6px; }
+    .pc-fx { min-width: 0; }
+    .pc-fxc { flex: 1 1 0; width: auto; min-width: 0; }
+    .pc-extra { text-align: left; white-space: normal; }
+    .pc-extra:empty { display: none; }
+  }
+  @container (max-width: 300px) {
+    .pc-in, .pc-in.has-extra { grid-template-areas: "shirt id ep" "fx fx fx" "extra extra extra"; }
+    .pc-form { display: none; }
+    .pc-fxc small { display: none; }
+  }
+  /* versão completa */
+  .pcard.full { cursor: default; }
+  .pcard.full .pc-in { grid-template-columns: 56px minmax(0, 1fr) auto; grid-template-areas: "shirt id ep" "tags tags tags" "fx fx fx" "form form form" "info info info"; gap: 10px 14px; padding: 14px 16px; }
+  .pcard.full .pc-shirt { width: 56px; height: 56px; }
+  .pcard.full .pc-nm { font-family: var(--font-display); font-size: 21px; font-weight: 700; }
+  .pcard.full .pc-meta { font-size: 13px; }
+  .pcard.full .pc-ep .v { font-size: 34px; }
+  .pcard.full .pc-tags { grid-area: tags; display: flex; flex-wrap: wrap; gap: 5px; }
+  .pcard.full .pc-tags:empty { display: none; }
+  .pcard.full .pc-fxw { grid-area: fx; min-width: 0; }
+  .pcard.full .pc-fx { flex-wrap: nowrap; }
+  .pcard.full .pc-fxc { flex: 1 1 0; width: auto; height: 46px; font-size: 12px; }
+  .pcard.full .pc-fxc i { font-style: normal; font-size: 9.5px; font-weight: 600; opacity: .75; }
+  .pcard.full .pc-form { align-items: stretch; }
+  .pcard.full .pc-form .row { display: flex; align-items: flex-end; gap: 12px; }
+  .pcard.full .pc-form .pts { display: flex; gap: 0; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .pcard.full .pc-sec { font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .pcard.full .pc-info { grid-area: info; display: grid; gap: 6px; font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 10px; }
+  .pcard.full .pc-info .news { color: var(--bad); }
+  .pcard.full .pc-info .news.d { color: var(--warn); }
+  @container (max-width: 420px) {
+    .pcard.full .pc-in { grid-template-columns: 44px minmax(0, 1fr) auto; padding: 12px; }
+    .pcard.full .pc-shirt { width: 44px; height: 44px; }
+    .pcard.full .pc-nm { font-size: 18px; }
+    .pcard.full .pc-ep .v { font-size: 28px; }
+    .pcard.full .pc-fxc { height: 42px; font-size: 11px; }
+  }
 </style>
 </head>
 <body>
@@ -1492,12 +1570,12 @@
             <section class="card">
               <h2>Diferenciadores</h2>
               <div class="card-sub">Fora do teu plantel, pouca posse na tua liga (≤15%), boa estimativa para a J<span class="gw-n">7</span> e titulares previstos</div>
-              <ol class="todo-list" id="hot-diffs-bruno"></ol>
+              <div id="hot-diffs-bruno"></div>
             </section>
             <section class="card">
               <h2>Podem surpreender</h2>
               <div class="card-sub">Titulares previstos que criaram muito mais do que pontuaram nas J<span class="gw-l3">4</span>-J<span class="gw-l">6</span> (xG + xA) e que pouca gente tem</div>
-              <ol class="todo-list" id="hot-surprises-bruno"></ol>
+              <div id="hot-surprises-bruno"></div>
             </section>
           </div>
         </div>
@@ -1506,12 +1584,12 @@
             <section class="card">
               <h2>Diferenciadores</h2>
               <div class="card-sub">Fora do plantel do Marco, pouca posse na liga (≤15%), boa estimativa para a J<span class="gw-n">7</span> e titulares previstos</div>
-              <ol class="todo-list" id="hot-diffs-marco"></ol>
+              <div id="hot-diffs-marco"></div>
             </section>
             <section class="card">
               <h2>Podem surpreender</h2>
               <div class="card-sub">Titulares previstos que criaram muito mais do que pontuaram nas J<span class="gw-l3">4</span>-J<span class="gw-l">6</span> (xG + xA) e que pouca gente tem</div>
-              <ol class="todo-list" id="hot-surprises-marco"></ol>
+              <div id="hot-surprises-marco"></div>
             </section>
           </div>
         </div>
@@ -1755,12 +1833,7 @@
             <section class="card">
               <h2>Jogadores baratos que libertam orçamento</h2>
               <div class="card-sub">Os do plantel e alternativas a vigiar</div>
-              <div class="table-scroll">
-                <table class="price">
-                  <thead><tr><th>Pos.</th><th>Jogador</th><th>Clube</th><th>Preço</th><th>Estado</th><th>Porquê</th></tr></thead>
-                  <tbody id="enablers-body"></tbody>
-                </table>
-              </div>
+              <div id="enablers-body"></div>
             </section>
           </div>
         </div>
@@ -1778,20 +1851,10 @@
           <h2>Vai subir ou descer?</h2>
           <div class="card-sub">A FPL muda preços pelo saldo de transferências (compras menos vendas), não pelos pontos. Passos de £0.1M, de madrugada no Reino Unido.</div>
           <div class="mgr-view" data-mgr="bruno">
-            <div class="table-scroll">
-              <table class="price">
-                <thead><tr><th>Jogador</th><th>Preço</th><th>Posse</th><th>Transf. (J)</th><th>Desde o início</th><th>Sinal</th></tr></thead>
-                <tbody id="price-body"></tbody>
-              </table>
-            </div>
+            <div id="price-body"></div>
           </div>
           <div class="mgr-view" data-mgr="marco">
-            <div class="table-scroll">
-              <table class="price">
-                <thead><tr><th>Jogador</th><th>Preço</th><th>Posse</th><th>Transf. (J)</th><th>Desde o início</th><th>Sinal</th></tr></thead>
-                <tbody id="price-body-marco"></tbody>
-              </table>
-            </div>
+            <div id="price-body-marco"></div>
           </div>
           <p class="note">"Transf. (J)" é o saldo de transferências da jornada entre todos os gestores da FPL. "Desde o início" é quanto o preço mudou desde o arranque da época. O sinal lê o saldo de transferências: muita procura costuma anteceder uma subida.</p>
         </section>
@@ -1801,7 +1864,7 @@
         <section class="card">
           <h2>Alternativas a considerar</h2>
           <div class="card-sub">Jogadores fora do plantel do Bruno com forma real nas J<span class="gw-l3">4</span>-J<span class="gw-l">6</span></div>
-          <div class="table-scroll"><table class="alt"><thead><tr><th>Jogador</th><th>Clube</th><th>Pos.</th><th>Preço</th><th>Notas</th></tr></thead><tbody id="alt-body"></tbody></table></div>
+          <div id="alt-body"></div>
         </section>
       </div>
     </section>
@@ -2085,10 +2148,8 @@
         </section>
         <section class="card">
           <div class="card-head"><div><h2 id="pl-count">Jogadores</h2><div class="card-sub">Marca até 4 para comparar. Barras = pontos por jornada (verde 6+).</div></div></div>
-          <div class="pl-scroll"><table class="form pl-table">
-            <thead><tr><th>Jogador</th><th class="num">Preço<button type="button" class="qbtn" data-q="preco" aria-label="O que é a pressão de preço?">?</button></th><th>Forma J1-J6</th><th class="num">Pts esp. J7<button type="button" class="qbtn" data-q="ep" aria-label="O que são pontos esperados?">?</button></th><th class="num">5 jornadas</th><th>Próximos 5<button type="button" class="qbtn" data-q="fdr" aria-label="O que é a dificuldade?">?</button></th><th class="num">Posse<button type="button" class="qbtn" data-q="eo" aria-label="O que é a posse efetiva?">?</button></th></tr></thead>
-            <tbody id="pl-body"></tbody>
-          </table></div>
+          <div class="note" style="margin:-4px 0 10px">Preço com pressão de preço <button type="button" class="qbtn" data-q="preco" aria-label="O que é a pressão de preço?">?</button> · pontos esperados <button type="button" class="qbtn" data-q="ep" aria-label="O que são pontos esperados?">?</button> · próximos 5 jogos pela dificuldade <button type="button" class="qbtn" data-q="fdr" aria-label="O que é a dificuldade?">?</button> · EO na liga <button type="button" class="qbtn" data-q="eo" aria-label="O que é o EO?">?</button></div>
+          <div id="pl-body"></div>
           <div style="text-align:center;margin-top:10px"><button type="button" class="btn" id="pl-more">Mostrar mais</button></div>
         </section>
       </div>
@@ -3204,27 +3265,22 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     return cands.sort((a,b) => b.ep - a.ep).slice(0, limit);
   }
   function renderHotTakes(suffix, excludeNames) {
+    if (!PC_READY) return;   // V43: desenhado em renderPcLists, depois de o cartão existir
     const surprises = computeSurprisePicks();
     const surpEl = document.getElementById('hot-surprises-' + suffix);
     if (surpEl) {
-      surpEl.innerHTML = surprises.length ? surprises.map(s => `
-        <li>
-          <b>${s.name} ${injuryBadge(s.name)}</b>
-          <span>${TEAMS[s.fp.team]} · £${s.fp.price.toFixed(1)}M · ${s.fp.own.toFixed(1)}% de posse na FPL — ${s.xgi.toFixed(2)} xG + xA nas últimas 3 jornadas, mas só ${s.pts3} pts. ${s.info.note ? 'Onze provável: ' + s.info.note + '.' : ''}</span>
-        </li>
-      `).join('') : '<li><b>Sem surpresas claras esta jornada.</b><span>Nenhum titular previsto com pouca posse está a criar muito mais do que pontua.</span></li>';
+      // V43: cartões de jogador
+      surpEl.innerHTML = surprises.length ? playerCards(surprises.map(x => x.fp), p => { const x = surprises.find(y => y.fp === p);
+        return {note: `${x.xgi.toFixed(2)} xG + xA nas últimas 3 jornadas, mas só ${x.pts3} pts · ${p.own.toFixed(1)}% de posse na FPL${x.info.note ? ' · onze provável: ' + x.info.note : ''}`}; })
+        : '<p class="prose"><b>Sem surpresas claras esta jornada.</b> Nenhum titular previsto com pouca posse está a criar muito mais do que pontua.</p>';
     }
     const diffs = computeDifferentials(excludeNames, 5);
     const diffEl = document.getElementById('hot-diffs-' + suffix);
     if (diffEl) {
-      diffEl.innerHTML = diffs.length ? diffs.map(p => {
-        const info = PREDICTED_STARTERS.get(p.name);
-        return `
-        <li>
-          <b>${p.name} ${injuryBadge(p.name)}</b>
-          <span>${TEAMS[p.team]} · £${p.price.toFixed(1)}M · ${p.lown}% de posse na tua liga · ${p.ep.toFixed(1)} pts esp. (J7) — ${info ? info.note : 'titular esperado'}</span>
-        </li>`;
-      }).join('') : '<li><b>Sem diferenciadores claros esta jornada.</b><span>O teu plantel já cobre as opções com melhor ep/posse desta semana, dentro dos titulares confirmados pelos "Onzes prováveis".</span></li>';
+      // V43: cartões de jogador
+      diffEl.innerHTML = diffs.length ? playerCards(diffs.map(d => FULL_POOL_BY_NAME[d.name]).filter(Boolean), p => { const d = diffs.find(x => x.name === p.name), info = PREDICTED_STARTERS.get(p.name);
+        return {note: `${d.lown}% de posse na tua liga · ${info ? info.note : 'titular esperado'}`}; })
+        : '<p class="prose"><b>Sem diferenciadores claros esta jornada.</b> O teu plantel já cobre as opções com melhor ep/posse desta semana, dentro dos titulares confirmados pelos "Onzes prováveis".</p>';
     }
   }
 
@@ -4759,9 +4815,10 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {name:"Enzo Fernández", club:"Man City", pos:"MID", price:"£6.9M", note:"já não está no Chelsea: mudou-se para o Man City. 2+7+3 pts. Substituto direto do Szoboszlai ao mesmo preço, se preferires não ir ao Brighton."},
   ];
   ALT.forEach(a => { const fp = FULL_POOL_BY_NAME[a.name]; if (fp) a.price = '£' + fp.price.toFixed(1) + 'M'; });
-  document.getElementById('alt-body').innerHTML = ALT.map(a => `
-    <tr><td><b>${a.name}</b></td><td class="player-club">${a.club}</td><td>${a.pos}</td><td class="price">${a.price}</td><td class="note">${a.note}</td></tr>
-  `).join('');
+  function renderAlt() {
+    if (!PC_READY) return;   // V43: cartões de jogador (desenhado em renderPcLists, depois de o cartão existir)
+    document.getElementById('alt-body').innerHTML = playerCards(ALT.map(a => FULL_POOL_BY_NAME[a.name]).filter(Boolean), p => ({note: ALT.find(a => a.name === p.name).note}));
+  }
 
   // TAB 4 — Budget building
   const BUDGET_TIERS = [
@@ -4794,16 +4851,10 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {pos:"MID", name:"Malick Yalcouyé", club:"Brighton", price:"£4.5M", inSquad:false, why:"8 pts na J4, mas depois só 5 e 22 minutos. Barato, mas sem lugar garantido no Brighton."},
   ];
   ENABLERS.forEach(a => { const fp = FULL_POOL_BY_NAME[a.name]; if (fp) a.price = '£' + fp.price.toFixed(1) + 'M'; });
-  document.getElementById('enablers-body').innerHTML = ENABLERS.map(e => `
-    <tr>
-      <td>${e.pos}</td>
-      <td class="player-name">${e.name}</td>
-      <td class="player-club">${e.club}</td>
-      <td class="price">${e.price}</td>
-      <td><span class="status-chip ${e.inSquad ? 'insquad' : 'alt'}">${e.inSquad ? 'já na equipa' : 'alternativa'}</span></td>
-      <td class="note">${e.why}</td>
-    </tr>
-  `).join('');
+  function renderEnablers() {
+    if (!PC_READY) return;   // V43: cartões de jogador
+    document.getElementById('enablers-body').innerHTML = playerCards(ENABLERS.map(e => FULL_POOL_BY_NAME[e.name]).filter(Boolean), p => ({note: ENABLERS.find(e => e.name === p.name).why}));
+  }
 
   // 2 set 2026 (V19e): o utilizador fez uma SEGUNDA troca esta semana (Calvert-Lewin → Nicolas Jackson,
   // um punt diferenciador). Corrigido pouco depois (V19g): o utilizador esclareceu que NÃO houve hit —
@@ -4991,30 +5042,18 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   };
   function sumRecent(arr, n) { return arr.slice(-n).reduce((s,v) => s+v, 0); }
   function renderHotPlayers() {
+    if (!PC_READY) return;   // V43: cartões de jogador, por posição
     const order = ['gk','def','mid','fwd'];
     const labels = {gk:'Guarda-redes', def:'Defesas', mid:'Médios', fwd:'Avançados'};
     const lastGw = Math.max(...HISTORY.map(h => h.gw));
-    const gwCols = [lastGw - 2, lastGw - 1, lastGw];
     document.getElementById('hot-players-body').innerHTML = order.map(cls => {
-      const rows = HOT_PLAYERS[cls].slice().sort((a,b) => sumRecent(b.recentGwPoints, 3) - sumRecent(a.recentGwPoints, 3)).map(p => {
-        const pts = p.recentGwPoints.slice(-3);
-        const squadTag = MINE_NAMES.has(p.name) ? ' <span class="status-chip insquad">no teu plantel</span>' : '';
-        return `
-          <tr>
-            <td><span class="player-name">${p.name}</span>${squadTag}${p.note ? `<div class="note">${p.note}</div>` : ''}</td>
-            <td class="player-club">${p.club}</td>
-            ${pts.map(v => `<td class="num heat ${v >= 10 ? 'h4' : v >= 6 ? 'h3' : v <= 2 ? 'h1' : ''}">${v}</td>`).join('')}
-            <td class="num"><b>${sumRecent(p.recentGwPoints, 3)}</b></td>
-          </tr>`;
-      }).join('');
+      const list = HOT_PLAYERS[cls].slice().sort((a,b) => sumRecent(b.recentGwPoints, 3) - sumRecent(a.recentGwPoints, 3));
+      const ps = list.map(h => FULL_POOL_BY_NAME[h.name]).filter(Boolean);
       return `
         <div class="pos-group">
           <div class="pos-head"><span class="pos-badge ${cls}">${labels[cls]}</span></div>
-          <table class="form hot">
-            <colgroup><col style="width:46%"><col style="width:18%"><col style="width:9%"><col style="width:9%"><col style="width:9%"><col style="width:9%"></colgroup>
-            <thead><tr><th>Jogador</th><th>Clube</th>${gwCols.map(g => `<th class="num">J${g}</th>`).join('')}<th class="num">Total</th></tr></thead>
-            <tbody>${rows}</tbody>
-          </table>
+          ${playerCards(ps, p => { const h = list.find(x => x.name === p.name), pts = h.recentGwPoints.slice(-3);
+            return {mine: MINE_NAMES.has(p.name), note: h.note || '', extra: `<b>${sumRecent(h.recentGwPoints, 3)}</b> pts<br><span class="note">J${lastGw - 2}-J${lastGw}: ${pts.join('+')}</span>`}; })}
         </div>`;
     }).join('');
   }
@@ -5034,26 +5073,16 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     if (net <= -60000) return {sig:'watch', label:'muitas saídas — pode descer'};
     return {sig:'none', label:'estável'};
   }
-  function renderPriceSignals(tbodyId, names) {
-    const rows = names.map(name => {
-      const fp = FULL_POOL_BY_NAME[name];
-      if (!fp) return '';
-      const {sig, label} = priceSignalFor(fp);
-      const net = fp.tin - fp.tout;
-      const netStr = (net >= 0 ? '+' : '') + net.toLocaleString('pt-PT');
+  function renderPriceSignals(elId, names) {
+    if (!PC_READY) return;   // V43: cartões de jogador
+    const el = document.getElementById(elId); if (!el) return;
+    const ps = names.map(n => FULL_POOL_BY_NAME[n]).filter(Boolean);
+    el.innerHTML = playerCards(ps, fp => {
+      const {sig, label} = priceSignalFor(fp), net = fp.tin - fp.tout;
       const proj = fp.ccs ? `${fp.ccs > 0 ? '+' : '−'}£${(Math.abs(fp.ccs) / 10).toFixed(1)}M` : '—';
-      return `
-        <tr>
-          <td class="player-name">${name} ${injuryBadge(name)}</td>
-          <td class="price">£${fp.price.toFixed(1)}M</td>
-          <td>${fp.own.toFixed(1)}%</td>
-          <td class="price">${netStr}</td>
-          <td>${proj}</td>
-          <td><span class="status-chip ${sig}">${SIGNAL_LABEL[sig]}</span><div class="note" style="margin-top:4px">${label} · ${fp.tin.toLocaleString('pt-PT')} entradas, ${fp.tout.toLocaleString('pt-PT')} saídas nesta jornada</div></td>
-        </tr>`;
-    }).join('');
-    const el = document.getElementById(tbodyId);
-    if (el) el.innerHTML = rows;
+      return {mine: false, note: `${label} · ${fp.tin.toLocaleString('pt-PT')} entradas, ${fp.tout.toLocaleString('pt-PT')} saídas nesta jornada · posse ${fp.own.toFixed(1)}% · desde o início ${proj}`,
+              extra: `<span class="status-chip ${sig}">${SIGNAL_LABEL[sig]}</span><br><span class="note">saldo ${(net >= 0 ? '+' : '') + net.toLocaleString('pt-PT')}</span>`};
+    });
   }
   renderPriceSignals('price-body', ALL_PLAYERS.map(p => p.name));
 
@@ -5473,6 +5502,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     try { lazyRender('decisoes', renderSimulator); } catch (e) { console.error(e); }
     try { lazyRender('campo', renderPitch); renderChipPlan(); renderEuro(); CMP.a = null; renderCompare(); if (prevVisible()) renderPrevisao(); lazyRender('decisoes', renderCapH2H); renderGlance(); renderPlayers(); renderPc(); renderPlanner(); renderLogView(); renderRivals(); renderAlerts(); renderSim(); renderTodo(); renderHistKpi(); lazyRender('decisoes', renderStrategy); renderAutoPlan(); renderGlance2(); renderIdeal(); renderLigaBudgets(); lazyRender('h2h', renderH2HVis); closePlayer(); } catch (e) { console.error(e); }
     try { renderAoVivo(); } catch (e) { console.error(e); }
+    try { if (PC_READY) renderPcLists(); } catch (e) { console.error(e); }
     if (mgr === 'marco') {
       document.getElementById('hero-h1').textContent = 'Xarola Team';
       document.getElementById('hero-sub').textContent = 'Marco Carmo · Team ID 1973102';
@@ -6148,7 +6178,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const bd = document.getElementById('pc');
     if (e.target === bd || e.target.closest('.pc-close')) { closePlayer(); return; }
     const t = e.target.closest('[data-pid], .player-name');
-    if (!t || t.closest('select, option')) return;
+    if (!t || t.closest('select, option') || e.target.closest('input, label, textarea, button:not([data-pid])')) return;
     let id = t.dataset.pid ? +t.dataset.pid : null;
     if (!id) {
       const raw = (t.firstChild && t.firstChild.nodeType === 3 ? t.firstChild.nodeValue : t.textContent).trim();
@@ -7112,6 +7142,94 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     return `<svg class="spk" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="Pontos por jornada: ${vals.join(', ')}">${vals.map((v, i) => { const bh = Math.max(1.5, Math.max(0, v) / max * (h - 2)); return `<rect x="${i * bw + 1}" y="${h - bh}" width="${bw - 2}" height="${bh}" rx="1.5" fill="${v >= 6 ? 'var(--good)' : v >= 3 ? 'var(--accent-mid)' : 'var(--line-strong)'}"><title>J${i + 1}: ${v}</title></rect>`; }).join('')}</svg>`;
   }
 
+  // ===================================================================
+  // V43 (15 out 2026) — Cartão de jogador: um só componente para todas as listas de jogadores.
+  // playerCard(p, opts) devolve o HTML; opts:
+  //   full     versão completa (camisola grande, fita com jornadas, forma com números, notícia, posse na liga)
+  //   gi       jornada do horizonte para os pontos esperados (0 = próxima)
+  //   cap/vice etiqueta C/V        mine  "no plantel" (por defeito: se está no plantel do gestor ativo)
+  //   note     linha de texto por baixo do clube (HTML)    extra  coluna à direita (HTML, ex.: ganho de uma troca)
+  //   tags     etiquetas extra (HTML)
+  // Tocar no cartão abre a ficha do jogador (o clique em [data-pid] já está tratado na app).
+  // ===================================================================
+  const PC_STATUS = {d: ['doubt', 'dúvida'], i: ['inj', 'lesionado'], s: ['inj', 'suspenso'], u: ['inj', 'indisponível'], n: ['inj', 'indisponível']};
+  function pcEO(id) { try { return leagueEO(id); } catch (e) { return null; } }   // LEAGUE_SQUADS pode ainda não existir
+  function pcMine(id) { try { return mineIds().has(id); } catch (e) { return false; } }
+  function pcFixCell(p, k, full) {
+    const gw = HZ[k], fx = fixturesFor(p.team, gw);
+    if (!fx.length) return `<span class="pc-fxc blank" title="J${gw}: sem jogo">${full ? `<i>J${gw}</i>` : ''}—</span>`;
+    const dx = fx.reduce((s, f) => s + f.d, 0) / fx.length, d = Math.max(1, Math.min(5, Math.round(dx)));
+    const opp = fx.map(f => SHORT(f.opp)).join('+'), ha = fx.map(f => f.home ? 'C' : 'F').join('+');
+    const title = `J${gw}: ${fx.map(f => `${TEAMS[f.opp]} (${f.home ? 'casa' : 'fora'})`).join(' e ')}, dificuldade ${dx.toFixed(1)}`;
+    return `<span class="pc-fxc" style="background:${SEQ[d]};color:${SEQ_TEXT[d]}" title="${title}">${full ? `<i>J${gw}</i>` : ''}${fx.length > 1 ? `${fx.length}×` : opp}<small>${fx.length > 1 ? opp : ha}</small></span>`;
+  }
+  function pcTags(p, o, eo) {
+    const T = [];
+    if (o.cap) T.push('<span class="pc-tag cap" title="Capitão">C</span>');
+    if (o.vice) T.push('<span class="pc-tag vice" title="Vice-capitão">V</span>');
+    const st = PC_STATUS[p.status];
+    if (st) T.push(`<span class="pc-tag ${st[0]}" title="${(p.news || '').replace(/"/g, '&quot;')}">${st[1]}${p.status === 'd' && p.chance != null ? ' ' + p.chance + '%' : ''}</span>`);
+    if (o.mine) T.push('<span class="pc-tag mine">no plantel</span>');
+    if (eo && eo.eo < 0.15 && epAt(p, o.gi) >= 2) T.push(`<span class="pc-tag diff" title="Só ${Math.round(eo.eo * 100)}% da liga o tem a jogar (titular + capitão)">diferencial</span>`);
+    if (o.tags) T.push(o.tags);
+    return T.join('');
+  }
+  function playerCard(p, opts) {
+    if (!p) return '';
+    const o = Object.assign({gi: 0}, opts || {});
+    if (o.mine == null) o.mine = pcMine(p.id);
+    const gi = o.gi, ep = epAt(p, gi), eo = pcEO(p.id), full = !!o.full;
+    const out = ['i', 's', 'u', 'n'].includes(p.status) || ep < 0.5;
+    const pts = (p.ptsGw || []).slice(-6);
+    const priceCh = p.cch ? ` <span class="${p.cch > 0 ? 'up' : 'down'}" title="Variação nesta jornada">${p.cch > 0 ? '+' : '−'}${Math.abs(p.cch / 10).toFixed(1)}</span>` : '';
+    const meta = `<span>${full ? TEAMS[p.team] : SHORT(p.team)}</span><span>·</span><span>${POS_SHORT[p.cls]}</span><span>·</span><span class="pc-price">£${p.price.toFixed(1)}M</span>${priceCh}${priceTag(p)}`;
+    const tags = pcTags(p, o, eo);
+    const p10 = pAtLeast(p, gi, 10);
+    const epBlock = `<div class="pc-ep"><div class="lbl">Pts esp. J${HZ[gi]}</div><div class="v">${f1(ep)}</div><div class="h" title="Probabilidade de 10 ou mais pontos na J${HZ[gi]}">10+ <b>${pctR(p10)}</b></div></div>`;
+    const fx = `<div class="pc-fx">${HZ.map((_, k) => pcFixCell(p, k, full)).join('')}</div>`;
+    const label = `${p.name}, ${TEAMS[p.team]}, ${POS_SHORT[p.cls]}, £${p.price.toFixed(1)}M, ${f1(ep)} pontos esperados na J${HZ[gi]}${o.cap ? ', capitão' : o.vice ? ', vice-capitão' : ''}${PC_STATUS[p.status] ? ', ' + PC_STATUS[p.status][1] : ''}`;
+    const cls = `pcard${full ? ' full' : ''}${o.mine ? ' is-mine' : ''}${out ? ' is-out' : ''}`;
+    if (!full) {
+      return `<article class="${cls}" data-pid="${p.id}" tabindex="0" role="button" aria-label="${label}"><div class="pc-in${o.extra ? ' has-extra' : ''}">
+        <div class="pc-shirt">${shirtSvg(p.team, p.cls)}</div>
+        <div class="pc-id"><div class="pc-name"><span class="pc-nm">${shortName(p.name)}</span>${tags}</div><div class="pc-meta">${meta}</div>${o.note ? `<div class="pc-note">${o.note}</div>` : ''}</div>
+        ${fx}
+        <div class="pc-form"><span class="lbl">Forma</span>${sparkline(pts, {w: 60, h: 20})}</div>
+        ${epBlock}${o.extra ? `<div class="pc-extra">${o.extra}</div>` : ''}
+      </div></article>`;
+    }
+    const [lo, hi] = range80(p, gi), sum = HZ.reduce((s, _, k) => s + epAt(p, k), 0);
+    const first = GW_META.last - pts.length + 1;
+    return `<article class="${cls}" aria-label="${label}"><div class="pc-in">
+        <div class="pc-shirt">${shirtSvg(p.team, p.cls)}</div>
+        <div class="pc-id"><div class="pc-name"><span class="pc-nm" data-pid="${p.id}">${p.name}</span></div><div class="pc-meta">${meta}</div>${o.note ? `<div class="pc-note">${o.note}</div>` : ''}</div>
+        <div class="pc-ep"><div class="lbl">Pts esp. J${HZ[gi]}</div><div class="v">${f1(ep)}</div><div class="h">10+ pts <b>${pctR(p10)}</b></div><div class="h">J${HZ[0]}-J${HZ[HZ.length - 1]}: ${f1(sum)}</div></div>
+        <div class="pc-tags">${tags}</div>
+        <div class="pc-fxw"><div class="pc-sec">Próximos ${HZ.length} jogos</div>${fx}</div>
+        <div class="pc-form"><div class="pc-sec">Forma · pontos J${first}-J${GW_META.last}</div><div class="row">${sparkline(pts, {w: 168, h: 38})}<span class="pts">${pts.join(' · ')}</span></div></div>
+        <div class="pc-info">
+          ${PC_STATUS[p.status] ? `<div class="news${p.status === 'd' ? ' d' : ''}">${PC_STATUS[p.status][1]}${p.chance != null ? ` (${p.chance}% de jogar)` : ''}${p.news ? ` — ${p.news}` : ''}</div>` : ''}
+          <div>Quando joga, 8 em cada 10 vezes faz entre <b>${lo}</b> e <b>${hi}</b> pontos · ≤2 pts ${pctR(pAtMost(p, gi, 2))}</div>
+          <div>Posse: ${f1(p.own || 0)}% na FPL${eo ? ` · ${Math.round(eo.own * 100)}% na liga (${Math.round(eo.start * 100)}% titular, ${Math.round(eo.cap * 100)}% capitão) — ${eoReading(p.id)}` : ''}</div>
+          ${o.extra ? `<div>${o.extra}</div>` : ''}
+          <div><button type="button" class="btn ghost small" data-pid="${p.id}">Abrir a ficha completa</button></div>
+        </div>
+      </div></article>`;
+  }
+  const playerCards = (list, optsOf) => `<div class="pc-list">${list.filter(Boolean).map((p, i) => playerCard(p, typeof optsOf === 'function' ? optsOf(p, i) : optsOf)).join('')}</div>`;
+  // Enter/espaço num cartão compacto abre a ficha (como o clique)
+  document.addEventListener('keydown', e => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('pcard') && !e.target.classList.contains('full')) { e.preventDefault(); e.target.click(); }
+  });
+  var PC_READY = true;   // listas desenhadas antes deste ponto voltam a ser desenhadas em renderPcLists()
+  function renderPcLists() {
+    const names = mgr => squadOf(mgr).filter(Boolean).map(p => p.name);
+    try { renderHotPlayers(); renderAlt(); renderEnablers(); } catch (e) { console.error(e); }
+    try { renderPriceSignals('price-body', names('bruno')); renderPriceSignals('price-body-marco', names('marco')); } catch (e) { console.error(e); }
+    try { renderHotTakes('bruno', names('bruno')); renderHotTakes('marco', names('marco')); } catch (e) { console.error(e); }
+  }
+  renderPcLists();
+
   // ---------- Jogadores: pesquisa e comparador ----------
   const PL = {limit: 40, sel: []};
   const PC_COLORS = ['#7B4FB8', '#E08A00', '#1E9E5A', '#2E6FD2'];
@@ -7135,15 +7253,11 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const body = document.getElementById('pl-body'); if (!body) return;
     const list = plFiltered(), my = mineIds();
     document.getElementById('pl-count').textContent = `${list.length} jogador${list.length === 1 ? '' : 'es'}`;
-    body.innerHTML = list.slice(0, PL.limit).map(p => `<tr>
-      <td><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" data-sel="${p.id}" ${PL.sel.includes(p.id) ? 'checked' : ''} ${!PL.sel.includes(p.id) && PL.sel.length >= 4 ? 'disabled' : ''} aria-label="Comparar ${p.name}">
-        <span><span class="player-name">${p.name}</span>${my.has(p.id) ? '<span class="mine-dot" title="No teu plantel"></span>' : ''} ${injuryBadge(p.name)}<span class="pl-sub">${TEAMS[p.team]} · ${POS_SHORT[p.cls]}</span></span></label></td>
-      <td class="num">£${p.price.toFixed(1)}${priceTag(p) ? '<br>' + priceTag(p) : ''}</td>
-      <td>${sparkline(p.ptsGw || [])} <span class="note">${last3(p)}</span></td>
-      <td class="num"><b>${f1(epAt(p, 0))}</b><span class="pl-sub">10+: ${pctR(pAtLeast(p, 0, 10))}</span></td>
-      <td class="num">${f1(sum5(p))}</td>
-      <td>${fx5(p)}</td>
-      <td class="num">${(p.own || 0).toFixed(1)}%<span class="pl-sub">liga ${p.lown || 0}% · EO ${eoTxt(p.id)}</span></td></tr>`).join('') || '<tr><td colspan="7" class="note">Nenhum jogador com estes filtros.</td></tr>';
+    // V43: cartões de jogador; a caixa "Comparar" fica na coluna da direita
+    body.innerHTML = list.length ? playerCards(list.slice(0, PL.limit), p => ({mine: my.has(p.id),
+      note: `J${HZ[0]}-J${HZ[HZ.length - 1]}: ${f1(sum5(p))} pts esp. · posse ${(p.own || 0).toFixed(1)}% · liga ${p.lown || 0}% · EO ${eoTxt(p.id)}`,
+      extra: `<label class="pl-cmp"><input type="checkbox" data-sel="${p.id}" ${PL.sel.includes(p.id) ? 'checked' : ''} ${!PL.sel.includes(p.id) && PL.sel.length >= 4 ? 'disabled' : ''} aria-label="Comparar ${p.name}"> Comparar</label>`}))
+      : '<p class="note">Nenhum jogador com estes filtros.</p>';
     document.getElementById('pl-more').hidden = list.length <= PL.limit;
     body.querySelectorAll('[data-sel]').forEach(c => c.addEventListener('change', () => {
       const id = +c.dataset.sel;
@@ -7434,7 +7548,10 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       <div class="plan-gws">${rows.map(r => `
         <section class="card plan-gw">
           <div class="plan-gw-head"><h3>J${r.g}</h3><span class="note">${r.ftBefore} grátis · usa ${r.used}${r.hits ? ` · <b style="color:var(--bad)">−${r.hits}</b>` : ''} · banco £${r.bank.toFixed(1)}M</span><span class="plan-net ${r.net >= 0.05 ? 'up' : r.net <= -0.05 ? 'down' : ''}">${sgn(r.net)}</span></div>
-          ${r.moves.map(({m, err}) => { const po = FULL_POOL_BY_ID[m.out], pi = FULL_POOL_BY_ID[m.in]; return `<div class="plan-move${err ? ' bad' : ''}"><span><span data-pid="${m.out}" class="pm-out">${po ? shortName(po.name) : '?'}</span> → <span data-pid="${m.in}" class="pm-in">${pi ? shortName(pi.name) : '?'}</span>${pi ? ` <span class="note">£${pi.price.toFixed(1)}</span>` : ''}${err ? `<span class="pm-err">${err}</span>` : ''}</span><button type="button" class="pm-x" data-del="${STORE.plan[mgr].indexOf(m)}" aria-label="Apagar">×</button></div>`; }).join('') || '<div class="note">Sem transferências — guarda a grátis.</div>'}
+          ${r.moves.length ? `<div class="pc-list">${r.moves.map(({m, err}) => { const po = FULL_POOL_BY_ID[m.out], pi = FULL_POOL_BY_ID[m.in];
+            // V43: cartão do jogador que entra (pontos esperados desta jornada), com quem sai e o botão para apagar
+            return pi ? playerCard(pi, {gi: Math.max(0, HZ.indexOf(r.g)), mine: false, note: `<span class="pm-out">sai ${po ? shortName(po.name) : '?'}</span>${po ? ` (≈${f1(epAt(po, Math.max(0, HZ.indexOf(r.g))))})` : ''}${err ? ` <span class="pm-err">${err}</span>` : ''}`,
+              extra: `<button type="button" class="pm-x" data-del="${STORE.plan[mgr].indexOf(m)}" aria-label="Apagar esta transferência">×</button>`}) : ''; }).join('')}</div>` : '<div class="note">Sem transferências — guarda a grátis.</div>'}
           ${PLAN_ADD && PLAN_ADD.gw === r.g ? planAddForm(mgr, r.g) : `<div class="plan-actions"><button type="button" class="btn" data-add="${r.g}">＋ Transferência</button><button type="button" class="btn ghost" data-best="${r.g}">Sugerir</button></div>`}
         </section>`).join('')}</div>
       <div class="plan-actions" style="margin-top:4px">${sugg.length ? `<button type="button" class="btn" id="plan-sug">Pôr a troca sugerida na J${HZ[0]}</button>` : ''}<button type="button" class="btn ghost" id="plan-clear">Limpar o plano</button></div>
@@ -7569,8 +7686,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
           <div class="riv-meta"><span title="Chips por usar até à J19"><span class="chipdots">${['wildcard', 'freehit', 'bboost', '3xc'].map(c => `<i class="${d.left.includes(c) ? '' : 'on'}"></i>`).join('')}</span> ${d.left.length ? 'tem ' + d.left.map(c => CHIP_PT[c]).join(', ') : 'sem chips'}</span>
             <span>C na J${GW_META.last}: <b>${shortName(d.L.c)}</b> · banco £${d.L.bank.toFixed(1)}M</span></div>
           <div class="riv-cols">
-            <div><div class="riv-lbl">Só ele tem (titulares)</div>${d.theirOnly.slice(0, 5).map(p => `<div class="riv-p"><span data-pid="${p.id}">${shortName(p.name)}</span><span class="note">${fxLabel(p, HZ[0]).txt} · ≈${f1(epAt(p, 0))}</span></div>`).join('') || '<div class="note">—</div>'}</div>
-            <div><div class="riv-lbl">Só tu tens</div>${d.mineOnly.slice(0, 5).map(p => `<div class="riv-p"><span data-pid="${p.id}">${shortName(p.name)}</span><span class="note">${fxLabel(p, HZ[0]).txt} · ≈${f1(epAt(p, 0))}</span></div>`).join('') || '<div class="note">—</div>'}</div>
+            <div><div class="riv-lbl">Só ele tem (titulares)</div>${d.theirOnly.length ? playerCards(d.theirOnly.slice(0, 5), {mine: false}) : '<div class="note">—</div>'}</div>
+            <div><div class="riv-lbl">Só tu tens</div>${d.mineOnly.length ? playerCards(d.mineOnly.slice(0, 5), {mine: false}) : '<div class="note">—</div>'}</div>
           </div>
           ${d.tr.length ? `<div class="riv-lbl" style="margin-top:6px">Últimas transferências</div>${d.tr.slice(0, 3).map(t => `<div class="riv-p"><span>J${t.event}: <span class="pm-out">${shortName((FULL_POOL_BY_ID[t.out] || {name: '?'}).name)}</span> → <span class="pm-in">${shortName((FULL_POOL_BY_ID[t.in] || {name: '?'}).name)}</span></span></div>`).join('')}` : ''}
           <div class="riv-foot">Na J${HZ[0]}: ele ≈${f1(d.X.total)} (C ${shortName(d.X.cap.name)}) · tu ≈${f1(myX.total)} → <b class="${d.swing >= 0 ? 'up' : 'down'}">${sgn(d.swing)}</b></div>
@@ -7935,7 +8052,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const sevName = {3: 'Urgente', 2: 'Importante', 1: 'Para saber'};
     el.innerHTML = `
       <div class="card-head"><div><h2>Avisos <span class="al-count${hi ? ' hot' : ''}">${A.length}</span></h2><div class="card-sub">Lesões, onzes prováveis, preços, descanso e o que falta fazer antes do deadline · ${curMgr() === 'marco' ? 'Xarola Team' : 'Brunorussia FC'}</div></div></div>
-      ${A.length ? `<ul class="al-list">${A.map(a => `<li class="al s${a.sev}"><span class="al-tag">${a.cat}</span><span class="al-txt">${a.isNew ? '<b class="al-new">NOVO</b> ' : ''}${a.txt}</span><span class="al-act">${a.pid ? `<button type="button" class="btn ghost" data-pid="${a.pid}">Ficha</button>` : ''}${a.goto ? `<button type="button" class="btn ghost" data-goto2="${a.goto}" data-gsub="${a.gotoSub || ''}">Ver</button>` : ''}</span></li>`).join('')}</ul>` : '<p class="prose">Nada a assinalar: plantel sem lesões nem dúvidas e nada pendente.</p>'}
+      ${A.length ? `<ul class="al-list">${A.map(a => `<li class="al s${a.sev}"><span class="al-tag">${a.cat}</span><span class="al-txt">${a.isNew ? '<b class="al-new">NOVO</b> ' : ''}${a.txt}</span><span class="al-act">${a.goto ? `<button type="button" class="btn ghost" data-goto2="${a.goto}" data-gsub="${a.gotoSub || ''}">Ver</button>` : ''}</span>${a.pid && FULL_POOL_BY_ID[a.pid] ? `<div class="al-card">${playerCard(FULL_POOL_BY_ID[a.pid])}</div>` : ''}</li>`).join('')}</ul>` : '<p class="prose">Nada a assinalar: plantel sem lesões nem dúvidas e nada pendente.</p>'}
       <p class="note">"NOVO" = mudou desde a última vez que abriste a app neste browser. Estado oficial e preços: ${window.__LIVE ? 'atualização automática de ' + new Date(window.__LIVE.generated).toLocaleString('pt-PT', {day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Lisbon'}) : 'dados de ' + GW_META.dataDate}. ${sevName[3]} a vermelho, ${sevName[2].toLowerCase()} a laranja.</p>`;
     el.querySelectorAll('[data-goto2]').forEach(b => b.addEventListener('click', () => showView(b.dataset.goto2, b.dataset.gsub || undefined)));
     const bell = document.getElementById('bell-btn');
@@ -8446,17 +8563,16 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
         <p class="note">Em média, um jogador vale os mesmos pontos esperados quer os rivais o tenham ou não. O que muda é o risco: um diferencial que marca faz-te ganhar terreno a todos de uma vez; um jogador que todos têm não te faz perder. A estratégia diz qual dos dois te interessa agora. ${qBtn('eo')}</p>
       </section>
       <section class="card"><h2>Capitão para a estratégia</h2><div class="card-sub">Entre os teus titulares (com a troca sugerida). "Rivais" = ${tn.length} gestores ${st.mode === 'proteger' ? 'logo atrás' : 'logo à frente'}.</div>
-        <div class="table-scroll"><table class="form"><thead><tr><th>Jogador</th><th class="num">Pts esp.</th><th class="num">10+ pts</th><th class="num">Rivais com ele</th><th class="num">Rivais capitão</th></tr></thead><tbody>
-        ${caps.map((c, i) => `<tr class="${i === 0 ? 'me-row' : ''}"><td>${i === 0 ? '<b>★ </b>' : ''}<span class="player-name">${c.p.name}</span><span class="pl-sub">${fxLabel(c.p, HZ[0]).txt}</span></td><td class="num">${f1(c.ep)}</td><td class="num">${pct(c.h)}</td><td class="num">${pct(c.own)}</td><td class="num">${pct(c.capT)}</td></tr>`).join('')}
-        </tbody></table></div>
+        ${playerCards(caps.map(c => c.p), (p, i) => { const c = caps[i];
+          return {mine: false, tags: i === 0 ? '<span class="pc-tag cap" title="Melhor escolha para esta estratégia">★ escolha</span>' : '', note: `Rivais com ele: ${pct(c.own)} · rivais com ele de capitão: ${pct(c.capT)}`}; })}
         <p class="note">★ = melhor escolha para esta estratégia. ${caps[0].p.id !== X.cap.id ? `Pelos pontos esperados seria o ${shortName(X.cap.name)}; a diferença é ${f1(epAt(X.cap, 0) - caps[0].ep)} pts em média, em troca de ${st.mode === 'proteger' ? 'mais segurança' : 'mais hipótese de ganhar terreno'}.` : 'Coincide com o capitão pelos pontos esperados.'}</p>
       </section>
       <div class="grid-2">
         <section class="card"><h2>Diferenciais a considerar</h2><div class="card-sub">Bons nas próximas 5 jornadas e que no máximo 1 em 4 dos teus rivais tem</div>
-          ${diff.map(d => `<div class="riv-lbl" style="margin-top:8px">${SIM_LBL[d.c]}</div>${d.list.map(p => `<div class="riv-p" style="grid-template-columns:1fr auto"><span><span data-pid="${p.id}">${p.name}</span> <span class="note">${SHORT(p.team)} · £${p.price.toFixed(1)}</span></span><span class="note">${f1(sum5(p))} · rivais ${pct(eoAmong(p.id, st.targets) / 2)}</span></div>`).join('') || '<div class="note">—</div>'}`).join('')}
+          ${diff.map(d => `<div class="riv-lbl" style="margin-top:8px">${SIM_LBL[d.c]}</div>${d.list.length ? playerCards(d.list, p => ({note: `Rivais com ele: ${pct(eoAmong(p.id, st.targets) / 2)}`})) : '<div class="note">—</div>'}`).join('')}
         </section>
         <section class="card"><h2>Ameaças que não tens</h2><div class="card-sub">Jogadores que os teus rivais têm e tu não: se marcarem, perdes terreno</div>
-          ${threats.map(p => `<div class="riv-p" style="grid-template-columns:1fr auto"><span><span data-pid="${p.id}">${p.name}</span> <span class="note">${SHORT(p.team)} · ${POS_SHORT[p.cls]} · £${p.price.toFixed(1)}</span></span><span class="note">${f1(sum5(p))} · rivais ${pct(Math.min(1, eoAmong(p.id, st.targets)))}</span></div>`).join('') || '<p class="note">Nenhuma: tens todos os jogadores populares entre os teus rivais.</p>'}
+          ${threats.length ? playerCards(threats, p => ({note: `Rivais com ele: ${pct(Math.min(1, eoAmong(p.id, st.targets)))}`})) : '<p class="note">Nenhuma: tens todos os jogadores populares entre os teus rivais.</p>'}
           <p class="note" style="margin-top:8px">${st.mode === 'arriscar' ? 'Na estratégia "arriscar" não tens de os ter todos — mas os de mais pontos esperados custam caro se marcarem.' : 'Cobrir os de cima reduz o risco de perder terreno.'}</p>
         </section>
       </div>`;
