@@ -1,0 +1,4 @@
+# Ficheiros locais para gerar a app (não publicar)
+_build/
+CLAUDE.md
+__pycache__/
