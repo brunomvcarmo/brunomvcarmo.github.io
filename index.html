@@ -1291,6 +1291,30 @@
   .rf-c.l2 { background: var(--warn-weak); color: var(--warn); border-color: transparent; }
   .rf-c.l3 { background: var(--fdr-4); color: var(--fdr-4-ink); border-color: transparent; }
   .rf-c.l4 { background: var(--fdr-5); color: var(--fdr-5-ink); border-color: transparent; }
+  /* V47 (16 out): 5 áreas + Avançado, um só nível de separadores, pesquisa */
+  .nav-adv { margin-top: 18px; padding-top: 10px; border-top: 1px solid var(--line); }
+  .nav-item.adv { font-size: 13px; color: var(--muted); }
+  .sec-div { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 10px 0 -6px; padding-top: 12px; border-top: 1px dashed var(--line-strong); }
+  .adv-link { font-size: inherit; }
+  .srch { position: relative; flex: 1 1 260px; max-width: 380px; min-width: 0; }
+  .srch input { width: 100%; box-sizing: border-box; font: inherit; font-size: 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; padding: 7px 10px; }
+  .srch input:focus { outline: 2px solid var(--accent-mid); outline-offset: 0; border-color: var(--accent-mid); }
+  .srch-res { position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 60; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 10px; box-shadow: var(--shadow); max-height: 70vh; overflow-y: auto; padding: 6px; }
+  .srch-grp { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 6px 8px 2px; }
+  .srch-it { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; width: 100%; text-align: left; font: inherit; font-size: 14px; color: var(--ink); background: none; border: 0; border-radius: 6px; padding: 7px 8px; cursor: pointer; }
+  .srch-it .w { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .srch-it[aria-selected="true"], .srch-it:hover { background: var(--accent-weak); color: var(--accent-strong); }
+  .srch-none { padding: 8px; font-size: 13px; color: var(--muted); }
+  .srch-btn { display: none; }
+  @media (max-width: 960px) {
+    .nav { display: none !important; }
+    .mnav { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+    .mnav-btn { position: relative; font-size: 12.5px !important; padding: 8px 2px !important; }
+    .mnav-btn .av-dot { position: absolute; top: -7px; right: -2px; font-size: 8.5px; background: var(--surface); padding: 0 3px; border-radius: 6px; }
+    .srch-btn { display: inline-flex; align-items: center; justify-content: center; }
+    .srch { display: none; order: 9; flex: 1 1 100%; max-width: none; }
+    .srch.open { display: block; }
+  }
 </style>
 </head>
 <body>
@@ -1316,34 +1340,14 @@
 
     <nav class="nav" aria-label="Áreas">
       <div class="nav-group">
-        <div class="nav-label">Jornada <span class="gw-n">7</span></div>
-        <button class="nav-item" data-view="resumo" type="button">Resumo <span class="nav-meta">J<span class="gw-n">7</span></span></button>
-        <button class="nav-item" data-view="aovivo" type="button">Ao vivo <span class="nav-meta" id="av-nav-meta"></span></button>
-        <button class="nav-item" data-view="campo" type="button">Onze sugerido</button>
-        <button class="nav-item" data-view="decisoes" type="button">Decisões <span class="nav-meta">3</span></button>
-        <button class="nav-item" data-view="planeador" type="button">Planeador</button>
-        <button class="nav-item" data-view="calendario" type="button">Jogos da jornada</button>
-        <button class="nav-item" data-view="onzes" type="button">Onzes prováveis <span class="nav-meta">10</span></button>
+        <button class="nav-item" data-view="semana" type="button">Esta semana <span class="nav-meta">J<span class="gw-n">7</span></span></button>
+        <button class="nav-item" data-view="jogos" type="button">Jogos <span class="nav-meta" id="av-nav-meta"></span></button>
+        <button class="nav-item" data-view="competicao" type="button">Rivais</button>
+        <button class="nav-item" data-view="mercado" type="button">Jogadores</button>
+        <button class="nav-item" data-view="epoca" type="button">A minha época</button>
       </div>
-      <div class="nav-group">
-        <div class="nav-label">A tua equipa</div>
-        <button class="nav-item" data-view="historico" type="button">Histórico</button>
-        <button class="nav-item" data-view="plantel" type="button">Plantel e mercado</button>
-      </div>
-      <div class="nav-group">
-        <div class="nav-label">Competição</div>
-        <button class="nav-item" data-view="liga" type="button">Liga clássica</button>
-        <button class="nav-item" data-view="h2h" type="button">H2H</button>
-        <button class="nav-item" data-view="comparar" type="button">Comparar equipas</button>
-        <button class="nav-item" data-view="previsao" type="button">Previsão da classificação</button>
-        <button class="nav-item" data-view="rivais" type="button">Vigiar rivais</button>
-        <button class="nav-item" data-view="ganhar" type="button">Equipa para ganhar a…</button>
-      </div>
-      <div class="nav-group">
-        <div class="nav-label">Análise</div>
-        <button class="nav-item" data-view="jogadores" type="button">Jogadores</button>
-        <button class="nav-item" data-view="equipas" type="button">Equipas</button>
-        <button class="nav-item" data-view="regras" type="button">Regras e fontes</button>
+      <div class="nav-group nav-adv">
+        <button class="nav-item adv" data-view="avancado" type="button">Avançado</button>
       </div>
     </nav>
 
@@ -1354,7 +1358,12 @@
   <main class="main">
     <div class="statusbar">
       <div class="crumbs" id="crumbs"><b>Resumo</b></div>
+      <div class="srch" id="srch">
+        <input type="search" id="srch-q" placeholder="Procurar ferramenta, jogador ou gestor…  ( / )" aria-label="Procurar ferramenta, jogador ou gestor" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="srch-res" aria-autocomplete="list">
+        <div class="srch-res" id="srch-res" role="listbox" aria-label="Resultados" hidden></div>
+      </div>
       <div class="status-items">
+        <button type="button" class="theme-btn srch-btn" id="srch-btn" aria-label="Procurar" aria-expanded="false" aria-controls="srch">🔍</button>
         <div class="status-item deadline" id="countdown-tile"><span class="k">Deadline</span><span class="v" id="deadline-label">Sáb 17 Out · 11:00</span><span class="v" id="countdown" style="font-size:13px;color:var(--ink-2)">a calcular…</span></div>
         <div class="status-item budget"><span class="k">Valor</span><span class="v" id="hero-budget">£101.0M</span></div>
         <div class="status-item"><span class="k">Pts esp. J<span class="gw-n">7</span></span><span class="v" id="ep-hero">—</span></div>
@@ -1362,14 +1371,23 @@
     </div>
 
     <!-- ========== RESUMO ========== -->
-    <section class="view" data-view="resumo" data-title="Resumo">
+        <!-- ========== ESTA SEMANA (V47) ========== -->
+    <section class="view" data-view="semana" data-title="Esta semana">
       <div class="view-head">
-        <div class="eyebrow">Jornada <span class="gw-n">7</span> · <span class="gw-window">17-19 out</span></div>
-        <h1>Resumo da semana</h1>
-        <p>O essencial antes do deadline: onde estás, o que mudar, e atalhos para o resto.</p>
+        <div class="eyebrow">Jornada <span class="gw-n">7</span></div>
+        <h1>Esta semana</h1>
+        <p>O que fazer antes do deadline: o resumo, o onze e o banco, o capitão, as transferências e as chips.</p>
       </div>
-
-      <div class="live-banner" id="live-banner" role="status" hidden></div>
+      <div class="subtabs" role="tablist" aria-label="Esta semana">
+        <button class="subtab" type="button" data-sub="resumo">Resumo</button>
+        <button class="subtab" type="button" data-sub="onze">Onze e banco</button>
+        <button class="subtab" type="button" data-sub="capitao">Capitão</button>
+        <button class="subtab" type="button" data-sub="transferencias">Transferências</button>
+        <button class="subtab" type="button" data-sub="registo">Registar o que fiz</button>
+        <button class="subtab" type="button" data-sub="chips">Chips</button>
+      </div>
+      <div class="subview" data-sub="resumo">
+<div class="live-banner" id="live-banner" role="status" hidden></div>
       <section class="card" id="todo" style="margin-bottom:16px"></section>
       <section class="card" id="alerts" style="margin-bottom:16px"></section>
       <div class="mgr-view" data-mgr="bruno"><div class="kpis" id="overview-kpis-bruno"></div></div>
@@ -1436,31 +1454,19 @@
             <h2>Ir para</h2>
             <div class="card-sub">Cada área tem separadores para escolher o tema</div>
             <div class="shortcuts">
-              <button class="shortcut" type="button" data-goto="campo"><b>Onze sugerido</b><span>Campo, capitão e banco</span></button>
-              <button class="shortcut" type="button" data-goto="decisoes"><b>Transferências e capitão</b><span>Trocas sugeridas, chips</span></button>
-              <button class="shortcut" type="button" data-goto="campo" data-goto-sub="jornada"><b>Pontos esperados</b><span>Jogador a jogador, J<span class="gw-n">7</span></span></button>
-              <button class="shortcut" type="button" data-goto="h2h" data-goto-sub="adversario"><b>Adversário H2H</b><span>Quem joga contra ti na J<span class="gw-n">7</span></span></button>
-              <button class="shortcut" type="button" data-goto="onzes"><b>Onzes prováveis</b><span>Os 10 jogos da J<span class="gw-n">7</span></span></button>
+              <button class="shortcut" type="button" data-goto="semana" data-goto-sub="onze"><b>Onze sugerido</b><span>Campo, capitão e banco</span></button>
+              <button class="shortcut" type="button" data-goto="semana" data-goto-sub="transferencias"><b>Transferências e capitão</b><span>Trocas sugeridas, chips</span></button>
+              <button class="shortcut" type="button" data-goto="semana" data-goto-sub="onze"><b>Pontos esperados</b><span>Jogador a jogador, J<span class="gw-n">7</span></span></button>
+              <button class="shortcut" type="button" data-goto="competicao" data-goto-sub="h2h"><b>Adversário H2H</b><span>Quem joga contra ti na J<span class="gw-n">7</span></span></button>
+              <button class="shortcut" type="button" data-goto="jogos" data-goto-sub="onzes"><b>Onzes prováveis</b><span>Os 10 jogos da J<span class="gw-n">7</span></span></button>
             </div>
           </section>
         </div>
       </div>
       </details>
-    </section>
+      </div>
+      <div class="subview" data-sub="onze" hidden>
 
-    <!-- ========== ONZE SUGERIDO (bloco 1, 15 out) ========== -->
-    <section class="view" data-view="campo" data-title="Onze sugerido" hidden>
-      <div class="view-head">
-        <div class="eyebrow">Jornada <span class="gw-n">7</span> · deadline <span class="gw-dl">Sáb 17 Out · 11:00</span></div>
-        <h1>Onze sugerido e pontos esperados</h1>
-        <p>O melhor onze para a J<span class="gw-n">7</span> pelos pontos esperados, com capitão, vice e ordem do banco. Toca num jogador para abrir a ficha.</p>
-      </div>
-      <div class="subtabs" role="tablist" aria-label="Onze sugerido">
-        <button class="subtab" type="button" data-sub="campo">Campo e banco</button>
-        <button class="subtab" type="button" data-sub="jornada">Jogador a jogador J<span class="gw-n">7</span></button>
-        <button class="subtab" type="button" data-sub="plano">Próximas 5 jornadas</button>
-      </div>
-      <div class="subview" data-sub="campo">
       <div class="seg" role="group" aria-label="Que plantel mostrar" id="pitch-mode">
         <button type="button" class="seg-btn" data-mode="sug" aria-pressed="true">Com a troca sugerida</button>
         <button type="button" class="seg-btn" data-mode="cur" aria-pressed="false">Plantel atual</button>
@@ -1470,8 +1476,9 @@
         <section class="card" id="pitch-side"></section>
       </div>
       <section class="card" id="bench-card" style="margin-top:16px"></section>
-      </div>
-      <div class="subview" data-sub="jornada" hidden>
+      
+<div class="sec-div">Jogador a jogador J7</div>
+
         <div class="callout info"><div class="icon">i</div><div class="body"><p>Cada número junta a <b>forma recente</b> (25%), um <b>modelo de base</b> com o xG/xA de toda a época, a força do adversário e as odds (35%), e a <b>média das projeções de quatro sites de apoio à FPL</b> (40%). Depois aplico a minha leitura (lesões, rotação, penáltis). Por baixo de cada valor vês as três partes.</p></div></div>
       <div class="mgr-view" data-mgr="bruno">
         <section class="card">
@@ -1499,30 +1506,27 @@
           <div class="budget-line total"><span><b>Total esperado com o onze e capitão atuais</b></span><span class="value" id="marco-pts-total">—</span></div>
         </section>
       </div>
-      </div>
-      <div class="subview" data-sub="plano" hidden>
+      
+<div class="sec-div">Próximas 5 jornadas</div>
+
         <div class="mgr-view" data-mgr="bruno"><section class="card" id="plan-bruno"></section></div>
         <div class="mgr-view" data-mgr="marco"><section class="card" id="plan-marco"></section></div>
+      
       </div>
-    </section>
+      <div class="subview" data-sub="capitao" hidden>
 
-    <!-- ========== DECISÕES ========== -->
-    <section class="view" data-view="decisoes" data-title="Decisões" hidden>
-      <div class="view-head">
-        <div class="eyebrow">Jornada <span class="gw-n">7</span></div>
-        <h1>Decisões</h1>
-        <p>Transferências, capitão, chips e as ideias fora do óbvio para esta jornada.</p>
-      </div>
-      <div class="subtabs" role="tablist" aria-label="Decisões">
-        <button class="subtab" type="button" data-sub="trocas">Transferências e capitão</button>
-        <button class="subtab" type="button" data-sub="capitao">Capitão H2H</button>
-        <button class="subtab" type="button" data-sub="estrategia">Estratégia</button>
-        <button class="subtab" type="button" data-sub="simulador">Simulador</button>
-        <button class="subtab" type="button" data-sub="chips">Chips</button>
-        <button class="subtab" type="button" data-sub="hot">Hot takes</button>
-      </div>
+        <div class="stack">
+          <section class="card" id="caph2h-main"></section>
+          <section class="card" id="caph2h-grid"></section>
+        </div>
+      
+<div class="sec-div">Estratégia</div>
 
-      <div class="subview" data-sub="trocas">
+        <div class="stack" id="strat-root"></div>
+      
+      </div>
+      <div class="subview" data-sub="transferencias" hidden>
+
         <div class="mgr-view" data-mgr="bruno">
           <div class="grid-2">
             <section class="card feature">
@@ -1549,13 +1553,15 @@
           <section class="card" id="sites-card"></section>
           <section class="card" id="reading-card"></section>
         </div>
+      
+<div class="sec-div">Plano J7-J11</div>
+<section class="card" id="auto-plan" style="margin-bottom:16px"></section><div id="plan-root"></div>
       </div>
-
-      <div class="subview" data-sub="simulador" hidden>
-        <div id="sim-root"></div>
+      <div class="subview" data-sub="registo" hidden>
+<div class="stack" id="log-root"></div>
       </div>
-
       <div class="subview" data-sub="chips" hidden>
+
         <section class="card" id="chip-plan" style="margin-bottom:16px"></section>
         <div class="mgr-view" data-mgr="bruno">
           <div class="grid-2">
@@ -1579,63 +1585,25 @@
             <p class="prose" id="marco-chips-summary"></p>
           </section>
         </div>
-      </div>
-
-      <div class="subview" data-sub="capitao" hidden>
-        <div class="stack">
-          <section class="card" id="caph2h-main"></section>
-          <section class="card" id="caph2h-grid"></section>
-        </div>
-      </div>
-      <div class="subview" data-sub="estrategia" hidden>
-        <div class="stack" id="strat-root"></div>
-      </div>
-      <div class="subview" data-sub="hot" hidden>
-        <div class="mgr-view" data-mgr="bruno">
-          <div class="grid-2">
-            <section class="card">
-              <h2>Diferenciadores</h2>
-              <div class="card-sub">Fora do teu plantel, pouca posse na tua liga (≤15%), boa estimativa para a J<span class="gw-n">7</span> e titulares previstos</div>
-              <div id="hot-diffs-bruno"></div>
-            </section>
-            <section class="card">
-              <h2>Podem surpreender</h2>
-              <div class="card-sub">Titulares previstos que criaram muito mais do que pontuaram nas J<span class="gw-l3">4</span>-J<span class="gw-l">6</span> (xG + xA) e que pouca gente tem</div>
-              <div id="hot-surprises-bruno"></div>
-            </section>
-          </div>
-        </div>
-        <div class="mgr-view" data-mgr="marco">
-          <div class="grid-2">
-            <section class="card">
-              <h2>Diferenciadores</h2>
-              <div class="card-sub">Fora do plantel do Marco, pouca posse na liga (≤15%), boa estimativa para a J<span class="gw-n">7</span> e titulares previstos</div>
-              <div id="hot-diffs-marco"></div>
-            </section>
-            <section class="card">
-              <h2>Podem surpreender</h2>
-              <div class="card-sub">Titulares previstos que criaram muito mais do que pontuaram nas J<span class="gw-l3">4</span>-J<span class="gw-l">6</span> (xG + xA) e que pouca gente tem</div>
-              <div id="hot-surprises-marco"></div>
-            </section>
-          </div>
-        </div>
+      
       </div>
     </section>
 
-    <!-- ========== PONTOS ESPERADOS ========== -->
-
-    <!-- ========== JOGOS DA JORNADA ========== -->
-    <section class="view" data-view="calendario" data-title="Jogos da jornada" hidden>
+    <!-- ========== JOGOS (V47) ========== -->
+    <section class="view" data-view="jogos" data-title="Jogos" hidden>
       <div class="view-head">
         <div class="eyebrow">Jornada <span class="gw-n">7</span></div>
-        <h1>Jogos da jornada</h1>
-        <p>Os 10 jogos da J<span class="gw-n">7</span> com a dificuldade oficial da FPL, e como muda o calendário de cada jogador.</p>
+        <h1>Jogos</h1>
+        <p>Os jogos da jornada, os onzes prováveis, os pontos ao vivo e quem jogou a meio da semana.</p>
       </div>
       <div class="subtabs" role="tablist" aria-label="Jogos">
-        <button class="subtab" type="button" data-sub="jogos">Os 10 jogos</button>
-        <button class="subtab" type="button" data-sub="plantel">O teu plantel</button>
+        <button class="subtab" type="button" data-sub="jornada">Jogos da jornada</button>
+        <button class="subtab" type="button" data-sub="onzes">Onzes prováveis</button>
+        <button class="subtab" type="button" data-sub="aovivo">Ao vivo</button>
+        <button class="subtab" type="button" data-sub="europa">Europa e descanso</button>
       </div>
-      <div class="subview" data-sub="jogos">
+      <div class="subview" data-sub="jornada">
+
         <section class="card">
           <div class="table-scroll">
             <table class="gw2">
@@ -1654,8 +1622,9 @@
           </table></div>
           <p class="note">Os golos esperados saem de ajustar uma distribuição de Poisson às odds de vitória e de mais/menos 2.5 golos. Entram no modelo de base dos pontos esperados.</p>
         </section>
-      </div>
-      <div class="subview" data-sub="plantel" hidden>
+      
+<div class="sec-div">O teu plantel</div>
+
         <div class="mgr-view" data-mgr="bruno">
           <section class="card">
             <h2>Dificuldade: J<span class="gw-l">6</span> vs. J<span class="gw-n">7</span></h2>
@@ -1675,36 +1644,275 @@
             <p class="prose" id="marco-fixture-note"></p>
           </section>
         </div>
+      
       </div>
-    </section>
-
-    <!-- ========== ONZES PROVÁVEIS ========== -->
-    <section class="view" data-view="onzes" data-title="Onzes prováveis" hidden>
-      <div class="view-head">
-        <div class="eyebrow">Jornada <span class="gw-n">7</span> · previsão</div>
-        <h1>Onzes prováveis</h1>
-        <p>Previsão dos titulares dos 10 jogos, cruzando várias fontes de imprensa e notícias de lesões. Não são onzes confirmados: os clubes só os anunciam cerca de uma hora antes de cada jogo. Escolhe um jogo.</p>
-      </div>
-      <div class="callout"><div class="icon">!</div><div class="body"><p>Man City, Arsenal, Aston Villa, Liverpool, Man Utd, Crystal Palace, Bournemouth e Sunderland jogam na Europa a meio da semana: há mais risco de rotação do que o habitual.</p></div></div>
+      <div class="subview" data-sub="onzes" hidden>
+<div class="callout"><div class="icon">!</div><div class="body"><p>Man City, Arsenal, Aston Villa, Liverpool, Man Utd, Crystal Palace, Bournemouth e Sunderland jogam na Europa a meio da semana: há mais risco de rotação do que o habitual.</p></div></div>
       <div id="onzes-fixtures"></div>
+      </div>
+      <div class="subview" data-sub="aovivo" hidden>
+<div class="eyebrow" id="av-eyebrow">Jornada em direto</div>
+<div class="stack" id="av-equipa"></div>
+<div class="sec-div">H2H em direto</div>
+<div class="stack" id="av-h2h"></div>
+<div class="sec-div">Liga em tempo real</div>
+<div class="stack" id="av-liga"></div>
+      </div>
+      <div class="subview" data-sub="europa" hidden>
+
+        <section class="card" id="eu-gw"></section>
+      
+<div class="sec-div">Europa por equipa</div>
+
+        <section class="card" id="eu-team"></section>
+      
+      </div>
     </section>
 
-    <!-- ========== HISTÓRICO ========== -->
-    <section class="view" data-view="historico" data-title="Histórico" hidden>
+    <!-- ========== RIVAIS (V47) ========== -->
+    <section class="view" data-view="competicao" data-title="Rivais" hidden>
       <div class="view-head">
-        <div class="eyebrow">A tua equipa</div>
-        <h1>Histórico</h1>
-        <p>Resultados reais de cada jornada já jogada e a equipa usada em cada uma.</p>
+        <div class="eyebrow">Mitras Fantasy League 26/27</div>
+        <h1>Rivais</h1>
+        <p>A liga clássica e o H2H: classificação, previsões, adversários e o que os rivais devem fazer.</p>
       </div>
-      <div class="subtabs" role="tablist" aria-label="Histórico">
-        <button class="subtab" type="button" data-sub="evolucao">Evolução</button>
+      <div class="subtabs" role="tablist" aria-label="Rivais">
+        <button class="subtab" type="button" data-sub="classificacao">Classificação</button>
+        <button class="subtab" type="button" data-sub="previsao">Previsão da classificação</button>
+        <button class="subtab" type="button" data-sub="h2h">H2H</button>
+        <button class="subtab" type="button" data-sub="comparar">Comparar equipas</button>
+        <button class="subtab" type="button" data-sub="vigiar">Vigiar rivais</button>
+        <button class="subtab" type="button" data-sub="ganhar">Equipa para ganhar a…</button>
+        <button class="subtab" type="button" data-sub="orcamentos">Orçamentos e chips</button>
+      </div>
+      <div class="subview" data-sub="classificacao">
+
+        <div id="liga-stats"></div>
+        <section class="card">
+          <div id="liga-standings-body"></div>
+          <p class="note">Classificação após a J<span class="gw-l">6</span> (provisória). Empates em pontos são desempatados pela FPL por critérios internos. Confirmado à mão para os 20 gestores: total da J3 mais os pontos das J4, J5 e J<span class="gw-l">6</span> bate com a API.</p>
+        </section>
+      
+      </div>
+      <div class="subview" data-sub="previsao" hidden>
+<div class="seg" role="group" aria-label="Horizonte da previsão" id="prev-horizon">
+        <button type="button" class="seg-btn" data-h="5" aria-pressed="true">Até à J<span class="gw-n4">11</span></button>
+        <button type="button" class="seg-btn" data-h="19" aria-pressed="false">Até à J19 (aproximado)</button>
+      </div>
+      <div class="seg" role="group" aria-label="Plantéis dos rivais" id="prev-pred" style="margin-top:8px">
+        <button type="button" class="seg-btn" data-p="0" aria-pressed="true">Plantéis atuais dos rivais</button>
+        <button type="button" class="seg-btn" data-p="1" aria-pressed="false">Usar os plantéis previstos dos rivais</button>
+      </div>
+<div class="sec-div">Classificação prevista</div>
+<div class="stack"><section class="card" id="prev-me"></section><section class="card" id="prev-table"></section></div>
+<div class="sec-div">Tu vs os da frente</div>
+<section class="card" id="prev-front"></section>
+<div class="sec-div">Como calculo</div>
+<section class="card" id="prev-method"></section>
+      </div>
+      <div class="subview" data-sub="h2h" hidden>
+
+        <div class="mgr-view" data-mgr="bruno">
+          <div class="hero-stats" id="h2h-stats"></div>
+          <section class="card" style="margin-top:16px"><div id="h2h-schedule"></div></section>
+        </div>
+        <div class="mgr-view" data-mgr="marco">
+          <div class="hero-stats" id="marco-h2h-stats"></div>
+          <section class="card" style="margin-top:16px"><div id="marco-h2h-schedule"></div></section>
+        </div>
+      
+<div class="sec-div">Adversário da J7</div>
+
+        <section class="card" id="h2h-vis"></section>
+        <details class="old-notes"><summary>Análise escrita do adversário (13-14 out)</summary>
+        <div class="mgr-view" data-mgr="bruno">
+          <section class="card feature">
+            <h2>Frederico Borges (SL Guinness)</h2>
+            <div class="card-sub">Plantel real dele na J<span class="gw-l">6</span>. Pode ainda fazer transferências antes de sábado.</div>
+            <p class="prose" id="h2h-opponent-intro"></p>
+            <div id="h2h-swing-summary"></div>
+          </section>
+          <div class="grid-2" style="margin-top:16px">
+            <section class="card">
+              <h2>Onde o jogo se decide</h2>
+              <div class="card-sub">Exclusivos de cada lado, em pontos esperados para a J<span class="gw-n">7</span></div>
+              <div id="h2h-unique"></div>
+            </section>
+            <div class="stack">
+              <section class="card">
+                <h2>O que fazer</h2>
+                <div id="h2h-recommendation"></div>
+              </section>
+              <section class="card">
+                <h2>Em comum</h2>
+                <div id="h2h-shared"></div>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div class="mgr-view" data-mgr="marco">
+          <section class="card">
+            <h2>Miguel Bengalinha (SLBengalinha)</h2>
+            <p class="prose">O resumo do adversário do Marco está na linha da J<span class="gw-n">7</span> em "Resultados e calendário": plantel real da J<span class="gw-l">6</span>, jogadores em comum e pontos esperados de cada lado.</p>
+            <button class="chart-toggle" type="button" data-goto="competicao" data-goto-sub="h2h">Ver resultados e calendário</button>
+          </section>
+        </div>
+        </details>
+      
+      </div>
+      <div class="subview" data-sub="comparar" hidden>
+<section class="card cmp-pick" id="cmp-pick"></section>
+<div class="sec-div">Resumo</div>
+<section class="card" id="cmp-resumo"></section>
+<div class="sec-div">Gráfico</div>
+<section class="card" id="cmp-grafico"></section>
+<div class="sec-div">Pontos por jornada</div>
+<section class="card" id="cmp-pontos"></section>
+<div class="sec-div">Jogadores</div>
+<div class="stack" id="cmp-jogadores"></div>
+<div class="sec-div">Orçamento</div>
+<section class="card" id="cmp-orcamento"></section>
+      </div>
+      <div class="subview" data-sub="vigiar" hidden>
+<div class="stack" id="riv-root"></div>
+      </div>
+      <div class="subview" data-sub="ganhar" hidden>
+<div class="stack"><section class="card" id="win-setup"></section><div class="stack" id="win-root"></div></div>
+      </div>
+      <div class="subview" data-sub="orcamentos" hidden>
+
+        <section class="card">
+          <h2>Orçamento e chips de cada gestor</h2>
+          <div class="card-sub"><b>Valor de mercado</b> = o que a equipa vale aos preços de hoje; <b>orçamento real</b> = o que o gestor tem mesmo para gastar (explicação por baixo da tabela). Cada chip usa-se uma vez em cada metade da época; a coluna "disponíveis" conta a 1.ª metade.</div>
+          <div id="liga-budgets"></div>
+        </section>
+      
+      </div>
+    </section>
+
+    <!-- ========== JOGADORES (V47) ========== -->
+    <section class="view" data-view="mercado" data-title="Jogadores" hidden>
+      <div class="view-head">
+        <div class="eyebrow">Mercado</div>
+        <h1>Jogadores</h1>
+        <p>Procurar, comparar e escolher jogadores.</p>
+      </div>
+      <div class="subtabs" role="tablist" aria-label="Jogadores">
+        <button class="subtab" type="button" data-sub="pesquisa">Pesquisa</button>
+        <button class="subtab" type="button" data-sub="comparador">Comparador <span id="cmp-count"></span></button>
+        <button class="subtab" type="button" data-sub="ideal">Equipa ideal</button>
+        <button class="subtab" type="button" data-sub="simulada">Equipa simulada</button>
+        <button class="subtab" type="button" data-sub="forma">Em forma</button>
+        <button class="subtab" type="button" data-sub="precos">Preços e alternativas</button>
+      </div>
+      <div class="subview" data-sub="pesquisa">
+
+        <section class="card">
+          <div class="filters" id="pl-filters">
+            <label class="f-q"><span>Nome</span><input type="search" id="pl-q" placeholder="ex.: Saka" autocomplete="off"></label>
+            <label><span>Posição</span><select id="pl-pos"><option value="">Todas</option><option value="gk">Guarda-redes</option><option value="def">Defesas</option><option value="mid">Médios</option><option value="fwd">Avançados</option></select></label>
+            <label><span>Clube</span><select id="pl-team"><option value="">Todos</option></select></label>
+            <label><span>Preço até <b id="pl-price-v">£15.5M</b></span><input type="range" id="pl-price" min="3.5" max="15.5" step="0.5" value="15.5"></label>
+            <label><span>Ordenar por</span><select id="pl-sort">
+              <option value="ep1">Pts esperados J7</option><option value="ep5">Pts esperados 5 jornadas</option><option value="val">Pts esperados por £M</option>
+              <option value="form">Pontos nas últimas 3</option><option value="total">Pontos na época</option><option value="own">Posse FPL</option><option value="lown">Posse na liga</option><option value="price">Preço</option><option value="xgi">xG+xA últimas 3</option><option value="haul">Probabilidade de 10+ pts J7</option>
+            </select></label>
+            <label class="f-chk"><input type="checkbox" id="pl-avail"> <span>Só disponíveis</span></label>
+            <label class="f-chk"><input type="checkbox" id="pl-mine"> <span>Só o meu plantel</span></label>
+          </div>
+        </section>
+        <section class="card">
+          <div class="card-head"><div><h2 id="pl-count">Jogadores</h2><div class="card-sub">Marca até 4 para comparar. Barras = pontos por jornada (verde 6+).</div></div></div>
+          <div class="note" style="margin:-4px 0 10px">Preço com pressão de preço <button type="button" class="qbtn" data-q="preco" aria-label="O que é a pressão de preço?">?</button> · pontos esperados <button type="button" class="qbtn" data-q="ep" aria-label="O que são pontos esperados?">?</button> · próximos 5 jogos pela dificuldade <button type="button" class="qbtn" data-q="fdr" aria-label="O que é a dificuldade?">?</button> · EO na liga <button type="button" class="qbtn" data-q="eo" aria-label="O que é o EO?">?</button></div>
+          <div id="pl-body"></div>
+          <div style="text-align:center;margin-top:10px"><button type="button" class="btn" id="pl-more">Mostrar mais</button></div>
+        </section>
+      
+      </div>
+      <div class="subview" data-sub="comparador" hidden>
+
+        <section class="card" id="pc-pick"></section>
+        <div class="stack" id="pc-out"></div>
+      
+      </div>
+      <div class="subview" data-sub="ideal" hidden>
+
+        <div id="ideal2"></div>
+        <div hidden aria-hidden="true">
+      <div class="seg" role="group" aria-label="Horizonte" id="ideal-horizon"><button type="button" class="seg-btn" data-h="1" aria-pressed="true">Só a J<span class="gw-n">7</span></button><button type="button" class="seg-btn" data-h="5" aria-pressed="false">J<span class="gw-n">7</span> a J<span class="gw-n4">11</span></button></div>
+      <p class="note" style="margin:0 0 14px">Base: <span id="pool-size">—</span> jogadores com minutos nas J<span class="gw-l3">4</span>-J<span class="gw-l">6</span>, com preços e estado de <span class="gw-date">13 out 2026</span>.</p>
+      <div class="grid-2">
+        <section class="card">
+          <h2>A equipa</h2>
+          <div class="card-sub">Formação <span id="ideal-formation">—</span> · titulares a negrito</div>
+          <div id="ideal-squad-body"></div>
+          <div class="budget-line total"><span><b>Total (15 jogadores)</b></span><span class="value" id="ideal-squad-total">—</span></div>
+        </section>
+        <section class="card">
+          <h2>Comparação com o teu plantel</h2>
+          <div class="hero-stats" id="ideal-stats" style="margin:10px 0 14px"></div>
+          <div id="ideal-diff"></div>
+        </section>
+      </div>
+        </div>
+      
+      </div>
+      <div class="subview" data-sub="simulada" hidden>
+
+        <div class="stack" id="fsim-root"></div>
+      
+      </div>
+      <div class="subview" data-sub="forma" hidden>
+
+        <section class="card">
+          <h2>Jogadores em forma</h2>
+          <div class="card-sub">Pontos reais nas J4, J5 e J<span class="gw-l">6</span>, por posição. Cobre os jogadores seguidos nesta app (os dois plantéis, adversários H2H e candidatos a transferência), não a liga inteira.</div>
+          <div id="hot-players-body"></div>
+        </section>
+      
+      </div>
+      <div class="subview" data-sub="precos" hidden>
+
+        <div class="callout info"><div class="icon">i</div><div class="body"><p>Preços, posse e transferências de <span class="gw-date">13 out 2026</span>, de uma cópia pública da API oficial da FPL, validada contra a API jogador a jogador.</p></div></div>
+        <section class="card">
+          <h2>Vai subir ou descer?</h2>
+          <div class="card-sub">A FPL muda preços pelo saldo de transferências (compras menos vendas), não pelos pontos. Passos de £0.1M, de madrugada no Reino Unido.</div>
+          <div class="mgr-view" data-mgr="bruno">
+            <div id="price-body"></div>
+          </div>
+          <div class="mgr-view" data-mgr="marco">
+            <div id="price-body-marco"></div>
+          </div>
+          <p class="note">"Transf. (J)" é o saldo de transferências da jornada entre todos os gestores da FPL. "Desde o início" é quanto o preço mudou desde o arranque da época. O sinal lê o saldo de transferências: muita procura costuma anteceder uma subida.</p>
+        </section>
+      
+<div class="sec-div">Alternativas</div>
+
+        <section class="card">
+          <h2>Alternativas a considerar</h2>
+          <div class="card-sub">Jogadores fora do plantel do Bruno com forma real nas J<span class="gw-l3">4</span>-J<span class="gw-l">6</span></div>
+          <div id="alt-body"></div>
+        </section>
+      
+      </div>
+    </section>
+
+    <!-- ========== A MINHA ÉPOCA (V47) ========== -->
+    <section class="view" data-view="epoca" data-title="A minha época" hidden>
+      <div class="view-head">
+        <div class="eyebrow">Época 2026/27</div>
+        <h1>A minha época</h1>
+        <p>Como tem corrido a tua época: pontos, ranking, jornada a jornada, previsões e orçamento.</p>
+      </div>
+      <div class="subtabs" role="tablist" aria-label="A minha época">
+        <button class="subtab" type="button" data-sub="evolucao">Evolução e ranking</button>
         <button class="subtab" type="button" data-sub="jornada">Por jornada</button>
         <button class="subtab" type="button" data-sub="detalhe">Jogador a jogador</button>
-        <button class="subtab" type="button" data-sub="previsoes">Previsões vs. real</button>
-        <button class="subtab" type="button" data-sub="modelo">Medir o modelo</button>
+        <button class="subtab" type="button" data-sub="previsoes">Previsões vs real</button>
+        <button class="subtab" type="button" data-sub="orcamento">Orçamento do plantel</button>
       </div>
-
       <div class="subview" data-sub="evolucao">
+
         <div id="hist-kpi" style="margin-bottom:16px"></div>
         <div class="mgr-view" data-mgr="bruno">
           <section class="card">
@@ -1736,9 +1944,10 @@
             </table>
           </section>
         </div>
+      
       </div>
-
       <div class="subview" data-sub="jornada" hidden>
+
         <div class="mgr-view" data-mgr="bruno">
           <div class="grid-2">
             <section class="card">
@@ -1767,9 +1976,10 @@
             </section>
           </div>
         </div>
+      
       </div>
-
       <div class="subview" data-sub="detalhe" hidden>
+
         <div class="mgr-view" data-mgr="bruno">
           <section class="card">
             <h2>Onze ótimo vs. equipa escolhida</h2>
@@ -1811,41 +2021,21 @@
             </div>
           </section>
         </div>
+      
       </div>
-
       <div class="subview" data-sub="previsoes" hidden>
+
         <div class="mgr-view" data-mgr="bruno"><div id="pred-bruno"></div></div>
         <div class="mgr-view" data-mgr="marco"><div id="pred-marco"></div></div>
-      </div>
-      <div class="subview" data-sub="modelo" hidden>
-        <section class="card" id="calib-card" style="margin-bottom:16px"></section>
+      
+<div class="sec-div">Medir o modelo</div>
+
+        
         <div class="stack" id="model-eval"></div>
+      
       </div>
-    </section>
-
-    <!-- ========== PLANTEL E MERCADO ========== -->
-    <section class="view" data-view="plantel" data-title="Plantel e mercado" hidden>
-      <div class="view-head">
-        <div class="eyebrow">A tua equipa</div>
-        <h1>Plantel e mercado</h1>
-        <p>Quem está em forma, como o orçamento está distribuído, preços e alternativas.</p>
-      </div>
-      <div class="subtabs" role="tablist" aria-label="Plantel e mercado">
-        <button class="subtab" type="button" data-sub="forma">Em forma</button>
-        <button class="subtab" type="button" data-sub="orcamento">Orçamento</button>
-        <button class="subtab" type="button" data-sub="precos">Preços</button>
-        <button class="subtab" type="button" data-sub="alternativas">Alternativas</button>
-      </div>
-
-      <div class="subview" data-sub="forma">
-        <section class="card">
-          <h2>Jogadores em forma</h2>
-          <div class="card-sub">Pontos reais nas J4, J5 e J<span class="gw-l">6</span>, por posição. Cobre os jogadores seguidos nesta app (os dois plantéis, adversários H2H e candidatos a transferência), não a liga inteira.</div>
-          <div id="hot-players-body"></div>
-        </section>
-      </div>
-
       <div class="subview" data-sub="orcamento" hidden>
+
         <div class="mgr-view" data-mgr="bruno">
           <div class="grid-2">
             <section class="card">
@@ -1869,169 +2059,94 @@
             <div class="hero-stats" id="marco-budget-stats"></div>
           </section>
         </div>
-      </div>
-
-      <div class="subview" data-sub="precos" hidden>
-        <div class="callout info"><div class="icon">i</div><div class="body"><p>Preços, posse e transferências de <span class="gw-date">13 out 2026</span>, de uma cópia pública da API oficial da FPL, validada contra a API jogador a jogador.</p></div></div>
-        <section class="card">
-          <h2>Vai subir ou descer?</h2>
-          <div class="card-sub">A FPL muda preços pelo saldo de transferências (compras menos vendas), não pelos pontos. Passos de £0.1M, de madrugada no Reino Unido.</div>
-          <div class="mgr-view" data-mgr="bruno">
-            <div id="price-body"></div>
-          </div>
-          <div class="mgr-view" data-mgr="marco">
-            <div id="price-body-marco"></div>
-          </div>
-          <p class="note">"Transf. (J)" é o saldo de transferências da jornada entre todos os gestores da FPL. "Desde o início" é quanto o preço mudou desde o arranque da época. O sinal lê o saldo de transferências: muita procura costuma anteceder uma subida.</p>
-        </section>
-      </div>
-
-      <div class="subview" data-sub="alternativas" hidden>
-        <section class="card">
-          <h2>Alternativas a considerar</h2>
-          <div class="card-sub">Jogadores fora do plantel do Bruno com forma real nas J<span class="gw-l3">4</span>-J<span class="gw-l">6</span></div>
-          <div id="alt-body"></div>
-        </section>
+      
       </div>
     </section>
 
-    <!-- ========== LIGA ========== -->
-    <section class="view" data-view="liga" data-title="Liga clássica" hidden>
+    <!-- ========== AVANÇADO (V47) ========== -->
+    <section class="view" data-view="avancado" data-title="Avançado" hidden>
       <div class="view-head">
-        <div class="eyebrow">Mitras Fantasy League 26/27 · 20 gestores</div>
-        <h1>Liga clássica</h1>
-        <p>Classificação e o que os outros 19 plantéis têm, com os dados reais da J<span class="gw-l">6</span>.</p>
+        <div class="eyebrow">Ferramentas que se usam menos</div>
+        <h1>Avançado</h1>
+        <p>Simulador, tabelas e referência. Tudo continua a funcionar como antes.</p>
       </div>
-      <div class="subtabs" role="tablist" aria-label="Liga">
-        <button class="subtab" type="button" data-sub="classificacao">Classificação</button>
-        <button class="subtab" type="button" data-sub="posse">O plantel vs. a liga</button>
+      <div class="subtabs" role="tablist" aria-label="Avançado">
+        <button class="subtab" type="button" data-sub="simulador">Simulador</button>
+        <button class="subtab" type="button" data-sub="hot">Hot takes</button>
         <button class="subtab" type="button" data-sub="lacunas">Picks em falta</button>
-        <button class="subtab" type="button" data-sub="capitaes">Capitães</button>
-        <button class="subtab" type="button" data-sub="orcamentos">Orçamentos e chips</button>
-        <button class="subtab" type="button" data-sub="simulacao">Equipa simulada</button>
+        <button class="subtab" type="button" data-sub="capitaes">Capitães da liga</button>
+        <button class="subtab" type="button" data-sub="posse">Plantel vs liga</button>
+        <button class="subtab" type="button" data-sub="equipas">Tabelas das equipas</button>
+        <button class="subtab" type="button" data-sub="regras">Regras e fontes</button>
+        <button class="subtab" type="button" data-sub="calibracao">Calibração</button>
       </div>
+      <div class="subview" data-sub="simulador">
 
-      <div class="subview" data-sub="classificacao">
-        <div id="liga-stats"></div>
+        <div id="sim-root"></div>
+      
+      </div>
+      <div class="subview" data-sub="hot" hidden>
+
+        <div class="mgr-view" data-mgr="bruno">
+          <div class="grid-2">
+            <section class="card">
+              <h2>Diferenciadores</h2>
+              <div class="card-sub">Fora do teu plantel, pouca posse na tua liga (≤15%), boa estimativa para a J<span class="gw-n">7</span> e titulares previstos</div>
+              <div id="hot-diffs-bruno"></div>
+            </section>
+            <section class="card">
+              <h2>Podem surpreender</h2>
+              <div class="card-sub">Titulares previstos que criaram muito mais do que pontuaram nas J<span class="gw-l3">4</span>-J<span class="gw-l">6</span> (xG + xA) e que pouca gente tem</div>
+              <div id="hot-surprises-bruno"></div>
+            </section>
+          </div>
+        </div>
+        <div class="mgr-view" data-mgr="marco">
+          <div class="grid-2">
+            <section class="card">
+              <h2>Diferenciadores</h2>
+              <div class="card-sub">Fora do plantel do Marco, pouca posse na liga (≤15%), boa estimativa para a J<span class="gw-n">7</span> e titulares previstos</div>
+              <div id="hot-diffs-marco"></div>
+            </section>
+            <section class="card">
+              <h2>Podem surpreender</h2>
+              <div class="card-sub">Titulares previstos que criaram muito mais do que pontuaram nas J<span class="gw-l3">4</span>-J<span class="gw-l">6</span> (xG + xA) e que pouca gente tem</div>
+              <div id="hot-surprises-marco"></div>
+            </section>
+          </div>
+        </div>
+      
+      </div>
+      <div class="subview" data-sub="lacunas" hidden>
+
         <section class="card">
-          <div id="liga-standings-body"></div>
-          <p class="note">Classificação após a J<span class="gw-l">6</span> (provisória). Empates em pontos são desempatados pela FPL por critérios internos. Confirmado à mão para os 20 gestores: total da J3 mais os pontos das J4, J5 e J<span class="gw-l">6</span> bate com a API.</p>
+          <h2>Picks populares que o Bruno não tem</h2>
+          <div class="card-sub">Os jogadores mais comuns na liga fora do plantel do Brunorussia FC</div>
+          <div id="liga-template-gaps"></div>
         </section>
+      
+      </div>
+      <div class="subview" data-sub="capitaes" hidden>
+
+        <section class="card">
+          <h2>Capitães na J<span class="gw-l">6</span></h2>
+          <div class="card-sub">Quem os 20 gestores escolheram e quanto rendeu</div>
+          <div id="liga-captains"></div>
+        </section>
+      
       </div>
       <div class="subview" data-sub="posse" hidden>
+
         <section class="card">
           <h2>O plantel vs. a liga</h2>
           <div class="card-sub">Percentagem dos 20 plantéis da liga que também têm cada jogador (J<span class="gw-l">6</span>). "Molde" = metade da liga ou mais; "diferencial" = 15% ou menos.</div>
           <div class="mgr-view" data-mgr="bruno"><div id="liga-my-ownership"></div></div>
           <div class="mgr-view" data-mgr="marco"><div id="liga-my-ownership-marco"></div></div>
         </section>
+      
       </div>
-      <div class="subview" data-sub="lacunas" hidden>
-        <section class="card">
-          <h2>Picks populares que o Bruno não tem</h2>
-          <div class="card-sub">Os jogadores mais comuns na liga fora do plantel do Brunorussia FC</div>
-          <div id="liga-template-gaps"></div>
-        </section>
-      </div>
-      <div class="subview" data-sub="capitaes" hidden>
-        <section class="card">
-          <h2>Capitães na J<span class="gw-l">6</span></h2>
-          <div class="card-sub">Quem os 20 gestores escolheram e quanto rendeu</div>
-          <div id="liga-captains"></div>
-        </section>
-      </div>
-      <div class="subview" data-sub="orcamentos" hidden>
-        <section class="card">
-          <h2>Orçamento e chips de cada gestor</h2>
-          <div class="card-sub"><b>Valor de mercado</b> = o que a equipa vale aos preços de hoje; <b>orçamento real</b> = o que o gestor tem mesmo para gastar (explicação por baixo da tabela). Cada chip usa-se uma vez em cada metade da época; a coluna "disponíveis" conta a 1.ª metade.</div>
-          <div id="liga-budgets"></div>
-        </section>
-      </div>
-      <div class="subview" data-sub="simulacao" hidden>
-        <div class="stack" id="fsim-root"></div>
-      </div>
-    </section>
+      <div class="subview" data-sub="equipas" hidden>
 
-    <!-- ========== H2H ========== -->
-    <section class="view" data-view="h2h" data-title="H2H" hidden>
-      <div class="view-head">
-        <div class="eyebrow">Mitras Fantasy H2H 26/27</div>
-        <h1>H2H</h1>
-        <p>Cada jornada é um jogo 1x1. Os jogadores que tu e o adversário têm em comum cancelam-se; o jogo decide-se nos exclusivos de cada lado.</p>
-      </div>
-      <div class="subtabs" role="tablist" aria-label="H2H">
-        <button class="subtab" type="button" data-sub="calendario">Resultados e calendário</button>
-        <button class="subtab" type="button" data-sub="adversario">Adversário da J<span class="gw-n">7</span></button>
-      </div>
-
-      <div class="subview" data-sub="calendario">
-        <div class="mgr-view" data-mgr="bruno">
-          <div class="hero-stats" id="h2h-stats"></div>
-          <section class="card" style="margin-top:16px"><div id="h2h-schedule"></div></section>
-        </div>
-        <div class="mgr-view" data-mgr="marco">
-          <div class="hero-stats" id="marco-h2h-stats"></div>
-          <section class="card" style="margin-top:16px"><div id="marco-h2h-schedule"></div></section>
-        </div>
-      </div>
-
-      <div class="subview" data-sub="adversario" hidden>
-        <section class="card" id="h2h-vis"></section>
-        <details class="old-notes"><summary>Análise escrita do adversário (13-14 out)</summary>
-        <div class="mgr-view" data-mgr="bruno">
-          <section class="card feature">
-            <h2>Frederico Borges (SL Guinness)</h2>
-            <div class="card-sub">Plantel real dele na J<span class="gw-l">6</span>. Pode ainda fazer transferências antes de sábado.</div>
-            <p class="prose" id="h2h-opponent-intro"></p>
-            <div id="h2h-swing-summary"></div>
-          </section>
-          <div class="grid-2" style="margin-top:16px">
-            <section class="card">
-              <h2>Onde o jogo se decide</h2>
-              <div class="card-sub">Exclusivos de cada lado, em pontos esperados para a J<span class="gw-n">7</span></div>
-              <div id="h2h-unique"></div>
-            </section>
-            <div class="stack">
-              <section class="card">
-                <h2>O que fazer</h2>
-                <div id="h2h-recommendation"></div>
-              </section>
-              <section class="card">
-                <h2>Em comum</h2>
-                <div id="h2h-shared"></div>
-              </section>
-            </div>
-          </div>
-        </div>
-        <div class="mgr-view" data-mgr="marco">
-          <section class="card">
-            <h2>Miguel Bengalinha (SLBengalinha)</h2>
-            <p class="prose">O resumo do adversário do Marco está na linha da J<span class="gw-n">7</span> em "Resultados e calendário": plantel real da J<span class="gw-l">6</span>, jogadores em comum e pontos esperados de cada lado.</p>
-            <button class="chart-toggle" type="button" data-goto="h2h" data-goto-sub="calendario">Ver resultados e calendário</button>
-          </section>
-        </div>
-        </details>
-      </div>
-    </section>
-
-    <!-- ========== EQUIPAS ========== -->
-    <section class="view" data-view="equipas" data-title="Equipas" hidden>
-      <div class="view-head">
-        <div class="eyebrow">Análise · J1-J<span class="gw-l">6</span></div>
-        <h1>Equipas</h1>
-        <p>xG oficial da FPL por equipa (qualidade das ocasiões criadas e concedidas), forma e calendário. Tudo calculado a partir de jogadores que fizeram os 90 minutos.</p>
-      </div>
-      <div class="subtabs" role="tablist" aria-label="Equipas">
-        <button class="subtab" type="button" data-sub="saldo">Saldo de xG</button>
-        <button class="subtab" type="button" data-sub="forma">Forma e próximos jogos</button>
-        <button class="subtab" type="button" data-sub="criadores">Quem cria mais</button>
-        <button class="subtab" type="button" data-sub="sequencia">Calendário J<span class="gw-n">7</span>-J<span class="gw-n5">12</span></button>
-        <button class="subtab" type="button" data-sub="capitao">Perfil do capitão</button>
-        <button class="subtab" type="button" data-sub="europa">Europa e descanso</button>
-        <button class="subtab" type="button" data-sub="europa-eq">Europa por equipa</button>
-      </div>
-
-      <div class="subview" data-sub="saldo">
         <section class="card">
           <div class="card-head">
             <div><h2>Quem está mesmo a jogar bem</h2><div class="card-sub">xG criado menos xG concedido, J1-J<span class="gw-l">6</span> (J<span class="gw-l">6</span> provisória)</div></div>
@@ -2045,8 +2160,9 @@
           </table>
           <p class="note">"Sorte" compara golos reais com os esperados: "com sorte" tende a corrigir para baixo, "com azar" para cima. Nas J3-J<span class="gw-l">6</span> somam-se 117.6 xG para 115 golos reais.</p>
         </section>
-      </div>
-      <div class="subview" data-sub="forma" hidden>
+      
+<div class="sec-div">Forma e próximos jogos</div>
+
         <section class="card">
           <h2>Forma e próximas 3 jornadas</h2>
           <p class="prose" id="form-takeaway"></p>
@@ -2058,8 +2174,9 @@
           </div>
           <p class="note">5.0 é a média da liga. "Ataque" ajuda a escolher médios e avançados; "Defesa", guarda-redes e defesas. (F) = fora. A cor é a dificuldade oficial da FPL.</p>
         </section>
-      </div>
-      <div class="subview" data-sub="criadores" hidden>
+      
+<div class="sec-div">Quem cria mais</div>
+
         <section class="card">
           <h2>Quem cria mais: xG e xA</h2>
           <div class="card-sub">Soma das J4, J5 e J<span class="gw-l">6</span> · jogadores seguidos nesta app</div>
@@ -2071,8 +2188,9 @@
             </table>
           </div>
         </section>
-      </div>
-      <div class="subview" data-sub="sequencia" hidden>
+      
+<div class="sec-div">Calendário J7-J12</div>
+
         <section class="card">
           <h2>Calendário das próximas 6 jornadas</h2>
           <div class="card-sub">Ordenado do mais fácil para o mais difícil. Clubes com jogadores do Bruno ou do Marco destacados. Há duas semanas de pausa entre a J10 e a J11.</div>
@@ -2084,197 +2202,18 @@
           </div>
           <div class="fdr-legend" id="fdr-legend-2"></div>
         </section>
-      </div>
-      <div class="subview" data-sub="capitao" hidden>
+      
+<div class="sec-div">Perfil do capitão</div>
+
         <section class="card">
           <h2>Perfil de risco do capitão</h2>
           <div class="card-sub">Leitura de estilo de jogo, não um número da API. Junta-a aos pontos esperados antes de decidir.</div>
           <div id="captain-risk-body"></div>
         </section>
+      
       </div>
-      <div class="subview" data-sub="europa" hidden>
-        <section class="card" id="eu-gw"></section>
-      </div>
-      <div class="subview" data-sub="europa-eq" hidden>
-        <section class="card" id="eu-team"></section>
-      </div>
-    </section>
+      <div class="subview" data-sub="regras" hidden>
 
-    <!-- ========== EQUIPA IDEAL ========== -->
-    <!-- ========== EUROPA E DESCANSO (15 out) ========== -->
-    <!-- ========== COMPARAR EQUIPAS (15 out) ========== -->
-    <section class="view" data-view="comparar" data-title="Comparar equipas" hidden>
-      <div class="view-head">
-        <div class="eyebrow">Mini-liga · 20 equipas · plantéis da J<span class="gw-l">6</span></div>
-        <h1>Comparar equipas</h1>
-        <p>Escolhe duas equipas da liga e compara pontos, orçamento, chips, jogadores em comum e o que cada uma deve fazer na J<span class="gw-n">7</span>.</p>
-      </div>
-      <section class="card cmp-pick" id="cmp-pick"></section>
-      <div class="subtabs" role="tablist" aria-label="Comparar equipas">
-        <button class="subtab" type="button" data-sub="resumo">Resumo</button>
-        <button class="subtab" type="button" data-sub="grafico">Gráfico</button>
-        <button class="subtab" type="button" data-sub="pontos">Pontos por jornada</button>
-        <button class="subtab" type="button" data-sub="jogadores">Jogadores</button>
-        <button class="subtab" type="button" data-sub="orcamento">Orçamento</button>
-      </div>
-      <div class="subview" data-sub="resumo"><section class="card" id="cmp-resumo"></section></div>
-      <div class="subview" data-sub="grafico" hidden><section class="card" id="cmp-grafico"></section></div>
-      <div class="subview" data-sub="pontos" hidden><section class="card" id="cmp-pontos"></section></div>
-      <div class="subview" data-sub="jogadores" hidden><div class="stack" id="cmp-jogadores"></div></div>
-      <div class="subview" data-sub="orcamento" hidden><section class="card" id="cmp-orcamento"></section></div>
-    </section>
-
-    <!-- ========== PREVISÃO DA CLASSIFICAÇÃO (15 out) ========== -->
-    <section class="view" data-view="previsao" data-title="Previsão da classificação" hidden>
-      <div class="view-head">
-        <div class="eyebrow">Mini-liga · simulação de 6 000 cenários, jogador a jogador</div>
-        <h1>Previsão da classificação</h1>
-        <p>Como a classificação deve evoluir, juntando os pontos esperados de cada plantel, a forma recente, as chips que cada um ainda tem e a sorte de cada jornada.</p>
-      </div>
-      <div class="seg" role="group" aria-label="Horizonte da previsão" id="prev-horizon">
-        <button type="button" class="seg-btn" data-h="5" aria-pressed="true">Até à J<span class="gw-n4">11</span></button>
-        <button type="button" class="seg-btn" data-h="19" aria-pressed="false">Até à J19 (aproximado)</button>
-      </div>
-      <div class="seg" role="group" aria-label="Plantéis dos rivais" id="prev-pred" style="margin-top:8px">
-        <button type="button" class="seg-btn" data-p="0" aria-pressed="true">Plantéis atuais dos rivais</button>
-        <button type="button" class="seg-btn" data-p="1" aria-pressed="false">Usar os plantéis previstos dos rivais</button>
-      </div>
-      <div class="subtabs" role="tablist" aria-label="Previsão da classificação">
-        <button class="subtab" type="button" data-sub="tabela">Classificação prevista</button>
-        <button class="subtab" type="button" data-sub="frente">Tu vs os da frente</button>
-        <button class="subtab" type="button" data-sub="metodo">Como calculo</button>
-      </div>
-      <div class="subview" data-sub="tabela"><div class="stack"><section class="card" id="prev-me"></section><section class="card" id="prev-table"></section></div></div>
-      <div class="subview" data-sub="frente" hidden><section class="card" id="prev-front"></section></div>
-      <div class="subview" data-sub="metodo" hidden><section class="card" id="prev-method"></section></div>
-    </section>
-
-    <!-- ========== JOGADORES: PESQUISA E COMPARADOR (bloco 2, 15 out) ========== -->
-    <section class="view" data-view="jogadores" data-title="Jogadores" hidden>
-      <div class="view-head">
-        <div class="eyebrow">Todos os jogadores da FPL · dados de <span class="gw-date">13 out 2026</span></div>
-        <h1>Jogadores</h1>
-        <p>Pesquisa com filtros e compara até 4 jogadores lado a lado. Toca num nome para abrir a ficha.</p>
-      </div>
-      <div class="subtabs" role="tablist" aria-label="Jogadores">
-        <button class="subtab" type="button" data-sub="pesquisa">Pesquisa</button>
-        <button class="subtab" type="button" data-sub="comparar">Comparador <span id="cmp-count"></span></button>
-        <button class="subtab" type="button" data-sub="ideal">Equipa ideal</button>
-      </div>
-      <div class="subview" data-sub="pesquisa">
-        <section class="card">
-          <div class="filters" id="pl-filters">
-            <label class="f-q"><span>Nome</span><input type="search" id="pl-q" placeholder="ex.: Saka" autocomplete="off"></label>
-            <label><span>Posição</span><select id="pl-pos"><option value="">Todas</option><option value="gk">Guarda-redes</option><option value="def">Defesas</option><option value="mid">Médios</option><option value="fwd">Avançados</option></select></label>
-            <label><span>Clube</span><select id="pl-team"><option value="">Todos</option></select></label>
-            <label><span>Preço até <b id="pl-price-v">£15.5M</b></span><input type="range" id="pl-price" min="3.5" max="15.5" step="0.5" value="15.5"></label>
-            <label><span>Ordenar por</span><select id="pl-sort">
-              <option value="ep1">Pts esperados J7</option><option value="ep5">Pts esperados 5 jornadas</option><option value="val">Pts esperados por £M</option>
-              <option value="form">Pontos nas últimas 3</option><option value="total">Pontos na época</option><option value="own">Posse FPL</option><option value="lown">Posse na liga</option><option value="price">Preço</option><option value="xgi">xG+xA últimas 3</option><option value="haul">Probabilidade de 10+ pts J7</option>
-            </select></label>
-            <label class="f-chk"><input type="checkbox" id="pl-avail"> <span>Só disponíveis</span></label>
-            <label class="f-chk"><input type="checkbox" id="pl-mine"> <span>Só o meu plantel</span></label>
-          </div>
-        </section>
-        <section class="card">
-          <div class="card-head"><div><h2 id="pl-count">Jogadores</h2><div class="card-sub">Marca até 4 para comparar. Barras = pontos por jornada (verde 6+).</div></div></div>
-          <div class="note" style="margin:-4px 0 10px">Preço com pressão de preço <button type="button" class="qbtn" data-q="preco" aria-label="O que é a pressão de preço?">?</button> · pontos esperados <button type="button" class="qbtn" data-q="ep" aria-label="O que são pontos esperados?">?</button> · próximos 5 jogos pela dificuldade <button type="button" class="qbtn" data-q="fdr" aria-label="O que é a dificuldade?">?</button> · EO na liga <button type="button" class="qbtn" data-q="eo" aria-label="O que é o EO?">?</button></div>
-          <div id="pl-body"></div>
-          <div style="text-align:center;margin-top:10px"><button type="button" class="btn" id="pl-more">Mostrar mais</button></div>
-        </section>
-      </div>
-      <div class="subview" data-sub="comparar" hidden>
-        <section class="card" id="pc-pick"></section>
-        <div class="stack" id="pc-out"></div>
-      </div>
-      <div class="subview" data-sub="ideal" hidden>
-        <div id="ideal2"></div>
-        <div hidden aria-hidden="true">
-      <div class="seg" role="group" aria-label="Horizonte" id="ideal-horizon"><button type="button" class="seg-btn" data-h="1" aria-pressed="true">Só a J<span class="gw-n">7</span></button><button type="button" class="seg-btn" data-h="5" aria-pressed="false">J<span class="gw-n">7</span> a J<span class="gw-n4">11</span></button></div>
-      <p class="note" style="margin:0 0 14px">Base: <span id="pool-size">—</span> jogadores com minutos nas J<span class="gw-l3">4</span>-J<span class="gw-l">6</span>, com preços e estado de <span class="gw-date">13 out 2026</span>.</p>
-      <div class="grid-2">
-        <section class="card">
-          <h2>A equipa</h2>
-          <div class="card-sub">Formação <span id="ideal-formation">—</span> · titulares a negrito</div>
-          <div id="ideal-squad-body"></div>
-          <div class="budget-line total"><span><b>Total (15 jogadores)</b></span><span class="value" id="ideal-squad-total">—</span></div>
-        </section>
-        <section class="card">
-          <h2>Comparação com o teu plantel</h2>
-          <div class="hero-stats" id="ideal-stats" style="margin:10px 0 14px"></div>
-          <div id="ideal-diff"></div>
-        </section>
-      </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== PLANEADOR (bloco 3, 15 out) ========== -->
-    <section class="view" data-view="planeador" data-title="Planeador" hidden>
-      <div class="view-head">
-        <div class="eyebrow">J<span class="gw-n">7</span>-J<span class="gw-n4">11</span> · transferências</div>
-        <h1>Planeador</h1>
-        <p>Planeia as transferências das próximas 5 jornadas e vê quanto ganhas face a não mexer. Depois de fazeres uma troca no site, regista-a aqui.</p>
-      </div>
-      <div class="subtabs" role="tablist" aria-label="Planeador">
-        <button class="subtab" type="button" data-sub="plano">Plano J7-J11</button>
-        <button class="subtab" type="button" data-sub="registo">Registar o que fiz</button>
-      </div>
-      <div class="subview" data-sub="plano"><section class="card" id="auto-plan" style="margin-bottom:16px"></section><div id="plan-root"></div></div>
-      <div class="subview" data-sub="registo" hidden><div class="stack" id="log-root"></div></div>
-    </section>
-
-    <!-- ========== VIGIAR RIVAIS (bloco 4, 15 out) ========== -->
-    <section class="view" data-view="rivais" data-title="Vigiar rivais" hidden>
-      <div class="view-head">
-        <div class="eyebrow">Mini-liga clássica</div>
-        <h1>Vigiar rivais</h1>
-        <p>Os rivais mais próximos: o que têm que tu não tens, chips por usar e quanto a J<span class="gw-n">7</span> deve mexer na distância.</p>
-      </div>
-      <div class="stack" id="riv-root"></div>
-    </section>
-
-    <!-- ========== AO VIVO (15 out) ========== -->
-    <section class="view" data-view="aovivo" data-title="Ao vivo" hidden>
-      <div class="view-head">
-        <div class="eyebrow" id="av-eyebrow">Jornada em direto</div>
-        <h1>Ao vivo</h1>
-        <p>Os teus pontos, o H2H e a liga enquanto os jogos decorrem. Nos dias de jogo os dados atualizam-se sozinhos de 15 em 15 minutos.</p>
-      </div>
-      <div class="subtabs" role="tablist" aria-label="Ao vivo">
-        <button class="subtab" type="button" data-sub="equipa">A minha equipa</button>
-        <button class="subtab" type="button" data-sub="h2h">H2H em direto</button>
-        <button class="subtab" type="button" data-sub="liga">Liga em tempo real</button>
-      </div>
-      <div class="subview" data-sub="equipa"><div class="stack" id="av-equipa"></div></div>
-      <div class="subview" data-sub="h2h" hidden><div class="stack" id="av-h2h"></div></div>
-      <div class="subview" data-sub="liga" hidden><div class="stack" id="av-liga"></div></div>
-    </section>
-
-
-
-    <!-- ========== EQUIPA PARA GANHAR A… (V44, 16 out) ========== -->
-    <section class="view" data-view="ganhar" data-title="Equipa para ganhar a…" hidden>
-      <div class="view-head">
-        <div class="eyebrow">Competição · simulação</div>
-        <h1>Equipa para ganhar a…</h1>
-        <p>Escolhe contra quem jogas e a app procura as trocas, o onze e o capitão com mais probabilidade de ganhar — que nem sempre é a equipa com mais pontos esperados.</p>
-      </div>
-      <div class="stack"><section class="card" id="win-setup"></section><div class="stack" id="win-root"></div></div>
-    </section>
-
-    <!-- ========== REGRAS E FONTES ========== -->
-    <section class="view" data-view="regras" data-title="Regras e fontes" hidden>
-      <div class="view-head">
-        <div class="eyebrow">Referência</div>
-        <h1>Regras e fontes</h1>
-        <p>Como se pontua na FPL 2026/27 e de onde vem cada número desta app.</p>
-      </div>
-      <div class="subtabs" role="tablist" aria-label="Regras e fontes">
-        <button class="subtab" type="button" data-sub="pontuacao">Pontuação</button>
-        <button class="subtab" type="button" data-sub="fontes">Fontes e histórico</button>
-      </div>
-      <div class="subview" data-sub="pontuacao">
         <section class="card">
         <h2>Como funcionam os pontos</h2>
         <div class="card-sub">Regras oficiais da FPL 2026/27, simplificadas</div>
@@ -2315,8 +2254,9 @@
         <h3>Preços</h3>
         <p class="prose">Preços mudam consoante o <b>volume de transferências</b> de entrada/saída de cada jogador — não diretamente pelos pontos que faz (ver Plantel e mercado › Preços para mais detalhe). Passos de £0.1M, até 3 subidas/descidas por jornada, atualizados de madrugada (hora do Reino Unido). Antes do deadline da Jornada 1, os preços estão <b>bloqueados</b>.</p>
         </section>
-      </div>
-      <div class="subview" data-sub="fontes" hidden>
+      
+<div class="sec-div">Fontes e histórico</div>
+
         <section class="card">
           <h2>De onde vem cada número</h2>
           <p class="prose"><b>Dados oficiais da FPL:</b> calendário, dificuldades, resultados, pontos, xG e xA de jogadores e equipas, plantéis e classificações das ligas.</p>
@@ -2345,10 +2285,15 @@
             <div class="gen">Gerado em 18 de agosto de 2026 · atualizado a 26 de agosto com o resultado real da Jornada 1 e a equipa da Jornada 2 · reestruturado no mesmo dia para abas evergreen, histórico por jornada e substituições/chips claros · acrescentados o gráfico de evolução, o inventário de chips e a tabela de jogadores em forma · revisto de fundo na noite de 26 de agosto para tirar todos os números de desempenho da API oficial da FPL (xG e xA por jogador e por equipa), corrigir uma afirmação errada sobre o Haaland introduzida nesse mesmo dia, e acrescentar o onze ótimo da jornada, a análise jogador a jogador, a forma das equipas e os líderes de xG/xA · <b>acrescentada nessa mesma noite a aba "Equipa ideal"</b>, com um otimizador que escolhe os 15 jogadores com mais pontos esperados para a jornada seguinte dentro de £100.0M, sobre um conjunto de ~45 jogadores com dados reais verificados · <b>27 de agosto:</b> investigado o Tzolis (id 557, dados oficiais via API) e acrescentado ao conjunto — o otimizador confirma matematicamente que não vale a troca por já ter 3 jogadores da Arsenal no limite e um ep mais baixo que os três · <b>acrescentada nessa mesma noite a aba "Liga"</b>, com dados reais da tua mini-liga (League ID 457722, Mitras Fantasy League 26/27) — classificação dos 20 gestores, comparação do teu plantel com a posse dentro da liga, os picks mais populares que não tens, e a distribuição de capitães — e, na aba "Equipas", uma sequência de calendário até à Jornada 8 e um perfil de risco de capitão · <b>acrescentada nessa mesma noite a aba "H2H"</b>, com dados reais da tua liga a eliminar 1x1 (League ID 457789, Mitras Fantasy H2H 26/27) — calendário de adversários, e uma análise completa do adversário da Jornada 2 (Dan Robinson) separando os jogadores partilhados (que se cancelam) dos exclusivos de cada lado (que decidem o jogo) · <b>acrescentada logo a seguir uma secção na aba "Liga"</b> com o orçamento total, valor do plantel, banco e chips usados/disponíveis de cada um dos 20 gestores (`entry/{id}/history/` da API oficial) — só 2 gestores usaram chip até agora, os dois o "Bench Boost" na J1 · nomes dos chips passados para inglês (Wildcard, Free Hit, Bench Boost, Triple Captain) a pedido do utilizador. · <b>27 de agosto (mais tarde):</b> substituído o conjunto de ~46 jogadores escolhidos à mão pelo <code class="inline">bootstrap-static.json</code> oficial completo (571 jogadores usáveis) — o otimizador da "Equipa ideal" e os alertas de lesão/dúvida passaram a cobrir toda a liga; contribuição defensiva, xG/90 e taxa de titularidade entraram na fórmula de pontos esperados; e a aba "Preços" passou a usar sinais reais de transferências/subida-descida em vez de estimativas. · acrescentada a aba <b>"Onzes prováveis"</b>, com previsão dos onzes titulares dos 10 jogos de cada jornada (toda a Premier League, não só os jogos do Bruno/Marco), sempre só da próxima jornada por jogar, cruzando o estado oficial de disponibilidade com investigação fresca em várias fontes. · acrescentada a secção <b>"Hot takes"</b> dentro da aba "Jornada seguinte", com jogadores que podem surpreender e diferenciadores possíveis, derivados só de dados já recolhidos (zero investigação nova). · <b>30 de agosto:</b> atualizada a app com os resultados reais da Jornada 2 (Bruno: 32 pts, total 91, 3.º da liga; Marco: 38 pts, transferência Porro→De Cuyper, total 78, 11.º da liga) — a classificação completa da mini-liga fica marcada como provisória porque o jogo Aston Villa-Arsenal ainda não tinha sido disputado; refeitas as abas "Onzes prováveis" e "Hot takes" para a Jornada 3; atualizado o adversário H2H de cada gestor para a próxima jornada. · <b>31 de agosto:</b> fechada a Jornada 2 (último jogo, Aston Villa 0-1 Arsenal) — classificação final da liga atualizada para os 20 gestores (Bruno 4.º com 163 pts/104 na jornada, a melhor da época; Marco 9.º empatado com 137 pts/97 na jornada), históricos das duas equipas reescritos com o desempenho real completo. Descoberta técnica desta noite: perto do fim da jornada, a classificação oficial da liga (leagues-classic/standings) ficou mais atualizada do que os endpoints "ao vivo" de cada gestor (entry/history, entry/picks), ao contrário do que se tinha visto a meio da jornada — ver notas do projeto. Despachados 5 agentes de investigação para rever o desempenho real de todos os 20 clubes da Premier League e recomendar reforços para a J3 — destaque para o Semi Ajayi (Hull City, £4.0M), o defesa mais pontuado de toda a FPL neste momento. · <b>1 de setembro (V19):</b> corrigido um erro de segunda ordem no total oficial de pontos do Bruno na J2 (a API deu 81/140 num endpoint e 104/163 noutro, mesmo já com a jornada fechada — reconstruído à mão a partir dos dados oficiais de cada titular, confirmando 104/163) · <b>aplicada a transferência recomendada:</b> saiu o Milan van Ewijk, entrou o Semi Ajayi (£4.1M, defesa mais pontuado da FPL) — atualizados SUBS, "Pontos esperados", "Enablers", "Equipa ideal" e a posse dentro da liga · <b>2 de setembro:</b> corrigido o número de transferências grátis (era suposto ter calculado 3 acumuladas a partir de "zero gastas nas duas primeiras jornadas", mas essa conta estava errada — o utilizador confirmou no site oficial que só tem 1, corrigido em toda a app · também corrigidos 4 jogadores presos no clube antigo no conjunto de 571 da "Equipa ideal" (Nicolas Jackson, Marmoush, Nico González, Disasi — todos mudaram de clube este verão e o ficheiro de base ainda não refletia isso) · <b>corrigida a transferência aplicada:</b> a app tinha assumido, sem confirmar, que a troca recomendada (Milan van Ewijk → Semi Ajayi) tinha sido feita — o utilizador esclareceu que a troca real foi outra: <b>Cristhian Mosquera → Maxim De Cuyper</b>, usando a única transferência grátis (agora 0 disponíveis). Revertido o van Ewijk para a equipa e aplicado o De Cuyper em SQUAD, SUBS, ENABLERS, "Equipa ideal", posse da liga, H2H e nos textos de recomendação — lição: nunca marcar uma troca sugerida como "aplicada" sem confirmação explícita do utilizador sobre o que fez de facto no site oficial · <b>segunda troca da semana:</b> o utilizador fez mais uma transferência real, Dominic Calvert-Lewin → Nicolas Jackson (Aston Villa, £6.5M, punt diferenciador, 0.3% de posse) — inicialmente assumi (sem perguntar) que isto custava um hit de -4 pontos, mas o utilizador esclareceu pouco depois que <b>as duas trocas foram grátis</b>: tinha 2 transferências grátis acumuladas para a J3, não 1 como confirmado antes. Removido o hit (`TRANSFER_HITS` volta a 0), e passa a haver tracking mais cuidadoso: 0 transferências grátis para o resto da J3, 1 nova confirmada para a J4 (`NEXT_GW_FREE_TRANSFERS`) · <b>corrigido o resultado H2H da J2:</b> estava marcado como "desconhecido" porque o perfil do adversário (Dan Robinson) não devolvia dados ao vivo — confirmado via `leagues-h2h-matches/league/457789/?event=2` que o utilizador GANHOU esse confronto 104-90; atualizado o registo H2H (1V-0E-1D) e o calendário · <b>refeita a distribuição de capitães da liga com dados reais da J2</b> (estava presa na J1): Haaland 8/20, Bruno Fernandes 6/20 (melhor pontuação de capitão da jornada, 23 pts×2=46), Joao Pedro 3/20, Alexander Isak 2/20, e 1 gestor (Marco Milhano) com perfil indisponível na API (404 persistente) · recomendação de <b>Triple Captain no Haaland</b> passada para a aba "Jornada seguinte" e para as sugestões do Marco, com a J3 (Man City-Coventry em casa) apontada por várias fontes como a melhor janela da época · atualizados os líderes de xG e o onze ótimo com os números reais e completos da Jornada 2 (30 jogadores verificados um a um via API oficial) · corrigido um bug latente no mapeamento de calendário (FIXTURES_BY_GW apontava a chave errada, o que teria feito os cálculos de dificuldade de equipa olharem para a jornada errada) · refrescada a tabela "Jogadores em forma" para usar só dados 100% oficiais em vez de estimativas da comunidade. <b>Nota de transparência:</b> o levantamento completo de posse/capitania dos 20 gestores da liga (TEMPLATE_GAPS/CAPTAIN_DIST) e o conjunto de 571 jogadores da "Equipa ideal" (FULL_POOL) continuam por re-recolher desde a J1/antes da J2 — ficam marcados como um retrato do arranque da época, não um snapshot fresco da J3. Preços, disponibilidade e estimativas mudam até ao deadline — confirma sempre no site oficial. · <b>3 de setembro:</b> revista a fundo a parte do <b>Xarola Team (Marco)</b> — corrigido o resultado H2H da Jornada 2, que estava errado (marcado como "38 pts, resultado não confirmado", nem batia certo com os 97 pontos oficiais já registados no histórico); confirmado via <code class="inline">leagues-h2h-matches/league/457789/?event=2</code> (entry 1973102) que o Marco <b>ganhou 97-92</b> contra o Andre Filipe da Luz Gonçalves (Já fui) — registo H2H atualizado para 1V-0E-1D. Tentei também confirmar as transferências reais do Marco para a J3 via <code class="inline">entry/1973102/event/3/picks/</code>, mas a jornada ainda não fechou (deadline só a 4 de setembro) e o endpoint devolve 404 para jornadas futuras ainda não processadas — por isso a secção "Pontos esperados"/"O que fazer antes do deadline" do Marco continua a assumir o plantel confirmado mais recente (pós-J2, com a troca Porro→De Cuyper), tal como o próprio utilizador esclareceu não saber que trocas o Marco vai fazer. · <b>7 de setembro (V20):</b> fechada a Jornada 3 e atualizada a app inteira para a Jornada 4. Resultados reais confirmados via API oficial: <b>ambos os gestores usaram o Triple Captain no Haaland</b> na J3 (Man City 1-0 Coventry, 9 pts em bruto ×3 = 27) — Bruno fez 56 pts (Mbeumo 8, Shaw/De Cuyper 4 cada, Tyrick Mitchell fez um bis surpreendente no banco, 15 pts perdidos) e Marco fez 55 pts (transferência real Berge→Sangare confirmada, mais a troca de titular Mateus Fernandes→Groß já sugerida por esta app). Classificação da liga <b>reconstruída à mão</b> para os 20 gestores (a FPL ainda não tinha "fechado" oficialmente a jornada) e validada com sucesso contra o <code class="inline">entry_history</code> de vários gestores — Bruno subiu a 3.º (219 pts), Marco mantém-se 8.º empatado (192 pts, corrigido de um "9.º" anterior). H2H: Bruno perdeu 56-67 ao líder Nuno Rodrigues, novo adversário na J4 é o Nelson Rodrigues (6 jogadores partilhados, incl. o capitão); Marco venceu 55-50 ao Paulo Couceiro, novo adversário é o Renato Pinela (só 4 partilhados, decodificado via API). Reescritas de raiz as tabelas de "Pontos esperados" do Bruno e do Marco com fixtures e forma reais da J4 (destaque: o dérbi Man Utd-Man City, dificuldade 4-4, afeta Bruno Fernandes/Mbeumo/Shaw/Haaland ao mesmo tempo). Refeita a aba "Onzes prováveis"/"Hot takes" com investigação nova para os 10 jogos da J4 (4 agentes em paralelo), sinalizando várias incertezas genuínas em vez de inventar onzes (ex.: Man Utd tem 3 lugares em aberto por lesões recentes). Sequência de calendário deslocada de J3-J8 para J4-J9. Chips, transferências grátis e deadline (agora sex 12 set, 12:30 UTC) atualizados nos dois lados. <b>Deixado por atualizar nesta ronda</b> (falta de dados/orçamento de tempo): o detalhe jogador-a-jogador (xG/xA oficiais) da J3 na aba "Onze ótimo" continua a mostrar a J2 como última jornada; o conjunto de 571 jogadores da "Equipa ideal" e o orçamento/chips dos 20 gestores na aba Liga continuam por re-recolher desde antes da J2 — marcados como conhecidos no texto da própria app. · <b>14 de setembro (V21):</b> fechada (provisoriamente) a Jornada 4 e atualizada a app inteira para a Jornada 5. A J4 ainda não fechou oficialmente na FPL (<code class="inline">data_checked:false</code>, falta o Newcastle-Leeds, seg 14 set 19:00 UK) — todos os números da J4 nesta atualização estão marcados como provisórios, e a <b>classificação da mini-liga não foi tocada</b> (continua a mostrar o final da J3: Bruno 3.º/219 pts, Marco 8.º/192 pts) até a jornada fechar de vez. Resultados reais confirmados via API oficial: Bruno fez <b>71 pts</b> (transferência real confirmada — saiu o Bruno Fernandes, entrou o <b>Cole Palmer</b>, agora capitão — destaque para o Joao Pedro, 12 pts, e o Raya, 14 pts com baliza a zero; o Nicolas Jackson não tem ainda linha oficial de estatísticas publicada pela FPL para esta jornada, apesar de ter sido titular pelo Aston Villa, sinalizado explicitamente em vez de inventado) e Marco fez <b>91 pts</b>, a melhor jornada de sempre do plantel (sem transferência gasta, mas com duas trocas dentro do onze sem custo: o Bobby Thomas entrou pelo Maguire, e a braçadeira passou do Haaland para o <b>Joao Pedro</b>, que rendeu 24 pts; destaque ainda maior para o <b>Pascal Groß</b>, 17 pts, a melhor semana individual de qualquer jogador de qualquer um dos dois plantéis). H2H (ambos provisórios): Bruno perdeu por 1 ponto, 71-72, ao Nelson Rodrigues; Marco venceu confortavelmente, 91-68, ao Renato Pinela. Novos adversários da J5: o Bruno defronta o <b>marco milhano</b>, que jogou o Wildcard na J4 e mudou quase todo o plantel — só 2 jogadores em comum (Haaland, Calafiori), a menor sobreposição de qualquer adversário até agora; o Marco defronta o <b>Tiago Guerreiro (Lups FC)</b>, com 6 jogadores em comum. Reescritas de raiz as tabelas de "Pontos esperados" dos dois com fixtures e forma reais da J5 (destaque: o Haaland tem a melhor fixture da jornada, em casa vs. Sunderland, mas nenhum dos dois o capitaniza desta vez — Palmer e Joao Pedro têm as braçadeiras). Refeita a aba "Onzes prováveis"/"Hot takes" com investigação nova para os 10 jogos da J5, sinalizando incertezas genuínas em vez de inventar onzes (ex.: Coventry tem o avançado suspenso sem substituto nomeado por nenhuma fonte; Man City tem o Foden suspenso; Newcastle e Leeds ainda não tinham fechado a própria J4 à data da investigação). Sequência de calendário deslocada de J4-J9 para J5-J10. Chips, transferências grátis (Bruno: 1 disponível; Marco: 2 disponíveis, não usou a da J4) e deadline (agora sex 18 set, 17:30 UTC) atualizados nos dois lados. <b>Deixado por atualizar nesta ronda</b> (falta de dados/orçamento de tempo, tal como nas rondas anteriores): o detalhe jogador-a-jogador (xG/xA oficiais) na aba "Onze ótimo" continua preso na J2; o conjunto de 571 jogadores da "Equipa ideal" (FULL_POOL) e o orçamento/chips dos 20 gestores na aba Liga continuam por re-recolher desde antes da J2; e, novo desta ronda, a aba "Análise de equipas" (RESULTS_BY_GW, golos reais + xG por equipa) não recebeu uma entrada para a J4 — exigiria reconstruir a xG concedida de ~20 equipas via API, fora do orçamento de tempo desta atualização — fica marcada como conhecida no texto da própria app. · <b>13 de outubro (V22):</b> fechada a Jornada 4 (final: Bruno 72, Marco 92, cada um +1 face ao provisório) e acrescentadas as Jornadas 5 e 6 (a J6 ainda provisória na FPL), com a app atualizada inteira para a <b>Jornada 7</b> (deadline sáb 17 out, 11:00 em Lisboa). Bruno: J5 37 pts, J6 71 pts, total 399, <b>5.º da liga</b>. Transferências reais confirmadas na API: Mbeumo→Saka e Shaw→Lewis Hall. Marco: J5 43, J6 61, total 388, 8.º. Transferências: Mosquera→Neco Williams e Mateus Fernandes→Harvey Barnes. H2H: Bruno 2V-0E-4D (14.º), Marco 3V-0E-3D (9.º). Adversários da J7: Frederico Borges (Bruno) e Miguel Bengalinha (Marco). <b>Feito pela primeira vez desde o início da época:</b> classificação, posse, capitães, orçamentos e chips dos 20 gestores refeitos com os plantéis reais da J6; a linha do Marco passou a estar destacada na classificação; e a aba "Análise de equipas" recebeu as J3-J6 (xG por equipa via API). Também atualizados o detalhe jogador a jogador (J6), os líderes de xG (J4-J6), os jogadores em forma, a sequência de calendário (J7-J12), os onzes prováveis/hot takes da J7 (5 agentes em paralelo) e os clubes de 8 jogadores que mudaram de equipa. Recomendações para a J7 (não aplicadas, à espera de confirmação): capitão Haaland nos dois; Bruno Szoboszlai→Groß; Marco Igor Jesus→Kostoulas. <b>Continua por fazer:</b> refrescar o conjunto de 571 jogadores da "Equipa ideal"/"Preços" (precisa de um <code class="inline">bootstrap-static.json</code> novo enviado pelo utilizador; o acesso direto à API continua bloqueado neste ambiente). · <b>13 de outubro (V23):</b> interface redesenhada de raiz a pedido do utilizador — tema claro com roxo FPL suave (o verde só nos detalhes), menu lateral por áreas (Jornada 7, A tua equipa, Competição, Análise) e sub-abas dentro de cada área, para mostrar só uma coisa de cada vez em vez de páginas compridas; nova página de Resumo com os números-chave de cada gestor; onzes prováveis com seletor de jogo; gráfico de evolução de pontos também para o Marco; a antiga aba "Pontos esperados" passou para Jornada 7 › Pontos esperados. Nenhum dado mudou nesta versão. · <b>13 de outubro (V24):</b> base de jogadores renovada (preços, posse, estado e pontos por jornada dos 667 jogadores, de 13 out) — atualiza Preços, Equipa ideal, Hot takes e alertas de lesão; pontos esperados para as J7-J11 com o separador "Próximas 5 jornadas"; simulador de transferências em Decisões, com as melhores trocas para 5 jornadas; Equipa ideal com horizonte de 1 ou 5 jornadas; o Marco ganhou o onze ótimo e a análise jogador a jogador da J6; novo registo "Previsões vs. real" (J5 comparada, J7 guardada); números da jornada, deadline, registos H2H e transferências grátis (confirmadas: Bruno 1, Marco 2) passam a vir de um bloco de dados único. · <b>14 de outubro (V25):</b> a pedido do utilizador, os pontos esperados deixaram de depender só das últimas jornadas: juntam forma recente (25%), um modelo de base com xG/xA da época, força do adversário e odds da bet365 (35%) e a média das projeções da FPL Form, FPL Copilot, Onside Arena e Fantasy Football Pundit (40%), com a minha leitura por cima (lesões, rotação europeia, penáltis). Novos cartões "O que dizem os sites" (13 artigos de 9 sites), "A minha leitura" e "O que dizem as casas de apostas". Recomendação do Marco revista: Igor Jesus → Thierno Barry (em vez de Kostoulas). · <b>14 de outubro (V26):</b> a dificuldade dos jogos deixou de ser a oficial da FPL e passou a vir dos fixture tickers: média do xgstat (1-5, com casa/fora) e das projeções de golos marcados/sofridos da OddAlerts, em separado para o ataque (avançados) e para a defesa (defesas e guarda-redes). Mudam os jogos da jornada, o calendário J7-J12, o plano a 5 jornadas e todos os pontos esperados; a dificuldade oficial fica visível quando é diferente. O ticker da Fantasy Football Scout não se consegue ler daqui (só funciona no browser).</div>
           </details>
         </section>
+      
+      </div>
+      <div class="subview" data-sub="calibracao" hidden>
+<section class="card" id="calib-card" style="margin-bottom:16px"></section>
       </div>
     </section>
 
-    <div class="page-foot">Painel FPL · Brunorussia FC e Xarola Team · dados até à J<span class="gw-l">6</span> (provisória), recolhidos a <span class="gw-date">13 out 2026</span>.</div>
+
+    <div class="page-foot"><button type="button" class="linklike adv-link" data-goto="avancado">Avançado (simulador, tabelas, regras)</button> · Painel FPL · Brunorussia FC e Xarola Team · dados até à J<span class="gw-l">6</span> (provisória), recolhidos a <span class="gw-date">13 out 2026</span>.</div>
   </main>
 </div>
 
@@ -3051,6 +2996,10 @@ const EMP_X = {"gk":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.214,0.231,0.231,0.286,0.3,0.3
 const EMP_N = {"gk": 116, "def": 472, "mid": 638, "fwd": 158};
 </script>
 <script>
+  // ===== V47 (16 out 2026): índice único das áreas e separadores — menu, pesquisa e guia =====
+  const APP_AREAS = [{"v": "semana", "n": "Esta semana", "d": "O que fazer antes do deadline: o resumo, o onze e o banco, o capitão, as transferências e as chips.", "subs": ["Resumo", "Onze e banco", "Capitão", "Transferências", "Registar o que fiz", "Chips"]}, {"v": "jogos", "n": "Jogos", "d": "Os jogos da jornada, os onzes prováveis, os pontos ao vivo e quem jogou a meio da semana.", "subs": ["Jogos da jornada", "Onzes prováveis", "Ao vivo", "Europa e descanso"]}, {"v": "competicao", "n": "Rivais", "d": "A liga clássica e o H2H: classificação, previsões, adversários e o que os rivais devem fazer.", "subs": ["Classificação", "Previsão da classificação", "H2H", "Comparar equipas", "Vigiar rivais", "Equipa para ganhar a…", "Orçamentos e chips"]}, {"v": "mercado", "n": "Jogadores", "d": "Procurar, comparar e escolher jogadores.", "subs": ["Pesquisa", "Comparador", "Equipa ideal", "Equipa simulada", "Em forma", "Preços e alternativas"]}, {"v": "epoca", "n": "A minha época", "d": "Como tem corrido a tua época: pontos, ranking, jornada a jornada, previsões e orçamento.", "subs": ["Evolução e ranking", "Por jornada", "Jogador a jogador", "Previsões vs real", "Orçamento do plantel"]}, {"v": "avancado", "n": "Avançado", "d": "Simulador, tabelas e referência. Tudo continua a funcionar como antes.", "subs": ["Simulador", "Hot takes", "Picks em falta", "Capitães da liga", "Plantel vs liga", "Tabelas das equipas", "Regras e fontes", "Calibração"]}];
+  const APP_INDEX = [{"v": "semana", "s": "resumo", "a": "Esta semana", "n": "Resumo", "syn": ["resumo", "avisos", "alertas", "o que fazer", "início", "inicio", "números", "gráficos"]}, {"v": "semana", "s": "onze", "a": "Esta semana", "n": "Onze e banco", "syn": ["onze", "banco", "campo", "titulares", "formação", "pontos esperados", "jogador a jogador", "próximas 5", "substituições"]}, {"v": "semana", "s": "capitao", "a": "Esta semana", "n": "Capitão", "syn": ["capitão", "braçadeira", "vice", "capitão h2h", "estratégia", "diferenciais", "triple captain"]}, {"v": "semana", "s": "transferencias", "a": "Esta semana", "n": "Transferências", "syn": ["transferências", "trocas", "compras", "vendas", "planeador", "plano automático", "plano manual", "hits", "sugestão"]}, {"v": "semana", "s": "registo", "a": "Esta semana", "n": "Registar o que fiz", "syn": ["registar", "registo", "o que fiz", "confirmar troca"]}, {"v": "semana", "s": "chips", "a": "Esta semana", "n": "Chips", "syn": ["chips", "wildcard", "free hit", "bench boost", "triple captain", "plano de chips"]}, {"v": "jogos", "s": "jornada", "a": "Jogos", "n": "Jogos da jornada", "syn": ["jogos", "calendário", "fixtures", "odds", "casas de apostas", "dificuldade"]}, {"v": "jogos", "s": "onzes", "a": "Jogos", "n": "Onzes prováveis", "syn": ["onzes prováveis", "titulares prováveis", "lesões", "escalações", "line-ups"]}, {"v": "jogos", "s": "aovivo", "a": "Jogos", "n": "Ao vivo", "syn": ["ao vivo", "direto", "live", "pontos ao vivo", "tempo real"]}, {"v": "jogos", "s": "europa", "a": "Jogos", "n": "Europa e descanso", "syn": ["europa", "liga dos campeões", "champions", "descanso", "taça da liga", "rotação"]}, {"v": "competicao", "s": "classificacao", "a": "Rivais", "n": "Classificação", "syn": ["classificação", "liga", "tabela", "mini-liga", "liga clássica"]}, {"v": "competicao", "s": "previsao", "a": "Rivais", "n": "Previsão da classificação", "syn": ["previsão da classificação", "previsão", "quem ganha a liga", "top 3", "simulação da liga"]}, {"v": "competicao", "s": "h2h", "a": "Rivais", "n": "H2H", "syn": ["h2h", "confronto", "adversário", "head to head", "resultados"]}, {"v": "competicao", "s": "comparar", "a": "Rivais", "n": "Comparar equipas", "syn": ["comparar equipas", "lado a lado", "comparar gestores"]}, {"v": "competicao", "s": "vigiar", "a": "Rivais", "n": "Vigiar rivais", "syn": ["vigiar rivais", "rivais", "previsão dos rivais", "o que os rivais vão fazer"]}, {"v": "competicao", "s": "ganhar", "a": "Rivais", "n": "Equipa para ganhar a…", "syn": ["equipa para ganhar", "ganhar a", "probabilidade de ganhar", "bater rivais"]}, {"v": "competicao", "s": "orcamentos", "a": "Rivais", "n": "Orçamentos e chips", "syn": ["orçamentos", "budget", "dinheiro", "valor da equipa", "chips da liga"]}, {"v": "mercado", "s": "pesquisa", "a": "Jogadores", "n": "Pesquisa", "syn": ["pesquisa", "procurar jogador", "jogadores", "filtros"]}, {"v": "mercado", "s": "comparador", "a": "Jogadores", "n": "Comparador", "syn": ["comparador", "comparar jogadores"]}, {"v": "mercado", "s": "ideal", "a": "Jogadores", "n": "Equipa ideal", "syn": ["equipa ideal", "equipa perfeita", "melhor equipa", "otimizador", "dream team"]}, {"v": "mercado", "s": "simulada", "a": "Jogadores", "n": "Equipa simulada", "syn": ["equipa simulada", "simular equipa", "montar equipa"]}, {"v": "mercado", "s": "forma", "a": "Jogadores", "n": "Em forma", "syn": ["em forma", "forma", "quentes"]}, {"v": "mercado", "s": "precos", "a": "Jogadores", "n": "Preços e alternativas", "syn": ["preços", "subidas", "descidas", "alternativas", "substitutos"]}, {"v": "epoca", "s": "evolucao", "a": "A minha época", "n": "Evolução e ranking", "syn": ["evolução", "ranking", "ranking geral", "gráfico de pontos"]}, {"v": "epoca", "s": "jornada", "a": "A minha época", "n": "Por jornada", "syn": ["por jornada", "jornadas anteriores", "histórico"]}, {"v": "epoca", "s": "detalhe", "a": "A minha época", "n": "Jogador a jogador", "syn": ["jogador a jogador", "onze ótimo", "pontos perdidos no banco"]}, {"v": "epoca", "s": "previsoes", "a": "A minha época", "n": "Previsões vs real", "syn": ["previsões vs real", "medir o modelo", "erro do modelo", "acerto"]}, {"v": "epoca", "s": "orcamento", "a": "A minha época", "n": "Orçamento do plantel", "syn": ["orçamento do plantel", "budget", "dinheiro", "valor do plantel", "banco"]}, {"v": "avancado", "s": "simulador", "a": "Avançado", "n": "Simulador", "syn": ["simulador", "testar trocas", "simular transferências"]}, {"v": "avancado", "s": "hot", "a": "Avançado", "n": "Hot takes", "syn": ["hot takes", "diferenciadores", "podem surpreender"]}, {"v": "avancado", "s": "lacunas", "a": "Avançado", "n": "Picks em falta", "syn": ["picks em falta", "lacunas", "template"]}, {"v": "avancado", "s": "capitaes", "a": "Avançado", "n": "Capitães da liga", "syn": ["capitães da liga", "capitães"]}, {"v": "avancado", "s": "posse", "a": "Avançado", "n": "Plantel vs liga", "syn": ["plantel vs liga", "posse", "ownership", "eo"]}, {"v": "avancado", "s": "equipas", "a": "Avançado", "n": "Tabelas das equipas", "syn": ["equipas", "saldo de xg", "xg", "forma das equipas", "criadores", "sequência", "perfil do capitão"]}, {"v": "avancado", "s": "regras", "a": "Avançado", "n": "Regras e fontes", "syn": ["regras", "pontuação", "fontes", "como funciona"]}, {"v": "avancado", "s": "calibracao", "a": "Avançado", "n": "Calibração", "syn": ["calibração", "ajustar o modelo"]}];
+  const VIEW_ALIAS = {"resumo": ["semana", "resumo"], "campo": ["semana", "onze"], "pontos": ["semana", "onze"], "decisoes": ["semana", "transferencias"], "decisoes-trocas": ["semana", "transferencias"], "decisoes-capitao": ["semana", "capitao"], "decisoes-estrategia": ["semana", "capitao"], "decisoes-simulador": ["avancado", "simulador"], "decisoes-chips": ["semana", "chips"], "decisoes-hot": ["avancado", "hot"], "planeador": ["semana", "transferencias"], "planeador-plano": ["semana", "transferencias"], "planeador-registo": ["semana", "registo"], "calendario": ["jogos", "jornada"], "onzes": ["jogos", "onzes"], "aovivo": ["jogos", "aovivo"], "europa": ["jogos", "europa"], "equipas": ["avancado", "equipas"], "equipas-europa": ["jogos", "europa"], "equipas-europa-eq": ["jogos", "europa"], "historico": ["epoca", "evolucao"], "historico-evolucao": ["epoca", "evolucao"], "historico-jornada": ["epoca", "jornada"], "historico-detalhe": ["epoca", "detalhe"], "historico-previsoes": ["epoca", "previsoes"], "historico-modelo": ["epoca", "previsoes"], "plantel": ["mercado", "forma"], "plantel-forma": ["mercado", "forma"], "plantel-orcamento": ["epoca", "orcamento"], "plantel-precos": ["mercado", "precos"], "plantel-alternativas": ["mercado", "precos"], "liga": ["competicao", "classificacao"], "liga-classificacao": ["competicao", "classificacao"], "liga-posse": ["avancado", "posse"], "liga-lacunas": ["avancado", "lacunas"], "liga-capitaes": ["avancado", "capitaes"], "liga-orcamentos": ["competicao", "orcamentos"], "liga-simulacao": ["mercado", "simulada"], "h2h": ["competicao", "h2h"], "comparar": ["competicao", "comparar"], "previsao": ["competicao", "previsao"], "jogadores": ["mercado", "pesquisa"], "jogadores-pesquisa": ["mercado", "pesquisa"], "jogadores-comparar": ["mercado", "comparador"], "jogadores-ideal": ["mercado", "ideal"], "ideal": ["mercado", "ideal"], "rivais": ["competicao", "vigiar"], "ganhar": ["competicao", "ganhar"], "regras": ["avancado", "regras"], "campo-campo": ["semana", "onze"], "campo-jornada": ["semana", "onze"], "campo-plano": ["semana", "onze"], "calendario-jogos": ["jogos", "jornada"], "calendario-plantel": ["jogos", "jornada"], "h2h-calendario": ["competicao", "h2h"], "h2h-adversario": ["competicao", "h2h"], "equipas-saldo": ["avancado", "equipas"], "equipas-forma": ["avancado", "equipas"], "equipas-criadores": ["avancado", "equipas"], "equipas-sequencia": ["avancado", "equipas"], "equipas-capitao": ["avancado", "equipas"], "comparar-resumo": ["competicao", "comparar"], "comparar-grafico": ["competicao", "comparar"], "comparar-pontos": ["competicao", "comparar"], "comparar-jogadores": ["competicao", "comparar"], "comparar-orcamento": ["competicao", "comparar"], "previsao-tabela": ["competicao", "previsao"], "previsao-frente": ["competicao", "previsao"], "previsao-metodo": ["competicao", "previsao"], "aovivo-equipa": ["jogos", "aovivo"], "aovivo-h2h": ["jogos", "aovivo"], "aovivo-liga": ["jogos", "aovivo"], "regras-pontuacao": ["avancado", "regras"], "regras-fontes": ["avancado", "regras"]};
   const TEAMS = {
     1:"Arsenal", 2:"Aston Villa", 3:"Bournemouth", 4:"Brentford", 5:"Brighton",
     6:"Chelsea", 7:"Coventry City", 8:"Crystal Palace", 9:"Everton", 10:"Fulham",
@@ -5539,10 +5488,10 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       b.classList.toggle('active', active);
       b.setAttribute('aria-selected', active ? 'true' : 'false');
     });
-    try { lazyRender('decisoes', renderSimulator); } catch (e) { console.error(e); }
-    try { lazyRender('campo', renderPitch); renderChipPlan(); renderEuro(); CMP.a = null; renderCompare(); if (prevVisible()) renderPrevisao(); lazyRender('decisoes', renderCapH2H); renderGlance(); renderPlayers(); renderPc(); renderPlanner(); renderLogView(); renderRivals(); renderAlerts(); renderSim(); renderTodo(); renderHistKpi(); lazyRender('decisoes', renderStrategy); renderAutoPlan(); renderGlance2(); renderIdeal(); renderLigaBudgets(); lazyRender('h2h', renderH2HVis); closePlayer(); } catch (e) { console.error(e); }
+    try { lazyRender('avancado/simulador', renderSimulator); } catch (e) { console.error(e); }
+    try { lazyRender('semana/onze', renderPitch); renderChipPlan(); renderEuro(); CMP.a = null; renderCompare(); if (prevVisible()) renderPrevisao(); lazyRender('semana/capitao', renderCapH2H); renderGlance(); renderPlayers(); renderPc(); renderPlanner(); renderLogView(); renderRivals(); renderAlerts(); renderSim(); renderTodo(); renderHistKpi(); lazyRender('semana/capitao', renderStrategy); renderAutoPlan(); renderGlance2(); renderIdeal(); renderLigaBudgets(); lazyRender('competicao/h2h', renderH2HVis); closePlayer(); } catch (e) { console.error(e); }
     try { renderAoVivo(); } catch (e) { console.error(e); }
-    try { lazyRender('ganhar', renderWin); } catch (e) { console.error(e); }
+    try { lazyRender('competicao/ganhar', renderWin); } catch (e) { console.error(e); }
     try { if (PC_READY) renderPcLists(); } catch (e) { console.error(e); }
     if (mgr === 'marco') {
       document.getElementById('hero-h1').textContent = 'Xarola Team';
@@ -5891,7 +5840,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   renderGwDetail(MARCO_GW_DETAIL, 'marco-', MARCO_HISTORY);
   renderPlan('bruno'); renderPlan('marco');
   renderPredictions('bruno'); renderPredictions('marco');
-  lazyRender('decisoes', renderSimulator);
+  lazyRender('avancado/simulador', renderSimulator);
 
   renderOverview();
   renderPointsChart(MARCO_HISTORY, 'marco-');
@@ -5917,8 +5866,11 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
 
   // Fase 1 (15 out): render preguiçoso — se a área não está à vista, fica marcado e corre ao abrir
   function lazyRender(view, fn) {
-    const v = document.querySelector(`.view[data-view="${view}"]`);
-    if (v && !v.hidden) { fn(); return; }
+    // V47: 'area' ou 'area/separador' — calcula já se estiver à vista, senão quando for aberto
+    const [a, b] = view.split('/');
+    const v = document.querySelector(`.view[data-view="${a}"]`);
+    const sv = b && v ? v.querySelector(`:scope > .subview[data-sub="${b}"]`) : null;
+    if (v && !v.hidden && (!b || (sv && !sv.hidden))) { fn(); return; }
     window.__LAZY = window.__LAZY || {};
     (window.__LAZY[view] = window.__LAZY[view] || new Set()).add(fn);
   }
@@ -6072,7 +6024,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       </dl>
       <h3>Ordem do banco <span class="note">· otimizada, ver abaixo</span></h3>
       <ol class="bench-list">${benchItems}</ol>
-      <p class="note">Se um titular não jogar, a FPL põe o primeiro do banco que mantenha uma formação válida (3 DEF, 2 MED, 1 AV no mínimo). O vice só passa a capitão se o capitão não jogar nenhum minuto. Antes do deadline, confirma os <button type="button" class="linklike" data-goto="onzes">onzes prováveis</button>.</p>`;
+      <p class="note">Se um titular não jogar, a FPL põe o primeiro do banco que mantenha uma formação válida (3 DEF, 2 MED, 1 AV no mínimo). O vice só passa a capitão se o capitão não jogar nenhum minuto. Antes do deadline, confirma os <button type="button" class="linklike" data-goto="jogos" data-goto-sub="onzes">onzes prováveis</button>.</p>`;
     side.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => showView(b.dataset.goto, b.dataset.gotoSub)));
     renderBenchCard(r, gi, BB);
   }
@@ -6789,7 +6741,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     PREV.h = +b.dataset.h; document.querySelectorAll('#prev-horizon .seg-btn').forEach(x => x.setAttribute('aria-pressed', String(x === b))); renderPrevisao();
   }));
   // A simulação demora alguns décimos de segundo: só corre quando a área é aberta (ver showView).
-  const prevVisible = () => { const v = document.querySelector('.view[data-view="previsao"]'); return v && !v.hidden; };
+  const prevVisible = () => { const v = document.querySelector('.view[data-view="competicao"]'), sv = v && v.querySelector(':scope > .subview[data-sub="previsao"]'); return !!(v && !v.hidden && sv && !sv.hidden); };
 
 
   // ===================================================================
@@ -6931,7 +6883,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       const maxd = Math.max(...win.map(r => Math.abs(r.pts - meRow.pts)), 10);
       gapEl.innerHTML = `<div class="gap-list">${win.map(r => { const d = r.pts - meRow.pts, w = Math.abs(d) / maxd * 50;
         return `<div class="gap-row${r === meRow ? ' me' : ''}"><span class="nm" title="${r.team}">${r.rank}.º ${r === meRow ? 'Tu' : r.manager.split(' ')[0]}</span><span class="gap-track"><span class="mid"></span>${d ? `<i class="${d > 0 ? 'ahead' : 'behind'}" style="${d > 0 ? `left:50%;width:${w}%` : `left:${50 - w}%;width:${w}%`}"></i>` : ''}</span><span class="v">${d > 0 ? '+' + d : d < 0 ? '−' + -d : '·'}</span></div>`; }).join('')}</div>
-        <p class="note" style="margin-top:8px">Vermelho = à tua frente, verde = atrás. <button type="button" class="linklike" data-goto="previsao">Ver a previsão</button></p>`;
+        <p class="note" style="margin-top:8px">Vermelho = à tua frente, verde = atrás. <button type="button" class="linklike" data-goto="competicao" data-goto-sub="previsao">Ver a previsão</button></p>`;
       gapEl.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => showView(b.dataset.goto)));
     }
     const heatEl = document.getElementById('glance-heat');
@@ -6943,7 +6895,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
         <p class="note" style="margin-top:6px">Passa o dedo ou o rato por cima para ver os pontos esperados.</p>`;
     }
   }
-  lazyRender('decisoes', renderCapH2H);
+  lazyRender('semana/capitao', renderCapH2H);
   renderGlance();
 
 
@@ -7039,7 +6991,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       ${risky.length ? `<div class="risk-list">${risky.map(x => { const ti = topIn(x.p.id); return `<div class="risk-row"><span data-pid="${x.p.id}" style="cursor:pointer;font-weight:600">${shortName(x.p.name)}</span> ${injuryBadge(x.p.name)}<span class="bv-bar"><i class="bad" style="width:${Math.min(100, x.m * 100)}%"></i></span><span class="bv-v">${pct(x.m)}${ti ? ` · entra ${shortName(ti.name)}` : ''}</span></div>`; }).join('')}</div>` : '<p class="prose">Nenhum titular tem risco especial: todos têm cerca de 95% de jogar (o risco normal de uma lesão ou rotação de última hora). Mesmo assim, em ' + pct(sim.needAny) + ' das simulações pelo menos um falha — é para isso que serve o banco.</p>'}
       <p class="note" style="margin-top:10px">Probabilidade de jogar: minutos na última jornada (60 ou mais → 95%, menos de 60 → 85%, nenhum → 50% se jogou nas duas anteriores, senão 30%), limitada pelo estado oficial da FPL (dúvida 75% → 75%; lesionado → quase 0). Não sabe de rotações anunciadas depois de 15 out — confirma os onzes prováveis.</p>`;
   }
-  lazyRender('campo', renderPitch);
+  lazyRender('semana/onze', renderPitch);
 
 
 
@@ -7910,7 +7862,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       const r = await fetch('rivals.json?t=' + Date.now(), {cache: 'no-store'});
       if (!r.ok) return;
       RIVF.data = await r.json();
-      try { PREV.cache = {}; renderRivals(); if (prevVisible()) renderPrevisao(); lazyRender('decisoes', renderCapH2H); } catch (e) { console.error(e); }
+      try { PREV.cache = {}; renderRivals(); if (prevVisible()) renderPrevisao(); lazyRender('semana/capitao', renderCapH2H); } catch (e) { console.error(e); }
     } catch (e) { /* sem rivals.json: capitão pela regra da app */ }
   }
   loadRivals();
@@ -8172,9 +8124,9 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const add = (sev, cat, txt, opts) => A.push(Object.assign({sev, cat, txt}, opts || {}));
     // deadline
     const msLeft = new Date(GW_META.deadline) - Date.now();
-    if (msLeft > 0 && msLeft < 36 * 3600e3) add(msLeft < 6 * 3600e3 ? 3 : 2, 'Deadline', `Faltam ${Math.floor(msLeft / 3600e3)} h ${Math.floor(msLeft % 3600e3 / 60e3)} min para o deadline da J${GW_META.next} (${GW_META.deadlineLabel}).`, {goto: 'campo'});
+    if (msLeft > 0 && msLeft < 36 * 3600e3) add(msLeft < 6 * 3600e3 ? 3 : 2, 'Deadline', `Faltam ${Math.floor(msLeft / 3600e3)} h ${Math.floor(msLeft % 3600e3 / 60e3)} min para o deadline da J${GW_META.next} (${GW_META.deadlineLabel}).`, {goto: 'semana', gotoSub: 'onze'});
     // transferência sugerida ainda por registar
-    if (mv.length) add(msLeft < 48 * 3600e3 ? 2 : 1, 'Transferência', `Ainda não registaste a troca sugerida: ${mv.map(m => `${shortName(FULL_POOL_BY_ID[m.out].name)} → ${shortName(FULL_POOL_BY_ID[m.in].name)}`).join(', ')}. Se já a fizeste no site, regista-a para a app passar a usar o plantel novo.`, {goto: 'planeador', gotoSub: 'registo'});
+    if (mv.length) add(msLeft < 48 * 3600e3 ? 2 : 1, 'Transferência', `Ainda não registaste a troca sugerida: ${mv.map(m => `${shortName(FULL_POOL_BY_ID[m.out].name)} → ${shortName(FULL_POOL_BY_ID[m.in].name)}`).join(', ')}. Se já a fizeste no site, regista-a para a app passar a usar o plantel novo.`, {goto: 'semana', gotoSub: 'registo'});
     // estado oficial e onzes prováveis
     const pool = [...new Map([...squad, ...mv.map(m => FULL_POOL_BY_ID[m.in])].filter(Boolean).map(p => [p.id, p])).values()];
     pool.forEach(p => {
@@ -8185,8 +8137,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       }
       if (inXi && (PROBABLE_LINEUPS_GW2[0] || {}).when) {
         const ln = lineupNotes(p);
-        if (ln && ln.kind === 'doubt') add(cap ? 3 : 2, 'Onzes', `${p.name}: dúvida no onze provável — ${ln.txt}`, {pid: p.id, goto: 'onzes'});
-        if (ln && ln.kind === 'out') add(cap ? 3 : 2, 'Onzes', `${p.name}: ${ln.txt} da equipa dele. Confirma antes do deadline.`, {pid: p.id, goto: 'onzes'});
+        if (ln && ln.kind === 'doubt') add(cap ? 3 : 2, 'Onzes', `${p.name}: dúvida no onze provável — ${ln.txt}`, {pid: p.id, goto: 'jogos', gotoSub: 'onzes'});
+        if (ln && ln.kind === 'out') add(cap ? 3 : 2, 'Onzes', `${p.name}: ${ln.txt} da equipa dele. Confirma antes do deadline.`, {pid: p.id, goto: 'jogos', gotoSub: 'onzes'});
       }
     });
     // Fase 1: pressão de preço (subida ou descida provável nos próximos dias)
@@ -8197,15 +8149,15 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const moved = pool.filter(p => p.cch);
     if (moved.length) {
       const inMv = moved.filter(p => mv.some(m => m.in === p.id) && p.cch > 0);
-      add(1, 'Preços', `Já mudaram esta jornada: ${moved.map(p => `${shortName(p.name)} <b class="${p.cch > 0 ? 'up' : 'down'}">${p.cch > 0 ? '+' : '−'}£${Math.abs(p.cch / 10).toFixed(1)}</b>`).join(', ')}.`, {goto: 'plantel'});
+      add(1, 'Preços', `Já mudaram esta jornada: ${moved.map(p => `${shortName(p.name)} <b class="${p.cch > 0 ? 'up' : 'down'}">${p.cch > 0 ? '+' : '−'}£${Math.abs(p.cch / 10).toFixed(1)}</b>`).join(', ')}.`, {goto: 'mercado', gotoSub: 'forma'});
     }
     // descanso curto antes da jornada
     const rest = EU_ROWS.filter(r => r.gw === GW_META.next && r.hours != null && r.hours < 72);
     const tired = X.xi.filter(p => rest.some(r => r.t === p.team));
-    if (tired.length) add(tired.some(p => p.id === X.cap.id) ? 2 : 1, 'Descanso', `${tired.length} titulares sugeridos jogaram a meio da semana com menos de 3 dias até à J${GW_META.next}: ${tired.map(p => shortName(p.name)).join(', ')}. Já descontado nos pontos esperados.`, {goto: 'equipas', gotoSub: 'europa'});
+    if (tired.length) add(tired.some(p => p.id === X.cap.id) ? 2 : 1, 'Descanso', `${tired.length} titulares sugeridos jogaram a meio da semana com menos de 3 dias até à J${GW_META.next}: ${tired.map(p => shortName(p.name)).join(', ')}. Já descontado nos pontos esperados.`, {goto: 'jogos', gotoSub: 'europa'});
     // capitão: alternativa muito próxima
     const second = X.xi.filter(p => p.id !== X.cap.id).sort((a, b) => epAt(b, 0) - epAt(a, 0))[0];
-    if (second && epAt(X.cap, 0) - epAt(second, 0) < 0.5) add(1, 'Capitão', `Capitão renhido: ${shortName(X.cap.name)} ≈${f1(epAt(X.cap, 0))} contra ${shortName(second.name)} ≈${f1(epAt(second, 0))}. Vê o Capitão H2H.`, {goto: 'decisoes', gotoSub: 'capitao'});
+    if (second && epAt(X.cap, 0) - epAt(second, 0) < 0.5) add(1, 'Capitão', `Capitão renhido: ${shortName(X.cap.name)} ≈${f1(epAt(X.cap, 0))} contra ${shortName(second.name)} ≈${f1(epAt(second, 0))}. Vê o Capitão H2H.`, {goto: 'semana', gotoSub: 'capitao'});
     return A.sort((a, b) => b.sev - a.sev || (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
   }
   function renderAlerts() {
@@ -8219,7 +8171,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     el.querySelectorAll('[data-goto2]').forEach(b => b.addEventListener('click', () => showView(b.dataset.goto2, b.dataset.gsub || undefined)));
     const bell = document.getElementById('bell-btn');
     if (bell) { bell.querySelector('.n').textContent = hi || ''; bell.classList.toggle('hot', hi > 0); bell.setAttribute('aria-label', `Avisos: ${hi} importantes`); }
-    const meta = document.querySelector('.nav-item[data-view="resumo"] .nav-meta');
+    const meta = document.querySelector('.nav-item[data-view="semana"] .nav-meta');
     if (meta) meta.innerHTML = hi ? `<span class="al-dot">${hi}</span>` : 'J' + GW_META.next;
   }
   function markSeen() {
@@ -8230,7 +8182,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const items = document.querySelector('.status-items'); if (!items) return;
     const b = document.createElement('button'); b.type = 'button'; b.className = 'theme-btn bell'; b.id = 'bell-btn';
     b.innerHTML = '🔔<span class="n"></span>';
-    b.addEventListener('click', () => { showView('resumo'); setTimeout(() => { const a = document.getElementById('alerts'); if (a) a.scrollIntoView({behavior: 'smooth', block: 'start'}); }, 50); });
+    b.addEventListener('click', () => { showView('semana', 'resumo'); setTimeout(() => { const a = document.getElementById('alerts'); if (a) a.scrollIntoView({behavior: 'smooth', block: 'start'}); }, 50); });
     items.insertBefore(b, document.getElementById('theme-btn'));
   })();
   renderAlerts();
@@ -8452,37 +8404,31 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
 
   // ---------- Menu do telemóvel: 4 grupos e, ao tocar, as áreas desse grupo ----------
   (function mobileNav() {
+    // V47: 5 botões (as 5 áreas); os separadores da área aparecem dentro dela. O Avançado fica no rodapé.
     const nav = document.querySelector('.nav'); if (!nav) return;
-    const groups = [...nav.querySelectorAll('.nav-group')];
-    const SHORT_LBL = ['Jornada', 'A tua equipa', 'Competição', 'Análise'];
+    const items = [...nav.querySelectorAll('.nav-item[data-view]:not(.adv)')];
+    const SHORT_LBL = {semana: 'Esta semana', jogos: 'Jogos', competicao: 'Rivais', mercado: 'Jogadores', epoca: 'Época'};
     const bar = document.createElement('div');
-    bar.className = 'mnav'; bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', 'Grupos de áreas');
-    groups.forEach((g, i) => {
-      g.id = g.id || 'navg-' + i;
+    bar.className = 'mnav'; bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', 'Áreas');
+    items.forEach(it => {
       const b = document.createElement('button');
-      b.type = 'button'; b.className = 'mnav-btn'; b.dataset.g = i;
-      b.textContent = SHORT_LBL[i] || g.querySelector('.nav-label').textContent.trim();
-      b.setAttribute('aria-controls', g.id); b.setAttribute('aria-expanded', 'false');
-      b.addEventListener('click', () => { const open = g.classList.contains('open'); setOpen(open ? -1 : i); });
+      b.type = 'button'; b.className = 'mnav-btn'; b.dataset.v = it.dataset.view;
+      b.textContent = SHORT_LBL[it.dataset.view] || it.textContent.trim();
+      b.addEventListener('click', () => showView(it.dataset.view));
       bar.appendChild(b);
     });
     nav.parentNode.insertBefore(bar, nav);
-    function setOpen(k) {
-      groups.forEach((g, i) => g.classList.toggle('open', i === k));
-      bar.querySelectorAll('.mnav-btn').forEach((b, i) => b.setAttribute('aria-expanded', String(i === k)));
-    }
     function sync() {
       const cur = nav.querySelector('.nav-item[aria-current="page"]');
-      const gi = cur ? groups.indexOf(cur.closest('.nav-group')) : 0;
-      bar.querySelectorAll('.mnav-btn').forEach((b, i) => b.classList.toggle('here', i === gi));
-      setOpen(gi);
-      // número de avisos importantes também no botão "Jornada"
-      const dot = groups[0].querySelector('.al-dot'), jb = bar.querySelector('.mnav-btn[data-g="0"]');
-      jb.querySelector('.al-dot') && jb.querySelector('.al-dot').remove();
-      if (dot) jb.insertAdjacentHTML('beforeend', `<span class="al-dot">${dot.textContent}</span>`);
+      bar.querySelectorAll('.mnav-btn').forEach(b => { const on = cur && b.dataset.v === cur.dataset.view; b.classList.toggle('here', !!on); b.setAttribute('aria-pressed', String(!!on)); });
+      // avisos importantes e "ao vivo" também nos botões
+      [['semana', '.al-dot'], ['jogos', '.av-dot']].forEach(([v, sel]) => {
+        const src = nav.querySelector(`.nav-item[data-view="${v}"] ${sel}`), dst = bar.querySelector(`.mnav-btn[data-v="${v}"]`);
+        if (!dst) return; const old = dst.querySelector(sel); if (old) old.remove();
+        if (src) dst.insertAdjacentHTML('beforeend', src.outerHTML);
+      });
     }
-    new MutationObserver(sync).observe(nav, {subtree: true, attributes: true, attributeFilter: ['aria-current']});
-    // depois de escolher uma área, o grupo fica aberto com a área marcada
+    new MutationObserver(sync).observe(nav, {subtree: true, attributes: true, childList: true, characterData: true});
     sync();
   })();
 
@@ -8646,7 +8592,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   }
   applyCalibration();
   renderHistKpi();
-  lazyRender('h2h', renderH2HVis);
+  lazyRender('competicao/h2h', renderH2HVis);
   renderCalibCard();
 
 
@@ -8855,14 +8801,14 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   // ---------- Guia de primeira utilização ----------
   const TOUR = [
     {sel: '#todo', t: 'O que fazer esta semana', d: 'Começa sempre aqui: a transferência, o capitão e o onze sugeridos para a próxima jornada, com botões para ver os detalhes.'},
-    {sel: '#alerts', t: 'Avisos', d: 'Lesões, onzes prováveis, preços a subir e o que ainda falta fazer antes do deadline. O sino 🔔 lá em cima mostra quantos são importantes.'},
-    {sel: '.mnav, .nav', t: 'Menu', d: 'Quatro grupos: Jornada (decisões desta semana), A tua equipa (histórico e plantel), Competição (liga, H2H, rivais, previsão) e Análise (jogadores e equipas).'},
+    {sel: '.mnav, .nav', t: 'As cinco áreas', d: APP_AREAS.filter(a => a.v !== 'avancado').map(a => `<b>${a.n}</b>: ${a.subs.join(', ')}.`).join('<br>') + '<br>O <b>Avançado</b> (simulador, tabelas e regras) fica no fim do menu e no rodapé.'},
+    {sel: '#srch', t: 'Procurar', d: 'Escreve o que procuras: uma ferramenta ("capitão", "wildcard", "dinheiro"), um jogador (abre a ficha) ou um gestor da liga (abre Comparar equipas). No computador, a tecla / abre a pesquisa.'},
     {sel: '.mswitch', t: 'Bruno ou Marco', d: 'Troca aqui entre as duas equipas. Tudo na app passa a ser sobre a equipa escolhida.'},
     {sel: '#theme-btn', t: 'Modo noite e nomes', d: 'Este botão muda entre claro e escuro. E em qualquer sítio da app, toca no nome de um jogador para abrires a ficha dele.'},
   ];
   function startTour(force) {
     if (!force && lsGet('fpl-tour-done')) return;
-    showView('resumo');
+    showView('semana', 'resumo');
     let i = 0;
     const ov = document.createElement('div'); ov.className = 'tour-ov';
     const box = document.createElement('div'); box.className = 'tour-box'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-labelledby', 'tour-t');
@@ -8887,7 +8833,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     if (nav) nav.appendChild(b);
     setTimeout(() => startTour(false), 900);
   })();
-  lazyRender('decisoes', renderStrategy);
+  lazyRender('semana/capitao', renderStrategy);
   renderAutoPlan();
   renderGlance2();
 
@@ -9566,24 +9512,85 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       </section>` : ''}
       <p class="note">Como funciona: em cada cenário cada jogador joga com a probabilidade de jogar da app e, se jogar, faz pontos tirados da distribuição real de pontuações por posição (J1-J${GW_META.last}), à volta dos pontos esperados dele. O mesmo jogador faz os mesmos pontos em todos os plantéis. Contam as substituições automáticas e o vice. Rivais: nesta jornada o onze da última e um capitão sorteado; ${upto ? 'nas seguintes o melhor onze do plantel dele; ' : ''}sem trocas nem chips (não sabemos o que vão fazer). ${upto ? 'Do teu lado, nas jornadas seguintes conta o melhor onze do plantel que fica, sem mais trocas. ' : ''}Não contamos a ligação entre jogadores da mesma equipa (golos e balizas a zero), por isso os valores são aproximados (±2 pp). ${mode === 'h2h' ? 'O objetivo é vitória + ⅓ do empate, como na tabela H2H.' : mode === 'all' ? 'Empatar em pontos não conta como passar à frente.' : ''}</p>`;
   }
-  lazyRender('ganhar', renderWin);
+  lazyRender('competicao/ganhar', renderWin);
 
+
+  // ---------- Pesquisa (V47): ferramentas e separadores (com sinónimos), jogadores e gestores da liga ----------
+  (function searchInit() {
+    const box = document.getElementById('srch'), q = document.getElementById('srch-q'), res = document.getElementById('srch-res'), btn = document.getElementById('srch-btn');
+    if (!box || !q || !res) return;
+    const norm = t => (t || '').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
+    const IDX = APP_INDEX.map(x => ({...x, nn: norm(x.n), sn: x.syn.map(norm), an: norm(x.a)}));
+    let items = [], cur = -1;
+    function score(x, t) {
+      let b = 0;
+      if (x.nn.startsWith(t)) b = 5; else if (x.nn.split(' ').some(w => w.startsWith(t))) b = 4; else if (x.nn.includes(t)) b = 3;
+      x.sn.forEach(y => { if (y === t) b = Math.max(b, 4.5); else if (y.startsWith(t)) b = Math.max(b, 3.5); else if (t.length >= 3 && y.includes(t)) b = Math.max(b, 2); });
+      if (!b && x.an.startsWith(t)) b = 1;
+      return b;
+    }
+    function search(raw) {
+      const t = norm(raw); if (!t) return [];
+      const tools = IDX.map(x => ({x, b: score(x, t)})).filter(r => r.b > 0).sort((a, b) => b.b - a.b).slice(0, 6)
+        .map(({x}) => ({kind: 'Ferramentas', label: x.n, where: x.a, go: () => showView(x.v, x.s)}));
+      const players = t.length < 2 ? [] : FULL_POOL.map(p => { const n = norm(p.name), sn = norm(shortName(p.name)); const b = sn.startsWith(t) ? 3 : n.split(' ').some(w => w.startsWith(t)) ? 2 : n.includes(t) ? 1 : 0; return {p, b}; })
+        .filter(r => r.b > 0).sort((a, b) => b.b - a.b || (b.p.total || 0) - (a.p.total || 0)).slice(0, 6)
+        .map(({p}) => ({kind: 'Jogadores', label: p.name, where: `${SHORT(p.team)} · £${p.price.toFixed(1)}M`, go: () => openPlayer(p.id, q)}));
+      const people = t.length < 2 ? [] : Object.keys(LEAGUE_SQUADS).map(Number).map(e => { const L = LEAGUE_SQUADS[e]; const b = norm(L.m).startsWith(t) || norm(L.tn).startsWith(t) ? 2 : (norm(L.m).includes(t) || norm(L.tn).includes(t)) ? 1 : 0; return {e, L, b}; })
+        .filter(r => r.b > 0).sort((a, b) => b.b - a.b).slice(0, 5)
+        .map(({e, L}) => ({kind: 'Gestores e equipas da liga', label: L.m, where: `${L.tn}${cmpRank(e) ? ' · ' + cmpRank(e) + '.º' : ''}`, go: () => {
+          const me = CMP_ENTRY[curMgr()]; CMP.a = me; CMP.b = e === me ? (me === CMP_ENTRY.bruno ? CMP_ENTRY.marco : CMP_ENTRY.bruno) : e;
+          showView('competicao', 'comparar'); try { renderCompare(); } catch (err) { console.error(err); }
+        }}));
+      return [...tools, ...people, ...players];
+    }
+    function draw() {
+      items = search(q.value); cur = items.length ? 0 : -1;
+      if (!q.value.trim()) { res.hidden = true; q.setAttribute('aria-expanded', 'false'); return; }
+      let html = '', last = '';
+      items.forEach((it, k) => {
+        if (it.kind !== last) { html += `<div class="srch-grp">${it.kind}</div>`; last = it.kind; }
+        html += `<button type="button" class="srch-it" role="option" id="srch-o${k}" data-k="${k}" aria-selected="${k === cur}"><span>${it.label}</span><span class="w">${it.where}</span></button>`;
+      });
+      res.innerHTML = html || '<div class="srch-none">Nada encontrado. Experimenta "capitão", "wildcard", o nome de um jogador ou de um gestor.</div>';
+      res.hidden = false; q.setAttribute('aria-expanded', 'true');
+      if (cur >= 0) q.setAttribute('aria-activedescendant', 'srch-o' + cur);
+      res.querySelectorAll('.srch-it').forEach(b => b.addEventListener('mousedown', ev => { ev.preventDefault(); pick(+b.dataset.k); }));
+    }
+    function mark() {
+      res.querySelectorAll('.srch-it').forEach(b => b.setAttribute('aria-selected', String(+b.dataset.k === cur)));
+      const el = document.getElementById('srch-o' + cur); if (el) { el.scrollIntoView({block: 'nearest'}); q.setAttribute('aria-activedescendant', el.id); }
+    }
+    function close() { res.hidden = true; q.setAttribute('aria-expanded', 'false'); }
+    function pick(k) { const it = items[k]; if (!it) return; close(); q.value = ''; q.blur(); box.classList.remove('open'); if (btn) btn.setAttribute('aria-expanded', 'false'); it.go(); }
+    q.addEventListener('input', draw);
+    q.addEventListener('focus', () => { if (q.value.trim()) draw(); });
+    q.addEventListener('blur', () => setTimeout(close, 120));
+    q.addEventListener('keydown', ev => {
+      if (ev.key === 'ArrowDown') { ev.preventDefault(); if (items.length) { cur = (cur + 1) % items.length; mark(); } }
+      else if (ev.key === 'ArrowUp') { ev.preventDefault(); if (items.length) { cur = (cur - 1 + items.length) % items.length; mark(); } }
+      else if (ev.key === 'Enter') { ev.preventDefault(); if (cur >= 0) pick(cur); }
+      else if (ev.key === 'Escape') { close(); q.blur(); box.classList.remove('open'); if (btn) btn.setAttribute('aria-expanded', 'false'); }
+    });
+    if (btn) btn.addEventListener('click', () => { const open = !box.classList.contains('open'); box.classList.toggle('open', open); btn.setAttribute('aria-expanded', String(open)); if (open) q.focus(); });
+    // "/" abre a pesquisa (fora de caixas de texto)
+    document.addEventListener('keydown', ev => {
+      if (ev.key !== '/' || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+      const t = ev.target; if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      ev.preventDefault(); box.classList.add('open'); if (btn) btn.setAttribute('aria-expanded', 'true'); q.focus();
+    });
+  })();
   // ===== Navegação: menu lateral (áreas) + sub-abas (temas dentro de cada área) =====
   const views = [...document.querySelectorAll('.view[data-view]')];
   const viewNames = views.map(v => v.dataset.view);
   function subsOf(view) { return [...view.querySelectorAll(':scope > .subtabs .subtab')]; }
   function showView(name, sub, opts) {
     opts = opts || {};
-    // Fase 1 (15 out): áreas juntadas — os endereços antigos continuam a funcionar
-    const ALIAS = {pontos: ['campo', sub || 'jornada'], ideal: ['jogadores', 'ideal'], europa: ['equipas', sub === 'equipa' ? 'europa-eq' : 'europa']};
-    if (ALIAS[name]) { [name, sub] = ALIAS[name]; }
-    if (!viewNames.includes(name)) name = 'resumo';
+    // V47: as áreas antigas (e os endereços #area-separador antigos) abrem o sítio novo
+    if (!viewNames.includes(name)) { const al = VIEW_ALIAS[sub ? name + '-' + sub : name] || VIEW_ALIAS[name]; if (al) { [name, sub] = al; } }
+    if (!viewNames.includes(name)) name = 'semana';
     const view = views.find(v => v.dataset.view === name);
     views.forEach(v => { v.hidden = v !== view; });
-    if (name === 'previsao') { try { renderPrevisao(); } catch (e) { console.error(e); } }
-    // Fase 1: o que é pesado só é calculado quando a área é aberta
-    const LZ = window.__LAZY && window.__LAZY[name];
-    if (LZ) { delete window.__LAZY[name]; LZ.forEach(f => { try { f(); } catch (e) { console.error(e); } }); }
     document.querySelectorAll('.nav-item[data-view]').forEach(b => {
       if (b.dataset.view === name) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
     });
@@ -9597,21 +9604,22 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
         if (t.dataset.sub === sub) subLabel = t.textContent.trim();
       });
       view.querySelectorAll(':scope > .subview[data-sub]').forEach(sv => { sv.hidden = sv.dataset.sub !== sub; });
-      if (name === 'jogadores' && sub === 'ideal') { try { idealOpen(); } catch (e) { console.error(e); } }
     } else {
       sub = '';
     }
+    // o que é pesado só é calculado quando a área/o separador é aberto
+    [name, name + '/' + sub].forEach(k => { const LZ = window.__LAZY && window.__LAZY[k]; if (LZ) { delete window.__LAZY[k]; LZ.forEach(f => { try { f(); } catch (e) { console.error(e); } }); } });
+    if (name === 'competicao' && sub === 'previsao') { try { renderPrevisao(); } catch (e) { console.error(e); } }
+    if (name === 'mercado' && sub === 'ideal') { try { idealOpen(); } catch (e) { console.error(e); } }
     const title = view.dataset.title || name;
     document.getElementById('crumbs').innerHTML = subLabel ? `${title} <span aria-hidden="true">›</span> <b>${subLabel}</b>` : `<b>${title}</b>`;
     const token = sub ? `${name}-${sub}` : name;
     try { history.replaceState(null, '', '#' + token); } catch (e) {}
     try { localStorage.setItem('fpl-view', token); } catch (e) {}
     if (!opts.keepScroll) window.scrollTo(0, 0);
-    const navNow = document.querySelector('.nav-item[aria-current="page"]');
-    if (navNow && window.matchMedia('(max-width: 960px)').matches) {
-      const row = navNow.closest('.nav');
-      if (row) { const a = navNow.getBoundingClientRect(), r = row.getBoundingClientRect(); row.scrollLeft += (a.left - r.left) - (r.width - a.width) / 2; }
-    }
+    // ao mudar de separador no telemóvel, o separador escolhido fica à vista
+    const st = view.querySelector(':scope > .subtabs .subtab[aria-selected="true"]');
+    if (st && st.parentElement.scrollWidth > st.parentElement.clientWidth) { const r = st.parentElement; r.scrollLeft = st.offsetLeft - (r.clientWidth - st.clientWidth) / 2; }
   }
   function parseToken(tok) {
     if (!tok) return null;
@@ -9624,10 +9632,10 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   window.addEventListener('hashchange', () => { const t = parseToken(location.hash.slice(1)); if (t) showView(t[0], t[1], {keepScroll: true}); });
 
   let startTok = parseToken(location.hash.slice(1));
-  if (!startTok || !viewNames.includes(startTok[0])) {
+  if (!startTok || !(viewNames.includes(startTok[0]) || VIEW_ALIAS[startTok[0]])) {
     try { startTok = parseToken(localStorage.getItem('fpl-view')); } catch (e) { startTok = null; }
   }
-  showView(startTok ? startTok[0] : 'resumo', startTok ? startTok[1] : '', {keepScroll: true});
+  showView(startTok ? startTok[0] : 'semana', startTok ? startTok[1] : '', {keepScroll: true});
   let startMgr = 'bruno';
   try { if (localStorage.getItem('fpl-mgr') === 'marco') startMgr = 'marco'; } catch (e) {}
   if (startMgr === 'marco') refreshForManager('marco');
