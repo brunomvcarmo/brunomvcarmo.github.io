@@ -1074,6 +1074,12 @@
   .qpop { position: absolute; z-index: 120; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 10px; box-shadow: var(--shadow); padding: 12px 14px; font-size: 13.5px; color: var(--ink); }
   .qpop p { margin: 6px 0 10px; line-height: 1.45; color: var(--ink-2); }
   .qpop .btn { padding: 4px 10px; font-size: 12.5px; }
+  .qown { margin: 0 0 10px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .qown ul { list-style: none; margin: 6px 0 0; padding: 0; max-height: 40vh; overflow-y: auto; }
+  .qown li { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; border-bottom: 1px dashed var(--line); font-size: 13px; }
+  .qown li:last-child { border-bottom: 0; }
+  .qown li.me { color: var(--accent-strong); font-weight: 600; }
+  .qown .t { white-space: nowrap; color: var(--ink-2); }
   /* Fase 2 */
   .dist { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12px; color: var(--ink-2); }
   .dist b { color: var(--ink); }
@@ -6079,7 +6085,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       ${moveBox}
       <dl class="kv">
         <dt>Formação</dt><dd>${r.form.join('-')}</dd>
-        <dt>Capitão</dt><dd>${capLine(r.cap)}<div class="note" style="margin-top:2px">EO na liga ${eoTxt(r.cap.id)}${qBtn('eo')} · ${eoReading(r.cap.id, true)}</div></dd>
+        <dt>Capitão</dt><dd>${capLine(r.cap)}<div class="note" style="margin-top:2px">EO na liga ${eoTxt(r.cap.id)}${qBtn('eo', r.cap.id)} · ${eoReading(r.cap.id, true)}</div></dd>
         <dt>Vice</dt><dd>${capLine(r.vice)}</dd>
       </dl>
       <h3>Ordem do banco <span class="note">· otimizada, ver abaixo</span></h3>
@@ -6201,7 +6207,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
         <div><div class="l">Pts na época</div><div class="v">${p.total}</div></div>
         <div><div class="l">Esperados J${HZ[0]}</div><div class="v">${f1(epAt(p, 0))}</div></div>
         <div><div class="l">Posse FPL</div><div class="v">${(p.own || 0).toFixed(1)}%</div></div>
-        <div><div class="l">Posse na liga</div><div class="v">${p.lown || 0}%</div><div class="l" style="margin-top:2px">EO ${eoTxt(p.id)}${qBtn('eo')}</div></div>
+        <div><div class="l">Posse na liga</div><div class="v">${p.lown || 0}%</div><div class="l" style="margin-top:2px">EO ${eoTxt(p.id)}${qBtn('eo', p.id)}</div></div>
       </div>
       <p style="margin:-6px 0 12px">${distLine(p, 0)}</p>
       <h3>Pontos por jornada</h3>
@@ -7136,7 +7142,23 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     preco: ['Pressão de preço', 'A FPL não publica a fórmula. A app olha para as transferências desta jornada por cada 1% de posse: muita compra face a quem já o tem costuma dar subida (£0,1M) nos dias seguintes. É uma indicação, não uma certeza.'],
     fdr: ['Dificuldade do jogo', 'De 1 (muito fácil, verde) a 5 (muito difícil, vermelho), pela força do adversário nas casas de apostas e nos fixture tickers, separada em ataque e defesa.'],
   };
-  function qBtn(k) { return `<button type="button" class="qbtn" data-q="${k}" aria-label="O que é ${GLOSS[k][0]}?">?</button>`; }
+  function qBtn(k, pid) { return `<button type="button" class="qbtn" data-q="${k}"${pid ? ` data-qp="${pid}"` : ''} aria-label="O que é ${GLOSS[k][0]}?${pid ? ' E que equipas da liga o têm' : ''}">?</button>`; }
+  // V50 (16 out): quem tem o jogador na liga (titular, banco, capitão), por ordem da classificação
+  function ownersHtml(id) {
+    const p = FULL_POOL_BY_ID[id]; if (!p) return '';
+    const me = CMP_ENTRY[curMgr()];
+    const rows = Object.keys(LEAGUE_SQUADS).map(Number).map(e => {
+      const L = LEAGUE_SQUADS[e], xi = L.s.includes(id), bench = L.b.includes(id);
+      if (!xi && !bench) return null;
+      const cap = L.c === p.name;
+      return {e, L, xi, cap, rank: cmpRank(e) || 99};
+    }).filter(Boolean).sort((a, b) => a.rank - b.rank);
+    const n = Object.keys(LEAGUE_SQUADS).length;
+    const gw = (window.__LIVE && window.__LIVE.picks_event) || GW_META.last;
+    if (!rows.length) return `<div class="qown"><b>Nenhuma das ${n} equipas da liga o tem</b> (plantéis da J${gw}).</div>`;
+    return `<div class="qown"><b>${rows.length} de ${n} equipas da liga têm ${shortName(p.name)}</b> <span class="note">(plantéis da J${gw})</span>
+      <ul>${rows.map(r => `<li class="${r.e === me ? 'me' : ''}"><span>${r.rank < 99 ? r.rank + '.º ' : ''}${r.L.tn} <span class="note">${r.L.m}${r.e === me ? ' · tu' : ''}</span></span><span class="t">${r.cap ? '<b>capitão</b>' : r.xi ? 'titular' : 'banco'}</span></li>`).join('')}</ul></div>`;
+  }
   (function glossInit() {
     const pop = document.createElement('div'); pop.className = 'qpop'; pop.hidden = true; pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-live', 'polite');
     document.body.appendChild(pop);
@@ -7145,7 +7167,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       if (!b) { if (!e.target.closest('.qpop')) pop.hidden = true; return; }
       e.preventDefault(); e.stopPropagation();
       const [t, d] = GLOSS[b.dataset.q] || ['', ''];
-      pop.innerHTML = `<b>${t}</b><p>${d}</p><button type="button" class="btn ghost qclose">Fechar</button>`;
+      let own = ''; try { if (b.dataset.qp) own = ownersHtml(+b.dataset.qp); } catch (err) { console.error(err); }
+      pop.innerHTML = `<b>${t}</b><p>${d}</p>${own}<button type="button" class="btn ghost qclose">Fechar</button>`;
       pop.hidden = false;
       const r = b.getBoundingClientRect(), w = Math.min(320, window.innerWidth - 24);
       pop.style.width = w + 'px';
