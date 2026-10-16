@@ -1315,6 +1315,40 @@
     .srch { display: none; order: 9; flex: 1 1 100%; max-width: none; }
     .srch.open { display: block; }
   }
+  /* V48: atalhos, ligações, definições */
+  .fav-star { border: 0; background: none; cursor: pointer; color: var(--warn); font-size: 20px; line-height: 1; padding: 2px 4px; vertical-align: 3px; border-radius: 6px; }
+  .fav-star:hover { background: var(--surface-2); }
+  .fav-sub { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 12.5px; color: var(--muted); margin: -10px 0 14px; padding: 3px 6px; vertical-align: 0; }
+  .fav-sub[aria-pressed="true"] { color: var(--warn); }
+  .fav-sub span { color: var(--ink-2); }
+  .fav-chips, .fav-rec { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .fav-rec { margin-top: 10px; }
+  .fav-chip { font: inherit; font-size: 13px; font-weight: 600; border: 1px solid var(--accent-mid); background: var(--accent-weak); color: var(--accent-strong); border-radius: 999px; padding: 4px 11px; cursor: pointer; }
+  .fav-chip .a { font-weight: 400; color: var(--muted); }
+  .fav-chip.ghost { background: var(--surface); border-color: var(--line-strong); color: var(--ink-2); font-weight: 500; }
+  .nav-favs:empty { display: none; }
+  .nav-favs { margin-bottom: 10px; }
+  .nav-fav { text-align: left; font: inherit; font-size: 13px; border: 0; background: none; color: var(--accent-strong); padding: 5px 10px; border-radius: 7px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .nav-fav .a { color: var(--muted); font-size: 11.5px; }
+  .nav-fav.rec { color: var(--ink-2); }
+  .nav-fav:hover { background: var(--surface-2); }
+  .mfav { display: none; }
+  .pc-acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+  .pc-act { font: inherit; font-size: 11.5px; font-weight: 600; border: 1px solid var(--line-strong); background: var(--surface); color: var(--accent-strong); border-radius: 6px; padding: 2px 8px; cursor: pointer; }
+  .pc-act:hover { border-color: var(--accent-mid); background: var(--accent-weak); }
+  .set-wrap { position: relative; display: inline-flex; }
+  #theme-btn { display: none; } /* V48: o tema passou para ⚙ Definições */
+  .set-pop { position: absolute; right: 0; top: calc(100% + 6px); z-index: 70; width: min(320px, 86vw); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 12px; box-shadow: var(--shadow); padding: 14px; }
+  .set-pop h3 { margin: 0 0 8px; }
+  .set-row { margin-bottom: 12px; }
+  .set-row .seg { margin: 4px 0 0; }
+  .mode-note { margin: 12px 0 0; }
+  @media (max-width: 960px) {
+    .mfav { display: flex; flex-wrap: nowrap; gap: 6px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+    .mfav[hidden] { display: none; }
+    .set-pop { right: auto; left: 0; }
+    .mfav .fav-chip { flex: 0 0 auto; font-size: 12.5px; }
+  }
 </style>
 </head>
 <body>
@@ -1339,6 +1373,7 @@
     </div>
 
     <nav class="nav" aria-label="Áreas">
+      <div class="nav-group nav-favs" id="nav-favs"></div>
       <div class="nav-group">
         <button class="nav-item" data-view="semana" type="button">Esta semana <span class="nav-meta">J<span class="gw-n">7</span></span></button>
         <button class="nav-item" data-view="jogos" type="button">Jogos <span class="nav-meta" id="av-nav-meta"></span></button>
@@ -1363,6 +1398,7 @@
         <div class="srch-res" id="srch-res" role="listbox" aria-label="Resultados" hidden></div>
       </div>
       <div class="status-items">
+        <span class="set-wrap"><button type="button" class="theme-btn set-btn" id="set-btn" aria-label="Definições" aria-expanded="false" aria-controls="set-pop">⚙</button><div class="set-pop" id="set-pop" role="dialog" aria-label="Definições" hidden></div></span>
         <button type="button" class="theme-btn srch-btn" id="srch-btn" aria-label="Procurar" aria-expanded="false" aria-controls="srch">🔍</button>
         <div class="status-item deadline" id="countdown-tile"><span class="k">Deadline</span><span class="v" id="deadline-label">Sáb 17 Out · 11:00</span><span class="v" id="countdown" style="font-size:13px;color:var(--ink-2)">a calcular…</span></div>
         <div class="status-item budget"><span class="k">Valor</span><span class="v" id="hero-budget">£101.0M</span></div>
@@ -1371,7 +1407,8 @@
     </div>
 
     <!-- ========== RESUMO ========== -->
-        <!-- ========== ESTA SEMANA (V47) ========== -->
+        <div class="callout info mode-note" id="mode-note" hidden></div>
+    <!-- ========== ESTA SEMANA (V47) ========== -->
     <section class="view" data-view="semana" data-title="Esta semana">
       <div class="view-head">
         <div class="eyebrow">Jornada <span class="gw-n">7</span></div>
@@ -1387,6 +1424,7 @@
         <button class="subtab" type="button" data-sub="chips">Chips</button>
       </div>
       <div class="subview" data-sub="resumo">
+<section class="card fav-card" id="fav-card"></section>
 <div class="live-banner" id="live-banner" role="status" hidden></div>
       <section class="card" id="todo" style="margin-bottom:16px"></section>
       <section class="card" id="alerts" style="margin-bottom:16px"></section>
@@ -5491,6 +5529,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     try { lazyRender('avancado/simulador', renderSimulator); } catch (e) { console.error(e); }
     try { lazyRender('semana/onze', renderPitch); renderChipPlan(); renderEuro(); CMP.a = null; renderCompare(); if (prevVisible()) renderPrevisao(); lazyRender('semana/capitao', renderCapH2H); renderGlance(); renderPlayers(); renderPc(); renderPlanner(); renderLogView(); renderRivals(); renderAlerts(); renderSim(); renderTodo(); renderHistKpi(); lazyRender('semana/capitao', renderStrategy); renderAutoPlan(); renderGlance2(); renderIdeal(); renderLigaBudgets(); lazyRender('competicao/h2h', renderH2HVis); closePlayer(); } catch (e) { console.error(e); }
     try { renderAoVivo(); } catch (e) { console.error(e); }
+    try { if (typeof renderShortcuts === 'function' && typeof APP_INDEX !== 'undefined') renderShortcuts(); } catch (e) {}
     try { lazyRender('competicao/ganhar', renderWin); } catch (e) { console.error(e); }
     try { if (PC_READY) renderPcLists(); } catch (e) { console.error(e); }
     if (mgr === 'marco') {
@@ -6134,6 +6173,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       <div class="pc-head">${shirtSvg(p.team, p.cls)}<div><h2 id="pc-title">${p.name}</h2>
         <div class="pc-sub">${TEAMS[p.team]} · ${POS_LONG[p.cls]} · <b>£${p.price.toFixed(1)}M</b> ${priceTag(p)} <span class="note">(começou a £${startPrice.toFixed(1)}M${p.cch ? `, ${p.cch > 0 ? '+' : '−'}£${Math.abs(p.cch / 10).toFixed(1)}M esta jornada` : ''})</span></div></div></div>
       <div class="pc-tags">${tags}</div>
+      ${pcActs(p, !!mine)}
       ${p.news ? `<p class="note" style="margin:6px 0 0">Notícia oficial da FPL: ${p.news}</p>` : ''}
       ${mine ? `<p class="note" style="margin:6px 0 0">Comprado a £${mine.buy.toFixed(1)}M na J${mine.since} · vende-se por ≈£${mine.sell.toFixed(1)}M (estimativa).</p>` : ''}
       <div class="pc-kpis">
@@ -7052,13 +7092,13 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const chip = (CHIP_PLAN[GW_META.next] || {}).chip, nextChip = Object.entries(CHIP_PLAN).find(([g, c]) => +g > GW_META.next && c.chip);
     const tile = (n, title, status, body, btns) => `<div class="todo-t ${status}"><div class="todo-n">${n}</div><div class="todo-b"><div class="todo-h">${title}<span class="todo-s">${{done: 'feito', todo: 'por fazer', ok: 'nada a fazer'}[status]}</span></div><div class="todo-x">${body}</div><div class="todo-a">${btns}</div></div></div>`;
     const tr = done.length
-      ? tile(1, 'Transferência', 'done', `Registaste ${done.map(t => `${shortName(FULL_POOL_BY_ID[t.out].name)} → ${shortName(FULL_POOL_BY_ID[t.in].name)}`).join(', ')}. O resto da app já usa o plantel novo.`, `<button type="button" class="btn ghost" data-go="planeador|registo">Ver registo</button>`)
+      ? tile(1, 'Transferência', 'done', `Registaste ${done.map(t => `${shortName(FULL_POOL_BY_ID[t.out].name)} → ${shortName(FULL_POOL_BY_ID[t.in].name)}`).join(', ')}. O resto da app já usa o plantel novo.`, `<button type="button" class="btn ghost" data-go="semana|registo">Ver registo</button>`)
       : mv.length
-        ? tile(1, 'Transferência', 'todo', `<b>${mv.map(m => `${shortName(FULL_POOL_BY_ID[m.out].name)} → ${shortName(FULL_POOL_BY_ID[m.in].name)}`).join(', ')}</b> · ${sgn(gain)} pts na J${HZ[0]}. ${mv.map(m => priceTag(FULL_POOL_BY_ID[m.in])).join(' ')}`, `<button type="button" class="btn primary" data-go="planeador|registo">Já fiz — registar</button><button type="button" class="btn ghost" data-go="decisoes|trocas">Porquê</button>`)
-        : tile(1, 'Transferência', 'ok', 'Nenhuma troca sugerida: guarda a transferência grátis.', `<button type="button" class="btn ghost" data-go="planeador|plano">Planeador</button>`);
-    const cap = tile(2, 'Capitão', 'todo', `<b>${r.cap.name}</b> ≈${f1(epAt(r.cap, 0))} · ${fxLabel(r.cap, HZ[0]).txt} · vice ${shortName(r.vice.name)}.<br><span class="note">10+ pts: ${pctR(pAtLeast(r.cap, 0, 10))} · ${eoReading(r.cap.id, true)}.</span>`, `<button type="button" class="btn ghost" data-go="decisoes|capitao">Capitão H2H</button>`);
-    const xi = tile(3, 'Onze e banco', 'todo', `${r.form.join('-')} · banco ${r.benchOut.map(p => shortName(p.name)).join(' → ')}${benchV != null ? ` · o banco vale ≈${f1(benchV)} pts` : ''}.<br><span class="note">Chip: ${chip ? CHIP_NAMES[chip] : 'nenhum esta semana'}${nextChip ? ` · próximo: ${CHIP_NAMES[nextChip[1].chip]} na J${nextChip[0]}` : ''}.</span>`, `<button type="button" class="btn ghost" data-go="campo|campo">Ver o campo</button>`);
-    el.innerHTML = `<div class="card-head"><div><h2>O que fazer esta semana</h2><div class="card-sub">${mgr === 'marco' ? 'Xarola Team' : 'Brunorussia FC'} · deadline ${GW_META.deadlineLabel}</div></div></div><div class="todo">${tr}${cap}${xi}</div>`;
+        ? tile(1, 'Transferência', 'todo', `<b>${mv.map(m => `${shortName(FULL_POOL_BY_ID[m.out].name)} → ${shortName(FULL_POOL_BY_ID[m.in].name)}`).join(', ')}</b> · ${sgn(gain)} pts na J${HZ[0]}. ${mv.map(m => priceTag(FULL_POOL_BY_ID[m.in])).join(' ')}`, `<button type="button" class="btn primary" data-go="semana|registo">Já fiz — registar</button><button type="button" class="btn ghost" data-go="semana|transferencias">Porquê</button>`)
+        : tile(1, 'Transferência', 'ok', 'Nenhuma troca sugerida: guarda a transferência grátis.', `<button type="button" class="btn ghost" data-go="semana|transferencias">Planeador</button>`);
+    const cap = tile(2, 'Capitão', 'todo', `<b>${r.cap.name}</b> ≈${f1(epAt(r.cap, 0))} · ${fxLabel(r.cap, HZ[0]).txt} · vice ${shortName(r.vice.name)}.<br><span class="note">10+ pts: ${pctR(pAtLeast(r.cap, 0, 10))} · ${eoReading(r.cap.id, true)}.</span>`, `<button type="button" class="btn ghost" data-go="semana|capitao">Capitão H2H</button>`);
+    const xi = tile(3, 'Onze e banco', 'todo', `${r.form.join('-')} · banco ${r.benchOut.map(p => shortName(p.name)).join(' → ')}${benchV != null ? ` · o banco vale ≈${f1(benchV)} pts` : ''}.<br><span class="note">Chip: ${chip ? CHIP_NAMES[chip] : 'nenhum esta semana'}${nextChip ? ` · próximo: ${CHIP_NAMES[nextChip[1].chip]} na J${nextChip[0]}` : ''}.</span>`, `<button type="button" class="btn ghost" data-go="semana|onze">Ver o campo</button>`);
+    el.innerHTML = `<div class="card-head"><div><h2>O que fazer esta semana</h2><div class="card-sub">${mgr === 'marco' ? 'Xarola Team' : 'Brunorussia FC'} · deadline ${GW_META.deadlineLabel}</div></div></div><div class="todo">${tr}${cap}${xi}${chip || nextChip ? tile(4, 'Chips', chip ? 'todo' : 'ok', chip ? `Plano: <b>${CHIP_NAMES[chip] || chip}</b> nesta jornada (J${GW_META.next}).` : `Nada nesta jornada. A seguir no plano: <b>${CHIP_NAMES[nextChip[1].chip] || nextChip[1].chip}</b> na J${nextChip[0]}.`, `<button type="button" class="btn ghost" data-act="chips">Ver o plano de chips</button>`) : ''}</div>`;
     el.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => { const [v, s] = b.dataset.go.split('|'); showView(v, s); }));
   }
 
@@ -7196,7 +7236,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     if (!full) {
       return `<article class="${cls}" data-pid="${p.id}" tabindex="0" role="button" aria-label="${label}"><div class="pc-in${o.extra ? ' has-extra' : ''}">
         <div class="pc-shirt">${shirtSvg(p.team, p.cls)}</div>
-        <div class="pc-id"><div class="pc-name"><span class="pc-nm">${shortName(p.name)}</span>${tags}</div><div class="pc-meta">${meta}</div>${o.note ? `<div class="pc-note">${o.note}</div>` : ''}</div>
+        <div class="pc-id"><div class="pc-name"><span class="pc-nm">${shortName(p.name)}</span>${tags}</div><div class="pc-meta">${meta}</div>${o.note ? `<div class="pc-note">${o.note}</div>` : ''}${o.acts === false ? '' : pcActs(p, o.mine)}</div>
         ${fx}
         <div class="pc-form"><span class="lbl">Forma</span>${sparkline(pts, {w: 60, h: 20})}</div>
         ${epBlock}${o.extra ? `<div class="pc-extra">${o.extra}</div>` : ''}
@@ -7206,7 +7246,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const first = GW_META.last - pts.length + 1;
     return `<article class="${cls}" aria-label="${label}"><div class="pc-in">
         <div class="pc-shirt">${shirtSvg(p.team, p.cls)}</div>
-        <div class="pc-id"><div class="pc-name"><span class="pc-nm" data-pid="${p.id}">${p.name}</span></div><div class="pc-meta">${meta}</div>${o.note ? `<div class="pc-note">${o.note}</div>` : ''}</div>
+        <div class="pc-id"><div class="pc-name"><span class="pc-nm" data-pid="${p.id}">${p.name}</span></div><div class="pc-meta">${meta}</div>${o.note ? `<div class="pc-note">${o.note}</div>` : ''}${o.acts === false ? '' : pcActs(p, o.mine)}</div>
         <div class="pc-ep"><div class="lbl">Pts esp. J${HZ[gi]}</div><div class="v">${f1(ep)}</div><div class="h">10+ pts <b>${pctR(p10)}</b></div><div class="h">J${HZ[0]}-J${HZ[HZ.length - 1]}: ${f1(sum)}</div></div>
         <div class="pc-tags">${tags}</div>
         <div class="pc-fxw"><div class="pc-sec">Próximos ${HZ.length} jogos</div>${fx}</div>
@@ -7573,7 +7613,19 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const f = el.querySelector('.plan-add');
     if (f) {
       const outSel = f.querySelector('[name=out]'), inSel = f.querySelector('[name=in]');
-      const fillIn = () => { const s0 = stateBefore(mgr, PLAN_ADD.gw); inSel.innerHTML = inCandidates(mgr, s0, +outSel.value).map(c => `<option value="${c.p.id}">${c.p.name} · ${SHORT(c.p.team)} · £${c.p.price.toFixed(1)} · ${sgn(c.gain)}</option>`).join('') || '<option value="">Ninguém cabe no orçamento</option>'; };
+      const fillIn = () => { const s0 = stateBefore(mgr, PLAN_ADD.gw); inSel.innerHTML = inCandidates(mgr, s0, +outSel.value).map(c => `<option value="${c.p.id}">${c.p.name} · ${SHORT(c.p.team)} · £${c.p.price.toFixed(1)} · ${sgn(c.gain)}</option>`).join('') || '<option value="">Ninguém cabe no orçamento</option>';
+        // V48: "Pôr no plano" a partir de um cartão — o jogador escolhido fica como entrada (mesmo que não esteja entre os 40)
+        const want = PLAN_ADD.inId && FULL_POOL_BY_ID[PLAN_ADD.inId];
+        if (want && FULL_POOL_BY_ID[+outSel.value] && FULL_POOL_BY_ID[+outSel.value].cls === want.cls) {
+          if (![...inSel.options].some(o => +o.value === want.id)) inSel.insertAdjacentHTML('afterbegin', `<option value="${want.id}">${want.name} · ${SHORT(want.team)} · £${want.price.toFixed(1)} (a confirmar o orçamento)</option>`);
+          inSel.value = String(want.id);
+        } };
+      if (PLAN_ADD.inId && FULL_POOL_BY_ID[PLAN_ADD.inId] && !PLAN_ADD.outSet) {
+        const want = FULL_POOL_BY_ID[PLAN_ADD.inId], s0 = stateBefore(mgr, PLAN_ADD.gw);
+        const outs = s0.squadPrev.map(id => FULL_POOL_BY_ID[id]).filter(p => p && p.cls === want.cls).sort((a, b) => epAt(a, s0.gi) - epAt(b, s0.gi));
+        if (outs[0]) outSel.value = String(outs[0].id);
+        PLAN_ADD.outSet = true;
+      }
       outSel.addEventListener('change', fillIn); fillIn();
       f.querySelector('[data-ok]').addEventListener('click', () => { if (!+inSel.value) return; const g = PLAN_ADD.gw; PLAN_ADD = null; planChange(pl => pl.push({gw: g, out: +outSel.value, in: +inSel.value})); });
       f.querySelector('[data-cancel]').addEventListener('click', () => { PLAN_ADD = null; renderPlanner(); });
@@ -7696,6 +7748,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
           </div>
           ${(() => { try { return rivfCardHtml(d.e); } catch (err) { console.error(err); return ''; } })()}
           ${d.tr.length ? `<div class="riv-lbl" style="margin-top:6px">Últimas transferências</div>${d.tr.slice(0, 3).map(t => `<div class="riv-p"><span>J${t.event}: <span class="pm-out">${shortName((FULL_POOL_BY_ID[t.out] || {name: '?'}).name)}</span> → <span class="pm-in">${shortName((FULL_POOL_BY_ID[t.in] || {name: '?'}).name)}</span></span></div>`).join('')}` : ''}
+          <div class="pc-acts"><button type="button" class="pc-act" data-act="rcmp" data-e="${d.e}">Comparar</button><button type="button" class="pc-act" data-act="rwin" data-e="${d.e}">Equipa para lhe ganhar</button></div>
           <div class="riv-foot">Na J${HZ[0]}: ele ≈${f1(d.X.total)} (C ${shortName(d.X.cap.name)}) · tu ≈${f1(myX.total)} → <b class="${d.swing >= 0 ? 'up' : 'down'}">${sgn(d.swing)}</b></div>
         </section>`).join('')}</div>
       <p class="note">${LIVE.data ? `Dados da liga atualizados automaticamente a ${new Date(LIVE.data.generated).toLocaleString('pt-PT', {timeZone: 'Europe/Lisbon', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'})} (plantéis da J${LIVE.data.picks_event || '?'}).` : `Plantéis da J${GW_META.last} (13 out). As últimas transferências de cada rival aparecem quando a app tiver dados automáticos (GitHub Pages com a atualização semanal ligada).`} "Só ele tem" usa o melhor onze do plantel dele pelo modelo da app.</p>`;
@@ -8133,7 +8186,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       const inXi = xiIds.has(p.id), cap = p.id === X.cap.id, isNew = seen[p.id] && seen[p.id] !== p.status + '|' + (p.news || '');
       if (p.status !== 'a') {
         const st = {d: 'dúvida', i: 'lesionado', s: 'suspenso', u: 'indisponível', n: 'indisponível'}[p.status] || p.status;
-        add(cap ? 3 : inXi ? (p.status === 'd' ? 2 : 3) : 1, 'Lesões', `${p.name} (${inXi ? 'titular sugerido' : 'suplente'}${cap ? ', capitão' : ''}): ${st}${p.chance != null ? ' ' + p.chance + '%' : ''}${p.news ? ` — ${p.news}` : ''}.`, {pid: p.id, isNew});
+        add(cap ? 3 : inXi ? (p.status === 'd' ? 2 : 3) : 1, 'Lesões', `${p.name} (${inXi ? 'titular sugerido' : 'suplente'}${cap ? ', capitão' : ''}): ${st}${p.chance != null ? ' ' + p.chance + '%' : ''}${p.news ? ` — ${p.news}` : ''}.`, {pid: p.id, isNew, act: 'subs', actTxt: 'Ver substitutos'});
       }
       if (inXi && (PROBABLE_LINEUPS_GW2[0] || {}).when) {
         const ln = lineupNotes(p);
@@ -8143,7 +8196,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     });
     // Fase 1: pressão de preço (subida ou descida provável nos próximos dias)
     const falling = squad.filter(p => pricePressure(p).lvl <= -1), rising = mv.map(m => FULL_POOL_BY_ID[m.in]).filter(p => p && pricePressure(p).lvl >= 1);
-    if (rising.length) add(2, 'Preços', `${rising.map(p => shortName(p.name)).join(', ')} (a comprar) tem muitas compras esta jornada e ${rising.some(p => pricePressure(p).lvl === 2) ? 'deve' : 'pode'} subir £0,1M nos próximos dias — se vais fazer a troca, faz antes.`, {pid: rising[0].id});
+    if (rising.length) add(2, 'Preços', `${rising.map(p => shortName(p.name)).join(', ')} (a comprar) tem muitas compras esta jornada e ${rising.some(p => pricePressure(p).lvl === 2) ? 'deve' : 'pode'} subir £0,1M nos próximos dias — se vais fazer a troca, faz antes.`, {pid: rising[0].id, act: 'plan', actTxt: 'Pôr no plano'});
     if (falling.length) add(1, 'Preços', `Podem descer £0,1M (muitas vendas esta jornada): ${falling.map(p => shortName(p.name)).join(', ')}. Só importa se pensas vendê-los.`, {});
     // preços: um só aviso com todas as subidas e descidas desta jornada
     const moved = pool.filter(p => p.cch);
@@ -8154,7 +8207,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     // descanso curto antes da jornada
     const rest = EU_ROWS.filter(r => r.gw === GW_META.next && r.hours != null && r.hours < 72);
     const tired = X.xi.filter(p => rest.some(r => r.t === p.team));
-    if (tired.length) add(tired.some(p => p.id === X.cap.id) ? 2 : 1, 'Descanso', `${tired.length} titulares sugeridos jogaram a meio da semana com menos de 3 dias até à J${GW_META.next}: ${tired.map(p => shortName(p.name)).join(', ')}. Já descontado nos pontos esperados.`, {goto: 'jogos', gotoSub: 'europa'});
+    if (tired.length) add(tired.some(p => p.id === X.cap.id) ? 2 : 1, 'Descanso', `${tired.length} titulares sugeridos jogaram a meio da semana com menos de 3 dias até à J${GW_META.next}: ${tired.map(p => shortName(p.name)).join(', ')}. Já descontado nos pontos esperados.`, {act: 'eu', actTxt: 'Ver os teus jogadores afetados'});
     // capitão: alternativa muito próxima
     const second = X.xi.filter(p => p.id !== X.cap.id).sort((a, b) => epAt(b, 0) - epAt(a, 0))[0];
     if (second && epAt(X.cap, 0) - epAt(second, 0) < 0.5) add(1, 'Capitão', `Capitão renhido: ${shortName(X.cap.name)} ≈${f1(epAt(X.cap, 0))} contra ${shortName(second.name)} ≈${f1(epAt(second, 0))}. Vê o Capitão H2H.`, {goto: 'semana', gotoSub: 'capitao'});
@@ -8166,7 +8219,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const sevName = {3: 'Urgente', 2: 'Importante', 1: 'Para saber'};
     el.innerHTML = `
       <div class="card-head"><div><h2>Avisos <span class="al-count${hi ? ' hot' : ''}">${A.length}</span></h2><div class="card-sub">Lesões, onzes prováveis, preços, descanso e o que falta fazer antes do deadline · ${curMgr() === 'marco' ? 'Xarola Team' : 'Brunorussia FC'}</div></div></div>
-      ${A.length ? `<ul class="al-list">${A.map(a => `<li class="al s${a.sev}"><span class="al-tag">${a.cat}</span><span class="al-txt">${a.isNew ? '<b class="al-new">NOVO</b> ' : ''}${a.txt}</span><span class="al-act">${a.goto ? `<button type="button" class="btn ghost" data-goto2="${a.goto}" data-gsub="${a.gotoSub || ''}">Ver</button>` : ''}</span>${a.pid && FULL_POOL_BY_ID[a.pid] ? `<div class="al-card">${playerCard(FULL_POOL_BY_ID[a.pid])}</div>` : ''}</li>`).join('')}</ul>` : '<p class="prose">Nada a assinalar: plantel sem lesões nem dúvidas e nada pendente.</p>'}
+      ${A.length ? `<ul class="al-list">${A.map(a => `<li class="al s${a.sev}"><span class="al-tag">${a.cat}</span><span class="al-txt">${a.isNew ? '<b class="al-new">NOVO</b> ' : ''}${a.txt}</span><span class="al-act">${a.act ? `<button type="button" class="btn ghost" data-act="${a.act}" data-id="${a.pid || ''}">${a.actTxt}</button>` : ''}${a.goto ? `<button type="button" class="btn ghost" data-goto2="${a.goto}" data-gsub="${a.gotoSub || ''}">Ver</button>` : ''}</span>${a.pid && FULL_POOL_BY_ID[a.pid] ? `<div class="al-card">${playerCard(FULL_POOL_BY_ID[a.pid])}</div>` : ''}</li>`).join('')}</ul>` : '<p class="prose">Nada a assinalar: plantel sem lesões nem dúvidas e nada pendente.</p>'}
       <p class="note">"NOVO" = mudou desde a última vez que abriste a app neste browser. Estado oficial e preços: ${window.__LIVE ? 'atualização automática de ' + new Date(window.__LIVE.generated).toLocaleString('pt-PT', {day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Lisbon'}) : 'dados de ' + GW_META.dataDate}. ${sevName[3]} a vermelho, ${sevName[2].toLowerCase()} a laranja.</p>`;
     el.querySelectorAll('[data-goto2]').forEach(b => b.addEventListener('click', () => showView(b.dataset.goto2, b.dataset.gsub || undefined)));
     const bell = document.getElementById('bell-btn');
@@ -8804,7 +8857,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {sel: '.mnav, .nav', t: 'As cinco áreas', d: APP_AREAS.filter(a => a.v !== 'avancado').map(a => `<b>${a.n}</b>: ${a.subs.join(', ')}.`).join('<br>') + '<br>O <b>Avançado</b> (simulador, tabelas e regras) fica no fim do menu e no rodapé.'},
     {sel: '#srch', t: 'Procurar', d: 'Escreve o que procuras: uma ferramenta ("capitão", "wildcard", "dinheiro"), um jogador (abre a ficha) ou um gestor da liga (abre Comparar equipas). No computador, a tecla / abre a pesquisa.'},
     {sel: '.mswitch', t: 'Bruno ou Marco', d: 'Troca aqui entre as duas equipas. Tudo na app passa a ser sobre a equipa escolhida.'},
-    {sel: '#theme-btn', t: 'Modo noite e nomes', d: 'Este botão muda entre claro e escuro. E em qualquer sítio da app, toca no nome de um jogador para abrires a ficha dele.'},
+    {sel: '#set-btn', t: 'Definições e atalhos', d: 'Em ⚙ escolhes o modo simples (só o essencial) ou completo, o tema claro ou escuro, e revês este guia. Toca na ☆ ao lado de um título para o pores nos teus atalhos. E em qualquer sítio, toca no nome de um jogador para abrires a ficha.'},
   ];
   function startTour(force) {
     if (!force && lsGet('fpl-tour-done')) return;
@@ -9515,6 +9568,134 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   lazyRender('competicao/ganhar', renderWin);
 
 
+
+  // ===================================================================
+  // V48 (16 out 2026): atalhos (★) e "usaste recentemente" por gestor, botões de ligação entre ferramentas,
+  // ⚙ Definições (modo simples/completo, tema, tutorial). Tudo guardado no browser.
+  // ===================================================================
+  var V48 = {mode: 'completo'};
+  const SIMPLE_KEEP = {semana: ['resumo', 'onze', 'capitao', 'transferencias', 'registo'], competicao: ['classificacao', 'vigiar'], mercado: ['pesquisa']};
+  const favK = () => 'fpl-favs-' + curMgr(), recK = () => 'fpl-recent-' + curMgr();
+  const favList = () => lsGet(favK()) || [];
+  const recList = () => lsGet(recK()) || [];
+  function tokName(tok) {
+    const i = tok.indexOf('-'), v = i < 0 ? tok : tok.slice(0, i), sub = i < 0 ? '' : tok.slice(i + 1);
+    const A = APP_AREAS.find(a => a.v === v); if (!A) return null;
+    if (!sub) return {v, sub, n: A.n, a: ''};
+    const it = APP_INDEX.find(x => x.v === v && x.s === sub);
+    return it ? {v, sub, n: it.n.replace(/<[^>]+>|\(\d*\)/g, '').trim(), a: A.n} : null;
+  }
+  const inSimple = (v, sub) => !!(SIMPLE_KEEP[v] && (!sub || SIMPLE_KEEP[v].includes(sub)));
+  function toggleFav(tok) { const L = favList(); lsSet(favK(), L.includes(tok) ? L.filter(t => t !== tok) : [...L, tok]); renderShortcuts(); }
+  function pushRecent(tok) { if (!tokName(tok)) return; const L = recList().filter(t => t !== tok); L.unshift(tok); lsSet(recK(), L.slice(0, 4)); }
+  function chipBtn(tok, cls) { const t = tokName(tok); if (!t) return ''; return `<button type="button" class="${cls}" data-tok="${tok}" title="${t.a ? t.a + ' › ' : ''}${t.n}">${t.n}${t.a ? `<span class="a"> · ${t.a}</span>` : ''}</button>`; }
+  function curTok() { return (location.hash || '').slice(1); }
+  function renderShortcuts() {
+    const F = favList().filter(tokName), cur = curTok(), R = recList().filter(t => t !== cur && tokName(t)).slice(0, 3);
+    const card = document.getElementById('fav-card');
+    if (card) card.innerHTML = `<div class="card-head"><div><h2>Os teus atalhos</h2><div class="card-sub">${curMgr() === 'marco' ? 'Xarola Team' : 'Brunorussia FC'} · toca na ☆ ao lado do título de uma área ou de um separador para a guardares aqui</div></div></div>
+      <div class="fav-chips">${F.length ? F.map(t => chipBtn(t, 'fav-chip')).join('') : '<span class="note">Ainda não tens atalhos.</span>'}</div>
+      ${R.length ? `<div class="fav-rec"><span class="note">Usaste recentemente:</span> ${R.map(t => chipBtn(t, 'fav-chip ghost')).join('')}</div>` : ''}`;
+    const nav = document.getElementById('nav-favs');
+    if (nav) nav.innerHTML = F.length || R.length ? `${F.length ? `<div class="nav-label">Os teus atalhos</div>${F.map(t => chipBtn(t, 'nav-fav')).join('')}` : ''}${R.length ? `<div class="nav-label">Usaste recentemente</div>${R.map(t => chipBtn(t, 'nav-fav rec')).join('')}` : ''}` : '';
+    let mf = document.getElementById('mfav');
+    const bar = document.querySelector('.mnav');
+    if (!mf && bar) { mf = document.createElement('div'); mf.id = 'mfav'; mf.className = 'mfav'; bar.parentNode.insertBefore(mf, bar); }
+    if (mf) { mf.innerHTML = F.map(t => chipBtn(t, 'fav-chip')).join(''); mf.hidden = !F.length; }
+    // estrelas: área no título; separador atual ao lado dos separadores
+    document.querySelectorAll('.view[data-view]').forEach(v => {
+      const a = v.dataset.view, h1 = v.querySelector(':scope > .view-head h1');
+      if (h1 && !h1.querySelector('.fav-star')) h1.insertAdjacentHTML('beforeend', ` <button type="button" class="fav-star" data-fav="${a}"></button>`);
+      const tabs = v.querySelector(':scope > .subtabs');
+      if (tabs && !v.querySelector(':scope > .fav-sub')) tabs.insertAdjacentHTML('afterend', `<button type="button" class="fav-star fav-sub" data-fav=""></button>`);
+      const sel = tabs && tabs.querySelector('.subtab[aria-selected="true"]'), fs = v.querySelector(':scope > .fav-sub');
+      if (fs) { const tok = sel ? `${a}-${sel.dataset.sub}` : ''; fs.dataset.fav = tok; const on = F.includes(tok), t = tokName(tok); fs.innerHTML = `${on ? '★' : '☆'} <span>${on ? 'Nos atalhos' : 'Guardar'}: ${t ? t.n : ''}</span>`; fs.setAttribute('aria-pressed', String(on)); fs.setAttribute('aria-label', `${on ? 'Tirar dos' : 'Pôr nos'} atalhos: ${t ? t.n : ''}`); }
+      const fa = h1 && h1.querySelector('.fav-star');
+      if (fa) { const on = F.includes(a); fa.textContent = on ? '★' : '☆'; fa.setAttribute('aria-pressed', String(on)); fa.setAttribute('aria-label', `${on ? 'Tirar dos' : 'Pôr nos'} atalhos: ${v.dataset.title}`); }
+    });
+  }
+  document.addEventListener('click', ev => {
+    const f = ev.target.closest('.fav-star[data-fav]'); if (f && f.dataset.fav) { ev.preventDefault(); toggleFav(f.dataset.fav); return; }
+    const c = ev.target.closest('[data-tok]'); if (c) { ev.preventDefault(); const t = tokName(c.dataset.tok); if (t) showView(t.v, t.sub || undefined); }
+  });
+  // ---------- botões de ligação entre ferramentas ----------
+  function pcActs(p, mine) {
+    return `<div class="pc-acts"><button type="button" class="pc-act" data-act="cmp" data-id="${p.id}">Comparar</button>${mine ? '' : `<button type="button" class="pc-act" data-act="plan" data-id="${p.id}">Pôr no plano</button>`}</div>`;
+  }
+  function v48Act(act, id, e) {
+    try { closePlayer(); } catch (err) {}
+    const me = CMP_ENTRY[curMgr()];
+    if (act === 'cmp') { if (!PL.sel.includes(id)) PL.sel = [...PL.sel, id].slice(-4); showView('mercado', 'comparador'); renderPc(); renderPlayers(); }
+    else if (act === 'plan') { PLAN_ADD = {gw: HZ[0], inId: id}; showView('semana', 'transferencias'); renderPlanner(); const f = document.querySelector('#plan-root .plan-add'); if (f) f.scrollIntoView({block: 'center'}); }
+    else if (act === 'rcmp') { CMP.a = me; CMP.b = e; showView('competicao', 'comparar'); renderCompare(); }
+    else if (act === 'rwin') { WIN.mode = 'h2h'; WIN.start = 'squad'; WIN.mgr = curMgr(); WIN.oe = e; showView('competicao', 'ganhar'); renderWin(); }
+    else if (act === 'subs') {
+      const p = FULL_POOL_BY_ID[id]; if (!p) return;
+      const st = SQUAD_STATE[curMgr()], x = st.players.find(y => y.id === id), budget = st.bank + (x ? x.sell : p.price);
+      showView('mercado', 'pesquisa');
+      const set = (sel, v) => { const el = document.getElementById(sel); if (!el) return; if (el.type === 'checkbox') el.checked = v; else el.value = v; };
+      set('pl-q', ''); set('pl-pos', p.cls); set('pl-team', ''); set('pl-avail', true); set('pl-mine', false);
+      const pr = document.getElementById('pl-price'); if (pr) { pr.value = String(Math.min(+pr.max, Math.max(+pr.min, Math.floor(budget * 2) / 2))); pr.dispatchEvent(new Event('input')); }
+      renderPlayers();
+      const note = document.getElementById('pl-subs-note');
+      const html = `Substitutos de <b>${p.name}</b>: ${POS_SHORT[p.cls]}, disponíveis, até £${budget.toFixed(1)}M (banco £${st.bank.toFixed(1)}M + preço de venda dele). Com o filtro de preço em passos de £0,5M.`;
+      if (note) note.innerHTML = html; else { const f = document.getElementById('pl-filters'); if (f) f.insertAdjacentHTML('afterend', `<p class="note" id="pl-subs-note">${html}</p>`); }
+    }
+    else if (act === 'eu') { EU_SEL = HZ[0]; showView('jogos', 'europa'); renderEuroGw(); }
+    else if (act === 'chips') { showView('semana', 'chips'); }
+  }
+  document.addEventListener('click', ev => {
+    const b = ev.target.closest('[data-act]'); if (!b) return;
+    ev.preventDefault(); ev.stopPropagation();
+    try { v48Act(b.dataset.act, +b.dataset.id || 0, +b.dataset.e || 0); } catch (err) { console.error(err); }
+  }, true);
+  // ---------- ⚙ Definições: modo simples/completo, tema, tutorial ----------
+  function applyMode() {
+    V48.mode = lsGet('fpl-mode') === 'simples' ? 'simples' : 'completo';
+    const simple = V48.mode === 'simples';
+    document.body.classList.toggle('mode-simple', simple);
+    document.querySelectorAll('.nav-item[data-view]').forEach(b => { b.hidden = simple && !SIMPLE_KEEP[b.dataset.view]; });
+    document.querySelectorAll('.mnav-btn[data-v]').forEach(b => { b.hidden = simple && !SIMPLE_KEEP[b.dataset.v]; });
+    const bar = document.querySelector('.mnav'); if (bar) bar.style.gridTemplateColumns = `repeat(${bar.querySelectorAll('.mnav-btn:not([hidden])').length}, minmax(0, 1fr))`;
+    document.querySelectorAll('.view[data-view]').forEach(v => v.querySelectorAll(':scope > .subtabs .subtab').forEach(t => { t.hidden = simple && !(SIMPLE_KEEP[v.dataset.view] || []).includes(t.dataset.sub); }));
+    document.querySelectorAll('.adv-link').forEach(b => { b.hidden = simple; });
+  }
+  function modeNote(name, sub) {
+    const el = document.getElementById('mode-note'); if (!el) return;
+    if (V48.mode === 'simples' && !inSimple(name, sub)) {
+      el.hidden = false;
+      el.innerHTML = `<span class="icon">i</span><div class="body"><p><b>Esta ferramenta é do modo completo.</b> Abri-a na mesma; no modo simples não aparece no menu. <button type="button" class="linklike" id="mode-full">Mudar para o modo completo</button></p></div>`;
+      el.querySelector('#mode-full').addEventListener('click', () => { lsSet('fpl-mode', 'completo'); applyMode(); renderSettings(); showView(name, sub); });
+    } else el.hidden = true;
+  }
+  const isDarkNow = () => { const t = document.documentElement.getAttribute('data-theme'); return t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches; };
+  function renderSettings() {
+    const pop = document.getElementById('set-pop'); if (!pop) return;
+    const seg = (k, items, cur) => `<div class="seg" role="group" data-k="${k}">${items.map(([v, t]) => `<button type="button" class="seg-btn" data-v="${v}" aria-pressed="${v === cur}">${t}</button>`).join('')}</div>`;
+    pop.innerHTML = `<h3>Definições</h3>
+      <div class="set-row"><div class="riv-lbl">Modo</div>${seg('mode', [['completo', 'Completo'], ['simples', 'Simples']], V48.mode)}
+        <p class="note">${V48.mode === 'simples' ? 'Só o essencial: Esta semana, Classificação, Vigiar rivais e a pesquisa de jogadores.' : 'A app inteira.'} A pesquisa encontra sempre tudo.</p></div>
+      <div class="set-row"><div class="riv-lbl">Tema</div>${seg('theme', [['light', 'Claro'], ['dark', 'Escuro']], isDarkNow() ? 'dark' : 'light')}</div>
+      <div class="set-row"><button type="button" class="btn ghost" id="set-tour">Ver o tutorial</button></div>
+      <p class="note">Guardado neste browser.</p>`;
+    pop.querySelectorAll('.seg[data-k="mode"] .seg-btn').forEach(b => b.addEventListener('click', () => {
+      lsSet('fpl-mode', b.dataset.v); applyMode(); renderSettings();
+      const t = curTok(), i = t.indexOf('-'); const v = i < 0 ? t : t.slice(0, i), sub = i < 0 ? '' : t.slice(i + 1);
+      if (V48.mode === 'simples' && !inSimple(v, sub)) showView('semana', 'resumo'); else modeNote(v, sub);
+    }));
+    pop.querySelectorAll('.seg[data-k="theme"] .seg-btn').forEach(b => b.addEventListener('click', () => {
+      const want = b.dataset.v; if ((isDarkNow() ? 'dark' : 'light') !== want) { const tb = document.getElementById('theme-btn'); if (tb) tb.click(); else { document.documentElement.setAttribute('data-theme', want); try { localStorage.setItem('fpl-theme', want); } catch (e) {} } }
+      renderSettings();
+    }));
+    pop.querySelector('#set-tour').addEventListener('click', () => { closeSettings(); startTour(true); });
+  }
+  function closeSettings() { const pop = document.getElementById('set-pop'), b = document.getElementById('set-btn'); if (pop) pop.hidden = true; if (b) b.setAttribute('aria-expanded', 'false'); }
+  (function settingsInit() {
+    const b = document.getElementById('set-btn'), pop = document.getElementById('set-pop'); if (!b || !pop) return;
+    b.addEventListener('click', ev => { ev.stopPropagation(); const open = pop.hidden; if (open) renderSettings(); pop.hidden = !open; b.setAttribute('aria-expanded', String(open)); });
+    document.addEventListener('click', ev => { if (!pop.hidden && ev.target.isConnected && !ev.target.closest('.set-wrap')) closeSettings(); });
+    document.addEventListener('keydown', ev => { if (ev.key === 'Escape') closeSettings(); });
+  })();
   // ---------- Pesquisa (V47): ferramentas e separadores (com sinónimos), jogadores e gestores da liga ----------
   (function searchInit() {
     const box = document.getElementById('srch'), q = document.getElementById('srch-q'), res = document.getElementById('srch-res'), btn = document.getElementById('srch-btn');
@@ -9597,7 +9778,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const tabs = subsOf(view);
     let subLabel = '';
     if (tabs.length) {
-      if (!tabs.some(t => t.dataset.sub === sub)) sub = tabs[0].dataset.sub;
+      if (!tabs.some(t => t.dataset.sub === sub)) sub = (tabs.find(t => !t.hidden) || tabs[0]).dataset.sub;
       tabs.forEach(t => {
         t.setAttribute('role', 'tab');
         t.setAttribute('aria-selected', String(t.dataset.sub === sub));
@@ -9616,6 +9797,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const token = sub ? `${name}-${sub}` : name;
     try { history.replaceState(null, '', '#' + token); } catch (e) {}
     try { localStorage.setItem('fpl-view', token); } catch (e) {}
+    try { pushRecent(token); modeNote(name, sub); renderShortcuts(); } catch (e) { console.error(e); }
     if (!opts.keepScroll) window.scrollTo(0, 0);
     // ao mudar de separador no telemóvel, o separador escolhido fica à vista
     const st = view.querySelector(':scope > .subtabs .subtab[aria-selected="true"]');
@@ -9631,6 +9813,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   document.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => showView(b.dataset.goto, b.dataset.gotoSub)));
   window.addEventListener('hashchange', () => { const t = parseToken(location.hash.slice(1)); if (t) showView(t[0], t[1], {keepScroll: true}); });
 
+  try { applyMode(); } catch (e) { console.error(e); }
   let startTok = parseToken(location.hash.slice(1));
   if (!startTok || !(viewNames.includes(startTok[0]) || VIEW_ALIAS[startTok[0]])) {
     try { startTok = parseToken(localStorage.getItem('fpl-view')); } catch (e) { startTok = null; }
