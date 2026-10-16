@@ -13,6 +13,8 @@ import rivals_profile
 
 FORMATIONS = [(3, 5, 2), (3, 4, 3), (4, 5, 1), (4, 4, 2), (4, 3, 3), (5, 4, 1), (5, 3, 2), (5, 2, 3)]
 POS = {1: 'gk', 2: 'def', 3: 'mid', 4: 'fwd'}
+# pesos (afinados no backtest da fase 5 — ver _build/pool/backtest_rivals.py)
+W = {'ep': 0.6, 'form': 0.15, 'hard': 0.3, 'moda': 3.0, 'only_market': False, 'prior0': 0.35, 'k0': 1.0, 'personal': True}
 CAP_W = {'capitão fixo': (0.6, 0.2, 0.2), 'capitão da maioria': (0.2, 0.6, 0.2), 'capitão pelo melhor jogo': (0.2, 0.2, 0.6)}
 
 
@@ -141,8 +143,10 @@ def predict(R, e, g):
                 continue
             if s[5] != so[5] and clubs.get(s[5], 0) >= 3:
                 continue
-            sc = 0.6 * (s[3] or 0) + 0.15 * (s[7] or 0) - 0.3 * hard(q)
-            sc += moda_w * 3.0 * (1 - rank_in[q] / 40) if q in rank_in else 0.0
+            if W['only_market'] and q not in rank_in:
+                continue
+            sc = W['ep'] * (s[3] or 0) + W['form'] * (s[7] or 0) - W['hard'] * hard(q)
+            sc += moda_w * W['moda'] * (1 - rank_in[q] / 40) if q in rank_in else 0.0
             sc += diff_w * (1.0 if (s[2] or 0) < 5 else 0.0)
             cand[q] = sc
         p_in = softmax(cand, 0.9)
@@ -150,7 +154,7 @@ def predict(R, e, g):
             pairs.append((po * pq, o, q))
     # ---------- fazer ou não transferências ----------
     tf = prof['transfers']
-    base0 = (tf['zero_gws'] + 0.35) / (tf['gws'] + 1) if tf['gws'] else 0.35   # 0,35 ≈ média da liga
+    base0 = ((tf['zero_gws'] + W['prior0'] * W['k0']) / (tf['gws'] + W['k0']) if tf['gws'] and W['personal'] else W['prior0'])   # prior0 ≈ média da liga
     urgent = sum(1 for i in last_xi if inj(i) >= 0.75)
     p0 = base0 * (0.35 ** urgent) * (0.75 if ft >= 2 else 1.0)
     p0 = min(0.9, max(0.03, p0))

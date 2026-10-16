@@ -1282,6 +1282,15 @@
   .win-row { display: flex; flex-wrap: wrap; gap: 12px; }
   .win-row label { display: grid; gap: 4px; flex: 1 1 240px; min-width: 0; }
   .win-row select { font: inherit; font-size: 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 7px; padding: 7px 10px; max-width: 100%; min-width: 0; }
+  /* Previsão dos rivais (V46) */
+  .rf-box { margin-top: 8px; padding: 8px 10px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--line); font-size: 13px; }
+  .rf-line { line-height: 1.5; overflow-wrap: anywhere; }
+  .rf-rib { display: grid; grid-template-columns: repeat(auto-fit, minmax(22px, 1fr)); gap: 2px; margin-top: 3px; }
+  .rf-c { text-align: center; font-size: 10px; font-weight: 700; padding: 3px 0; border-radius: 3px; background: var(--surface); color: var(--muted); border: 1px solid var(--line); }
+  .rf-c.l1 { background: var(--fdr-2); color: var(--fdr-2-ink); border-color: transparent; }
+  .rf-c.l2 { background: var(--warn-weak); color: var(--warn); border-color: transparent; }
+  .rf-c.l3 { background: var(--fdr-4); color: var(--fdr-4-ink); border-color: transparent; }
+  .rf-c.l4 { background: var(--fdr-5); color: var(--fdr-5-ink); border-color: transparent; }
 </style>
 </head>
 <body>
@@ -2125,6 +2134,10 @@
       <div class="seg" role="group" aria-label="Horizonte da previsão" id="prev-horizon">
         <button type="button" class="seg-btn" data-h="5" aria-pressed="true">Até à J<span class="gw-n4">11</span></button>
         <button type="button" class="seg-btn" data-h="19" aria-pressed="false">Até à J19 (aproximado)</button>
+      </div>
+      <div class="seg" role="group" aria-label="Plantéis dos rivais" id="prev-pred" style="margin-top:8px">
+        <button type="button" class="seg-btn" data-p="0" aria-pressed="true">Plantéis atuais dos rivais</button>
+        <button type="button" class="seg-btn" data-p="1" aria-pressed="false">Usar os plantéis previstos dos rivais</button>
       </div>
       <div class="subtabs" role="tablist" aria-label="Previsão da classificação">
         <button class="subtab" type="button" data-sub="tabela">Classificação prevista</button>
@@ -6615,8 +6628,9 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const nGw = GW_META.last;
     const leagueAvg = E.reduce((s, e) => s + LEAGUE_SQUADS[e].tot, 0) / (E.length * nGw);
     const per = {};
+    const pred = typeof RIVF !== 'undefined' && RIVF && RIVF.predPrev;
     E.forEach(e => {
-      const sq = cmpSquad(e);
+      const sq = pred && e !== CMP_ENTRY.bruno && e !== CMP_ENTRY.marco ? rivfSquad(e) : cmpSquad(e);
       const xis = HZ.map((g, i) => pickXi(sq, i));
       per[e] = {xis, raw: xis.map(x => x.total), bench: xis.map((x, i) => [...x.benchGk, ...x.benchOut].reduce((s, p) => s + epAt(p, i), 0)), cap: xis.map((x, i) => epAt(x.cap, i))};
     });
@@ -6731,7 +6745,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
           <td class="num p-hide">${f1(r.perGw)}</td><td class="num hm">${r.chips >= 0.5 ? '+' + f1(r.chips) : '—'}</td>
           <td class="num">${pct(r.p3)}</td><td class="num hm">${pct(r.p1)}</td></tr>`).join('')}</tbody>
       </table></div>
-      <p class="note">▲/▼ = posições que sobe ou desce face a agora. Chips = pontos extra esperados das chips que ainda tem nesse período. ${PREV.h === 19 ? 'Para a J12-J19 ainda não há pontos esperados jogo a jogo: uso a média das J7-J11 de cada plantel, por isso este horizonte é só indicativo.' : ''}</p>`;
+      <p class="note">${(RIVF || {}).predPrev ? 'Com os plantéis previstos: cada rival faz "o mais comprado da semana que lhe cabe" (uma hipótese; acerta a compra 13% das vezes na 1.ª opção), sem mais trocas depois. ' : ''}▲/▼ = posições que sobe ou desce face a agora. Chips = pontos extra esperados das chips que ainda tem nesse período. ${PREV.h === 19 ? 'Para a J12-J19 ainda não há pontos esperados jogo a jogo: uso a média das J7-J11 de cada plantel, por isso este horizonte é só indicativo.' : ''}</p>`;
     // --- tu vs os da frente ---
     const rowFront = r => {
       const L = LEAGUE_SQUADS[r.e], gapNow = r.now - R.now, gapPrev = (r.now - L.p6) - (R.now - LEAGUE_SQUADS[me].p6);
@@ -6766,6 +6780,11 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       <p class="prose"><b>Sorte, jogador a jogador.</b> Em cada cenário, cada jogador faz uma pontuação tirada da distribuição real desta época (quantas vezes um jogador faz o dobro, metade ou zero da sua média) e essa pontuação vale para todos os plantéis que o têm: se o Haaland fizer 20, os 17 que o têm sobem juntos. Por cima, cada gestor leva um pequeno desvio próprio (substituições, transferências). Nas J12-J19 (horizonte longo) ainda não há pontos jogo a jogo e uso um desvio de ${PREV_SD} pts por jornada. Corro ${PREV_N.toLocaleString('pt-PT')} temporadas simuladas e conto em que posição cada equipa acaba. As simulações são sempre as mesmas (semente fixa), por isso os números só mudam quando os dados mudam.</p>
       <p class="prose"><b>Limites.</b> Ninguém faz transferências nos cenários, e os plantéis bons nas próximas jornadas acabam favorecidos. Pontos da classificação clássica, sem descontar transferências pagas de jornadas futuras.</p>`;
   }
+  document.querySelectorAll('#prev-pred .seg-btn').forEach(b => b.addEventListener('click', () => {
+    if (!RIVF) return;
+    RIVF.predPrev = b.dataset.p === '1'; PREV.cache = {};
+    document.querySelectorAll('#prev-pred .seg-btn').forEach(x => x.setAttribute('aria-pressed', String(x === b))); renderPrevisao();
+  }));
   document.querySelectorAll('#prev-horizon .seg-btn').forEach(b => b.addEventListener('click', () => {
     PREV.h = +b.dataset.h; document.querySelectorAll('#prev-horizon .seg-btn').forEach(x => x.setAttribute('aria-pressed', String(x === b))); renderPrevisao();
   }));
@@ -6789,7 +6808,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const mv = (SUGGESTED_MOVES[mgr] || {transfers: []}).transfers;
     const mySq = applyMoves(squadOf(mgr).filter(Boolean), mv);
     const myXi = pickXi(mySq, 0).xi;
-    const oppSq = [...O.s, ...O.b].map(id => FULL_POOL_BY_ID[id]).filter(Boolean);
+    const usePred = typeof RIVF !== 'undefined' && RIVF && RIVF.predH2H;
+    const oppSq = usePred ? rivfSquad(oe) : [...O.s, ...O.b].map(id => FULL_POOL_BY_ID[id]).filter(Boolean);
     const oppXi = pickXi(oppSq, 0).xi;
     const byEp = xi => xi.slice().sort((a, b) => epAt(b, 0) - epAt(a, 0));
     const myCaps = byEp(myXi).slice(0, 4);
@@ -6798,8 +6818,9 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       [oppXi.find(p => p.id === 411), 0.35, 'o capitão mais popular'],
       [byEp(oppXi)[0], 0.15, 'mais pontos esperados'],
     ].filter(x => x[0]);
-    const oppCaps = [];
+    let oppCaps = [];
     oppCapsRaw.forEach(([p, w, why]) => { const ex = oppCaps.find(c => c.p.id === p.id); if (ex) { ex.w += w; } else oppCaps.push({p, w, why}); });
+    if (usePred) { const C = rivfCaps(oe, oppXi); if (C.src === 'modelo') oppCaps = C.caps.map(c => ({p: c.cap, w: c.w, why: 'previsão do modelo'})); }
     const wsum = oppCaps.reduce((s, c) => s + c.w, 0); oppCaps.forEach(c => { c.w /= wsum; });
     // simulação com números aleatórios comuns
     const ids = [...new Set([...myXi, ...oppXi].map(p => p.id))];
@@ -6854,6 +6875,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       ? `É ao mesmo tempo o capitão com mais pontos esperados e o que te dá mais hipóteses de ganhar este H2H.`
       : `O capitão com mais pontos esperados é o <b><span class="player-name">${myCaps[0].name}</span></b>, mas contra este adversário o <b><span class="player-name">${mb.name}</span></b> dá-te mais hipóteses de ganhar (${winTxt(score(best))} contra ${winTxt(score(0))}).`;
     main.innerHTML = `
+      <div class="seg rf-tog" role="group" aria-label="Plantel do rival" style="margin-bottom:10px"><button type="button" class="seg-btn" data-p="0" aria-pressed="${!(RIVF || {}).predH2H}">Plantel atual do rival</button><button type="button" class="seg-btn" data-p="1" aria-pressed="${!!(RIVF || {}).predH2H}">Usar o plantel previsto do rival</button></div>
+      ${(RIVF || {}).predH2H ? `<p class="note" style="margin:0 0 8px">Plantel previsto = o atual com "o mais comprado da semana que lhe cabe" (acerta ${RIVF_HIT.in1}% na 1.ª opção) e capitão pela previsão (acerta ${RIVF_HIT.cap}%). É uma hipótese, não o que ele vai fazer.</p>` : ''}
       <div class="card-head"><div><h2>Capitão para o H2H da J${HZ[0]}</h2><div class="card-sub">${me} vs ${O.tn} (${O.m}) · ${D.mv.length ? 'com a troca sugerida' : 'plantel atual'} · onze dele = melhor onze do plantel da J${GW_META.last}</div></div></div>
       <div class="h2h-score">
         <div class="side"><b>${f1(myExp)}</b><span>${me} · C ${shortName(mb.name)}</span></div>
@@ -6866,6 +6889,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       <h3 style="margin:12px 0 2px">Diferença final nas simulações</h3>
       <div class="note">Com ${shortName(mb.name)} de capitão e o ${shortName(oc.p.name)} de capitão dele. Verde = ganhas, vermelho = perdes. Margem média ${sgn(r.m)} pts.</div>
       ${hist}`;
+    main.querySelectorAll('.rf-tog .seg-btn').forEach(b => b.addEventListener('click', () => { if (!RIVF) return; RIVF.predH2H = b.dataset.p === '1'; renderCapH2H(); }));
     // matriz
     const cellColor = p => { const k = p >= 0.6 ? 1 : p >= 0.53 ? 2 : p >= 0.47 ? 3 : p >= 0.4 ? 4 : 5; return `background:var(--fdr-${k});color:var(--fdr-${k}-ink)`; };
     grid.innerHTML = `
@@ -7699,6 +7723,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const maxSw = Math.max(3, ...data.map(d => Math.abs(d.swing)));
     const all = Object.keys(LEAGUE_SQUADS).map(Number).filter(e => e !== me).sort((a, b) => (cmpRank(a) || 99) - (cmpRank(b) || 99));
     el.innerHTML = `
+      ${(() => { try { return rivfSummaryHtml(me); } catch (err) { console.error(err); return ''; } })()}
       <section class="card">
         <div class="card-head"><div><h2>Quem vigiar</h2><div class="card-sub">Por defeito: os 4 logo à tua frente e os 2 logo atrás. Toca para juntar ou tirar.</div></div></div>
         <div class="riv-pick">${all.map(e => `<button type="button" class="riv-tog" aria-pressed="${RIV.sel.includes(e)}" data-e="${e}">${cmpRank(e)}.º ${LEAGUE_SQUADS[e].tn}</button>`).join('')}</div>
@@ -7717,6 +7742,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
             <div><div class="riv-lbl">Só ele tem (titulares)</div>${d.theirOnly.length ? playerCards(d.theirOnly.slice(0, 5), {mine: false}) : '<div class="note">—</div>'}</div>
             <div><div class="riv-lbl">Só tu tens</div>${d.mineOnly.length ? playerCards(d.mineOnly.slice(0, 5), {mine: false}) : '<div class="note">—</div>'}</div>
           </div>
+          ${(() => { try { return rivfCardHtml(d.e); } catch (err) { console.error(err); return ''; } })()}
           ${d.tr.length ? `<div class="riv-lbl" style="margin-top:6px">Últimas transferências</div>${d.tr.slice(0, 3).map(t => `<div class="riv-p"><span>J${t.event}: <span class="pm-out">${shortName((FULL_POOL_BY_ID[t.out] || {name: '?'}).name)}</span> → <span class="pm-in">${shortName((FULL_POOL_BY_ID[t.in] || {name: '?'}).name)}</span></span></div>`).join('')}` : ''}
           <div class="riv-foot">Na J${HZ[0]}: ele ≈${f1(d.X.total)} (C ${shortName(d.X.cap.name)}) · tu ≈${f1(myX.total)} → <b class="${d.swing >= 0 ? 'up' : 'down'}">${sgn(d.swing)}</b></div>
         </section>`).join('')}</div>
@@ -7780,6 +7806,114 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   }
   renderRivals();
   loadLive();
+
+  // ===================================================================
+  // V46 (16 out 2026) — Previsão dos rivais na app (fase 6). Dados: rivals.json (GitHub Action semanal).
+  // Backtest J2-J6 (fase 5): só o capitão é melhor do que regras simples (51% vs 47% "repete o último").
+  // Por isso: transferências = regra "o mais comprado da semana que lhe cabe" (acerta a 1.ª opção 13%, alguma
+  // das 3 primeiras 26%); capitão = previsão do modelo (rivals.json); chips = só risco geral (nenhuma previsão
+  // bateu "qualquer jornada é igual"). Nunca mostrar nada disto como certo.
+  // ===================================================================
+  var RIVF = {data: null, predH2H: false, predPrev: false};
+  var RIVF_HIT = {in1: 13, in3: 26, cap: 51};
+  function rivfInj(p) { return ['i', 's', 'u', 'n'].includes(p.status) ? 1 : p.status === 'd' ? 1 - (p.chance == null ? 50 : p.chance) / 100 : 0; }
+  // regra: percorre os mais comprados da semana e fica com os primeiros que ele pode comprar (mesma posição de um
+  // jogador que provavelmente sai, cabe no orçamento real dele, máx. 3 por clube)
+  function rivfRule(e) {
+    const L = LEAGUE_SQUADS[e]; if (!L) return [];
+    const sq = [...L.s, ...L.b].map(id => FULL_POOL_BY_ID[id]).filter(Boolean), ids = new Set(sq.map(p => p.id));
+    let B; try { B = budgetOf(e, LEAGUE_SQUADS); } catch (err) { B = {bank: L.bank || 0, stuck: []}; }
+    const sell = new Map((B.stuck || []).map(x => [x.p.id, x.sell]));
+    const clubs = {}; sq.forEach(p => { clubs[p.team] = (clubs[p.team] || 0) + 1; });
+    const outScore = p => 3 * rivfInj(p) - epAt(p, 0);
+    const market = FULL_POOL.filter(p => !ids.has(p.id) && (p.tin || 0) > 0 && (p.status === 'a' || (p.status === 'd' && (p.chance || 0) >= 75))).sort((a, b) => (b.tin || 0) - (a.tin || 0));
+    const out = [];
+    for (let k = 0; k < market.length && out.length < 3; k++) {
+      const q = market[k];
+      const o = sq.filter(p => p.cls === q.cls && !out.some(x => x.out === p)).sort((a, b) => outScore(b) - outScore(a))
+        .find(o => B.bank + (sell.has(o.id) ? sell.get(o.id) : o.price) >= q.price - 1e-9 && (o.team === q.team || (clubs[q.team] || 0) < 3));
+      if (o) out.push({out: o, inn: q, rank: k + 1});
+    }
+    return out;
+  }
+  function rivfPredData(e) {
+    const d = RIVF && RIVF.data;
+    return d && d.predictions && +d.next_event === GW_META.next ? (d.predictions[String(GW_META.next)] || {})[e] : null;
+  }
+  // capitão provável: modelo (rivals.json) quando há; senão a regra da app (capitão dele, o mais popular, o de mais pts esperados)
+  function rivfCaps(e, xi) {
+    const P = rivfPredData(e);
+    if (P && P.caps && P.caps.length) {
+      const c = P.caps.map(x => ({cap: FULL_POOL_BY_ID[x.id], w: x.p})).filter(x => x.cap && x.cap.cls !== 'gk' && xi.some(p => p.id === x.cap.id));
+      const s = c.reduce((t, x) => t + x.w, 0);
+      if (c.length && s > 0) { c.forEach(x => { x.w /= s; x.why = 'previsão do modelo'; x.vice = xi.filter(p => p !== x.cap).sort((a, b) => epAt(b, 0) - epAt(a, 0))[0]; }); return {caps: c, src: 'modelo'}; }
+    }
+    return {caps: winCapsOf(LEAGUE_SQUADS[e], xi, 0), src: 'regra'};
+  }
+  // plantel previsto: o atual com a 1.ª troca da regra (a regra "troca sempre" acertou 61% das vezes em fazer ou não)
+  function rivfSquad(e) {
+    const L = LEAGUE_SQUADS[e], R = rivfRule(e);
+    let sq = [...L.s, ...L.b].map(id => FULL_POOL_BY_ID[id]).filter(Boolean);
+    if (R[0]) sq = sq.map(p => p === R[0].out ? R[0].inn : p);
+    return sq;
+  }
+  function rivfChipsLeft(e) {
+    const L = LEAGUE_SQUADS[e], used = new Set((L.chips || []).filter(([, g]) => g <= 19).map(([n]) => n));
+    return ['wildcard', 'freehit', 'bboost', '3xc'].filter(c => !used.has(c));
+  }
+  function rivfBreakAfter() {
+    const ev = (window.__LIVE && window.__LIVE.events) || (RIVF && RIVF.data && RIVF.data.deadlines ? Object.entries(RIVF.data.deadlines).map(([id, d]) => ({id: +id, deadline: d})) : []);
+    const dl = Object.fromEntries(ev.filter(x => x.deadline).map(x => [x.id, new Date(x.deadline)]));
+    return new Set(Object.keys(dl).map(Number).filter(g => dl[g - 1] && (dl[g] - dl[g - 1]) / 864e5 >= 12));
+  }
+  // fita J(próxima+1)-J19: risco geral = chips que ainda tem a repartir pelas jornadas que faltam
+  function rivfRibbon(e) {
+    const left = rivfChipsLeft(e), K = []; for (let g = GW_META.next + 1; g <= 19; g++) K.push(g);
+    if (!K.length) return '';
+    const brk = rivfBreakAfter(), base = left.length / K.length;
+    const lvl = g => { const r = base + (left.includes('wildcard') && brk.has(g) ? 0.15 : 0) + (g >= 17 ? 0.05 * left.length : 0); return r <= 0 ? 0 : r < 0.12 ? 1 : r < 0.25 ? 2 : r < 0.4 ? 3 : 4; };
+    return `<div class="rf-rib" role="img" aria-label="Risco geral de chips até à J19: ${left.length} por usar">${K.map(g => `<span class="rf-c l${lvl(g)}" title="J${g}: ${left.length ? left.map(c => CHIP_PT[c]).join(', ') + ' por usar' : 'sem chips'}${brk.has(g) && left.includes('wildcard') ? ' · logo a seguir à pausa (Wildcard mais comum)' : ''}${g >= 17 ? ' · perto do fim do prazo (J19)' : ''}">${g}</span>`).join('')}</div>`;
+  }
+  function rivfCardHtml(e) {
+    const R = rivfRule(e);
+    const xi = pickXi(rivfSquad(e), 0).xi, C = rivfCaps(e, xi), left = rivfChipsLeft(e);
+    const caps = C.caps.slice().sort((a, b) => b.w - a.w).slice(0, 3);
+    return `<div class="rf-box">
+      <div class="riv-lbl">Próxima jornada · o mais comprado da semana que lhe cabe</div>
+      ${R.length ? `<div class="rf-line"><b><span data-pid="${R[0].out.id}">${shortName(R[0].out.name)}</span> → <span data-pid="${R[0].inn.id}">${shortName(R[0].inn.name)}</span></b> <span class="note">(${R[0].rank}.º mais comprado)</span>${R.length > 1 ? `<span class="note"> · ou ${R.slice(1).map(x => `${shortName(x.out.name)} → ${shortName(x.inn.name)}`).join(', ')}</span>` : ''}</div>` : '<div class="note">Nenhum dos mais comprados lhe cabe.</div>'}
+      <div class="riv-lbl" style="margin-top:6px">Capitão provável${C.src === 'regra' ? ' (regra)' : ''}</div>
+      <div class="rf-line">${caps.map((c, i) => `${i ? ' · ' : ''}<span data-pid="${c.cap.id}">${shortName(c.cap.name)}</span> <b>${Math.round(c.w * 100)}%</b>`).join('')}</div>
+      <div class="riv-lbl" style="margin-top:6px">Chips até à J19 · risco geral (${left.length ? left.map(c => CHIP_PT[c]).join(', ') : 'nenhuma por usar'})</div>
+      ${rivfRibbon(e)}
+    </div>`;
+  }
+  function rivfSummaryHtml(me) {
+    const E = Object.keys(LEAGUE_SQUADS).map(Number).filter(e => e !== me);
+    const buys = {}, sells = {};
+    E.forEach(e => { const R = rivfRule(e)[0]; if (R) { buys[R.inn.id] = (buys[R.inn.id] || 0) + 1; sells[R.out.id] = (sells[R.out.id] || 0) + 1; } });
+    const top = (o, n) => Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, n).map(([id, k]) => `<b><span data-pid="${id}">${shortName(FULL_POOL_BY_ID[id].name)}</span></b> (${k})`).join(', ');
+    const caps = {}; E.forEach(e => { const xi = pickXi(rivfSquad(e), 0).xi; rivfCaps(e, xi).caps.forEach(c => { caps[c.cap.id] = (caps[c.cap.id] || 0) + c.w; }); });
+    const cnt = c => E.filter(e => rivfChipsLeft(e).includes(c)).length, brk = [...rivfBreakAfter()].filter(g => g > GW_META.next && g <= 19);
+    return `<section class="card">
+      <div class="card-head"><div><h2>A liga na J${GW_META.next}: o que os rivais devem fazer</h2><div class="card-sub">Previsões, não certezas · ${E.length} rivais</div></div></div>
+      <ul class="prose" style="margin:0">
+        <li>O mais comprado da semana que lhes cabe: ${top(buys, 3) || '—'} rivais. Mais prováveis de sair: ${top(sells, 3) || '—'}.</li>
+        <li>Capitães prováveis (soma das probabilidades): ${Object.entries(caps).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([id, w]) => `${shortName(FULL_POOL_BY_ID[id].name)} ≈ ${f1(w)}`).join(' · ')}.</li>
+        <li>Chips por usar até à J19: Wildcard ${cnt('wildcard')}, Free Hit ${cnt('freehit')}, Bench Boost ${cnt('bboost')}, Triple Captain ${cnt('3xc')} rivais.${brk.length ? ` A J${brk[0]} vem logo a seguir à pausa de seleções: costuma haver mais Wildcards.` : ''} As da 1.ª metade perdem-se no deadline da J19.</li>
+      </ul>
+      <div class="callout info" style="margin-top:10px"><span class="icon">i</span><div class="body"><p><b>Quão fiável é isto?</b> No teste com as J2-J6 (só com o que se sabia antes de cada deadline), a regra "o mais comprado da semana que lhe cabe" acertou a compra na 1.ª opção 13% das vezes e numa das 3 primeiras 26%; a previsão do capitão acertou 51%. As chips não se conseguiram prever melhor do que "qualquer jornada é igual", por isso a fita mostra só o risco geral (quantas tem e quanto falta para a J19).</p></div></div>
+    </section>`;
+  }
+  async function loadRivals() {
+    if (!/^https?:$/.test(location.protocol) || !(/github\.io$/.test(location.hostname) || new URLSearchParams(location.search).has('live'))) return;
+    try {
+      const r = await fetch('rivals.json?t=' + Date.now(), {cache: 'no-store'});
+      if (!r.ok) return;
+      RIVF.data = await r.json();
+      try { PREV.cache = {}; renderRivals(); if (prevVisible()) renderPrevisao(); lazyRender('decisoes', renderCapH2H); } catch (e) { console.error(e); }
+    } catch (e) { /* sem rivals.json: capitão pela regra da app */ }
+  }
+  loadRivals();
 
 
   // ===================================================================
