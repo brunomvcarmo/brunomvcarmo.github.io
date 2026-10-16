@@ -11,7 +11,7 @@ por isso todos os pedidos levam um parâmetro inofensivo extra.
 """
 import json, os, sys, time, urllib.request, urllib.error
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import rivals_profile, rivals_predict
+import rivals_profile, rivals_predict, rivals_chips
 from datetime import datetime, timezone
 
 BASE = os.environ.get('FPL_BASE', 'https://fantasy.premierleague.com/api/')
@@ -206,22 +206,27 @@ def write_rivals(stamp, events, cur, last_finished, boot, raw):
                                   float(byid[i].get('ep_next') or 0), byid[i]['now_cost'] / 10, byid[i]['team'], byid[i]['element_type'],
                                   float(byid[i].get('form') or 0), (byid[i]['now_cost'] - byid[i].get('cost_change_start', 0)) / 10]
                          for i in sorted(ids) if i in byid}
-    # dificuldade oficial dos jogos da próxima jornada, por clube
+    # dificuldade oficial dos jogos, por clube, da próxima jornada até ao fim da 1.ª metade (para o radar de chips)
     fdr = dict(old.get('fdr') or {})
     try:
-        fx = get(f'fixtures/?event={nxt}&t={stamp}')
-        d = {}
-        for f in fx:
-            d.setdefault(str(f['team_h']), []).append(f['team_h_difficulty']); d.setdefault(str(f['team_a']), []).append(f['team_a_difficulty'])
-        fdr[str(nxt)] = d
+        fx = get(f'fixtures/?t={stamp}')
+        for g in range(nxt, max(nxt, 19) + 1):
+            d = {}
+            for f in fx:
+                if f.get('event') == g:
+                    d.setdefault(str(f['team_h']), []).append(f['team_h_difficulty']); d.setdefault(str(f['team_a']), []).append(f['team_a_difficulty'])
+            fdr[str(g)] = d
     except RuntimeError:
         pass
     out = {'generated': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'current_event': cur, 'last_finished': last_finished,
            'next_event': nxt, 'entries': out_e, 'market': dict(sorted(market.items(), key=lambda kv: int(kv[0]))),
-           'players': dict(sorted(players.items(), key=lambda kv: int(kv[0]))), 'fdr': dict(sorted(fdr.items(), key=lambda kv: int(kv[0])))}
+           'players': dict(sorted(players.items(), key=lambda kv: int(kv[0]))), 'fdr': dict(sorted(fdr.items(), key=lambda kv: int(kv[0]))),
+           'deadlines': {str(ev['id']): ev.get('deadline_time') for ev in events}}
     out['profiles'] = rivals_profile.build(out)
     # previsão para a próxima jornada (transferências, capitão, plantel e onze prováveis) — probabilidades, não certezas
     out['predictions'] = {str(nxt): rivals_predict.predict_all(out, nxt)}
+    # radar de chips: probabilidade de cada chip que falta em cada jornada até à J19
+    out['chips_radar'] = {str(nxt): rivals_chips.radar_all(out, nxt)}
     with open(RIVALS, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
     bad = [e for e, v in out_e.items() if v['check']['transfers_api_sem_wc_fh'] != v['check']['transfers_history']]
