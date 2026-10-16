@@ -10,6 +10,8 @@ Nota (nona lição das notas da app): alguns URLs "simples" da API devolvem cóp
 por isso todos os pedidos levam um parâmetro inofensivo extra.
 """
 import json, os, sys, time, urllib.request, urllib.error
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import rivals_profile
 from datetime import datetime, timezone
 
 BASE = os.environ.get('FPL_BASE', 'https://fantasy.premierleague.com/api/')
@@ -191,8 +193,18 @@ def write_rivals(stamp, events, cur, last_finished, boot, raw):
     market[str(nxt)] = {'at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'src': 'api',
                         'in': [[x['id'], x.get('transfers_in_event', 0)] for x in sorted(els, key=lambda x: -x.get('transfers_in_event', 0))[:40]],
                         'out': [[x['id'], x.get('transfers_out_event', 0)] for x in sorted(els, key=lambda x: -x.get('transfers_out_event', 0))[:40]]}
+    # retrato dos jogadores antes do deadline da próxima jornada: estado, chance, posse FPL (%), pontos esperados da FPL
+    # (só os que andam nos plantéis da liga ou no mercado) — serve para o perfil (lesionados, diferenciais, capitão)
+    players = dict(old.get('players') or {})
+    ids = {p for v in out_e.values() for gw in v['gws'].values() for p in gw['s'] + gw['b']}
+    ids |= {i for side in ('in', 'out') for i, _ in market[str(nxt)][side]}
+    byid = {x['id']: x for x in els}
+    players[str(nxt)] = {str(i): [byid[i]['status'], byid[i].get('chance_of_playing_next_round'), float(byid[i].get('selected_by_percent') or 0),
+                                  float(byid[i].get('ep_next') or 0)] for i in sorted(ids) if i in byid}
     out = {'generated': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'current_event': cur, 'last_finished': last_finished,
-           'next_event': nxt, 'entries': out_e, 'market': dict(sorted(market.items(), key=lambda kv: int(kv[0])))}
+           'next_event': nxt, 'entries': out_e, 'market': dict(sorted(market.items(), key=lambda kv: int(kv[0]))),
+           'players': dict(sorted(players.items(), key=lambda kv: int(kv[0])))}
+    out['profiles'] = rivals_profile.build(out)
     with open(RIVALS, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
     bad = [e for e, v in out_e.items() if v['check']['transfers_api_sem_wc_fh'] != v['check']['transfers_history']]
