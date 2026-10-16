@@ -11,7 +11,7 @@ por isso todos os pedidos levam um parâmetro inofensivo extra.
 """
 import json, os, sys, time, urllib.request, urllib.error
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import rivals_profile
+import rivals_profile, rivals_predict
 from datetime import datetime, timezone
 
 BASE = os.environ.get('FPL_BASE', 'https://fantasy.premierleague.com/api/')
@@ -198,13 +198,30 @@ def write_rivals(stamp, events, cur, last_finished, boot, raw):
     players = dict(old.get('players') or {})
     ids = {p for v in out_e.values() for gw in v['gws'].values() for p in gw['s'] + gw['b']}
     ids |= {i for side in ('in', 'out') for i, _ in market[str(nxt)][side]}
+    for t in (1, 2, 3, 4):   # candidatos a entrar: os 15 de mais pontos esperados da FPL em cada posição
+        ids |= {x['id'] for x in sorted([x for x in els if x['element_type'] == t], key=lambda x: -float(x.get('ep_next') or 0))[:15]}
     byid = {x['id']: x for x in els}
+    # [estado, chance, posse %, ep_next da FPL, preço £M, clube, posição (1-4), forma, preço inicial £M]
     players[str(nxt)] = {str(i): [byid[i]['status'], byid[i].get('chance_of_playing_next_round'), float(byid[i].get('selected_by_percent') or 0),
-                                  float(byid[i].get('ep_next') or 0)] for i in sorted(ids) if i in byid}
+                                  float(byid[i].get('ep_next') or 0), byid[i]['now_cost'] / 10, byid[i]['team'], byid[i]['element_type'],
+                                  float(byid[i].get('form') or 0), (byid[i]['now_cost'] - byid[i].get('cost_change_start', 0)) / 10]
+                         for i in sorted(ids) if i in byid}
+    # dificuldade oficial dos jogos da próxima jornada, por clube
+    fdr = dict(old.get('fdr') or {})
+    try:
+        fx = get(f'fixtures/?event={nxt}&t={stamp}')
+        d = {}
+        for f in fx:
+            d.setdefault(str(f['team_h']), []).append(f['team_h_difficulty']); d.setdefault(str(f['team_a']), []).append(f['team_a_difficulty'])
+        fdr[str(nxt)] = d
+    except RuntimeError:
+        pass
     out = {'generated': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'current_event': cur, 'last_finished': last_finished,
            'next_event': nxt, 'entries': out_e, 'market': dict(sorted(market.items(), key=lambda kv: int(kv[0]))),
-           'players': dict(sorted(players.items(), key=lambda kv: int(kv[0])))}
+           'players': dict(sorted(players.items(), key=lambda kv: int(kv[0]))), 'fdr': dict(sorted(fdr.items(), key=lambda kv: int(kv[0])))}
     out['profiles'] = rivals_profile.build(out)
+    # previsão para a próxima jornada (transferências, capitão, plantel e onze prováveis) — probabilidades, não certezas
+    out['predictions'] = {str(nxt): rivals_predict.predict_all(out, nxt)}
     with open(RIVALS, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
     bad = [e for e, v in out_e.items() if v['check']['transfers_api_sem_wc_fh'] != v['check']['transfers_history']]
