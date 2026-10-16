@@ -1275,6 +1275,13 @@
     .pcard.full .pc-ep .v { font-size: 28px; }
     .pcard.full .pc-fxc { height: 42px; font-size: 11px; }
   }
+  /* Equipa para ganhar a… (V44) */
+  .win-form { display: grid; gap: 12px; }
+  .win-form .seg { flex-wrap: wrap; }
+  .win-form .seg-btn:disabled { opacity: .5; cursor: not-allowed; }
+  .win-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .win-row label { display: grid; gap: 4px; flex: 1 1 240px; min-width: 0; }
+  .win-row select { font: inherit; font-size: 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 7px; padding: 7px 10px; max-width: 100%; min-width: 0; }
 </style>
 </head>
 <body>
@@ -1321,6 +1328,7 @@
         <button class="nav-item" data-view="comparar" type="button">Comparar equipas</button>
         <button class="nav-item" data-view="previsao" type="button">Previsão da classificação</button>
         <button class="nav-item" data-view="rivais" type="button">Vigiar rivais</button>
+        <button class="nav-item" data-view="ganhar" type="button">Equipa para ganhar a…</button>
       </div>
       <div class="nav-group">
         <div class="nav-label">Análise</div>
@@ -2231,6 +2239,16 @@
     </section>
 
 
+
+    <!-- ========== EQUIPA PARA GANHAR A… (V44, 16 out) ========== -->
+    <section class="view" data-view="ganhar" data-title="Equipa para ganhar a…" hidden>
+      <div class="view-head">
+        <div class="eyebrow">Competição · simulação</div>
+        <h1>Equipa para ganhar a…</h1>
+        <p>Escolhe contra quem jogas e a app procura as trocas, o onze e o capitão com mais probabilidade de ganhar — que nem sempre é a equipa com mais pontos esperados.</p>
+      </div>
+      <div class="stack"><section class="card" id="win-setup"></section><div class="stack" id="win-root"></div></div>
+    </section>
 
     <!-- ========== REGRAS E FONTES ========== -->
     <section class="view" data-view="regras" data-title="Regras e fontes" hidden>
@@ -5511,6 +5529,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     try { lazyRender('decisoes', renderSimulator); } catch (e) { console.error(e); }
     try { lazyRender('campo', renderPitch); renderChipPlan(); renderEuro(); CMP.a = null; renderCompare(); if (prevVisible()) renderPrevisao(); lazyRender('decisoes', renderCapH2H); renderGlance(); renderPlayers(); renderPc(); renderPlanner(); renderLogView(); renderRivals(); renderAlerts(); renderSim(); renderTodo(); renderHistKpi(); lazyRender('decisoes', renderStrategy); renderAutoPlan(); renderGlance2(); renderIdeal(); renderLigaBudgets(); lazyRender('h2h', renderH2HVis); closePlayer(); } catch (e) { console.error(e); }
     try { renderAoVivo(); } catch (e) { console.error(e); }
+    try { lazyRender('ganhar', renderWin); } catch (e) { console.error(e); }
     try { if (PC_READY) renderPcLists(); } catch (e) { console.error(e); }
     if (mgr === 'marco') {
       document.getElementById('hero-h1').textContent = 'Xarola Team';
@@ -9006,6 +9025,414 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
 
   renderLigaBudgets(); // de novo, agora que LEAGUE_SQUADS existe (orçamento real)
   renderTodo();
+
+  // ===================================================================
+  // V44-V45 (16 out 2026) — "Equipa para ganhar a…": trocas, onze e capitão escolhidos para maximizar a
+  // probabilidade de atingir um objetivo contra treinadores da liga, não os pontos esperados.
+  //   Objetivos: 'h2h'   ganhar o H2H desta jornada (vitória + ⅓ do empate, como na tabela H2H)
+  //              'all'   estar à frente de TODOS os escolhidos na liga clássica no fim da jornada escolhida
+  //              'count' ficar à frente do maior número dos escolhidos (número médio)
+  //   Partida:   'squad' o meu plantel com trocas (−4 por troca além das grátis)
+  //              'wc'    Wildcard: plantel novo com o orçamento real (preços de venda + banco), sem hits
+  //              'fh'    Free Hit: plantel novo só para esta jornada; nas seguintes volta o plantel atual
+  // Simulação jogador a jogador e jornada a jornada: joga com P(jogar); se joga, faz (pts esperados ÷ P(jogar))
+  // × um valor da distribuição empírica EMP_X. Números aleatórios comuns: o mesmo jogador faz os mesmos pontos
+  // em todos os plantéis em cada cenário. Rivais: plantel real; nesta jornada o onze da última e o capitão
+  // sorteado por cenário (50% o dele da última jornada, 35% o mais capitaneado da liga, 15% o de mais pts
+  // esperados); nas seguintes o melhor onze do plantel dele, sem trocas. A decisão otimizada é a desta semana;
+  // nas jornadas seguintes o meu onze e capitão são os de mais pontos esperados do plantel que fica.
+  // ===================================================================
+  var WIN = {N: 4000, mode: 'h2h', start: 'squad', oe: null, sel: null, upto: 4, mgr: null, maxT: 2, run: 0, draws: new Map()};
+  const WIN_MODES = {h2h: 'H2H desta jornada', all: 'Passar à frente deles até à J…', count: 'Ficar à frente do maior número'};
+  const WIN_STARTS = {squad: 'O meu plantel (trocas e hits)', wc: 'Wildcard', fh: 'Free Hit'};
+  function winDraw(id, gi) {
+    gi = gi || 0; const key = id * 8 + gi;
+    let d = WIN.draws.get(key); if (d) return d;
+    const p = FULL_POOL_BY_ID[id], N = WIN.N, pts = new Float32Array(N), play = new Uint8Array(N);
+    if (p && fixturesFor(p.team, HZ[gi]).length && epAt(p, gi) > 0) {
+      // nas jornadas seguintes a lesão já está nos pontos esperados: P(jogar) só pelos minutos recentes
+      const pp = gi === 0 ? pPlay(p) : pPlay(Object.assign({}, p, {status: 'a', chance: null}));
+      const c = Math.min(epAt(p, gi) / pp, epAt(p, gi) * 2.5), rnd = mulberry(90001 + id * 7919 + gi * 104729);
+      for (let s = 0; s < N; s++) { const r1 = rnd(), r2 = rnd(); if (r1 < pp) { play[s] = 1; pts[s] = Math.round(c * empDraw(p.cls, r2)); } }
+    }
+    d = {pts, play}; WIN.draws.set(key, d); return d;
+  }
+  function winAdd(B, id, sign, gi) { const d = winDraw(id, gi).pts; for (let s = 0; s < B.length; s++) B[s] += sign * d[s]; }
+  // valor de um vetor de pontos (B + capitão desta jornada) para o objetivo do contexto
+  function winObj(B, capId, ctx) {
+    const d = capId ? winDraw(capId, 0).pts : null, N = B.length; let a = 0;
+    const t = s => d ? B[s] + d[s] : B[s];
+    if (ctx.mode === 'ep') { for (let s = 0; s < N; s++) a += t(s); return a / N; }
+    if (ctx.mode === 'h2h') { const O = ctx.O; for (let s = 0; s < N; s++) { const m = t(s) - O[s]; a += m > 0 ? 1 : m === 0 ? 1 / 3 : 0; } return a / N; }
+    if (ctx.mode === 'all') { const O = ctx.O; for (let s = 0; s < N; s++) if (t(s) > O[s]) a++; return a / N; }
+    const R = ctx.R, th = ctx.thr;   // 'count': quantos limiares (já ordenados por cenário) ficam abaixo
+    for (let s = 0; s < N; s++) { const v = t(s), b = s * R; let lo = 0, hi = R; while (lo < hi) { const m = (lo + hi) >> 1; if (th[b + m] < v) lo = m + 1; else hi = m; } a += lo; }
+    return a / N;
+  }
+  function winOutcome(T, ctx) {   // valor por cenário (para "quem decide")
+    const N = T.length, out = new Float32Array(N), one = new Float32Array(1);
+    for (let s = 0; s < N; s++) { one[0] = T[s]; out[s] = winObj(one, 0, Object.assign({}, ctx, {O: ctx.O && ctx.O.subarray(s, s + 1), thr: ctx.thr && ctx.thr.subarray(s * ctx.R, (s + 1) * ctx.R)})); }
+    return out;
+  }
+  const winFormOk = xi => { const c = {gk: 0, def: 0, mid: 0, fwd: 0}; xi.forEach(p => c[p.cls]++); return c.gk === 1 && c.def >= 3 && c.mid >= 2 && c.fwd >= 1; };
+  const winTopCaps = (xi, extra) => [...new Set([...xi.slice().sort((a, b) => epAt(b, 0) - epAt(a, 0)).slice(0, 6), ...(extra && xi.includes(extra) ? [extra] : [])])];
+  // pontos das jornadas seguintes (melhor onze + capitão por pontos esperados) de um plantel, sem substituições
+  function winFuture(sq, upto) {
+    const F = new Float32Array(WIN.N);
+    for (let gi = 1; gi <= upto; gi++) { const X = pickXi(sq, gi); X.xi.forEach(p => winAdd(F, p.id, 1, gi)); winAdd(F, X.cap.id, 1, gi); }
+    return F;
+  }
+  const winFutEp = (sq, upto) => { let t = 0; for (let gi = 1; gi <= upto; gi++) t += bestXiValue(sq, gi); return t; };
+  // melhor onze + capitão desta jornada para um plantel (pesquisa local a partir do onze dos pontos esperados)
+  function winXi(sq, hits, ctx, fut) {
+    let xi = pickXi(sq, 0).xi.slice();
+    const B = fut ? Float32Array.from(fut) : new Float32Array(WIN.N);
+    for (let s = 0; s < B.length; s++) B[s] -= hits;
+    xi.forEach(p => winAdd(B, p.id, 1, 0));
+    const capBest = (xi, extra) => { let b = null; winTopCaps(xi, extra).forEach(c => { const v = winObj(B, c.id, ctx); if (!b || v > b.v) b = {cap: c, v}; }); return b; };
+    let cur = capBest(xi);
+    for (let round = 0; round < 4; round++) {
+      let best = null;
+      sq.filter(p => !xi.includes(p)).forEach(b => xi.forEach(x => {
+        if ((b.cls === 'gk') !== (x.cls === 'gk')) return;
+        const nx = xi.map(p => p === x ? b : p); if (!winFormOk(nx)) return;
+        winAdd(B, x.id, -1, 0); winAdd(B, b.id, 1, 0);
+        const r = capBest(nx, b);
+        if (r.v > cur.v + 1e-9 && (!best || r.v > best.r.v)) best = {nx, r, x, b};
+        winAdd(B, b.id, -1, 0); winAdd(B, x.id, 1, 0);
+      }));
+      if (!best) break;
+      winAdd(B, best.x.id, -1, 0); winAdd(B, best.b.id, 1, 0); xi = best.nx; cur = best.r;
+    }
+    let vice = null; winTopCaps(xi).forEach(c => { if (c === cur.cap) return; const v = winObj(B, c.id, ctx); if (!vice || v > vice.v) vice = {p: c, v}; });
+    return {xi, cap: cur.cap, vice: vice ? vice.p : null, v: cur.v, B, fut};
+  }
+  // avaliação rápida de uma troca: quem entra ocupa o lugar de quem sai, ou de um titular da mesma posição
+  function winQuick(base, out, inn, dh, ctx, T, futNew) {
+    const N = WIN.N, B = base.B, dIn = winDraw(inn.id, 0).pts;
+    const evalXi = xi => { let b = -1; winTopCaps(xi, inn).forEach(c => { const v = winObj(T, c.id, ctx); if (v > b) b = v; }); return b; };
+    const fd = typeof futNew === 'number' ? (() => futNew) : futNew ? (s => futNew[s] - base.fut[s]) : (() => 0);
+    if (base.xi.includes(out)) {
+      const dO = winDraw(out.id, 0).pts; for (let s = 0; s < N; s++) T[s] = B[s] - dO[s] + dIn[s] - dh + fd(s);
+      return evalXi(base.xi.map(p => p === out ? inn : p));
+    }
+    for (let s = 0; s < N; s++) T[s] = B[s] - dh + fd(s);
+    let best = evalXi(base.xi);
+    base.xi.filter(x => x.cls === inn.cls).forEach(x => {
+      const dX = winDraw(x.id, 0).pts; for (let s = 0; s < N; s++) T[s] = B[s] - dX[s] + dIn[s] - dh + fd(s);
+      const v = evalXi(base.xi.map(p => p === x ? inn : p)); if (v > best) best = v;
+    });
+    return best;
+  }
+  // pontos de uma equipa numa jornada, como na FPL: onze, capitão (vice se o capitão não jogar), substituições automáticas
+  function winTeamVec(xi, bench, caps, gi, seed, acc) {
+    const N = WIN.N, T = acc || new Float32Array(N), rnd = mulberry(seed);
+    const D = new Map([...xi, ...bench, ...caps.flatMap(c => [c.cap, c.vice].filter(Boolean))].map(p => [p.id, winDraw(p.id, gi)]));
+    const gk2 = bench.find(p => p.cls === 'gk'), outB = bench.filter(p => p.cls !== 'gk');
+    const cum = []; caps.reduce((a, c) => { cum.push(a + c.w); return a + c.w; }, 0);
+    for (let s = 0; s < N; s++) {
+      let t = 0; const cnt = {gk: 0, def: 0, mid: 0, fwd: 0}, absent = [];
+      xi.forEach(p => { const d = D.get(p.id); cnt[p.cls]++; if (d.play[s]) t += d.pts[s]; else absent.push(p); });
+      if (absent.some(p => p.cls === 'gk') && gk2 && D.get(gk2.id).play[s]) t += D.get(gk2.id).pts[s];
+      const still = absent.filter(p => p.cls !== 'gk');
+      outB.forEach(b => {
+        const db = D.get(b.id); if (!db.play[s] || !still.length) return;
+        const i = still.findIndex(p => { const c = {...cnt}; c[p.cls]--; c[b.cls]++; return c.def >= 3 && c.mid >= 2 && c.fwd >= 1; });
+        if (i < 0) return;
+        cnt[still[i].cls]--; cnt[b.cls]++; still.splice(i, 1); t += db.pts[s];
+      });
+      let k = 0; if (caps.length > 1) { const u = rnd() * cum[cum.length - 1]; while (k < caps.length - 1 && u > cum[k]) k++; }
+      const c = caps[k], dc = D.get(c.cap.id), dv = c.vice ? D.get(c.vice.id) : null;
+      if (dc.play[s]) t += dc.pts[s]; else if (dv && dv.play[s]) t += dv.pts[s];
+      T[s] += t;
+    }
+    return T;
+  }
+  const winBench = (sq, xi, gi) => [...sq.filter(p => p.cls === 'gk' && !xi.includes(p)), ...sq.filter(p => p.cls !== 'gk' && !xi.includes(p)).sort((a, b) => epAt(b, gi) - epAt(a, gi))];
+  function winCapsOf(L, xi, gi) {
+    const byEp = xi.slice().sort((a, b) => epAt(b, gi) - epAt(a, gi));
+    const capCount = {}; Object.values(LEAGUE_SQUADS).forEach(x => { capCount[x.c] = (capCount[x.c] || 0) + 1; });
+    const popular = FULL_POOL_BY_NAME[Object.keys(capCount).sort((a, b) => capCount[b] - capCount[a])[0]];
+    const raw = [[xi.find(p => p.name === L.c), 0.5, `o capitão dele na J${GW_META.last}`], [popular && xi.find(p => p.id === popular.id), 0.35, 'o mais capitaneado da liga'], [byEp[0], 0.15, 'o de mais pontos esperados']].filter(x => x[0]);
+    const caps = [];
+    raw.forEach(([p, w, why]) => { const ex = caps.find(c => c.cap === p); if (ex) { ex.w += w; ex.why += ' e ' + why; } else caps.push({cap: p, w, why}); });
+    const ws = caps.reduce((s, c) => s + c.w, 0), vc = FULL_POOL_BY_NAME[L.vc];
+    caps.forEach(c => { c.w /= ws; c.vice = vc && xi.includes(vc) && vc !== c.cap ? vc : byEp.find(p => p !== c.cap); });
+    return caps;
+  }
+  // um rival: pontos desta jornada (onze real + capitão sorteado) e das seguintes (melhor onze do plantel dele)
+  function winRival(e, upto) {
+    const L = LEAGUE_SQUADS[e], sq = [...L.s, ...L.b].map(id => FULL_POOL_BY_ID[id]).filter(Boolean);
+    const xi = L.s.map(id => FULL_POOL_BY_ID[id]).filter(Boolean), bench = L.b.map(id => FULL_POOL_BY_ID[id]).filter(Boolean);
+    const caps = winCapsOf(L, xi, 0), O = winTeamVec(xi, bench, caps, 0, 5150 + e % 1000);
+    for (let gi = 1; gi <= upto; gi++) { const X = pickXi(sq, gi); winTeamVec(X.xi, winBench(sq, X.xi, gi), winCapsOf(L, X.xi, gi), gi, 5150 + e % 1000 + gi, O); }
+    const row = LEAGUE_STANDINGS.find(r => r.team === L.tn);
+    return {e, L, xi, bench, caps, O, pts: row ? row.pts : L.tot};
+  }
+  // contexto do objetivo: vetores dos rivais já com a distância atual na liga
+  function winContext(mode, rivals, myPts) {
+    const N = WIN.N;
+    if (mode === 'h2h') return {mode, O: rivals[0].O};
+    if (mode === 'all') { const O = new Float32Array(N).fill(-1e9); rivals.forEach(r => { for (let s = 0; s < N; s++) { const v = r.O[s] + r.pts - myPts; if (v > O[s]) O[s] = v; } }); return {mode, O}; }
+    const R = rivals.length, thr = new Float32Array(N * R), tmp = new Float32Array(R);
+    for (let s = 0; s < N; s++) { rivals.forEach((r, j) => { tmp[j] = r.O[s] + r.pts - myPts; }); tmp.sort(); thr.set(tmp, s * R); }
+    return {mode: 'count', thr, R};
+  }
+  // ---------- procura ----------
+  function winCands(have, gis, oppIds) {
+    const val = p => gis.reduce((s, gi) => s + epAt(p, gi), 0), cand = {};
+    ['gk', 'def', 'mid', 'fwd'].forEach(c => {
+      const L = FULL_POOL.filter(p => p.cls === c && !have.has(p.id) && epAt(p, 0) > 0.5 && (p.status === 'a' || (p.status === 'd' && (p.chance == null ? 50 : p.chance) >= 75)));
+      const top = L.slice().sort((a, b) => val(b) - val(a)).slice(0, 22);
+      const haul = L.slice().sort((a, b) => pAtLeast(b, 0, 10) - pAtLeast(a, 0, 10)).slice(0, 6);
+      cand[c] = [...new Set([...top, ...haul, ...L.filter(p => oppIds.has(p.id))])];
+    });
+    return cand;
+  }
+  // o meu plantel: 0 a maxT trocas, triagem rápida e otimização completa das melhores
+  async function winSolveSquad(mgr, maxT, ctx, upto, tick) {
+    const st = SQUAD_STATE[mgr], sq0 = st.players.map(x => FULL_POOL_BY_ID[x.id]).filter(Boolean);
+    const sell = Object.fromEntries(st.players.map(x => [x.id, x.sell]));
+    const hitsOf = k => 4 * Math.max(0, k - st.ft), have = new Set(sq0.map(p => p.id));
+    const cand = winCands(have, HZ.slice(0, upto + 1).map((_, i) => i), WIN.oppIds);
+    const apply = (outs, ins) => sq0.filter(p => !outs.includes(p)).concat(ins);
+    const money = (outs, ins) => st.bank + outs.reduce((s, p) => s + (sell[p.id] != null ? sell[p.id] : p.price), 0) - ins.reduce((s, p) => s + p.price, 0);
+    const ok = (outs, ins) => {
+      if (new Set(outs).size !== outs.length || new Set(ins).size !== ins.length || money(outs, ins) < -1e-6) return false;
+      const cc = {}; for (const p of apply(outs, ins)) { cc[p.team] = (cc[p.team] || 0) + 1; if (cc[p.team] > 3) return false; }
+      return true;
+    };
+    const full = (outs, ins) => { const sq = apply(outs, ins); return Object.assign(winXi(sq, hitsOf(outs.length), ctx, upto ? winFuture(sq, upto) : null), {outs, ins, k: outs.length, hits: hitsOf(outs.length), sq, bank: +money(outs, ins).toFixed(1)}); };
+    const T = new Float32Array(WIN.N), byK = [full([], [])];
+    let level = [byK[0]], singles = [];
+    for (let k = 1; k <= maxT; k++) {
+      await tick(`a testar ${k === 1 ? 'trocas simples' : k + ' trocas'}…`);
+      const dh = hitsOf(k) - hitsOf(k - 1), q = [];
+      const qv = (base, out, inn) => winQuick(base, out, inn, dh, ctx, T, upto ? winFutEp(apply([...base.outs, out], [...base.ins, inn]), upto) - winFutEp(base.sq, upto) : null);
+      if (k === 1) {
+        sq0.forEach(out => cand[out.cls].forEach(inn => { if (ok([out], [inn])) q.push({outs: [out], ins: [inn], v: qv(byK[0], out, inn)}); }));
+        singles = q.slice().sort((a, b) => b.v - a.v).slice(0, 14);
+      } else {
+        level.forEach(base => singles.forEach(x => {
+          const out = x.outs[0], inn = x.ins[0];
+          if (base.outs.includes(out) || base.ins.includes(inn)) return;
+          const outs = [...base.outs, out], ins = [...base.ins, inn];
+          if (ok(outs, ins)) q.push({outs, ins, v: qv(base, out, inn)});
+        }));
+      }
+      const seen = new Set(), top = q.sort((a, b) => b.v - a.v).filter(x => { const key = x.outs.map(p => p.id).sort() + '|' + x.ins.map(p => p.id).sort(); if (seen.has(key)) return false; seen.add(key); return true; }).slice(0, k === 1 ? 14 : 8);
+      if (!top.length) break;
+      await tick(`a afinar o onze das ${top.length} melhores…`);
+      level = top.map(x => full(x.outs, x.ins)).sort((a, b) => b.v - a.v).slice(0, 4);
+      byK[k] = level[0];
+    }
+    return {byK, best: byK.reduce((b, r) => (r && r.v > b.v + 1e-9 ? r : b), byK[0]), sq0};
+  }
+  // Wildcard / Free Hit: plantel novo dentro do orçamento real, por trocas uma a uma enquanto melhorarem
+  async function winSolveChip(mgr, chip, ctx, upto, tick, seedIds) {
+    const st = SQUAD_STATE[mgr], sq0 = st.players.map(x => FULL_POOL_BY_ID[x.id]).filter(Boolean);
+    const budget = +(st.bank + st.players.reduce((s, x) => s + x.sell, 0)).toFixed(1);
+    const futFixed = chip === 'fh' && upto ? winFuture(sq0, upto) : null;   // Free Hit: nas seguintes volta o plantel atual
+    const futOf = sq => chip === 'fh' ? futFixed : (upto ? winFuture(sq, upto) : null);
+    const gis = chip === 'fh' ? [0] : HZ.slice(0, upto + 1).map((_, i) => i);
+    const cand = winCands(new Set(), gis, WIN.oppIds);
+    const okSq = sq => { if (sq.reduce((s, p) => s + p.price, 0) > budget + 1e-6) return false; const cc = {}; for (const p of sq) { cc[p.team] = (cc[p.team] || 0) + 1; if (cc[p.team] > 3) return false; } return true; };
+    const full = sq => Object.assign(winXi(sq, 0, ctx, futOf(sq)), {sq, outs: sq0.filter(p => !sq.includes(p)), ins: sq.filter(p => !sq0.includes(p)), k: 0, hits: 0, bank: +(budget - sq.reduce((s, p) => s + p.price, 0)).toFixed(1), chip});
+    const starts = [sq0, ...(seedIds || []).map(ids => ids.map(id => FULL_POOL_BY_ID[id]).filter(Boolean))].filter(sq => sq.length === 15 && okSq(sq));
+    let best = null;
+    const T = new Float32Array(WIN.N);
+    for (const s0 of starts) {
+      let cur = full(s0);
+      for (let it = 0; it < 15; it++) {
+        await tick(`a montar o plantel (${it + 1}.ª troca)…`);
+        const q = [], curFut = chip === 'fh' || !upto ? 0 : winFutEp(cur.sq, upto);
+        cur.sq.forEach(out => cand[out.cls].forEach(inn => {
+          if (cur.sq.includes(inn)) return;
+          const sq = cur.sq.map(p => p === out ? inn : p); if (!okSq(sq)) return;
+          q.push({sq, v: winQuick(cur, out, inn, 0, ctx, T, chip === 'fh' || !upto ? null : winFutEp(sq, upto) - curFut)});
+        }));
+        const top = q.sort((a, b) => b.v - a.v).slice(0, 6).map(x => full(x.sq)).sort((a, b) => b.v - a.v)[0];
+        if (!top || top.v <= cur.v + 1e-6) break;
+        cur = top;
+      }
+      if (!best || cur.v > best.v) best = cur;
+    }
+    return {byK: [], best, sq0, budget};
+  }
+  function winFinal(r, ctx, upto, chip, sq0) {
+    const T = new Float32Array(WIN.N).fill(-(r.hits || 0));
+    winTeamVec(r.xi, winBench(r.sq, r.xi, 0), [{cap: r.cap, vice: r.vice, w: 1}], 0, 77, T);
+    const later = chip === 'fh' ? sq0 : r.sq;
+    for (let gi = 1; gi <= upto; gi++) { const X = pickXi(later, gi); winTeamVec(X.xi, winBench(later, X.xi, gi), [{cap: X.cap, vice: X.vice, w: 1}], gi, 77 + gi, T); }
+    let m = 0; for (let s = 0; s < WIN.N; s++) m += T[s];
+    const out = {T, bench: winBench(r.sq, r.xi, 0), v: winObj(T, 0, ctx), mean: m / WIN.N};
+    if (ctx.mode === 'h2h') { let w = 0, d = 0; for (let s = 0; s < WIN.N; s++) { if (T[s] > ctx.O[s]) w++; else if (T[s] === ctx.O[s]) d++; } Object.assign(out, {pw: w / WIN.N, pd: d / WIN.N, pl: 1 - (w + d) / WIN.N}); }
+    return Object.assign(r, out);
+  }
+  function winDecisive(T, ctx, mine, theirs) {
+    const N = WIN.N, val = winOutcome(T, ctx), mineIds = new Set(mine.map(p => p.id)), theirIds = new Set(theirs.map(p => p.id));
+    return [...new Set([...mineIds, ...theirIds])].map(id => {
+      const d = winDraw(id, 0).pts; let nl = 0, wl = 0, nh = 0, wh = 0;
+      for (let s = 0; s < N; s++) { if (d[s] <= 2) { nl++; wl += val[s]; } else if (d[s] >= 6) { nh++; wh += val[s]; } }
+      return {p: FULL_POOL_BY_ID[id], lo: nl ? wl / nl : null, hi: nh ? wh / nh : null, fh: nh / N, side: mineIds.has(id) && theirIds.has(id) ? 'both' : mineIds.has(id) ? 'mine' : 'theirs'};
+    }).filter(x => x.p && x.lo != null && x.hi != null && x.fh >= 0.03).sort((a, b) => Math.abs(b.hi - b.lo) - Math.abs(a.hi - a.lo)).slice(0, 8);
+  }
+  const winPct = v => `${Math.round(v * 100)}%`;
+  const winFmt = (v, mode, R) => mode === 'count' ? `${f1(v)}<small>de ${R}</small>` : winPct(v);
+  const winFmtTxt = (v, mode, R) => mode === 'count' ? `${f1(v)} de ${R}` : winPct(v);
+  // ---------- interface ----------
+  function winChipFree(mgr, chip) {
+    const L = LEAGUE_SQUADS[CMP_ENTRY[mgr]], name = chip === 'wc' ? 'wildcard' : 'freehit';
+    const half = HZ[0] <= 19 ? [1, 19] : [20, 38];
+    return !(L && (L.chips || []).some(([n, g]) => n === name && g >= half[0] && g <= half[1]));
+  }
+  function winDefaults(mgr) {
+    const me = CMP_ENTRY[mgr];
+    const S = LEAGUE_STANDINGS.slice().sort((a, b) => b.pts - a.pts).map(r => ENTRY_OF_TEAM[r.team]).filter(Boolean);
+    const i = S.indexOf(me);
+    return {all: i > 0 ? [S[i - 1]] : [S[1]], count: [...S.slice(Math.max(0, i - 4), i), ...S.slice(i + 1, i + 3)]};
+  }
+  function winSetup(mgr) {
+    const me = CMP_ENTRY[mgr], st = SQUAD_STATE[mgr];
+    const ents = Object.keys(LEAGUE_SQUADS).map(Number).filter(e => e !== me).sort((a, b) => (cmpRank(a) || 99) - (cmpRank(b) || 99));
+    const h2hE = ents.find(e => LEAGUE_SQUADS[e].m === GW_META.h2h[mgr].next);
+    if (WIN.mgr !== mgr) { WIN.mgr = mgr; WIN.oe = h2hE || ents[0]; WIN.sel = winDefaults(mgr); }
+    if (!WIN.sel) WIN.sel = winDefaults(mgr);
+    if ((WIN.start === 'wc' || WIN.start === 'fh') && !winChipFree(mgr, WIN.start)) WIN.start = 'squad';
+    const myRow = LEAGUE_STANDINGS.find(r => ENTRY_OF_TEAM[r.team] === me);
+    const seg = (key, items) => `<div class="seg" role="group" data-k="${key}">${items.map(([v, t, dis]) => `<button type="button" class="seg-btn" data-v="${v}" aria-pressed="${WIN[key] === v}"${dis ? ` disabled title="${dis}"` : ''}>${t}</button>`).join('')}</div>`;
+    const gap = e => { const r = LEAGUE_STANDINGS.find(x => x.team === LEAGUE_SQUADS[e].tn); return r && myRow ? r.pts - myRow.pts : 0; };
+    const el = document.getElementById('win-setup');
+    el.innerHTML = `
+      <div class="card-head"><div><h2>O que queres ganhar</h2><div class="card-sub">${mgr === 'marco' ? 'Xarola Team' : 'Brunorussia FC'} · ${myRow ? myRow.rank + '.º com ' + myRow.pts + ' pts' : ''} · banco £${st.bank.toFixed(1)}M · ${st.ft} transferência${st.ft === 1 ? '' : 's'} grátis para a J${HZ[0]}</div></div></div>
+      <div class="win-form">
+        <div><div class="riv-lbl">Objetivo</div>${seg('mode', [['h2h', `H2H da J${HZ[0]}`], ['all', 'Passar à frente deles até à J…'], ['count', 'Ficar à frente do maior número']])}</div>
+        <div><div class="riv-lbl">Ponto de partida</div>${seg('start', [['squad', WIN_STARTS.squad], ['wc', 'Wildcard', winChipFree(mgr, 'wc') ? '' : 'Já usaste o Wildcard desta metade da época'], ['fh', 'Free Hit', winChipFree(mgr, 'fh') ? '' : 'Já usaste o Free Hit desta metade da época']])}</div>
+        ${WIN.mode === 'h2h' ? `
+        <div class="win-row"><label><span class="riv-lbl">Contra</span><select id="win-opp">${ents.map(e => `<option value="${e}"${e === WIN.oe ? ' selected' : ''}>${cmpRank(e) || '?'}.º ${LEAGUE_SQUADS[e].m} · ${LEAGUE_SQUADS[e].tn}${e === h2hE ? ` (o teu adversário H2H da J${HZ[0]})` : ''}</option>`).join('')}</select></label></div>` : `
+        <div><div class="riv-lbl">${WIN.mode === 'all' ? 'Passar à frente de (todos os escolhidos)' : 'Contra quem contar'} · toca para juntar ou tirar</div>
+          <div class="riv-pick">${ents.map(e => { const g = gap(e); return `<button type="button" class="riv-tog win-tog" aria-pressed="${WIN.sel[WIN.mode].includes(e)}" data-e="${e}">${cmpRank(e)}.º ${LEAGUE_SQUADS[e].m} <span class="note">${g > 0 ? '+' + g : g < 0 ? '−' + -g : '='}</span></button>`; }).join('')}</div></div>`}
+        <div class="win-row">
+          ${WIN.mode !== 'h2h' ? `<label><span class="riv-lbl">Até ao fim da</span><select id="win-upto">${HZ.map((g, i) => `<option value="${i}"${i === WIN.upto ? ' selected' : ''}>J${g}${i ? ` (${i + 1} jornadas)` : ' (só esta)'}</option>`).join('')}</select></label>` : ''}
+          ${WIN.start === 'squad' ? `<label><span class="riv-lbl">Trocas a testar</span><select id="win-maxt">${[0, 1, 2, 3].map(k => `<option value="${k}"${k === WIN.maxT ? ' selected' : ''}>${k === 0 ? 'nenhuma (só onze e capitão)' : 'até ' + k}${k > st.ft ? ' (com hits de −4)' : ''}</option>`).join('')}</select></label>` : `<p class="note" style="margin:0;align-self:end">${WIN.start === 'wc' ? 'Wildcard: plantel novo para ficar, ' : 'Free Hit: plantel novo só para a J' + HZ[0] + ', '}orçamento real £${(st.bank + st.players.reduce((s, x) => s + x.sell, 0)).toFixed(1)}M (preços de venda + banco), sem hits.${typeof CHIP_PLAN !== 'undefined' ? ' Usar agora muda o plano de chips (Decisões › Chips).' : ''}</p>`}
+        </div>
+      </div>`;
+    el.querySelectorAll('.seg[data-k] .seg-btn').forEach(b => b.addEventListener('click', () => { if (b.disabled) return; WIN[b.parentElement.dataset.k] = b.dataset.v; renderWin(); }));
+    el.querySelectorAll('.win-tog').forEach(b => b.addEventListener('click', () => { const e = +b.dataset.e, L = WIN.sel[WIN.mode]; WIN.sel[WIN.mode] = L.includes(e) ? L.filter(x => x !== e) : [...L, e]; renderWin(); }));
+    const on = (id, f) => { const x = el.querySelector(id); if (x) x.addEventListener('change', e => { f(+e.target.value); renderWin(); }); };
+    on('#win-opp', v => { WIN.oe = v; }); on('#win-maxt', v => { WIN.maxT = v; }); on('#win-upto', v => { WIN.upto = v; });
+  }
+  async function renderWin() {
+    const root = document.getElementById('win-root'); if (!root || !WIN) return;
+    const mgr = curMgr(); winSetup(mgr);
+    const mode = WIN.mode, chip = WIN.start === 'squad' ? null : WIN.start, upto = mode === 'h2h' ? 0 : WIN.upto;
+    const ids = mode === 'h2h' ? [WIN.oe] : WIN.sel[mode];
+    if (!ids.length) { root.innerHTML = '<section class="card"><p class="prose">Escolhe pelo menos um treinador.</p></section>'; return; }
+    const run = ++WIN.run, t0 = performance.now();
+    const status = txt => { root.innerHTML = `<section class="card"><div class="skel"><span></span><span></span><span></span></div><p class="prose">A simular ${WIN.N.toLocaleString('pt-PT')} cenários${upto ? ` da J${HZ[0]} à J${HZ[upto]}` : ` da J${HZ[0]}`}: ${txt}</p></section>`; };
+    const tick = async txt => { status(txt); await new Promise(r => setTimeout(r, 0)); if (run !== WIN.run) throw new Error('stale'); };
+    const quiet = async () => { await new Promise(r => setTimeout(r, 0)); if (run !== WIN.run) throw new Error('stale'); };
+    try {
+      WIN.draws = new Map();
+      await tick('a preparar os rivais…');
+      const me = CMP_ENTRY[mgr], myRow = LEAGUE_STANDINGS.find(r => ENTRY_OF_TEAM[r.team] === me), myPts = myRow ? myRow.pts : LEAGUE_SQUADS[me].tot;
+      const rivals = ids.map(e => winRival(e, upto));
+      WIN.oppIds = new Set(rivals.flatMap(r => [...r.xi, ...r.bench]).map(p => p.id));
+      const ctx = winContext(mode, rivals, myPts), epCtx = {mode: 'ep'};
+      let sol, epSol, seeds = null;
+      if (chip) {
+        await tick('a procurar a equipa de mais pontos esperados…');
+        const st = SQUAD_STATE[mgr], budget = st.bank + st.players.reduce((s, x) => s + x.sell, 0);
+        const ideal = optimizeTeam({budget, gis: chip === 'fh' ? [0] : HZ.slice(0, upto + 1).map((_, i) => i), iters: 2, seeds: [st.players.map(x => x.id)]});
+        seeds = ideal ? [ideal.ids] : [];
+        sol = await winSolveChip(mgr, chip, ctx, upto, tick, seeds);
+        epSol = await winSolveChip(mgr, chip, epCtx, upto, quiet, seeds);
+      } else {
+        sol = await winSolveSquad(mgr, WIN.maxT, ctx, upto, tick);
+        await tick('a procurar a equipa de mais pontos esperados…');
+        epSol = await winSolveSquad(mgr, WIN.maxT, epCtx, upto, quiet);
+      }
+      const sq0 = SQUAD_STATE[mgr].players.map(x => FULL_POOL_BY_ID[x.id]).filter(Boolean), X0 = pickXi(sq0, 0);
+      const before = winFinal({xi: X0.xi, cap: X0.cap, vice: X0.vice, sq: sq0, hits: 0, outs: [], ins: [], k: 0}, ctx, upto, null, sq0);
+      let after = winFinal(sol.best, ctx, upto, chip, sq0);
+      const epBest = winFinal(epSol.best, ctx, upto, chip, sq0);
+      sol.byK.forEach(r => { if (r && r !== sol.best) winFinal(r, ctx, upto, chip, sq0); });
+      // só se afasta da equipa de mais pontos quando ganha mais do que o ruído da simulação
+      const tol = mode === 'count' ? 0.1 : 0.02;
+      if (after !== epBest && after.v - epBest.v < tol) { WIN.noiseAlt = after; after = epBest; } else WIN.noiseAlt = null;
+      const dec = winDecisive(after.T, ctx, after.xi, rivals.slice(0, 3).flatMap(r => r.xi));
+      const per = rivals.map(r => { let b = 0, a = 0, ob = 0; for (let s = 0; s < WIN.N; s++) { const th = r.O[s] + r.pts - myPts; if (before.T[s] > th) b++; if (after.T[s] > th) a++; ob += r.O[s]; } return {r, pb: b / WIN.N, pa: a / WIN.N, om: ob / WIN.N}; });
+      if (run !== WIN.run) return;
+      WIN.last = {after, epBest, before, chip, budget: sol.budget};
+      root.innerHTML = winHtml({mgr, mode, chip, upto, rivals, per, myPts, before, after, epBest, sol, dec, ms: Math.round(performance.now() - t0), R: rivals.length});
+    } catch (e) { if (e.message !== 'stale') { console.error(e); root.innerHTML = '<section class="card"><p class="prose">Não consegui fazer a simulação.</p></section>'; } }
+  }
+  function winHtml(X) {
+    const {mgr, mode, chip, upto, rivals, per, before, after, epBest, sol, dec, ms, R} = X;
+    const kpi = (label, value, hint) => `<div class="kpi"><div class="label">${label}</div><div class="value">${value}</div><div class="hint">${hint}</div></div>`;
+    const names = rivals.map(r => r.L.m), who = names.length === 1 ? names[0] : names.length === 2 ? names.join(' e ') : `${names.length} treinadores`;
+    const until = upto ? `no fim da J${HZ[upto]}` : `na J${HZ[0]}`;
+    const goal = mode === 'h2h' ? `ganhar a ${who} na J${HZ[0]}` : mode === 'all' ? `estar à frente de ${who} ${until}` : `ficar à frente do maior número de ${who} ${until}`;
+    const vTxt = v => winFmtTxt(v, mode, R), gainPP = mode === 'count' ? sgn(after.v - before.v) : `${after.v - before.v >= 0.005 ? '+' : ''}${Math.round((after.v - before.v) * 100)}<small>pp</small>`;
+    const vsEp = after.v - epBest.v;
+    const moves = r => r.outs.map((o, i) => `${shortName(o.name)} → ${shortName(r.ins[i].name)}`).join(', ');
+    const same = (a, b) => a.sq.every(p => b.sq.includes(p)) && a.cap === b.cap && a.xi.every(p => b.xi.includes(p));
+    const sellOf = id => (SQUAD_STATE[mgr].players.find(x => x.id === id) || {}).sell;
+    const capOf = new Map(rivals[0].caps.map(c => [c.cap.id, c]));
+    const what = chip ? `<b>${chip === 'wc' ? 'Wildcard' : 'Free Hit'}</b>: ${after.outs.length} saídas e ${after.ins.length} entradas · sobra £${after.bank.toFixed(1)}M${chip === 'fh' ? ` · o plantel atual volta na J${HZ[1]}` : ''}.`
+      : after.k ? `<b>${after.k === 1 ? 'Troca' : after.k + ' trocas'}:</b> ${moves(after)}${after.hits ? ` (custa <b>−${after.hits}</b>)` : ' (grátis)'} · banco depois £${after.bank.toFixed(1)}M.` : '<b>Sem trocas</b>: o plantel atual já é a melhor opção para este objetivo.';
+    const decVal = v => mode === 'count' ? `${f1(v)}` : winPct(v);
+    return `
+      <div class="kpis">
+        ${kpi(mode === 'h2h' ? 'Probabilidade de ganhar' : mode === 'all' ? `À frente de todos ${until}` : `À frente de, em média`, winFmt(after.v, mode, R), `antes ${vTxt(before.v)}${mode === 'h2h' ? ` · empate ${winPct(after.pd)} · derrota ${winPct(after.pl)}` : ''}`)}
+        ${kpi('Ganho', gainPP, `face ao plantel atual com o onze e capitão da app${mode === 'h2h' ? ' (vitória + ⅓ do empate)' : ''}`)}
+        ${kpi(upto ? `Pontos esperados J${HZ[0]}-J${HZ[upto]}` : 'Pontos esperados', f1(after.mean), `a equipa de mais pontos ≈ ${f1(epBest.mean)}${mode === 'h2h' ? ` · ele ≈ ${f1(per[0].om)}` : ''}`)}
+        ${kpi('Contra a equipa de mais pontos', mode === 'count' ? `${vsEp >= 0 ? '+' : '−'}${f1(Math.abs(vsEp))}` : `${vsEp >= 0.005 ? '+' : ''}${Math.round(vsEp * 100)}<small>pp</small>`, `essa equipa: ${vTxt(epBest.v)} com ${f1(epBest.mean)} pts esperados`)}
+      </div>
+      <section class="card feature">
+        <div class="card-head"><div><h2>O que fazer para ${goal}</h2><div class="card-sub">${WIN_STARTS[WIN.start]} · simulação de ${WIN.N.toLocaleString('pt-PT')} cenários${upto ? ` da J${HZ[0]} à J${HZ[upto]}` : ''} (${ms} ms)</div></div></div>
+        <p class="prose">${what} Capitão na J${HZ[0]}: <b>${shortName(after.cap.name)}</b>${after.vice ? `, vice ${shortName(after.vice.name)}` : ''}. ${mode === 'count' ? 'À frente de, em média' : 'Probabilidade'}: ${vTxt(before.v)} → <b>${vTxt(after.v)}</b>.</p>
+        ${WIN.noiseAlt ? `<p class="prose">É a equipa com mais pontos esperados. A melhor alternativa para o objetivo (${WIN.noiseAlt.k ? moves(WIN.noiseAlt) + ', ' : ''}capitão ${shortName(WIN.noiseAlt.cap.name)}) daria ${vTxt(WIN.noiseAlt.v)}: diferença dentro da margem de erro da simulação, por isso fica a dos pontos.</p>`
+          : same(after, epBest) ? '<p class="prose">É também a equipa com mais pontos esperados: aqui não há conflito entre jogar pelos pontos e jogar pelo objetivo.</p>'
+          : `<p class="prose">A equipa de mais pontos esperados (${chip ? 'outro plantel' : epBest.k ? moves(epBest) + (epBest.hits ? ` (−${epBest.hits})` : '') : 'sem trocas'}, capitão ${shortName(epBest.cap.name)}) teria ${f1(epBest.mean)} pts esperados (${sgn(epBest.mean - after.mean)}) mas só ${vTxt(epBest.v)}. A diferença vem dos jogadores que eles também têm: com eles anulam-se, e o que decide são os que só um lado tem.</p>`}
+        ${upto ? `<div class="callout"><span class="icon">!</span><div class="body"><p>Na simulação só tu decides esta semana; os rivais ficam com os plantéis que têm até à J${HZ[upto]}. Na prática eles também vão fazer trocas${chip === 'wc' ? ' (e tu também, depois do Wildcard)' : ''}, por isso quanto mais longe a jornada, mais otimista é este valor. Serve sobretudo para comparar opções entre si.</p></div></div>` : ''}
+        ${after.ins.length ? `<div class="riv-lbl" style="margin-top:8px">Entram</div>` + playerCards(after.ins, (p, i) => ({mine: false, note: chip ? 'entra' : `entra · sai ${shortName(after.outs[i].name)} (£${sellOf(after.outs[i].id) ?? after.outs[i].price}M)`})) : ''}
+        ${chip && after.outs.length ? `<p class="note">Saem: ${after.outs.map(p => shortName(p.name)).join(', ')}.</p>` : ''}
+      </section>
+      ${!chip && sol.byK.length ? `
+      <section class="card">
+        <div class="card-head"><div><h2>Quantas trocas compensam</h2><div class="card-sub">A melhor opção com cada número de trocas (−4 por cada uma além das grátis).</div></div></div>
+        <div class="table-scroll"><table class="form no-cards">
+          <thead><tr><th>Trocas</th><th>O quê</th><th class="num">${mode === 'count' ? 'À frente' : 'Prob.'}</th><th class="num">Pts esp.</th></tr></thead>
+          <tbody>${sol.byK.filter(Boolean).map(r => (WIN.noiseAlt && r === WIN.noiseAlt && after.k === r.k ? after : r)).map(r => `<tr class="${r === after ? 'me-row' : ''}"><td>${r.k}${r.hits ? ` <span class="note">(−${r.hits})</span>` : ''}</td><td>${r.k ? moves(r) : 'só onze e capitão'} · C ${shortName(r.cap.name)}</td><td class="num"><b>${vTxt(r.v)}</b></td><td class="num">${f1(r.mean)}</td></tr>`).join('')}</tbody>
+        </table></div>
+      </section>` : ''}
+      ${mode !== 'h2h' ? `
+      <section class="card">
+        <div class="card-head"><div><h2>Rival a rival</h2><div class="card-sub">Probabilidade de estares à frente de cada um ${until}, antes e depois.</div></div></div>
+        <div class="table-scroll"><table class="form no-cards">
+          <thead><tr><th>Treinador</th><th class="num">Distância</th><th class="num">Antes</th><th class="num">Depois</th></tr></thead>
+          <tbody>${per.slice().sort((a, b) => b.r.pts - a.r.pts).map(x => `<tr><td><b>${x.r.L.m}</b><span class="note" style="display:block">${x.r.L.tn} · ${cmpRank(x.r.e)}.º</span></td><td class="num">${x.r.pts - X.myPts > 0 ? '+' : x.r.pts - X.myPts < 0 ? '−' : ''}${Math.abs(x.r.pts - X.myPts)}</td><td class="num">${winPct(x.pb)}</td><td class="num"><b class="${x.pa > x.pb + 0.005 ? 'up' : x.pa < x.pb - 0.005 ? 'down' : ''}">${winPct(x.pa)}</b></td></tr>`).join('')}</tbody>
+        </table></div>
+        <p class="note">Distância = pontos dele menos os teus na liga clássica hoje. Nas jornadas seguintes os rivais jogam com o melhor onze do plantel que têm (não sabemos que trocas vão fazer).</p>
+      </section>` : ''}
+      <section class="card">
+        <div class="card-head"><div><h2>O teu onze para a J${HZ[0]}</h2><div class="card-sub">Escolhido para o objetivo; o banco pela ordem das substituições.</div></div></div>
+        ${playerCards([...after.xi.slice().sort((a, b) => POS_ORDER[a.cls] - POS_ORDER[b.cls]), ...after.bench], (p, i) => ({cap: p === after.cap, vice: p === after.vice, mine: false, note: i >= 11 ? `banco ${i - 10}` : (mode === 'h2h' && rivals[0].xi.some(q => q.id === p.id) ? 'ele também tem: anulam-se' : '')}))}
+      </section>
+      <section class="card">
+        <div class="card-head"><div><h2>Quem decide</h2><div class="card-sub">${mode === 'count' ? 'Rivais à frente de quem ficas, em média,' : 'Probabilidade'} se o jogador fizer 2 pontos ou menos na J${HZ[0]}, e se fizer 6 ou mais.</div></div></div>
+        ${dec.length ? playerCards(dec.map(x => x.p), (p, i) => { const x = dec[i]; return {mine: false, cap: p === after.cap, note: x.side === 'mine' ? 'só tu tens' : x.side === 'theirs' ? `só ${mode === 'h2h' ? rivals[0].L.m : 'os rivais'} ${mode === 'h2h' ? 'tem' : 'têm'}${mode === 'h2h' && capOf.has(p.id) ? ` · capitão dele em ${winPct(capOf.get(p.id).w)}` : ''}` : 'tu e eles (pesa pelo capitão ou pelo banco)',
+          extra: `<span class="note">≤2 pts</span> <b>${decVal(x.lo)}</b><br><span class="note">6+ pts</span> <b class="${x.hi > x.lo ? 'up' : 'down'}">${decVal(x.hi)}</b>`}; }) : '<p class="note">Nenhum jogador muda o resultado o suficiente.</p>'}
+      </section>
+      ${mode === 'h2h' ? `
+      <section class="card">
+        <div class="card-head"><div><h2>A equipa de ${rivals[0].L.m}</h2><div class="card-sub">Onze da J${GW_META.last} e capitão provável: ${rivals[0].caps.map(c => `${shortName(c.cap.name)} ${winPct(c.w)}`).join(' · ')}. Pontos esperados ≈ ${f1(per[0].om)}.</div></div></div>
+        ${playerCards([...rivals[0].xi.slice().sort((a, b) => POS_ORDER[a.cls] - POS_ORDER[b.cls]), ...rivals[0].bench], (p, i) => ({mine: false, cap: p === rivals[0].caps.slice().sort((a, b) => b.w - a.w)[0].cap, note: i >= 11 ? `banco ${i - 10}` : capOf.has(p.id) ? `capitão em ${winPct(capOf.get(p.id).w)} dos cenários (${capOf.get(p.id).why})` : (after.xi.some(q => q.id === p.id) ? 'tu também tens' : '')}))}
+      </section>` : ''}
+      <p class="note">Como funciona: em cada cenário cada jogador joga com a probabilidade de jogar da app e, se jogar, faz pontos tirados da distribuição real de pontuações por posição (J1-J${GW_META.last}), à volta dos pontos esperados dele. O mesmo jogador faz os mesmos pontos em todos os plantéis. Contam as substituições automáticas e o vice. Rivais: nesta jornada o onze da última e um capitão sorteado; ${upto ? 'nas seguintes o melhor onze do plantel dele; ' : ''}sem trocas nem chips (não sabemos o que vão fazer). ${upto ? 'Do teu lado, nas jornadas seguintes conta o melhor onze do plantel que fica, sem mais trocas. ' : ''}Não contamos a ligação entre jogadores da mesma equipa (golos e balizas a zero), por isso os valores são aproximados (±2 pp). ${mode === 'h2h' ? 'O objetivo é vitória + ⅓ do empate, como na tabela H2H.' : mode === 'all' ? 'Empatar em pontos não conta como passar à frente.' : ''}</p>`;
+  }
+  lazyRender('ganhar', renderWin);
 
   // ===== Navegação: menu lateral (áreas) + sub-abas (temas dentro de cada área) =====
   const views = [...document.querySelectorAll('.view[data-view]')];
