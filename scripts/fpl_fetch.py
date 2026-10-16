@@ -1,5 +1,6 @@
 """Recolhe da API oficial da FPL o que a app precisa para se atualizar sozinha no GitHub Pages
-e escreve live.json na raiz do repositório.
+e escreve live.json na raiz do repositório. Escreve também rivals.json (previsão dos rivais): histórico completo
+de transferências, capitão/vice/chip/onze de cada jornada jogada, chips e o mercado da semana (mais comprados).
 
 Corre numa GitHub Action (ver .github/workflows/fpl-update.yml). Só usa a biblioteca padrão do Python.
 Para testar contra outro servidor: FPL_BASE=http://localhost:8000/api/ python scripts/fpl_fetch.py
@@ -15,6 +16,7 @@ BASE = os.environ.get('FPL_BASE', 'https://fantasy.premierleague.com/api/')
 CLASSIC = int(os.environ.get('FPL_CLASSIC', '457722'))
 H2H = int(os.environ.get('FPL_H2H', '457789'))
 OUT = os.environ.get('FPL_OUT', 'live.json')
+RIVALS = os.environ.get('FPL_RIVALS', 'rivals.json')
 UA = {'User-Agent': 'Mozilla/5.0 (fpl-app updater; github actions)', 'Accept': 'application/json'}
 
 
@@ -54,7 +56,7 @@ def main():
     if not standings:
         raise RuntimeError('classificação vazia')
 
-    entries = {}
+    entries, raw = {}, {}
     for r in standings:
         e = r['entry']
         hist = get(f'entry/{e}/history/?gw={cur}&t={stamp}')
@@ -86,6 +88,7 @@ def main():
                            'in_cost': t.get('element_in_cost'), 'out_cost': t.get('element_out_cost'), 'time': t.get('time')}
                           for t in sorted(trans, key=lambda t: t.get('time') or '', reverse=True)[:10]],
         }
+        raw[e] = {'r': r, 'hist': hist, 'trans': trans, 'picks': picks}
         # verificação: o total do histórico tem de bater com a classificação
         hs = entries[e]['history']
         if hs and hs[-1]['total_points'] != r['total'] and hs[-1]['event'] == cur:
@@ -121,6 +124,80 @@ def main():
     with open(OUT, 'w', encoding='utf-8') as f:
         json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
     print(f'live.json: J{cur} (última fechada J{last_finished}), {len(standings)} gestores, {len(elements)} jogadores')
+    write_rivals(stamp, events, cur, last_finished, boot, raw)
+
+
+def pick_summary(pk):
+    ps = sorted(pk['picks'], key=lambda x: x['position'])
+    return {'c': next((x['element'] for x in ps if x.get('is_captain')), None),
+            'v': next((x['element'] for x in ps if x.get('is_vice_captain')), None),
+            'chip': pk.get('active_chip'),
+            's': [x['element'] for x in ps if x['position'] <= 11],
+            'b': [x['element'] for x in ps if x['position'] > 11],
+            'auto': [[a['element_in'], a['element_out']] for a in pk.get('automatic_subs', [])]}
+
+
+def write_rivals(stamp, events, cur, last_finished, boot, raw):
+    """rivals.json: o que é preciso para prever o que cada rival vai fazer.
+    As jornadas já fechadas e confirmadas (data_checked) ficam guardadas e não voltam a ser pedidas à API."""
+    try:
+        old = json.load(open(RIVALS, encoding='utf-8'))
+    except (OSError, ValueError):
+        old = {}
+    checked = {e['id'] for e in events if e.get('data_checked')}
+    started = [e['id'] for e in events if e.get('finished') or e.get('is_current') or e.get('data_checked')]
+    out_e = {}
+    for e, x in raw.items():
+        prev = (old.get('entries') or {}).get(str(e), {})
+        gws = {int(k): v for k, v in (prev.get('gws') or {}).items() if v.get('final')}
+        for g in started:
+            if g in gws:
+                continue
+            pk = x['picks'] if g == cur and x['picks'] else None
+            if pk is None:
+                try:
+                    pk = get(f'entry/{e}/event/{g}/picks/?t={stamp}')
+                except RuntimeError:
+                    continue
+                time.sleep(0.3)
+            if pk and pk.get('picks'):
+                gws[g] = dict(pick_summary(pk), final=g in checked)
+        hist = x['hist']
+        h_rows = [[h['event'], h['points'], h['total_points'], h.get('event_transfers', 0), h.get('event_transfers_cost', 0),
+                   h['bank'], h['value'], h.get('points_on_bench', 0), h.get('overall_rank')] for h in hist.get('current', [])]
+        tr = sorted(x['trans'] or [], key=lambda t: (t.get('event') or 0, t.get('time') or ''))
+        tr_rows = [[t['event'], t['element_in'], t['element_out'], t.get('element_in_cost'), t.get('element_out_cost'), t.get('time')] for t in tr]
+        if not tr_rows and prev.get('transfers'):
+            tr_rows = prev['transfers']   # o pedido falhou ou veio vazio: fica a lista da última vez
+        # nas jornadas de Wildcard e Free Hit o histórico da FPL mostra 0 transferências, mas a lista tem-nas todas
+        chip_gw = {g for g, v in gws.items() if v.get('chip') in ('wildcard', 'freehit')}
+        n_hist = sum(h[3] for h in h_rows)
+        n_list = sum(1 for t in tr_rows if t[0] not in chip_gw)
+        out_e[str(e)] = {
+            'name': x['r']['entry_name'], 'player': x['r']['player_name'],
+            'history': h_rows,
+            'chips': [[c['name'], c['event']] for c in hist.get('chips', [])],
+            'transfers': tr_rows,
+            'gws': {str(g): v for g, v in sorted(gws.items())},
+            # verificação (nona lição): o número de transferências da lista tem de bater com o histórico
+            'check': {'transfers_api': len(tr_rows), 'transfers_api_sem_wc_fh': n_list, 'transfers_history': n_hist},
+        }
+        if n_list != n_hist:
+            print(f'aviso: {e} tem {n_list} transferências na lista (sem Wildcard/Free Hit) e {n_hist} no histórico', file=sys.stderr)
+    # mercado: transferências desde o último deadline contam para a próxima jornada (fica a leitura mais recente)
+    nxt = next((ev['id'] for ev in events if ev.get('is_next')), (cur or 0) + 1)
+    market = dict(old.get('market') or {})
+    els = boot['elements']
+    market[str(nxt)] = {'at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'src': 'api',
+                        'in': [[x['id'], x.get('transfers_in_event', 0)] for x in sorted(els, key=lambda x: -x.get('transfers_in_event', 0))[:40]],
+                        'out': [[x['id'], x.get('transfers_out_event', 0)] for x in sorted(els, key=lambda x: -x.get('transfers_out_event', 0))[:40]]}
+    out = {'generated': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'current_event': cur, 'last_finished': last_finished,
+           'next_event': nxt, 'entries': out_e, 'market': dict(sorted(market.items(), key=lambda kv: int(kv[0])))}
+    with open(RIVALS, 'w', encoding='utf-8', newline='\n') as f:
+        json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
+    bad = [e for e, v in out_e.items() if v['check']['transfers_api_sem_wc_fh'] != v['check']['transfers_history']]
+    print(f'rivals.json: {len(out_e)} gestores, jornadas {min(started) if started else "-"}-{max(started) if started else "-"}, '
+          f'{sum(len(v["transfers"]) for v in out_e.values())} transferências, mercado da J{nxt}' + (f', {len(bad)} com contagem diferente' if bad else ''))
 
 
 if __name__ == '__main__':
