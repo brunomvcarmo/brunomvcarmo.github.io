@@ -1349,6 +1349,27 @@
     .set-pop { right: auto; left: 0; }
     .mfav .fav-chip { flex: 0 0 auto; font-size: 12.5px; }
   }
+  /* V49: tutorial */
+  .tut-ov { position: fixed; inset: 0; z-index: 900; background: transparent; }
+  .tut-ov.dim { background: rgba(12, 9, 18, .55); }
+  .tut-spot { position: fixed; z-index: 901; pointer-events: none; border: 2px solid var(--accent); border-radius: 10px; box-shadow: 0 0 0 200vmax rgba(12, 9, 18, .62); transition: all .18s ease; }
+  .tut-box { position: fixed; z-index: 902; width: min(390px, calc(100vw - 24px)); background: var(--surface); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 12px; box-shadow: var(--shadow); padding: 14px 16px; }
+  .tut-box h3 { margin: 2px 0 6px; font-size: 18px; }
+  .tut-box p { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+  .tut-prog { font-size: 11.5px; color: var(--muted); }
+  .tut-a { display: flex; justify-content: space-between; gap: 8px; }
+  .tut-b { display: flex; justify-content: space-between; gap: 8px; margin-top: 10px; font-size: 13px; }
+  .tut-b .linklike:disabled { opacity: .4; cursor: default; }
+  .tut-idx { display: grid; gap: 4px; margin-top: 8px; }
+  .tut-ci { font: inherit; font-size: 13px; text-align: left; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); border-radius: 6px; padding: 5px 8px; cursor: pointer; }
+  .tut-ci.on { border-color: var(--accent-mid); background: var(--accent-weak); color: var(--accent-strong); }
+  .tut-box.mob.mob-top { top: 8px; bottom: auto; }
+  .tut-wel { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .tut-wb { display: grid; gap: 8px; }
+  .tut-wb .btn { justify-content: space-between; display: flex; }
+  .tut-box.mob, .tut-wel.mob { left: 8px; right: 8px; bottom: 8px; top: auto; width: auto; transform: none; max-height: 46vh; overflow-y: auto; }
+  @media (max-width: 960px) { .tut-wel { left: 8px; right: 8px; bottom: 8px; top: auto; width: auto; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .tut-spot { transition: none; } }
 </style>
 </head>
 <body>
@@ -8852,39 +8873,249 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   }
 
   // ---------- Guia de primeira utilização ----------
-  const TOUR = [
-    {sel: '#todo', t: 'O que fazer esta semana', d: 'Começa sempre aqui: a transferência, o capitão e o onze sugeridos para a próxima jornada, com botões para ver os detalhes.'},
-    {sel: '.mnav, .nav', t: 'As cinco áreas', d: APP_AREAS.filter(a => a.v !== 'avancado').map(a => `<b>${a.n}</b>: ${a.subs.join(', ')}.`).join('<br>') + '<br>O <b>Avançado</b> (simulador, tabelas e regras) fica no fim do menu e no rodapé.'},
-    {sel: '#srch', t: 'Procurar', d: 'Escreve o que procuras: uma ferramenta ("capitão", "wildcard", "dinheiro"), um jogador (abre a ficha) ou um gestor da liga (abre Comparar equipas). No computador, a tecla / abre a pesquisa.'},
-    {sel: '.mswitch', t: 'Bruno ou Marco', d: 'Troca aqui entre as duas equipas. Tudo na app passa a ser sobre a equipa escolhida.'},
-    {sel: '#set-btn', t: 'Definições e atalhos', d: 'Em ⚙ escolhes o modo simples (só o essencial) ou completo, o tema claro ou escuro, e revês este guia. Toca na ☆ ao lado de um título para o pores nos teus atalhos. E em qualquer sítio, toca no nome de um jogador para abrires a ficha.'},
+  // ===================================================================
+  // V49 (16 out 2026) — Tutorial completo (substitui o guia de 5 passos da V39).
+  // Capítulos e passos assentam no índice do Procurar (APP_INDEX: ix = 'area/separador'); cada passo tem a versão
+  // em que a funcionalidade apareceu (since), para as boas-vindas oferecerem "Ver o que há de novo".
+  // localStorage: fpl-tour-done = versão vista ('V49'…), "off" = nunca oferecer (testes), true = guia antigo (≈ V46);
+  // fpl-tour-pos = onde parei. REGRA: cada funcionalidade nova leva o seu passo aqui (com since).
+  // ===================================================================
+  var APP_VERSION = 'V49';
+  var TUT = {list: [], i: 0, mode: 'full', active: false, miss: []};
+  const tutN = v => +(String(v || '').replace(/\D/g, '')) || 0;
+  const tutSleep = ms => new Promise(r => setTimeout(r, ms));
+  function tutSafe(fn, dflt) { try { const v = fn(); return v == null || v === '' ? dflt : v; } catch (e) { return dflt; } }
+  const tutMe = () => CMP_ENTRY[curMgr()];
+  const tutTeam = () => curMgr() === 'marco' ? 'Xarola Team' : 'Brunorussia FC';
+  const tutXi = () => pickXi(squadOf(curMgr()).filter(Boolean), 0);
+  const tutRow = () => LEAGUE_STANDINGS.find(r => r.team === LEAGUE_SQUADS[tutMe()].tn) || {};
+  const TUT_CH = [
+    {id: 'comecar', t: 'Começar', steps: [
+      {id: 'procurar', ix: 'semana/resumo', since: 'V47', sel: '#srch-q, #srch-btn', t: 'Procurar', d: () => `Escreve o que procuras: uma ferramenta ("capitão", "wildcard", "dinheiro"), um jogador (ex.: "${tutSafe(() => shortName(tutXi().cap.name), 'Haaland')}") ou um gestor da liga. No computador, a tecla / abre a pesquisa.`},
+      {id: 'menu', ix: 'semana/resumo', since: 'V47', sel: '.mnav, .nav', t: 'As 5 áreas', d: () => `Esta semana (o que fazer), Jogos, Rivais, Jogadores e A minha época. Dentro de cada área há uma fila de separadores.`},
+      {id: 'gestor', ix: 'semana/resumo', since: 'V13', sel: '#manager-switch', t: 'Bruno ou Marco', d: () => `Escolhe a equipa: Brunorussia FC ou Xarola Team. Tudo na app passa a ser sobre essa equipa (agora: ${tutTeam()}).`},
+      {id: 'ficha', ix: 'semana/resumo', since: 'V27', sel: '#todo .player-name, #todo [data-pid], .pcard', t: 'Ficha do jogador', d: () => `Toca no nome de qualquer jogador (ex.: ${tutSafe(() => tutXi().cap.name, 'o capitão')}) para abrires a ficha: pontos, jogos, preço e o que dizem os sites.`},
+      {id: 'gloss', ix: 'semana/onze', since: 'V37', sel: '.qbtn', t: 'Botões "?"', d: () => 'Os botões "?" explicam as palavras difíceis (EO, xG, pontos esperados…) sem sair do sítio.'},
+      {id: 'sino', ix: 'semana/resumo', since: 'V31', sel: '#bell-btn', t: 'Sino de avisos', d: () => `O número no sino são os avisos importantes (lesões, onzes, preços). Agora: ${tutSafe(() => buildAlerts().filter(a => a.sev >= 2).length, 0)}. Tocar leva-te à lista.`},
+      {id: 'defs', ix: 'semana/resumo', since: 'V48', sel: '#set-btn', t: 'Definições', d: () => 'Em ⚙ escolhes o modo simples (só o essencial) ou completo, o tema claro ou escuro, e voltas a este tutorial.'},
+      {id: 'faixa', ix: 'semana/resumo', since: 'V30', opt: true, sel: '#live-banner', t: 'Atualização automática', d: () => 'A faixa verde diz quando os dados oficiais (classificação, plantéis, preços, lesões) foram atualizados sozinhos.'},
+      {id: 'atalhos', ix: 'semana/resumo', since: 'V48', sel: '#fav-card', t: 'Atalhos e recentes', d: () => 'Toca na ☆ ao lado de um título para o guardares aqui. "Usaste recentemente" mostra os 3 últimos sítios. Separado para o Bruno e o Marco.'},
+    ]},
+    {id: 'semana', t: 'Esta semana', steps: [
+      {id: 'todo', ix: 'semana/resumo', since: 'V37', sel: '#todo', t: 'O que fazer', d: () => { const m = (SUGGESTED_MOVES[curMgr()] || {}).transfers || []; return `Começa sempre aqui: a troca${m.length ? ` (${m.map(x => `${shortName(FULL_POOL_BY_ID[x.out].name)} → ${shortName(FULL_POOL_BY_ID[x.in].name)}`).join(', ')})` : ''}, o capitão (${tutSafe(() => shortName(tutXi().cap.name), '—')}) e o onze para a J${GW_META.next}.`; }},
+      {id: 'avisos', ix: 'semana/resumo', since: 'V31', sel: '#alerts', t: 'Avisos', d: () => `Lesões, onzes prováveis, preços a mexer e o que falta antes do deadline (${GW_META.deadlineLabel}). Agora há ${tutSafe(() => buildAlerts().length, 0)}.`},
+      {id: 'campo', ix: 'semana/onze', since: 'V27', sel: '#pitch-root', t: 'Onze e banco', d: () => `O onze sugerido no campo, com C (capitão) e V (vice). ${tutSafe(() => { const X = tutXi(); return `Formação ${X.form.join('-')}, capitão ${shortName(X.cap.name)} ≈${f1(epAt(X.cap, 0))} pts.`; }, '')}`},
+      {id: 'banco', ix: 'semana/onze', since: 'V29', sel: '#bench-card', t: 'Quanto vale o banco', d: () => 'Simula as substituições automáticas e diz qual a melhor ordem do banco e quantos pontos ela vale.'},
+      {id: 'jxj', ix: 'semana/onze', since: 'V22', sel: '#pts-body-jornada, #marco-pts-body', t: 'Jogador a jogador', d: () => 'Os pontos esperados de cada jogador nesta jornada e de onde vêm (forma, base, sites).'},
+      {id: 'caph2h', ix: 'semana/capitao', since: 'V28', sel: '#caph2h-main', t: 'Capitão H2H', d: () => `Que capitão te dá mais hipóteses de ganhar o H2H desta jornada (contra ${GW_META.h2h[curMgr()].next}), não só mais pontos.`},
+      {id: 'estrat', ix: 'semana/capitao', since: 'V39', sel: '#strat-root', t: 'Estratégia', d: () => `Conforme a tua posição (${tutSafe(() => tutRow().rank + '.º', '—')}): proteger (copiar os rivais), equilibrar ou arriscar (diferenciais).`},
+      {id: 'sug', ix: 'semana/transferencias', since: 'V22', sel: '#transfer-advice, #marco-subs-note, #subs-body', t: 'Transferência sugerida', d: () => 'A troca sugerida para esta jornada e porquê, com o que dizem os sites e a leitura própria.'},
+      {id: 'auto', ix: 'semana/transferencias', since: 'V39', sel: '#auto-plan', t: 'Plano automático', d: () => `A melhor sequência de trocas da J${HZ[0]} à J${HZ[HZ.length - 1]}, com hits e transferências grátis.`},
+      {id: 'manual', ix: 'semana/transferencias', since: 'V30', sel: '#plan-root', t: 'Plano manual', d: () => 'Monta o teu plano jornada a jornada e vê o ganho. É só uma simulação: não mexe no plantel.'},
+      {id: 'registo', ix: 'semana/registo', since: 'V30', sel: '#log-root', t: 'Registar o que fiz', d: () => 'Depois de fazeres a troca no site da FPL, regista-a aqui: só assim a app passa a usar o plantel novo.'},
+      {id: 'chips', ix: 'semana/chips', since: 'V27', sel: '#chip-plan', t: 'Chips', d: () => 'O plano de chips até à J19 (as da 1.ª metade perdem-se depois). Toca numa jornada para ver o porquê.'},
+    ]},
+    {id: 'jogos', t: 'Jogos', steps: [
+      {id: 'jornada', ix: 'jogos/jornada', since: 'V23', sel: '#gw2-body', t: 'Jogos da jornada', d: () => `Os 10 jogos da J${GW_META.next}, com a dificuldade e as odds.`},
+      {id: 'onzes', ix: 'jogos/onzes', since: 'V15', sel: '#onzes-fixtures', t: 'Onzes prováveis', d: () => 'Os titulares prováveis de cada jogo, para saberes antes do deadline quem pode ficar de fora.'},
+      {id: 'aovivo', ix: 'jogos/aovivo', since: 'V42', sel: '#av-equipa', t: 'Ao vivo', d: () => 'Durante a jornada: os teus pontos, o H2H e a liga em tempo real (atualiza de 15 em 15 minutos no site).'},
+      {id: 'europa', ix: 'jogos/europa', since: 'V27', sel: '#eu-gw', t: 'Europa e descanso', d: () => 'Quem jogou a meio da semana e com quanto descanso chega à jornada (risco de rotação).'},
+    ]},
+    {id: 'rivais', t: 'Rivais', steps: [
+      {id: 'classif', ix: 'competicao/classificacao', since: 'V22', sel: '#liga-standings-body', t: 'Classificação', d: () => `A liga clássica. Estás em ${tutSafe(() => tutRow().rank + '.º com ' + tutRow().pts + ' pts', '—')}.`},
+      {id: 'previsao', ix: 'competicao/previsao', since: 'V27', sel: '#prev-horizon', t: 'Previsão da classificação', d: () => '6 000 simulações até à J11 ou à J19, e "tu vs os da frente": a probabilidade de passares cada um.'},
+      {id: 'h2h', ix: 'competicao/h2h', since: 'V22', sel: '#h2h-vis, #h2h-stats, #marco-h2h-stats', t: 'H2H', d: () => `Resultados, calendário e o adversário desta jornada: ${GW_META.h2h[curMgr()].next}.`},
+      {id: 'comparar', ix: 'competicao/comparar', since: 'V27', sel: '#cmp-pick', t: 'Comparar equipas', d: () => 'Duas equipas da liga lado a lado: pontos, jogadores, orçamento.'},
+      {id: 'vigiar', ix: 'competicao/vigiar', since: 'V30', sel: '#riv-root', t: 'Vigiar rivais', d: () => 'Os rivais mais próximos: o que têm que tu não tens, a troca e o capitão prováveis (são previsões, não certezas).'},
+      {id: 'ganhar', ix: 'competicao/ganhar', since: 'V44', sel: '#win-setup', t: 'Equipa para ganhar a…', d: () => 'Escolhe um rival e um objetivo; a app procura as trocas e o capitão com mais probabilidade de ganhar.'},
+      {id: 'orcam', ix: 'competicao/orcamentos', since: 'V41', sel: '#liga-budgets', t: 'Orçamentos e chips', d: () => tutSafe(() => { const B = budgetOf(tutMe(), LEAGUE_SQUADS); return `Valor de mercado (£${B.market.toFixed(1)}M) vs orçamento real (£${B.real.toFixed(1)}M): o que podes mesmo gastar, pelos preços de venda.`; }, 'Valor de mercado vs orçamento real: o que cada um pode mesmo gastar, e as chips que ainda tem.')},
+    ]},
+    {id: 'jogadores', t: 'Jogadores', steps: [
+      {id: 'pesquisa', ix: 'mercado/pesquisa', since: 'V30', sel: '#pl-filters', t: 'Pesquisa', d: () => 'Filtra por posição, clube, preço e disponibilidade; ordena por pontos esperados, forma ou posse.'},
+      {id: 'comparador', ix: 'mercado/comparador', since: 'V35', sel: '#pc-pick', t: 'Comparador', d: () => 'Até 4 jogadores "lado a lado", com as métricas certas para a posição de cada um.'},
+      {id: 'ideal', ix: 'mercado/ideal', since: 'V40', wait: 1400, sel: '#ideal2', t: 'Equipa ideal', d: () => 'A melhor equipa para 1 ou 5 jornadas. Tranca jogadores com o cadeado e escolhe o orçamento.'},
+      {id: 'simulada', ix: 'mercado/simulada', since: 'V33', sel: '#fsim-root', t: 'Equipa simulada', d: () => 'Monta uma equipa de raiz e compara-a com a liga.'},
+      {id: 'forma', ix: 'mercado/forma', since: 'V23', sel: '#hot-players-body', t: 'Em forma', d: () => 'Quem está a pontuar mais nas últimas jornadas.'},
+      {id: 'precos', ix: 'mercado/precos', since: 'V24', sel: '#price-body, #price-body-marco', t: 'Preços e alternativas', d: () => 'Quem deve subir ou descer de preço, e alternativas mais baratas para cada jogador.'},
+    ]},
+    {id: 'epoca', t: 'A minha época', steps: [
+      {id: 'evol', ix: 'epoca/evolucao', since: 'V38', sel: '#hist-kpi', t: 'Evolução e ranking', d: () => `Os números da época, a distância para a média e o ranking geral. Total: ${tutSafe(() => tutRow().pts + ' pts', '—')}.`},
+      {id: 'porj', ix: 'epoca/jornada', since: 'V22', sel: '#history-select, #marco-history-select', t: 'Por jornada', d: () => 'Escolhe uma jornada passada para veres o plantel e os pontos de cada um.'},
+      {id: 'detalhe', ix: 'epoca/detalhe', since: 'V22', sel: '#optimal-stats, #marco-optimal-stats', t: 'Jogador a jogador', d: () => 'O onze ótimo de uma jornada passada: quantos pontos ficaram no banco e se o capitão foi bem escolhido.'},
+      {id: 'prev', ix: 'epoca/previsoes', since: 'V24', sel: '#pred-bruno, #pred-marco', t: 'Previsões vs real', d: () => 'O que a app previu em cada jornada e o que aconteceu.'},
+      {id: 'medir', ix: 'epoca/previsoes', since: 'V31', sel: '#model-eval', t: 'Medir o modelo', d: () => 'O erro médio e a tendência das previsões. Com dados suficientes, a calibração automática (no Avançado) corrige-as.'},
+      {id: 'orcplantel', ix: 'epoca/orcamento', since: 'V22', sel: '#budget-bar, #marco-budget-stats', t: 'Orçamento do plantel', d: () => `Para onde vai o dinheiro do plantel. Banco: £${tutSafe(() => SQUAD_STATE[curMgr()].bank.toFixed(1), '0.0')}M.`},
+    ]},
+    {id: 'rotina', t: 'Ligações e rotina', steps: [
+      {id: 'lig1', ix: 'mercado/pesquisa', since: 'V48', sel: '#pl-body .pc-acts', t: 'Ligações entre ferramentas', d: () => 'Os botões pequenos nos cartões levam-te à ferramenta seguinte: "Comparar" junta o jogador ao comparador; "Pôr no plano" abre o planeador com ele.'},
+      {id: 'lig2', ix: 'competicao/vigiar', since: 'V48', sel: '#riv-root .riv-card .pc-acts', t: 'Mais ligações', d: () => 'Num rival: "Equipa para lhe ganhar". Num aviso de lesão: "Ver substitutos" (já filtrados pela posição e pelo teu orçamento).'},
+      {id: 'avanc', since: 'V47', noSimple: true, sel: '.nav-item.adv, .page-foot .adv-link', t: 'Avançado', d: () => 'O que se usa pouco: simulador, hot takes, picks em falta, capitães da liga, tabelas das equipas, regras e calibração.'},
+      {id: 'rotina', since: 'V49', sel: null, t: 'A rotina da semana', d: () => '<b>Sexta:</b> abre "O que fazer". <b>Depois de fazeres a troca no site:</b> "Registar o que fiz". <b>Segunda ou terça:</b> pede ao Claude Code a atualização da jornada.'},
+    ]},
   ];
-  function startTour(force) {
-    if (!force && lsGet('fpl-tour-done')) return;
-    showView('semana', 'resumo');
-    let i = 0;
-    const ov = document.createElement('div'); ov.className = 'tour-ov';
-    const box = document.createElement('div'); box.className = 'tour-box'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-labelledby', 'tour-t');
-    document.body.append(ov, box);
-    const end = () => { ov.remove(); box.remove(); document.querySelectorAll('.tour-hl').forEach(x => x.classList.remove('tour-hl')); lsSet('fpl-tour-done', true); };
-    const step = () => {
-      document.querySelectorAll('.tour-hl').forEach(x => x.classList.remove('tour-hl'));
-      const s = TOUR[i];
-      const target = [...document.querySelectorAll(s.sel)].find(x => x.offsetParent !== null);
-      if (target) { target.classList.add('tour-hl'); target.scrollIntoView({block: 'center', behavior: 'smooth'}); }
-      box.innerHTML = `<div class="tour-n">${i + 1} de ${TOUR.length}</div><h3 id="tour-t">${s.t}</h3><p>${s.d}</p><div class="tour-a"><button type="button" class="btn ghost" data-t="skip">Saltar</button>${i ? '<button type="button" class="btn ghost" data-t="prev">Anterior</button>' : ''}<button type="button" class="btn primary" data-t="next">${i === TOUR.length - 1 ? 'Começar' : 'Seguinte'}</button></div>`;
-      box.querySelector('[data-t="next"]').focus();
-      box.querySelectorAll('[data-t]').forEach(b => b.addEventListener('click', () => { const a = b.dataset.t; if (a === 'skip' || (a === 'next' && i === TOUR.length - 1)) end(); else { i += a === 'next' ? 1 : -1; step(); } }));
-    };
-    box.addEventListener('keydown', e => { if (e.key === 'Escape') end(); });
-    step();
+  // o tutorial também aparece no Procurar
+  APP_INDEX.push({v: '', s: '', a: 'Ajuda', n: 'Tutorial', act: 'tour', syn: ['tutorial', 'ajuda', 'guia', 'visita guiada', 'novidades', 'o que há de novo']});
+  const TUT_QUICK = ['procurar', 'todo', 'avisos', 'menu', 'ficha'];
+  function tutSeen() { const d = lsGet('fpl-tour-done'); if (d === 'off') return 'off'; if (d === true) return 'V46'; return d || null; }
+  function tutAll() { return TUT_CH.flatMap((c, k) => c.steps.map(st => { const [v, s] = (st.ix || '').split('/'); return Object.assign({ch: k, v: v || '', s: s || ''}, st); })); }
+  function tutSteps(mode) {
+    let L = tutAll();
+    if (mode === 'quick') L = TUT_QUICK.map(id => L.find(x => x.id === id)).filter(Boolean);
+    if (mode === 'new') { const seen = tutN(tutSeen() === 'off' ? APP_VERSION : tutSeen()); L = L.filter(x => tutN(x.since) > seen); }
+    if (V48.mode === 'simples') {
+      L = L.filter(x => !x.noSimple && (!x.v || inSimple(x.v, x.s)));
+      if (mode !== 'quick') L.push({id: 'simples-fim', ch: TUT_CH.length - 1, since: 'V49', sel: '#set-btn', t: 'Há mais no modo completo', d: () => 'Estás no modo simples. No modo completo (⚙ Definições) há mais ferramentas: jogos, Ao vivo, a tua época, comparadores e o Avançado.'});
+    }
+    return L;
   }
+  function tutTarget(st) {
+    if (!st.sel) return null;
+    return [...document.querySelectorAll(st.sel)].find(x => x.offsetParent !== null && x.getBoundingClientRect().height > 0) || null;
+  }
+  function tutPlace() {
+    const box = document.getElementById('tut-box'), spot = document.getElementById('tut-spot'); if (!box || !spot) return;
+    const el = TUT.el, mob = window.matchMedia('(max-width: 960px)').matches;
+    if (!el) { spot.hidden = true; box.classList.toggle('mob', mob); box.style.top = mob ? '' : '50%'; box.style.left = mob ? '' : '50%'; box.style.transform = mob ? '' : 'translate(-50%, -50%)'; return; }
+    const r = el.getBoundingClientRect(), pad = 6, vh = innerHeight;
+    const boxH = box.offsetHeight || 220;
+    // no telemóvel a caixa fica em baixo; se o destaque não puder subir (fim da página), a caixa vai para cima
+    const up = mob && r.top > vh - boxH - 40;
+    box.classList.toggle('mob-top', up);
+    const top = Math.max(up ? boxH + 16 : 4, r.top - pad), bottom = Math.min(mob && !up ? vh - boxH - 8 : vh - 4, r.bottom + pad);
+    spot.hidden = false;
+    Object.assign(spot.style, {left: Math.max(4, r.left - pad) + 'px', top: top + 'px', width: Math.min(innerWidth - 8, r.width + 2 * pad) + 'px', height: Math.max(24, bottom - top) + 'px'});
+    box.classList.toggle('mob', mob); box.style.transform = '';
+    if (mob) { box.style.top = ''; box.style.left = ''; return; }
+    const w = box.offsetWidth || 380;
+    let y = r.bottom + 12; if (y + boxH > vh - 8) y = r.top - boxH - 12; if (y < 8) y = Math.max(8, vh - boxH - 16);
+    let x = Math.min(Math.max(12, r.left), innerWidth - w - 12);
+    box.style.top = y + 'px'; box.style.left = x + 'px';
+  }
+  async function tutShow(dir) {
+    dir = dir || 1;
+    const st = TUT.list[TUT.i]; if (!st) { tutEnd(true); return; }
+    if (st.v) {
+      const mb = document.querySelector(`.mnav-btn[data-v="${st.v}"]`); if (mb && mb.offsetParent !== null) mb.click();
+      showView(st.v, st.s || undefined);
+      const tab = document.querySelector(`.view[data-view="${st.v}"] > .subtabs .subtab[data-sub="${st.s}"]`); if (tab && tab.offsetParent !== null) tab.scrollIntoView({block: 'nearest', inline: 'center'});
+    }
+    await tutSleep(st.wait || 180);
+    const el = tutTarget(st);
+    if (!el && st.sel) {
+      if (!st.opt) TUT.miss.push(st.id);
+      if (st.opt || true) { const ni = TUT.i + dir; if (ni >= 0 && ni < TUT.list.length) { TUT.i = ni; return tutShow(dir); } if (ni >= TUT.list.length) { tutEnd(true); return; } }
+    }
+    TUT.el = el;
+    if (el) {
+      const mob = window.matchMedia('(max-width: 960px)').matches, r = el.getBoundingClientRect();
+      if (mob) window.scrollTo(0, Math.max(0, r.top + scrollY - 70));
+      else if (r.top < 70 || r.bottom > innerHeight - 40) window.scrollTo(0, Math.max(0, r.top + scrollY - Math.max(80, (innerHeight - Math.min(r.height, innerHeight * 0.5)) / 3)));
+    }
+    tutDraw(st);
+    await tutSleep(30); tutPlace();
+    TUT.shown = TUT.i;
+    lsSet('fpl-tour-pos', {mode: TUT.mode, i: TUT.i, id: st.id});
+  }
+  function tutDraw(st) {
+    const box = document.getElementById('tut-box');
+    const chs = [...new Set(TUT.list.map(x => x.ch))], ci = chs.indexOf(st.ch), inCh = TUT.list.filter(x => x.ch === st.ch), si = inCh.indexOf(st);
+    const last = TUT.i === TUT.list.length - 1;
+    const desc = tutSafe(() => typeof st.d === 'function' ? st.d() : st.d, '');
+    box.innerHTML = `
+      <div class="tut-prog">Capítulo ${ci + 1} de ${chs.length} · passo ${si + 1} de ${inCh.length} · <b>${TUT_CH[st.ch].t}</b></div>
+      <h3 id="tut-t">${st.t}</h3>
+      <p id="tut-d">${desc}</p>
+      <div class="tut-a">
+        <button type="button" class="btn ghost" data-t="prev"${TUT.i ? '' : ' disabled'}>Anterior</button>
+        <button type="button" class="btn primary" data-t="next">${last ? 'Terminar' : 'Seguinte'}</button>
+      </div>
+      <div class="tut-b">
+        <button type="button" class="linklike" data-t="skip"${ci < chs.length - 1 ? '' : ' disabled'}>Saltar capítulo</button>
+        <button type="button" class="linklike" data-t="idx" aria-expanded="false">Índice</button>
+        <button type="button" class="linklike" data-t="exit">Sair</button>
+      </div>
+      <div class="tut-idx" hidden>${chs.map((c, k) => `<button type="button" class="tut-ci${k === ci ? ' on' : ''}" data-ch="${c}">${k + 1}. ${TUT_CH[c].t}</button>`).join('')}</div>`;
+    box.querySelectorAll('[data-t]').forEach(b => b.addEventListener('click', () => tutBtn(b.dataset.t, b)));
+    box.querySelectorAll('[data-ch]').forEach(b => b.addEventListener('click', () => { TUT.i = TUT.list.findIndex(x => x.ch === +b.dataset.ch); tutShow(1); }));
+    const nb = box.querySelector('[data-t="next"]'); if (nb) nb.focus();
+  }
+  function tutBtn(a, b) {
+    if (a === 'next') { if (TUT.i >= TUT.list.length - 1) { tutEnd(true); return; } TUT.i++; tutShow(1); }
+    else if (a === 'prev') { if (TUT.i > 0) { TUT.i--; tutShow(-1); } }
+    else if (a === 'skip') { const ch = TUT.list[TUT.i].ch, ni = TUT.list.findIndex((x, k) => k > TUT.i && x.ch !== ch); if (ni > 0) { TUT.i = ni; tutShow(1); } }
+    else if (a === 'idx') { const ix = document.querySelector('#tut-box .tut-idx'); ix.hidden = !ix.hidden; b.setAttribute('aria-expanded', String(!ix.hidden)); }
+    else if (a === 'exit') tutEnd(false);
+  }
+  function tutKeys(e) {
+    if (!TUT.active) return;
+    const box = document.getElementById('tut-box') || document.getElementById('tut-wel'); if (!box) return;
+    if (e.key === 'Escape') { e.preventDefault(); if (document.getElementById('tut-wel')) tutCloseWelcome(); else tutEnd(false); return; }
+    if (e.key === 'Tab') {
+      const f = [...box.querySelectorAll('button:not([disabled])')].filter(x => x.offsetParent !== null); if (!f.length) return;
+      const i = f.indexOf(document.activeElement);
+      if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); } else if (i < 0) { e.preventDefault(); f[0].focus(); }
+    }
+  }
+  document.addEventListener('keydown', tutKeys, true);
+  window.addEventListener('resize', () => { if (TUT.active) tutPlace(); });
+  window.addEventListener('scroll', () => { if (TUT.active) tutPlace(); }, {passive: true});
+  function tutStart(mode, from) {
+    tutCloseWelcome();
+    TUT.mode = mode; TUT.list = tutSteps(mode); TUT.miss = []; TUT.active = true;
+    TUT.i = Math.max(0, Math.min(TUT.list.length - 1, from || 0));
+    if (!TUT.list.length) { TUT.active = false; return; }
+    lsSet('fpl-tour-done', APP_VERSION);
+    try { closeSettings(); } catch (e) {}
+    const ov = document.createElement('div'); ov.className = 'tut-ov'; ov.id = 'tut-ov';
+    const spot = document.createElement('div'); spot.className = 'tut-spot'; spot.id = 'tut-spot';
+    const box = document.createElement('div'); box.className = 'tut-box'; box.id = 'tut-box'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-labelledby', 'tut-t');
+    document.body.append(ov, spot, box);
+    tutShow(1);
+  }
+  function tutEnd(done) {
+    TUT.active = false;
+    ['tut-ov', 'tut-spot', 'tut-box'].forEach(id => { const x = document.getElementById(id); if (x) x.remove(); });
+    if (done) { try { localStorage.removeItem('fpl-tour-pos'); } catch (e) {} }
+    lsSet('fpl-tour-done', APP_VERSION);
+  }
+  function tutCloseWelcome() { const w = document.getElementById('tut-wel'), o = document.getElementById('tut-wov'); if (w) w.remove(); if (o) o.remove(); if (!document.getElementById('tut-box')) TUT.active = false; }
+  // boas-vindas: na 1.ª visita, quando houver novidades, e quando pedido (⚙, Procurar, link do menu)
+  function tutWelcome(force) {
+    const seen = tutSeen();
+    if (!force && seen === 'off') return;
+    const news = seen && seen !== 'off' ? tutSteps('new') : [];
+    if (!force && seen && !news.filter(x => x.id !== 'simples-fim').length) return;
+    if (document.getElementById('tut-wel')) return;
+    const pos = lsGet('fpl-tour-pos'), all = tutSteps('full'), posOk = pos && pos.mode === 'full' && pos.i > 0 && pos.i < all.length;
+    const o = document.createElement('div'); o.className = 'tut-ov dim'; o.id = 'tut-wov';
+    const w = document.createElement('div'); w.className = 'tut-box tut-wel'; w.id = 'tut-wel'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true'); w.setAttribute('aria-labelledby', 'tut-wt');
+    const nNew = news.filter(x => x.id !== 'simples-fim').length;
+    w.innerHTML = `<h3 id="tut-wt">${seen && seen !== 'off' && nNew && !force ? 'Há novidades no Painel FPL' : 'Bem-vindo ao Painel FPL'}</h3>
+      <p>${seen && seen !== 'off' && nNew && !force ? `Desde a tua última visita há ${nNew} coisa${nNew === 1 ? '' : 's'} nova${nNew === 1 ? '' : 's'}.` : 'Queres uma volta pela app? Podes voltar a abri-la em ⚙ Definições ou no Procurar ("tutorial").'}</p>
+      <div class="tut-wb">
+        ${nNew ? `<button type="button" class="btn primary" data-w="new">Ver o que há de novo (${nNew})</button>` : ''}
+        ${posOk ? `<button type="button" class="btn${nNew ? '' : ' primary'}" data-w="resume">Continuar onde parei (passo ${pos.i + 1} de ${all.length})</button>` : ''}
+        <button type="button" class="btn${nNew || posOk ? '' : ' primary'}" data-w="full">Tutorial completo <span class="note">≈5 min</span></button>
+        <button type="button" class="btn" data-w="quick">Visita rápida <span class="note">1 min</span></button>
+        <button type="button" class="btn ghost" data-w="none">Explorar sozinho</button>
+      </div>`;
+    document.body.append(o, w);
+    TUT.active = true;
+    w.querySelectorAll('[data-w]').forEach(b => b.addEventListener('click', () => {
+      const a = b.dataset.w;
+      if (a === 'none') { lsSet('fpl-tour-done', APP_VERSION); tutCloseWelcome(); return; }
+      if (a === 'resume') tutStart('full', pos.i); else tutStart(a);
+    }));
+    const f = w.querySelector('.btn.primary') || w.querySelector('.btn'); if (f) f.focus();
+  }
+  // o guia antigo passa a abrir as boas-vindas (⚙ "Ver o tutorial" chama startTour)
+  function startTour(force) { tutWelcome(!!force); }
   (function tourInit() {
     const nav = document.querySelector('.sidebar-foot, .sidebar');
-    const b = document.createElement('button'); b.type = 'button'; b.className = 'linklike tour-again'; b.textContent = 'Ver o guia da app';
-    b.addEventListener('click', () => startTour(true));
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'linklike tour-again'; b.textContent = 'Tutorial da app';
+    b.addEventListener('click', () => tutWelcome(true));
     if (nav) nav.appendChild(b);
-    setTimeout(() => startTour(false), 900);
+    setTimeout(() => tutWelcome(false), 900);
   })();
   lazyRender('semana/capitao', renderStrategy);
   renderAutoPlan();
@@ -9713,7 +9944,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     function search(raw) {
       const t = norm(raw); if (!t) return [];
       const tools = IDX.map(x => ({x, b: score(x, t)})).filter(r => r.b > 0).sort((a, b) => b.b - a.b).slice(0, 6)
-        .map(({x}) => ({kind: 'Ferramentas', label: x.n, where: x.a, go: () => showView(x.v, x.s)}));
+        .map(({x}) => ({kind: 'Ferramentas', label: x.n, where: x.a, go: () => x.act === 'tour' ? tutWelcome(true) : showView(x.v, x.s)}));
       const players = t.length < 2 ? [] : FULL_POOL.map(p => { const n = norm(p.name), sn = norm(shortName(p.name)); const b = sn.startsWith(t) ? 3 : n.split(' ').some(w => w.startsWith(t)) ? 2 : n.includes(t) ? 1 : 0; return {p, b}; })
         .filter(r => r.b > 0).sort((a, b) => b.b - a.b || (b.p.total || 0) - (a.p.total || 0)).slice(0, 6)
         .map(({p}) => ({kind: 'Jogadores', label: p.name, where: `${SHORT(p.team)} · £${p.price.toFixed(1)}M`, go: () => openPlayer(p.id, q)}));
