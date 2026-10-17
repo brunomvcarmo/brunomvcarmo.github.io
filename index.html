@@ -5975,9 +5975,33 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     return `<svg viewBox="0 0 44 44" aria-hidden="true"><path d="M14 5 L4 11 L8 20 L12 18 V40 H32 V18 L36 20 L40 11 L30 5 Q22 11 14 5 Z" fill="${fill}" stroke="rgba(0,0,0,.28)" stroke-width="1.2" stroke-linejoin="round"/><text x="22" y="31" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="9" font-weight="700" fill="${ink}">${SHORT(team)}</text></svg>`;
   }
   const epAt = (p, gi) => (p && p.epH ? (p.epH[gi] || 0) : 0);
+  // V51 (17 out): depois do deadline da jornada HZ[0], o onze, o capitão, o vice e o banco de um plantel real da liga
+  // (o do Bruno, do Marco ou de um rival) são os que o gestor escolheu, não os do modelo. Plantéis hipotéticos
+  // (com trocas a testar) continuam a ser escolhidos pelos pontos esperados.
+  function realLineup(players) {
+    try {
+      const picksGw = (window.__LIVE && window.__LIVE.picks_event) || GW_META.squadsGw;
+      if (picksGw !== HZ[0] || Date.now() < new Date(GW_META.deadline).getTime()) return null;
+      if (!window.__RL) {
+        window.__RL = new Map();
+        Object.keys(LEAGUE_SQUADS).forEach(e => { const L = LEAGUE_SQUADS[e]; window.__RL.set([...L.s, ...L.b].slice().sort((a, b) => a - b).join(','), L); });
+      }
+      return window.__RL.get(players.map(p => p.id).sort((a, b) => a - b).join(',')) || null;
+    } catch (e) { return null; }   // LEAGUE_SQUADS ainda não existe no arranque
+  }
   // Melhor onze para a jornada HZ[gi] (formações válidas da FPL), capitão = mais pontos esperados, vice = segundo.
   function pickXi(players, gi) {
     const v = p => epAt(p, gi);
+    const L = gi === 0 && players.length === 15 ? realLineup(players) : null;
+    if (L) {
+      const byId = new Map(players.map(p => [p.id, p]));
+      const xi = L.s.map(id => byId.get(id)), bench = L.b.map(id => byId.get(id));
+      const cap = xi.find(p => p.name === L.c) || xi.slice().sort((a, b) => v(b) - v(a))[0];
+      const vice = xi.find(p => p.name === L.vc && p !== cap) || xi.filter(p => p !== cap).sort((a, b) => v(b) - v(a))[0];
+      const base = xi.reduce((s, p) => s + v(p), 0), cnt = c => xi.filter(p => p.cls === c).length;
+      return {xi, base, form: [cnt('def'), cnt('mid'), cnt('fwd')], cap, vice, benchGk: bench.filter(p => p.cls === 'gk'), benchOut: bench.filter(p => p.cls !== 'gk'),
+              total: base + v(cap) * (L['chip' + HZ[0]] === '3xc' ? 2 : 1), real: true};
+    }
     const by = c => players.filter(p => p.cls === c).sort((a, b) => v(b) - v(a));
     const g = by('gk'), d = by('def'), m = by('mid'), f = by('fwd');
     let best = null;
@@ -6035,11 +6059,12 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const squad = mode === 'sug' ? applyMoves(cur, mv.transfers) : cur;
     const gi = 0, gw = HZ[0];
     const r = pickXi(squad, gi), rCur = pickXi(cur, gi);
-    const BB = bestBench(r, gi); r.benchOut = BB.orders[BB.best];  // V29: ordem do banco otimizada pelas substituições automáticas
+    const BB = bestBench(r, gi); if (!r.real) r.benchOut = BB.orders[BB.best];  // V29: ordem do banco otimizada pelas substituições automáticas (V51: depois do deadline fica a ordem real)
     const rows = ['fwd', 'mid', 'def', 'gk'].map(c => r.xi.filter(p => p.cls === c).sort((a, b) => epAt(b, gi) - epAt(a, gi)));
     const tok = p => pitchToken(p, gi, {cap: p === r.cap, vice: p === r.vice});
     root.innerHTML = `
-      <div class="pitch" role="group" aria-label="Onze sugerido para a J${gw}">
+      ${r.real ? `<p class="note" style="margin:0 4px 8px"><b>O teu onze da J${gw}, tal como o puseste no site</b> (o deadline já passou): titulares, capitão, vice e ordem do banco reais.</p>` : ''}
+      <div class="pitch" role="group" aria-label="${r.real ? 'O teu onze' : 'Onze sugerido'} para a J${gw}">
         <span class="box top"></span><span class="box bottom"></span>
         ${rows.map(row => `<div class="pitch-row">${row.map(tok).join('')}</div>`).join('')}
       </div>
@@ -6120,6 +6145,20 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     19: {end: true, why: 'Último prazo dos chips da 1.ª metade: deadline sex 1 jan 2027, 18:30 em Lisboa (valor da API; alguns artigos antigos dizem sáb 2 jan). Os chips que sobrarem perdem-se — não passam para a 2.ª metade.'},
   };
   const CP_GWS = Object.keys(CHIP_PLAN).map(Number);
+  // V51 (17 out): o plano é o mesmo para os dois, mas as chips já usadas mudam-no (ex.: Wildcard do Bruno na J7)
+  const CP_CODE = {wildcard: 'wc', freehit: 'fh', bboost: 'bb', '3xc': 'tc'};
+  function chipPlanFor(mgr) {
+    const P = JSON.parse(JSON.stringify(CHIP_PLAN));
+    let used = [];
+    try { used = (LEAGUE_SQUADS[CMP_ENTRY[mgr]].chips || []).filter(([, g]) => g <= 19).map(([n, g]) => [CP_CODE[n], g]); } catch (e) {}
+    used.forEach(([c, g]) => {
+      if (!c) return;
+      Object.keys(P).forEach(k => { if (P[k].chip === c && +k !== g) P[k] = {why: `Sem chip: o ${CHIP_NAMES[c]} já foi usado na J${g}.`}; });
+      if (P[g]) P[g] = {chip: c, used: true, why: `${CHIP_NAMES[c]} usado na J${g}.`};
+    });
+    return P;
+  }
+  const chipPlanTxt = mgr => { const P = chipPlanFor(mgr); return Object.entries(P).filter(([, c]) => c.chip).map(([g, c]) => `<b>${CHIP_NAMES[c.chip]} J${g}</b>${c.used ? ' (usado)' : ''}`).join(', '); };
   let CP_SEL = GW_META.next;
   function teamFixtures(team, gw) {
     if (FIX_AHEAD[gw]) return fixturesFor(team, gw);
@@ -6139,11 +6178,12 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const el = document.getElementById('chip-plan'); if (!el) return;
     const mgr = curMgr();
     const who = mgr === 'marco' ? 'do Marco' : 'do teu plantel';
-    const tag = gw => { const c = CHIP_PLAN[gw]; return c.chip ? `<span class="cp-tag ${c.chip}" title="${CHIP_NAMES[c.chip]}">${CHIP_ABBR[c.chip]}</span>` : (c.end ? '<span class="cp-tag end">Fim</span>' : '<span class="cp-tag">—</span>'); };
+    const CPm = chipPlanFor(mgr);
+    const tag = gw => { const c = CPm[gw]; return c.chip ? `<span class="cp-tag ${c.chip}${c.used ? ' used' : ''}" title="${CHIP_NAMES[c.chip]}${c.used ? ' (usado)' : ''}">${CHIP_ABBR[c.chip]}${c.used ? ' ✓' : ''}</span>` : (c.end ? '<span class="cp-tag end">Fim</span>' : '<span class="cp-tag">—</span>'); };
     // Média de 15 jogos fica quase sempre entre 2.5 e 3.5: escala mais fina para se ver a diferença.
     const kOf = d => d <= 2.2 ? 1 : d <= 2.65 ? 2 : d <= 3.05 ? 3 : d <= 3.5 ? 4 : 5;
     const sel = CP_GWS.includes(CP_SEL) ? CP_SEL : CP_GWS[0];
-    const c = CHIP_PLAN[sel];
+    const c = CPm[sel];
     const squad = squadOf(mgr).filter(Boolean).slice().sort((a, b) => POS_ORDER[a.cls] - POS_ORDER[b.cls]);
     const fxChips = squad.map(p => {
       const fx = teamFixtures(p.team, sel);
@@ -6153,7 +6193,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     }).join('');
     const avg = squadDiff(mgr, sel);
     el.innerHTML = `
-      <div class="card-head"><div><h2>Plano de chips J${CP_GWS[0]}-J${CP_GWS[CP_GWS.length - 1]}</h2><div class="card-sub">Triple Captain já usado na J3 (Bruno e Marco). Plano: <b>Free Hit J12</b>, <b>Wildcard J13</b>, <b>Bench Boost J16</b>. O número de cada jornada é a dificuldade média dos jogos ${who} (1 = fácil, 5 = difícil).</div></div></div>
+      <div class="card-head"><div><h2>Plano de chips J${CP_GWS[0]}-J${CP_GWS[CP_GWS.length - 1]}</h2><div class="card-sub">Triple Captain já usado na J3 (Bruno e Marco). Plano: ${chipPlanTxt(mgr)}. O número de cada jornada é a dificuldade média dos jogos ${who} (1 = fácil, 5 = difícil).</div></div></div>
       <div class="cp-legend"><span><b>FH</b> Free Hit</span><span><b>WC</b> Wildcard</span><span><b>BB</b> Bench Boost</span><span><i style="background:var(--fdr-1)"></i>jogos fáceis</span><span><i style="background:var(--fdr-5)"></i>difíceis</span><span>J${CP_GWS[0]}-J12: fixture tickers · J13-J19: xgstat (14 out)</span></div>
       <div class="cp-track" role="group" aria-label="Jornadas">
         ${CP_GWS.map(gw => `<button type="button" class="cp-gw" data-gw="${gw}" aria-pressed="${gw === sel}">
@@ -7116,16 +7156,25 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const gain = r.total - r0.total;
     // valor do banco, simulação rápida com a ordem por pontos esperados
     let benchV = null; try { benchV = benchSim(r, 0, [r.benchOut], 3000).out[0].subPts; } catch (e) {}
-    const chip = (CHIP_PLAN[GW_META.next] || {}).chip, nextChip = Object.entries(CHIP_PLAN).find(([g, c]) => +g > GW_META.next && c.chip);
+    const CPm = chipPlanFor(mgr);
+    const chip = (CPm[GW_META.next] || {}).chip, chipUsed = (CPm[GW_META.next] || {}).used, nextChip = Object.entries(CPm).find(([g, c]) => +g > GW_META.next && c.chip && !c.used);
+    const after = !!r0.real;   // V51: o deadline já passou — mostrar o que foi feito, não o que falta fazer
     const tile = (n, title, status, body, btns) => `<div class="todo-t ${status}"><div class="todo-n">${n}</div><div class="todo-b"><div class="todo-h">${title}<span class="todo-s">${{done: 'feito', todo: 'por fazer', ok: 'nada a fazer'}[status]}</span></div><div class="todo-x">${body}</div><div class="todo-a">${btns}</div></div></div>`;
-    const tr = done.length
+    let tr = done.length
       ? tile(1, 'Transferência', 'done', `Registaste ${done.map(t => `${shortName(FULL_POOL_BY_ID[t.out].name)} → ${shortName(FULL_POOL_BY_ID[t.in].name)}`).join(', ')}. O resto da app já usa o plantel novo.`, `<button type="button" class="btn ghost" data-go="semana|registo">Ver registo</button>`)
       : mv.length
         ? tile(1, 'Transferência', 'todo', `<b>${mv.map(m => `${shortName(FULL_POOL_BY_ID[m.out].name)} → ${shortName(FULL_POOL_BY_ID[m.in].name)}`).join(', ')}</b> · ${sgn(gain)} pts na J${HZ[0]}. ${mv.map(m => priceTag(FULL_POOL_BY_ID[m.in])).join(' ')}`, `<button type="button" class="btn primary" data-go="semana|registo">Já fiz — registar</button><button type="button" class="btn ghost" data-go="semana|transferencias">Porquê</button>`)
         : tile(1, 'Transferência', 'ok', 'Nenhuma troca sugerida: guarda a transferência grátis.', `<button type="button" class="btn ghost" data-go="semana|transferencias">Planeador</button>`);
-    const cap = tile(2, 'Capitão', 'todo', `<b>${r.cap.name}</b> ≈${f1(epAt(r.cap, 0))} · ${fxLabel(r.cap, HZ[0]).txt} · vice ${shortName(r.vice.name)}.<br><span class="note">10+ pts: ${pctR(pAtLeast(r.cap, 0, 10))} · ${eoReading(r.cap.id, true)}.</span>`, `<button type="button" class="btn ghost" data-go="semana|capitao">Capitão H2H</button>`);
-    const xi = tile(3, 'Onze e banco', 'todo', `${r.form.join('-')} · banco ${r.benchOut.map(p => shortName(p.name)).join(' → ')}${benchV != null ? ` · o banco vale ≈${f1(benchV)} pts` : ''}.<br><span class="note">Chip: ${chip ? CHIP_NAMES[chip] : 'nenhum esta semana'}${nextChip ? ` · próximo: ${CHIP_NAMES[nextChip[1].chip]} na J${nextChip[0]}` : ''}.</span>`, `<button type="button" class="btn ghost" data-go="semana|onze">Ver o campo</button>`);
-    el.innerHTML = `<div class="card-head"><div><h2>O que fazer esta semana</h2><div class="card-sub">${mgr === 'marco' ? 'Xarola Team' : 'Brunorussia FC'} · deadline ${GW_META.deadlineLabel}</div></div></div><div class="todo">${tr}${cap}${xi}${chip || nextChip ? tile(4, 'Chips', chip ? 'todo' : 'ok', chip ? `Plano: <b>${CHIP_NAMES[chip] || chip}</b> nesta jornada (J${GW_META.next}).` : `Nada nesta jornada. A seguir no plano: <b>${CHIP_NAMES[nextChip[1].chip] || nextChip[1].chip}</b> na J${nextChip[0]}.`, `<button type="button" class="btn ghost" data-act="chips">Ver o plano de chips</button>`) : ''}</div>`;
+    let cap = tile(2, 'Capitão', 'todo', `<b><span class="player-name">${r.cap.name}</span></b> ≈${f1(epAt(r.cap, 0))} · ${fxLabel(r.cap, HZ[0]).txt} · vice ${shortName(r.vice.name)}.<br><span class="note">10+ pts: ${pctR(pAtLeast(r.cap, 0, 10))} · ${eoReading(r.cap.id, true)}.</span>`, `<button type="button" class="btn ghost" data-go="semana|capitao">Capitão H2H</button>`);
+    let xi = tile(3, 'Onze e banco', 'todo', `${r.form.join('-')} · banco ${r.benchOut.map(p => shortName(p.name)).join(' → ')}${benchV != null ? ` · o banco vale ≈${f1(benchV)} pts` : ''}.<br><span class="note">Chip: ${chip ? CHIP_NAMES[chip] + (chipUsed ? ' (usado)' : '') : 'nenhum esta semana'}${nextChip ? ` · próximo: ${CHIP_NAMES[nextChip[1].chip]} na J${nextChip[0]}` : ''}.</span>`, `<button type="button" class="btn ghost" data-go="semana|onze">Ver o campo</button>`);
+    if (after) {
+      // V51: depois do deadline — o que foi feito no site (plantel, capitão e onze reais)
+      const L = LEAGUE_SQUADS[CMP_ENTRY[mgr]] || {}, cj = L['chip' + HZ[0]], benchAll = [...r0.benchGk, ...r0.benchOut];
+      tr = tile(1, 'Transferências', 'done', cj === 'wildcard' || cj === 'freehit' ? `<b>${CHIP_NAMES[CP_CODE[cj]]}</b> feito na J${HZ[0]}: a app já usa o plantel novo.` : `O deadline da J${HZ[0]} já passou: a app usa o plantel que tens no site.`, `<button type="button" class="btn ghost" data-go="semana|onze">Ver o onze</button>`);
+      cap = tile(2, 'Capitão', 'done', `Escolheste <b><span class="player-name">${r0.cap.name}</span></b> (C)${cj === '3xc' ? ' com <b>Triple Captain</b>' : ''} e ${shortName(r0.vice.name)} (V). ≈${f1(epAt(r0.cap, 0))} pts esperados.`, `<button type="button" class="btn ghost" data-go="jogos|aovivo">Ao vivo</button>`);
+      xi = tile(3, 'Onze e banco', 'done', `O teu onze: ${r0.form.join('-')} · banco ${benchAll.map(p => shortName(p.name)).join(' → ')}.`, `<button type="button" class="btn ghost" data-go="semana|onze">Ver o campo</button>`);
+    }
+    el.innerHTML = `<div class="card-head"><div><h2>${after ? `J${HZ[0]} em curso: o que fizeste` : 'O que fazer esta semana'}</h2><div class="card-sub">${mgr === 'marco' ? 'Xarola Team' : 'Brunorussia FC'} · deadline ${GW_META.deadlineLabel}${after ? ' (já passou)' : ''}</div></div></div><div class="todo">${tr}${cap}${xi}${chip || nextChip ? tile(4, 'Chips', chipUsed ? 'done' : chip ? 'todo' : 'ok', chipUsed ? `Usaste o <b>${CHIP_NAMES[chip]}</b> nesta jornada.${nextChip ? ` A seguir no plano: <b>${CHIP_NAMES[nextChip[1].chip]}</b> na J${nextChip[0]}.` : ''}` : chip ? `Plano: <b>${CHIP_NAMES[chip] || chip}</b> nesta jornada (J${GW_META.next}).` : `Nada nesta jornada. A seguir no plano: <b>${CHIP_NAMES[nextChip[1].chip] || nextChip[1].chip}</b> na J${nextChip[0]}.`, `<button type="button" class="btn ghost" data-act="chips">Ver o plano de chips</button>`) : ''}</div>`;
     el.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => { const [v, s] = b.dataset.go.split('|'); showView(v, s); }));
   }
 
@@ -7819,6 +7868,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       L.tot = s.total; L.p6 = s.event_total;
     });
     LEAGUE_STANDINGS.sort((a, b) => a.rank - b.rank || b.pts - a.pts);
+    window.__RL = null; // V51: os onzes reais mudaram
     Object.entries(d.entries).forEach(([e, x]) => {
       const L = LEAGUE_SQUADS[+e]; if (!L) return;
       if (x.chips) L.chips = x.chips.map(c => [c.name, c.event]);
