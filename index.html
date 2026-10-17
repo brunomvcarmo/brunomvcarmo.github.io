@@ -2204,7 +2204,7 @@
 
         <section class="card">
           <h2>O plantel vs. a liga</h2>
-          <div class="card-sub">Percentagem dos 20 plantéis da liga que também têm cada jogador (J<span class="gw-l">6</span>). "Molde" = metade da liga ou mais; "diferencial" = 15% ou menos.</div>
+          <div class="card-sub">Percentagem dos 20 plantéis da liga que também têm cada jogador (plantéis da última jornada com equipas conhecidas). "Molde" = metade da liga ou mais; "diferencial" = 15% ou menos.</div>
           <div class="mgr-view" data-mgr="bruno"><div id="liga-my-ownership"></div></div>
           <div class="mgr-view" data-mgr="marco"><div id="liga-my-ownership-marco"></div></div>
         </section>
@@ -2372,7 +2372,7 @@
 <script>
 // ======================= DADOS DA JORNADA (V24) =======================
 // Gerado por gen24.py. Tudo o que muda de semana para semana e não é texto vive aqui.
-const GW_META = {"next":7,"last":6,"lastProvisional":true,"horizon":[7,8,9,10,11],"deadline":"2026-10-17T10:00:00Z","deadlineLabel":"Sáb 17 Out · 11:00","window":"17-19 out","dataDate":"15 out 2026","poolSource":"cópia pública da API oficial (FPL-Elo-Insights, atualizada 2×/dia), validada contra a API oficial","h2h":{"bruno":{"pos":14,"next":"Frederico Borges"},"marco":{"pos":9,"next":"Miguel Bengalinha"}},"ftConfirmed":true,"squadsGw":7};
+const GW_META = {"next":7,"last":6,"lastProvisional":true,"horizon":[7,8,9,10,11],"deadline":"2026-10-17T10:00:00Z","deadlineLabel":"Sáb 17 Out · 11:00","window":"17-19 out","dataDate":"15 out 2026","poolSource":"cópia pública da API oficial (FPL-Elo-Insights, atualizada 2×/dia), validada contra a API oficial","h2h":{"bruno":{"pos":14,"next":"Frederico Borges"},"marco":{"pos":9,"next":"Miguel Bengalinha"}},"ftConfirmed":true,"squadsGw":7,"ftNext":{"bruno":2,"marco":2}};
 const POOL_KEYS = ["id", "n", "t", "c", "p", "sp", "s", "ch", "nw", "o", "lo", "ti", "to", "cc", "cs", "en", "tp", "pts", "mn", "xg", "xa", "dc", "m3", "ep", "k", "rd"];
 const POOL24 = [
 [1,"David Raya",1,"gk",6.1,6.0,"a",null,"",43.7,45,39044,36712,0,1,2.0,33,[6,6,3,14,1,3],[90,90,90,90,90,90],0.0,0.0,0.0,270,[4.3,4.6,4.0,4.8,4.2],[5.6,4.2,3.6,1.0],""],
@@ -3065,6 +3065,9 @@ const EMP_N = {"gk": 116, "def": 472, "mid": 638, "fwd": 158};
   const APP_AREAS = [{"v": "semana", "n": "Esta semana", "d": "O que fazer antes do deadline: o resumo, o onze e o banco, o capitão, as transferências e as chips.", "subs": ["Resumo", "Onze e banco", "Capitão", "Transferências", "Registar o que fiz", "Chips"]}, {"v": "jogos", "n": "Jogos", "d": "Os jogos da jornada, os onzes prováveis, os pontos ao vivo e quem jogou a meio da semana.", "subs": ["Jogos da jornada", "Onzes prováveis", "Ao vivo", "Europa e descanso"]}, {"v": "competicao", "n": "Rivais", "d": "A liga clássica e o H2H: classificação, previsões, adversários e o que os rivais devem fazer.", "subs": ["Classificação", "Previsão da classificação", "H2H", "Comparar equipas", "Vigiar rivais", "Equipa para ganhar a…", "Orçamentos e chips"]}, {"v": "mercado", "n": "Jogadores", "d": "Procurar, comparar e escolher jogadores.", "subs": ["Pesquisa", "Comparador", "Equipa ideal", "Equipa simulada", "Em forma", "Preços e alternativas"]}, {"v": "epoca", "n": "A minha época", "d": "Como tem corrido a tua época: pontos, ranking, jornada a jornada, previsões e orçamento.", "subs": ["Evolução e ranking", "Por jornada", "Jogador a jogador", "Previsões vs real", "Orçamento do plantel"]}, {"v": "avancado", "n": "Avançado", "d": "Simulador, tabelas e referência. Tudo continua a funcionar como antes.", "subs": ["Simulador", "Hot takes", "Picks em falta", "Capitães da liga", "Plantel vs liga", "Tabelas das equipas", "Regras e fontes", "Calibração"]}];
   const APP_INDEX = [{"v": "semana", "s": "resumo", "a": "Esta semana", "n": "Resumo", "syn": ["resumo", "avisos", "alertas", "o que fazer", "início", "inicio", "números", "gráficos"]}, {"v": "semana", "s": "onze", "a": "Esta semana", "n": "Onze e banco", "syn": ["onze", "banco", "campo", "titulares", "formação", "pontos esperados", "jogador a jogador", "próximas 5", "substituições"]}, {"v": "semana", "s": "capitao", "a": "Esta semana", "n": "Capitão", "syn": ["capitão", "braçadeira", "vice", "capitão h2h", "estratégia", "diferenciais", "triple captain"]}, {"v": "semana", "s": "transferencias", "a": "Esta semana", "n": "Transferências", "syn": ["transferências", "trocas", "compras", "vendas", "planeador", "plano automático", "plano manual", "hits", "sugestão"]}, {"v": "semana", "s": "registo", "a": "Esta semana", "n": "Registar o que fiz", "syn": ["registar", "registo", "o que fiz", "confirmar troca"]}, {"v": "semana", "s": "chips", "a": "Esta semana", "n": "Chips", "syn": ["chips", "wildcard", "free hit", "bench boost", "triple captain", "plano de chips"]}, {"v": "jogos", "s": "jornada", "a": "Jogos", "n": "Jogos da jornada", "syn": ["jogos", "calendário", "fixtures", "odds", "casas de apostas", "dificuldade"]}, {"v": "jogos", "s": "onzes", "a": "Jogos", "n": "Onzes prováveis", "syn": ["onzes prováveis", "titulares prováveis", "lesões", "escalações", "line-ups"]}, {"v": "jogos", "s": "aovivo", "a": "Jogos", "n": "Ao vivo", "syn": ["ao vivo", "direto", "live", "pontos ao vivo", "tempo real"]}, {"v": "jogos", "s": "europa", "a": "Jogos", "n": "Europa e descanso", "syn": ["europa", "liga dos campeões", "champions", "descanso", "taça da liga", "rotação"]}, {"v": "competicao", "s": "classificacao", "a": "Rivais", "n": "Classificação", "syn": ["classificação", "liga", "tabela", "mini-liga", "liga clássica"]}, {"v": "competicao", "s": "previsao", "a": "Rivais", "n": "Previsão da classificação", "syn": ["previsão da classificação", "previsão", "quem ganha a liga", "top 3", "simulação da liga"]}, {"v": "competicao", "s": "h2h", "a": "Rivais", "n": "H2H", "syn": ["h2h", "confronto", "adversário", "head to head", "resultados"]}, {"v": "competicao", "s": "comparar", "a": "Rivais", "n": "Comparar equipas", "syn": ["comparar equipas", "lado a lado", "comparar gestores"]}, {"v": "competicao", "s": "vigiar", "a": "Rivais", "n": "Vigiar rivais", "syn": ["vigiar rivais", "rivais", "previsão dos rivais", "o que os rivais vão fazer"]}, {"v": "competicao", "s": "ganhar", "a": "Rivais", "n": "Equipa para ganhar a…", "syn": ["equipa para ganhar", "ganhar a", "probabilidade de ganhar", "bater rivais"]}, {"v": "competicao", "s": "orcamentos", "a": "Rivais", "n": "Orçamentos e chips", "syn": ["orçamentos", "budget", "dinheiro", "valor da equipa", "chips da liga"]}, {"v": "mercado", "s": "pesquisa", "a": "Jogadores", "n": "Pesquisa", "syn": ["pesquisa", "procurar jogador", "jogadores", "filtros"]}, {"v": "mercado", "s": "comparador", "a": "Jogadores", "n": "Comparador", "syn": ["comparador", "comparar jogadores"]}, {"v": "mercado", "s": "ideal", "a": "Jogadores", "n": "Equipa ideal", "syn": ["equipa ideal", "equipa perfeita", "melhor equipa", "otimizador", "dream team"]}, {"v": "mercado", "s": "simulada", "a": "Jogadores", "n": "Equipa simulada", "syn": ["equipa simulada", "simular equipa", "montar equipa"]}, {"v": "mercado", "s": "forma", "a": "Jogadores", "n": "Em forma", "syn": ["em forma", "forma", "quentes"]}, {"v": "mercado", "s": "precos", "a": "Jogadores", "n": "Preços e alternativas", "syn": ["preços", "subidas", "descidas", "alternativas", "substitutos"]}, {"v": "epoca", "s": "evolucao", "a": "A minha época", "n": "Evolução e ranking", "syn": ["evolução", "ranking", "ranking geral", "gráfico de pontos"]}, {"v": "epoca", "s": "jornada", "a": "A minha época", "n": "Por jornada", "syn": ["por jornada", "jornadas anteriores", "histórico"]}, {"v": "epoca", "s": "detalhe", "a": "A minha época", "n": "Jogador a jogador", "syn": ["jogador a jogador", "onze ótimo", "pontos perdidos no banco"]}, {"v": "epoca", "s": "previsoes", "a": "A minha época", "n": "Previsões vs real", "syn": ["previsões vs real", "medir o modelo", "erro do modelo", "acerto"]}, {"v": "epoca", "s": "orcamento", "a": "A minha época", "n": "Orçamento do plantel", "syn": ["orçamento do plantel", "budget", "dinheiro", "valor do plantel", "banco"]}, {"v": "avancado", "s": "simulador", "a": "Avançado", "n": "Simulador", "syn": ["simulador", "testar trocas", "simular transferências"]}, {"v": "avancado", "s": "hot", "a": "Avançado", "n": "Hot takes", "syn": ["hot takes", "diferenciadores", "podem surpreender"]}, {"v": "avancado", "s": "lacunas", "a": "Avançado", "n": "Picks em falta", "syn": ["picks em falta", "lacunas", "template"]}, {"v": "avancado", "s": "capitaes", "a": "Avançado", "n": "Capitães da liga", "syn": ["capitães da liga", "capitães"]}, {"v": "avancado", "s": "posse", "a": "Avançado", "n": "Plantel vs liga", "syn": ["plantel vs liga", "posse", "ownership", "eo"]}, {"v": "avancado", "s": "equipas", "a": "Avançado", "n": "Tabelas das equipas", "syn": ["equipas", "saldo de xg", "xg", "forma das equipas", "criadores", "sequência", "perfil do capitão"]}, {"v": "avancado", "s": "regras", "a": "Avançado", "n": "Regras e fontes", "syn": ["regras", "pontuação", "fontes", "como funciona"]}, {"v": "avancado", "s": "calibracao", "a": "Avançado", "n": "Calibração", "syn": ["calibração", "ajustar o modelo"]}];
   const VIEW_ALIAS = {"resumo": ["semana", "resumo"], "campo": ["semana", "onze"], "pontos": ["semana", "onze"], "decisoes": ["semana", "transferencias"], "decisoes-trocas": ["semana", "transferencias"], "decisoes-capitao": ["semana", "capitao"], "decisoes-estrategia": ["semana", "capitao"], "decisoes-simulador": ["avancado", "simulador"], "decisoes-chips": ["semana", "chips"], "decisoes-hot": ["avancado", "hot"], "planeador": ["semana", "transferencias"], "planeador-plano": ["semana", "transferencias"], "planeador-registo": ["semana", "registo"], "calendario": ["jogos", "jornada"], "onzes": ["jogos", "onzes"], "aovivo": ["jogos", "aovivo"], "europa": ["jogos", "europa"], "equipas": ["avancado", "equipas"], "equipas-europa": ["jogos", "europa"], "equipas-europa-eq": ["jogos", "europa"], "historico": ["epoca", "evolucao"], "historico-evolucao": ["epoca", "evolucao"], "historico-jornada": ["epoca", "jornada"], "historico-detalhe": ["epoca", "detalhe"], "historico-previsoes": ["epoca", "previsoes"], "historico-modelo": ["epoca", "previsoes"], "plantel": ["mercado", "forma"], "plantel-forma": ["mercado", "forma"], "plantel-orcamento": ["epoca", "orcamento"], "plantel-precos": ["mercado", "precos"], "plantel-alternativas": ["mercado", "precos"], "liga": ["competicao", "classificacao"], "liga-classificacao": ["competicao", "classificacao"], "liga-posse": ["avancado", "posse"], "liga-lacunas": ["avancado", "lacunas"], "liga-capitaes": ["avancado", "capitaes"], "liga-orcamentos": ["competicao", "orcamentos"], "liga-simulacao": ["mercado", "simulada"], "h2h": ["competicao", "h2h"], "comparar": ["competicao", "comparar"], "previsao": ["competicao", "previsao"], "jogadores": ["mercado", "pesquisa"], "jogadores-pesquisa": ["mercado", "pesquisa"], "jogadores-comparar": ["mercado", "comparador"], "jogadores-ideal": ["mercado", "ideal"], "ideal": ["mercado", "ideal"], "rivais": ["competicao", "vigiar"], "ganhar": ["competicao", "ganhar"], "regras": ["avancado", "regras"], "campo-campo": ["semana", "onze"], "campo-jornada": ["semana", "onze"], "campo-plano": ["semana", "onze"], "calendario-jogos": ["jogos", "jornada"], "calendario-plantel": ["jogos", "jornada"], "h2h-calendario": ["competicao", "h2h"], "h2h-adversario": ["competicao", "h2h"], "equipas-saldo": ["avancado", "equipas"], "equipas-forma": ["avancado", "equipas"], "equipas-criadores": ["avancado", "equipas"], "equipas-sequencia": ["avancado", "equipas"], "equipas-capitao": ["avancado", "equipas"], "comparar-resumo": ["competicao", "comparar"], "comparar-grafico": ["competicao", "comparar"], "comparar-pontos": ["competicao", "comparar"], "comparar-jogadores": ["competicao", "comparar"], "comparar-orcamento": ["competicao", "comparar"], "previsao-tabela": ["competicao", "previsao"], "previsao-frente": ["competicao", "previsao"], "previsao-metodo": ["competicao", "previsao"], "aovivo-equipa": ["jogos", "aovivo"], "aovivo-h2h": ["jogos", "aovivo"], "aovivo-liga": ["jogos", "aovivo"], "regras-pontuacao": ["avancado", "regras"], "regras-fontes": ["avancado", "regras"]};
+  // LEAGUE_SQUADS: plantéis, capitães, banco, valor e chips dos 20 (atualizado por _build/pool/apply_picks.py
+  // depois de cada deadline e, no site, pelo live.json). (V52: aqui no início para todas as vistas o poderem ler.)
+  const LEAGUE_SQUADS = {"630696":{"m":"Filipe Borges","tn":"SLB77","s":[109,8,115,449,40,13,399,124,526,165,411],"b":[1,53,87,175],"c":"Erling Haaland","vc":"Dominic Solanke-Mitchell","chip6":null,"p6":75,"tot":421,"bank":1.5,"val":101.4,"chips":[["bboost",1],["3xc",3],["wildcard",7]],"chip7":"wildcard"},"2713965":{"m":"Tomás Corregedor","tn":"Bruno + 10","s":[496,87,8,449,40,426,286,124,569,411,165],"b":[109,175,423,368],"c":"Erling Haaland","vc":"Joao Pedro","chip6":"wildcard","p6":69,"tot":438,"bank":0.0,"val":100.4,"chips":[["3xc",3],["freehit",4],["wildcard",6]],"chip7":null},"1885251":{"m":"Dan Robinson","tn":"CHEIRAMUCU","s":[1,449,31,115,40,453,124,12,411,165,138],"b":[496,87,94,229],"c":"Erling Haaland","vc":"Joao Pedro","chip6":"wildcard","p6":53,"tot":388,"bank":0.2,"val":101.7,"chips":[["freehit",4],["wildcard",6],["3xc",7]],"chip7":"3xc"},"1969702":{"m":"Sergio Casinha","tn":"Estrelas D Bensafrim","s":[496,502,8,31,399,426,40,124,165,249,138],"b":[1,480,473,233],"c":"Rayan Cherki","vc":"Morgan Rogers","chip6":null,"p6":74,"tot":391,"bank":6.5,"val":101.9,"chips":[],"chip7":null},"8030866":{"m":"Henrique Rodrigues","tn":"Henriquejunior","s":[1,499,390,417,356,542,426,371,68,165,55],"b":[384,387,335,25],"c":"Bruno Fernandes","vc":"Rúben dos Santos Gato Alves Dias","chip6":null,"p6":32,"tot":302,"bank":0.5,"val":98.6,"chips":[["bboost",1]],"chip7":null},"5406100":{"m":"Frederico Borges","tn":"SL Guinness","s":[1,229,8,115,391,53,13,124,411,166,165],"b":[110,40,94,259],"c":"Erling Haaland","vc":"Declan Rice","chip6":null,"p6":54,"tot":407,"bank":0.0,"val":101.2,"chips":[["3xc",3],["wildcard",7]],"chip7":"wildcard"},"5191766":{"m":"Bruno Carmo","tn":"Brunorussia FC","s":[109,8,112,115,399,12,40,428,411,165,526],"b":[496,176,175,101],"c":"Erling Haaland","vc":"Joao Pedro","chip6":null,"p6":71,"tot":399,"bank":0.5,"val":101.0,"chips":[["3xc",3],["wildcard",7]],"chip7":"wildcard"},"5799879":{"m":"Nuno Rodrigues","tn":"olimpikos","s":[109,8,391,31,113,237,45,366,154,411,165],"b":[28,51,379,32],"c":"Erling Haaland","vc":"Ferdi Kadıoğlu","chip6":null,"p6":72,"tot":354,"bank":0.3,"val":100.1,"chips":[["3xc",7]],"chip7":"3xc"},"2347397":{"m":"Andre Gonçalves","tn":"Já fui","s":[384,8,391,449,115,427,426,12,124,165,138],"b":[572,106,265,229],"c":"Bukayo Saka","vc":"Joao Pedro","chip6":"wildcard","p6":51,"tot":367,"bank":0.2,"val":100.3,"chips":[["wildcard",6]],"chip7":null},"2330867":{"m":"Pedro Guerreiro","tn":"Guerreiro F C","s":[1,8,31,112,124,399,542,236,411,165,106],"b":[109,229,286,593],"c":"Erling Haaland","vc":"Kiernan Dewsbury-Hall","chip6":null,"p6":58,"tot":362,"bank":0.2,"val":99.8,"chips":[["wildcard",7]],"chip7":"wildcard"},"2152388":{"m":"Nelson Rodrigues","tn":"Rodri Team","s":[1,8,31,115,391,427,124,40,165,411,569],"b":[109,480,423,212],"c":"Erling Haaland","vc":"Joao Pedro","chip6":"wildcard","p6":71,"tot":382,"bank":0.2,"val":100.5,"chips":[["wildcard",6]],"chip7":null},"4243640":{"m":"Tiago Guerreiro","tn":"Lups FC","s":[109,391,8,31,115,40,399,154,411,165,526],"b":[496,257,124,286],"c":"Erling Haaland","vc":"Rayan Cherki","chip6":null,"p6":73,"tot":407,"bank":0.0,"val":101.2,"chips":[["freehit",5],["wildcard",7]],"chip7":"wildcard"},"3973926":{"m":"Pedro Bengalinha","tn":"BengalinhaFC","s":[109,593,504,8,155,154,368,15,411,138,165],"b":[28,277,175,591],"c":"Erling Haaland","vc":"Martin Ødegaard","chip6":null,"p6":54,"tot":278,"bank":2.5,"val":100.5,"chips":[["wildcard",3]],"chip7":null},"1973102":{"m":"Marco Carmo","tn":"Xarola Team","s":[1,115,173,277,453,426,427,124,249,165,411],"b":[496,469,418,565],"c":"Erling Haaland","vc":"Pascal Groß","chip6":null,"p6":61,"tot":388,"bank":0.1,"val":100.3,"chips":[["3xc",3]],"chip7":null},"3397966":{"m":"Renato Pinela","tn":"Pinela FC","s":[412,175,356,4,290,460,426,155,156,411,165],"b":[496,556,321,423],"c":"Joao Pedro","vc":"Bruno Fernandes","chip6":null,"p6":29,"tot":301,"bank":0.4,"val":99.0,"chips":[["bboost",2]],"chip7":null},"7188462":{"m":"Paulo Couceiro","tn":"MitraMaxi97","s":[412,8,418,279,15,68,426,124,569,411,167],"b":[496,525,473,499],"c":"Erling Haaland","vc":"Bruno Fernandes","chip6":null,"p6":38,"tot":301,"bank":1.6,"val":99.4,"chips":[["freehit",4]],"chip7":null},"2345657":{"m":"rui moreira","tn":"BADATEAM","s":[384,175,8,229,200,427,542,15,124,165,411],"b":[412,286,526,61],"c":"Erling Haaland","vc":"Joao Pedro","chip6":null,"p6":60,"tot":345,"bank":1.2,"val":99.8,"chips":[["3xc",3]],"chip7":null},"2342874":{"m":"Miguel Bengalinha","tn":"SLBengalinha","s":[350,593,115,504,155,397,156,605,411,346,165],"b":[28,279,565,8],"c":"Erling Haaland","vc":"Alisson Becker","chip6":null,"p6":50,"tot":264,"bank":4.0,"val":100.6,"chips":[["wildcard",3]],"chip7":null},"4159737":{"m":"Luis Pico","tn":"Pico FC","s":[1,581,390,115,428,13,15,124,165,411,249],"b":[567,417,62,315],"c":"Erling Haaland","vc":"Joao Pedro","chip6":null,"p6":64,"tot":340,"bank":0.3,"val":99.9,"chips":[],"chip7":null},"2400508":{"m":"marco milhano","tn":"marco's Team","s":[572,8,586,115,127,397,453,426,464,346,411],"b":[226,362,605,330],"c":"Erling Haaland","vc":"Bruno Fernandes","chip6":null,"p6":43,"tot":333,"bank":1.6,"val":100.3,"chips":[["3xc",3],["wildcard",4]],"chip7":null}};
   const TEAMS = {
     1:"Arsenal", 2:"Aston Villa", 3:"Bournemouth", 4:"Brentford", 5:"Brighton",
     6:"Chelsea", 7:"Coventry City", 8:"Crystal Palace", 9:"Everton", 10:"Fulham",
@@ -3092,6 +3095,121 @@ const EMP_N = {"gk": 116, "def": 472, "mid": 638, "fwd": 158};
   const FULL_POOL_PATCH = {}; // V24: já não é preciso — o estado oficial é fresco
   const FULL_POOL_BY_NAME = Object.fromEntries(FULL_POOL.map(p => [p.name, p]));
   const FULL_POOL_BY_ID = Object.fromEntries(FULL_POOL.map(p => [p.id, p]));
+
+  // ===================================================================
+  // V52 (17 out 2026): tabelas antigas calculadas a partir dos plantéis atuais (antes eram escritas à mão para a J6).
+  // ===================================================================
+  var V52 = {me: {bruno: 5191766, marco: 1973102}};
+  const v52Ep = (p, i) => (p && p.epH ? (p.epH[i || 0] || 0) : 0);
+  const v52Name = id => (FULL_POOL_BY_ID[id] || {}).name || String(id);
+  function v52After() {   // o deadline da jornada já passou e há plantéis dessa jornada
+    const g = (window.__LIVE && window.__LIVE.picks_event) || GW_META.squadsGw;
+    return g === GW_META.next && Date.now() >= new Date(GW_META.deadline).getTime();
+  }
+  function v52Fx(p) {
+    const fx = (FIX_AHEAD[GW_META.next] || []).filter(f => f.h === p.team || f.a === p.team);
+    if (!fx.length) return 'sem jogo';
+    return fx.map(f => { const home = f.h === p.team, d = home ? (f.th ?? f.dh) : (f.ta ?? f.da); return `${home ? 'em casa com' : 'fora, no'} ${TEAMS[home ? f.a : f.h]} (dificuldade ${(+d).toFixed(1)})`; }).join(' e ');
+  }
+  function v52Why(p) {
+    const L = GW_META.last, pts = p.ptsGw || [], mins = p.minsGw || [], g = [L - 2, L - 1, L].filter(x => x >= 1);
+    const st = {d: 'dúvida', i: 'lesionado', s: 'suspenso', u: 'indisponível'}[p.status];
+    return `J${g.join('/J')}: ${g.map(x => pts[x - 1] ?? 0).join('/')} pts (${g.map(x => mins[x - 1] ?? 0).join('/')} min). J${GW_META.next}: ${v52Fx(p)} · ≈${v52Ep(p).toFixed(1)} pts esperados.${st ? ` <b>${st}${p.chance != null ? ' ' + p.chance + '%' : ''}</b>${p.news ? ' — ' + p.news : ''}.` : ''}`;
+  }
+  function v52BestXi(ps) {
+    const by = c => ps.filter(p => p.cls === c).sort((a, b) => v52Ep(b) - v52Ep(a));
+    const g = by('gk'), d = by('def'), m = by('mid'), f = by('fwd'); let best = null;
+    [[3,5,2],[3,4,3],[4,5,1],[4,4,2],[4,3,3],[5,4,1],[5,3,2],[5,2,3]].forEach(([nd, nm, nf]) => {
+      if (!g.length || d.length < nd || m.length < nm || f.length < nf) return;
+      const xi = [g[0], ...d.slice(0, nd), ...m.slice(0, nm), ...f.slice(0, nf)], v = xi.reduce((s, p) => s + v52Ep(p), 0);
+      if (!best || v > best.v) best = {xi, v};
+    });
+    return best ? best.xi : ps.slice(0, 11);
+  }
+  // o plantel atual de um gestor, com titular/capitão/vice reais depois do deadline (antes: os do modelo)
+  function v52Lineup(mgr) {
+    const ps = SQUAD_STATE[mgr].players.map(x => FULL_POOL_BY_ID[x.id]).filter(Boolean);
+    const L = LEAGUE_SQUADS[V52.me[mgr]], key = a => a.slice().sort((x, y) => x - y).join(',');
+    if (L && v52After() && key([...L.s, ...L.b]) === key(ps.map(p => p.id)))
+      return {ps, xi: new Set(L.s), cap: L.c, vice: L.vc, bench: L.b, real: true};
+    const xi = v52BestXi(ps), order = xi.slice().sort((a, b) => v52Ep(b) - v52Ep(a));
+    return {ps, xi: new Set(xi.map(p => p.id)), cap: order[0] && order[0].name, vice: order[1] && order[1].name, bench: ps.filter(p => !xi.includes(p)).map(p => p.id), real: false};
+  }
+  function v52Fill(arr, items) { arr.splice(0, arr.length, ...items); return arr; }
+  // SQUAD (o teu plantel nas vistas antigas): grupos GK/DEF/MID/FWD
+  function v52FillSquad(SQ) {
+    const Lu = v52Lineup('bruno'), old = Object.values(SQ).flatMap(g => g.players);
+    const G = {GK: 'gk', DEF: 'def', MID: 'mid', FWD: 'fwd'};
+    Object.entries(G).forEach(([k, cls]) => {
+      if (!SQ[k]) return;
+      const ps = Lu.ps.filter(p => p.cls === cls).sort((a, b) => (Lu.xi.has(b.id) - Lu.xi.has(a.id)) || v52Ep(b) - v52Ep(a));
+      v52Fill(SQ[k].players, ps.map(p => {
+        const o = old.find(x => x.name === p.name), start = Lu.xi.has(p.id);
+        return {name: p.name, club: TEAMS[p.team], team: p.team, price: '£' + p.price.toFixed(1) + 'M', tag: p.name === Lu.cap ? 'cap' : p.name === Lu.vice ? 'vice' : start ? '' : 'bench', start,
+                ep1: (p.ptsGw || [])[GW_META.last - 1] ?? 0, ep2: v52Ep(p), why: v52Why(p) + (o && o.why && !Lu.real ? '' : '')};
+      }));
+    });
+  }
+  function v52MarcoSquad() {
+    const Lu = v52Lineup('marco');
+    return Lu.ps.slice().sort((a, b) => ({gk: 0, def: 1, mid: 2, fwd: 3})[a.cls] - ({gk: 0, def: 1, mid: 2, fwd: 3})[b.cls] || (Lu.xi.has(b.id) - Lu.xi.has(a.id))).map(p => ({
+      name: p.name, club: TEAMS[p.team], team: p.team, cls: p.cls, price: p.price, start: Lu.xi.has(p.id),
+      tag: p.name === Lu.cap ? 'cap' : p.name === Lu.vice ? 'vice' : Lu.xi.has(p.id) ? '' : 'bench', ep2: v52Ep(p), why: v52Why(p)}));
+  }
+  const v52Entries = () => Object.keys(LEAGUE_SQUADS).map(Number);
+  const v52Own = id => v52Entries().filter(e => { const L = LEAGUE_SQUADS[e]; return L.s.includes(id) || L.b.includes(id); }).length;
+  const v52Pct = id => Math.round(100 * v52Own(id) / v52Entries().length);
+  function v52Captains() {
+    const c = {}; v52Entries().forEach(e => { const L = LEAGUE_SQUADS[e]; (c[L.c] = c[L.c] || []).push(L); });
+    const gw = GW_META.squadsGw || GW_META.last;
+    return Object.entries(c).sort((a, b) => b[1].length - a[1].length).map(([name, Ls]) => {
+      const p = Object.values(FULL_POOL_BY_ID).find(x => x.name === name), tc = Ls.filter(L => L['chip' + gw] === '3xc');
+      return {name, count: Ls.length, note: `${Ls.map(L => L.m).join(', ')}${tc.length ? ` · Triple Captain: ${tc.map(L => L.m).join(', ')}` : ''}${p ? ` · ≈${v52Ep(p).toFixed(1)} pts esperados na J${GW_META.next}` : ''}`};
+    });
+  }
+  function v52MyOwnership(mgr) {
+    const Lu = v52Lineup(mgr);
+    return Lu.ps.map(p => ({name: p.name, pct: v52Pct(p.id), note: `${p.name === Lu.cap ? 'capitão' : p.name === Lu.vice ? 'vice' : Lu.xi.has(p.id) ? 'titular' : 'banco'} · ≈${v52Ep(p).toFixed(1)} pts esp.`}))
+      .sort((a, b) => b.pct - a.pct);
+  }
+  function v52Gaps() {
+    const mine = new Set(SQUAD_STATE.bruno.players.map(x => x.id)), ids = new Set(v52Entries().flatMap(e => [...LEAGUE_SQUADS[e].s, ...LEAGUE_SQUADS[e].b]));
+    return [...ids].filter(id => !mine.has(id) && FULL_POOL_BY_ID[id]).map(id => FULL_POOL_BY_ID[id]).map(p => ({p, pct: v52Pct(p.id)})).filter(x => x.pct >= 25)
+      .sort((a, b) => b.pct - a.pct).slice(0, 10).map(({p, pct}) => ({name: p.name, club: TEAMS[p.team], pos: {gk: 'GR', def: 'DEF', mid: 'MED', fwd: 'AV'}[p.cls], price: p.price, pct,
+        note: `≈${v52Ep(p).toFixed(1)} pts esp. na J${GW_META.next}; ${(p.epH || []).reduce((s, v) => s + v, 0).toFixed(1)} nas próximas 5.`}));
+  }
+  function v52Budgets() { return v52Entries().map(e => { const L = LEAGUE_SQUADS[e]; return {entry: e, bank: L.bank, value: L.val, chips: (L.chips || []).map(([name, event]) => ({name, event}))}; }); }
+  function v52H2H() {
+    const opp = v52Entries().find(e => LEAGUE_SQUADS[e].m === GW_META.h2h.bruno.next), O = opp && LEAGUE_SQUADS[opp];
+    const Lu = v52Lineup('bruno'); if (!O) return {shared: [], mine: [], theirs: [], O: null};
+    const oIds = [...O.s, ...O.b], mIds = Lu.ps.map(p => p.id);
+    const row = (id, side) => { const p = FULL_POOL_BY_ID[id]; if (!p) return null;
+      const benchM = side !== 'theirs' && !Lu.xi.has(id), benchO = side !== 'mine' && O.b.includes(id), capO = side !== 'mine' && O.c === p.name, capM = side !== 'theirs' && Lu.cap === p.name;
+      const bits = [capM ? 'o teu capitão' : '', capO ? 'capitão dele' : '', side === 'shared' ? (benchM && benchO ? 'banco dos dois' : benchM ? 'no teu banco' : benchO ? 'no banco dele' : '') : (side === 'mine' ? (benchM ? 'banco' : '') : (benchO ? 'banco dele' : '')), v52Fx(p)].filter(Boolean);
+      return {name: p.name, cls: p.cls, ep2: v52Ep(p), note: bits.join(' · ')}; };
+    return {O, opp, shared: mIds.filter(id => oIds.includes(id)).map(id => row(id, 'shared')).filter(Boolean),
+            mine: mIds.filter(id => !oIds.includes(id)).map(id => row(id, 'mine')).filter(Boolean),
+            theirs: oIds.filter(id => !mIds.includes(id)).map(id => row(id, 'theirs')).filter(Boolean)};
+  }
+  function v52ChipsUsed() {
+    const out = {}, code = {wildcard: 'wc', freehit: 'fh', bboost: 'bb', '3xc': 'tc'};
+    ((LEAGUE_SQUADS[V52.me.bruno] || {}).chips || []).forEach(([n, g]) => { if (code[n]) out[code[n] + (g <= 19 ? 1 : 2)] = {gw: g}; });
+    return out;
+  }
+  const v52ChipTxt = mgr => { const ch = ((LEAGUE_SQUADS[V52.me[mgr]] || {}).chips || []), N = {wildcard: 'Wildcard', freehit: 'Free Hit', bboost: 'Bench Boost', '3xc': 'Triple Captain'};
+    const used = ch.filter(([, g]) => g <= 19), left = Object.keys(N).filter(k => !used.some(([n]) => n === k));
+    return `${used.length ? 'Já usado: ' + used.map(([n, g]) => `${N[n]} (J${g})`).join(', ') + '.' : 'Ainda nenhum chip usado.'} ${left.length ? 'Por usar até à J19: ' + left.map(k => N[k]).join(', ') + '.' : 'Sem chips da 1.ª metade por usar.'}`; };
+  function v52Alt() {
+    const mine = new Set(SQUAD_STATE.bruno.players.map(x => x.id)), s5 = p => (p.epH || []).reduce((a, b) => a + b, 0);
+    return Object.values(FULL_POOL_BY_ID).filter(p => !mine.has(p.id) && p.status === 'a').sort((a, b) => s5(b) - s5(a)).slice(0, 8)
+      .map(p => ({name: p.name, club: TEAMS[p.team], note: `≈${s5(p).toFixed(1)} pts esperados nas J${GW_META.horizon[0]}-J${GW_META.horizon[GW_META.horizon.length - 1]} · ${v52Pct(p.id)}% da liga tem.`}));
+  }
+  function v52Enablers() {
+    const mine = new Set(SQUAD_STATE.bruno.players.map(x => x.id)), s5 = p => (p.epH || []).reduce((a, b) => a + b, 0);
+    return Object.values(FULL_POOL_BY_ID).filter(p => p.price <= 5.0 && p.status === 'a' && (p.mins || 0) >= 120).sort((a, b) => s5(b) / b.price - s5(a) / a.price).slice(0, 8)
+      .map(p => ({pos: {gk: 'GK', def: 'DEF', mid: 'MID', fwd: 'FWD'}[p.cls], name: p.name, club: TEAMS[p.team], price: '£' + p.price.toFixed(1) + 'M', inSquad: mine.has(p.id),
+        why: `≈${s5(p).toFixed(1)} pts esperados nas próximas 5 por £${p.price.toFixed(1)}M${mine.has(p.id) ? ' · já tens' : ''}.`}));
+  }
   const SHORT = id => TEAM_SHORT[id] || TEAMS[id];
   // Badge de disponibilidade (lesão/dúvida/suspensão) a colar ao lado de um nome
   // de jogador em qualquer tabela — usa o FULL_POOL para saber o estado real.
@@ -3377,6 +3495,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       {name:"Nicolas Jackson", club:"Aston Villa", team:2, price:"£6.5M", tag:"", start:true, ep1:9.0, ep2:4.1, why:"J4/J5/J6: 0/6/9 pts (45/87/90 min). <b>Golo nas J5 e J6</b> (6 e 9 pts) — o punt diferenciador está a pagar. J7: fora, em casa do Newcastle (dificuldade 3.2). Onze provável: titular e em forma (golos nas J5 e J6, 87 e 90 min); Tammy Abraham é a alternativa."},
     ]},
   };
+  v52FillSquad(SQUAD);   // V52: o plantel atual (com o onze real depois do deadline)
   const ALL_PLAYERS = Object.values(SQUAD).flatMap(g => g.players.map(p => ({...p, pos:g.label, cls:g.cls})));
   ALL_PLAYERS.forEach(p => { const fp = FULL_POOL_BY_NAME[p.name]; if (fp) { p.price = '£' + fp.price.toFixed(1) + 'M'; if (fp.epH) p.ep2 = fp.epH[0]; } });
 
@@ -4393,6 +4512,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {name:"Martin Dubravka", note:"banco", pct:5},
     {name:"Nicolas Jackson", note:"golo nas J5 e J6 — o teu maior diferencial", pct:5},
   ];
+  v52Fill(MY_LEAGUE_OWNERSHIP, v52MyOwnership('bruno'));   // V52
 
   // NOTA (1 set 2026): TEMPLATE_GAPS abaixo continua a refletir o levantamento original da liga (J1,
   // 20 plantéis por corroboração cruzada) — não voltei a fazer o scrape completo dos 20 gestores para
@@ -4414,6 +4534,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {name:"Morgan Rogers", club:"Chelsea", pos:"MED", price:7.8, pct:25, note:"8, 2 e 9 pts nas J4-J6, titular no Chelsea com o Palmer e o Joao Pedro."},
     {name:"Martin Ødegaard", club:"Arsenal", pos:"MED", price:6.8, pct:25, note:"só 3, 2 e 1 pts nas J4-J6. Não é um buraco que valha a pena tapar."},
   ];
+  v52Fill(TEMPLATE_GAPS, v52Gaps());   // V52: a partir dos plantéis atuais
   TEMPLATE_GAPS.forEach(g => { const fp = FULL_POOL_BY_NAME[g.name]; if (fp) g.price = fp.price; });
 
   const CAPTAIN_DIST = [
@@ -4425,6 +4546,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {name:"Harvey Barnes", count:1, note:"linha oficial da J6 ainda vazia na API (o Coventry-Newcastle ainda não foi processado)"},
     {name:"Dominic Calvert-Lewin", count:1, note:"2 pts ×2 = 4"},
   ];
+  v52Fill(CAPTAIN_DIST, v52Captains());   // V52: capitães reais da última jornada com plantéis
 
   function renderLiga() {
     const me = LEAGUE_STANDINGS.find(r => r.mine);
@@ -4549,6 +4671,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {entry:4159737, bank:0.1, value:99.7, chips:[]},
     {entry:2400508, bank:1.4, value:100.3, chips:[{name:"3xc", event:3}, {name:"wildcard", event:4}]},
   ];
+  v52Fill(LEAGUE_BUDGETS, v52Budgets());   // V52
 
   // ---------- 15 out: preço de venda e "orçamento real" (o que um gestor tem para gastar) ----------
   // Regra da FPL: ao vender recebes o preço de compra + metade da subida (arredondada para baixo a £0,1M);
@@ -4624,7 +4747,9 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
         </ul>
         <span class="note">Para ti e para o Marco o orçamento real é exato (preços de compra conhecidos). Para os outros 18 é uma estimativa (≈): assume o preço do início da época para cada jogador${window.__LIVE ? ', ou o preço da última compra quando a atualização automática a conhece' : ''}; quem comprou um jogador depois de ele subir tem, na verdade, menos lucro preso. No resto da app os preços mostrados continuam a ser os preços de compra atuais.</span>
       </div>
-      <p class="note">Atualizado a 13 out (J6). Só 4 gestores ainda não usaram nenhum chip (Sergio Casinha, Nuno Rodrigues, Pedro Guerreiro e Luis Pico). O Triple Captain na J3 foi o mais popular (7 gestores, tu e o Marco incluídos), e <b>quatro gestores jogaram o Wildcard na própria J6</b>: Tomás Corregedor (líder), Dan Robinson, Andre Gonçalves e Nelson Rodrigues. O Sergio Casinha tem £3.2M no banco, o maior "cofre" da liga.</p>
+      <p class="note">${(() => { const E = Object.values(LEAGUE_SQUADS), gw = GW_META.squadsGw || GW_META.last, N = {wildcard: 'Wildcard', freehit: 'Free Hit', bboost: 'Bench Boost', '3xc': 'Triple Captain'};
+        const none = E.filter(L => !(L.chips || []).length), now = E.filter(L => L['chip' + gw]);
+        return `Plantéis e chips da J${gw}. ${none.length ? `${none.length} gestor${none.length === 1 ? '' : 'es'} ainda sem nenhum chip usado (${none.map(L => L.m).join(', ')}).` : 'Todos já usaram pelo menos um chip.'}${now.length ? ` Na J${gw}: ${now.map(L => `${L.m} (${N[L['chip' + gw]] || L['chip' + gw]})`).join(', ')}.` : ''}`; })()}</p>
     `;
   }
   renderLigaBudgets();
@@ -4672,6 +4797,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {name:"Erling Haaland", cls:"fwd", ep2:7.6, note:"vice dele"},
     {name:"Joao Pedro", cls:"fwd", ep2:5.5},
   ];
+  { const h = v52H2H(); v52Fill(H2H_SHARED, h.shared); V52.h2h = h; }   // V52
   H2H_SHARED.forEach(x => { const fp = FULL_POOL_BY_NAME[x.name]; if (fp && fp.epH) x.ep2 = fp.epH[0]; });
   const H2H_MINE_ONLY = [
     {name:"Martin Dubravka", cls:"gk", ep2:0.3, note:"banco · Spurs, J7 dificuldade 2"},
@@ -4685,6 +4811,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {name:"Regan Slater", cls:"mid", ep2:2.5, note:"banco · Hull City, J7 dificuldade 3"},
     {name:"Nicolas Jackson", cls:"fwd", ep2:4.1, note:"Aston Villa, J7 dificuldade 3"},
   ];
+  v52Fill(H2H_MINE_ONLY, V52.h2h.mine);   // V52
   H2H_MINE_ONLY.forEach(x => { const fp = FULL_POOL_BY_NAME[x.name]; if (fp && fp.epH) x.ep2 = fp.epH[0]; });
   const H2H_THEIRS_ONLY = [
     {name:"Semi Ajayi", cls:"def", ep2:1.9, note:"Hull City, J7 dificuldade 3"},
@@ -4698,6 +4825,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {name:"Andrew Robertson", cls:"def", ep2:3.4, note:"banco dele · Spurs, J7 dificuldade 2"},
     {name:"Issa Diop", cls:"def", ep2:1.8, note:"banco dele · Ipswich Town, J7 dificuldade 5"},
   ];
+  v52Fill(H2H_THEIRS_ONLY, V52.h2h.theirs);   // V52
   H2H_THEIRS_ONLY.forEach(x => { const fp = FULL_POOL_BY_NAME[x.name]; if (fp && fp.epH) x.ep2 = fp.epH[0]; });
 
   function sumEp(arr) { return arr.reduce((s,p) => s + p.ep2, 0); }
@@ -4731,7 +4859,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
         </table>
       </div>
     `;
-    document.getElementById('h2h-opponent-intro').innerHTML = `O <b>Frederico Borges (SL Guinness)</b> é o teu adversário na J7. Está 3.º na liga clássica (407 pts, 8 à tua frente) e 7.º na H2H (3V-1E-2D). Uso o plantel real dele da J6 (via API oficial): <b>5 dos 15 jogadores são os mesmos que os teus</b> (Raya, Calafiori, Mitchell, Haaland, Joao Pedro). Ele <b>capitaniza o Bruno Fernandes</b> (o teu ex-jogador, que fez 2, 2 e 1 pts nas últimas três), com o Haaland de vice. Se capitanizares o Haaland, ganhas terreno exatamente onde ele está mais fraco.`;
+    { const h = V52.h2h || {}, O = h.O, row = O ? LEAGUE_STANDINGS.find(r => r.team === O.tn) : null, me = LEAGUE_STANDINGS.find(r => r.mine) || {}, gw = GW_META.squadsGw || GW_META.last;
+      document.getElementById('h2h-opponent-intro').innerHTML = O ? `O <b>${O.m} (${O.tn})</b> é o teu adversário na J${GW_META.next}${row ? `. Está ${row.rank}.º na liga clássica (${row.pts} pts, ${row.pts >= me.pts ? (row.pts - me.pts) + ' à tua frente' : (me.pts - row.pts) + ' atrás de ti'})` : ''}. Plantel ${v52After() ? 'e capitão reais' : ''} da J${gw}: capitão <b>${O.c}</b>${O['chip' + gw] ? `, chip <b>${({wildcard: 'Wildcard', freehit: 'Free Hit', bboost: 'Bench Boost', '3xc': 'Triple Captain'})[O['chip' + gw]]}</b>` : ''}. Em baixo: os jogadores que só um de vocês tem decidem o jogo.` : ''; }
     const mineTotal = sumEp(H2H_MINE_ONLY), theirsTotal = sumEp(H2H_THEIRS_ONLY);
     const diff = mineTotal - theirsTotal;
     document.getElementById('h2h-swing-summary').innerHTML = `
@@ -4742,7 +4871,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       </div>
     `;
     document.getElementById('h2h-shared').innerHTML = `
-      <p class="prose">5 dos 15 jogadores de cada plantel são os mesmos. Estes pontos sobem ou descem os dois por igual, por isso <b>não decidem este jogo</b>. A exceção é a braçadeira: se capitanizares o Haaland e ele não, o Haaland deixa de se cancelar.</p>
+      <p class="prose">${H2H_SHARED.length} dos 15 jogadores de cada plantel são os mesmos. Estes pontos sobem ou descem os dois por igual, por isso <b>não decidem este jogo</b>. A exceção é a braçadeira: se capitanizares o Haaland e ele não, o Haaland deixa de se cancelar.</p>
       <div class="table-scroll">
         <table class="form">
           <thead><tr><th>Jogador</th><th>Pts esp. (J7)</th></tr></thead>
@@ -4764,7 +4893,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       </div>
       <div class="table-scroll" style="margin-top:14px">
         <table class="form">
-          <thead><tr><th>Só o Frederico Borges tem</th><th>Pts esp.</th></tr></thead>
+          <thead><tr><th>Só ${(V52.h2h && V52.h2h.O) ? V52.h2h.O.m : 'ele'} tem</th><th>Pts esp.</th></tr></thead>
           <tbody>
             ${H2H_THEIRS_ONLY.map(p => `<tr><td>${p.name}${p.note ? ` <span class="note">— ${p.note}</span>` : ''}</td><td class="mono">${p.ep2.toFixed(1)}</td></tr>`).join('')}
             <tr style="font-weight:600"><td>Total</td><td class="mono">${theirsTotal.toFixed(1)}</td></tr>
@@ -4868,6 +4997,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {name:"Charalampos Kostoulas", club:"Brighton", pos:"FWD", price:"£5.6M", note:"10+10+1 pts, titular previsto com o Palace em casa (dificuldade 1.5). Alternativa barata no ataque."},
     {name:"Enzo Fernández", club:"Man City", pos:"MID", price:"£6.9M", note:"já não está no Chelsea: mudou-se para o Man City. 2+7+3 pts. Substituto direto do Szoboszlai ao mesmo preço, se preferires não ir ao Brighton."},
   ];
+  v52Fill(ALT, v52Alt());   // V52
   ALT.forEach(a => { const fp = FULL_POOL_BY_NAME[a.name]; if (fp) a.price = '£' + fp.price.toFixed(1) + 'M'; });
   function renderAlt() {
     if (!PC_READY) return;   // V43: cartões de jogador (desenhado em renderPcLists, depois de o cartão existir)
@@ -4904,6 +5034,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {pos:"MID", name:"Mamadou Sangare", club:"Brentford", price:"£5.6M", inSquad:true, why:"a perder o lugar (21 e 38 min nas últimas duas) e fora do onze provável da J7. Candidato a sair numa próxima transferência."},
     {pos:"MID", name:"Malick Yalcouyé", club:"Brighton", price:"£4.5M", inSquad:false, why:"8 pts na J4, mas depois só 5 e 22 minutos. Barato, mas sem lugar garantido no Brighton."},
   ];
+  v52Fill(ENABLERS, v52Enablers());   // V52
   ENABLERS.forEach(a => { const fp = FULL_POOL_BY_NAME[a.name]; if (fp) a.price = '£' + fp.price.toFixed(1) + 'M'; });
   function renderEnablers() {
     if (!PC_READY) return;   // V43: cartões de jogador
@@ -5038,7 +5169,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   // 7 set 2026 (V20): Triple Captain confirmado como usado na J3 (active_chip:"3xc"
   // via entry/5191766/event/3/picks/) — no Haaland, 27 pts em bruto com a braçadeira.
   // 13 out 2026 (V22): reconfirmado em entry/5191766/history/ (array chips) — nenhum outro chip usado nas J4-J6.
-  const CHIPS_USED = {tc1: {gw: 3}};
+  const CHIPS_USED = v52ChipsUsed();   // V52: a partir das chips reais (antes: {tc1: {gw: 3}})
 
   function renderChips() {
     const renderPill = (chip) => {
@@ -5325,6 +5456,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {name:"Mamadou Sangare", club:"Brentford", team:4, cls:"mid", price:5.6, start:false, tag:"bench", ep2:0.7, why:"J4/J5/J6: 4/0/1 pts (90/21/38 min). A perder o lugar no Brentford (21 e 38 min nas últimas duas). J7: em casa vs. Liverpool (dificuldade 2.8). <b>Não aparece no onze provável recolhido para a J7.</b>"},
     {name:"Igor Jesus", club:"Nott'm Forest", team:18, cls:"fwd", price:5.8, start:false, tag:"bench", ep2:0.3, why:"J4/J5/J6: 7/1/0 pts (15/31/0 min). <b>Lesionado (gémeo, algumas semanas)</b> — 0 min na J6, fora do onze provável do Forest. J7: em casa vs. Arsenal (dificuldade 4.0). <b>Não aparece no onze provável recolhido para a J7.</b>"},
   ];
+  v52Fill(MARCO_SQUAD_CURRENT, v52MarcoSquad());   // V52
   MARCO_SQUAD_CURRENT.forEach(p => { const fp = FULL_POOL_BY_NAME[p.name]; if (fp) { p.price = fp.price; if (fp.epH) p.ep2 = fp.epH[0]; } });
 
   const MARCO_HISTORY = [
@@ -5422,7 +5554,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
 
     document.getElementById('marco-subs-note').innerHTML = `<b>O que mudou nas J5 e J6 (confirmado na API):</b> duas transferências reais, <b>Cristhian Mosquera → Neco Williams</b> (J5) e <b>Mateus Fernandes → Harvey Barnes</b> (J6), sem hits. O <b>Maguire</b> voltou ao onze na J5, e o <b>Bobby Thomas</b> foi ao banco na J5 (fez 9 pts lá) antes de voltar a titular na J6. Braçadeira: Haaland na J5 (6×2), Bruno Fernandes na J6 (1×2). <b>Banco a vigiar:</b> o <b>Igor Jesus</b> está lesionado (gémeo, algumas semanas), o <b>Sangare</b> está a perder o lugar no Brentford, e o <b>Kinský</b> continua titular nos Spurs mas preso atrás do Raya. Ver a tabela de pontos esperados abaixo para o detalhe de cada um.`;
 
-    document.getElementById('marco-chips-summary').textContent = "Triple Captain já usado (J3, no Haaland, confirmado nos picks da J3). Wildcard, Free Hit e Bench Boost continuam disponíveis até ao deadline da J19 (sex 1 jan 2027, 18:30). O plano é o mesmo do Bruno: Free Hit na J12, Wildcard na J13, Bench Boost na J16 — ver a linha do tempo acima.";
+    document.getElementById('marco-chips-summary').textContent = v52ChipTxt('marco') || "Triple Captain já usado (J3, no Haaland, confirmado nos picks da J3). Wildcard, Free Hit e Bench Boost continuam disponíveis até ao deadline da J19 (sex 1 jan 2027, 18:30). O plano é o mesmo do Bruno: Free Hit na J12, Wildcard na J13, Bench Boost na J16 — ver a linha do tempo acima.";
 
     document.getElementById('marco-budget-stats').innerHTML = `
       <div class="stat-tile"><div class="label">Total (J6)</div><div class="value mono">£100.1M</div></div>
@@ -5529,6 +5661,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     {name:"Neco Williams", pct:5},
     {name:"Igor Jesus", pct:5},
   ];
+  v52Fill(MARCO_LEAGUE_OWNERSHIP, v52MyOwnership('marco'));   // V52
   function renderMarcoOwnership() {
     document.getElementById('liga-my-ownership-marco').innerHTML = `
       <div class="table-scroll">
@@ -5605,7 +5738,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
         kpi('Pontos totais', `${row.pts}`, `${row.rank}.º na liga · ${gap}`),
         kpi(`Jornada ${last.gw}`, `${last.points}<small>pts</small>`, `<span class="${d >= 0 ? 'up' : 'down'}">${d > 0 ? '+' : ''}${d}</span> vs. média (${last.avgPoints})`),
         kpi('Liga H2H', `${x.h2hPos}<small>de 20</small>`, `${x.h2h} · J${GW_META.next} vs. ${x.next}`),
-        kpi('Transferências', `${x.ft}<small>grátis</small>`, GW_META.ftConfirmed ? `para a J${GW_META.next}, confirmado no site` : 'estimativa pela regra da FPL'),
+        (GW_META.ftNext && v52After()) ? kpi('Transferências', `${GW_META.ftNext[mgr]}<small>grátis</small>`, `para a J${GW_META.next + 1} (pela regra da FPL; confirma no site)`)
+          : kpi('Transferências', `${x.ft}<small>grátis</small>`, GW_META.ftConfirmed ? `para a J${GW_META.next}, confirmado no site` : 'estimativa pela regra da FPL'),
       ].join('');
     };
     document.getElementById('overview-kpis-bruno').innerHTML = build('bruno', HISTORY, LEAGUE_STANDINGS.find(r => r.mine), total);
@@ -5963,7 +6097,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     'Emersonn Correia da Silva': 'Emersonn', 'Morgan Rogers': 'Rogers', 'Igor Thiago': 'Igor Thiago', 'Enzo Fernández': 'Enzo',
   };
   function shortName(n) {
-    if (SHORT_NAME[n]) return SHORT_NAME[n];
+    let sn = null; try { sn = SHORT_NAME[n]; } catch (e) {}   // V52: pode ser chamada no arranque, antes de SHORT_NAME existir
+    if (sn) return sn;
     const w = n.split(' ');
     if (w.length === 1) return n;
     const pre = w[w.length - 2];
@@ -6411,7 +6546,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   // LEAGUE_SQUADS: plantéis, capitães, banco, valor e chips da J6 (data/league-squads.json, API oficial a 13 out).
   // Pontos por jornada completos só existem na app para o Bruno (HISTORY) e o Marco (MARCO_HISTORY);
   // para os outros 18 há a J6 e o total (o histórico jornada a jornada entra quando houver recolha da API).
-  const LEAGUE_SQUADS = {"630696":{"m":"Filipe Borges","tn":"SLB77","s":[109,8,115,449,40,13,399,124,526,165,411],"b":[1,53,87,175],"c":"Erling Haaland","vc":"Dominic Solanke-Mitchell","chip6":null,"p6":75,"tot":421,"bank":1.5,"val":101.4,"chips":[["bboost",1],["3xc",3],["wildcard",7]],"chip7":"wildcard"},"2713965":{"m":"Tomás Corregedor","tn":"Bruno + 10","s":[496,87,8,449,40,426,286,124,569,411,165],"b":[109,175,423,368],"c":"Erling Haaland","vc":"Joao Pedro","chip6":"wildcard","p6":69,"tot":438,"bank":0.0,"val":100.4,"chips":[["3xc",3],["freehit",4],["wildcard",6]],"chip7":null},"1885251":{"m":"Dan Robinson","tn":"CHEIRAMUCU","s":[1,449,31,115,40,453,124,12,411,165,138],"b":[496,87,94,229],"c":"Erling Haaland","vc":"Joao Pedro","chip6":"wildcard","p6":53,"tot":388,"bank":0.2,"val":101.7,"chips":[["freehit",4],["wildcard",6],["3xc",7]],"chip7":"3xc"},"1969702":{"m":"Sergio Casinha","tn":"Estrelas D Bensafrim","s":[496,502,8,31,399,426,40,124,165,249,138],"b":[1,480,473,233],"c":"Rayan Cherki","vc":"Morgan Rogers","chip6":null,"p6":74,"tot":391,"bank":6.5,"val":101.9,"chips":[],"chip7":null},"8030866":{"m":"Henrique Rodrigues","tn":"Henriquejunior","s":[1,499,390,417,356,542,426,371,68,165,55],"b":[384,387,335,25],"c":"Bruno Fernandes","vc":"Rúben dos Santos Gato Alves Dias","chip6":null,"p6":32,"tot":302,"bank":0.5,"val":98.6,"chips":[["bboost",1]],"chip7":null},"5406100":{"m":"Frederico Borges","tn":"SL Guinness","s":[1,229,8,115,391,53,13,124,411,166,165],"b":[110,40,94,259],"c":"Erling Haaland","vc":"Declan Rice","chip6":null,"p6":54,"tot":407,"bank":0.0,"val":101.2,"chips":[["3xc",3],["wildcard",7]],"chip7":"wildcard"},"5191766":{"m":"Bruno Carmo","tn":"Brunorussia FC","s":[109,8,112,115,399,12,40,428,411,165,526],"b":[496,176,175,101],"c":"Erling Haaland","vc":"Joao Pedro","chip6":null,"p6":71,"tot":399,"bank":0.5,"val":101.0,"chips":[["3xc",3],["wildcard",7]],"chip7":"wildcard"},"5799879":{"m":"Nuno Rodrigues","tn":"olimpikos","s":[109,8,391,31,113,237,45,366,154,411,165],"b":[28,51,379,32],"c":"Erling Haaland","vc":"Ferdi Kadıoğlu","chip6":null,"p6":72,"tot":354,"bank":0.3,"val":100.1,"chips":[["3xc",7]],"chip7":"3xc"},"2347397":{"m":"Andre Gonçalves","tn":"Já fui","s":[384,8,391,449,115,427,426,12,124,165,138],"b":[572,106,265,229],"c":"Bukayo Saka","vc":"Joao Pedro","chip6":"wildcard","p6":51,"tot":367,"bank":0.2,"val":100.3,"chips":[["wildcard",6]],"chip7":null},"2330867":{"m":"Pedro Guerreiro","tn":"Guerreiro F C","s":[1,8,31,112,124,399,542,236,411,165,106],"b":[109,229,286,593],"c":"Erling Haaland","vc":"Kiernan Dewsbury-Hall","chip6":null,"p6":58,"tot":362,"bank":0.2,"val":99.8,"chips":[["wildcard",7]],"chip7":"wildcard"},"2152388":{"m":"Nelson Rodrigues","tn":"Rodri Team","s":[1,8,31,115,391,427,124,40,165,411,569],"b":[109,480,423,212],"c":"Erling Haaland","vc":"Joao Pedro","chip6":"wildcard","p6":71,"tot":382,"bank":0.2,"val":100.5,"chips":[["wildcard",6]],"chip7":null},"4243640":{"m":"Tiago Guerreiro","tn":"Lups FC","s":[109,391,8,31,115,40,399,154,411,165,526],"b":[496,257,124,286],"c":"Erling Haaland","vc":"Rayan Cherki","chip6":null,"p6":73,"tot":407,"bank":0.0,"val":101.2,"chips":[["freehit",5],["wildcard",7]],"chip7":"wildcard"},"3973926":{"m":"Pedro Bengalinha","tn":"BengalinhaFC","s":[109,593,504,8,155,154,368,15,411,138,165],"b":[28,277,175,591],"c":"Erling Haaland","vc":"Martin Ødegaard","chip6":null,"p6":54,"tot":278,"bank":2.5,"val":100.5,"chips":[["wildcard",3]],"chip7":null},"1973102":{"m":"Marco Carmo","tn":"Xarola Team","s":[1,115,173,277,453,426,427,124,249,165,411],"b":[496,469,418,565],"c":"Erling Haaland","vc":"Pascal Groß","chip6":null,"p6":61,"tot":388,"bank":0.1,"val":100.3,"chips":[["3xc",3]],"chip7":null},"3397966":{"m":"Renato Pinela","tn":"Pinela FC","s":[412,175,356,4,290,460,426,155,156,411,165],"b":[496,556,321,423],"c":"Joao Pedro","vc":"Bruno Fernandes","chip6":null,"p6":29,"tot":301,"bank":0.4,"val":99.0,"chips":[["bboost",2]],"chip7":null},"7188462":{"m":"Paulo Couceiro","tn":"MitraMaxi97","s":[412,8,418,279,15,68,426,124,569,411,167],"b":[496,525,473,499],"c":"Erling Haaland","vc":"Bruno Fernandes","chip6":null,"p6":38,"tot":301,"bank":1.6,"val":99.4,"chips":[["freehit",4]],"chip7":null},"2345657":{"m":"rui moreira","tn":"BADATEAM","s":[384,175,8,229,200,427,542,15,124,165,411],"b":[412,286,526,61],"c":"Erling Haaland","vc":"Joao Pedro","chip6":null,"p6":60,"tot":345,"bank":1.2,"val":99.8,"chips":[["3xc",3]],"chip7":null},"2342874":{"m":"Miguel Bengalinha","tn":"SLBengalinha","s":[350,593,115,504,155,397,156,605,411,346,165],"b":[28,279,565,8],"c":"Erling Haaland","vc":"Alisson Becker","chip6":null,"p6":50,"tot":264,"bank":4.0,"val":100.6,"chips":[["wildcard",3]],"chip7":null},"4159737":{"m":"Luis Pico","tn":"Pico FC","s":[1,581,390,115,428,13,15,124,165,411,249],"b":[567,417,62,315],"c":"Erling Haaland","vc":"Joao Pedro","chip6":null,"p6":64,"tot":340,"bank":0.3,"val":99.9,"chips":[],"chip7":null},"2400508":{"m":"marco milhano","tn":"marco's Team","s":[572,8,586,115,127,397,453,426,464,346,411],"b":[226,362,605,330],"c":"Erling Haaland","vc":"Bruno Fernandes","chip6":null,"p6":43,"tot":333,"bank":1.6,"val":100.3,"chips":[["3xc",3],["wildcard",4]],"chip7":null}};
+  // (V52) LEAGUE_SQUADS passou para o início deste script
   const CMP_ENTRY = {bruno: 5191766, marco: 1973102};
   const CMP = {a: null, b: null};
   const CHIP_PT = {wildcard: 'Wildcard', freehit: 'Free Hit', bboost: 'Bench Boost', '3xc': 'Triple Captain'};
@@ -6494,18 +6629,18 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
           ${cmpRow('Jogadores em comum', common + ' de 15', common + ' de 15', null, null)}
           ${cmpRow(`Pontos na J${GW_META.last}`, A.p6, B.p6, null, true)}
           ${cmpRow('Média por jornada', +(A.tot / GW_META.last).toFixed(1), +(B.tot / GW_META.last).toFixed(1), v => v.toFixed(1), true)}
-          ${cmpRow('Valor da equipa (API, J6)', A.val, B.val, v => '£' + v.toFixed(1) + 'M', true)}
+          ${cmpRow(`Valor da equipa (API, J${GW_META.squadsGw || GW_META.last})`, A.val, B.val, v => '£' + v.toFixed(1) + 'M', true)}
           ${cmpRow('Orçamento real (venda + banco)', budgetOf(CMP.a, LEAGUE_SQUADS).real, budgetOf(CMP.b, LEAGUE_SQUADS).real, v => '£' + v.toFixed(1) + 'M', true)}
           ${cmpRow('No banco', A.bank, B.bank, v => '£' + v.toFixed(1) + 'M', null)}
           ${cmpRow('Chips usados', chips(A), chips(B), null, null)}
           ${cmpRow('Chips por usar (1.ª metade)', left(A), left(B), null, null)}
-          ${cmpRow(`Capitão na J${GW_META.last}`, A.c, B.c, null, null)}
+          ${cmpRow(`Capitão na J${GW_META.squadsGw || GW_META.last}`, A.c, B.c, null, null)}
           ${cmpRow(`Pts esperados J${HZ[0]} (melhor onze)`, +pa.g1.total.toFixed(1), +pb.g1.total.toFixed(1), f1, true)}
           ${cmpRow(`Capitão sugerido J${HZ[0]}`, pa.g1.cap.name, pb.g1.cap.name, null, null)}
           ${cmpRow(`Pts esperados J${HZ[0]}-J${HZ[HZ.length - 1]}`, +pa.g5.toFixed(1), +pb.g5.toFixed(1), f1, true)}
           ${cmpRow(`Dificuldade média J${HZ[0]}-J${HZ[HZ.length - 1]}`, +pa.diff.toFixed(2), +pb.diff.toFixed(2), v => v.toFixed(1), false)}
         </tbody></table></div>
-      <p class="note">Plantéis da J${GW_META.last} (API oficial, 13 out); para o Bruno e o Marco é o plantel atual, igual ao da J${GW_META.last}. Os pontos esperados usam o mesmo modelo do resto da app e não contam com transferências que cada um ainda vá fazer. Valor da equipa = preços dos 15 + banco (o número da FPL); orçamento real = o que se pode gastar vendendo todos (a FPL só devolve metade de cada subida) — exato para o Bruno e o Marco, estimado para os outros.</p>`;
+      <p class="note">Plantéis da J${GW_META.squadsGw || GW_META.last} (API oficial)${v52After() ? ', com o onze e o capitão que cada um escolheu' : ''}; para o Bruno e o Marco é o plantel atual. Os pontos esperados usam o mesmo modelo do resto da app e não contam com transferências que cada um ainda vá fazer. Valor da equipa = preços dos 15 + banco (o número da FPL); orçamento real = o que se pode gastar vendendo todos (a FPL só devolve metade de cada subida) — exato para o Bruno e o Marco, estimado para os outros.</p>`;
   }
   function renderCmpPontos() {
     const el = document.getElementById('cmp-pontos'); const A = LEAGUE_SQUADS[CMP.a], B = LEAGUE_SQUADS[CMP.b];
@@ -6873,13 +7008,14 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const byEp = xi => xi.slice().sort((a, b) => epAt(b, 0) - epAt(a, 0));
     const myCaps = byEp(myXi).slice(0, 4);
     const oppCapsRaw = [
-      [oppXi.find(p => p.name === O.c), 0.5, `capitão dele na J${GW_META.last}`],
+      [oppXi.find(p => p.name === O.c), 0.5, `capitão dele na J${GW_META.squadsGw || GW_META.last}`],
       [oppXi.find(p => p.id === 411), 0.35, 'o capitão mais popular'],
       [byEp(oppXi)[0], 0.15, 'mais pontos esperados'],
     ].filter(x => x[0]);
     let oppCaps = [];
     oppCapsRaw.forEach(([p, w, why]) => { const ex = oppCaps.find(c => c.p.id === p.id); if (ex) { ex.w += w; } else oppCaps.push({p, w, why}); });
     if (usePred) { const C = rivfCaps(oe, oppXi); if (C.src === 'modelo') oppCaps = C.caps.map(c => ({p: c.cap, w: c.w, why: 'previsão do modelo'})); }
+    if (v52After()) { const real = oppXi.find(p => p.name === O.c); if (real) oppCaps = [{p: real, w: 1, why: `capitão dele na J${HZ[0]} (real)`}]; }
     const wsum = oppCaps.reduce((s, c) => s + c.w, 0); oppCaps.forEach(c => { c.w /= wsum; });
     // simulação com números aleatórios comuns
     const ids = [...new Set([...myXi, ...oppXi].map(p => p.id))];
@@ -6936,7 +7072,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     main.innerHTML = `
       <div class="seg rf-tog" role="group" aria-label="Plantel do rival" style="margin-bottom:10px"><button type="button" class="seg-btn" data-p="0" aria-pressed="${!(RIVF || {}).predH2H}">Plantel atual do rival</button><button type="button" class="seg-btn" data-p="1" aria-pressed="${!!(RIVF || {}).predH2H}">Usar o plantel previsto do rival</button></div>
       ${(RIVF || {}).predH2H ? `<p class="note" style="margin:0 0 8px">Plantel previsto = o atual com "o mais comprado da semana que lhe cabe" (acerta ${RIVF_HIT.in1}% na 1.ª opção) e capitão pela previsão (acerta ${RIVF_HIT.cap}%). É uma hipótese, não o que ele vai fazer.</p>` : ''}
-      <div class="card-head"><div><h2>Capitão para o H2H da J${HZ[0]}</h2><div class="card-sub">${me} vs ${O.tn} (${O.m}) · ${D.mv.length ? 'com a troca sugerida' : 'plantel atual'} · onze dele = melhor onze do plantel da J${GW_META.last}</div></div></div>
+      <div class="card-head"><div><h2>Capitão para o H2H da J${HZ[0]}</h2><div class="card-sub">${me} vs ${O.tn} (${O.m}) · ${D.mv.length ? 'com a troca sugerida' : 'plantel atual'} · ${v52After() ? `onze e capitão dele reais da J${HZ[0]}` : `onze dele = melhor onze do plantel da J${GW_META.last}`}</div></div></div>
       <div class="h2h-score">
         <div class="side"><b>${f1(myExp)}</b><span>${me} · C ${shortName(mb.name)}</span></div>
         <div class="note">pts<br>esperados</div>
@@ -7757,10 +7893,10 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
         <p class="note store-note"></p>
       </section>
       <section class="card">
-        <div class="card-head"><div><h2>Registo</h2><div class="card-sub">${mgr === 'marco' ? 'Xarola Team' : 'Brunorussia FC'} · plantel base = picks da J${GW_META.squadsGw || GW_META.last} · transferências grátis que sobram para a J${GW_META.next}: <b>${st.ft}</b>${st.hits ? ` · hits <b style="color:var(--bad)">−${st.hits}</b>` : ''} · banco <b>£${st.bank.toFixed(1)}M</b></div></div></div>
+        <div class="card-head"><div><h2>Registo</h2><div class="card-sub">${mgr === 'marco' ? 'Xarola Team' : 'Brunorussia FC'} · plantel base = picks da J${GW_META.squadsGw || GW_META.last} · ${GW_META.ftNext && v52After() ? `transferências grátis para a J${GW_META.next + 1}: <b>${GW_META.ftNext[mgr]}</b> (pela regra da FPL)` : `transferências grátis que sobram para a J${GW_META.next}: <b>${st.ft}</b>`}${st.hits ? ` · hits <b style="color:var(--bad)">−${st.hits}</b>` : ''} · banco <b>£${st.bank.toFixed(1)}M</b></div></div></div>
         ${log.length ? `<div class="table-scroll"><table class="form"><thead><tr><th>Jornada</th><th>Saiu</th><th>Entrou</th><th class="num">Preço</th><th>Estado</th><th></th></tr></thead><tbody>
           ${log.map((t, i) => `<tr><td>J${t.gw}</td><td><span class="player-name">${(FULL_POOL_BY_ID[t.out] || {}).name || t.out}</span></td><td><span class="player-name">${(FULL_POOL_BY_ID[t.in] || {}).name || t.in}</span></td><td class="num">£${(+t.price).toFixed(1)}</td><td>${t.applied ? '<span class="status-chip rise">aplicada</span>' : '<span class="status-chip alt">já no plantel base</span>'}</td><td><button type="button" class="btn ghost" data-undo="${i}">Anular</button></td></tr>`).join('')}
-        </tbody></table></div>` : '<p class="note">Ainda não registaste nada desde a J' + GW_META.last + '.</p>'}
+        </tbody></table></div>` : '<p class="note">Ainda não registaste nada desde a J' + (GW_META.squadsGw || GW_META.last) + '.</p>'}
         <p class="note">"Já no plantel base" quer dizer que a atualização de dados seguinte já trouxe esta troca da API — podes anulá-la sem mudar nada.</p>
       </section>`;
     const outSel = el.querySelector('#log-out'), dl = el.querySelector('#log-dl'), inp = el.querySelector('#log-in'), price = el.querySelector('#log-price');
@@ -7834,7 +7970,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
           <div class="riv-head"><div><h3>${d.row ? d.row.rank + '.º · ' : ''}${d.L.tn}</h3><span class="note">${d.L.m} · ${d.row ? d.row.pts : d.L.tot} pts · J${GW_META.last} ${d.L.p6}</span></div>
             <span class="riv-gap ${d.gap > 0 ? 'ahead' : 'behind'}">${d.gap > 0 ? '+' + d.gap : d.gap < 0 ? '−' + -d.gap : '='}</span></div>
           <div class="riv-meta"><span title="Chips por usar até à J19"><span class="chipdots">${['wildcard', 'freehit', 'bboost', '3xc'].map(c => `<i class="${d.left.includes(c) ? '' : 'on'}"></i>`).join('')}</span> ${d.left.length ? 'tem ' + d.left.map(c => CHIP_PT[c]).join(', ') : 'sem chips'}</span>
-            <span>C na J${GW_META.last}: <b>${shortName(d.L.c)}</b> · banco £${d.L.bank.toFixed(1)}M</span></div>
+            <span>C na J${GW_META.squadsGw || GW_META.last}: <b>${shortName(d.L.c)}</b> · banco £${d.L.bank.toFixed(1)}M</span></div>
           <div class="riv-cols">
             <div><div class="riv-lbl">Só ele tem (titulares)</div>${d.theirOnly.length ? playerCards(d.theirOnly.slice(0, 5), {mine: false}) : '<div class="note">—</div>'}</div>
             <div><div class="riv-lbl">Só tu tens</div>${d.mineOnly.length ? playerCards(d.mineOnly.slice(0, 5), {mine: false}) : '<div class="note">—</div>'}</div>
@@ -7893,6 +8029,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     try { renderLiga(); renderLigaBudgets(); } catch (e) { console.error(e); }
     refreshAfterLog();
     try { CMP.a = null; renderCompare(); } catch (e) {}
+    try { v52Rebuild(); } catch (e) { console.error(e); }
     try { fillRealsFromLive(); renderPredictions('bruno'); renderPredictions('marco'); renderModelEval(); renderAlerts(); renderTodo(); } catch (e) { console.error(e); }
   }
   async function loadLive() {
@@ -7905,6 +8042,31 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
   }
   renderRivals();
   loadLive();
+
+  // V52: depois do deadline, avisar no separador Transferências que as sugestões eram para a jornada que já começou
+  function v52DeadlineNote() {
+    const sv = document.querySelector('.view[data-view="semana"] > .subview[data-sub="transferencias"]'); if (!sv) return;
+    let n = document.getElementById('v52-note');
+    if (!v52After()) { if (n) n.remove(); return; }
+    if (!n) { n = document.createElement('div'); n.id = 'v52-note'; n.className = 'callout info'; sv.insertBefore(n, sv.firstChild); }
+    n.innerHTML = `<span class="icon">i</span><div class="body"><p><b>O deadline da J${GW_META.next} já passou.</b> As sugestões em baixo eram para a J${GW_META.next}; as da J${GW_META.next + 1} chegam com a atualização da jornada (depois de a J${GW_META.next} fechar). O plano automático e o manual já partem do plantel que tens agora.</p></div>`;
+  }
+  // no site, quando o live.json traz plantéis novos, refazer tudo o que depende deles
+  function v52Rebuild() {
+    try {
+      window.__RL = null;
+      v52FillSquad(SQUAD); v52Fill(ALL_PLAYERS, Object.values(SQUAD).flatMap(g => g.players.map(p => ({...p, pos: g.label, cls: g.cls}))));
+      v52Fill(MARCO_SQUAD_CURRENT, v52MarcoSquad());
+      v52Fill(CAPTAIN_DIST, v52Captains()); v52Fill(MY_LEAGUE_OWNERSHIP, v52MyOwnership('bruno')); v52Fill(MARCO_LEAGUE_OWNERSHIP, v52MyOwnership('marco'));
+      v52Fill(TEMPLATE_GAPS, v52Gaps()); v52Fill(LEAGUE_BUDGETS, v52Budgets());
+      const h = v52H2H(); V52.h2h = h; v52Fill(H2H_SHARED, h.shared); v52Fill(H2H_MINE_ONLY, h.mine); v52Fill(H2H_THEIRS_ONLY, h.theirs);
+      v52Fill(ALT, v52Alt()); v52Fill(ENABLERS, v52Enablers());
+      Object.keys(CHIPS_USED).forEach(k => delete CHIPS_USED[k]); Object.assign(CHIPS_USED, v52ChipsUsed());
+    } catch (e) { console.error(e); }
+    [() => renderLiga(), () => renderLigaBudgets(), () => renderH2H(), () => renderChips(), () => renderMarcoOwnership(), () => renderAlt(), () => renderEnablers(), () => renderOverview(), () => renderChipPlan(), () => renderTodo(), () => v52DeadlineNote(),
+     () => { document.getElementById('marco-chips-summary').textContent = v52ChipTxt('marco'); }].forEach(f => { try { f(); } catch (e) { console.error(e); } });
+  }
+  v52DeadlineNote();
 
   // ===================================================================
   // V46 (16 out 2026) — Previsão dos rivais na app (fase 6). Dados: rivals.json (GitHub Action semanal).
@@ -7980,8 +8142,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     return `<div class="rf-box">
       <div class="riv-lbl">Próxima jornada · o mais comprado da semana que lhe cabe</div>
       ${R.length ? `<div class="rf-line"><b><span data-pid="${R[0].out.id}">${shortName(R[0].out.name)}</span> → <span data-pid="${R[0].inn.id}">${shortName(R[0].inn.name)}</span></b> <span class="note">(${R[0].rank}.º mais comprado)</span>${R.length > 1 ? `<span class="note"> · ou ${R.slice(1).map(x => `${shortName(x.out.name)} → ${shortName(x.inn.name)}`).join(', ')}</span>` : ''}</div>` : '<div class="note">Nenhum dos mais comprados lhe cabe.</div>'}
-      <div class="riv-lbl" style="margin-top:6px">Capitão provável${C.src === 'regra' ? ' (regra)' : ''}</div>
-      <div class="rf-line">${caps.map((c, i) => `${i ? ' · ' : ''}<span data-pid="${c.cap.id}">${shortName(c.cap.name)}</span> <b>${Math.round(c.w * 100)}%</b>`).join('')}</div>
+      <div class="riv-lbl" style="margin-top:6px">${v52After() ? `Capitão na J${HZ[0]} (real)` : `Capitão provável${C.src === 'regra' ? ' (regra)' : ''}`}</div>
+      <div class="rf-line">${v52After() ? `<b>${shortName(LEAGUE_SQUADS[e].c)}</b>` : caps.map((c, i) => `${i ? ' · ' : ''}<span data-pid="${c.cap.id}">${shortName(c.cap.name)}</span> <b>${Math.round(c.w * 100)}%</b>`).join('')}</div>
       <div class="riv-lbl" style="margin-top:6px">Chips até à J19 · risco geral (${left.length ? left.map(c => CHIP_PT[c]).join(', ') : 'nenhuma por usar'})</div>
       ${rivfRibbon(e)}
     </div>`;
@@ -9590,7 +9752,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
     const byEp = xi.slice().sort((a, b) => epAt(b, gi) - epAt(a, gi));
     const capCount = {}; Object.values(LEAGUE_SQUADS).forEach(x => { capCount[x.c] = (capCount[x.c] || 0) + 1; });
     const popular = FULL_POOL_BY_NAME[Object.keys(capCount).sort((a, b) => capCount[b] - capCount[a])[0]];
-    const raw = [[xi.find(p => p.name === L.c), 0.5, `o capitão dele na J${GW_META.last}`], [popular && xi.find(p => p.id === popular.id), 0.35, 'o mais capitaneado da liga'], [byEp[0], 0.15, 'o de mais pontos esperados']].filter(x => x[0]);
+    if (gi === 0 && v52After()) { const real = xi.find(p => p.name === L.c); if (real) return [{cap: real, w: 1, why: `o capitão dele na J${HZ[0]} (real)`, vice: xi.find(p => p.name === L.vc && p !== real) || xi.find(p => p !== real)}]; }
+    const raw = [[xi.find(p => p.name === L.c), 0.5, `o capitão dele na J${GW_META.squadsGw || GW_META.last}`], [popular && xi.find(p => p.id === popular.id), 0.35, 'o mais capitaneado da liga'], [byEp[0], 0.15, 'o de mais pontos esperados']].filter(x => x[0]);
     const caps = [];
     raw.forEach(([p, w, why]) => { const ex = caps.find(c => c.cap === p); if (ex) { ex.w += w; ex.why += ' e ' + why; } else caps.push({cap: p, w, why}); });
     const ws = caps.reduce((s, c) => s + c.w, 0), vc = FULL_POOL_BY_NAME[L.vc];
@@ -9864,7 +10027,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 17 Out, 12:30", "h": 9, "a": 6, "ho
       </section>
       ${mode === 'h2h' ? `
       <section class="card">
-        <div class="card-head"><div><h2>A equipa de ${rivals[0].L.m}</h2><div class="card-sub">Onze da J${GW_META.last} e capitão provável: ${rivals[0].caps.map(c => `${shortName(c.cap.name)} ${winPct(c.w)}`).join(' · ')}. Pontos esperados ≈ ${f1(per[0].om)}.</div></div></div>
+        <div class="card-head"><div><h2>A equipa de ${rivals[0].L.m}</h2><div class="card-sub">${v52After() ? `Onze e capitão reais da J${HZ[0]}:` : `Onze da J${GW_META.last} e capitão provável:`} ${rivals[0].caps.map(c => `${shortName(c.cap.name)} ${winPct(c.w)}`).join(' · ')}. Pontos esperados ≈ ${f1(per[0].om)}.</div></div></div>
         ${playerCards([...rivals[0].xi.slice().sort((a, b) => POS_ORDER[a.cls] - POS_ORDER[b.cls]), ...rivals[0].bench], (p, i) => ({mine: false, cap: p === rivals[0].caps.slice().sort((a, b) => b.w - a.w)[0].cap, note: i >= 11 ? `banco ${i - 10}` : capOf.has(p.id) ? `capitão em ${winPct(capOf.get(p.id).w)} dos cenários (${capOf.get(p.id).why})` : (after.xi.some(q => q.id === p.id) ? 'tu também tens' : '')}))}
       </section>` : ''}
       <p class="note">Como funciona: em cada cenário cada jogador joga com a probabilidade de jogar da app e, se jogar, faz pontos tirados da distribuição real de pontuações por posição (J1-J${GW_META.last}), à volta dos pontos esperados dele. O mesmo jogador faz os mesmos pontos em todos os plantéis. Contam as substituições automáticas e o vice. Rivais: nesta jornada o onze da última e um capitão sorteado; ${upto ? 'nas seguintes o melhor onze do plantel dele; ' : ''}sem trocas nem chips (não sabemos o que vão fazer). ${upto ? 'Do teu lado, nas jornadas seguintes conta o melhor onze do plantel que fica, sem mais trocas. ' : ''}Não contamos a ligação entre jogadores da mesma equipa (golos e balizas a zero), por isso os valores são aproximados (±2 pp). ${mode === 'h2h' ? 'O objetivo é vitória + ⅓ do empate, como na tabela H2H.' : mode === 'all' ? 'Empatar em pontos não conta como passar à frente.' : ''}</p>`;
