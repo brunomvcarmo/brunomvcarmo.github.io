@@ -116,12 +116,21 @@ def main():
         except RuntimeError:
             pass
 
+    # calendário oficial completo (V54): [id, jornada, casa, fora, início, acabou]. Jornada None = jogo adiado
+    # sem data nova (a app mostra-o como branca oficial); uma equipa com 2 jogos numa jornada = dupla oficial.
+    fixtures = None
+    try:
+        fixtures = [[f['id'], f['event'], f['team_h'], f['team_a'], f['kickoff_time'], bool(f.get('finished'))]
+                    for f in get(f'fixtures/?t={stamp}')]
+    except RuntimeError:
+        pass
     out = {
         'generated': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
         'current_event': cur, 'last_finished': last_finished, 'picks_event': cur,
         'events': [{'id': e['id'], 'avg': e.get('average_entry_score'), 'finished': e.get('finished'),
                     'deadline': e.get('deadline_time')} for e in events],
         'elements': elements, 'standings': standings, 'entries': entries, 'h2h': h2h, 'event_live': event_live,
+        'fixtures': fixtures,
     }
     with open(OUT, 'w', encoding='utf-8') as f:
         json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
