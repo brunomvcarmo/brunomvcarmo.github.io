@@ -56,7 +56,7 @@ async def run(pw, variant, data, widths=((1280, 900), (390, 844))):
         await pg.add_init_script("try{localStorage.setItem('fpl-tour-done','\"off\"')}catch(e){}")
         errs = []
         pg.on('pageerror', lambda e: errs.append('PAGEERR ' + str(e)))
-        pg.on('console', lambda m: errs.append('CONSOLE ' + m.text) if m.type in ('error', 'warning') and 'fonts' not in m.text else None)
+        pg.on('console', lambda m: errs.append('CONSOLE ' + m.text) if m.type in ('error', 'warning') and 'fonts' not in m.text and 'Failed to load resource' not in m.text else None)
         body = json.dumps(data)
         await pg.route('**/aovivo.json*', lambda r: r.fulfill(status=200, content_type='application/json', body=body))
         await pg.goto(BASE + '?live=1#aovivo-equipa'); await pg.wait_for_timeout(1500)

@@ -55,7 +55,7 @@ async def main():
                     await pg.add_init_script("try{localStorage.setItem('fpl-tour-done','\"off\"');localStorage.setItem('fpl-mode'," + json.dumps(json.dumps(mode)) + ")}catch(e){}")
                     errs = []
                     pg.on('pageerror', lambda e: errs.append('PAGEERR ' + str(e)))
-                    pg.on('console', lambda m: errs.append('CONSOLE ' + m.text) if m.type in ('error', 'warning') else None)
+                    pg.on('console', lambda m: errs.append('CONSOLE ' + m.text) if m.type in ('error', 'warning') and not ('Failed to load resource' in m.text or 'fonts.g' in m.text) else None)
                     await pg.goto(URL); await pg.wait_for_timeout(1200)
                     if await pg.is_visible('#tut-wel'): errs.append('boas-vindas apareceram com "off"')
                     await pg.click(f'.mswitch-btn[data-manager="{mgr}"]'); await pg.wait_for_timeout(200)

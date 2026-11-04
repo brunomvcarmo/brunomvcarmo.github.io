@@ -45,7 +45,7 @@ async def main():
             await pg.add_init_script(TOUR_OFF + f"try{{localStorage.setItem('fpl-mode', JSON.stringify('{mode}'))}}catch(e){{}}")
             errs = []
             pg.on('pageerror', lambda e: errs.append('PAGEERR '+str(e)))
-            pg.on('console', lambda m: errs.append('CONSOLE '+m.type+' '+m.text) if m.type in ('error','warning') else None)
+            pg.on('console', lambda m: errs.append('CONSOLE '+m.type+' '+m.text) if m.type in ('error','warning') and not ('Failed to load resource' in m.text or 'fonts.g' in m.text) else None)   # falhas de rede (fontes da Google, sem internet) não são erros da app
             await pg.goto(URL); await pg.wait_for_timeout(800)
             n = 0
             for mgr in ['bruno','marco']:
