@@ -1,0 +1,50 @@
+# App FPL — Brunorussia FC (Bruno) e Xarola Team (Marco)
+
+Este repositório é o site **https://brunomvcarmo.github.io** (GitHub Pages). A app inteira é um único ficheiro: **`index.html`**.
+Fala sempre em **português de Portugal** com o utilizador. Explica as coisas de forma simples: não é programador.
+
+## Onde estás a trabalhar (ver primeiro)
+- **Nuvem (claude.ai/code, Linux, muitas vezes a partir do telemóvel):** o Python é **`python3`**. Só existe o que está no GitHub.
+  1. Começar SEMPRE por: `git pull` (traz o `live.json` mais recente da GitHub Action) e `bash _build/setup-cloud.sh` (Playwright + Chromium, espelho da API em `_build/mirror/`, calendário oficial, validação da última jornada).
+  2. **Publicar:** no fim de cada tarefa, com os testes a passar, juntar ao ramo `main` e fazer `git push` (o site atualiza em 1-2 minutos). Se a sessão não puder escrever no `main` (estiver noutro ramo/sem permissão), fazer push do ramo, abrir um pull request (`gh pr create`) e dizer numa frase como o aprovar no telemóvel: *"Na app do GitHub (ou em github.com no browser), abre Pull requests → este PR → Merge pull request → Confirm merge."*
+  3. **Respostas curtas, a pensar no telemóvel:** no fim, um resumo de 3-5 linhas do que mudou e o link https://brunomvcarmo.github.io.
+- **Computador do utilizador (Windows):** o Python corre com **`py`** (o comando `python` é só um atalho da Microsoft Store e não funciona); usar `py -X utf8 …` para a consola aceitar "≈". O `_build/mirror/` já costuma estar lá; se não, `py -X utf8 _build/pool/espelho.py`.
+- Em todos os comandos abaixo: **Windows `py -X utf8 X`** = **Linux `python3 X`**. Os scripts não têm caminhos fixos e escrevem sempre UTF-8 com fins de linha LF (há um `.gitattributes` com `eol=lf`).
+
+## O que está onde
+- `index.html` — a app, organizada (V47) em **5 áreas + Avançado**, cada uma com um só nível de separadores: `semana` (Esta semana), `jogos`, `competicao` (Rivais), `mercado` (Jogadores), `epoca` (A minha época), `avancado`. O mapa está num só sítio, `APP_AREAS`/`APP_INDEX` (início do 2.º script: área, separador, nome e sinónimos — serve o menu, a pesquisa e o guia); os endereços antigos (#decisoes-capitao, #liga-orcamentos…) estão em `VIEW_ALIAS` e o `showView` reencaminha-os. Coisas pesadas: `lazyRender('area/separador', fn)`. Para uma ferramenta nova: um separador numa área existente + uma linha no `APP_INDEX` (com sinónimos) e decidir se entra no modo simples (`SIMPLE_KEEP`); cada funcionalidade nova leva um passo no tutorial (`TUT_CH`, com `since`) e sobe `APP_VERSION`. Botões de ligação entre ferramentas: `data-act` (ver `v48Act`). Nunca usar `const` em algo que funções chamadas cedo (renderRivals, TOUR…) leem — usar `var`/`function`. Tem dois `<script>`: o 1.º é o **bloco de dados** (começa por `// ======================= DADOS DA JORNADA`, gerado), o 2.º é a app.
+- `live.json` — dados oficiais da FPL (inclui o calendário completo `fixtures`), escritos **sozinhos** pela GitHub Action (`.github/workflows/fpl-update.yml` + `scripts/fpl_fetch.py`, terça e sexta 07:00 UTC). Não editar à mão. A app lê-o no GitHub Pages.
+- `rivals.json` — histórico de cada um dos 20 gestores para **prever o que os rivais vão fazer**, escrito pela mesma Action (`scripts/fpl_fetch.py` → `write_rivals`): transferências, capitão/vice/chip/onze/banco de cada jornada (`gws`), chips, histórico e o **mercado** de cada jornada. Nas jornadas de Wildcard/Free Hit o histórico da FPL mostra 0 transferências — não é erro. Não editar à mão.
+- `aovivo.json` — pontos ao vivo (área "Ao vivo"), escritos **sozinhos** pela Action `.github/workflows/fpl-live.yml` + `scripts/fpl_live.py` (de 15 em 15 min com jogos a decorrer). Não editar à mão. Forçar: `FPL_FORCE=1 python3 scripts/fpl_live.py` (ou "Run workflow" no GitHub).
+- `_build/` — tudo o que é preciso para gerar e testar a app (vai para o GitHub, **exceto** `_build/mirror/`, `_build/shots/` e `_build/redesign/`, que se geram de novo):
+  - `_build/setup-cloud.sh` — prepara uma sessão nova (ver acima).
+  - `_build/atualizar.py` — os passos mecânicos da atualização semanal pela ordem certa: fases `dados`, `gerar`, `testes`, `semana` (as três) e `deadline`.
+  - `_build/pool/espelho.py` — espelho da API (FPL-Elo-Insights) → `_build/mirror/`, calendário oficial → `_build/data/fixtures.json`, validação da última jornada contra `event/N/live`.
+  - `_build/pool/gen25.py` → gera `_build/redesign/data25.js` (usa `model25.py`, `ticker26.py`, `dgw_model.py`, `_build/mirror/*.csv`, `_build/research/*.json`, `_build/data/*.json`). `_build/build/swapdata.py` → troca o bloco de dados do `index.html` e escreve `_build/redesign/artefacto.html` (versão para o claude.ai).
+  - `_build/pool/weekly_app.py` (tabelas da app), `research_week.py` (projeções, odds, xgstat, OddAlerts), `lineups_rw.py` (onzes prováveis), `h2h_week.py` (H2H), `apply_picks.py` (plantéis reais depois do deadline), `dgw_model.py` (duplas e brancas J20-J38, com `_build/research/cups.json`).
+  - `_build/scripts/test.py`, `test_tutorial.py`, `test_aovivo.py` — testes Playwright (todas as áreas, computador 1280 e telemóvel 390, Bruno e Marco, modos completo e simples). O normal é `ERRORS 0` em tudo.
+  - `_build/patches/` — scripts que mudaram o `index.html` em versões passadas (exemplos para as alterações à mão: `patch_j10.py` é a semana-tipo) e a cópia de partida do **cartão de jogador** (`pcard.css` + `pcard.js`, V43, já colado no `index.html`: `playerCard(p, opts)` / `playerCards(lista, opts)`). Usar SEMPRE este cartão em listas de jogadores novas (não fazer tabelas de jogadores); se mudares o cartão, muda-o no `index.html`.
+  - `_build/notas/fpl-app-notas.md` → **notas completas do projeto**: lições, regras, histórico de versões, modelo de pontos esperados. **Ler antes de qualquer atualização grande.**
+
+## Regras que não se podem esquecer (das notas)
+- **Nunca dar uma transferência sugerida como feita** sem o utilizador confirmar o que fez no site (sexta lição). A app tem "Esta semana › Registar o que fiz" para isso; com `live.json` os plantéis do Bruno e do Marco atualizam-se sozinhos.
+- Preços: no resto da app usam-se os preços atuais; só nos **orçamentos da liga** se distingue valor de mercado de orçamento real (preço de venda = compra + metade da subida, arredondada para baixo).
+- Recomendações, chips e textos com números têm de bater com os dados do bloco. Depois de mudar dados, procurar números escritos à mão no texto (≈x.x, +x.x) e atualizá-los.
+- Factos desportivos só da API oficial da FPL (ou do espelho validado contra ela); a pesquisa na web serve para opiniões, onzes prováveis e notícias, nunca para pontos.
+- Testar sempre antes de publicar e mostrar ao utilizador o que mudou.
+- Não pôr no repositório passwords, tokens nem dados pessoais (os nomes e números das equipas da FPL já são públicos).
+
+## Atualização semanal (depois de cada jornada fechar)
+Detalhe nas notas (secções V53 e J10). Correr a partir da raiz, por esta ordem:
+1. `git pull` (e, numa sessão nova, `bash _build/setup-cloud.sh`).
+2. **Dados:** `python3 _build/atualizar.py dados` (Windows: `py -X utf8 _build/atualizar.py dados`) — fpl_fetch, espelho + validação, projeções/odds/dificuldade, onzes prováveis, H2H. Se o espelho ainda não tiver a última jornada, esperar (atualiza 2×/dia).
+3. **À mão (pesquisa na web):** taças em `_build/research/cups.json` (eliminados `pl_in`, sorteios `ties`, datas); opiniões dos sites em `_build/research/expert.json` + `expert_pt.json`; leitura própria (`READING` em `_build/pool/model25.py`) com as notícias de lesões da semana.
+4. **Gerar:** `python3 _build/atualizar.py gerar` — bloco de dados, troca no `index.html`, tabelas (acrescenta todas as jornadas em falta ao histórico).
+5. **Recomendações e textos à mão** (exemplo: `_build/patches/patch_j10.py`): `SUGGESTED_MOVES`, `SUBS`, `CAPTAIN_CHANGE`, `CAPTAIN_RISK`, `CHIP_PLAN` e as frases do `v53Texts()`. Medir as trocas com o planeador automático da app (`autoPlan(mgr,'pontos')` e `xiValueW` no Playwright). Depois procurar textos parados na jornada anterior (auditoria com todas as `<details>` abertas).
+6. **Testes:** `python3 _build/atualizar.py testes` (tem de dar OK nos três).
+7. **Publicar:** `git add index.html live.json rivals.json _build && git commit -m "J10: atualização" && git push` (na nuvem: ver "Publicar" acima). O GitHub Pages atualiza em 1-2 minutos.
+8. Depois do deadline da jornada seguinte: `python3 _build/atualizar.py deadline` (plantéis, capitães e chips reais dos 20), testes e publicar.
+9. O link do claude.ai (artefacto) não é atualizado daqui: se o utilizador o usar, dizer-lhe que pode colar `_build/redesign/artefacto.html` numa conversa do projeto no claude.ai para o republicar.
+
+## Pedidos pequenos (mudar um texto, uma cor, uma área)
+Editar o `index.html`, correr os testes, mostrar o resultado e, com a confirmação do utilizador, fazer commit e push.

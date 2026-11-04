@@ -1,0 +1,4 @@
+Pasta de trabalho da app FPL (gerar o bloco de dados, pesquisa semanal, testes, notas).
+Vai para o GitHub, exceto mirror/ (espelho da API, descarrega-se em cada sessão), shots/ e redesign/ (gerados).
+Instruções para o Claude Code em ../CLAUDE.md. Notas completas em notas/fpl-app-notas.md.
+Sessão nova (nuvem ou computador): bash _build/setup-cloud.sh   (Windows: py _build/pool/espelho.py)

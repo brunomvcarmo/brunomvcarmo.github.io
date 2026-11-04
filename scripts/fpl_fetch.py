@@ -132,7 +132,7 @@ def main():
         'elements': elements, 'standings': standings, 'entries': entries, 'h2h': h2h, 'event_live': event_live,
         'fixtures': fixtures,
     }
-    with open(OUT, 'w', encoding='utf-8') as f:
+    with open(OUT, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
     print(f'live.json: J{cur} (última fechada J{last_finished}), {len(standings)} gestores, {len(elements)} jogadores')
     write_rivals(stamp, events, cur, last_finished, boot, raw)

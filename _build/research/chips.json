@@ -1,0 +1,1779 @@
+{
+ "rules": {
+  "chips_total": 8,
+  "sets": "Two sets of four (Wildcard, Free Hit, Bench Boost, Triple Captain); set 1 for GW1-19, set 2 for GW20-38; each chip once per set",
+  "first_half_deadline": "Must be played by the GW19 deadline; unused set-1 chips expire, no carry-over. FPL API events[19].deadline_time = 2027-01-01T18:30:00Z (Fri 1 Jan, 90 min before Leeds v Everton 20:00Z). NOTE: PL article (20 Jul 2026) and beatfpl say 13:30 Sat 2 Jan 2027 - written before the GW19 TV pick moved Leeds v Everton to Fri 1 Jan; trust the API value.",
+  "api_chip_windows": {
+   "wildcard": "GW2-19 / GW20-38",
+   "freehit": "GW2-19 / GW20-38",
+   "bboost": "GW1-19 / GW20-38",
+   "3xc": "GW1-19 / GW20-38"
+  },
+  "combine": "Only one chip per gameweek",
+  "wildcard": "Unlimited permanent free transfers in that GW (incl. transfers already made that GW); not GW1 (API start_event 2)",
+  "freehit": "Unlimited free transfers for one GW, squad reverts at next deadline; not GW1; if set-1 Free Hit is played in GW19, set-2 Free Hit cannot be played in GW20",
+  "bench_boost": "Points of all 4 bench players count that GW",
+  "triple_captain": "Captain scores x3 instead of x2",
+  "changes_vs_2025_26": "Chip structure unchanged vs 2025/26 (two sets, GW19 cut-off). Assistant Manager chip (2024/25) absent. Up to 5 banked free transfers unchanged. Non-chip changes: BPS for CBI now 1 per 3 actions (was per 2), no BPS deduction for being tackled/dispossessed, goalkeeper goals worth 10 pts (was 6), revised GK save BPS tiers.",
+  "source": "https://www.premierleague.com/en/news/4679879/whats-happening-with-fpl-chips-in-202627 (20 Jul 2026); https://fantasy.premierleague.com/api/bootstrap-static/ (fetched 14 Oct 2026, chips + events arrays); https://www.beatfpl.com/guides/fpl-26-27-rules-changes (rule changes, fetched 14 Oct 2026)"
+ },
+ "fixtures": {
+  "13": [
+   {
+    "h": 2,
+    "a": 9,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-02T20:00:00Z"
+   },
+   {
+    "h": 3,
+    "a": 5,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-02T20:00:00Z"
+   },
+   {
+    "h": 4,
+    "a": 1,
+    "dh": 4,
+    "da": 3,
+    "k": "2026-12-02T20:00:00Z"
+   },
+   {
+    "h": 6,
+    "a": 8,
+    "dh": 2,
+    "da": 4,
+    "k": "2026-12-02T20:00:00Z"
+   },
+   {
+    "h": 7,
+    "a": 12,
+    "dh": 2,
+    "da": 2,
+    "k": "2026-12-02T20:00:00Z"
+   },
+   {
+    "h": 11,
+    "a": 18,
+    "dh": 3,
+    "da": 2,
+    "k": "2026-12-02T20:00:00Z"
+   },
+   {
+    "h": 14,
+    "a": 20,
+    "dh": 3,
+    "da": 4,
+    "k": "2026-12-02T20:00:00Z"
+   },
+   {
+    "h": 15,
+    "a": 13,
+    "dh": 3,
+    "da": 5,
+    "k": "2026-12-02T20:00:00Z"
+   },
+   {
+    "h": 17,
+    "a": 16,
+    "dh": 4,
+    "da": 3,
+    "k": "2026-12-02T20:00:00Z"
+   },
+   {
+    "h": 19,
+    "a": 10,
+    "dh": 2,
+    "da": 3,
+    "k": "2026-12-02T20:00:00Z"
+   }
+  ],
+  "14": [
+   {
+    "h": 2,
+    "a": 8,
+    "dh": 2,
+    "da": 3,
+    "k": "2026-12-05T15:00:00Z"
+   },
+   {
+    "h": 3,
+    "a": 11,
+    "dh": 2,
+    "da": 3,
+    "k": "2026-12-05T15:00:00Z"
+   },
+   {
+    "h": 4,
+    "a": 15,
+    "dh": 4,
+    "da": 3,
+    "k": "2026-12-05T15:00:00Z"
+   },
+   {
+    "h": 6,
+    "a": 14,
+    "dh": 4,
+    "da": 4,
+    "k": "2026-12-05T15:00:00Z"
+   },
+   {
+    "h": 9,
+    "a": 10,
+    "dh": 2,
+    "da": 3,
+    "k": "2026-12-05T15:00:00Z"
+   },
+   {
+    "h": 13,
+    "a": 12,
+    "dh": 2,
+    "da": 3,
+    "k": "2026-12-05T15:00:00Z"
+   },
+   {
+    "h": 16,
+    "a": 7,
+    "dh": 2,
+    "da": 4,
+    "k": "2026-12-05T15:00:00Z"
+   },
+   {
+    "h": 17,
+    "a": 20,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-05T15:00:00Z"
+   },
+   {
+    "h": 18,
+    "a": 5,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-05T15:00:00Z"
+   },
+   {
+    "h": 19,
+    "a": 1,
+    "dh": 4,
+    "da": 3,
+    "k": "2026-12-05T15:00:00Z"
+   }
+  ],
+  "15": [
+   {
+    "h": 1,
+    "a": 3,
+    "dh": 3,
+    "da": 5,
+    "k": "2026-12-12T15:00:00Z"
+   },
+   {
+    "h": 5,
+    "a": 9,
+    "dh": 3,
+    "da": 4,
+    "k": "2026-12-12T15:00:00Z"
+   },
+   {
+    "h": 7,
+    "a": 2,
+    "dh": 3,
+    "da": 2,
+    "k": "2026-12-12T15:00:00Z"
+   },
+   {
+    "h": 8,
+    "a": 16,
+    "dh": 4,
+    "da": 3,
+    "k": "2026-12-12T15:00:00Z"
+   },
+   {
+    "h": 10,
+    "a": 4,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-12T15:00:00Z"
+   },
+   {
+    "h": 11,
+    "a": 19,
+    "dh": 2,
+    "da": 2,
+    "k": "2026-12-12T15:00:00Z"
+   },
+   {
+    "h": 12,
+    "a": 17,
+    "dh": 3,
+    "da": 2,
+    "k": "2026-12-12T15:00:00Z"
+   },
+   {
+    "h": 14,
+    "a": 13,
+    "dh": 3,
+    "da": 4,
+    "k": "2026-12-12T15:00:00Z"
+   },
+   {
+    "h": 15,
+    "a": 6,
+    "dh": 4,
+    "da": 5,
+    "k": "2026-12-12T15:00:00Z"
+   },
+   {
+    "h": 20,
+    "a": 18,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-12T15:00:00Z"
+   }
+  ],
+  "16": [
+   {
+    "h": 1,
+    "a": 16,
+    "dh": 4,
+    "da": 5,
+    "k": "2026-12-19T15:00:00Z"
+   },
+   {
+    "h": 3,
+    "a": 7,
+    "dh": 2,
+    "da": 3,
+    "k": "2026-12-19T15:00:00Z"
+   },
+   {
+    "h": 4,
+    "a": 17,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-19T15:00:00Z"
+   },
+   {
+    "h": 5,
+    "a": 12,
+    "dh": 2,
+    "da": 4,
+    "k": "2026-12-19T15:00:00Z"
+   },
+   {
+    "h": 6,
+    "a": 2,
+    "dh": 3,
+    "da": 4,
+    "k": "2026-12-19T15:00:00Z"
+   },
+   {
+    "h": 13,
+    "a": 10,
+    "dh": 2,
+    "da": 3,
+    "k": "2026-12-19T15:00:00Z"
+   },
+   {
+    "h": 14,
+    "a": 19,
+    "dh": 2,
+    "da": 4,
+    "k": "2026-12-19T15:00:00Z"
+   },
+   {
+    "h": 15,
+    "a": 11,
+    "dh": 2,
+    "da": 5,
+    "k": "2026-12-19T15:00:00Z"
+   },
+   {
+    "h": 18,
+    "a": 9,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-19T15:00:00Z"
+   },
+   {
+    "h": 20,
+    "a": 8,
+    "dh": 2,
+    "da": 3,
+    "k": "2026-12-19T15:00:00Z"
+   }
+  ],
+  "17": [
+   {
+    "h": 2,
+    "a": 13,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-26T12:30:00Z"
+   },
+   {
+    "h": 9,
+    "a": 20,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-26T15:00:00Z"
+   },
+   {
+    "h": 10,
+    "a": 5,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-26T15:00:00Z"
+   },
+   {
+    "h": 12,
+    "a": 4,
+    "dh": 3,
+    "da": 2,
+    "k": "2026-12-26T15:00:00Z"
+   },
+   {
+    "h": 19,
+    "a": 3,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-26T15:00:00Z"
+   },
+   {
+    "h": 11,
+    "a": 14,
+    "dh": 4,
+    "da": 2,
+    "k": "2026-12-26T17:30:00Z"
+   },
+   {
+    "h": 17,
+    "a": 15,
+    "dh": 4,
+    "da": 3,
+    "k": "2026-12-26T20:00:00Z"
+   },
+   {
+    "h": 7,
+    "a": 6,
+    "dh": 4,
+    "da": 2,
+    "k": "2026-12-27T14:00:00Z"
+   },
+   {
+    "h": 16,
+    "a": 18,
+    "dh": 3,
+    "da": 4,
+    "k": "2026-12-27T16:30:00Z"
+   },
+   {
+    "h": 8,
+    "a": 1,
+    "dh": 4,
+    "da": 3,
+    "k": "2026-12-27T19:00:00Z"
+   }
+  ],
+  "18": [
+   {
+    "h": 11,
+    "a": 13,
+    "dh": 3,
+    "da": 2,
+    "k": "2026-12-29T19:30:00Z"
+   },
+   {
+    "h": 19,
+    "a": 5,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-29T19:30:00Z"
+   },
+   {
+    "h": 9,
+    "a": 15,
+    "dh": 4,
+    "da": 3,
+    "k": "2026-12-29T20:15:00Z"
+   },
+   {
+    "h": 7,
+    "a": 4,
+    "dh": 3,
+    "da": 2,
+    "k": "2026-12-30T19:30:00Z"
+   },
+   {
+    "h": 8,
+    "a": 3,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-30T19:30:00Z"
+   },
+   {
+    "h": 10,
+    "a": 1,
+    "dh": 4,
+    "da": 3,
+    "k": "2026-12-30T19:30:00Z"
+   },
+   {
+    "h": 16,
+    "a": 20,
+    "dh": 3,
+    "da": 4,
+    "k": "2026-12-30T19:30:00Z"
+   },
+   {
+    "h": 17,
+    "a": 18,
+    "dh": 3,
+    "da": 3,
+    "k": "2026-12-30T19:30:00Z"
+   },
+   {
+    "h": 2,
+    "a": 14,
+    "dh": 4,
+    "da": 3,
+    "k": "2026-12-30T20:15:00Z"
+   },
+   {
+    "h": 12,
+    "a": 6,
+    "dh": 4,
+    "da": 2,
+    "k": "2026-12-30T20:15:00Z"
+   }
+  ],
+  "19": [
+   {
+    "h": 13,
+    "a": 9,
+    "dh": 3,
+    "da": 3,
+    "k": "2027-01-01T20:00:00Z"
+   },
+   {
+    "h": 5,
+    "a": 16,
+    "dh": 4,
+    "da": 4,
+    "k": "2027-01-02T12:30:00Z"
+   },
+   {
+    "h": 1,
+    "a": 12,
+    "dh": 2,
+    "da": 5,
+    "k": "2027-01-02T15:00:00Z"
+   },
+   {
+    "h": 4,
+    "a": 8,
+    "dh": 2,
+    "da": 3,
+    "k": "2027-01-02T15:00:00Z"
+   },
+   {
+    "h": 14,
+    "a": 7,
+    "dh": 2,
+    "da": 4,
+    "k": "2027-01-02T15:00:00Z"
+   },
+   {
+    "h": 18,
+    "a": 10,
+    "dh": 2,
+    "da": 3,
+    "k": "2027-01-02T15:00:00Z"
+   },
+   {
+    "h": 20,
+    "a": 11,
+    "dh": 2,
+    "da": 3,
+    "k": "2027-01-02T15:00:00Z"
+   },
+   {
+    "h": 3,
+    "a": 2,
+    "dh": 3,
+    "da": 3,
+    "k": "2027-01-02T17:30:00Z"
+   },
+   {
+    "h": 6,
+    "a": 17,
+    "dh": 3,
+    "da": 4,
+    "k": "2027-01-03T14:00:00Z"
+   },
+   {
+    "h": 15,
+    "a": 19,
+    "dh": 2,
+    "da": 5,
+    "k": "2027-01-03T16:30:00Z"
+   }
+  ]
+ },
+ "fixtures_source": "https://fantasy.premierleague.com/api/fixtures/?event=13..19, fetched 14 Oct 2026. Team ids per brief. dh/da = official FDR for home/away team. GW13 kickoffs all shown as 2026-12-02T20:00:00Z (placeholder midweek times, TV picks pending); GW14-16 all 15:00Z Saturdays (likewise not yet TV-split).",
+ "unscheduled": [],
+ "unscheduled_note": "Every GW1-21 has exactly 10 fixtures (checked ?event=1..21, 14 Oct 2026), so no first-half fixture is postponed or has event null. The unfiltered /api/fixtures/ list is truncated by WebFetch at ~83k chars (only ids 1-33 readable), so GW22-38 were not checked for event=null.",
+ "blanks_doubles": [],
+ "blanks_doubles_note": "Checked GW7-19: every one of the 20 clubs has exactly one fixture in each GW. No blank or double GW before the GW19 deadline. Expected later: BGW30 (EFL Cup final), DGW32, BGW33 (FA Cup semis), DGW35/36 per Ben Crellin projection in Fantasy Football Hub guide (19 Jun 2026).",
+ "xgstat": {
+  "13": [
+   {
+    "team": 15,
+    "opp": 13,
+    "home": true,
+    "d": 1.3
+   },
+   {
+    "team": 1,
+    "opp": 4,
+    "home": false,
+    "d": 2.6
+   },
+   {
+    "team": 16,
+    "opp": 17,
+    "home": false,
+    "d": 2.6
+   },
+   {
+    "team": 14,
+    "opp": 20,
+    "home": true,
+    "d": 1.3
+   },
+   {
+    "team": 3,
+    "opp": 5,
+    "home": true,
+    "d": 2.2
+   },
+   {
+    "team": 6,
+    "opp": 8,
+    "home": true,
+    "d": 1.7
+   },
+   {
+    "team": 2,
+    "opp": 9,
+    "home": true,
+    "d": 1.9
+   },
+   {
+    "team": 5,
+    "opp": 3,
+    "home": false,
+    "d": 3.9
+   },
+   {
+    "team": 13,
+    "opp": 15,
+    "home": false,
+    "d": 4.7
+   },
+   {
+    "team": 4,
+    "opp": 1,
+    "home": true,
+    "d": 3.3
+   },
+   {
+    "team": 9,
+    "opp": 2,
+    "home": false,
+    "d": 4.0
+   },
+   {
+    "team": 10,
+    "opp": 19,
+    "home": false,
+    "d": 3.4
+   },
+   {
+    "team": 18,
+    "opp": 11,
+    "home": false,
+    "d": 3.4
+   },
+   {
+    "team": 19,
+    "opp": 10,
+    "home": true,
+    "d": 2.5
+   },
+   {
+    "team": 11,
+    "opp": 18,
+    "home": true,
+    "d": 2.6
+   },
+   {
+    "team": 7,
+    "opp": 12,
+    "home": true,
+    "d": 2.4
+   },
+   {
+    "team": 17,
+    "opp": 16,
+    "home": true,
+    "d": 3.4
+   },
+   {
+    "team": 8,
+    "opp": 6,
+    "home": false,
+    "d": 4.4
+   },
+   {
+    "team": 12,
+    "opp": 7,
+    "home": false,
+    "d": 3.6
+   },
+   {
+    "team": 20,
+    "opp": 14,
+    "home": false,
+    "d": 4.7
+   }
+  ],
+  "14": [
+   {
+    "team": 15,
+    "opp": 4,
+    "home": false,
+    "d": 2.6
+   },
+   {
+    "team": 1,
+    "opp": 19,
+    "home": false,
+    "d": 2.2
+   },
+   {
+    "team": 16,
+    "opp": 7,
+    "home": true,
+    "d": 1.1
+   },
+   {
+    "team": 14,
+    "opp": 6,
+    "home": false,
+    "d": 3.3
+   },
+   {
+    "team": 3,
+    "opp": 11,
+    "home": true,
+    "d": 1.6
+   },
+   {
+    "team": 6,
+    "opp": 14,
+    "home": true,
+    "d": 2.7
+   },
+   {
+    "team": 2,
+    "opp": 8,
+    "home": true,
+    "d": 1.6
+   },
+   {
+    "team": 5,
+    "opp": 18,
+    "home": false,
+    "d": 3.4
+   },
+   {
+    "team": 13,
+    "opp": 12,
+    "home": true,
+    "d": 1.6
+   },
+   {
+    "team": 4,
+    "opp": 15,
+    "home": true,
+    "d": 3.5
+   },
+   {
+    "team": 9,
+    "opp": 10,
+    "home": true,
+    "d": 2.2
+   },
+   {
+    "team": 10,
+    "opp": 9,
+    "home": false,
+    "d": 3.7
+   },
+   {
+    "team": 18,
+    "opp": 5,
+    "home": true,
+    "d": 2.6
+   },
+   {
+    "team": 19,
+    "opp": 1,
+    "home": true,
+    "d": 3.7
+   },
+   {
+    "team": 11,
+    "opp": 3,
+    "home": false,
+    "d": 4.4
+   },
+   {
+    "team": 7,
+    "opp": 16,
+    "home": false,
+    "d": 4.9
+   },
+   {
+    "team": 17,
+    "opp": 20,
+    "home": true,
+    "d": 1.9
+   },
+   {
+    "team": 8,
+    "opp": 2,
+    "home": false,
+    "d": 4.5
+   },
+   {
+    "team": 12,
+    "opp": 13,
+    "home": false,
+    "d": 4.5
+   },
+   {
+    "team": 20,
+    "opp": 17,
+    "home": false,
+    "d": 3.9
+   }
+  ],
+  "15": [
+   {
+    "team": 15,
+    "opp": 6,
+    "home": true,
+    "d": 1.5
+   },
+   {
+    "team": 1,
+    "opp": 3,
+    "home": true,
+    "d": 1.3
+   },
+   {
+    "team": 16,
+    "opp": 8,
+    "home": false,
+    "d": 2.6
+   },
+   {
+    "team": 14,
+    "opp": 13,
+    "home": true,
+    "d": 1.7
+   },
+   {
+    "team": 3,
+    "opp": 1,
+    "home": false,
+    "d": 4.7
+   },
+   {
+    "team": 6,
+    "opp": 15,
+    "home": false,
+    "d": 4.6
+   },
+   {
+    "team": 2,
+    "opp": 7,
+    "home": false,
+    "d": 3.0
+   },
+   {
+    "team": 5,
+    "opp": 9,
+    "home": true,
+    "d": 2.0
+   },
+   {
+    "team": 13,
+    "opp": 14,
+    "home": false,
+    "d": 4.3
+   },
+   {
+    "team": 4,
+    "opp": 10,
+    "home": false,
+    "d": 3.4
+   },
+   {
+    "team": 9,
+    "opp": 5,
+    "home": false,
+    "d": 4.0
+   },
+   {
+    "team": 10,
+    "opp": 4,
+    "home": true,
+    "d": 2.6
+   },
+   {
+    "team": 18,
+    "opp": 20,
+    "home": false,
+    "d": 3.1
+   },
+   {
+    "team": 19,
+    "opp": 11,
+    "home": false,
+    "d": 3.7
+   },
+   {
+    "team": 11,
+    "opp": 19,
+    "home": true,
+    "d": 2.2
+   },
+   {
+    "team": 7,
+    "opp": 2,
+    "home": true,
+    "d": 3.0
+   },
+   {
+    "team": 17,
+    "opp": 12,
+    "home": false,
+    "d": 3.5
+   },
+   {
+    "team": 8,
+    "opp": 16,
+    "home": true,
+    "d": 3.5
+   },
+   {
+    "team": 12,
+    "opp": 17,
+    "home": true,
+    "d": 2.5
+   },
+   {
+    "team": 20,
+    "opp": 18,
+    "home": true,
+    "d": 2.8
+   }
+  ],
+  "16": [
+   {
+    "team": 15,
+    "opp": 11,
+    "home": true,
+    "d": 1.1
+   },
+   {
+    "team": 1,
+    "opp": 16,
+    "home": true,
+    "d": 1.8
+   },
+   {
+    "team": 16,
+    "opp": 1,
+    "home": false,
+    "d": 4.3
+   },
+   {
+    "team": 14,
+    "opp": 19,
+    "home": true,
+    "d": 1.4
+   },
+   {
+    "team": 3,
+    "opp": 7,
+    "home": true,
+    "d": 1.4
+   },
+   {
+    "team": 6,
+    "opp": 2,
+    "home": true,
+    "d": 2.4
+   },
+   {
+    "team": 2,
+    "opp": 6,
+    "home": false,
+    "d": 3.7
+   },
+   {
+    "team": 5,
+    "opp": 12,
+    "home": true,
+    "d": 1.5
+   },
+   {
+    "team": 13,
+    "opp": 10,
+    "home": true,
+    "d": 2.0
+   },
+   {
+    "team": 4,
+    "opp": 17,
+    "home": true,
+    "d": 1.8
+   },
+   {
+    "team": 9,
+    "opp": 18,
+    "home": false,
+    "d": 3.6
+   },
+   {
+    "team": 10,
+    "opp": 13,
+    "home": false,
+    "d": 4.0
+   },
+   {
+    "team": 18,
+    "opp": 9,
+    "home": true,
+    "d": 2.2
+   },
+   {
+    "team": 19,
+    "opp": 14,
+    "home": false,
+    "d": 4.6
+   },
+   {
+    "team": 11,
+    "opp": 15,
+    "home": false,
+    "d": 4.9
+   },
+   {
+    "team": 7,
+    "opp": 3,
+    "home": false,
+    "d": 4.6
+   },
+   {
+    "team": 17,
+    "opp": 4,
+    "home": false,
+    "d": 4.2
+   },
+   {
+    "team": 8,
+    "opp": 20,
+    "home": false,
+    "d": 3.4
+   },
+   {
+    "team": 12,
+    "opp": 5,
+    "home": false,
+    "d": 4.5
+   },
+   {
+    "team": 20,
+    "opp": 8,
+    "home": true,
+    "d": 2.5
+   }
+  ],
+  "17": [
+   {
+    "team": 15,
+    "opp": 17,
+    "home": false,
+    "d": 2.2
+   },
+   {
+    "team": 1,
+    "opp": 8,
+    "home": false,
+    "d": 2.1
+   },
+   {
+    "team": 16,
+    "opp": 18,
+    "home": true,
+    "d": 1.4
+   },
+   {
+    "team": 14,
+    "opp": 11,
+    "home": false,
+    "d": 2.9
+   },
+   {
+    "team": 3,
+    "opp": 19,
+    "home": false,
+    "d": 3.1
+   },
+   {
+    "team": 6,
+    "opp": 7,
+    "home": false,
+    "d": 3.0
+   },
+   {
+    "team": 2,
+    "opp": 13,
+    "home": true,
+    "d": 2.2
+   },
+   {
+    "team": 5,
+    "opp": 10,
+    "home": false,
+    "d": 3.3
+   },
+   {
+    "team": 13,
+    "opp": 2,
+    "home": false,
+    "d": 3.8
+   },
+   {
+    "team": 4,
+    "opp": 12,
+    "home": false,
+    "d": 3.2
+   },
+   {
+    "team": 9,
+    "opp": 20,
+    "home": true,
+    "d": 1.7
+   },
+   {
+    "team": 10,
+    "opp": 5,
+    "home": true,
+    "d": 2.7
+   },
+   {
+    "team": 18,
+    "opp": 16,
+    "home": false,
+    "d": 4.7
+   },
+   {
+    "team": 19,
+    "opp": 3,
+    "home": true,
+    "d": 2.9
+   },
+   {
+    "team": 11,
+    "opp": 14,
+    "home": true,
+    "d": 3.0
+   },
+   {
+    "team": 7,
+    "opp": 6,
+    "home": true,
+    "d": 3.0
+   },
+   {
+    "team": 17,
+    "opp": 15,
+    "home": true,
+    "d": 3.9
+   },
+   {
+    "team": 8,
+    "opp": 1,
+    "home": true,
+    "d": 3.9
+   },
+   {
+    "team": 12,
+    "opp": 4,
+    "home": true,
+    "d": 2.9
+   },
+   {
+    "team": 20,
+    "opp": 9,
+    "home": false,
+    "d": 4.1
+   }
+  ],
+  "18": [
+   {
+    "team": 15,
+    "opp": 9,
+    "home": false,
+    "d": 2.6
+   },
+   {
+    "team": 1,
+    "opp": 10,
+    "home": false,
+    "d": 2.5
+   },
+   {
+    "team": 16,
+    "opp": 20,
+    "home": true,
+    "d": 1.1
+   },
+   {
+    "team": 14,
+    "opp": 2,
+    "home": false,
+    "d": 3.3
+   },
+   {
+    "team": 3,
+    "opp": 8,
+    "home": false,
+    "d": 3.1
+   },
+   {
+    "team": 6,
+    "opp": 12,
+    "home": false,
+    "d": 3.1
+   },
+   {
+    "team": 2,
+    "opp": 14,
+    "home": true,
+    "d": 2.7
+   },
+   {
+    "team": 5,
+    "opp": 19,
+    "home": false,
+    "d": 3.2
+   },
+   {
+    "team": 13,
+    "opp": 11,
+    "home": false,
+    "d": 3.3
+   },
+   {
+    "team": 4,
+    "opp": 7,
+    "home": false,
+    "d": 3.1
+   },
+   {
+    "team": 9,
+    "opp": 15,
+    "home": true,
+    "d": 3.5
+   },
+   {
+    "team": 10,
+    "opp": 1,
+    "home": true,
+    "d": 3.5
+   },
+   {
+    "team": 18,
+    "opp": 17,
+    "home": false,
+    "d": 3.3
+   },
+   {
+    "team": 19,
+    "opp": 5,
+    "home": true,
+    "d": 2.8
+   },
+   {
+    "team": 11,
+    "opp": 13,
+    "home": true,
+    "d": 2.7
+   },
+   {
+    "team": 7,
+    "opp": 4,
+    "home": true,
+    "d": 2.9
+   },
+   {
+    "team": 17,
+    "opp": 18,
+    "home": true,
+    "d": 2.7
+   },
+   {
+    "team": 8,
+    "opp": 3,
+    "home": true,
+    "d": 2.9
+   },
+   {
+    "team": 12,
+    "opp": 6,
+    "home": true,
+    "d": 2.9
+   },
+   {
+    "team": 20,
+    "opp": 16,
+    "home": false,
+    "d": 4.9
+   }
+  ],
+  "19": [
+   {
+    "team": 15,
+    "opp": 19,
+    "home": true,
+    "d": 1.1
+   },
+   {
+    "team": 1,
+    "opp": 12,
+    "home": true,
+    "d": 1.1
+   },
+   {
+    "team": 16,
+    "opp": 5,
+    "home": false,
+    "d": 3.1
+   },
+   {
+    "team": 14,
+    "opp": 7,
+    "home": true,
+    "d": 1.2
+   },
+   {
+    "team": 3,
+    "opp": 2,
+    "home": true,
+    "d": 2.3
+   },
+   {
+    "team": 6,
+    "opp": 17,
+    "home": true,
+    "d": 1.7
+   },
+   {
+    "team": 2,
+    "opp": 3,
+    "home": false,
+    "d": 3.8
+   },
+   {
+    "team": 5,
+    "opp": 16,
+    "home": true,
+    "d": 3.0
+   },
+   {
+    "team": 13,
+    "opp": 9,
+    "home": true,
+    "d": 2.1
+   },
+   {
+    "team": 4,
+    "opp": 8,
+    "home": true,
+    "d": 1.8
+   },
+   {
+    "team": 9,
+    "opp": 13,
+    "home": false,
+    "d": 3.8
+   },
+   {
+    "team": 10,
+    "opp": 18,
+    "home": false,
+    "d": 3.8
+   },
+   {
+    "team": 18,
+    "opp": 10,
+    "home": true,
+    "d": 2.2
+   },
+   {
+    "team": 19,
+    "opp": 15,
+    "home": false,
+    "d": 4.9
+   },
+   {
+    "team": 11,
+    "opp": 20,
+    "home": false,
+    "d": 3.3
+   },
+   {
+    "team": 7,
+    "opp": 14,
+    "home": false,
+    "d": 4.7
+   },
+   {
+    "team": 17,
+    "opp": 6,
+    "home": false,
+    "d": 4.4
+   },
+   {
+    "team": 8,
+    "opp": 4,
+    "home": false,
+    "d": 4.3
+   },
+   {
+    "team": 12,
+    "opp": 1,
+    "home": false,
+    "d": 4.9
+   },
+   {
+    "team": 20,
+    "opp": 11,
+    "home": true,
+    "d": 2.5
+   }
+  ],
+  "20": [
+   {
+    "team": 15,
+    "opp": 13,
+    "home": false,
+    "d": 2.7
+   },
+   {
+    "team": 1,
+    "opp": 4,
+    "home": true,
+    "d": 1.2
+   },
+   {
+    "team": 16,
+    "opp": 17,
+    "home": true,
+    "d": 1.2
+   },
+   {
+    "team": 14,
+    "opp": 20,
+    "home": false,
+    "d": 2.6
+   },
+   {
+    "team": 3,
+    "opp": 5,
+    "home": false,
+    "d": 3.7
+   },
+   {
+    "team": 6,
+    "opp": 8,
+    "home": false,
+    "d": 3.2
+   },
+   {
+    "team": 2,
+    "opp": 9,
+    "home": false,
+    "d": 3.3
+   },
+   {
+    "team": 5,
+    "opp": 3,
+    "home": true,
+    "d": 2.4
+   },
+   {
+    "team": 13,
+    "opp": 15,
+    "home": true,
+    "d": 3.5
+   },
+   {
+    "team": 4,
+    "opp": 1,
+    "home": false,
+    "d": 4.8
+   },
+   {
+    "team": 9,
+    "opp": 2,
+    "home": true,
+    "d": 2.6
+   },
+   {
+    "team": 10,
+    "opp": 19,
+    "home": true,
+    "d": 2.1
+   },
+   {
+    "team": 18,
+    "opp": 11,
+    "home": true,
+    "d": 2.0
+   },
+   {
+    "team": 19,
+    "opp": 10,
+    "home": false,
+    "d": 3.8
+   },
+   {
+    "team": 11,
+    "opp": 18,
+    "home": false,
+    "d": 4.0
+   },
+   {
+    "team": 7,
+    "opp": 12,
+    "home": false,
+    "d": 3.7
+   },
+   {
+    "team": 17,
+    "opp": 16,
+    "home": false,
+    "d": 4.8
+   },
+   {
+    "team": 8,
+    "opp": 6,
+    "home": true,
+    "d": 2.9
+   },
+   {
+    "team": 12,
+    "opp": 7,
+    "home": true,
+    "d": 2.3
+   },
+   {
+    "team": 20,
+    "opp": 14,
+    "home": true,
+    "d": 3.3
+   }
+  ],
+  "21": [
+   {
+    "team": 15,
+    "opp": 18,
+    "home": true,
+    "d": 1.2
+   },
+   {
+    "team": 1,
+    "opp": 11,
+    "home": false,
+    "d": 2.3
+   },
+   {
+    "team": 16,
+    "opp": 2,
+    "home": false,
+    "d": 3.1
+   },
+   {
+    "team": 14,
+    "opp": 8,
+    "home": true,
+    "d": 1.3
+   },
+   {
+    "team": 3,
+    "opp": 12,
+    "home": true,
+    "d": 1.5
+   },
+   {
+    "team": 6,
+    "opp": 20,
+    "home": true,
+    "d": 1.4
+   },
+   {
+    "team": 2,
+    "opp": 16,
+    "home": true,
+    "d": 2.9
+   },
+   {
+    "team": 5,
+    "opp": 4,
+    "home": false,
+    "d": 3.5
+   },
+   {
+    "team": 13,
+    "opp": 19,
+    "home": false,
+    "d": 3.2
+   },
+   {
+    "team": 4,
+    "opp": 5,
+    "home": true,
+    "d": 2.5
+   },
+   {
+    "team": 9,
+    "opp": 7,
+    "home": false,
+    "d": 3.2
+   },
+   {
+    "team": 10,
+    "opp": 17,
+    "home": false,
+    "d": 3.4
+   },
+   {
+    "team": 18,
+    "opp": 15,
+    "home": false,
+    "d": 4.8
+   },
+   {
+    "team": 19,
+    "opp": 13,
+    "home": true,
+    "d": 2.7
+   },
+   {
+    "team": 11,
+    "opp": 1,
+    "home": true,
+    "d": 3.7
+   },
+   {
+    "team": 7,
+    "opp": 9,
+    "home": true,
+    "d": 2.7
+   },
+   {
+    "team": 17,
+    "opp": 10,
+    "home": true,
+    "d": 2.6
+   },
+   {
+    "team": 8,
+    "opp": 14,
+    "home": false,
+    "d": 4.7
+   },
+   {
+    "team": 12,
+    "opp": 3,
+    "home": false,
+    "d": 4.6
+   },
+   {
+    "team": 20,
+    "opp": 6,
+    "home": false,
+    "d": 4.5
+   }
+  ]
+ },
+ "xgstat_source": "https://www.xgstat.com/competitions/premier-league/fixtures/fixture-difficulty ('Ratings updated 14 Oct 2026'); 1-5 scale, lower = easier, combines attack/defence strength + home advantage. GW13-19 opponents/venues cross-checked against FPL API: all match.",
+ "expert": [
+  {
+   "source": "Premier League (premierleague.com) - Triple-Captain Haaland in GW7? How and when to use your FPL chips",
+   "url": "https://premierleague.com/en/news/4362085/triple-captain-haaland-in-gameweek-7-how-and-when-to-use-your-fpl-chips",
+   "date": "2026-10-13",
+   "note": "TC Haaland GW7 (Ipswich at home); alternatives Palmer/Joao Pedro GW17-18, Saka GW10 v Hull. WC reactive; GW7 possible, GW16 big fixture swing for festive period. FH GW12 (Arsenal v Man City) or GW9. BB GW9 or GW13; GW8 if wildcarding GW7 (all three promoted sides at home)."
+  },
+  {
+   "source": "AllAboutFPL (Bakchod FPL) - Best Gameweeks to Use Your Remaining Chips",
+   "url": "https://allaboutfpl.com/2026/10/fpl-chip-strategy-best-gameweeks-to-use-your-remaining-chips/",
+   "date": "2026-10-05 (updated 2026-10-13)",
+   "note": "Roadmap WC7 -> FH12 -> TC/BB16; GW13 alternative WC (Liverpool and Forest runs ease). FH GW12 favourite, GW16 also good. BB GW7 or GW16 (5 green fixtures); GW18 risky due to festive rotation. TC: Haaland v Hull GW16 top pick, Haaland v Ipswich GW7 viable, Saka v Hull GW10; avoid GW19 due to congestion. No blanks/doubles mentioned."
+  },
+  {
+   "source": "The False 9 (James Whitfield) - GW7 chip strategy",
+   "url": "https://thefalse9.com/2026/10/fpl-gameweek-7-chip-strategy-wildcard-triple-captain.html",
+   "date": "2026-10-11",
+   "note": "Wildcard now (GW7) targeting Man City, Spurs, Coventry (easiest GW7-11 runs). TC Haaland GW7 v Ipswich. Hold BB and FH: every team has one fixture in GW7-11, no doubles to exploit."
+  },
+  {
+   "source": "Premier League - FPL experts reveal when they plan to use their chips",
+   "url": "https://www.premierleague.com/en/news/4685105/fpl-experts-reveal-when-they-plan-to-use-their-chips",
+   "date": "2026-09-14",
+   "note": "15 experts: most already used BB in GW1-2 and TC in GW3-4; remaining Wildcards mostly targeted GW6 (some GW16); Free Hit has no consensus (GW9, 12, 14, 15, 16, 17 cited). Two (Sam Bonfield, Ben Brown) holding BB for GW7 or GW17."
+  },
+  {
+   "source": "Fantasy Football Hub (Oli Poole) - FPL Chip Strategy Guide 2026/27",
+   "url": "https://www.fantasyfootballhub.co.uk/fpl-chip-strategy-guide",
+   "date": "2026-08-03",
+   "note": "WC GW6 or GW7 (Spurs top ticker from GW7); later window when Liverpool/Arsenal/Chelsea rise from GW17. TC Haaland GW7 v Ipswich or GW16 v Hull; Bruno GW14 v Coventry; Saka GW10 v Hull or GW19 v Ipswich. FH options GW12, GW14, GW16 or hold for surprise winter double. BB within 1-2 GWs of Wildcard. No blanks/doubles expected before GW19."
+  },
+  {
+   "source": "Fantasy Football Hub - Blank and Double Gameweek Guide 2026/27",
+   "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-blank-double-gameweek-guide",
+   "date": "2026-06-19",
+   "note": "No blanks/doubles flagged for GW1-19. Projected (Ben Crellin): BGW30 (EFL Cup final), DGW32, BGW33 (FA Cup semis), DGW35/36."
+  },
+  {
+   "source": "AllAboutFPL (Bakchod FPL) - 2026/27 Chip Strategy Guide, first half",
+   "url": "https://allaboutfpl.com/2026/08/2026-27-fpl-chip-strategy-guide-first-half-of-the-season/",
+   "date": "2026-08-04 (modified 2026-09-07)",
+   "note": "Sample plans include WC6 -> BB7/8 -> FH13 -> TC16. FH GW13 (several teams have tricky GW13 sandwiched between better GW12/14) or GW16 (City triple-up v Hull). TC Haaland GW16 v Hull flagged as rotation-risky. Hull the promoted side to target."
+  },
+  {
+   "source": "OneFPL - First-Half Chip Strategy 2026/27",
+   "url": "https://onefpl.com/blog/fpl-first-half-chip-strategy-2026-27",
+   "date": "2026-07-31 (updated 2026-09-21)",
+   "note": "Principles rather than dates: FH for a one-off bad week; BB only when all 15 have minutes, often after WC; TC only for elite minutes+role+fixture with low rotation risk."
+  },
+  {
+   "source": "RotoWire (BigMan Bakar) - Best FPL Chip Strategy 2026/27",
+   "url": "https://www.rotowire.com/soccer/article/best-fpl-chip-strategy-2026-27-when-to-play-every-chip-127670",
+   "date": "2026-08-20 (updated)",
+   "note": "BB GW7-8 after a GW6 wildcard; WC GW11 for those waiting for second international break; TC GW16 Man City v Hull 'arguably most enticing', GW7 alternative. First-half doubles not expected, so use chips on strong single GWs."
+  },
+  {
+   "source": "Fantasy Football Scout - FPL 2026/27 best chip strategy guide",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/08/04/fpl-2026-27-best-chip-strategy-guide",
+   "date": "2026-08-04",
+   "note": "Accessible part covers Wildcard only (GW4 or GW6; later for injury/fixture swings, GW12 to target Liverpool). BB/FH/TC advice behind registration wall - not read."
+  }
+ ],
+ "gw13_19_avg": {
+  "note": "Average difficulty per fixture GW13-19 (7 games), computed from fixtures/xgstat above. team id: [official_fdr_avg, xgstat_avg]",
+  "data": {
+   "15": [
+    2.86,
+    1.77
+   ],
+   "1": [
+    3.0,
+    1.94
+   ],
+   "14": [
+    2.71,
+    2.16
+   ],
+   "16": [
+    3.29,
+    2.31
+   ],
+   "3": [
+    3.0,
+    2.63
+   ],
+   "2": [
+    3.0,
+    2.7
+   ],
+   "6": [
+    3.0,
+    2.74
+   ],
+   "4": [
+    2.86,
+    2.87
+   ],
+   "5": [
+    3.0,
+    2.9
+   ],
+   "18": [
+    2.86,
+    3.07
+   ],
+   "13": [
+    3.0,
+    3.11
+   ],
+   "9": [
+    3.14,
+    3.26
+   ],
+   "11": [
+    3.29,
+    3.3
+   ],
+   "10": [
+    3.14,
+    3.39
+   ],
+   "17": [
+    3.29,
+    3.43
+   ],
+   "19": [
+    3.29,
+    3.59
+   ],
+   "20": [
+    3.0,
+    3.63
+   ],
+   "7": [
+    3.29,
+    3.64
+   ],
+   "12": [
+    3.43,
+    3.69
+   ],
+   "8": [
+    3.43,
+    3.84
+   ]
+  }
+ }
+}

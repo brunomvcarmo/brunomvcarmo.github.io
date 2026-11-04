@@ -1,0 +1,4 @@
+# Fins de linha LF em todos os ficheiros de texto, no Windows e no Linux
+* text=auto eol=lf
+*.png binary
+*.jpg binary

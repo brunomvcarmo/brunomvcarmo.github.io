@@ -1,0 +1,368 @@
+{
+ "_meta": {
+  "collected": "2026-11-03",
+  "gameweek": 10,
+  "notes": [
+   "Odds decimais da bet365 nas páginas de cada jogo do kickoff.co.uk, lidas a 2026-11-03.",
+   "cs_home/cs_away sem preço direto; win_to_nil como aproximação."
+  ]
+ },
+ "matches": [
+  {
+   "home": "Everton",
+   "away": "Coventry City",
+   "odds": {
+    "home": 1.7,
+    "draw": 3.9,
+    "away": 4.5
+   },
+   "over25": 1.73,
+   "under25": 2.1,
+   "btts_yes": 1.7,
+   "btts_no": 2.05,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 3.25,
+   "win_to_nil_away": 9.0,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/everton-vs-coventry/",
+   "date": "2026-11-03"
+  },
+  {
+   "home": "Leeds",
+   "away": "Spurs",
+   "odds": {
+    "home": 2.6,
+    "draw": 3.3,
+    "away": 2.63
+   },
+   "over25": 1.91,
+   "under25": 1.91,
+   "btts_yes": 1.75,
+   "btts_no": 2.0,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 4.5,
+   "win_to_nil_away": 4.5,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/leeds-united-vs-tottenham/",
+   "date": "2026-11-03"
+  },
+  {
+   "home": "Arsenal",
+   "away": "Hull City",
+   "odds": {
+    "home": 1.14,
+    "draw": 7.0,
+    "away": 19.0
+   },
+   "over25": 1.5,
+   "under25": 2.62,
+   "btts_yes": 2.25,
+   "btts_no": 1.57,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 1.73,
+   "win_to_nil_away": 26.0,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/arsenal-vs-hull/",
+   "date": "2026-11-03"
+  },
+  {
+   "home": "Fulham",
+   "away": "Newcastle",
+   "odds": {
+    "home": 2.05,
+    "draw": 3.6,
+    "away": 3.2
+   },
+   "over25": 1.67,
+   "under25": 2.2,
+   "btts_yes": 1.57,
+   "btts_no": 2.25,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 4.0,
+   "win_to_nil_away": 7.0,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/fulham-vs-newcastle/",
+   "date": "2026-11-03"
+  },
+  {
+   "home": "Nott'm Forest",
+   "away": "Man City",
+   "odds": {
+    "home": 4.33,
+    "draw": 3.9,
+    "away": 1.67
+   },
+   "over25": 1.62,
+   "under25": 2.3,
+   "btts_yes": 1.62,
+   "btts_no": 2.2,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 9.0,
+   "win_to_nil_away": 3.4,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/nottingham-forest-vs-man-city/",
+   "date": "2026-11-03"
+  },
+  {
+   "home": "Brighton",
+   "away": "Brentford",
+   "odds": {
+    "home": 1.85,
+    "draw": 3.7,
+    "away": 3.7
+   },
+   "over25": 1.62,
+   "under25": 2.3,
+   "btts_yes": 1.53,
+   "btts_no": 2.38,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 3.75,
+   "win_to_nil_away": 8.0,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/brighton-vs-brentford/",
+   "date": "2026-11-03"
+  },
+  {
+   "home": "Crystal Palace",
+   "away": "Liverpool",
+   "odds": {
+    "home": 4.33,
+    "draw": 4.2,
+    "away": 1.65
+   },
+   "over25": 1.57,
+   "under25": 2.38,
+   "btts_yes": 1.62,
+   "btts_no": 2.2,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 10.0,
+   "win_to_nil_away": 3.25,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/crystal-palace-vs-liverpool/",
+   "date": "2026-11-03"
+  },
+  {
+   "home": "Ipswich Town",
+   "away": "Bournemouth",
+   "odds": {
+    "home": 3.9,
+    "draw": 3.5,
+    "away": 1.83
+   },
+   "over25": 1.67,
+   "under25": 2.2,
+   "btts_yes": 1.62,
+   "btts_no": 2.2,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 8.0,
+   "win_to_nil_away": 3.5,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/ipswich-vs-bournemouth/",
+   "date": "2026-11-03"
+  },
+  {
+   "home": "Sunderland",
+   "away": "Chelsea",
+   "odds": {
+    "home": 3.7,
+    "draw": 3.5,
+    "away": 1.91
+   },
+   "over25": 1.8,
+   "under25": 2.0,
+   "btts_yes": 1.7,
+   "btts_no": 2.05,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 7.0,
+   "win_to_nil_away": 3.5,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/sunderland-vs-chelsea/",
+   "date": "2026-11-03"
+  },
+  {
+   "home": "Man Utd",
+   "away": "Aston Villa",
+   "odds": {
+    "home": 2.15,
+    "draw": 3.6,
+    "away": 3.0
+   },
+   "over25": 1.62,
+   "under25": 2.3,
+   "btts_yes": 1.5,
+   "btts_no": 2.5,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 4.5,
+   "win_to_nil_away": 6.5,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/man-united-vs-aston-villa/",
+   "date": "2026-11-03"
+  }
+ ],
+ "odds_overview_source": {
+  "site": "kickoff.co.uk (bet365)",
+  "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/",
+  "date": "2026-10-20"
+ },
+ "scorers": [],
+ "scorers_model": [],
+ "set_pieces": {
+  "_sources": {
+   "primary": "onsidearena.com/set-piece-takers (checked 13 Oct 2026; covers 17 clubs, not Coventry/Hull/Ipswich): https://onsidearena.com/set-piece-takers",
+   "secondary": "Fantasy Football Scout set-piece takers (updated 29 Sep 2026): https://www.fantasyfootballscout.co.uk/fantasy-premier-league-set-piece-takers",
+   "tertiary": "Fantasy Football Fix (13 Aug 2026): https://www.fantasyfootballfix.com/blog-index/fpl-set-piece-takers-2026-27/"
+  },
+  "Arsenal": {
+   "pens": "Saka, Gyokeres, Odegaard",
+   "corners": "Rice, Saka, Tzolis (Tzolis out injured)",
+   "fk": "Rice, Saka, Eze",
+   "source": "onsidearena (FFS agrees on pens)",
+   "date": "2026-10-13"
+  },
+  "Aston Villa": {
+   "pens": "Buendia, N. Jackson",
+   "corners": "McGinn, Buendia, Cash",
+   "fk": "Buendia",
+   "source": "onsidearena (FFS: Buendia only for pens)",
+   "date": "2026-10-13"
+  },
+  "Bournemouth": {
+   "pens": "Kroupi Jr, Kluivert, Tavernier",
+   "corners": "Tavernier, Scott, Kluivert",
+   "fk": "Tavernier, Kluivert, Brooks",
+   "source": "onsidearena (FFS order: Kluivert, Kroupi, Tavernier)",
+   "date": "2026-10-13"
+  },
+  "Brentford": {
+   "pens": "Igor Thiago, Schade, Jensen",
+   "corners": "Jensen, Damsgaard, Janelt",
+   "fk": "Lewis-Potter, Jensen, Damsgaard",
+   "source": "onsidearena (FFS agrees)",
+   "date": "2026-10-13"
+  },
+  "Brighton": {
+   "pens": "Gross, David, O'Riley",
+   "corners": "Gross, De Cuyper, F. Kadioglu",
+   "fk": "Gross, Ayari, Dunk",
+   "source": "onsidearena",
+   "date": "2026-10-13"
+  },
+  "Chelsea": {
+   "pens": "Palmer, Estevao",
+   "corners": "Reece James, Neto, Henderson",
+   "fk": "Reece James, Palmer, Rogers",
+   "source": "onsidearena (FFS agrees). Note: Henderson scored a direct FK v Bournemouth 10 Oct (vavel). James is a doubt for GW7",
+   "date": "2026-10-13"
+  },
+  "Coventry City": {
+   "pens": "Wright, Torp, Rudoni (Wright listed OUT, muscle, per starting11)",
+   "corners": "Rudoni, Grimes, Tchaouna, Torp",
+   "fk": "Torp, Thomas-Asante, van Ewijk",
+   "source": "Fantasy Football Scout (FFFix: pens Wright, Grimes; corners Grimes, Rudoni, Torp)",
+   "date": "2026-09-29"
+  },
+  "Crystal Palace": {
+   "pens": "Mateta, Sarr (FFS adds Strand Larsen 3rd). Mateta not yet match-fit",
+   "corners": "Yeremy Pino, Wharton, Kamada",
+   "fk": "Yeremy Pino",
+   "source": "onsidearena",
+   "date": "2026-10-13"
+  },
+  "Everton": {
+   "pens": "CONFLICT: onsidearena says Barry then Garner; FFS (29 Sep) says Garner then Barry. FFFix (Aug) says Ndiaye, Garner, Beto",
+   "corners": "Garner, Dewsbury-Hall, Hackney",
+   "fk": "Garner (FFS adds Dewsbury-Hall)",
+   "source": "onsidearena / FFS",
+   "date": "2026-10-13"
+  },
+  "Fulham": {
+   "pens": "Gonzalo Garcia, Robinson, Iwobi (FFS 29 Sep: Rodrigo Muniz, Iwobi, Robinson)",
+   "corners": "Iwobi, Bobb, Sessegnon",
+   "fk": "Iwobi (FFS: Kevin)",
+   "source": "onsidearena",
+   "date": "2026-10-13"
+  },
+  "Hull City": {
+   "pens": "McBurnie (FFFix adds Crooks)",
+   "corners": "Belloumi, Giles, Slater",
+   "fk": "Giles, Belloumi (FFFix); none listed by FFS",
+   "source": "Fantasy Football Scout / FFFix",
+   "date": "2026-09-29"
+  },
+  "Ipswich Town": {
+   "pens": "Clarke, Philogene-Bidace, Hirst",
+   "corners": "Lukic, Fatawu, Philogene-Bidace",
+   "fk": "Nunez",
+   "source": "Fantasy Football Scout (FFFix order: Clarke, Hirst, Philogene)",
+   "date": "2026-09-29"
+  },
+  "Leeds": {
+   "pens": "Calvert-Lewin, Nmecha",
+   "corners": "Stach, Wilson, Longstaff",
+   "fk": "Stach, Wilson, Longstaff",
+   "source": "onsidearena (FFS agrees)",
+   "date": "2026-10-13"
+  },
+  "Liverpool": {
+   "pens": "Szoboszlai, Isak, Gakpo (ALL THREE injured/doubtful for GW7; FFS lists Mac Allister 4th). Szoboszlai scored a pen at Newcastle in GW1",
+   "corners": "Szoboszlai, Wirtz, Gakpo",
+   "fk": "Szoboszlai, Wirtz, Mac Allister",
+   "source": "onsidearena; FFS",
+   "date": "2026-10-13"
+  },
+  "Man City": {
+   "pens": "Haaland, Semenyo, Doku",
+   "corners": "Cherki, Foden, Anderson",
+   "fk": "Cherki, Foden, Enzo Fernandez",
+   "source": "onsidearena (FFS: pens Haaland, Doku, Matheus Nunes; FK Fernandez, Cherki, Semenyo)",
+   "date": "2026-10-13"
+  },
+  "Man Utd": {
+   "pens": "Bruno Fernandes, Mbeumo, Tielemans",
+   "corners": "Bruno Fernandes, Mbeumo, Shaw (Shaw injured)",
+   "fk": "Bruno Fernandes, Mbeumo, Rashford",
+   "source": "onsidearena (FFS agrees on pens)",
+   "date": "2026-10-13"
+  },
+  "Newcastle": {
+   "pens": "CONFLICT: onsidearena says Osula then Wissa; FFS (29 Sep) says Wissa only; FFFix (Aug) says Woltemade, Osula, Guimaraes, Wissa",
+   "corners": "Lewis Hall, Elanga, Barnes",
+   "fk": "Lewis Hall, Schar, Dedic",
+   "source": "onsidearena / FFS",
+   "date": "2026-10-13"
+  },
+  "Nott'm Forest": {
+   "pens": "CONFLICT: onsidearena says Gibbs-White, Wood, Delap; FFS says Wood, Gibbs-White, Igor Jesus, McAtee. Gibbs-White scored one at Liverpool in 2026/27 with Wood off the pitch (onefpl, 30 Aug)",
+   "corners": "McAtee, N. Williams",
+   "fk": "Gibbs-White, Murillo, N. Williams",
+   "source": "onsidearena / FFS / onefpl.com",
+   "date": "2026-10-13"
+  },
+  "Sunderland": {
+   "pens": "Diarra, Le Fee",
+   "corners": "Le Fee, Xhaka, Hume",
+   "fk": "N. Angulo, Xhaka, Le Fee",
+   "source": "onsidearena (FFS order: Le Fee, Diarra)",
+   "date": "2026-10-13"
+  },
+  "Spurs": {
+   "pens": "Solanke, Marmoush, Kudus (FFS: Solanke, Kudus, Simons; Simons OUT knee)",
+   "corners": "Porro, Savio, Tel (Porro OUT hamstring)",
+   "fk": "Porro, Xavi, Tel",
+   "source": "onsidearena",
+   "date": "2026-10-13"
+  }
+ },
+ "rotation": [],
+ "news": []
+}

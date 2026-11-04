@@ -1,0 +1,396 @@
+{
+  "updated": "2026-10-31",
+  "note": "Calendário das taças e da Europa 2026/27 para o detetor de jornadas duplas e brancas (dgw_model.py). Atualizar a cada jornada: equipas eliminadas (pl_in), sorteios (draws/ties) e resultados. Ids das equipas = ids da FPL (1 Arsenal … 20 Sunderland).",
+  "elo_other": {
+    "championship": 1650,
+    "league_one": 1520,
+    "league_two": 1430,
+    "non_league": 1330,
+    "ucl": 1860,
+    "uel": 1720,
+    "uecl": 1620
+  },
+  "competitions": {
+    "facup": {
+      "name": "Taça de Inglaterra",
+      "kind": "weekend",
+      "rounds": [
+        {
+          "r": "R3",
+          "name": "3.ª eliminatória",
+          "dates": [
+            "2027-01-09"
+          ],
+          "teams": 64
+        },
+        {
+          "r": "R4",
+          "name": "4.ª eliminatória",
+          "dates": [
+            "2027-02-13"
+          ],
+          "teams": 32
+        },
+        {
+          "r": "R5",
+          "name": "5.ª eliminatória",
+          "dates": [
+            "2027-03-06"
+          ],
+          "teams": 16
+        },
+        {
+          "r": "QF",
+          "name": "quartos de final",
+          "dates": [
+            "2027-04-03"
+          ],
+          "teams": 8
+        },
+        {
+          "r": "SF",
+          "name": "meias-finais",
+          "dates": [
+            "2027-04-24",
+            "2027-04-25"
+          ],
+          "teams": 4,
+          "postpone": 0.95
+        },
+        {
+          "r": "F",
+          "name": "final",
+          "dates": [
+            "2027-05-22"
+          ],
+          "teams": 2,
+          "postpone": 0.0,
+          "postpone_note": "Em 2024/25 os jogos dos finalistas na jornada da final foram mudados para a semana seguinte dentro da mesma jornada: não criou branca."
+        }
+      ],
+      "pl_in": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "field_r3": {
+        "championship": 24,
+        "league_one": 12,
+        "league_two": 6,
+        "non_league": 2
+      },
+      "draws": [],
+      "sources": [
+        "https://en.wikipedia.org/wiki/2026%E2%80%9327_FA_Cup",
+        "https://gloverscast.co.uk/key-dates-fa-cup-26-27/",
+        "https://www.goal.com/en/tickets-travel/competition/fa-cup-tickets/A~bltf7a20ab5067ad372"
+      ]
+    },
+    "eflcup": {
+      "name": "Taça da Liga",
+      "kind": "midweek",
+      "rounds": [
+        {
+          "r": "R4",
+          "name": "4.ª eliminatória",
+          "dates": [
+            "2026-10-27",
+            "2026-10-29"
+          ],
+          "teams": 16
+        },
+        {
+          "r": "QF",
+          "name": "quartos de final",
+          "dates": [
+            "2026-12-16"
+          ],
+          "teams": 8
+        },
+        {
+          "r": "SF",
+          "name": "meias-finais",
+          "dates": [
+            "2027-01-12",
+            "2027-02-02"
+          ],
+          "teams": 4,
+          "two_legs": true
+        },
+        {
+          "r": "F",
+          "name": "final",
+          "dates": [
+            "2027-03-21"
+          ],
+          "teams": 2,
+          "postpone": 1.0
+        }
+      ],
+      "pl_in": [
+        3,
+        8,
+        9,
+        14,
+        15,
+        20
+      ],
+      "ties": {
+        "QF": [
+          [
+            8,
+            20
+          ],
+          [
+            "Fleetwood Town",
+            9
+          ],
+          [
+            14,
+            3
+          ],
+          [
+            15,
+            "Bradford City"
+          ]
+        ]
+      },
+      "others": {
+        "Fleetwood Town": "league_two",
+        "Bradford City": "league_one"
+      },
+      "draws": [
+        "R4 jogada a 27-29 out: o Arsenal caiu nos penáltis com o Fleetwood (League Two).",
+        "Quartos sorteados a 28 out (semana de 14 dez): Palace-Sunderland, Fleetwood-Everton, Liverpool-Bournemouth, City-Bradford."
+      ],
+      "sources": [
+        "https://en.wikipedia.org/wiki/2026%E2%80%9327_EFL_Cup",
+        "https://groundhopperguides.com/english-league-carabao-cup-schedule/",
+        "https://www.aljazeera.com/sports/2026/10/28/arsenal-fleetwood-town-league-cup-penalties-guimaraes-dowman"
+      ],
+      "results": {
+        "R4": [
+          "Bradford City 2-0 Peterborough United",
+          "Fleetwood Town 1-1 Arsenal (5-3 g.p.)",
+          "Man City 2-2 Brighton (4-3 g.p.)",
+          "Bournemouth 3-0 Aston Villa",
+          "Fulham 0-1 Crystal Palace",
+          "Sunderland 3-2 Brentford",
+          "Liverpool 1-1 Chelsea (6-5 g.p.)",
+          "Everton 3-1 Newcastle"
+        ]
+      }
+    },
+    "ucl": {
+      "name": "Liga dos Campeões",
+      "kind": "midweek",
+      "elo_key": "ucl",
+      "rounds": [
+        {
+          "r": "PO",
+          "name": "play-off",
+          "dates": [
+            "2027-02-16",
+            "2027-02-23"
+          ],
+          "teams": 24,
+          "p_from_league": 0.92
+        },
+        {
+          "r": "R16",
+          "name": "oitavos",
+          "dates": [
+            "2027-03-09",
+            "2027-03-16"
+          ],
+          "teams": 16
+        },
+        {
+          "r": "QF",
+          "name": "quartos",
+          "dates": [
+            "2027-04-06",
+            "2027-04-13"
+          ],
+          "teams": 8
+        },
+        {
+          "r": "SF",
+          "name": "meias-finais",
+          "dates": [
+            "2027-04-27",
+            "2027-05-04"
+          ],
+          "teams": 4
+        },
+        {
+          "r": "F",
+          "name": "final (Madrid)",
+          "dates": [
+            "2027-06-05"
+          ],
+          "teams": 2
+        }
+      ],
+      "pl_in": [
+        1,
+        2,
+        14,
+        15,
+        16
+      ],
+      "note": "Fase de liga até jan; os 8 primeiros passam direto aos oitavos (o play-off fica livre), 9.º-24.º jogam o play-off. Aproximação: todos os clubes da PL contam como possíveis participantes do play-off com p_from_league.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/2026%E2%80%9327_UEFA_Champions_League",
+        "https://www.paramountplus.com/sneak-peak/uefa-champions-league-schedule/"
+      ]
+    },
+    "uel": {
+      "name": "Liga Europa",
+      "kind": "midweek",
+      "elo_key": "uel",
+      "rounds": [
+        {
+          "r": "PO",
+          "name": "play-off",
+          "dates": [
+            "2027-02-18",
+            "2027-02-25"
+          ],
+          "teams": 24,
+          "p_from_league": 0.85
+        },
+        {
+          "r": "R16",
+          "name": "oitavos",
+          "dates": [
+            "2027-03-11",
+            "2027-03-18"
+          ],
+          "teams": 16
+        },
+        {
+          "r": "QF",
+          "name": "quartos",
+          "dates": [
+            "2027-04-08",
+            "2027-04-15"
+          ],
+          "teams": 8
+        },
+        {
+          "r": "SF",
+          "name": "meias-finais",
+          "dates": [
+            "2027-04-29",
+            "2027-05-06"
+          ],
+          "teams": 4
+        },
+        {
+          "r": "F",
+          "name": "final (Frankfurt)",
+          "dates": [
+            "2027-05-26"
+          ],
+          "teams": 2
+        }
+      ],
+      "pl_in": [
+        3,
+        8,
+        20
+      ],
+      "sources": [
+        "https://uefa.com/uefaeuropaleague/news/02a6-20d57d095740-e1e0b3de85df-1000--2026-27-europa-league-teams-dates-draws-format-f",
+        "https://www.flashscore.com/news/soccer-uefa-europa-league-26-27-draws-dates-schedule-teams/U3EcktMi/"
+      ]
+    },
+    "uecl": {
+      "name": "Liga Conferência",
+      "kind": "midweek",
+      "elo_key": "uecl",
+      "rounds": [
+        {
+          "r": "PO",
+          "name": "play-off",
+          "dates": [
+            "2027-02-18",
+            "2027-02-25"
+          ],
+          "teams": 24,
+          "p_from_league": 0.9
+        },
+        {
+          "r": "R16",
+          "name": "oitavos",
+          "dates": [
+            "2027-03-11",
+            "2027-03-18"
+          ],
+          "teams": 16
+        },
+        {
+          "r": "QF",
+          "name": "quartos",
+          "dates": [
+            "2027-04-08",
+            "2027-04-15"
+          ],
+          "teams": 8
+        },
+        {
+          "r": "SF",
+          "name": "meias-finais",
+          "dates": [
+            "2027-04-29",
+            "2027-05-06"
+          ],
+          "teams": 4
+        },
+        {
+          "r": "F",
+          "name": "final (Istambul)",
+          "dates": [
+            "2027-06-02"
+          ],
+          "teams": 2
+        }
+      ],
+      "pl_in": [
+        5
+      ],
+      "sources": [
+        "https://www.uefa.com/uefaconferenceleague/news/02a6-20d57d15f093-a90cf54c928f-1000--2026-27-conference-league-teams-dates-draws-final/"
+      ]
+    }
+  },
+  "international_breaks": [
+    [
+      "2027-03-22",
+      "2027-03-30"
+    ]
+  ],
+  "notes": [
+    "Regra que cria as brancas: se uma equipa da PL joga uma ronda de taça no fim de semana de uma jornada, o jogo da liga dela é adiado (e o do adversário também). Na 2.ª metade isto acontece na final da Taça da Liga (dom 21 mar, J30) e nas meias-finais da Taça de Inglaterra (24-25 abr, J33). As outras rondas da FA Cup (9 jan, 13 fev, 6 mar, 3 abr) caem em fins de semana sem jornada.",
+    "O jogo adiado é remarcado para uma semana livre a meio (sem jornada a meio da semana, sem pausa de seleções e sem jogos europeus ou de taça das duas equipas): fica numa jornada dupla.",
+    "Previsões publicadas antes da época (Ben Crellin, FF Hub, 19 jun 2026): brancas J30/J33, duplas J32 e J35-36."
+  ]
+}

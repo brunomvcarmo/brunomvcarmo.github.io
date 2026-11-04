@@ -1,0 +1,1734 @@
+{
+ "manager": {
+  "name": "Marco Carmo",
+  "team": "Xarola Team",
+  "entry": 1973102,
+  "fetched": "2026-10-13"
+ },
+ "history": {
+  "source_entry_history_endpoint": [
+   {
+    "event": 1,
+    "points": 40,
+    "total_points": 40,
+    "rank": 7094525,
+    "overall_rank": 7094513,
+    "bank": 0,
+    "value": 1000,
+    "event_transfers": 0,
+    "event_transfers_cost": 0,
+    "points_on_bench": 12
+   },
+   {
+    "event": 2,
+    "points": 97,
+    "total_points": 137,
+    "rank": 2085913,
+    "overall_rank": 3696374,
+    "bank": 9,
+    "value": 1001,
+    "event_transfers": 1,
+    "event_transfers_cost": 0,
+    "points_on_bench": 24
+   }
+  ],
+  "note": "entry/1973102/history/ 'current' array contains ONLY events 1-2 (stale/lagging). Events 3-6 below are taken from entry/{id}/event/{N}/picks/ entry_history.",
+  "from_picks_entry_history": [
+   {
+    "event": 3,
+    "points": 55,
+    "total_points": 192,
+    "rank": 3935670,
+    "overall_rank": 3326096,
+    "bank": 2,
+    "value": 1001,
+    "event_transfers": 1,
+    "event_transfers_cost": 0,
+    "points_on_bench": 10,
+    "active_chip": "3xc"
+   },
+   {
+    "event": 4,
+    "points": 91,
+    "total_points": 283,
+    "rank": 348729,
+    "overall_rank": 1327109,
+    "bank": 2,
+    "value": 1000,
+    "event_transfers": 0,
+    "event_transfers_cost": 0,
+    "points_on_bench": 11
+   },
+   {
+    "event": 5,
+    "points": 43,
+    "total_points": 327,
+    "rank": 7166863,
+    "rank_sort": 7188251,
+    "overall_rank": 2099042,
+    "percentile_rank": 70,
+    "overall_rank_percentage": "19",
+    "bank": 5,
+    "value": 1002,
+    "event_transfers": 1,
+    "event_transfers_cost": 0,
+    "points_on_bench": 12,
+    "active_chip": null
+   },
+   {
+    "event": 6,
+    "points": 61,
+    "total_points": 388,
+    "rank": 4736893,
+    "rank_sort": 4751382,
+    "overall_rank": 2327833,
+    "percentile_rank": 45,
+    "overall_rank_percentage": "21",
+    "bank": 1,
+    "value": 1001,
+    "event_transfers": 1,
+    "event_transfers_cost": 0,
+    "points_on_bench": 5,
+    "active_chip": null,
+    "_flag": "GW6 not data_checked; live/provisional"
+   }
+  ],
+  "entry_summary": {
+   "current_event": 6,
+   "summary_overall_points": 388,
+   "summary_overall_rank": 2327834,
+   "summary_event_points": 61,
+   "summary_event_rank": 4736879,
+   "last_deadline_bank": 1,
+   "last_deadline_value": 1001,
+   "last_deadline_total_transfers": 4
+  }
+ },
+ "chips": {
+  "history_endpoint_chips": [],
+  "observed_from_picks": [
+   {
+    "name": "3xc",
+    "event": 3,
+    "captain": 411,
+    "captain_name": "Erling Haaland",
+    "multiplier": 3
+   }
+  ],
+  "note": "history endpoint chips array is empty (stale), but event/3/picks shows active_chip='3xc' with Haaland multiplier 3."
+ },
+ "picks_gw5": {
+  "active_chip": null,
+  "automatic_subs": [],
+  "entry_history": {
+   "event": 5,
+   "points": 43,
+   "total_points": 327,
+   "rank": 7166863,
+   "rank_sort": 7188251,
+   "overall_rank": 2099042,
+   "percentile_rank": 70,
+   "overall_rank_percentage": "19",
+   "bank": 5,
+   "value": 1002,
+   "event_transfers": 1,
+   "event_transfers_cost": 0,
+   "points_on_bench": 12
+  },
+  "picks": [
+   {
+    "element": 1,
+    "name": "David Raya",
+    "position": 1,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 418,
+    "name": "Harry Maguire",
+    "position": 2,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 115,
+    "name": "Maxim De Cuyper",
+    "position": 3,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 277,
+    "name": "John Egan",
+    "position": 4,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 469,
+    "name": "Neco Williams",
+    "position": 5,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 565,
+    "name": "Mamadou Sangare",
+    "position": 6,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 426,
+    "name": "Bruno Fernandes",
+    "position": 7,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": true
+   },
+   {
+    "element": 427,
+    "name": "Bryan Mbeumo",
+    "position": 8,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 124,
+    "name": "Pascal Groß",
+    "position": 9,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 491,
+    "name": "Igor Jesus",
+    "position": 10,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 411,
+    "name": "Erling Haaland",
+    "position": 11,
+    "multiplier": 2,
+    "is_captain": true,
+    "is_vice_captain": false
+   },
+   {
+    "element": 496,
+    "name": "Antonín Kinský",
+    "position": 12,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 525,
+    "name": "Mateus Fernandes",
+    "position": 13,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 173,
+    "name": "Bobby Thomas",
+    "position": 14,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 165,
+    "name": "Joao Pedro",
+    "position": 15,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   }
+  ]
+ },
+ "picks_gw6": {
+  "active_chip": null,
+  "automatic_subs": [],
+  "entry_history": {
+   "event": 6,
+   "points": 61,
+   "total_points": 388,
+   "rank": 4736893,
+   "rank_sort": 4751382,
+   "overall_rank": 2327833,
+   "percentile_rank": 45,
+   "overall_rank_percentage": "21",
+   "bank": 1,
+   "value": 1001,
+   "event_transfers": 1,
+   "event_transfers_cost": 0,
+   "points_on_bench": 5
+  },
+  "picks": [
+   {
+    "element": 1,
+    "name": "David Raya",
+    "position": 1,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 418,
+    "name": "Harry Maguire",
+    "position": 2,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 115,
+    "name": "Maxim De Cuyper",
+    "position": 3,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 173,
+    "name": "Bobby Thomas",
+    "position": 4,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 277,
+    "name": "John Egan",
+    "position": 5,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 453,
+    "name": "Harvey Barnes",
+    "position": 6,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 426,
+    "name": "Bruno Fernandes",
+    "position": 7,
+    "multiplier": 2,
+    "is_captain": true,
+    "is_vice_captain": false
+   },
+   {
+    "element": 427,
+    "name": "Bryan Mbeumo",
+    "position": 8,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 124,
+    "name": "Pascal Groß",
+    "position": 9,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": true
+   },
+   {
+    "element": 165,
+    "name": "Joao Pedro",
+    "position": 10,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 411,
+    "name": "Erling Haaland",
+    "position": 11,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 496,
+    "name": "Antonín Kinský",
+    "position": 12,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 565,
+    "name": "Mamadou Sangare",
+    "position": 13,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 469,
+    "name": "Neco Williams",
+    "position": 14,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 491,
+    "name": "Igor Jesus",
+    "position": 15,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   }
+  ]
+ },
+ "transfers": [
+  {
+   "event": 6,
+   "element_in": 453,
+   "element_in_name": "Harvey Barnes",
+   "element_in_cost": 61,
+   "element_out": 525,
+   "element_out_name": "Mateus Fernandes",
+   "element_out_cost": 57,
+   "time": "2026-10-09T18:05:14.678024Z"
+  },
+  {
+   "event": 5,
+   "element_in": 469,
+   "element_in_name": "Neco Williams",
+   "element_in_cost": 50,
+   "element_out": 11,
+   "element_out_name": "Cristhian Mosquera",
+   "element_out_cost": 53,
+   "time": "2026-09-18T10:01:11.227914Z"
+  },
+  {
+   "event": 3,
+   "element_in": 565,
+   "element_in_name": "Mamadou Sangare",
+   "element_in_cost": 57,
+   "element_out": 265,
+   "element_out_name": "Sander Berge",
+   "element_out_cost": 50,
+   "time": "2026-09-04T17:15:12.139104Z"
+  },
+  {
+   "event": 2,
+   "element_in": 115,
+   "element_in_name": "Maxim De Cuyper",
+   "element_in_cost": 46,
+   "element_out": 499,
+   "element_out_name": "Pedro Porro",
+   "element_out_cost": 55,
+   "time": "2026-08-28T17:26:08.420707Z"
+  }
+ ],
+ "players": {
+  "1": {
+   "name": "David Raya",
+   "team": "Arsenal",
+   "team_id": 1,
+   "cls": "gk",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 20,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 14,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 3,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 60
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 5,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 3,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 60
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 13,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 3,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 61
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 18,
+     "team_a": 1,
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 1,
+     "team_a": 9,
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 14,
+     "team_a": 1,
+     "is_home": false,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 6.1,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "418": {
+   "name": "Harry Maguire",
+   "team": "Man Utd",
+   "team_id": 16,
+   "cls": "def",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 15,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.12",
+     "expected_assists": "0.01",
+     "value": 49
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 10,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.01",
+     "expected_assists": "0.03",
+     "value": 49
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 19,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.12",
+     "expected_assists": "0.00",
+     "value": 48
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 13,
+     "team_a": 16,
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 16,
+     "team_a": 3,
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 6,
+     "team_a": 16,
+     "is_home": false,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 4.8,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "115": {
+   "name": "Maxim De Cuyper",
+   "team": "Brighton",
+   "team_id": 5,
+   "cls": "def",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 7,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 11,
+     "goals_scored": 0,
+     "assists": 1,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 2,
+     "expected_goals": "0.03",
+     "expected_assists": "0.04",
+     "value": 48
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 1,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 6,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 1,
+     "expected_goals": "0.02",
+     "expected_assists": "0.23",
+     "value": 49
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 20,
+     "was_home": false,
+     "minutes": 67,
+     "total_points": 15,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 3,
+     "expected_goals": "0.25",
+     "expected_assists": "0.00",
+     "value": 50
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 5,
+     "team_a": 8,
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 8,
+     "team_h": 14,
+     "team_a": 5,
+     "is_home": false,
+     "difficulty": 4
+    },
+    {
+     "event": 9,
+     "team_h": 15,
+     "team_a": 5,
+     "is_home": false,
+     "difficulty": 5
+    }
+   ],
+   "current_price": 5.0,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "277": {
+   "name": "John Egan",
+   "team": "Hull",
+   "team_id": 11,
+   "cls": "def",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 6,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "bonus": 0,
+     "expected_goals": "0.04",
+     "expected_assists": "0.00",
+     "value": 41,
+     "_extra": {
+      "fixture": 33,
+      "score": "Chelsea 2-2 Hull",
+      "bps": -1,
+      "defensive_contribution": 14
+     }
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 17,
+     "was_home": false,
+     "minutes": 77,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "bonus": 0,
+     "expected_goals": "0.01",
+     "expected_assists": "0.00",
+     "value": 41
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 9,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "bonus": 0,
+     "expected_goals": "0.04",
+     "expected_assists": "0.16",
+     "value": 41
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 10,
+     "team_a": 11,
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 11,
+     "team_a": 4,
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 11,
+     "team_a": 12,
+     "is_home": true,
+     "difficulty": 2
+    }
+   ],
+   "current_price": 4.1,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "469": {
+   "name": "Neco Williams",
+   "team": "Nott'm Forest",
+   "team_id": 18,
+   "cls": "def",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 2,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.20",
+     "expected_assists": "0.16",
+     "value": 50
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 7,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.09",
+     "expected_assists": "0.21",
+     "value": 50
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 8,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 3,
+     "bonus": 0,
+     "expected_goals": "0.17",
+     "expected_assists": "0.29",
+     "value": 50
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 18,
+     "team_a": 1,
+     "is_home": true,
+     "difficulty": 4
+    },
+    {
+     "event": 8,
+     "team_h": 12,
+     "team_a": 18,
+     "is_home": false,
+     "difficulty": 2
+    },
+    {
+     "event": 9,
+     "team_h": 4,
+     "team_a": 18,
+     "is_home": false,
+     "difficulty": 3
+    }
+   ],
+   "current_price": 5.0,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "565": {
+   "name": "Mamadou Sangare",
+   "team": "Brentford",
+   "team_id": 4,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 3,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 4,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.28",
+     "value": 57
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 6,
+     "was_home": true,
+     "minutes": 21,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 57
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 2,
+     "was_home": false,
+     "minutes": 38,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.03",
+     "value": 56
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 4,
+     "team_a": 14,
+     "is_home": true,
+     "difficulty": 4
+    },
+    {
+     "event": 8,
+     "team_h": 11,
+     "team_a": 4,
+     "is_home": false,
+     "difficulty": 2
+    },
+    {
+     "event": 9,
+     "team_h": 4,
+     "team_a": 18,
+     "is_home": true,
+     "difficulty": 3
+    }
+   ],
+   "current_price": 5.6,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "426": {
+   "name": "Bruno Fernandes",
+   "team": "Man Utd",
+   "team_id": 16,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 15,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.03",
+     "expected_assists": "0.33",
+     "value": 120
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 10,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.28",
+     "expected_assists": "0.19",
+     "value": 120
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 19,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.02",
+     "expected_assists": "0.14",
+     "value": 119
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 13,
+     "team_a": 16,
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 16,
+     "team_a": 3,
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 6,
+     "team_a": 16,
+     "is_home": false,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 11.9,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "427": {
+   "name": "Bryan Mbeumo",
+   "team": "Man Utd",
+   "team_id": 16,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 15,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.49",
+     "expected_assists": "0.08",
+     "value": 79
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 10,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.27",
+     "expected_assists": "0.25",
+     "value": 79
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 19,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 8,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 1,
+     "expected_goals": "0.24",
+     "expected_assists": "0.10",
+     "value": 79
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 13,
+     "team_a": 16,
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 16,
+     "team_a": 3,
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 6,
+     "team_a": 16,
+     "is_home": false,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 7.9,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "124": {
+   "name": "Pascal Groß",
+   "team": "Brighton",
+   "team_id": 5,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 7,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 17,
+     "goals_scored": 1,
+     "assists": 2,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 3,
+     "expected_goals": "0.82",
+     "expected_assists": "0.19",
+     "value": 56
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 1,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 14,
+     "goals_scored": 1,
+     "assists": 1,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 3,
+     "expected_goals": "0.11",
+     "expected_assists": "0.25",
+     "value": 57
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 20,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 6,
+     "goals_scored": 0,
+     "assists": 1,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 0,
+     "expected_goals": "0.25",
+     "expected_assists": "0.19",
+     "value": 59
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 5,
+     "team_a": 8,
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 8,
+     "team_h": 14,
+     "team_a": 5,
+     "is_home": false,
+     "difficulty": 4
+    },
+    {
+     "event": 9,
+     "team_h": 15,
+     "team_a": 5,
+     "is_home": false,
+     "difficulty": 5
+    }
+   ],
+   "current_price": 5.9,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "491": {
+   "name": "Igor Jesus",
+   "team": "Nott'm Forest",
+   "team_id": 18,
+   "cls": "fwd",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 2,
+     "was_home": false,
+     "minutes": 15,
+     "total_points": 7,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "bonus": 2,
+     "expected_goals": "0.13",
+     "expected_assists": "0.01",
+     "value": 59
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 7,
+     "was_home": true,
+     "minutes": 31,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "bonus": 0,
+     "expected_goals": "0.16",
+     "expected_assists": "0.01",
+     "value": 58
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 8,
+     "was_home": false,
+     "minutes": 0,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 58
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 18,
+     "team_a": 1,
+     "is_home": true,
+     "difficulty": 4
+    },
+    {
+     "event": 8,
+     "team_h": 12,
+     "team_a": 18,
+     "is_home": false,
+     "difficulty": 2
+    },
+    {
+     "event": 9,
+     "team_h": 4,
+     "team_a": 18,
+     "is_home": false,
+     "difficulty": 3
+    }
+   ],
+   "current_price": 5.8,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "411": {
+   "name": "Erling Haaland",
+   "team": "Man City",
+   "team_id": 15,
+   "cls": "fwd",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 16,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 9,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 3,
+     "expected_goals": "0.87",
+     "expected_assists": "0.01",
+     "value": 155
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 20,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 6,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 3,
+     "bonus": 0,
+     "expected_goals": "1.09",
+     "expected_assists": "0.02",
+     "value": 156
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 14,
+     "was_home": false,
+     "minutes": 79,
+     "total_points": 6,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 0,
+     "expected_goals": "0.40",
+     "expected_assists": "0.01",
+     "value": 156
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 15,
+     "team_a": 12,
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 8,
+     "team_h": 2,
+     "team_a": 15,
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 15,
+     "team_a": 5,
+     "is_home": true,
+     "difficulty": 3
+    }
+   ],
+   "current_price": 15.6,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "496": {
+   "name": "Antonín Kinský",
+   "team": "Spurs",
+   "team_id": 19,
+   "cls": "gk",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 9,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 7,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 45
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 2,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 3,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 45
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 16,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 3,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 45
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 19,
+     "team_a": 7,
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 8,
+     "team_h": 6,
+     "team_a": 19,
+     "is_home": false,
+     "difficulty": 4
+    },
+    {
+     "event": 9,
+     "team_h": 19,
+     "team_a": 8,
+     "is_home": true,
+     "difficulty": 2
+    }
+   ],
+   "current_price": 4.5,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "525": {
+   "name": "Mateus Fernandes",
+   "team": "Spurs",
+   "team_id": 19,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 9,
+     "was_home": true,
+     "minutes": 62,
+     "total_points": 3,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 0,
+     "expected_goals": "0.11",
+     "expected_assists": "0.03",
+     "value": 58
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 2,
+     "was_home": true,
+     "minutes": 45,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.07",
+     "expected_assists": "0.02",
+     "value": 58
+    },
+    "6": "NO ROW (data gap)"
+   },
+   "next_fixtures": [
+    {
+     "event": 6,
+     "team_h": 16,
+     "team_a": 19,
+     "is_home": false,
+     "difficulty": 4
+    },
+    {
+     "event": 7,
+     "team_h": 19,
+     "team_a": 7,
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 8,
+     "team_h": 6,
+     "team_a": 19,
+     "is_home": false,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 5.8,
+   "current_price_source": "element-summary history round 5 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "173": {
+   "name": "Bobby Thomas",
+   "team": "Coventry",
+   "team_id": 7,
+   "cls": "def",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 5,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 5,
+     "bonus": 0,
+     "expected_goals": "0.19",
+     "expected_assists": "0.07",
+     "value": 40
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 18,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 9,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "bonus": 1,
+     "expected_goals": "0.06",
+     "expected_assists": "0.04",
+     "value": 40
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 17,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 4,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.01",
+     "value": 40,
+     "_flag": "Row reports fixture 54 final 4-1 (Coventry home), 90 min; conflicts with fixtures?event=6 (id 54 = 1-0, minutes 45, finished false) and with Barnes row"
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 19,
+     "team_a": 7,
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 7,
+     "team_a": 10,
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 9,
+     "team_h": 7,
+     "team_a": 20,
+     "is_home": true,
+     "difficulty": 3
+    }
+   ],
+   "current_price": 4.0,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "165": {
+   "name": "Joao Pedro",
+   "team": "Chelsea",
+   "team_id": 6,
+   "cls": "fwd",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 11,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 12,
+     "goals_scored": 1,
+     "assists": 1,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "bonus": 3,
+     "expected_goals": "0.29",
+     "expected_assists": "0.04",
+     "value": 77
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 4,
+     "was_home": false,
+     "minutes": 0,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 78
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 3,
+     "was_home": true,
+     "minutes": 71,
+     "total_points": 12,
+     "goals_scored": 2,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 2,
+     "expected_goals": "0.60",
+     "expected_assists": "0.10",
+     "value": 77
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 9,
+     "team_a": 6,
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 6,
+     "team_a": 19,
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 9,
+     "team_h": 6,
+     "team_a": 16,
+     "is_home": true,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 7.7,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  },
+  "453": {
+   "name": "Harvey Barnes",
+   "team": "Newcastle",
+   "team_id": 17,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "opponent_team": 13,
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 4,
+     "bonus": 0,
+     "expected_goals": "0.29",
+     "expected_assists": "0.31",
+     "value": 60
+    },
+    "5": {
+     "round": 5,
+     "opponent_team": 11,
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 9,
+     "goals_scored": 0,
+     "assists": 2,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "bonus": 1,
+     "expected_goals": "0.11",
+     "expected_assists": "0.11",
+     "value": 60
+    },
+    "6": {
+     "round": 6,
+     "opponent_team": 7,
+     "was_home": false,
+     "minutes": 0,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 61,
+     "_flag": "PLACEHOLDER: fixture 54 (Coventry v Newcastle) team_h_score/team_a_score null in this row; fixtures list still shows event 6 unfinished"
+    }
+   },
+   "next_fixtures": [
+    {
+     "event": 6,
+     "team_h": 7,
+     "team_a": 17,
+     "is_home": false,
+     "difficulty": 2
+    },
+    {
+     "event": 7,
+     "team_h": 17,
+     "team_a": 2,
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 8,
+     "team_a": 17,
+     "is_home": false,
+     "difficulty": 3
+    }
+   ],
+   "current_price": 6.1,
+   "current_price_source": "element-summary history round 6 value (bootstrap now_cost not fetched: WebFetch truncates bootstrap-static)"
+  }
+ },
+ "validation": {
+  "gw5": {
+   "arithmetic": "David Raya 1x1 + Harry Maguire 2x1 + Maxim De Cuyper 6x1 + John Egan 1x1 + Neco Williams 2x1 + Mamadou Sangare 0x1 + Bruno Fernandes 2x1 + Bryan Mbeumo 2x1 + Pascal Groß 14x1 + Igor Jesus 1x1 + Erling Haaland 6x2 = 43",
+   "manual": 43,
+   "entry_history_points": 43,
+   "transfers_cost": 0,
+   "automatic_subs": [],
+   "match": true,
+   "bench_manual": 12,
+   "points_on_bench": 12,
+   "bench_match": true,
+   "total_check": "283 (GW4 total) + 43 = 326 but GW5 total_points = 327 -> +1 unexplained in GW5 row; explained by GW4 correction (see gw4)"
+  },
+  "gw6": {
+   "arithmetic": "David Raya 3x1 + Harry Maguire 2x1 + Maxim De Cuyper 15x1 + Bobby Thomas 4x1 + John Egan 1x1 + Harvey Barnes 0x1 + Bruno Fernandes 1x2 + Bryan Mbeumo 8x1 + Pascal Groß 6x1 + Joao Pedro 12x1 + Erling Haaland 6x1 = 59",
+   "manual": 59,
+   "entry_history_points": 61,
+   "transfers_cost": 0,
+   "automatic_subs": [],
+   "match": false,
+   "difference": 2,
+   "bench_manual": 5,
+   "points_on_bench": 5,
+   "bench_match": true,
+   "total_check": "327 + 61 = 388 = total_points (ok)",
+   "explanation": "MISMATCH of 2. Harvey Barnes (453) round-6 row is a 0-min placeholder (fixture 54 Coventry v Newcastle shows null score, not finished). entry_history (live) most likely already includes Barnes' live points (~2) -> Barnes GW6 points = '?'. Not confirmable: event/6/live is truncated by WebFetch at id 125. No auto-sub applied yet (GW not finished)."
+  },
+  "gw4_crosscheck": {
+   "arithmetic": "Raya 14 + Thomas 0 + De Cuyper 11 + Egan 2 + Sangare 4 + B.Fernandes 2 + Mbeumo 2 + Gross 17 + Igor Jesus 7 + Joao Pedro 12x2 + Haaland 9 = 92",
+   "entry_history_points": 91,
+   "match": false,
+   "bench": "Kinsky 7 + M.Fernandes 3 + Maguire 1 + Mosquera ? = 11 (implies Mosquera 0)",
+   "explanation": "GW4 picks entry_history still says 91/283, but GW5 total 327 = 192+92+43, i.e. a +1 post-GW4 correction (likely Egan's defensive contribution) is in the running total but not in the GW4 row."
+  }
+ },
+ "notes": [
+  "entry/1973102/history/ returned only events 1-2 in 'current' and empty 'chips' -> lagging/stale; events 3-6 taken from picks entry_history.",
+  "GW3: 3xc (Triple Captain) on Haaland per event/3/picks, not reflected in history chips array.",
+  "GW6 is provisional: fixtures?event=6 shows 9 fixtures finished_provisional=true, finished=false; fixture 54 (Coventry v Newcastle) reported as 1-0 at minute 45 (goal Jack Rudoni id 183) -- feed appears stuck at half-time. Bobby Thomas' element-summary row contradicts this (4-1 final, 90 min). Treat GW6 Coventry/Newcastle player data as unreliable until data_checked.",
+  "Mateus Fernandes (525, sold GW6): no round-6 history row at all even though fixture 59 Man Utd 1-1 Spurs was played; his fixtures list still starts at event 6. Data gap.",
+  "Igor Jesus (491) 0 min GW6 (bench anyway). Joao Pedro 0 min GW5 (bench). Barnes GW6 points '?' (placeholder row).",
+  "current_price = latest element-summary history 'value' (price at GW6), not bootstrap now_cost (bootstrap-static truncates in WebFetch).",
+  "Transfer costs: element_in_cost / element_out_cost as returned by the API (tenths of GBPm). Bank reconciles: GW5 0.2+5.3-5.0=0.5; GW6 0.5+5.7-6.1=0.1.",
+  "First WebFetch of Egan reported R4 opponent 16 (wrong); narrow re-fetch confirmed fixture 33 Chelsea 2-2 Hull (opponent 6). Stored corrected value.",
+  "All figures fetched via WebFetch (summarising model) on 2026-10-13; key values cross-checked for internal consistency."
+ ]
+}

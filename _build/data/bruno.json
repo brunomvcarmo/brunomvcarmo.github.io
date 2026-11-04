@@ -1,0 +1,2371 @@
+{
+ "meta": {
+  "entry": 5191766,
+  "team": "Brunorussia FC",
+  "manager": "Bruno Carmo",
+  "fetched": "2026-10-13",
+  "source": "fantasy.premierleague.com/api via WebFetch"
+ },
+ "history": [
+  {
+   "event": 1,
+   "points": 59,
+   "total_points": 59,
+   "rank": 1987559,
+   "rank_sort": 2111041,
+   "overall_rank": 1987556,
+   "percentile_rank": 25,
+   "overall_rank_percentage": "22",
+   "bank": 0,
+   "value": 1000,
+   "event_transfers": 0,
+   "event_transfers_cost": 0,
+   "points_on_bench": 13
+  },
+  {
+   "event": 2,
+   "points": 104,
+   "total_points": 163,
+   "rank": 1145127,
+   "rank_sort": 1184462,
+   "overall_rank": 845574,
+   "percentile_rank": 15,
+   "overall_rank_percentage": "8",
+   "bank": 0,
+   "value": 1003,
+   "event_transfers": 0,
+   "event_transfers_cost": 0,
+   "points_on_bench": 10
+  },
+  {
+   "event": 3,
+   "points": 56,
+   "total_points": 219,
+   "rank": 3654321,
+   "rank_sort": 3698755,
+   "overall_rank": 717233,
+   "percentile_rank": 40,
+   "overall_rank_percentage": "7",
+   "bank": 3,
+   "value": 1006,
+   "event_transfers": 2,
+   "event_transfers_cost": 0,
+   "points_on_bench": 21
+  },
+  {
+   "event": 4,
+   "points": 72,
+   "total_points": 291,
+   "rank": 4590434,
+   "rank_sort": 4629519,
+   "overall_rank": 1204199,
+   "percentile_rank": 45,
+   "overall_rank_percentage": "11",
+   "bank": 27,
+   "value": 1007,
+   "event_transfers": 1,
+   "event_transfers_cost": 0,
+   "points_on_bench": 2
+  },
+  {
+   "event": 5,
+   "points": 37,
+   "total_points": 328,
+   "rank": 9065910,
+   "rank_sort": 9100635,
+   "overall_rank": 2043638,
+   "percentile_rank": 85,
+   "overall_rank_percentage": "19",
+   "bank": 11,
+   "value": 1010,
+   "event_transfers": 1,
+   "event_transfers_cost": 0,
+   "points_on_bench": 2
+  },
+  {
+   "event": 6,
+   "points": 71,
+   "total_points": 399,
+   "rank": 2073538,
+   "rank_sort": 2104311,
+   "overall_rank": 1659127,
+   "percentile_rank": 20,
+   "overall_rank_percentage": "15",
+   "bank": 1,
+   "value": 1010,
+   "event_transfers": 1,
+   "event_transfers_cost": 0,
+   "points_on_bench": 8
+  }
+ ],
+ "chips": [
+  {
+   "name": "3xc",
+   "time": "2026-09-04T10:39:33.524824Z",
+   "event": 3
+  }
+ ],
+ "picks_gw4": {
+  "active_chip": null,
+  "automatic_subs": [],
+  "entry_history": {
+   "event": 4,
+   "points": 71,
+   "total_points": 290,
+   "rank": 3396081,
+   "rank_sort": 3434260,
+   "overall_rank": 945765,
+   "percentile_rank": 35,
+   "overall_rank_percentage": "9",
+   "bank": 27,
+   "value": 1007,
+   "event_transfers": 1,
+   "event_transfers_cost": 0,
+   "points_on_bench": 2
+  },
+  "picks": [
+   {
+    "element": 1,
+    "name": "David Raya",
+    "position": 1,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 8,
+    "name": "Riccardo Calafiori",
+    "position": 2,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 204,
+    "name": "Tyrick Mitchell",
+    "position": 3,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 115,
+    "name": "Maxim De Cuyper",
+    "position": 4,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 154,
+    "name": "Cole Palmer",
+    "position": 5,
+    "multiplier": 2,
+    "is_captain": true,
+    "is_vice_captain": false
+   },
+   {
+    "element": 427,
+    "name": "Bryan Mbeumo",
+    "position": 6,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 368,
+    "name": "Dominik Szoboszlai",
+    "position": 7,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 565,
+    "name": "Mamadou Sangare",
+    "position": 8,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 411,
+    "name": "Erling Haaland",
+    "position": 9,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": true
+   },
+   {
+    "element": 165,
+    "name": "Joao Pedro",
+    "position": 10,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 166,
+    "name": "Nicolas Jackson",
+    "position": 11,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 497,
+    "name": "Martin Dubravka",
+    "position": 12,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 423,
+    "name": "Luke Shaw",
+    "position": 13,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 175,
+    "name": "Milan van Ewijk",
+    "position": 14,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 290,
+    "name": "Regan Slater",
+    "position": 15,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   }
+  ]
+ },
+ "picks_gw5": {
+  "active_chip": null,
+  "automatic_subs": [
+   {
+    "element_in": 423,
+    "in_name": "Luke Shaw",
+    "element_out": 175,
+    "out_name": "Milan van Ewijk",
+    "event": 5
+   },
+   {
+    "element_in": 115,
+    "in_name": "Maxim De Cuyper",
+    "element_out": 165,
+    "out_name": "Joao Pedro",
+    "event": 5
+   }
+  ],
+  "entry_history": {
+   "event": 5,
+   "points": 37,
+   "total_points": 328,
+   "rank": 9065910,
+   "rank_sort": 9100635,
+   "overall_rank": 2043638,
+   "percentile_rank": 85,
+   "overall_rank_percentage": "19",
+   "bank": 11,
+   "value": 1010,
+   "event_transfers": 1,
+   "event_transfers_cost": 0,
+   "points_on_bench": 2
+  },
+  "picks": [
+   {
+    "element": 1,
+    "name": "David Raya",
+    "position": 1,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 8,
+    "name": "Riccardo Calafiori",
+    "position": 2,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 423,
+    "name": "Luke Shaw",
+    "position": 3,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 204,
+    "name": "Tyrick Mitchell",
+    "position": 4,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 115,
+    "name": "Maxim De Cuyper",
+    "position": 5,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 154,
+    "name": "Cole Palmer",
+    "position": 6,
+    "multiplier": 2,
+    "is_captain": true,
+    "is_vice_captain": false
+   },
+   {
+    "element": 12,
+    "name": "Bukayo Saka",
+    "position": 7,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 368,
+    "name": "Dominik Szoboszlai",
+    "position": 8,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 565,
+    "name": "Mamadou Sangare",
+    "position": 9,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 411,
+    "name": "Erling Haaland",
+    "position": 10,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": true
+   },
+   {
+    "element": 166,
+    "name": "Nicolas Jackson",
+    "position": 11,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 497,
+    "name": "Martin Dubravka",
+    "position": 12,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 175,
+    "name": "Milan van Ewijk",
+    "position": 13,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 165,
+    "name": "Joao Pedro",
+    "position": 14,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 290,
+    "name": "Regan Slater",
+    "position": 15,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   }
+  ],
+  "note": "positions/multipliers as returned by API, i.e. AFTER automatic subs applied"
+ },
+ "picks_gw6": {
+  "active_chip": null,
+  "automatic_subs": [
+   {
+    "element_in": 565,
+    "in_name": "Mamadou Sangare",
+    "element_out": 368,
+    "out_name": "Dominik Szoboszlai",
+    "event": 6
+   }
+  ],
+  "entry_history": {
+   "event": 6,
+   "points": 71,
+   "total_points": 399,
+   "rank": 2073538,
+   "rank_sort": 2104311,
+   "overall_rank": 1659127,
+   "percentile_rank": 20,
+   "overall_rank_percentage": "15",
+   "bank": 1,
+   "value": 1010,
+   "event_transfers": 1,
+   "event_transfers_cost": 0,
+   "points_on_bench": 8
+  },
+  "picks": [
+   {
+    "element": 1,
+    "name": "David Raya",
+    "position": 1,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 8,
+    "name": "Riccardo Calafiori",
+    "position": 2,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 449,
+    "name": "Lewis Hall",
+    "position": 3,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 115,
+    "name": "Maxim De Cuyper",
+    "position": 4,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 204,
+    "name": "Tyrick Mitchell",
+    "position": 5,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 154,
+    "name": "Cole Palmer",
+    "position": 6,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 12,
+    "name": "Bukayo Saka",
+    "position": 7,
+    "multiplier": 2,
+    "is_captain": true,
+    "is_vice_captain": false
+   },
+   {
+    "element": 565,
+    "name": "Mamadou Sangare",
+    "position": 8,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 411,
+    "name": "Erling Haaland",
+    "position": 9,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": true
+   },
+   {
+    "element": 165,
+    "name": "Joao Pedro",
+    "position": 10,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 166,
+    "name": "Nicolas Jackson",
+    "position": 11,
+    "multiplier": 1,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 497,
+    "name": "Martin Dubravka",
+    "position": 12,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 368,
+    "name": "Dominik Szoboszlai",
+    "position": 13,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 175,
+    "name": "Milan van Ewijk",
+    "position": 14,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   },
+   {
+    "element": 290,
+    "name": "Regan Slater",
+    "position": 15,
+    "multiplier": 0,
+    "is_captain": false,
+    "is_vice_captain": false
+   }
+  ],
+  "note": "positions/multipliers as returned by API, i.e. AFTER automatic subs applied"
+ },
+ "transfers": [
+  {
+   "event": 5,
+   "element_in": 12,
+   "in_name": "Bukayo Saka",
+   "element_in_cost": null,
+   "element_out": 427,
+   "out_name": "Bryan Mbeumo",
+   "element_out_cost": null,
+   "time": null,
+   "source": "INFERRED by diffing picks/4 vs picks/5 (transfers endpoint returned [])",
+   "consistency_check": "bank 2.7 -> 1.1: Saka value 9.5 at R5, Mbeumo 7.9 => 2.7+7.9-9.5=1.1 OK"
+  },
+  {
+   "event": 6,
+   "element_in": 449,
+   "in_name": "Lewis Hall",
+   "element_in_cost": null,
+   "element_out": 423,
+   "out_name": "Luke Shaw",
+   "element_out_cost": null,
+   "time": null,
+   "source": "INFERRED by diffing picks/5 vs picks/6 (transfers endpoint returned [])",
+   "consistency_check": "bank 1.1 -> 0.1: Hall 5.3 / Shaw 4.3 (R6 values) => 1.1+4.3-5.3=0.1 OK; exact costs '?'"
+  }
+ ],
+ "players": {
+  "1": {
+   "name": "David Raya",
+   "team": "Arsenal",
+   "team_id": 1,
+   "cls": "gk",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 36,
+     "opponent_team": 20,
+     "opponent": "Sunderland",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 14,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "saves": 2,
+     "bonus": 3,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 60
+    },
+    "5": {
+     "round": 5,
+     "fixture": 42,
+     "opponent_team": 5,
+     "opponent": "Brighton",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 3,
+     "saves": 2,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 60
+    },
+    "6": {
+     "round": 6,
+     "fixture": 51,
+     "opponent_team": 13,
+     "opponent": "Leeds",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 3,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 4,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 61
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 18,
+     "team_a": 1,
+     "opponent": "Nott'm Forest",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 1,
+     "team_a": 9,
+     "opponent": "Everton",
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 14,
+     "team_a": 1,
+     "opponent": "Liverpool",
+     "is_home": false,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 6.1,
+   "current_price_source": "bootstrap-static now_cost",
+   "in_gw5_or_gw6_picks": true
+  },
+  "8": {
+   "name": "Riccardo Calafiori",
+   "team": "Arsenal",
+   "team_id": 1,
+   "cls": "def",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 36,
+     "opponent_team": 20,
+     "opponent": "Sunderland",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 6,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.06",
+     "expected_assists": "0.01",
+     "value": 58
+    },
+    "5": {
+     "round": 5,
+     "fixture": 42,
+     "opponent_team": 5,
+     "opponent": "Brighton",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 3,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.07",
+     "expected_assists": "0.03",
+     "value": 58
+    },
+    "6": {
+     "round": 6,
+     "fixture": 51,
+     "opponent_team": 13,
+     "opponent": "Leeds",
+     "was_home": true,
+     "minutes": 81,
+     "total_points": 9,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 1,
+     "expected_goals": "0.55",
+     "expected_assists": "0.06",
+     "value": 59
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 18,
+     "team_a": 1,
+     "opponent": "Nott'm Forest",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 1,
+     "team_a": 9,
+     "opponent": "Everton",
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 14,
+     "team_a": 1,
+     "opponent": "Liverpool",
+     "is_home": false,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 5.9,
+   "current_price_source": "bootstrap-static now_cost",
+   "in_gw5_or_gw6_picks": true
+  },
+  "423": {
+   "name": "Luke Shaw",
+   "team": "Man Utd",
+   "team_id": 16,
+   "cls": "def",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 39,
+     "opponent_team": 15,
+     "opponent": "Man City",
+     "was_home": true,
+     "minutes": 0,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 44
+    },
+    "5": {
+     "round": 5,
+     "fixture": 50,
+     "opponent_team": 10,
+     "opponent": "Fulham",
+     "was_home": false,
+     "minutes": 83,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.01",
+     "expected_assists": "0.07",
+     "value": 44
+    },
+    "6": {
+     "round": 6,
+     "fixture": 59,
+     "opponent_team": 19,
+     "opponent": "Spurs",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 3,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.01",
+     "value": 43
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 13,
+     "team_a": 16,
+     "opponent": "Leeds",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 16,
+     "team_a": 3,
+     "opponent": "Bournemouth",
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 6,
+     "team_a": 16,
+     "opponent": "Chelsea",
+     "is_home": false,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 4.3,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "204": {
+   "name": "Tyrick Mitchell",
+   "team": "Crystal Palace",
+   "team_id": 8,
+   "cls": "def",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 34,
+     "opponent_team": 12,
+     "opponent": "Ipswich",
+     "was_home": true,
+     "minutes": 76,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.06",
+     "value": 45
+    },
+    "5": {
+     "round": 5,
+     "fixture": 44,
+     "opponent_team": 13,
+     "opponent": "Leeds",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 7,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 1,
+     "expected_goals": "0.00",
+     "expected_assists": "0.02",
+     "value": 45
+    },
+    "6": {
+     "round": 6,
+     "fixture": 55,
+     "opponent_team": 18,
+     "opponent": "Nott'm Forest",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 4,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.01",
+     "expected_assists": "0.01",
+     "value": 45
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 5,
+     "team_a": 8,
+     "opponent": "Brighton",
+     "is_home": false,
+     "difficulty": 4
+    },
+    {
+     "event": 8,
+     "team_h": 8,
+     "team_a": 17,
+     "opponent": "Newcastle",
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 19,
+     "team_a": 8,
+     "opponent": "Spurs",
+     "is_home": false,
+     "difficulty": 3
+    }
+   ],
+   "current_price": 4.5,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "115": {
+   "name": "Maxim De Cuyper",
+   "team": "Brighton",
+   "team_id": 5,
+   "cls": "def",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 38,
+     "opponent_team": 7,
+     "opponent": "Coventry",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 11,
+     "goals_scored": 0,
+     "assists": 1,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 2,
+     "expected_goals": "0.03",
+     "expected_assists": "0.04",
+     "value": 48
+    },
+    "5": {
+     "round": 5,
+     "fixture": 42,
+     "opponent_team": 1,
+     "opponent": "Arsenal",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 6,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 1,
+     "expected_goals": "0.02",
+     "expected_assists": "0.23",
+     "value": 49
+    },
+    "6": {
+     "round": 6,
+     "fixture": 60,
+     "opponent_team": 20,
+     "opponent": "Sunderland",
+     "was_home": false,
+     "minutes": 67,
+     "total_points": 15,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 3,
+     "expected_goals": "0.25",
+     "expected_assists": "0.00",
+     "value": 50
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 5,
+     "team_a": 8,
+     "opponent": "Crystal Palace",
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 8,
+     "team_h": 14,
+     "team_a": 5,
+     "opponent": "Liverpool",
+     "is_home": false,
+     "difficulty": 4
+    },
+    {
+     "event": 9,
+     "team_h": 15,
+     "team_a": 5,
+     "opponent": "Man City",
+     "is_home": false,
+     "difficulty": 5
+    }
+   ],
+   "current_price": 5.0,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "154": {
+   "name": "Cole Palmer",
+   "team": "Chelsea",
+   "team_id": 6,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 33,
+     "opponent_team": 11,
+     "opponent": "Hull",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 5,
+     "goals_scored": 0,
+     "assists": 1,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.13",
+     "expected_assists": "0.25",
+     "value": 97
+    },
+    "5": {
+     "round": 5,
+     "fixture": 41,
+     "opponent_team": 4,
+     "opponent": "Brentford",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 3,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.13",
+     "expected_assists": "0.18",
+     "value": 97
+    },
+    "6": {
+     "round": 6,
+     "fixture": 53,
+     "opponent_team": 3,
+     "opponent": "Bournemouth",
+     "was_home": true,
+     "minutes": 87,
+     "total_points": 8,
+     "goals_scored": 0,
+     "assists": 2,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.07",
+     "value": 97
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 9,
+     "team_a": 6,
+     "opponent": "Everton",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 6,
+     "team_a": 19,
+     "opponent": "Spurs",
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 9,
+     "team_h": 6,
+     "team_a": 16,
+     "opponent": "Man Utd",
+     "is_home": true,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 9.7,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "12": {
+   "name": "Bukayo Saka",
+   "team": "Arsenal",
+   "team_id": 1,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 36,
+     "opponent_team": 20,
+     "opponent": "Sunderland",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 8,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "1.38",
+     "expected_assists": "0.08",
+     "value": 95
+    },
+    "5": {
+     "round": 5,
+     "fixture": 42,
+     "opponent_team": 5,
+     "opponent": "Brighton",
+     "was_home": false,
+     "minutes": 80,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 3,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.34",
+     "expected_assists": "0.55",
+     "value": 95
+    },
+    "6": {
+     "round": 6,
+     "fixture": 51,
+     "opponent_team": 13,
+     "opponent": "Leeds",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.41",
+     "expected_assists": "0.06",
+     "value": 96
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 18,
+     "team_a": 1,
+     "opponent": "Nott'm Forest",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 1,
+     "team_a": 9,
+     "opponent": "Everton",
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 14,
+     "team_a": 1,
+     "opponent": "Liverpool",
+     "is_home": false,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 9.6,
+   "current_price_source": "bootstrap-static now_cost",
+   "in_gw5_or_gw6_picks": true
+  },
+  "368": {
+   "name": "Dominik Szoboszlai",
+   "team": "Liverpool",
+   "team_id": 14,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 35,
+     "opponent_team": 10,
+     "opponent": "Fulham",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 3,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.12",
+     "expected_assists": "0.28",
+     "value": 70
+    },
+    "5": {
+     "round": 5,
+     "fixture": 49,
+     "opponent_team": 3,
+     "opponent": "Bournemouth",
+     "was_home": false,
+     "minutes": 80,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.13",
+     "expected_assists": "0.02",
+     "value": 70
+    },
+    "6": {
+     "round": 6,
+     "fixture": 58,
+     "opponent_team": 15,
+     "opponent": "Man City",
+     "was_home": true,
+     "minutes": 0,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 69
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 4,
+     "team_a": 14,
+     "opponent": "Brentford",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 14,
+     "team_a": 5,
+     "opponent": "Brighton",
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 14,
+     "team_a": 1,
+     "opponent": "Arsenal",
+     "is_home": true,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 6.9,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "565": {
+   "name": "Mamadou Sangare",
+   "team": "Brentford",
+   "team_id": 4,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 32,
+     "opponent_team": 3,
+     "opponent": "Bournemouth",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 4,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.28",
+     "value": 57
+    },
+    "5": {
+     "round": 5,
+     "fixture": 41,
+     "opponent_team": 6,
+     "opponent": "Chelsea",
+     "was_home": true,
+     "minutes": 21,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 57
+    },
+    "6": {
+     "round": 6,
+     "fixture": 52,
+     "opponent_team": 2,
+     "opponent": "Aston Villa",
+     "was_home": false,
+     "minutes": 38,
+     "total_points": 1,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.03",
+     "value": 56
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 4,
+     "team_a": 14,
+     "opponent": "Liverpool",
+     "is_home": true,
+     "difficulty": 4
+    },
+    {
+     "event": 8,
+     "team_h": 11,
+     "team_a": 4,
+     "opponent": "Hull",
+     "is_home": false,
+     "difficulty": 2
+    },
+    {
+     "event": 9,
+     "team_h": 4,
+     "team_a": 18,
+     "opponent": "Nott'm Forest",
+     "is_home": true,
+     "difficulty": 3
+    }
+   ],
+   "current_price": 5.6,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "411": {
+   "name": "Erling Haaland",
+   "team": "Man City",
+   "team_id": 15,
+   "cls": "fwd",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 39,
+     "opponent_team": 16,
+     "opponent": "Man Utd",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 9,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 3,
+     "expected_goals": "0.87",
+     "expected_assists": "0.01",
+     "value": 155
+    },
+    "5": {
+     "round": 5,
+     "fixture": 45,
+     "opponent_team": 20,
+     "opponent": "Sunderland",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 6,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 3,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "1.09",
+     "expected_assists": "0.02",
+     "value": 156
+    },
+    "6": {
+     "round": 6,
+     "fixture": 58,
+     "opponent_team": 14,
+     "opponent": "Liverpool",
+     "was_home": false,
+     "minutes": 79,
+     "total_points": 6,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 1,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.40",
+     "expected_assists": "0.01",
+     "value": 156
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 15,
+     "team_a": 12,
+     "opponent": "Ipswich",
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 8,
+     "team_h": 2,
+     "team_a": 15,
+     "opponent": "Aston Villa",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 15,
+     "team_a": 5,
+     "opponent": "Brighton",
+     "is_home": true,
+     "difficulty": 3
+    }
+   ],
+   "current_price": 15.6,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "166": {
+   "name": "Nicolas Jackson",
+   "team": "Aston Villa",
+   "team_id": 2,
+   "cls": "fwd",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 31,
+     "opponent_team": 18,
+     "opponent": "Nott'm Forest",
+     "was_home": true,
+     "minutes": 45,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.04",
+     "value": 65
+    },
+    "5": {
+     "round": 5,
+     "fixture": 48,
+     "opponent_team": 19,
+     "opponent": "Spurs",
+     "was_home": false,
+     "minutes": 87,
+     "total_points": 6,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 1,
+     "expected_goals": "0.44",
+     "expected_assists": "0.02",
+     "value": 65
+    },
+    "6": {
+     "round": 6,
+     "fixture": 52,
+     "opponent_team": 4,
+     "opponent": "Brentford",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 9,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "saves": 0,
+     "bonus": 3,
+     "expected_goals": "0.42",
+     "expected_assists": "0.13",
+     "value": 65
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 17,
+     "team_a": 2,
+     "opponent": "Newcastle",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 2,
+     "team_a": 15,
+     "opponent": "Man City",
+     "is_home": true,
+     "difficulty": 4
+    },
+    {
+     "event": 9,
+     "team_h": 2,
+     "team_a": 10,
+     "opponent": "Fulham",
+     "is_home": true,
+     "difficulty": 2
+    }
+   ],
+   "current_price": 6.5,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "497": {
+   "name": "Martin Dubravka",
+   "team": "Spurs",
+   "team_id": 19,
+   "cls": "gk",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 37,
+     "opponent_team": 9,
+     "opponent": "Everton",
+     "was_home": true,
+     "minutes": 0,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 40
+    },
+    "5": {
+     "round": 5,
+     "fixture": 48,
+     "opponent_team": 2,
+     "opponent": "Aston Villa",
+     "was_home": true,
+     "minutes": 0,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 40
+    },
+    "6": {
+     "round": 6,
+     "fixture": 59,
+     "opponent_team": 16,
+     "opponent": "Man Utd",
+     "was_home": false,
+     "minutes": 0,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 40
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 19,
+     "team_a": 7,
+     "opponent": "Coventry",
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 8,
+     "team_h": 6,
+     "team_a": 19,
+     "opponent": "Chelsea",
+     "is_home": false,
+     "difficulty": 4
+    },
+    {
+     "event": 9,
+     "team_h": 19,
+     "team_a": 8,
+     "opponent": "Crystal Palace",
+     "is_home": true,
+     "difficulty": 2
+    }
+   ],
+   "current_price": 4.0,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "175": {
+   "name": "Milan van Ewijk",
+   "team": "Coventry",
+   "team_id": 7,
+   "cls": "def",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 38,
+     "opponent_team": 5,
+     "opponent": "Brighton",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 5,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.04",
+     "value": 40
+    },
+    "5": {
+     "round": 5,
+     "fixture": 47,
+     "opponent_team": 18,
+     "opponent": "Nott'm Forest",
+     "was_home": false,
+     "minutes": 0,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 40
+    },
+    "6": {
+     "round": 6,
+     "fixture": 54,
+     "opponent_team": 17,
+     "opponent": "Newcastle",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 6,
+     "goals_scored": 0,
+     "assists": 1,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.01",
+     "value": 40
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 19,
+     "team_a": 7,
+     "opponent": "Spurs",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 7,
+     "team_a": 10,
+     "opponent": "Fulham",
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 9,
+     "team_h": 7,
+     "team_a": 20,
+     "opponent": "Sunderland",
+     "is_home": true,
+     "difficulty": 3
+    }
+   ],
+   "current_price": 4.0,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "165": {
+   "name": "Joao Pedro",
+   "team": "Chelsea",
+   "team_id": 6,
+   "cls": "fwd",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 33,
+     "opponent_team": 11,
+     "opponent": "Hull",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 12,
+     "goals_scored": 1,
+     "assists": 1,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "saves": 0,
+     "bonus": 3,
+     "expected_goals": "0.29",
+     "expected_assists": "0.04",
+     "value": 77
+    },
+    "5": {
+     "round": 5,
+     "fixture": 41,
+     "opponent_team": 4,
+     "opponent": "Brentford",
+     "was_home": false,
+     "minutes": 0,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 0,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.00",
+     "value": 78
+    },
+    "6": {
+     "round": 6,
+     "fixture": 53,
+     "opponent_team": 3,
+     "opponent": "Bournemouth",
+     "was_home": true,
+     "minutes": 71,
+     "total_points": 12,
+     "goals_scored": 2,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 2,
+     "expected_goals": "0.60",
+     "expected_assists": "0.10",
+     "value": 77
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 9,
+     "team_a": 6,
+     "opponent": "Everton",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 6,
+     "team_a": 19,
+     "opponent": "Spurs",
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 9,
+     "team_h": 6,
+     "team_a": 16,
+     "opponent": "Man Utd",
+     "is_home": true,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 7.7,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "290": {
+   "name": "Regan Slater",
+   "team": "Hull",
+   "team_id": 11,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 33,
+     "opponent_team": 6,
+     "opponent": "Chelsea",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.04",
+     "expected_assists": "0.10",
+     "value": 45
+    },
+    "5": {
+     "round": 5,
+     "fixture": 46,
+     "opponent_team": 17,
+     "opponent": "Newcastle",
+     "was_home": false,
+     "minutes": 77,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.13",
+     "expected_assists": "0.03",
+     "value": 45
+    },
+    "6": {
+     "round": 6,
+     "fixture": 56,
+     "opponent_team": 9,
+     "opponent": "Everton",
+     "was_home": true,
+     "minutes": 74,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 2,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.00",
+     "expected_assists": "0.02",
+     "value": 45
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 10,
+     "team_a": 11,
+     "opponent": "Fulham",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 11,
+     "team_a": 4,
+     "opponent": "Brentford",
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 11,
+     "team_a": 12,
+     "opponent": "Ipswich",
+     "is_home": true,
+     "difficulty": 2
+    }
+   ],
+   "current_price": 4.5,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "449": {
+   "name": "Lewis Hall",
+   "team": "Newcastle",
+   "team_id": 17,
+   "cls": "def",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 40,
+     "opponent_team": 13,
+     "opponent": "Leeds",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 4,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.02",
+     "expected_assists": "0.01",
+     "value": 52
+    },
+    "5": {
+     "round": 5,
+     "fixture": 46,
+     "opponent_team": 11,
+     "opponent": "Hull",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 13,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 3,
+     "expected_goals": "0.19",
+     "expected_assists": "0.11",
+     "value": 52
+    },
+    "6": {
+     "round": 6,
+     "fixture": 54,
+     "opponent_team": 7,
+     "opponent": "Coventry",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 0,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 4,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.02",
+     "expected_assists": "0.04",
+     "value": 53
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 17,
+     "team_a": 2,
+     "opponent": "Aston Villa",
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 8,
+     "team_a": 17,
+     "opponent": "Crystal Palace",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 17,
+     "team_a": 9,
+     "opponent": "Everton",
+     "is_home": true,
+     "difficulty": 3
+    }
+   ],
+   "current_price": 5.3,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": true
+  },
+  "427": {
+   "name": "Bryan Mbeumo",
+   "team": "Man Utd",
+   "team_id": 16,
+   "cls": "mid",
+   "rounds": {
+    "4": {
+     "round": 4,
+     "fixture": 39,
+     "opponent_team": 15,
+     "opponent": "Man City",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.49",
+     "expected_assists": "0.08",
+     "value": 79
+    },
+    "5": {
+     "round": 5,
+     "fixture": 50,
+     "opponent_team": 10,
+     "opponent": "Fulham",
+     "was_home": false,
+     "minutes": 90,
+     "total_points": 2,
+     "goals_scored": 0,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 0,
+     "expected_goals": "0.27",
+     "expected_assists": "0.25",
+     "value": 79
+    },
+    "6": {
+     "round": 6,
+     "fixture": 59,
+     "opponent_team": 19,
+     "opponent": "Spurs",
+     "was_home": true,
+     "minutes": 90,
+     "total_points": 8,
+     "goals_scored": 1,
+     "assists": 0,
+     "clean_sheets": 0,
+     "goals_conceded": 1,
+     "saves": 0,
+     "bonus": 1,
+     "expected_goals": "0.24",
+     "expected_assists": "0.10",
+     "value": 79
+    }
+   },
+   "history_rounds_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "next_fixtures": [
+    {
+     "event": 7,
+     "team_h": 13,
+     "team_a": 16,
+     "opponent": "Leeds",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 8,
+     "team_h": 16,
+     "team_a": 3,
+     "opponent": "Bournemouth",
+     "is_home": true,
+     "difficulty": 3
+    },
+    {
+     "event": 9,
+     "team_h": 6,
+     "team_a": 16,
+     "opponent": "Chelsea",
+     "is_home": false,
+     "difficulty": 4
+    }
+   ],
+   "current_price": 7.9,
+   "current_price_source": "element-summary round-6 value (bootstrap now_cost not visible via WebFetch; for ids 1,8,12 the two agree)",
+   "in_gw5_or_gw6_picks": false,
+   "note": "Not in GW5/GW6 picks; included because transferred out before GW5"
+  }
+ },
+ "validation": {
+  "gw4": {
+   "arithmetic": "David Raya 14x1 + Riccardo Calafiori 6x1 + Tyrick Mitchell 1x1 + Maxim De Cuyper 11x1 + Cole Palmer 5x2 + Bryan Mbeumo 2x1 + Dominik Szoboszlai 3x1 + Mamadou Sangare 4x1 + Erling Haaland 9x1 + Joao Pedro 12x1 + Nicolas Jackson 0x1 = 72",
+   "manual_points": 72,
+   "api_points": 71,
+   "event_transfers_cost": 0,
+   "net_manual": 72,
+   "match": false,
+   "bench": [
+    [
+     "Martin Dubravka",
+     0
+    ],
+    [
+     "Luke Shaw",
+     0
+    ],
+    [
+     "Milan van Ewijk",
+     0
+    ],
+    [
+     "Regan Slater",
+     2
+    ]
+   ],
+   "manual_bench": 2,
+   "api_points_on_bench": 2,
+   "bench_match": true,
+   "note": "picks/4 entry_history says 71 (total 290); history endpoint says 72 (total 291). Manual sum = 72 -> history is right, picks/4 entry_history is stale."
+  },
+  "gw5": {
+   "arithmetic": "David Raya 1x1 + Riccardo Calafiori 1x1 + Luke Shaw 2x1 + Tyrick Mitchell 7x1 + Maxim De Cuyper 6x1 + Cole Palmer 2x2 + Bukayo Saka 2x1 + Dominik Szoboszlai 2x1 + Mamadou Sangare 0x1 + Erling Haaland 6x1 + Nicolas Jackson 6x1 = 37",
+   "manual_points": 37,
+   "api_points": 37,
+   "event_transfers_cost": 0,
+   "net_manual": 37,
+   "match": true,
+   "bench": [
+    [
+     "Martin Dubravka",
+     0
+    ],
+    [
+     "Milan van Ewijk",
+     0
+    ],
+    [
+     "Joao Pedro",
+     0
+    ],
+    [
+     "Regan Slater",
+     2
+    ]
+   ],
+   "manual_bench": 2,
+   "api_points_on_bench": 2,
+   "bench_match": true
+  },
+  "gw6": {
+   "arithmetic": "David Raya 3x1 + Riccardo Calafiori 9x1 + Lewis Hall 0x1 + Maxim De Cuyper 15x1 + Tyrick Mitchell 4x1 + Cole Palmer 8x1 + Bukayo Saka 2x2 + Mamadou Sangare 1x1 + Erling Haaland 6x1 + Joao Pedro 12x1 + Nicolas Jackson 9x1 = 71",
+   "manual_points": 71,
+   "api_points": 71,
+   "event_transfers_cost": 0,
+   "net_manual": 71,
+   "match": true,
+   "bench": [
+    [
+     "Martin Dubravka",
+     0
+    ],
+    [
+     "Dominik Szoboszlai",
+     0
+    ],
+    [
+     "Milan van Ewijk",
+     6
+    ],
+    [
+     "Regan Slater",
+     2
+    ]
+   ],
+   "manual_bench": 8,
+   "api_points_on_bench": 8,
+   "bench_match": true
+  },
+  "totals_chain": "history: 291+37=328, 328+71=399 (consistent)"
+ },
+ "notes": [
+  "transfers/ endpoint returned [] (confirmed with 2 fetches) although history shows event_transfers 2/1/1/1 in GW3-6. Transfer list is inferred from picks diffs; costs and times are '?' (null).",
+  "entry/5191766/ summary fields (current_event, summary_overall_points/rank, last_deadline_bank/value) are all null; last_deadline_total_transfers 0. Treat entry/ as lagging/unreliable.",
+  "history/ already contains event 6 (71 pts, total 399, OR 1,659,127) even though bootstrap events[6] finished:false data_checked:false. event-status: bonus_added true for 10-12 Oct, points 'r', leagues 'Updated'. GW6 values are provisional until data_checked.",
+  "GW4 discrepancy: picks/4 entry_history = 71 pts / total 290 / rank 3,396,081 / OR 945,765; history/ = 72 / 291 / 4,590,434 / 1,204,199. Manual sum of picks = 72 -> matches history.",
+  "picks endpoint returns post-autosub positions/multipliers (subbed-out players appear on bench with multiplier 0).",
+  "GW6: Szoboszlai 0 min -> Sangare (bench 1, 1 pt) auto-subbed in; van Ewijk scored 6 on bench.",
+  "Chips: only 3xc (Triple Captain) used in GW3. No chip in GW4/5/6.",
+  "No missing history rows: every player has rows for rounds 1-6.",
+  "current_price: bootstrap now_cost only visible for ids 1,8,12 (WebFetch truncation); others use round-6 value.",
+  "id-map.tsv team for Dubravka (497) is 19 (Spurs); his fixtures confirm team 19."
+ ]
+}

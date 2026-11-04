@@ -1,0 +1,374 @@
+{
+ "gw5": {
+  "bruno": [
+   {
+    "name": "David Raya",
+    "cap": false,
+    "start": true,
+    "ep": 3.4
+   },
+   {
+    "name": "Martin Dubravka",
+    "cap": false,
+    "start": false,
+    "ep": 2.8
+   },
+   {
+    "name": "Riccardo Calafiori",
+    "cap": false,
+    "start": true,
+    "ep": 3.6
+   },
+   {
+    "name": "Tyrick Mitchell",
+    "cap": false,
+    "start": true,
+    "ep": 3
+   },
+   {
+    "name": "Maxim De Cuyper",
+    "cap": false,
+    "start": true,
+    "ep": 2.8
+   },
+   {
+    "name": "Luke Shaw",
+    "cap": false,
+    "start": false,
+    "ep": 1.2
+   },
+   {
+    "name": "Milan van Ewijk",
+    "cap": false,
+    "start": false,
+    "ep": 2.6
+   },
+   {
+    "name": "Cole Palmer",
+    "cap": true,
+    "start": true,
+    "ep": 5.5
+   },
+   {
+    "name": "Bryan Mbeumo",
+    "cap": false,
+    "start": true,
+    "ep": 4.4
+   },
+   {
+    "name": "Dominik Szoboszlai",
+    "cap": false,
+    "start": true,
+    "ep": 3.2
+   },
+   {
+    "name": "Mamadou Sangare",
+    "cap": false,
+    "start": true,
+    "ep": 2.2
+   },
+   {
+    "name": "Regan Slater",
+    "cap": false,
+    "start": false,
+    "ep": 2.4
+   },
+   {
+    "name": "Erling Haaland",
+    "cap": false,
+    "start": true,
+    "ep": 7
+   },
+   {
+    "name": "Joao Pedro",
+    "cap": false,
+    "start": true,
+    "ep": 5
+   },
+   {
+    "name": "Nicolas Jackson",
+    "cap": false,
+    "start": true,
+    "ep": 4.2
+   }
+  ],
+  "marco": [
+   {
+    "name": "David Raya",
+    "cap": false,
+    "start": true,
+    "ep": 4.5
+   },
+   {
+    "name": "Bobby Thomas",
+    "cap": false,
+    "start": true,
+    "ep": 3.7
+   },
+   {
+    "name": "Maxim De Cuyper",
+    "cap": false,
+    "start": true,
+    "ep": 9.6
+   },
+   {
+    "name": "John Egan",
+    "cap": false,
+    "start": true,
+    "ep": 5
+   },
+   {
+    "name": "Mamadou Sangare",
+    "cap": false,
+    "start": true,
+    "ep": 7.4
+   },
+   {
+    "name": "Bruno Fernandes",
+    "cap": false,
+    "start": true,
+    "ep": 3.7
+   },
+   {
+    "name": "Bryan Mbeumo",
+    "cap": false,
+    "start": true,
+    "ep": 5
+   },
+   {
+    "name": "Pascal Groß",
+    "cap": false,
+    "start": true,
+    "ep": 3.1
+   },
+   {
+    "name": "Igor Jesus",
+    "cap": false,
+    "start": true,
+    "ep": 3.2
+   },
+   {
+    "name": "Joao Pedro",
+    "cap": true,
+    "start": true,
+    "ep": 6.4
+   },
+   {
+    "name": "Erling Haaland",
+    "cap": false,
+    "start": true,
+    "ep": 4.7
+   },
+   {
+    "name": "Antonín Kinský",
+    "cap": false,
+    "start": false,
+    "ep": 3.4
+   },
+   {
+    "name": "Harry Maguire",
+    "cap": false,
+    "start": false,
+    "ep": 3.5
+   },
+   {
+    "name": "Cristhian Mosquera",
+    "cap": false,
+    "start": false,
+    "ep": 3.7
+   },
+   {
+    "name": "Mateus Fernandes",
+    "cap": false,
+    "start": false,
+    "ep": 2.2
+   }
+  ]
+ },
+ "gw7": {
+  "bruno": [
+   {
+    "name": "David Raya",
+    "cap": false,
+    "start": true,
+    "ep": 4.7
+   },
+   {
+    "name": "Martin Dubravka",
+    "cap": false,
+    "start": false,
+    "ep": 0.3
+   },
+   {
+    "name": "Riccardo Calafiori",
+    "cap": false,
+    "start": true,
+    "ep": 4.2
+   },
+   {
+    "name": "Lewis Hall",
+    "cap": false,
+    "start": true,
+    "ep": 3.7
+   },
+   {
+    "name": "Maxim De Cuyper",
+    "cap": false,
+    "start": true,
+    "ep": 8.2
+   },
+   {
+    "name": "Tyrick Mitchell",
+    "cap": false,
+    "start": true,
+    "ep": 3
+   },
+   {
+    "name": "Milan van Ewijk",
+    "cap": false,
+    "start": false,
+    "ep": 2
+   },
+   {
+    "name": "Cole Palmer",
+    "cap": false,
+    "start": true,
+    "ep": 4.8
+   },
+   {
+    "name": "Bukayo Saka",
+    "cap": true,
+    "start": true,
+    "ep": 4.2
+   },
+   {
+    "name": "Dominik Szoboszlai",
+    "cap": false,
+    "start": true,
+    "ep": 1
+   },
+   {
+    "name": "Mamadou Sangare",
+    "cap": false,
+    "start": false,
+    "ep": 0.7
+   },
+   {
+    "name": "Regan Slater",
+    "cap": false,
+    "start": false,
+    "ep": 2.5
+   },
+   {
+    "name": "Erling Haaland",
+    "cap": false,
+    "start": true,
+    "ep": 7.6
+   },
+   {
+    "name": "Joao Pedro",
+    "cap": false,
+    "start": true,
+    "ep": 5.5
+   },
+   {
+    "name": "Nicolas Jackson",
+    "cap": false,
+    "start": true,
+    "ep": 4.1
+   }
+  ],
+  "marco": [
+   {
+    "name": "David Raya",
+    "cap": false,
+    "start": true,
+    "ep": 4.7
+   },
+   {
+    "name": "Harry Maguire",
+    "cap": false,
+    "start": true,
+    "ep": 2.3
+   },
+   {
+    "name": "Maxim De Cuyper",
+    "cap": false,
+    "start": true,
+    "ep": 8.2
+   },
+   {
+    "name": "Bobby Thomas",
+    "cap": false,
+    "start": true,
+    "ep": 3.7
+   },
+   {
+    "name": "John Egan",
+    "cap": false,
+    "start": true,
+    "ep": 2
+   },
+   {
+    "name": "Harvey Barnes",
+    "cap": false,
+    "start": true,
+    "ep": 3
+   },
+   {
+    "name": "Bruno Fernandes",
+    "cap": true,
+    "start": true,
+    "ep": 3.4
+   },
+   {
+    "name": "Bryan Mbeumo",
+    "cap": false,
+    "start": true,
+    "ep": 4
+   },
+   {
+    "name": "Pascal Groß",
+    "cap": false,
+    "start": true,
+    "ep": 9.6
+   },
+   {
+    "name": "Joao Pedro",
+    "cap": false,
+    "start": true,
+    "ep": 5.5
+   },
+   {
+    "name": "Erling Haaland",
+    "cap": false,
+    "start": true,
+    "ep": 7.6
+   },
+   {
+    "name": "Antonín Kinský",
+    "cap": false,
+    "start": false,
+    "ep": 4.2
+   },
+   {
+    "name": "Neco Williams",
+    "cap": false,
+    "start": false,
+    "ep": 1.9
+   },
+   {
+    "name": "Mamadou Sangare",
+    "cap": false,
+    "start": false,
+    "ep": 0.7
+   },
+   {
+    "name": "Igor Jesus",
+    "cap": false,
+    "start": false,
+    "ep": 0.3
+   }
+  ]
+ }
+}

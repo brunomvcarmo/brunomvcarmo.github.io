@@ -1,0 +1,772 @@
+[
+{
+"id": 572,
+"name": "Konstantinos Tzolakis",
+"team": "Hull City",
+"pos": "gk",
+"price": 4.7
+},
+{
+"id": 1,
+"name": "David Raya",
+"team": "Arsenal",
+"pos": "gk",
+"price": 6.1
+},
+{
+"id": 109,
+"name": "Bart Verbruggen",
+"team": "Brighton",
+"pos": "gk",
+"price": 4.5
+},
+{
+"id": 385,
+"name": "James Trafford",
+"team": "Leeds",
+"pos": "gk",
+"price": 5.0
+},
+{
+"id": 350,
+"name": "Alisson Becker",
+"team": "Liverpool",
+"pos": "gk",
+"price": 5.5
+},
+{
+"id": 384,
+"name": "Gianluigi Donnarumma",
+"team": "Man City",
+"pos": "gk",
+"price": 5.5
+},
+{
+"id": 226,
+"name": "Jordan Pickford",
+"team": "Everton",
+"pos": "gk",
+"price": 5.5
+},
+{
+"id": 82,
+"name": "Caoimhín Kelleher",
+"team": "Brentford",
+"pos": "gk",
+"price": 5.0
+},
+{
+"id": 496,
+"name": "Antonín Kinský",
+"team": "Spurs",
+"pos": "gk",
+"price": 4.5
+},
+{
+"id": 250,
+"name": "Bernd Leno",
+"team": "Fulham",
+"pos": "gk",
+"price": 4.5
+},
+{
+"id": 110,
+"name": "Carl Rushworth",
+"team": "Coventry City",
+"pos": "gk",
+"price": 4.5
+},
+{
+"id": 412,
+"name": "Senne Lammens",
+"team": "Man Utd",
+"pos": "gk",
+"price": 4.9
+},
+{
+"id": 497,
+"name": "Martin Dubravka",
+"team": "Spurs",
+"pos": "gk",
+"price": 4.0
+},
+{
+"id": 115,
+"name": "Maxim De Cuyper",
+"team": "Brighton",
+"pos": "def",
+"price": 5.1
+},
+{
+"id": 229,
+"name": "James Tarkowski",
+"team": "Everton",
+"pos": "def",
+"price": 6.2
+},
+{
+"id": 330,
+"name": "Jayden Bogle",
+"team": "Leeds",
+"pos": "def",
+"price": 4.7
+},
+{
+"id": 391,
+"name": "Joško Gvardiol",
+"team": "Man City",
+"pos": "def",
+"price": 5.8
+},
+{
+"id": 504,
+"name": "Luka Vušković",
+"team": "Brighton",
+"pos": "def",
+"price": 5.0
+},
+{
+"id": 8,
+"name": "Riccardo Calafiori",
+"team": "Arsenal",
+"pos": "def",
+"price": 5.9
+},
+{
+"id": 388,
+"name": "Marc Guéhi",
+"team": "Man City",
+"pos": "def",
+"price": 6.0
+},
+{
+"id": 332,
+"name": "James Justin",
+"team": "Leeds",
+"pos": "def",
+"price": 4.5
+},
+{
+"id": 449,
+"name": "Lewis Hall",
+"team": "Newcastle",
+"pos": "def",
+"price": 5.3
+},
+{
+"id": 230,
+"name": "Jarrad Branthwaite",
+"team": "Everton",
+"pos": "def",
+"price": 5.5
+},
+{
+"id": 334,
+"name": "Tarik Muharemović",
+"team": "Leeds",
+"pos": "def",
+"price": 5.0
+},
+{
+"id": 173,
+"name": "Bobby Thomas",
+"team": "Coventry City",
+"pos": "def",
+"price": 4.0
+},
+{
+"id": 204,
+"name": "Tyrick Mitchell",
+"team": "Crystal Palace",
+"pos": "def",
+"price": 4.5
+},
+{
+"id": 279,
+"name": "Semi Ajayi",
+"team": "Hull City",
+"pos": "def",
+"price": 4.2
+},
+{
+"id": 586,
+"name": "Nobel Mendy",
+"team": "Hull City",
+"pos": "def",
+"price": 4.1
+},
+{
+"id": 4,
+"name": "Gabriel dos Santos Magalhães",
+"team": "Arsenal",
+"pos": "def",
+"price": 7.9
+},
+{
+"id": 87,
+"name": "Kristoffer Ajer",
+"team": "Brentford",
+"pos": "def",
+"price": 4.5
+},
+{
+"id": 233,
+"name": "Vitalii Mykolenko",
+"team": "Everton",
+"pos": "def",
+"price": 4.6
+},
+{
+"id": 277,
+"name": "John Egan",
+"team": "Hull City",
+"pos": "def",
+"price": 4.1
+},
+{
+"id": 362,
+"name": "Jeremy Jacquet",
+"team": "Liverpool",
+"pos": "def",
+"price": 5.0
+},
+{
+"id": 112,
+"name": "Jan Paul van Hecke",
+"team": "Spurs",
+"pos": "def",
+"price": 4.9
+},
+{
+"id": 10,
+"name": "Benjamin White",
+"team": "Arsenal",
+"pos": "def",
+"price": 5.4
+},
+{
+"id": 305,
+"name": "Leif Davis",
+"team": "Ipswich Town",
+"pos": "def",
+"price": 4.0
+},
+{
+"id": 176,
+"name": "Jay Dasilva",
+"team": "Coventry City",
+"pos": "def",
+"price": 4.0
+},
+{
+"id": 649,
+"name": "Ainsley Maitland-Niles",
+"team": "Everton",
+"pos": "def",
+"price": 4.5
+},
+{
+"id": 356,
+"name": "Virgil van Dijk",
+"team": "Liverpool",
+"pos": "def",
+"price": 6.5
+},
+{
+"id": 114,
+"name": "Olivier Boscagli",
+"team": "Brighton",
+"pos": "def",
+"price": 4.5
+},
+{
+"id": 93,
+"name": "Jannik Schuster",
+"team": "Brentford",
+"pos": "def",
+"price": 4.5
+},
+{
+"id": 113,
+"name": "Ferdi Kadıoğlu",
+"team": "Brighton",
+"pos": "def",
+"price": 4.4
+},
+{
+"id": 588,
+"name": "Anan Khalaili",
+"team": "Crystal Palace",
+"pos": "def",
+"price": 5.0
+},
+{
+"id": 469,
+"name": "Neco Williams",
+"team": "Nott'm Forest",
+"pos": "def",
+"price": 5.0
+},
+{
+"id": 331,
+"name": "Gabriel Gudmundsson",
+"team": "Leeds",
+"pos": "def",
+"price": 4.5
+},
+{
+"id": 389,
+"name": "Matheus Nunes",
+"team": "Man City",
+"pos": "def",
+"price": 5.9
+},
+{
+"id": 31,
+"name": "Ezri Konsa Ngoyo",
+"team": "Arsenal",
+"pos": "def",
+"price": 4.6
+},
+{
+"id": 650,
+"name": "David Affengruber",
+"team": "Fulham",
+"pos": "def",
+"price": 4.5
+},
+{
+"id": 175,
+"name": "Milan van Ewijk",
+"team": "Coventry City",
+"pos": "def",
+"price": 3.9
+},
+{
+"id": 418,
+"name": "Harry Maguire",
+"team": "Man Utd",
+"pos": "def",
+"price": 4.8
+},
+{
+"id": 124,
+"name": "Pascal Groß",
+"team": "Brighton",
+"pos": "mid",
+"price": 6.0
+},
+{
+"id": 399,
+"name": "Rayan Cherki",
+"team": "Man City",
+"pos": "mid",
+"price": 7.8
+},
+{
+"id": 94,
+"name": "Kevin Schade",
+"team": "Brentford",
+"pos": "mid",
+"price": 6.2
+},
+{
+"id": 40,
+"name": "Morgan Rogers",
+"team": "Chelsea",
+"pos": "mid",
+"price": 7.9
+},
+{
+"id": 286,
+"name": "Mohamed Belloumi",
+"team": "Hull City",
+"pos": "mid",
+"price": 5.2
+},
+{
+"id": 154,
+"name": "Cole Palmer",
+"team": "Chelsea",
+"pos": "mid",
+"price": 9.7
+},
+{
+"id": 397,
+"name": "Antoine Semenyo",
+"team": "Man City",
+"pos": "mid",
+"price": 8.3
+},
+{
+"id": 428,
+"name": "Matheus Santos Carneiro da Cunha",
+"team": "Man Utd",
+"pos": "mid",
+"price": 7.9
+},
+{
+"id": 12,
+"name": "Bukayo Saka",
+"team": "Arsenal",
+"pos": "mid",
+"price": 9.6
+},
+{
+"id": 236,
+"name": "Kiernan Dewsbury-Hall",
+"team": "Everton",
+"pos": "mid",
+"price": 6.6
+},
+{
+"id": 427,
+"name": "Bryan Mbeumo",
+"team": "Man Utd",
+"pos": "mid",
+"price": 7.9
+},
+{
+"id": 68,
+"name": "Marcus Tavernier",
+"team": "Bournemouth",
+"pos": "mid",
+"price": 6.1
+},
+{
+"id": 367,
+"name": "Cody Gakpo",
+"team": "Liverpool",
+"pos": "mid",
+"price": 7.1
+},
+{
+"id": 426,
+"name": "Bruno Fernandes",
+"team": "Man Utd",
+"pos": "mid",
+"price": 11.9
+},
+{
+"id": 98,
+"name": "Vitaly Janelt",
+"team": "Brentford",
+"pos": "mid",
+"price": 5.0
+},
+{
+"id": 15,
+"name": "Martin Ødegaard",
+"team": "Arsenal",
+"pos": "mid",
+"price": 6.8
+},
+{
+"id": 69,
+"name": "Alex Scott",
+"team": "Bournemouth",
+"pos": "mid",
+"price": 6.0
+},
+{
+"id": 453,
+"name": "Harvey Barnes",
+"team": "Newcastle",
+"pos": "mid",
+"price": 6.1
+},
+{
+"id": 480,
+"name": "Morgan Gibbs-White",
+"team": "Nott'm Forest",
+"pos": "mid",
+"price": 8.0
+},
+{
+"id": 127,
+"name": "Diego Gómez Amarilla",
+"team": "Brighton",
+"pos": "mid",
+"price": 5.0
+},
+{
+"id": 214,
+"name": "Daichi Kamada",
+"team": "Crystal Palace",
+"pos": "mid",
+"price": 5.0
+},
+{
+"id": 335,
+"name": "Anton Stach",
+"team": "Leeds",
+"pos": "mid",
+"price": 6.0
+},
+{
+"id": 13,
+"name": "Declan Rice",
+"team": "Arsenal",
+"pos": "mid",
+"price": 7.3
+},
+{
+"id": 45,
+"name": "John McGinn",
+"team": "Aston Villa",
+"pos": "mid",
+"price": 5.4
+},
+{
+"id": 41,
+"name": "Emiliano Buendía Stati",
+"team": "Aston Villa",
+"pos": "mid",
+"price": 5.9
+},
+{
+"id": 565,
+"name": "Mamadou Sangare",
+"team": "Brentford",
+"pos": "mid",
+"price": 5.6
+},
+{
+"id": 481,
+"name": "Elliot Anderson",
+"team": "Man City",
+"pos": "mid",
+"price": 6.3
+},
+{
+"id": 105,
+"name": "Jaidon Anthony",
+"team": "Brentford",
+"pos": "mid",
+"price": 5.9
+},
+{
+"id": 101,
+"name": "Jordan Henderson",
+"team": "Chelsea",
+"pos": "mid",
+"price": 4.9
+},
+{
+"id": 183,
+"name": "Jack Rudoni",
+"team": "Coventry City",
+"pos": "mid",
+"price": 4.9
+},
+{
+"id": 368,
+"name": "Dominik Szoboszlai",
+"team": "Liverpool",
+"pos": "mid",
+"price": 6.9
+},
+{
+"id": 53,
+"name": "Johan Manzambi",
+"team": "Aston Villa",
+"pos": "mid",
+"price": 5.9
+},
+{
+"id": 129,
+"name": "Yasin Ayari",
+"team": "Brighton",
+"pos": "mid",
+"price": 5.4
+},
+{
+"id": 290,
+"name": "Regan Slater",
+"team": "Hull City",
+"pos": "mid",
+"price": 4.5
+},
+{
+"id": 644,
+"name": "Quinten Timber",
+"team": "Crystal Palace",
+"pos": "mid",
+"price": 5.0
+},
+{
+"id": 165,
+"name": "Joao Pedro",
+"team": "Chelsea",
+"pos": "fwd",
+"price": 7.8
+},
+{
+"id": 411,
+"name": "Erling Haaland",
+"team": "Man City",
+"pos": "fwd",
+"price": 15.6
+},
+{
+"id": 379,
+"name": "Alexander Isak",
+"team": "Liverpool",
+"pos": "fwd",
+"price": 9.0
+},
+{
+"id": 138,
+"name": "Charalampos Kostoulas",
+"team": "Brighton",
+"pos": "fwd",
+"price": 5.7
+},
+{
+"id": 316,
+"name": "Emersonn Correia da Silva",
+"team": "Ipswich Town",
+"pos": "fwd",
+"price": 5.6
+},
+{
+"id": 249,
+"name": "Thierno Barry",
+"team": "Everton",
+"pos": "fwd",
+"price": 5.7
+},
+{
+"id": 79,
+"name": "Francisco Evanilson de Lima Barbosa",
+"team": "Bournemouth",
+"pos": "fwd",
+"price": 6.0
+},
+{
+"id": 346,
+"name": "Dominic Calvert-Lewin",
+"team": "Leeds",
+"pos": "fwd",
+"price": 6.0
+},
+{
+"id": 552,
+"name": "Brian Brobbey",
+"team": "Sunderland",
+"pos": "fwd",
+"price": 5.7
+},
+{
+"id": 26,
+"name": "Kai Havertz",
+"team": "Arsenal",
+"pos": "fwd",
+"price": 7.5
+},
+{
+"id": 166,
+"name": "Nicolas Jackson",
+"team": "Aston Villa",
+"pos": "fwd",
+"price": 6.6
+},
+{
+"id": 222,
+"name": "Jørgen Strand Larsen",
+"team": "Crystal Palace",
+"pos": "fwd",
+"price": 6.0
+},
+{
+"id": 464,
+"name": "Yoane Wissa",
+"team": "Newcastle",
+"pos": "fwd",
+"price": 6.3
+},
+{
+"id": 553,
+"name": "Wilson Isidor",
+"team": "Sunderland",
+"pos": "fwd",
+"price": 5.5
+},
+{
+"id": 569,
+"name": "Gonzalo García",
+"team": "Fulham",
+"pos": "fwd",
+"price": 6.1
+},
+{
+"id": 106,
+"name": "Igor Thiago Nascimento Rodrigues",
+"team": "Brentford",
+"pos": "fwd",
+"price": 7.8
+},
+{
+"id": 194,
+"name": "Brandon Thomas-Asante",
+"team": "Coventry City",
+"pos": "fwd",
+"price": 5.0
+},
+{
+"id": 295,
+"name": "Oli McBurnie",
+"team": "Hull City",
+"pos": "fwd",
+"price": 5.5
+},
+{
+"id": 526,
+"name": "Dominic Solanke-Mitchell",
+"team": "Spurs",
+"pos": "fwd",
+"price": 5.8
+},
+{
+"id": 599,
+"name": "Sidiki Cherif",
+"team": "Coventry City",
+"pos": "fwd",
+"price": 5.0
+},
+{
+"id": 491,
+"name": "Igor Jesus",
+"team": "Nott'm Forest",
+"pos": "fwd",
+"price": 5.8
+},
+{
+"id": 167,
+"name": "Liam Delap",
+"team": "Nott'm Forest",
+"pos": "fwd",
+"price": 5.6
+},
+{
+"id": 195,
+"name": "Ellis Simms",
+"team": "Coventry City",
+"pos": "fwd",
+"price": 4.9
+},
+{
+"id": 401,
+"name": "Omar Marmoush",
+"team": "Spurs",
+"pos": "fwd",
+"price": 7.0
+},
+{
+"id": 634,
+"name": "Matias Fernandez-Pardo",
+"team": "Newcastle",
+"pos": "fwd",
+"price": 6.0
+}
+]

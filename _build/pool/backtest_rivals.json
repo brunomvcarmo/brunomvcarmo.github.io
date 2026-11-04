@@ -1,0 +1,36 @@
+{
+ "nenhuma": {
+  "casos": 89,
+  "sem_trocas_reais": 35,
+  "acerto_modelo": 49,
+  "acerto_regra": 54,
+  "brier_modelo": 0.245,
+  "brier_regra": 0.393,
+  "brier_media_liga": 0.239
+ },
+ "transferencias": {
+  "casos": 54,
+  "entra_top1_modelo": 5,
+  "entra_top3_modelo": 14,
+  "entra_regra_top1": 7,
+  "entra_regra_top3": 14,
+  "sai_top1_modelo": 14,
+  "par_top1_modelo": 2,
+  "par_top3_modelo": 10
+ },
+ "capitao": {
+  "casos": 100,
+  "top1_modelo": 51,
+  "regra_repete": 47,
+  "regra_mais_popular": 40,
+  "prob_media_no_real": 0.391
+ },
+ "chips": {
+  "casos": 272,
+  "usos_reais": 18,
+  "brier_modelo": 0.0621,
+  "brier_regra": 0.0621,
+  "prob_media_quando_usou_modelo": 0.053,
+  "prob_media_quando_usou_regra": 0.058
+ }
+}

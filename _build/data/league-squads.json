@@ -1,0 +1,1686 @@
+{
+ "meta": {
+  "season": "2026/27",
+  "generated": "2026-10-13",
+  "gw": 6,
+  "gw6_status": "finished=false, data_checked=false (is_current); GW7 is_next",
+  "source": "fantasy.premierleague.com/api via WebFetch; history & picks fetched with ?gw=6 query string because bare /history/ URL returned a stale CDN snapshot (GW2) for entry 630696",
+  "squads_available": 20,
+  "money_units": "history_latest bank/value in tenths of £M; budgets in £M"
+ },
+ "entries": {
+  "630696": {
+   "history_latest": {
+    "event": 6,
+    "points": 75,
+    "total_points": 421,
+    "bank": 7,
+    "value": 1009
+   },
+   "chips": [
+    {
+     "name": "bboost",
+     "event": 1
+    },
+    {
+     "name": "3xc",
+     "event": 3
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "Bart Verbruggen",
+     "Riccardo Calafiori",
+     "Ezri Konsa Ngoyo",
+     "Issa Diop",
+     "Mohamed Belloumi",
+     "Morgan Rogers",
+     "Bruno Fernandes",
+     "Rayan Cherki",
+     "Pascal Groß",
+     "Joao Pedro",
+     "Erling Haaland"
+    ],
+    "bench": [
+     "Antonín Kinský",
+     "Kristoffer Ajer",
+     "Dominic Calvert-Lewin",
+     "Andrew Robertson"
+    ],
+    "starter_ids": [
+     109,
+     8,
+     31,
+     259,
+     286,
+     40,
+     426,
+     399,
+     124,
+     165,
+     411
+    ],
+    "bench_ids": [
+     496,
+     87,
+     346,
+     502
+    ],
+    "captain": "Bruno Fernandes",
+    "vice": "Joao Pedro",
+    "active_chip": null
+   }
+  },
+  "2713965": {
+   "history_latest": {
+    "event": 6,
+    "points": 69,
+    "total_points": 438,
+    "bank": 0,
+    "value": 1000
+   },
+   "chips": [
+    {
+     "name": "3xc",
+     "event": 3
+    },
+    {
+     "name": "freehit",
+     "event": 4
+    },
+    {
+     "name": "wildcard",
+     "event": 6
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "Bart Verbruggen",
+     "Riccardo Calafiori",
+     "Lewis Hall",
+     "Luke Shaw",
+     "Kristoffer Ajer",
+     "Pascal Groß",
+     "Morgan Rogers",
+     "Bruno Fernandes",
+     "Gonzalo García",
+     "Erling Haaland",
+     "Joao Pedro"
+    ],
+    "bench": [
+     "Antonín Kinský",
+     "Dominik Szoboszlai",
+     "Mohamed Belloumi",
+     "Milan van Ewijk"
+    ],
+    "starter_ids": [
+     109,
+     8,
+     449,
+     423,
+     87,
+     124,
+     40,
+     426,
+     569,
+     411,
+     165
+    ],
+    "bench_ids": [
+     496,
+     368,
+     286,
+     175
+    ],
+    "captain": "Erling Haaland",
+    "vice": "Bruno Fernandes",
+    "active_chip": "wildcard"
+   }
+  },
+  "1885251": {
+   "history_latest": {
+    "event": 6,
+    "points": 53,
+    "total_points": 388,
+    "bank": 20,
+    "value": 1011
+   },
+   "chips": [
+    {
+     "name": "freehit",
+     "event": 4
+    },
+    {
+     "name": "wildcard",
+     "event": 6
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "David Raya",
+     "James Tarkowski",
+     "Lewis Hall",
+     "Ezri Konsa Ngoyo",
+     "Maxim De Cuyper",
+     "Morgan Rogers",
+     "Harvey Barnes",
+     "Pascal Groß",
+     "Bukayo Saka",
+     "Erling Haaland",
+     "Charalampos Kostoulas"
+    ],
+    "bench": [
+     "Antonín Kinský",
+     "Gonzalo García",
+     "Kevin Schade",
+     "Kristoffer Ajer"
+    ],
+    "starter_ids": [
+     1,
+     229,
+     449,
+     31,
+     115,
+     40,
+     453,
+     124,
+     12,
+     411,
+     138
+    ],
+    "bench_ids": [
+     496,
+     569,
+     94,
+     87
+    ],
+    "captain": "Bukayo Saka",
+    "vice": "Erling Haaland",
+    "active_chip": "wildcard"
+   }
+  },
+  "1969702": {
+   "history_latest": {
+    "event": 6,
+    "points": 74,
+    "total_points": 391,
+    "bank": 32,
+    "value": 1016
+   },
+   "chips": [],
+   "picks_gw6": {
+    "starters": [
+     "David Raya",
+     "Riccardo Calafiori",
+     "Ezri Konsa Ngoyo",
+     "Ola Aina",
+     "Rayan Cherki",
+     "Bruno Fernandes",
+     "Pascal Groß",
+     "Morgan Rogers",
+     "Morgan Gibbs-White",
+     "Joao Pedro",
+     "Thierno Barry"
+    ],
+    "bench": [
+     "Antonín Kinský",
+     "Alexander Isak",
+     "Vitalii Mykolenko",
+     "Andrew Robertson"
+    ],
+    "starter_ids": [
+     1,
+     8,
+     31,
+     473,
+     399,
+     426,
+     124,
+     40,
+     480,
+     165,
+     249
+    ],
+    "bench_ids": [
+     496,
+     379,
+     233,
+     502
+    ],
+    "captain": "Joao Pedro",
+    "vice": "Morgan Rogers",
+    "active_chip": null
+   }
+  },
+  "8030866": {
+   "history_latest": {
+    "event": 6,
+    "points": 32,
+    "total_points": 302,
+    "bank": 5,
+    "value": 988
+   },
+   "chips": [
+    {
+     "name": "bboost",
+     "event": 1
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "David Raya",
+     "Nico O\\'Reilly",
+     "Rúben dos Santos Gato Alves Dias",
+     "Diogo Dalot Teixeira",
+     "Virgil van Dijk",
+     "Enzo Le Fée",
+     "Bruno Fernandes",
+     "Ryan Gravenberch",
+     "Marcus Tavernier",
+     "Anton Stach",
+     "Joao Pedro"
+    ],
+    "bench": [
+     "Gianluigi Donnarumma",
+     "Pedro Porro",
+     "Ollie Watkins",
+     "Viktor Gyökeres"
+    ],
+    "starter_ids": [
+     1,
+     387,
+     390,
+     417,
+     356,
+     542,
+     426,
+     371,
+     68,
+     335,
+     165
+    ],
+    "bench_ids": [
+     384,
+     499,
+     55,
+     25
+    ],
+    "captain": "Bruno Fernandes",
+    "vice": "Rúben dos Santos Gato Alves Dias",
+    "active_chip": null
+   }
+  },
+  "5406100": {
+   "history_latest": {
+    "event": 6,
+    "points": 54,
+    "total_points": 407,
+    "bank": 2,
+    "value": 1011
+   },
+   "chips": [
+    {
+     "name": "3xc",
+     "event": 3
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "David Raya",
+     "Tyrick Mitchell",
+     "Riccardo Calafiori",
+     "Semi Ajayi",
+     "Bruno Fernandes",
+     "Bryan Mbeumo",
+     "Martin Ødegaard",
+     "Pascal Groß",
+     "Erling Haaland",
+     "Yoane Wissa",
+     "Joao Pedro"
+    ],
+    "bench": [
+     "Oliver Dovin",
+     "Iliman Ndiaye",
+     "Andrew Robertson",
+     "Issa Diop"
+    ],
+    "starter_ids": [
+     1,
+     204,
+     8,
+     279,
+     426,
+     427,
+     15,
+     124,
+     411,
+     464,
+     165
+    ],
+    "bench_ids": [
+     171,
+     237,
+     502,
+     259
+    ],
+    "captain": "Bruno Fernandes",
+    "vice": "Erling Haaland",
+    "active_chip": null
+   }
+  },
+  "5191766": {
+   "history_latest": {
+    "event": 6,
+    "points": 71,
+    "total_points": 399,
+    "bank": 1,
+    "value": 1010
+   },
+   "chips": [
+    {
+     "name": "3xc",
+     "event": 3
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "David Raya",
+     "Riccardo Calafiori",
+     "Lewis Hall",
+     "Maxim De Cuyper",
+     "Tyrick Mitchell",
+     "Cole Palmer",
+     "Bukayo Saka",
+     "Mamadou Sangare",
+     "Erling Haaland",
+     "Joao Pedro",
+     "Nicolas Jackson"
+    ],
+    "bench": [
+     "Martin Dubravka",
+     "Dominik Szoboszlai",
+     "Milan van Ewijk",
+     "Regan Slater"
+    ],
+    "starter_ids": [
+     1,
+     8,
+     449,
+     115,
+     204,
+     154,
+     12,
+     565,
+     411,
+     165,
+     166
+    ],
+    "bench_ids": [
+     497,
+     368,
+     175,
+     290
+    ],
+    "captain": "Bukayo Saka",
+    "vice": "Erling Haaland",
+    "active_chip": null
+   }
+  },
+  "5799879": {
+   "history_latest": {
+    "event": 6,
+    "points": 72,
+    "total_points": 354,
+    "bank": 3,
+    "value": 999
+   },
+   "chips": [],
+   "picks_gw6": {
+    "starters": [
+     "Emiliano Martínez Romero",
+     "Riccardo Calafiori",
+     "Matty Cash",
+     "Ezri Konsa Ngoyo",
+     "Ferdi Kadıoğlu",
+     "Iliman Ndiaye",
+     "John McGinn",
+     "Florian Wirtz",
+     "Cole Palmer",
+     "Erling Haaland",
+     "Joao Pedro"
+    ],
+    "bench": [
+     "Bart Verbruggen",
+     "George Hemmings",
+     "Alexander Isak",
+     "Joško Gvardiol"
+    ],
+    "starter_ids": [
+     28,
+     8,
+     32,
+     31,
+     113,
+     237,
+     45,
+     366,
+     154,
+     411,
+     165
+    ],
+    "bench_ids": [
+     109,
+     51,
+     379,
+     391
+    ],
+    "captain": "Cole Palmer",
+    "vice": "Ferdi Kadıoğlu",
+    "active_chip": null
+   }
+  },
+  "2347397": {
+   "history_latest": {
+    "event": 6,
+    "points": 51,
+    "total_points": 367,
+    "bank": 0,
+    "value": 997
+   },
+   "chips": [
+    {
+     "name": "wildcard",
+     "event": 6
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "Gianluigi Donnarumma",
+     "Riccardo Calafiori",
+     "Joško Gvardiol",
+     "James Tarkowski",
+     "Lewis Hall",
+     "Bruno Fernandes",
+     "Bukayo Saka",
+     "Morgan Gibbs-White",
+     "Pascal Groß",
+     "Joao Pedro",
+     "Charalampos Kostoulas"
+    ],
+    "bench": [
+     "Konstantinos Tzolakis",
+     "Igor Thiago Nascimento Rodrigues",
+     "Sander Berge",
+     "Maxim De Cuyper"
+    ],
+    "starter_ids": [
+     384,
+     8,
+     391,
+     229,
+     449,
+     426,
+     12,
+     480,
+     124,
+     165,
+     138
+    ],
+    "bench_ids": [
+     572,
+     106,
+     265,
+     115
+    ],
+    "captain": "Bukayo Saka",
+    "vice": "Joao Pedro",
+    "active_chip": "wildcard"
+   }
+  },
+  "2330867": {
+   "history_latest": {
+    "event": 6,
+    "points": 58,
+    "total_points": 362,
+    "bank": 1,
+    "value": 996
+   },
+   "chips": [],
+   "picks_gw6": {
+    "starters": [
+     "David Raya",
+     "James Tarkowski",
+     "Gabriel dos Santos Magalhães",
+     "Harry Maguire",
+     "Tyrick Mitchell",
+     "Marcus Tavernier",
+     "Kiernan Dewsbury-Hall",
+     "Enzo Le Fée",
+     "Joao Pedro",
+     "Igor Thiago Nascimento Rodrigues",
+     "Erling Haaland"
+    ],
+    "bench": [
+     "Bart Verbruggen",
+     "Dominik Szoboszlai",
+     "Malick Yalcouyé",
+     "Amar Dedic"
+    ],
+    "starter_ids": [
+     1,
+     229,
+     4,
+     418,
+     204,
+     68,
+     236,
+     542,
+     165,
+     106,
+     411
+    ],
+    "bench_ids": [
+     109,
+     368,
+     605,
+     593
+    ],
+    "captain": "Erling Haaland",
+    "vice": "Kiernan Dewsbury-Hall",
+    "active_chip": null
+   }
+  },
+  "2152388": {
+   "history_latest": {
+    "event": 6,
+    "points": 71,
+    "total_points": 382,
+    "bank": 0,
+    "value": 998
+   },
+   "chips": [
+    {
+     "name": "wildcard",
+     "event": 6
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "David Raya",
+     "Riccardo Calafiori",
+     "Ezri Konsa Ngoyo",
+     "Luke Shaw",
+     "Kevin Schade",
+     "Bryan Mbeumo",
+     "Morgan Gibbs-White",
+     "Morgan Rogers",
+     "Joao Pedro",
+     "Erling Haaland",
+     "Gonzalo García"
+    ],
+    "bench": [
+     "Bart Verbruggen",
+     "Maxim De Cuyper",
+     "Joško Gvardiol",
+     "Will Hughes"
+    ],
+    "starter_ids": [
+     1,
+     8,
+     31,
+     423,
+     94,
+     427,
+     480,
+     40,
+     165,
+     411,
+     569
+    ],
+    "bench_ids": [
+     109,
+     115,
+     391,
+     212
+    ],
+    "captain": "Joao Pedro",
+    "vice": "Erling Haaland",
+    "active_chip": "wildcard"
+   }
+  },
+  "4243640": {
+   "history_latest": {
+    "event": 6,
+    "points": 73,
+    "total_points": 407,
+    "bank": 9,
+    "value": 1004
+   },
+   "chips": [
+    {
+     "name": "freehit",
+     "event": 5
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "Bart Verbruggen",
+     "Luke Shaw",
+     "Riccardo Calafiori",
+     "Ezri Konsa Ngoyo",
+     "Bruno Fernandes",
+     "Kiernan Dewsbury-Hall",
+     "Pascal Groß",
+     "Harvey Barnes",
+     "Erling Haaland",
+     "Joao Pedro",
+     "Thierno Barry"
+    ],
+    "bench": [
+     "Antonín Kinský",
+     "Bryan Mbeumo",
+     "Trai Hume",
+     "Milan van Ewijk"
+    ],
+    "starter_ids": [
+     109,
+     423,
+     8,
+     31,
+     426,
+     236,
+     124,
+     453,
+     411,
+     165,
+     249
+    ],
+    "bench_ids": [
+     496,
+     427,
+     534,
+     175
+    ],
+    "captain": "Harvey Barnes",
+    "vice": "Bruno Fernandes",
+    "active_chip": null
+   }
+  },
+  "3973926": {
+   "history_latest": {
+    "event": 6,
+    "points": 54,
+    "total_points": 278,
+    "bank": 3,
+    "value": 1002
+   },
+   "chips": [
+    {
+     "name": "wildcard",
+     "event": 3
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "Bart Verbruggen",
+     "John Egan",
+     "Luka Vušković",
+     "Riccardo Calafiori",
+     "Julio Enciso",
+     "Martin Ødegaard",
+     "Enzo Fernández",
+     "Bruno Fernandes",
+     "Joao Pedro",
+     "Erling Haaland",
+     "Charalampos Kostoulas"
+    ],
+    "bench": [
+     "Emiliano Martínez Romero",
+     "Dominik Szoboszlai",
+     "Milan van Ewijk",
+     "Amar Dedic"
+    ],
+    "starter_ids": [
+     109,
+     277,
+     504,
+     8,
+     591,
+     15,
+     155,
+     426,
+     165,
+     411,
+     138
+    ],
+    "bench_ids": [
+     28,
+     368,
+     175,
+     593
+    ],
+    "captain": "Bruno Fernandes",
+    "vice": "Martin Ødegaard",
+    "active_chip": null
+   }
+  },
+  "1973102": {
+   "history_latest": {
+    "event": 6,
+    "points": 61,
+    "total_points": 388,
+    "bank": 1,
+    "value": 1001
+   },
+   "chips": [
+    {
+     "name": "3xc",
+     "event": 3
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "David Raya",
+     "Harry Maguire",
+     "Maxim De Cuyper",
+     "Bobby Thomas",
+     "John Egan",
+     "Harvey Barnes",
+     "Bruno Fernandes",
+     "Bryan Mbeumo",
+     "Pascal Groß",
+     "Joao Pedro",
+     "Erling Haaland"
+    ],
+    "bench": [
+     "Antonín Kinský",
+     "Mamadou Sangare",
+     "Neco Williams",
+     "Igor Jesus"
+    ],
+    "starter_ids": [
+     1,
+     418,
+     115,
+     173,
+     277,
+     453,
+     426,
+     427,
+     124,
+     165,
+     411
+    ],
+    "bench_ids": [
+     496,
+     565,
+     469,
+     491
+    ],
+    "captain": "Bruno Fernandes",
+    "vice": "Pascal Groß",
+    "active_chip": null
+   }
+  },
+  "3397966": {
+   "history_latest": {
+    "event": 6,
+    "points": 29,
+    "total_points": 301,
+    "bank": 4,
+    "value": 994
+   },
+   "chips": [
+    {
+     "name": "bboost",
+     "event": 2
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "Senne Lammens",
+     "Virgil van Dijk",
+     "Gabriel dos Santos Magalhães",
+     "Luke Shaw",
+     "Pedro Lomba Neto",
+     "Bruno Fernandes",
+     "Enzo Fernández",
+     "Regan Slater",
+     "Sindre Walle Egeli",
+     "Erling Haaland",
+     "Dominic Calvert-Lewin"
+    ],
+    "bench": [
+     "Antonín Kinský",
+     "Matt Targett",
+     "Dominik Szoboszlai",
+     "Milan van Ewijk"
+    ],
+    "starter_ids": [
+     412,
+     356,
+     4,
+     423,
+     156,
+     426,
+     155,
+     290,
+     321,
+     411,
+     346
+    ],
+    "bench_ids": [
+     496,
+     556,
+     368,
+     175
+    ],
+    "captain": "Dominic Calvert-Lewin",
+    "vice": "Bruno Fernandes",
+    "active_chip": null
+   }
+  },
+  "7188462": {
+   "history_latest": {
+    "event": 6,
+    "points": 38,
+    "total_points": 301,
+    "bank": 9,
+    "value": 995
+   },
+   "chips": [
+    {
+     "name": "freehit",
+     "event": 4
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "Senne Lammens",
+     "Riccardo Calafiori",
+     "Harry Maguire",
+     "Semi Ajayi",
+     "Ola Aina",
+     "Martin Ødegaard",
+     "Bruno Fernandes",
+     "Pascal Groß",
+     "Erling Haaland",
+     "Gonzalo García",
+     "Liam Delap"
+    ],
+    "bench": [
+     "Antonín Kinský",
+     "Dominik Szoboszlai",
+     "Mateus Fernandes",
+     "Pedro Porro"
+    ],
+    "starter_ids": [
+     412,
+     8,
+     418,
+     279,
+     473,
+     15,
+     426,
+     124,
+     411,
+     569,
+     167
+    ],
+    "bench_ids": [
+     496,
+     368,
+     525,
+     499
+    ],
+    "captain": "Erling Haaland",
+    "vice": "Bruno Fernandes",
+    "active_chip": null
+   }
+  },
+  "2345657": {
+   "history_latest": {
+    "event": 6,
+    "points": 60,
+    "total_points": 345,
+    "bank": 3,
+    "value": 996
+   },
+   "chips": [
+    {
+     "name": "3xc",
+     "event": 3
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "Gianluigi Donnarumma",
+     "Adrien Truffert",
+     "Riccardo Calafiori",
+     "James Tarkowski",
+     "Maxence Lacroix",
+     "Enzo Fernández",
+     "Bryan Mbeumo",
+     "Enzo Le Fée",
+     "Martin Ødegaard",
+     "Joao Pedro",
+     "Erling Haaland"
+    ],
+    "bench": [
+     "Senne Lammens",
+     "Mohamed Belloumi",
+     "Dominic Solanke-Mitchell",
+     "Milan van Ewijk"
+    ],
+    "starter_ids": [
+     384,
+     61,
+     8,
+     229,
+     200,
+     155,
+     427,
+     542,
+     15,
+     165,
+     411
+    ],
+    "bench_ids": [
+     412,
+     286,
+     526,
+     175
+    ],
+    "captain": "Erling Haaland",
+    "vice": "Joao Pedro",
+    "active_chip": null
+   }
+  },
+  "2342874": {
+   "history_latest": {
+    "event": 6,
+    "points": 50,
+    "total_points": 264,
+    "bank": 2,
+    "value": 1002
+   },
+   "chips": [
+    {
+     "name": "wildcard",
+     "event": 3
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "Gianluigi Donnarumma",
+     "Riccardo Calafiori",
+     "Piero Hincapié",
+     "Semi Ajayi",
+     "Enzo Fernández",
+     "Bruno Fernandes",
+     "Pedro Lomba Neto",
+     "Mamadou Sangare",
+     "Malick Yalcouyé",
+     "Erling Haaland",
+     "Francisco Evanilson de Lima Barbosa"
+    ],
+    "bench": [
+     "Emiliano Martínez Romero",
+     "Maxim De Cuyper",
+     "Joao Pedro",
+     "Amar Dedic"
+    ],
+    "starter_ids": [
+     384,
+     8,
+     9,
+     279,
+     155,
+     426,
+     156,
+     565,
+     605,
+     411,
+     79
+    ],
+    "bench_ids": [
+     28,
+     115,
+     165,
+     593
+    ],
+    "captain": "Erling Haaland",
+    "vice": "Gianluigi Donnarumma",
+    "active_chip": null
+   }
+  },
+  "4159737": {
+   "history_latest": {
+    "event": 6,
+    "points": 64,
+    "total_points": 340,
+    "bank": 1,
+    "value": 997
+   },
+   "chips": [],
+   "picks_gw6": {
+    "starters": [
+     "David Raya",
+     "Diogo Dalot Teixeira",
+     "Rúben dos Santos Gato Alves Dias",
+     "Ousmane Diomande",
+     "Matheus Santos Carneiro da Cunha",
+     "Declan Rice",
+     "Martin Ødegaard",
+     "Pascal Groß",
+     "Joao Pedro",
+     "Thierno Barry",
+     "Erling Haaland"
+    ],
+    "bench": [
+     "Lukás Hornícek",
+     "Pedro Porro",
+     "Bafodé Diakité",
+     "Abdul Fatawu"
+    ],
+    "starter_ids": [
+     1,
+     417,
+     390,
+     581,
+     428,
+     13,
+     15,
+     124,
+     165,
+     249,
+     411
+    ],
+    "bench_ids": [
+     567,
+     499,
+     62,
+     315
+    ],
+    "captain": "Erling Haaland",
+    "vice": "Joao Pedro",
+    "active_chip": null
+   }
+  },
+  "2400508": {
+   "history_latest": {
+    "event": 6,
+    "points": 43,
+    "total_points": 333,
+    "bank": 14,
+    "value": 1003
+   },
+   "chips": [
+    {
+     "name": "3xc",
+     "event": 3
+    },
+    {
+     "name": "wildcard",
+     "event": 4
+    }
+   ],
+   "picks_gw6": {
+    "starters": [
+     "Jordan Pickford",
+     "Riccardo Calafiori",
+     "Nobel Mendy",
+     "Jeremy Jacquet",
+     "Diego Gómez Amarilla",
+     "Antoine Semenyo",
+     "Harvey Barnes",
+     "Bruno Fernandes",
+     "Yoane Wissa",
+     "Dominic Calvert-Lewin",
+     "Erling Haaland"
+    ],
+    "bench": [
+     "Konstantinos Tzolakis",
+     "Pedro Porro",
+     "Malick Yalcouyé",
+     "Jayden Bogle"
+    ],
+    "starter_ids": [
+     226,
+     8,
+     586,
+     362,
+     127,
+     397,
+     453,
+     426,
+     464,
+     346,
+     411
+    ],
+    "bench_ids": [
+     572,
+     499,
+     605,
+     330
+    ],
+    "captain": "Erling Haaland",
+    "vice": "Bruno Fernandes",
+    "active_chip": null
+   }
+  }
+ },
+ "ownership": [
+  {
+   "id": 411,
+   "name": "Erling Haaland",
+   "team": "MCI",
+   "count": 17,
+   "pct": 85.0
+  },
+  {
+   "id": 165,
+   "name": "Joao Pedro",
+   "team": "CHE",
+   "count": 16,
+   "pct": 80.0
+  },
+  {
+   "id": 8,
+   "name": "Riccardo Calafiori",
+   "team": "ARS",
+   "count": 14,
+   "pct": 70.0
+  },
+  {
+   "id": 426,
+   "name": "Bruno Fernandes",
+   "team": "MUN",
+   "count": 13,
+   "pct": 65.0
+  },
+  {
+   "id": 124,
+   "name": "Pascal Groß",
+   "team": "BHA",
+   "count": 10,
+   "pct": 50.0
+  },
+  {
+   "id": 1,
+   "name": "David Raya",
+   "team": "ARS",
+   "count": 9,
+   "pct": 45.0
+  },
+  {
+   "id": 496,
+   "name": "Antonín Kinský",
+   "team": "TOT",
+   "count": 8,
+   "pct": 40.0
+  },
+  {
+   "id": 109,
+   "name": "Bart Verbruggen",
+   "team": "BHA",
+   "count": 7,
+   "pct": 35.0
+  },
+  {
+   "id": 368,
+   "name": "Dominik Szoboszlai",
+   "team": "LIV",
+   "count": 6,
+   "pct": 30.0
+  },
+  {
+   "id": 31,
+   "name": "Ezri Konsa Ngoyo",
+   "team": "ARS",
+   "count": 6,
+   "pct": 30.0
+  },
+  {
+   "id": 115,
+   "name": "Maxim De Cuyper",
+   "team": "BHA",
+   "count": 6,
+   "pct": 30.0
+  },
+  {
+   "id": 175,
+   "name": "Milan van Ewijk",
+   "team": "COV",
+   "count": 6,
+   "pct": 30.0
+  },
+  {
+   "id": 427,
+   "name": "Bryan Mbeumo",
+   "team": "MUN",
+   "count": 5,
+   "pct": 25.0
+  },
+  {
+   "id": 15,
+   "name": "Martin Ødegaard",
+   "team": "ARS",
+   "count": 5,
+   "pct": 25.0
+  },
+  {
+   "id": 40,
+   "name": "Morgan Rogers",
+   "team": "CHE",
+   "count": 5,
+   "pct": 25.0
+  },
+  {
+   "id": 155,
+   "name": "Enzo Fernández",
+   "team": "CHE",
+   "count": 4,
+   "pct": 20.0
+  },
+  {
+   "id": 384,
+   "name": "Gianluigi Donnarumma",
+   "team": "MCI",
+   "count": 4,
+   "pct": 20.0
+  },
+  {
+   "id": 569,
+   "name": "Gonzalo García",
+   "team": "FUL",
+   "count": 4,
+   "pct": 20.0
+  },
+  {
+   "id": 453,
+   "name": "Harvey Barnes",
+   "team": "NEW",
+   "count": 4,
+   "pct": 20.0
+  },
+  {
+   "id": 229,
+   "name": "James Tarkowski",
+   "team": "EVE",
+   "count": 4,
+   "pct": 20.0
+  },
+  {
+   "id": 449,
+   "name": "Lewis Hall",
+   "team": "NEW",
+   "count": 4,
+   "pct": 20.0
+  },
+  {
+   "id": 423,
+   "name": "Luke Shaw",
+   "team": "MUN",
+   "count": 4,
+   "pct": 20.0
+  },
+  {
+   "id": 499,
+   "name": "Pedro Porro",
+   "team": "TOT",
+   "count": 4,
+   "pct": 20.0
+  },
+  {
+   "id": 593,
+   "name": "Amar Dedic",
+   "team": "NEW",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 502,
+   "name": "Andrew Robertson",
+   "team": "TOT",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 12,
+   "name": "Bukayo Saka",
+   "team": "ARS",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 138,
+   "name": "Charalampos Kostoulas",
+   "team": "BHA",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 346,
+   "name": "Dominic Calvert-Lewin",
+   "team": "LEE",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 28,
+   "name": "Emiliano Martínez Romero",
+   "team": "AVL",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 542,
+   "name": "Enzo Le Fée",
+   "team": "SUN",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 418,
+   "name": "Harry Maguire",
+   "team": "MUN",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 391,
+   "name": "Joško Gvardiol",
+   "team": "MCI",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 87,
+   "name": "Kristoffer Ajer",
+   "team": "BRE",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 605,
+   "name": "Malick Yalcouyé",
+   "team": "BHA",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 565,
+   "name": "Mamadou Sangare",
+   "team": "BRE",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 286,
+   "name": "Mohamed Belloumi",
+   "team": "HUL",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 480,
+   "name": "Morgan Gibbs-White",
+   "team": "NFO",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 279,
+   "name": "Semi Ajayi",
+   "team": "HUL",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 412,
+   "name": "Senne Lammens",
+   "team": "MUN",
+   "count": 3,
+   "pct": 15.0
+  },
+  {
+   "id": 249,
+   "name": "Thierno Barry",
+   "team": "EVE",
+   "count": 3,
+   "pct": 15.0
+  }
+ ],
+ "captains": [
+  {
+   "name": "Erling Haaland",
+   "id": 411,
+   "count": 7,
+   "managers": [
+    2713965,
+    2330867,
+    7188462,
+    2345657,
+    2342874,
+    4159737,
+    2400508
+   ]
+  },
+  {
+   "name": "Bruno Fernandes",
+   "id": 426,
+   "count": 5,
+   "managers": [
+    630696,
+    8030866,
+    5406100,
+    3973926,
+    1973102
+   ]
+  },
+  {
+   "name": "Bukayo Saka",
+   "id": 12,
+   "count": 3,
+   "managers": [
+    1885251,
+    5191766,
+    2347397
+   ]
+  },
+  {
+   "name": "Joao Pedro",
+   "id": 165,
+   "count": 2,
+   "managers": [
+    1969702,
+    2152388
+   ]
+  },
+  {
+   "name": "Cole Palmer",
+   "id": 154,
+   "count": 1,
+   "managers": [
+    5799879
+   ]
+  },
+  {
+   "name": "Harvey Barnes",
+   "id": 453,
+   "count": 1,
+   "managers": [
+    4243640
+   ]
+  },
+  {
+   "name": "Dominic Calvert-Lewin",
+   "id": 346,
+   "count": 1,
+   "managers": [
+    3397966
+   ]
+  }
+ ],
+ "budgets": [
+  {
+   "entry": 630696,
+   "bank": 0.7,
+   "value": 100.9,
+   "chips": [
+    "bboost (GW1)",
+    "3xc (GW3)"
+   ]
+  },
+  {
+   "entry": 2713965,
+   "bank": 0.0,
+   "value": 100.0,
+   "chips": [
+    "3xc (GW3)",
+    "freehit (GW4)",
+    "wildcard (GW6)"
+   ]
+  },
+  {
+   "entry": 1885251,
+   "bank": 2.0,
+   "value": 101.1,
+   "chips": [
+    "freehit (GW4)",
+    "wildcard (GW6)"
+   ]
+  },
+  {
+   "entry": 1969702,
+   "bank": 3.2,
+   "value": 101.6,
+   "chips": []
+  },
+  {
+   "entry": 8030866,
+   "bank": 0.5,
+   "value": 98.8,
+   "chips": [
+    "bboost (GW1)"
+   ]
+  },
+  {
+   "entry": 5406100,
+   "bank": 0.2,
+   "value": 101.1,
+   "chips": [
+    "3xc (GW3)"
+   ]
+  },
+  {
+   "entry": 5191766,
+   "bank": 0.1,
+   "value": 101.0,
+   "chips": [
+    "3xc (GW3)"
+   ]
+  },
+  {
+   "entry": 5799879,
+   "bank": 0.3,
+   "value": 99.9,
+   "chips": []
+  },
+  {
+   "entry": 2347397,
+   "bank": 0.0,
+   "value": 99.7,
+   "chips": [
+    "wildcard (GW6)"
+   ]
+  },
+  {
+   "entry": 2330867,
+   "bank": 0.1,
+   "value": 99.6,
+   "chips": []
+  },
+  {
+   "entry": 2152388,
+   "bank": 0.0,
+   "value": 99.8,
+   "chips": [
+    "wildcard (GW6)"
+   ]
+  },
+  {
+   "entry": 4243640,
+   "bank": 0.9,
+   "value": 100.4,
+   "chips": [
+    "freehit (GW5)"
+   ]
+  },
+  {
+   "entry": 3973926,
+   "bank": 0.3,
+   "value": 100.2,
+   "chips": [
+    "wildcard (GW3)"
+   ]
+  },
+  {
+   "entry": 1973102,
+   "bank": 0.1,
+   "value": 100.1,
+   "chips": [
+    "3xc (GW3)"
+   ]
+  },
+  {
+   "entry": 3397966,
+   "bank": 0.4,
+   "value": 99.4,
+   "chips": [
+    "bboost (GW2)"
+   ]
+  },
+  {
+   "entry": 7188462,
+   "bank": 0.9,
+   "value": 99.5,
+   "chips": [
+    "freehit (GW4)"
+   ]
+  },
+  {
+   "entry": 2345657,
+   "bank": 0.3,
+   "value": 99.6,
+   "chips": [
+    "3xc (GW3)"
+   ]
+  },
+  {
+   "entry": 2342874,
+   "bank": 0.2,
+   "value": 100.2,
+   "chips": [
+    "wildcard (GW3)"
+   ]
+  },
+  {
+   "entry": 4159737,
+   "bank": 0.1,
+   "value": 99.7,
+   "chips": []
+  },
+  {
+   "entry": 2400508,
+   "bank": 1.4,
+   "value": 100.3,
+   "chips": [
+    "3xc (GW3)",
+    "wildcard (GW4)"
+   ]
+  }
+ ],
+ "failures": []
+}
