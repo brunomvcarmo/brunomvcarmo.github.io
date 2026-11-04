@@ -312,3 +312,12 @@ Ponto de regresso: commit bf8e8ab / tag `antes-duplas`.
 - Leitura J10: Cherki 0.7 (0/45/35 min), Cunha 0.85, Solanke 0.85. Saka (Marco) lesionado semanas; Bobby Thomas 50%; Henderson 75%.
 - Sugestões J10 (deadline sex 6 nov 18:30): Bruno Cherki → Tavernier + Dasilva → Konsa (+6,6 J10 / +25,8 em 5; banco £1,6M); Marco Saka → Tavernier (+2,7 / +13; Egan → Konsa só com −4, fica para depois da pausa). Capitão Haaland nos dois (vices Isak / Barry).
 - Textos J10 em `_build/patches/patch_j10.py` (exemplo para as próximas semanas). Resultados europeus MD2-MD3 e Taça da Liga R4 preenchidos no EURO_FIX a partir do espelho (jogos sem "prem" no match_id).
+
+## Nuvem (4 nov 2026) — repositório pronto para claude.ai/code
+Ponto de regresso: commit 242e9d7 / tag `antes-nuvem`.
+- `_build/` e `CLAUDE.md` passaram a ir para o GitHub (o repositório é público: verificado que não há passwords, tokens nem e-mails; só nomes/números públicos da FPL). Fora: `_build/mirror/`, `_build/shots/`, `_build/redesign/` (gerados), `__pycache__/`, `.claude/` e as cópias de segurança `*_j7`/`*_j8`. O GitHub Pages não serve pastas começadas por "_" (Jekyll), por isso nada disto aparece no site.
+- `.gitattributes` `* text=auto eol=lf`; todos os `open(..., 'w'|'a')` dos scripts com `encoding='utf-8', newline='\n'`, leituras com `encoding='utf-8'`; os scripts criam as pastas que usam (`redesign`, `shots`).
+- Novos: `_build/setup-cloud.sh` (Playwright + Chromium com `--with-deps` quando der; `espelho.py`), `_build/pool/espelho.py` (espelho → mirror/, calendário J1-J38 → data/fixtures.json, validação da última jornada contra `event/N/live`; sai com código 2 se o espelho ainda não tiver a jornada e 3 se houver diferenças), `_build/atualizar.py` (fases dados / gerar / testes / semana / deadline com o mesmo Python que o corre).
+- Os scripts das versões passadas e o cartão de jogador (`pcard.*`) passaram de `_build/redesign/` para `_build/patches/`.
+- Testes: as falhas de rede de recursos externos (`Failed to load resource`, fontes da Google) deixaram de contar como erro (na nuvem as fontes podem estar bloqueadas).
+- Teste num clone limpo (Windows/Git Bash): `bash _build/setup-cloud.sh` (13 s, J9 validada 670/0) → `atualizar.py gerar` → `index.html` igual ao publicado exceto a data de geração (com o mesmo espelho; com o espelho do dia mudam posse/transferências/estados) → `atualizar.py testes` OK nos três.
