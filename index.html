@@ -890,6 +890,7 @@
   .riv-p .note { font-size: 11.5px; }
   .riv-foot { border-top: 1px solid var(--line); padding-top: 8px; font-size: 13px; }
   .riv-foot .up { color: var(--good); } .riv-foot .down { color: var(--bad); }
+  .auto-line { font-size: 12.5px; color: var(--muted); margin: -8px 0 14px 2px; }
   .live-banner { background: var(--good-weak); border: 1px solid color-mix(in srgb, var(--good) 35%, transparent); border-radius: 10px; padding: 10px 14px; font-size: 13.5px; margin-bottom: 14px; }
   /* Avisos */
   .al-count { display: inline-block; min-width: 22px; text-align: center; font-size: 12px; border-radius: 999px; padding: 1px 7px; background: var(--surface-2); color: var(--ink-2); vertical-align: 3px; }
@@ -1479,6 +1480,7 @@
       <div class="subview" data-sub="resumo">
 <section class="card fav-card" id="fav-card"></section>
 <div class="live-banner" id="live-banner" role="status" hidden></div>
+<div class="auto-line" id="auto-line" hidden></div>
       <section class="card" id="todo" style="margin-bottom:16px"></section>
       <section class="card" id="alerts" style="margin-bottom:16px"></section>
       <div class="mgr-view" data-mgr="bruno"><div class="kpis" id="overview-kpis-bruno"></div></div>
@@ -8690,6 +8692,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 6 Nov, 20:00", "h": 9, "a": 7, "home
     const second = X.xi.filter(p => p.id !== X.cap.id).sort((a, b) => epAt(b, 0) - epAt(a, 0))[0];
     if (second && epAt(X.cap, 0) - epAt(second, 0) < 0.5) add(1, 'Capitão', `Capitão renhido: ${shortName(X.cap.name)} ≈${f1(epAt(X.cap, 0))} contra ${shortName(second.name)} ≈${f1(epAt(second, 0))}. Vê o Capitão H2H.`, {goto: 'semana', gotoSub: 'capitao'});
     try { dgwAlerts(add, squad); } catch (e) { console.error(e); }
+    try { autoUpdateAlerts(add, mgr); } catch (e) { console.error(e); }
     return A.sort((a, b) => b.sev - a.sev || (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
   }
   function renderAlerts() {
@@ -9498,6 +9501,23 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 6 Nov, 20:00", "h": 9, "a": 7, "home
     showView('semana', 'chips');
     setTimeout(() => { const c = document.getElementById('dgw-card'); if (c) c.scrollIntoView({behavior: 'smooth', block: 'start'}); }, 60);
   });
+
+  // V56: rotina diária automática (claude.ai/code). AUTO_UPDATE = {date, tipo: 'completa' | 'ultima_hora', gw, changes: {bruno: [...], marco: [...]}}
+  function autoUpdateLine() {
+    const el = document.getElementById('auto-line'); if (!el) return;
+    if (typeof AUTO_UPDATE === 'undefined' || !AUTO_UPDATE.date) { el.hidden = true; return; }
+    const d = new Date(AUTO_UPDATE.date);
+    const when = d.toLocaleString('pt-PT', {timeZone: 'Europe/Lisbon', weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'});
+    el.textContent = `Última atualização automática: ${when} · ${AUTO_UPDATE.tipo === 'completa' ? 'completa' : 'última hora'}`;
+    el.hidden = false;
+  }
+  function autoUpdateAlerts(add, mgr) {
+    if (typeof AUTO_UPDATE === 'undefined' || !AUTO_UPDATE.changes) return;
+    const age = (Date.now() - new Date(AUTO_UPDATE.date)) / 3600e3;
+    if (age > 48 || AUTO_UPDATE.gw !== GW_META.next) return;   // só para a jornada que aí vem e durante 2 dias
+    (AUTO_UPDATE.changes[mgr] || []).forEach(t => add(2, 'Mudou desde ontem', `Mudou desde ontem: ${t}`, {goto: 'semana', gotoSub: 'transferencias', isNew: true}));
+  }
+  try { autoUpdateLine(); } catch (e) { console.error(e); }
   // V53: conselhos da semana com números lidos dos dados; correm no fim do arranque (depois da calibração)
   // V53: cartão "Depois da Jornada N" e "Antes do deadline" do Bruno, gerados a partir dos dados oficiais
   function afterGwCard(mgr) {
@@ -9548,7 +9568,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 6 Nov, 20:00", "h": 9, "a": 7, "home
     } catch (e) { console.error(e); }
   }
   v53Texts();
-  var APP_VERSION = 'V54';
+  var APP_VERSION = 'V56';
   var TUT = {list: [], i: 0, mode: 'full', active: false, miss: []};
   const tutN = v => +(String(v || '').replace(/\D/g, '')) || 0;
   const tutSleep = ms => new Promise(r => setTimeout(r, ms));
@@ -9566,6 +9586,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 6 Nov, 20:00", "h": 9, "a": 7, "home
       {id: 'gloss', ix: 'semana/onze', since: 'V37', sel: '.qbtn', t: 'Botões "?"', d: () => 'Os botões "?" explicam as palavras difíceis (EO, xG, pontos esperados…) sem sair do sítio.'},
       {id: 'sino', ix: 'semana/resumo', since: 'V31', sel: '#bell-btn', t: 'Sino de avisos', d: () => `O número no sino são os avisos importantes (lesões, onzes, preços). Agora: ${tutSafe(() => buildAlerts().filter(a => a.sev >= 2).length, 0)}. Tocar leva-te à lista.`},
       {id: 'defs', ix: 'semana/resumo', since: 'V48', sel: '#set-btn', t: 'Definições', d: () => 'Em ⚙ escolhes o modo simples (só o essencial) ou completo, o tema claro ou escuro, e voltas a este tutorial.'},
+      {id: 'rotina56', ix: 'semana/resumo', since: 'V56', opt: true, sel: '#auto-line', t: 'Atualização automática diária', d: () => 'Todos os dias às 9h uma rotina na nuvem vê se há trabalho: depois de cada jornada faz a atualização completa; na véspera do deadline revê lesões, onzes prováveis e preços. Esta linha diz quando foi a última e de que tipo; se a troca, o capitão ou a chip sugeridos mudarem, aparece um aviso "Mudou desde ontem" no Resumo.'},
       {id: 'faixa', ix: 'semana/resumo', since: 'V30', opt: true, sel: '#live-banner', t: 'Atualização automática', d: () => 'A faixa verde diz quando os dados oficiais (classificação, plantéis, preços, lesões) foram atualizados sozinhos.'},
       {id: 'atalhos', ix: 'semana/resumo', since: 'V48', sel: '#fav-card', t: 'Atalhos e recentes', d: () => 'Toca na ☆ ao lado de um título para o guardares aqui. "Usaste recentemente" mostra os 3 últimos sítios. Separado para o Bruno e o Marco.'},
     ]},

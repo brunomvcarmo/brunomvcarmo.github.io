@@ -208,6 +208,8 @@ KEYS = ['id','n','t','c','p','sp','s','ch','nw','o','lo','ti','to','cc','cs','en
 js = []
 js.append('// ======================= DADOS DA JORNADA (V24) =======================')
 js.append('// Gerado por _build/pool/gen25.py. Tudo o que muda de semana para semana e não é texto vive aqui.')
+_AUTO = ROOT / '_build' / 'rotina' / 'auto.json'   # V56: última atualização automática (rotina.py marcar)
+if _AUTO.exists(): js.append('const AUTO_UPDATE = ' + json.dumps(json.load(open(_AUTO, encoding='utf-8')), ensure_ascii=False, separators=(',', ':')) + ';')
 js.append('const GW_META = ' + json.dumps(META, ensure_ascii=False) + ';')
 js.append('const POOL_KEYS = ' + json.dumps(KEYS) + ';')
 js.append('const POOL24 = [\n' + ',\n'.join(json.dumps([p[k] for k in KEYS], ensure_ascii=False, separators=(',', ':')) for p in pool) + '\n].map(r => Object.fromEntries(POOL_KEYS.map((k, i) => [k, r[i]])));')

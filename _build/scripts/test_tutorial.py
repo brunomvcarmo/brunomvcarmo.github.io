@@ -93,8 +93,10 @@ async def main():
             await pg.fill('#srch-q', 'ajuda'); await pg.wait_for_timeout(150); await pg.keyboard.press('Enter'); await pg.wait_for_timeout(300)
             if not await pg.is_visible('#tut-wel'): errs.append('Procurar "ajuda" não abre o tutorial')
             await pg.keyboard.press('Escape')
-            # novidades: quem viu o guia antigo (true) ou a V47 recebe "Ver o que há de novo"; quem viu a V49 recebe as da V54 (duplas e brancas); quem viu a V54 não recebe nada
-            for val, want in (('true', True), ('"V47"', True), ('"V49"', True), ('"V54"', False)):
+            # novidades: quem viu o guia antigo (true) ou uma versão anterior recebe "Ver o que há de novo"; quem viu a versão atual
+            # (APP_VERSION, lida da própria app) não recebe nada
+            cur = await pg.evaluate("APP_VERSION")
+            for val, want in (('true', True), ('"V47"', True), ('"V49"', True), (json.dumps(cur), False)):
                 pg2 = await b.new_page(viewport={'width': w, 'height': h})
                 await pg2.add_init_script("try{localStorage.setItem('fpl-tour-done'," + json.dumps(val) + ")}catch(e){}")
                 await pg2.goto(URL); await pg2.wait_for_timeout(1600)
