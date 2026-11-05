@@ -48,8 +48,17 @@ def decidir():
     now = datetime.now(timezone.utc)
     if '--qualquer-hora' not in sys.argv and lisboa(now).hour != 9:
         return dict(tipo='fora_de_hora', motivo=f'em Lisboa são {lisboa(now):%H:%M}; a rotina só trabalha às 9h')
-    M = meta(); boot = fpl('bootstrap-static/')
-    ev = {e['id']: e for e in boot['events']}
+    M = meta()
+    try:
+        boot = fpl('bootstrap-static/')
+    except Exception:
+        # sem acesso à API da FPL (rede do ambiente): usar as jornadas do live.json, que a GitHub Action atualiza
+        LV = json.loads((ROOT / 'live.json').read_text(encoding='utf-8'))
+        evs = [dict(id=e['id'], finished=e['finished'], deadline_time=e['deadline']) for e in LV['events']]
+        for e in evs: e['is_next'] = False
+        fut = [e for e in evs if datetime.strptime(e['deadline_time'], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc) > now]
+        if fut: min(fut, key=lambda e: e['id'])['is_next'] = True
+        boot = dict(events=evs, fonte='live.json')
     fin = [e['id'] for e in boot['events'] if e['finished']]
     last_done = max(fin) if fin else 0
     if last_done > M['last']:
@@ -59,7 +68,7 @@ def decidir():
         dl = datetime.strptime(nxt['deadline_time'], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
         h = (dl - now).total_seconds() / 3600
         if 0 < h <= 30:
-            return dict(tipo='ultima_hora', motivo=f'deadline da J{nxt["id"]} daqui a {h:.0f} h ({lisboa(dl):%a %d/%m %H:%M} em Lisboa)', next=nxt['id'], horas=round(h, 1))
+            return dict(tipo='ultima_hora', motivo=f'deadline da J{nxt["id"]} daqui a {h:.0f} h ({['seg','ter','qua','qui','sex','sáb','dom'][lisboa(dl).weekday()]} {lisboa(dl):%d/%m %H:%M} em Lisboa)', next=nxt['id'], horas=round(h, 1))
         return dict(tipo='nada', motivo=f'nenhuma jornada nova fechada e o deadline da J{nxt["id"]} é daqui a {h:.0f} h', next=nxt['id'], horas=round(h, 1))
     return dict(tipo='nada', motivo='sem próxima jornada (fim da época)')
 
