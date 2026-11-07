@@ -329,3 +329,25 @@ Ponto de regresso: commit 9dbd642 / tag `antes-rotina`.
 - CLAUDE.md: secção "Rotina diária" (o procedimento; a rotina só diz "Segue a secção Rotina diária do CLAUDE.md"). Decidir corre antes do setup (para os dias "nada" não gastarem recursos).
 - Rotina criada: `trig_01C7EHbVwa76gtDhGRsViBHn`, cron `0 8,9 * * *` UTC (9h em Lisboa no inverno e no verão), Sonnet 5.5, ambiente `env_017wgJjo7gPy8UtMNSy6u3Pj`, sem conectores MCP. Criada pela conta do Claude Code deste PC (aparece como "Sandra").
 - Testes na nuvem (5 nov, rotinas de uma vez, nos dois ambientes "Default"): a rede bloqueia fantasy.premierleague.com e os sites de pesquisa (só raw.githubusercontent.com e pypi.org passam) e o push dá 403 ("Claude doesn't have GitHub access … for your organization"). A rotina portou-se bem (registou o erro, não publicou). Falta: instalar a app Claude no GitHub com acesso ao repositório e pôr a lista de domínios no ambiente usado pela rotina.
+
+## V57 (7 nov 2026) — plantéis iguais aos da FPL
+
+**O problema ("as equipas na app não estão iguais às do site da FPL", 6-7 nov):**
+- A API pública da FPL (`entry/{id}/transfers/`, `entry/{id}/event/{gw}/picks/`) **só mostra as transferências da jornada seguinte depois do deadline**. Prova: a 6 nov às 14:32 UTC (deadline da J10 às 18:30), nenhum dos 20 tinha transferências da J10 na API. Depois do deadline apareceu, por exemplo, a do SLB77 feita a 6 nov às 07:54. O endpoint `my-team` mostra-as antes, mas precisa do login do dono — não usar (sem credenciais no projeto).
+- A Action "Atualizar dados FPL" só corria terça e sexta às 07:00 UTC, e o GitHub atrasa o cron horas: a de sexta 07:00 correu às 14:40. Por isso o `live.json` publicado ainda era o de terça (3 nov 15:41). Depois do deadline, os plantéis novos só chegavam na terça seguinte.
+- Os plantéis da app estavam iguais aos picks oficiais da J9 (os 20 conferidos). O que faltava eram as trocas feitas no site para a J10 e os picks da J10 depois do deadline.
+
+**O que mudou:**
+- **Plantéis:** `atualizar.py deadline` (fpl_fetch + apply_picks) → os 20 iguais aos picks da J10 (conferido: 0 diferenças; Bruno e Marco com o SQUAD_STATE certo).
+- **Action:** a Action acorda de 3 em 3 horas (`23 */3 * * *`) e `scripts/fpl_quando.py` decide se trabalha:
+  - sempre que é corrida à mão, à terça e à sexta, ou quando o live.json tem mais de 72 h;
+  - perto de um deadline (de 36 h antes a 30 h depois), quando o live.json tem mais de 2 h 30 min.
+  - Também ganhou `git pull --rebase` antes do push, por causa da Action do Ao vivo.
+- **App (`_build/patches/patch57.py`):**
+  - As transferências que o live.json lista com `event` > `picks.event` são aplicadas por cima dos picks, nos 20 (L.pend, L.bank) e no BASE_STATE do Bruno e do Marco (ft − n se forem para a próxima jornada).
+  - Etiqueta "Transferência feita para a J__ · capitão da J__: só se sabe depois do deadline" nos cartões dos Rivais.
+  - Nota `.v57-note` em Esta semana › Transferências e › Registar.
+  - O "C na J__" usa a jornada dos picks (`L.pgw`).
+  - O Registar explica que a FPL só mostra as trocas depois do deadline. O registo que já está nos dados oficiais diz "já nos dados oficiais" e não conta (`applyLog` já ignorava trocas cujo jogador que entra já está no plantel).
+  - Resumo: aviso "Dados" quando o live.json tem mais de 48 h (sev 3 a partir de 96 h).
+- **Teste com dados simulados:** pendente aplicado (Bruno e rival), aviso de 3 dias, sem erros.
