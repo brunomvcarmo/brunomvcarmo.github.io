@@ -46,7 +46,9 @@ def main():
 
     elements = {e['id']: [e['now_cost'], e['status'], e.get('chance_of_playing_next_round'), e.get('news', ''),
                           e.get('selected_by_percent', '0'), e.get('event_points', 0), e.get('total_points', 0),
-                          e.get('transfers_in_event', 0), e.get('transfers_out_event', 0)]
+                          e.get('transfers_in_event', 0), e.get('transfers_out_event', 0),
+                          # V58: data da notícia, amarelos, vermelhos e minutos da época (lesões e castigos)
+                          e.get('news_added'), e.get('yellow_cards', 0), e.get('red_cards', 0), e.get('minutes', 0)]
                 for e in boot['elements']}
 
     st = get(f'leagues-classic/{CLASSIC}/standings/?page_new_entries=1&page_standings=1&phase=1&t={stamp}')

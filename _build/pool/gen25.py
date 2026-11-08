@@ -101,10 +101,24 @@ for pid, s in snap.items():
                      en=num(last['ep_next']), tp=int(num(last['total_points'])), pts=pts, mn=mins,
                      xg=round(xg3, 2), xa=round(xa3, 2), dc=round(dc3 / (m3 / 90), 1) if m3 >= 90 else 0.0, m3=m3, ep=ep, _raw=raw))
 import model25
+# V58: disponibilidade prevista (lesões: jornada provável de regresso; castigos: confirmados e risco por amarelos).
+# Para quem tem uma previsão, o modelo calcula os pontos "se jogar" (f) e depois multiplica pelo fator de cada
+# jornada (ef: probabilidade de estar disponível, com 70% dos minutos na 1.ª jornada depois de voltar).
+import disponibilidade
+AVAIL = disponibilidade.compute(NEXT)
 def _avail(p, g):
     if g == NEXT and p['n'] in model25.READING: return 1.0
+    if p['id'] in AVAIL['p']: return 1.0
     return avail(p['s'], '' if p['ch'] is None else p['ch'], g)
 LAMBDAS = model25.apply(pool, snap, FIXG, HORIZON, NEXT, _avail, LAST)
+for p in pool:
+    r = AVAIL['p'].get(p['id'])
+    if not r: continue
+    r['f'] = p['ep'][:]
+    r['rd0'] = 1 if p['n'] in model25.READING else 0
+    fac = [1.0 if (i == 0 and r['rd0']) else r['ef'].get(str(g), 1.0) for i, g in enumerate(HORIZON)]
+    p['ep'] = [round(v * f, 1) for v, f in zip(p['ep'], fac)]
+    p['k'][3] = round(p['k'][3] * fac[0], 2)
 pool.sort(key=lambda x: (x['t'], ['gk', 'def', 'mid', 'fwd'].index(x['c']), -x['p']))
 byname = {p['n']: p for p in pool}; byid = {p['id']: p for p in pool}
 
@@ -369,5 +383,6 @@ with open(_BD + 'redesign/data25.js', 'a', encoding='utf-8', newline='\n') as fh
 import dgw_model
 DGW = dgw_model.build()
 with open(_BD + 'redesign/data25.js', 'a', encoding='utf-8', newline='\n') as fh:
+    fh.write('const AVAIL_PRED = ' + json.dumps(AVAIL, ensure_ascii=False, separators=(',', ':')) + ';\n')
     fh.write('const DGW_DATA = ' + json.dumps(DGW, ensure_ascii=False, separators=(',', ':')) + ';\n')
 print('DGW_DATA', len(DGW['events']), 'rondas de taça com jornada em conflito')

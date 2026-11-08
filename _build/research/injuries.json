@@ -1,0 +1,2873 @@
+{
+ "note": "Lesões: 'durations' = duração típica por tipo (dias: mínimo, normal, máximo ≈ percentil 90), com fonte; 'manual' = pesquisa na web por jogador (id da FPL): conferências de imprensa e páginas de lesões, com fonte e data — ATUALIZAR A CADA JORNADA (apagar o que já não vale). 'players' é escrito por _build/pool/disponibilidade.py.",
+ "durations": {
+  "hamstring": {
+   "min": 4,
+   "typ": 13,
+   "max": 36,
+   "note": "estrutural; funcional 2/5/11",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "thigh": {
+   "min": 4,
+   "typ": 13,
+   "max": 41,
+   "note": "quadríceps estrutural; funcional 1/4/9",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "calf": {
+   "min": 4,
+   "typ": 13,
+   "max": 35,
+   "note": "estrutural; funcional 1/4/12",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "groin": {
+   "min": 2,
+   "typ": 8,
+   "max": 27,
+   "note": "dor dos adutores",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "ankle": {
+   "min": 2,
+   "typ": 8,
+   "max": 32,
+   "note": "ligamento lateral do tornozelo (entorse)",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "knee": {
+   "min": 3,
+   "typ": 16,
+   "max": 56,
+   "note": "joelho sem especificar: usa-se o ligamento colateral medial (o capsular 2/6/24 é curto demais para quem a FPL dá como lesionado)",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "knee_ligament": {
+   "min": 3,
+   "typ": 16,
+   "max": 56,
+   "note": "ligamento colateral medial (MCL); LCA 129/205/292",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "foot": {
+   "min": 2,
+   "typ": 10,
+   "max": 42,
+   "note": "pé sem especificar: entre a contusão (1/4/14) e as fraturas (estimativa)",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "hip": {
+   "min": 2,
+   "typ": 8,
+   "max": 29,
+   "note": "dor dos flexores da anca",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "back": {
+   "min": 1,
+   "typ": 4,
+   "max": 14,
+   "note": "dor lombar",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "head": {
+   "min": 6,
+   "typ": 8,
+   "max": 14,
+   "note": "concussão: estudo UEFA 2/5/14, mas na Premier League ninguém volta a jogar antes do 6.º dia (protocolo graduado)",
+   "source": "https://europepmc.org/articles/PMC7146935",
+   "source_min": "https://www.skysports.com/football/news/11662/10584878/premier-league-head-injury-and-concussion-rules-explained"
+  },
+  "illness": {
+   "min": 1,
+   "typ": 3,
+   "max": 7,
+   "note": "mediana 3 dias (IQR 2) do estudo de doença em futebol profissional (OSTRC/FRG Suécia); min/max são estimativa minha, a fonte não dá percentis",
+   "source": "https://klokavskade.no/en/about-us/news/illness-is-not-a-major-contributor-to-illness-in-male-professional-football"
+  },
+  "knock": {
+   "min": 1,
+   "typ": 4,
+   "max": 12,
+   "note": "pancada (contusão da coxa)",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "shin": {
+   "min": 1,
+   "typ": 4,
+   "max": 14,
+   "note": "contusão da perna (canela); fraturas/stress não estão na tabela",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "acl": {
+   "min": 129,
+   "typ": 205,
+   "max": 292,
+   "note": "ligamento cruzado anterior",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "fracture": {
+   "min": 28,
+   "typ": 56,
+   "max": 100,
+   "note": "estimativa (o estudo UEFA não tem fraturas nesta tabela)",
+   "source": "estimativa"
+  },
+  "achilles": {
+   "min": 14,
+   "typ": 35,
+   "max": 180,
+   "note": "estimativa (tendinopatia a rotura)",
+   "source": "estimativa"
+  },
+  "shoulder": {
+   "min": 5,
+   "typ": 14,
+   "max": 42,
+   "note": "estimativa",
+   "source": "estimativa"
+  },
+  "muscle": {
+   "min": 4,
+   "typ": 13,
+   "max": 36,
+   "note": "lesão muscular sem local: como o posterior da coxa",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  },
+  "unknown": {
+   "min": 4,
+   "typ": 13,
+   "max": 45,
+   "note": "sem tipo: mediana das lesões musculares, cauda mais longa (estimativa)",
+   "source": "https://europepmc.org/articles/PMC7146935"
+  }
+ },
+ "manual": {
+  "165": {
+   "name": "Joao Pedro",
+   "type": "thigh",
+   "summary_pt": "Lesão na coxa (quadríceps) num treino a 23-24 out; Alonso disse 'umas semanas' e que o reavalia depois da paragem, antes do Leeds (21 nov).",
+   "timeline": {
+    "min_days": 13,
+    "max_days": null,
+    "back_date_earliest": "2026-11-21",
+    "back_date_latest": null,
+    "from_manager": true
+   },
+   "source": "https://www.fantasyfootballscout.co.uk/2026/11/06/lacroix-martinez-joao-pedro-chelsea-injury-latest-for-fpl-gameweek-10",
+   "source_date": "2026-11-06",
+   "researched": "2026-11-08"
+  },
+  "391": {
+   "name": "Joško Gvardiol",
+   "type": "unknown",
+   "summary_pt": "Saiu ao intervalo em Forest (7 nov) a pedido; Maresca disse que já tinha 'problemas durante a semana', sem dizer o quê; novidades no início da semana.",
+   "timeline": null,
+   "source": "https://www.sportsmole.co.uk/football/man-city/injury-news/news/problems-maresca-delivers-double-man-city-injury-worry-after-forest-defeat_608691.html",
+   "source_date": "2026-11-07",
+   "researched": "2026-11-08"
+  },
+  "388": {
+   "name": "Marc Guéhi",
+   "type": "unknown",
+   "summary_pt": "Saiu lesionado ao intervalo em Forest (7 nov); o City não disse o que é nem prazo; próximo jogo só a 21 nov (Fulham).",
+   "timeline": null,
+   "source": "https://thefalse9.com/2026/11/marc-guehi-injury-update-return-date.html",
+   "source_date": "2026-11-08",
+   "researched": "2026-11-08"
+  },
+  "173": {
+   "name": "Bobby Thomas",
+   "type": "calf",
+   "summary_pt": "Lampard falou de um 'pequeno problema na barriga da perna', não de longa duração; antes do Everton (6 nov) disse só 'vamos ver'.",
+   "timeline": null,
+   "source": "https://thephoenix.counterpress.media/news/a-small-calf-injury-frank-lampard-shares-good-news-on-bobby-thomas-174692",
+   "source_date": "2026-10-29",
+   "researched": "2026-11-08"
+  },
+  "397": {
+   "name": "Antoine Semenyo",
+   "type": "knee",
+   "summary_pt": "Lesão no joelho contra o Ipswich (~18 out); Maresca: 'podem ser oito semanas' – regresso previsto a meio de dezembro (J15-J16).",
+   "timeline": {
+    "min_days": 34,
+    "max_days": 42,
+    "back_date_earliest": "2026-12-12",
+    "back_date_latest": "2026-12-20",
+    "from_manager": true
+   },
+   "source": "https://www.fantasyfootballscout.co.uk/2026/10/19/haaland-semenyo-latest-fpl-team-news-ahead-of-gameweek-8",
+   "source_date": "2026-10-19",
+   "researched": "2026-11-08"
+  },
+  "12": {
+   "name": "Bukayo Saka",
+   "type": "thigh",
+   "summary_pt": "Lesão no quadríceps contra o Bayern (21 out); Arteta: 'semanas', só volta ao relvado depois da paragem e é cedo para o City/Real/Spurs; imprensa fala de 6-8 semanas.",
+   "timeline": {
+    "min_days": 24,
+    "max_days": 38,
+    "back_date_earliest": "2026-12-02",
+    "back_date_latest": "2026-12-16",
+    "from_manager": false
+   },
+   "source": "https://www.fantasyfootballscout.co.uk/2026/11/06/konsa-saliba-saka-arsenal-injury-latest-for-fpl-gameweek-10",
+   "source_date": "2026-11-06",
+   "researched": "2026-11-08"
+  },
+  "200": {
+   "name": "Maxence Lacroix",
+   "type": "hamstring",
+   "summary_pt": "Lesão no posterior da coxa a meio da semana (~28 out); Alonso: não volta antes da paragem, novidades antes do Leeds (21 nov).",
+   "timeline": {
+    "min_days": 13,
+    "max_days": null,
+    "back_date_earliest": "2026-11-21",
+    "back_date_latest": null,
+    "from_manager": true
+   },
+   "source": "https://www.fantasyfootballscout.co.uk/2026/10/30/joao-pedro-lacroix-martinez-chelsea-injury-latest-for-fpl-gameweek-9",
+   "source_date": "2026-11-06",
+   "researched": "2026-11-08"
+  },
+  "268": {
+   "name": "Josh King",
+   "type": "groin",
+   "summary_pt": "Sentiu a virilha contra o Newcastle (7 nov); Arbeloa: 'parece nada de grave', talvez exames; está convocado para Inglaterra.",
+   "timeline": {
+    "min_days": 13,
+    "max_days": null,
+    "back_date_earliest": "2026-11-21",
+    "back_date_latest": null,
+    "from_manager": false
+   },
+   "source": "https://thefalse9.com/2026/11/josh-king-injury-update-return-date.html",
+   "source_date": "2026-11-07",
+   "researched": "2026-11-08"
+  },
+  "423": {
+   "name": "Luke Shaw",
+   "type": "unknown",
+   "summary_pt": "Lesão não revelada desde 10 out (Spurs); Carrick disse a 2 nov que não volta antes da paragem; sem data.",
+   "timeline": {
+    "min_days": 13,
+    "max_days": null,
+    "back_date_earliest": "2026-11-21",
+    "back_date_latest": null,
+    "from_manager": true
+   },
+   "source": "https://www.fantasyfootballscout.co.uk/2026/11/02/amad-dorgu-rashford-latest-fpl-team-news-pre-gameweek-10",
+   "source_date": "2026-11-02",
+   "researched": "2026-11-08"
+  },
+  "142": {
+   "name": "Reece James",
+   "type": "knee",
+   "summary_pt": "Pequena cirurgia ao joelho (meados out); Alonso: 'não será pouco tempo… antes do Natal, depois do Natal, veremos'; imprensa aponta para janeiro.",
+   "timeline": {
+    "min_days": 41,
+    "max_days": 56,
+    "back_date_earliest": "2026-12-19",
+    "back_date_latest": "2027-01-03",
+    "from_manager": true
+   },
+   "source": "https://www.espn.com/soccer/story/_/id/50194856/chelsea-reece-james-undergoes-minor-knee-surgery",
+   "source_date": "2026-10-16",
+   "researched": "2026-11-08"
+  },
+  "28": {
+   "name": "Emiliano Martínez",
+   "type": "head",
+   "summary_pt": "Fratura do maxilar (operado) contra o Everton em outubro; já treina e pode jogar com máscara – decisão de última hora (Alonso, 6 nov).",
+   "timeline": {
+    "min_days": 0,
+    "max_days": 13,
+    "back_date_earliest": "2026-11-08",
+    "back_date_latest": "2026-11-21",
+    "from_manager": true
+   },
+   "source": "https://www.fantasyfootballscout.co.uk/2026/11/06/lacroix-martinez-joao-pedro-chelsea-injury-latest-for-fpl-gameweek-10",
+   "source_date": "2026-11-06",
+   "researched": "2026-11-08"
+  },
+  "544": {
+   "name": "Granit Xhaka",
+   "type": "calf",
+   "summary_pt": "Saiu logo no início contra o Chelsea (8 nov) com suspeita de lesão na barriga da perna; vai fazer exames, ainda sem palavras do treinador.",
+   "timeline": {
+    "min_days": 13,
+    "max_days": 42,
+    "back_date_earliest": "2026-11-21",
+    "back_date_latest": "2026-12-20",
+    "from_manager": false
+   },
+   "source": "https://www.sportsmole.co.uk/football/sunderland/injury-news/news/granit-goes-xhaka-forced-off-with-injury-in-sunderland-chelsea_608727.html",
+   "source_date": "2026-11-08",
+   "researched": "2026-11-08"
+  },
+  "335": {
+   "name": "Anton Stach",
+   "type": "foot",
+   "summary_pt": "Joga com o dedo mindinho do pé partido (e um dedo da mão), com infiltrações; Farke: talvez não para titular, mas pode ir ao banco nos próximos jogos.",
+   "timeline": {
+    "min_days": 13,
+    "max_days": null,
+    "back_date_earliest": "2026-11-21",
+    "back_date_latest": null,
+    "from_manager": true
+   },
+   "source": "https://www.leedsunited.com/en/news/boss-takes-unusual-step-with-midfielders-injury-to-highlight-training-disruption",
+   "source_date": "2026-11-05",
+   "researched": "2026-11-08"
+  },
+  "357": {
+   "name": "Jeremie Frimpong",
+   "type": "hamstring",
+   "summary_pt": "Nova lesão muscular (posterior da coxa) em Brentford (~18 out); Iraola disse que seria difícil voltar antes da paragem; ainda fora a 6 nov.",
+   "timeline": {
+    "min_days": 14,
+    "max_days": null,
+    "back_date_earliest": "2026-11-22",
+    "back_date_latest": null,
+    "from_manager": true
+   },
+   "source": "https://www.caughtoffside.com/2026/10/19/jeremie-frimpong-injury-liverpool-november-return/",
+   "source_date": "2026-10-19",
+   "researched": "2026-11-08"
+  },
+  "556": {
+   "name": "Matt Targett",
+   "type": "ankle",
+   "summary_pt": "Voltou a torcer o tornozelo num treino; o treinador Jakirovic: 'dois meses fora, sem cirurgia' (15 out) – regresso a meio de dezembro.",
+   "timeline": {
+    "min_days": 34,
+    "max_days": 41,
+    "back_date_earliest": "2026-12-12",
+    "back_date_latest": "2026-12-19",
+    "from_manager": true
+   },
+   "source": "https://www.rotowire.com/soccer/headlines/matt-targett-injury-facing-two-months-out-539457",
+   "source_date": "2026-10-15",
+   "researched": "2026-11-08"
+  },
+  "429": {
+   "name": "Marcus Rashford",
+   "type": "hip",
+   "summary_pt": "Problema na anca; Carrick avalia 'dia a dia' (2 nov) e falhava de novo a J10; imprensa aponta o regresso para 22 nov (Liverpool).",
+   "timeline": {
+    "min_days": 0,
+    "max_days": 14,
+    "back_date_earliest": "2026-11-08",
+    "back_date_latest": "2026-11-22",
+    "from_manager": true
+   },
+   "source": "https://thefalse9.com/2026/11/rashford-hip-injury-update-return-date.html",
+   "source_date": "2026-11-06",
+   "researched": "2026-11-08"
+  },
+  "439": {
+   "name": "Benjamin Sesko",
+   "type": "shin",
+   "summary_pt": "Problema na canela (já vinha da época passada); Carrick: fora 'por um período mais longo'; imprensa: só volta no ano novo.",
+   "timeline": {
+    "min_days": 54,
+    "max_days": null,
+    "back_date_earliest": "2027-01-01",
+    "back_date_latest": null,
+    "from_manager": false
+   },
+   "source": "https://www.goal.com/en-us/news/benjamin-sesko-injury-update-man-utd/bltbe6be35a8ca211a0",
+   "source_date": "2026-10-28",
+   "researched": "2026-11-08"
+  },
+  "371": {
+   "name": "Ryan Gravenberch",
+   "type": "foot",
+   "summary_pt": "Dor no calcanhar; Iraola: 'é coisa de dia a dia, questão de dor' – podia jogar contra o Palace (8 nov).",
+   "timeline": {
+    "min_days": 0,
+    "max_days": 14,
+    "back_date_earliest": "2026-11-08",
+    "back_date_latest": "2026-11-22",
+    "from_manager": true
+   },
+   "source": "https://www.fantasyfootballscout.co.uk/2026/11/06/gravenberch-ekitike-liverpool-injury-latest-for-fpl-gameweek-10",
+   "source_date": "2026-11-06",
+   "researched": "2026-11-08"
+  },
+  "6": {
+   "name": "William Saliba",
+   "type": "back",
+   "summary_pt": "Recuperado das costas: Arteta disse 'apto' (3 nov), jogou nos sub-21 a 8 nov para ganhar minutos e conta estar a 100% depois da paragem.",
+   "timeline": {
+    "min_days": 13,
+    "max_days": 13,
+    "back_date_earliest": "2026-11-21",
+    "back_date_latest": "2026-11-21",
+    "from_manager": true
+   },
+   "source": "https://www.fantasyfootballscout.co.uk/2026/11/08/fpl-notes-artetas-plan-for-saliba-rice-fine-belloumi-injury",
+   "source_date": "2026-11-08",
+   "researched": "2026-11-08"
+  }
+ },
+ "updated": "2026-11-08T18:02:50Z",
+ "players": {
+  "12": {
+   "name": "Saka",
+   "team": 1,
+   "status": "i",
+   "chance": 0,
+   "news": "Thigh injury - Unknown return date",
+   "news_added": "2026-10-21T20:30:09.540957Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "thigh",
+   "type_pt": "coxa",
+   "basis": "notícia",
+   "late": false,
+   "model_days": {
+    "min": 38.1,
+    "typical": 48.1,
+    "max": 62.1,
+    "since": "2026-10-21T20:30:09Z"
+   },
+   "web": {
+    "name": "Bukayo Saka",
+    "type": "thigh",
+    "summary_pt": "Lesão no quadríceps contra o Bayern (21 out); Arteta: 'semanas', só volta ao relvado depois da paragem e é cedo para o City/Real/Spurs; imprensa fala de 6-8 semanas.",
+    "timeline": {
+     "min_days": 24,
+     "max_days": 38,
+     "back_date_earliest": "2026-12-02",
+     "back_date_latest": "2026-12-16",
+     "from_manager": false
+    },
+    "source": "https://www.fantasyfootballscout.co.uk/2026/11/06/konsa-saliba-saka-arsenal-injury-latest-for-fpl-gameweek-10",
+    "source_date": "2026-11-06",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.0,
+    "J12": 0.0,
+    "J13": 0.03,
+    "J14": 0.28,
+    "J15": 0.67,
+    "J16": 0.86
+   },
+   "likely_return": "J15",
+   "likely_return_p": 0.67
+  },
+  "48": {
+   "name": "Onana",
+   "team": 2,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.352497Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 54.1,
+    "max": 162.4,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.02,
+    "J12": 0.1,
+    "J13": 0.15,
+    "J14": 0.18,
+    "J15": 0.29,
+    "J16": 0.38
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "596": {
+   "name": "Ruggeri",
+   "team": 2,
+   "status": "i",
+   "chance": 0,
+   "news": "Hamstring injury - Expected back 2 Jan",
+   "news_added": "2026-10-10T18:00:10.750593Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 80.2,
+    "typical": 83.2,
+    "max": 90.2,
+    "since": "2026-10-10T18:00:10Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.0,
+    "J12": 0.0,
+    "J13": 0.0,
+    "J14": 0.0,
+    "J15": 0.0,
+    "J16": 0.0
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "611": {
+   "name": "Wan-Bissaka",
+   "team": 2,
+   "status": "d",
+   "chance": 50,
+   "news": "Hamstring injury - 50% chance of playing",
+   "news_added": "2026-10-17T19:30:10.120990Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 36,
+    "since": "2026-10-17T19:30:10Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.5,
+    "J12": 0.82,
+    "J13": 0.94,
+    "J14": 0.98,
+    "J15": 0.99,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.5
+  },
+  "63": {
+   "name": "Milosavljević",
+   "team": 3,
+   "status": "i",
+   "chance": 0,
+   "news": "Thigh injury - Expected back 31 Oct",
+   "news_added": "2026-08-06T10:00:10.456051Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "thigh",
+   "type_pt": "coxa",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 82.6,
+    "typical": 85.6,
+    "max": 92.6,
+    "since": "2026-08-06T10:00:10Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.81,
+    "J12": 0.92,
+    "J13": 0.94,
+    "J14": 0.95,
+    "J15": 0.97,
+    "J16": 0.98
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.81
+  },
+  "65": {
+   "name": "J.Araujo",
+   "team": 3,
+   "status": "i",
+   "chance": 0,
+   "news": "Thigh injury - Unknown return date",
+   "news_added": "2026-08-09T08:00:05.645826Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "thigh",
+   "type_pt": "coxa",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 45.7,
+    "max": 137.1,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.04,
+    "J12": 0.15,
+    "J13": 0.2,
+    "J14": 0.24,
+    "J15": 0.36,
+    "J16": 0.43
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "76": {
+   "name": "Tóth.A",
+   "team": 3,
+   "status": "i",
+   "chance": 0,
+   "news": "Hamstring injury - Unknown return date",
+   "news_added": "2026-10-23T11:30:09.133819Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 36,
+    "since": "2026-10-23T11:30:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.58,
+    "J12": 0.74,
+    "J13": 0.78,
+    "J14": 0.81,
+    "J15": 0.87,
+    "J16": 0.9
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.58
+  },
+  "573": {
+   "name": "Sanchez",
+   "team": 3,
+   "status": "i",
+   "chance": 0,
+   "news": "Ankle injury - Unknown return date",
+   "news_added": "2026-11-05T21:30:08.441541Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "ankle",
+   "type_pt": "tornozelo",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 2,
+    "typical": 8,
+    "max": 32,
+    "since": "2026-11-05T21:30:08Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.71,
+    "J12": 0.83,
+    "J13": 0.86,
+    "J14": 0.88,
+    "J15": 0.91,
+    "J16": 0.93
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.71
+  },
+  "89": {
+   "name": "Henry",
+   "team": 4,
+   "status": "i",
+   "chance": 0,
+   "news": "Hip injury - Unknown return date",
+   "news_added": "2026-10-27T16:30:09.444144Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hip",
+   "type_pt": "anca",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 2,
+    "typical": 8,
+    "max": 29,
+    "since": "2026-10-27T16:30:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.64,
+    "J12": 0.73,
+    "J13": 0.78,
+    "J14": 0.81,
+    "J15": 0.86,
+    "J16": 0.89
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.64
+  },
+  "99": {
+   "name": "Milambo",
+   "team": 4,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.384798Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 54.1,
+    "max": 162.4,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.04,
+    "J12": 0.09,
+    "J13": 0.15,
+    "J14": 0.19,
+    "J15": 0.27,
+    "J16": 0.36
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "100": {
+   "name": "Carvalho",
+   "team": 4,
+   "status": "i",
+   "chance": 0,
+   "news": "Knock - Expected back 23 Nov",
+   "news_added": "2026-10-30T14:30:09.456391Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knock",
+   "type_pt": "pancada",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 20.4,
+    "typical": 23.4,
+    "max": 30.4,
+    "since": "2026-10-30T14:30:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.48,
+    "J12": 0.84,
+    "J13": 0.93,
+    "J14": 0.96,
+    "J15": 0.98,
+    "J16": 0.99
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.84
+  },
+  "103": {
+   "name": "Dasilva",
+   "team": 4,
+   "status": "d",
+   "chance": 25,
+   "news": "Hamstring injury - 25% chance of playing",
+   "news_added": "2026-09-04T13:30:08.371955Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 36,
+    "since": "2026-09-04T13:30:08Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.25,
+    "J12": 0.74,
+    "J13": 0.91,
+    "J14": 0.97,
+    "J15": 0.99,
+    "J16": 1.0
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.74
+  },
+  "107": {
+   "name": "Furo",
+   "team": 4,
+   "status": "i",
+   "chance": 0,
+   "news": "Unspecified injury - Unknown return date",
+   "news_added": "2026-09-14T14:00:09.985723Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 27.6,
+    "max": 82.8,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.19,
+    "J12": 0.32,
+    "J13": 0.41,
+    "J14": 0.47,
+    "J15": 0.58,
+    "J16": 0.67
+   },
+   "likely_return": "J15",
+   "likely_return_p": 0.58
+  },
+  "121": {
+   "name": "Mitoma",
+   "team": 5,
+   "status": "i",
+   "chance": 0,
+   "news": "Hamstring injury - Expected back 22 Nov",
+   "news_added": "2026-07-24T18:30:10.661894Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 117.2,
+    "typical": 120.2,
+    "max": 127.2,
+    "since": "2026-07-24T18:30:10Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.44,
+    "J12": 0.89,
+    "J13": 0.94,
+    "J14": 0.96,
+    "J15": 0.99,
+    "J16": 0.99
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.89
+  },
+  "135": {
+   "name": "Yohanna",
+   "team": 5,
+   "status": "i",
+   "chance": 0,
+   "news": "Unspecified injury - Expected back 22 Nov",
+   "news_added": "2026-09-10T13:00:08.617941Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 69.5,
+    "typical": 72.5,
+    "max": 79.5,
+    "since": "2026-09-10T13:00:08Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.43,
+    "J12": 0.89,
+    "J13": 0.94,
+    "J14": 0.96,
+    "J15": 0.99,
+    "J16": 0.99
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.89
+  },
+  "137": {
+   "name": "Tzimas",
+   "team": 5,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.432796Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 54.1,
+    "max": 162.4,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.03,
+    "J12": 0.11,
+    "J13": 0.15,
+    "J14": 0.18,
+    "J15": 0.28,
+    "J16": 0.37
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "139": {
+   "name": "Ferguson",
+   "team": 5,
+   "status": "i",
+   "chance": 0,
+   "news": "Ankle injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.448357Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "ankle",
+   "type_pt": "tornozelo",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 54.1,
+    "max": 162.4,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.03,
+    "J12": 0.11,
+    "J13": 0.15,
+    "J14": 0.18,
+    "J15": 0.28,
+    "J16": 0.37
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "328": {
+   "name": "Struijk",
+   "team": 5,
+   "status": "i",
+   "chance": 0,
+   "news": "Hamstring injury - Expected back 8 Nov",
+   "news_added": "2026-10-16T17:30:09.428175Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 19.3,
+    "typical": 22.3,
+    "max": 29.3,
+    "since": "2026-10-16T17:30:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.92,
+    "J12": 0.97,
+    "J13": 0.98,
+    "J14": 0.98,
+    "J15": 0.99,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.92
+  },
+  "652": {
+   "name": "Azeez",
+   "team": 5,
+   "status": "i",
+   "chance": 0,
+   "news": "Hamstring injury - Expected back 8 Nov",
+   "news_added": "2026-09-04T11:30:08.661589Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 61.5,
+    "typical": 64.5,
+    "max": 71.5,
+    "since": "2026-09-04T11:30:08Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.92,
+    "J12": 0.97,
+    "J13": 0.98,
+    "J14": 0.98,
+    "J15": 0.99,
+    "J16": 0.99
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.92
+  },
+  "28": {
+   "name": "Martinez",
+   "team": 6,
+   "status": "d",
+   "chance": 75,
+   "news": "Head injury - 75% chance of playing",
+   "news_added": "2026-10-17T13:30:08.724000Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "head",
+   "type_pt": "cabeça/concussão",
+   "basis": "treinador",
+   "late": false,
+   "model_days": {
+    "min": 18.4,
+    "typical": 27.9,
+    "max": 41.4,
+    "since": "2026-10-17T13:30:08Z"
+   },
+   "web": {
+    "name": "Emiliano Martínez",
+    "type": "head",
+    "summary_pt": "Fratura do maxilar (operado) contra o Everton em outubro; já treina e pode jogar com máscara – decisão de última hora (Alonso, 6 nov).",
+    "timeline": {
+     "min_days": 0,
+     "max_days": 13,
+     "back_date_earliest": "2026-11-08",
+     "back_date_latest": "2026-11-21",
+     "from_manager": true
+    },
+    "source": "https://www.fantasyfootballscout.co.uk/2026/11/06/lacroix-martinez-joao-pedro-chelsea-injury-latest-for-fpl-gameweek-10",
+    "source_date": "2026-11-06",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
+  },
+  "142": {
+   "name": "James",
+   "team": 6,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-10-10T13:30:08.699019Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "treinador",
+   "late": false,
+   "model_days": {
+    "min": 66.4,
+    "typical": 76.9,
+    "max": 91.4,
+    "since": "2026-10-10T13:30:08Z"
+   },
+   "web": {
+    "name": "Reece James",
+    "type": "knee",
+    "summary_pt": "Pequena cirurgia ao joelho (meados out); Alonso: 'não será pouco tempo… antes do Natal, depois do Natal, veremos'; imprensa aponta para janeiro.",
+    "timeline": {
+     "min_days": 41,
+     "max_days": 56,
+     "back_date_earliest": "2026-12-19",
+     "back_date_latest": "2027-01-03",
+     "from_manager": true
+    },
+    "source": "https://www.espn.com/soccer/story/_/id/50194856/chelsea-reece-james-undergoes-minor-knee-surgery",
+    "source_date": "2026-10-16",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.0,
+    "J12": 0.0,
+    "J13": 0.0,
+    "J14": 0.0,
+    "J15": 0.0,
+    "J16": 0.13
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "148": {
+   "name": "Hato",
+   "team": 6,
+   "status": "i",
+   "chance": 0,
+   "news": "Unspecified injury - Unknown return date",
+   "news_added": "2026-10-29T22:00:09.909621Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 45,
+    "since": "2026-10-29T22:00:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.56,
+    "J12": 0.68,
+    "J13": 0.75,
+    "J14": 0.78,
+    "J15": 0.83,
+    "J16": 0.88
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.56
+  },
+  "151": {
+   "name": "Acheampong",
+   "team": 6,
+   "status": "d",
+   "chance": 75,
+   "news": "Unspecified injury - 75% chance of playing",
+   "news_added": "2026-11-08T15:00:09.230933Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 45,
+    "since": "2026-11-08T15:00:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
+  },
+  "158": {
+   "name": "Gittens",
+   "team": 6,
+   "status": "i",
+   "chance": 0,
+   "news": "Ankle injury - Unknown return date",
+   "news_added": "2026-09-26T05:30:09.245832Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "ankle",
+   "type_pt": "tornozelo",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 21.8,
+    "max": 65.3,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.21,
+    "J12": 0.41,
+    "J13": 0.53,
+    "J14": 0.58,
+    "J15": 0.69,
+    "J16": 0.78
+   },
+   "likely_return": "J13",
+   "likely_return_p": 0.53
+  },
+  "165": {
+   "name": "João Pedro",
+   "team": 6,
+   "status": "i",
+   "chance": 0,
+   "news": "Thigh injury - Unknown return date",
+   "news_added": "2026-10-24T16:30:09.687729Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "thigh",
+   "type_pt": "coxa",
+   "basis": "treinador",
+   "late": false,
+   "model_days": {
+    "min": 25.3,
+    "typical": 29.3,
+    "max": 43.3,
+    "since": "2026-10-24T16:30:09Z"
+   },
+   "web": {
+    "name": "Joao Pedro",
+    "type": "thigh",
+    "summary_pt": "Lesão na coxa (quadríceps) num treino a 23-24 out; Alonso disse 'umas semanas' e que o reavalia depois da paragem, antes do Leeds (21 nov).",
+    "timeline": {
+     "min_days": 13,
+     "max_days": null,
+     "back_date_earliest": "2026-11-21",
+     "back_date_latest": null,
+     "from_manager": true
+    },
+    "source": "https://www.fantasyfootballscout.co.uk/2026/11/06/lacroix-martinez-joao-pedro-chelsea-injury-latest-for-fpl-gameweek-10",
+    "source_date": "2026-11-06",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.22,
+    "J12": 0.72,
+    "J13": 0.84,
+    "J14": 0.88,
+    "J15": 0.93,
+    "J16": 0.96
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.72
+  },
+  "200": {
+   "name": "Lacroix",
+   "team": 6,
+   "status": "i",
+   "chance": 0,
+   "news": "Hamstring injury - Unknown return date",
+   "news_added": "2026-10-28T23:00:10.088612Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "treinador",
+   "late": false,
+   "model_days": {
+    "min": 21.0,
+    "typical": 25.0,
+    "max": 39.0,
+    "since": "2026-10-28T23:00:10Z"
+   },
+   "web": {
+    "name": "Maxence Lacroix",
+    "type": "hamstring",
+    "summary_pt": "Lesão no posterior da coxa a meio da semana (~28 out); Alonso: não volta antes da paragem, novidades antes do Leeds (21 nov).",
+    "timeline": {
+     "min_days": 13,
+     "max_days": null,
+     "back_date_earliest": "2026-11-21",
+     "back_date_latest": null,
+     "from_manager": true
+    },
+    "source": "https://www.fantasyfootballscout.co.uk/2026/10/30/joao-pedro-lacroix-martinez-chelsea-injury-latest-for-fpl-gameweek-9",
+    "source_date": "2026-11-06",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.23,
+    "J12": 0.72,
+    "J13": 0.84,
+    "J14": 0.88,
+    "J15": 0.93,
+    "J16": 0.96
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.72
+  },
+  "104": {
+   "name": "Onyeka",
+   "team": 7,
+   "status": "d",
+   "chance": 50,
+   "news": "Groin injury - 50% chance of playing",
+   "news_added": "2026-11-05T09:00:09.236330Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "groin",
+   "type_pt": "virilha/adutor",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 2,
+    "typical": 8,
+    "max": 27,
+    "since": "2026-11-05T09:00:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.5,
+    "J12": 0.82,
+    "J13": 0.94,
+    "J14": 0.98,
+    "J15": 0.99,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.5
+  },
+  "173": {
+   "name": "Thomas",
+   "team": 7,
+   "status": "d",
+   "chance": 50,
+   "news": "Calf injury - 50% chance of playing",
+   "news_added": "2026-10-24T17:00:09.115906Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "calf",
+   "type_pt": "gémeo",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 35,
+    "since": "2026-10-24T17:00:09Z"
+   },
+   "web": {
+    "name": "Bobby Thomas",
+    "type": "calf",
+    "summary_pt": "Lampard falou de um 'pequeno problema na barriga da perna', não de longa duração; antes do Everton (6 nov) disse só 'vamos ver'.",
+    "timeline": null,
+    "source": "https://thephoenix.counterpress.media/news/a-small-calf-injury-frank-lampard-shares-good-news-on-bobby-thomas-174692",
+    "source_date": "2026-10-29",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.5,
+    "J12": 0.82,
+    "J13": 0.94,
+    "J14": 0.98,
+    "J15": 0.99,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.5
+  },
+  "180": {
+   "name": "Woolfenden",
+   "team": 7,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-08-27T14:56:28.718566Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 36.6,
+    "max": 109.7,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.07,
+    "J12": 0.2,
+    "J13": 0.27,
+    "J14": 0.33,
+    "J15": 0.46,
+    "J16": 0.54
+   },
+   "likely_return": "J16",
+   "likely_return_p": 0.54
+  },
+  "182": {
+   "name": "Amenda",
+   "team": 7,
+   "status": "i",
+   "chance": 0,
+   "news": "Calf injury - Unknown return date",
+   "news_added": "2026-09-17T07:30:09.329041Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "calf",
+   "type_pt": "gémeo",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 26.2,
+    "max": 78.7,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.15,
+    "J12": 0.34,
+    "J13": 0.42,
+    "J14": 0.49,
+    "J15": 0.62,
+    "J16": 0.69
+   },
+   "likely_return": "J15",
+   "likely_return_p": 0.62
+  },
+  "187": {
+   "name": "Eccles",
+   "team": 7,
+   "status": "i",
+   "chance": 0,
+   "news": "Ankle injury - Unknown return date",
+   "news_added": "2026-09-10T18:30:08.877110Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "ankle",
+   "type_pt": "tornozelo",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 29.5,
+    "max": 88.5,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.12,
+    "J12": 0.29,
+    "J13": 0.36,
+    "J14": 0.44,
+    "J15": 0.57,
+    "J16": 0.64
+   },
+   "likely_return": "J15",
+   "likely_return_p": 0.57
+  },
+  "193": {
+   "name": "Wright",
+   "team": 7,
+   "status": "i",
+   "chance": 0,
+   "news": "Thigh injury - Unknown return date",
+   "news_added": "2026-08-14T22:00:07.214508Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "thigh",
+   "type_pt": "coxa",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 42.9,
+    "max": 128.8,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.05,
+    "J12": 0.15,
+    "J13": 0.21,
+    "J14": 0.27,
+    "J15": 0.39,
+    "J16": 0.46
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "206": {
+   "name": "Chadi Riad",
+   "team": 8,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-08-22T18:00:07.352049Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 39.0,
+    "max": 117.0,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.06,
+    "J12": 0.2,
+    "J13": 0.26,
+    "J14": 0.31,
+    "J15": 0.43,
+    "J16": 0.52
+   },
+   "likely_return": "J16",
+   "likely_return_p": 0.52
+  },
+  "208": {
+   "name": "Sarr",
+   "team": 8,
+   "status": "i",
+   "chance": 0,
+   "news": "Groin injury - Expected back 21 Nov",
+   "news_added": "2026-10-27T10:30:09.385934Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "groin",
+   "type_pt": "virilha/adutor",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 21.6,
+    "typical": 24.6,
+    "max": 31.6,
+    "since": "2026-10-27T10:30:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.44,
+    "J12": 0.91,
+    "J13": 0.95,
+    "J14": 0.97,
+    "J15": 0.99,
+    "J16": 0.99
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.91
+  },
+  "577": {
+   "name": "Tomiyasu",
+   "team": 8,
+   "status": "i",
+   "chance": 0,
+   "news": "Calf injury - Expected back 21 Nov",
+   "news_added": "2026-09-21T13:30:09.030724Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "calf",
+   "type_pt": "gémeo",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 57.4,
+    "typical": 60.4,
+    "max": 67.4,
+    "since": "2026-09-21T13:30:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.45,
+    "J12": 0.91,
+    "J13": 0.95,
+    "J14": 0.97,
+    "J15": 0.99,
+    "J16": 0.99
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.91
+  },
+  "266": {
+   "name": "Cairney",
+   "team": 10,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Expected back 21 Nov",
+   "news_added": "2026-11-06T10:30:09.529201Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 11.6,
+    "typical": 14.6,
+    "max": 21.6,
+    "since": "2026-11-06T10:30:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.42,
+    "J12": 0.91,
+    "J13": 0.96,
+    "J14": 0.97,
+    "J15": 0.99,
+    "J16": 0.99
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.91
+  },
+  "268": {
+   "name": "King",
+   "team": 10,
+   "status": "d",
+   "chance": 75,
+   "news": "Groin injury - 75% chance of playing",
+   "news_added": "2026-11-07T20:00:09.169385Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "groin",
+   "type_pt": "virilha/adutor",
+   "basis": "notícia",
+   "late": false,
+   "model_days": {
+    "min": 11.2,
+    "typical": 15.2,
+    "max": 29.2,
+    "since": "2026-11-07T20:00:09Z"
+   },
+   "web": {
+    "name": "Josh King",
+    "type": "groin",
+    "summary_pt": "Sentiu a virilha contra o Newcastle (7 nov); Arbeloa: 'parece nada de grave', talvez exames; está convocado para Inglaterra.",
+    "timeline": {
+     "min_days": 13,
+     "max_days": null,
+     "back_date_earliest": "2026-11-21",
+     "back_date_latest": null,
+     "from_manager": false
+    },
+    "source": "https://thefalse9.com/2026/11/josh-king-injury-update-return-date.html",
+    "source_date": "2026-11-07",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
+  },
+  "278": {
+   "name": "Hughes",
+   "team": 11,
+   "status": "i",
+   "chance": 0,
+   "news": "Groin injury - Unknown return date",
+   "news_added": "2026-08-02T09:00:11.030017Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "groin",
+   "type_pt": "virilha/adutor",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 49.2,
+    "max": 147.6,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.04,
+    "J12": 0.13,
+    "J13": 0.17,
+    "J14": 0.21,
+    "J15": 0.34,
+    "J16": 0.4
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "291": {
+   "name": "Matazo",
+   "team": 11,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.532635Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 54.1,
+    "max": 162.4,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.03,
+    "J12": 0.11,
+    "J13": 0.15,
+    "J14": 0.18,
+    "J15": 0.3,
+    "J16": 0.36
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "297": {
+   "name": "Gyabi",
+   "team": 11,
+   "status": "d",
+   "chance": 75,
+   "news": "Thigh injury - 75% chance of playing",
+   "news_added": "2026-08-04T18:30:11.027155Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "thigh",
+   "type_pt": "coxa",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 41,
+    "since": "2026-08-04T18:30:11Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
+  },
+  "556": {
+   "name": "Targett",
+   "team": 11,
+   "status": "i",
+   "chance": 0,
+   "news": "Ankle injury - Unknown return date",
+   "news_added": "2026-09-17T14:00:26.419938Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "ankle",
+   "type_pt": "tornozelo",
+   "basis": "treinador",
+   "late": false,
+   "model_days": {
+    "min": 82.4,
+    "typical": 88.9,
+    "max": 99.4,
+    "since": "2026-09-17T14:00:26Z"
+   },
+   "web": {
+    "name": "Matt Targett",
+    "type": "ankle",
+    "summary_pt": "Voltou a torcer o tornozelo num treino; o treinador Jakirovic: 'dois meses fora, sem cirurgia' (15 out) – regresso a meio de dezembro.",
+    "timeline": {
+     "min_days": 34,
+     "max_days": 41,
+     "back_date_earliest": "2026-12-12",
+     "back_date_latest": "2026-12-19",
+     "from_manager": true
+    },
+    "source": "https://www.rotowire.com/soccer/headlines/matt-targett-injury-facing-two-months-out-539457",
+    "source_date": "2026-10-15",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.0,
+    "J12": 0.0,
+    "J13": 0.0,
+    "J14": 0.0,
+    "J15": 0.35,
+    "J16": 0.7
+   },
+   "likely_return": "J16",
+   "likely_return_p": 0.7
+  },
+  "563": {
+   "name": "Morita",
+   "team": 11,
+   "status": "i",
+   "chance": 0,
+   "news": "Groin injury - Unknown return date",
+   "news_added": "2026-11-05T18:30:08.257672Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "groin",
+   "type_pt": "virilha/adutor",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 2,
+    "typical": 8,
+    "max": 27,
+    "since": "2026-11-05T18:30:08Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.76,
+    "J12": 0.86,
+    "J13": 0.89,
+    "J14": 0.91,
+    "J15": 0.94,
+    "J16": 0.96
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.76
+  },
+  "632": {
+   "name": "Ansah",
+   "team": 11,
+   "status": "i",
+   "chance": 0,
+   "news": "Back injury - Unknown return date",
+   "news_added": "2026-09-09T10:00:08.919489Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "back",
+   "type_pt": "costas",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 30.2,
+    "max": 90.5,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.13,
+    "J12": 0.3,
+    "J13": 0.37,
+    "J14": 0.42,
+    "J15": 0.57,
+    "J16": 0.63
+   },
+   "likely_return": "J15",
+   "likely_return_p": 0.57
+  },
+  "331": {
+   "name": "Gudmundsson",
+   "team": 13,
+   "status": "d",
+   "chance": 75,
+   "news": "Hamstring injury - 75% chance of playing",
+   "news_added": "2026-11-08T12:30:09.622622Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 36,
+    "since": "2026-11-08T12:30:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
+  },
+  "335": {
+   "name": "Stach",
+   "team": 13,
+   "status": "d",
+   "chance": 50,
+   "news": "Foot injury - 50% chance of playing",
+   "news_added": "2026-11-05T18:30:07.925529Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "foot",
+   "type_pt": "pé",
+   "basis": "treinador",
+   "late": false,
+   "model_days": {
+    "min": 13.2,
+    "typical": 17.2,
+    "max": 42,
+    "since": "2026-11-05T18:30:07Z"
+   },
+   "web": {
+    "name": "Anton Stach",
+    "type": "foot",
+    "summary_pt": "Joga com o dedo mindinho do pé partido (e um dedo da mão), com infiltrações; Farke: talvez não para titular, mas pode ir ao banco nos próximos jogos.",
+    "timeline": {
+     "min_days": 13,
+     "max_days": null,
+     "back_date_earliest": "2026-11-21",
+     "back_date_latest": null,
+     "from_manager": true
+    },
+    "source": "https://www.leedsunited.com/en/news/boss-takes-unusual-step-with-midfielders-injury-to-highlight-training-disruption",
+    "source_date": "2026-11-05",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.5,
+    "J12": 0.82,
+    "J13": 0.94,
+    "J14": 0.98,
+    "J15": 0.99,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.5
+  },
+  "349": {
+   "name": "Mateo Joseph",
+   "team": 13,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-29T18:00:10.338170Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 51.0,
+    "max": 153.0,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.03,
+    "J12": 0.11,
+    "J13": 0.16,
+    "J14": 0.2,
+    "J15": 0.3,
+    "J16": 0.38
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "354": {
+   "name": "Jaros",
+   "team": 14,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-29T18:00:10.351066Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 51.0,
+    "max": 153.0,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.04,
+    "J12": 0.12,
+    "J13": 0.16,
+    "J14": 0.2,
+    "J15": 0.3,
+    "J16": 0.38
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "357": {
+   "name": "Frimpong",
+   "team": 14,
+   "status": "i",
+   "chance": 0,
+   "news": "Hamstring injury - Unknown return date",
+   "news_added": "2026-10-17T15:30:09.979166Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "treinador",
+   "late": false,
+   "model_days": {
+    "min": 33.4,
+    "typical": 37.4,
+    "max": 51.4,
+    "since": "2026-10-17T15:30:09Z"
+   },
+   "web": {
+    "name": "Jeremie Frimpong",
+    "type": "hamstring",
+    "summary_pt": "Nova lesão muscular (posterior da coxa) em Brentford (~18 out); Iraola disse que seria difícil voltar antes da paragem; ainda fora a 6 nov.",
+    "timeline": {
+     "min_days": 14,
+     "max_days": null,
+     "back_date_earliest": "2026-11-22",
+     "back_date_latest": null,
+     "from_manager": true
+    },
+    "source": "https://www.caughtoffside.com/2026/10/19/jeremie-frimpong-injury-liverpool-november-return/",
+    "source_date": "2026-10-19",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.22,
+    "J12": 0.74,
+    "J13": 0.82,
+    "J14": 0.86,
+    "J15": 0.92,
+    "J16": 0.95
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.74
+  },
+  "360": {
+   "name": "Bradley",
+   "team": 14,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.565711Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 54.1,
+    "max": 162.4,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.03,
+    "J12": 0.1,
+    "J13": 0.15,
+    "J14": 0.18,
+    "J15": 0.27,
+    "J16": 0.36
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "363": {
+   "name": "Leoni",
+   "team": 14,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.596909Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 54.1,
+    "max": 162.4,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.03,
+    "J12": 0.1,
+    "J13": 0.15,
+    "J14": 0.18,
+    "J15": 0.27,
+    "J16": 0.36
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "371": {
+   "name": "Gravenberch",
+   "team": 14,
+   "status": "d",
+   "chance": 75,
+   "news": "Foot injury - 75% chance of playing",
+   "news_added": "2026-11-03T17:00:09.626695Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "foot",
+   "type_pt": "pé",
+   "basis": "treinador",
+   "late": false,
+   "model_days": {
+    "min": 1.3,
+    "typical": 11.3,
+    "max": 25.3,
+    "since": "2026-11-03T17:00:09Z"
+   },
+   "web": {
+    "name": "Ryan Gravenberch",
+    "type": "foot",
+    "summary_pt": "Dor no calcanhar; Iraola: 'é coisa de dia a dia, questão de dor' – podia jogar contra o Palace (8 nov).",
+    "timeline": {
+     "min_days": 0,
+     "max_days": 14,
+     "back_date_earliest": "2026-11-08",
+     "back_date_latest": "2026-11-22",
+     "from_manager": true
+    },
+    "source": "https://www.fantasyfootballscout.co.uk/2026/11/06/gravenberch-ekitike-liverpool-injury-latest-for-fpl-gameweek-10",
+    "source_date": "2026-11-06",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
+  },
+  "380": {
+   "name": "Ekitiké",
+   "team": 14,
+   "status": "i",
+   "chance": 0,
+   "news": "Achilles injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.643771Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "achilles",
+   "type_pt": "tendão de Aquiles",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 14,
+    "typical": 35,
+    "max": 180,
+    "since": "2026-07-23T12:01:23Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.11,
+    "J12": 0.16,
+    "J13": 0.19,
+    "J14": 0.2,
+    "J15": 0.25,
+    "J16": 0.29
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "388": {
+   "name": "Guéhi",
+   "team": 15,
+   "status": "d",
+   "chance": 75,
+   "news": "Unspecified injury - 75% chance of playing",
+   "news_added": "2026-11-07T21:30:08.741792Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 45,
+    "since": "2026-11-07T21:30:08Z"
+   },
+   "web": {
+    "name": "Marc Guéhi",
+    "type": "unknown",
+    "summary_pt": "Saiu lesionado ao intervalo em Forest (7 nov); o City não disse o que é nem prazo; próximo jogo só a 21 nov (Fulham).",
+    "timeline": null,
+    "source": "https://thefalse9.com/2026/11/marc-guehi-injury-update-return-date.html",
+    "source_date": "2026-11-08",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
+  },
+  "391": {
+   "name": "Gvardiol",
+   "team": 15,
+   "status": "d",
+   "chance": 75,
+   "news": "Unspecified injury - 75% chance of playing",
+   "news_added": "2026-11-07T21:30:08.752464Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 45,
+    "since": "2026-11-07T21:30:08Z"
+   },
+   "web": {
+    "name": "Joško Gvardiol",
+    "type": "unknown",
+    "summary_pt": "Saiu ao intervalo em Forest (7 nov) a pedido; Maresca disse que já tinha 'problemas durante a semana', sem dizer o quê; novidades no início da semana.",
+    "timeline": null,
+    "source": "https://www.sportsmole.co.uk/football/man-city/injury-news/news/problems-maresca-delivers-double-man-city-injury-worry-after-forest-defeat_608691.html",
+    "source_date": "2026-11-07",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
+  },
+  "397": {
+   "name": "Semenyo",
+   "team": 15,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-10-17T17:30:09.977110Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "treinador",
+   "late": false,
+   "model_days": {
+    "min": 52.3,
+    "typical": 59.3,
+    "max": 70.3,
+    "since": "2026-10-17T17:30:09Z"
+   },
+   "web": {
+    "name": "Antoine Semenyo",
+    "type": "knee",
+    "summary_pt": "Lesão no joelho contra o Ipswich (~18 out); Maresca: 'podem ser oito semanas' – regresso previsto a meio de dezembro (J15-J16).",
+    "timeline": {
+     "min_days": 34,
+     "max_days": 42,
+     "back_date_earliest": "2026-12-12",
+     "back_date_latest": "2026-12-20",
+     "from_manager": true
+    },
+    "source": "https://www.fantasyfootballscout.co.uk/2026/10/19/haaland-semenyo-latest-fpl-team-news-ahead-of-gameweek-8",
+    "source_date": "2026-10-19",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.0,
+    "J12": 0.0,
+    "J13": 0.0,
+    "J14": 0.0,
+    "J15": 0.1,
+    "J16": 0.67
+   },
+   "likely_return": "J16",
+   "likely_return_p": 0.67
+  },
+  "131": {
+   "name": "Baleba",
+   "team": 16,
+   "status": "i",
+   "chance": 0,
+   "news": "Hamstring injury - Unknown return date",
+   "news_added": "2026-11-03T22:00:07.995956Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 36,
+    "since": "2026-11-03T22:00:07Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.66,
+    "J12": 0.78,
+    "J13": 0.84,
+    "J14": 0.86,
+    "J15": 0.91,
+    "J16": 0.94
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.66
+  },
+  "423": {
+   "name": "Shaw",
+   "team": 16,
+   "status": "i",
+   "chance": 0,
+   "news": "Unspecified injury - Unknown return date",
+   "news_added": "2026-10-12T21:30:08.995810Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "treinador",
+   "late": false,
+   "model_days": {
+    "min": 37.1,
+    "typical": 41.1,
+    "max": 55.1,
+    "since": "2026-10-12T21:30:08Z"
+   },
+   "web": {
+    "name": "Luke Shaw",
+    "type": "unknown",
+    "summary_pt": "Lesão não revelada desde 10 out (Spurs); Carrick disse a 2 nov que não volta antes da paragem; sem data.",
+    "timeline": {
+     "min_days": 13,
+     "max_days": null,
+     "back_date_earliest": "2026-11-21",
+     "back_date_latest": null,
+     "from_manager": true
+    },
+    "source": "https://www.fantasyfootballscout.co.uk/2026/11/02/amad-dorgu-rashford-latest-fpl-team-news-pre-gameweek-10",
+    "source_date": "2026-11-02",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.37,
+    "J12": 0.74,
+    "J13": 0.84,
+    "J14": 0.88,
+    "J15": 0.94,
+    "J16": 0.96
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.74
+  },
+  "429": {
+   "name": "Rashford",
+   "team": 16,
+   "status": "i",
+   "chance": 0,
+   "news": "Hip injury - Unknown return date",
+   "news_added": "2026-10-20T20:00:09.925594Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hip",
+   "type_pt": "anca",
+   "basis": "treinador",
+   "late": false,
+   "model_days": {
+    "min": 15.2,
+    "typical": 25.2,
+    "max": 39.2,
+    "since": "2026-10-20T20:00:09Z"
+   },
+   "web": {
+    "name": "Marcus Rashford",
+    "type": "hip",
+    "summary_pt": "Problema na anca; Carrick avalia 'dia a dia' (2 nov) e falhava de novo a J10; imprensa aponta o regresso para 22 nov (Liverpool).",
+    "timeline": {
+     "min_days": 0,
+     "max_days": 14,
+     "back_date_earliest": "2026-11-08",
+     "back_date_latest": "2026-11-22",
+     "from_manager": true
+    },
+    "source": "https://thefalse9.com/2026/11/rashford-hip-injury-update-return-date.html",
+    "source_date": "2026-11-06",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.87,
+    "J13": 0.92,
+    "J14": 0.94,
+    "J15": 0.97,
+    "J16": 0.98
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
+  },
+  "433": {
+   "name": "Ugarte",
+   "team": 16,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.706702Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 54.1,
+    "max": 162.4,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.03,
+    "J12": 0.09,
+    "J13": 0.15,
+    "J14": 0.18,
+    "J15": 0.29,
+    "J16": 0.37
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "439": {
+   "name": "Šeško",
+   "team": 16,
+   "status": "i",
+   "chance": 0,
+   "news": "Shin injury - Unknown return date",
+   "news_added": "2026-09-20T19:30:08.505755Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "shin",
+   "type_pt": "canela",
+   "basis": "notícia",
+   "late": false,
+   "model_days": {
+    "min": 100.2,
+    "typical": 104.2,
+    "max": 118.2,
+    "since": "2026-09-20T19:30:08Z"
+   },
+   "web": {
+    "name": "Benjamin Sesko",
+    "type": "shin",
+    "summary_pt": "Problema na canela (já vinha da época passada); Carrick: fora 'por um período mais longo'; imprensa: só volta no ano novo.",
+    "timeline": {
+     "min_days": 54,
+     "max_days": null,
+     "back_date_earliest": "2027-01-01",
+     "back_date_latest": null,
+     "from_manager": false
+    },
+    "source": "https://www.goal.com/en-us/news/benjamin-sesko-injury-update-man-utd/bltbe6be35a8ca211a0",
+    "source_date": "2026-10-28",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.0,
+    "J12": 0.0,
+    "J13": 0.0,
+    "J14": 0.0,
+    "J15": 0.0,
+    "J16": 0.0
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "444": {
+   "name": "Jaouen",
+   "team": 17,
+   "status": "i",
+   "chance": 0,
+   "news": "Hamstring injury - Unknown return date",
+   "news_added": "2026-09-10T16:00:09.127466Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 29.5,
+    "max": 88.6,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.12,
+    "J12": 0.31,
+    "J13": 0.38,
+    "J14": 0.45,
+    "J15": 0.55,
+    "J16": 0.64
+   },
+   "likely_return": "J15",
+   "likely_return_p": 0.55
+  },
+  "458": {
+   "name": "Joelinton",
+   "team": 17,
+   "status": "i",
+   "chance": 0,
+   "news": "Unspecified injury - Unknown return date",
+   "news_added": "2026-11-05T16:57:40.468946Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 45,
+    "since": "2026-11-05T16:57:40Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.57,
+    "J12": 0.73,
+    "J13": 0.78,
+    "J14": 0.81,
+    "J15": 0.86,
+    "J16": 0.89
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.57
+  },
+  "475": {
+   "name": "Savona",
+   "team": 18,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.816304Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 54.1,
+    "max": 162.4,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.02,
+    "J12": 0.08,
+    "J13": 0.15,
+    "J14": 0.18,
+    "J15": 0.28,
+    "J16": 0.37
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "487": {
+   "name": "Dominguez",
+   "team": 18,
+   "status": "i",
+   "chance": 0,
+   "news": "Muscular injury - Expected back 30 Dec",
+   "news_added": "2026-10-24T13:00:08.751863Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "muscle",
+   "type_pt": "muscular",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 63.5,
+    "typical": 66.5,
+    "max": 73.5,
+    "since": "2026-10-24T13:00:08Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.0,
+    "J12": 0.0,
+    "J13": 0.0,
+    "J14": 0.0,
+    "J15": 0.0,
+    "J16": 0.0
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "403": {
+   "name": "Sávio",
+   "team": 19,
+   "status": "i",
+   "chance": 0,
+   "news": "Muscular injury - Expected back 21 Nov",
+   "news_added": "2026-10-18T13:00:09.266321Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "muscle",
+   "type_pt": "muscular",
+   "basis": "FPL",
+   "late": false,
+   "model_days": {
+    "min": 30.5,
+    "typical": 33.5,
+    "max": 40.5,
+    "since": "2026-10-18T13:00:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.44,
+    "J12": 0.91,
+    "J13": 0.96,
+    "J14": 0.97,
+    "J15": 0.99,
+    "J16": 0.99
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.91
+  },
+  "513": {
+   "name": "Xavi",
+   "team": 19,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.864304Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 54.1,
+    "max": 162.4,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.02,
+    "J12": 0.11,
+    "J13": 0.16,
+    "J14": 0.2,
+    "J15": 0.3,
+    "J16": 0.36
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "514": {
+   "name": "Tel",
+   "team": 19,
+   "status": "d",
+   "chance": 75,
+   "news": "Ankle injury - 75% chance of playing",
+   "news_added": "2026-11-07T18:30:09.104275Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "ankle",
+   "type_pt": "tornozelo",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 2,
+    "typical": 8,
+    "max": 32,
+    "since": "2026-11-07T18:30:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
+  },
+  "517": {
+   "name": "Odobert",
+   "team": 19,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-07-23T12:01:23.879434Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 54.1,
+    "max": 162.4,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.02,
+    "J12": 0.11,
+    "J13": 0.16,
+    "J14": 0.2,
+    "J15": 0.3,
+    "J16": 0.36
+   },
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "520": {
+   "name": "Bergvall",
+   "team": 19,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-10-18T13:00:09.356060Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 3,
+    "typical": 16,
+    "max": 56,
+    "since": "2026-10-18T13:00:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.41,
+    "J12": 0.57,
+    "J13": 0.63,
+    "J14": 0.66,
+    "J15": 0.74,
+    "J16": 0.77
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.57
+  },
+  "578": {
+   "name": "Mudryk",
+   "team": 19,
+   "status": "i",
+   "chance": 0,
+   "news": "Ankle injury - Unknown return date",
+   "news_added": "2026-09-11T18:00:09.154412Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "ankle",
+   "type_pt": "tornozelo",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 29.0,
+    "max": 87.0,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.12,
+    "J12": 0.32,
+    "J13": 0.41,
+    "J14": 0.46,
+    "J15": 0.59,
+    "J16": 0.65
+   },
+   "likely_return": "J15",
+   "likely_return_p": 0.59
+  },
+  "532": {
+   "name": "Ballard",
+   "team": 20,
+   "status": "i",
+   "chance": 0,
+   "news": "Hamstring injury - Unknown return date",
+   "news_added": "2026-09-25T21:30:10.370384Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "hamstring",
+   "type_pt": "posterior da coxa",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 21.9,
+    "max": 65.8,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.21,
+    "J12": 0.45,
+    "J13": 0.53,
+    "J14": 0.6,
+    "J15": 0.7,
+    "J16": 0.77
+   },
+   "likely_return": "J13",
+   "likely_return_p": 0.53
+  },
+  "543": {
+   "name": "Diarra",
+   "team": 20,
+   "status": "i",
+   "chance": 0,
+   "news": "Muscular injury - Unknown return date",
+   "news_added": "2026-11-01T08:30:09.264068Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "muscle",
+   "type_pt": "muscular",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 36,
+    "since": "2026-11-01T08:30:09Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.65,
+    "J12": 0.8,
+    "J13": 0.84,
+    "J14": 0.87,
+    "J15": 0.91,
+    "J16": 0.94
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.65
+  },
+  "544": {
+   "name": "Xhaka",
+   "team": 20,
+   "status": "d",
+   "chance": 75,
+   "news": "Unspecified injury - 75% chance of playing",
+   "news_added": "2026-11-08T14:30:09.504002Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "calf",
+   "type_pt": "gémeo",
+   "basis": "notícia",
+   "late": false,
+   "model_days": {
+    "min": 9.4,
+    "typical": 26.9,
+    "max": 48.4,
+    "since": "2026-11-08T14:30:09Z"
+   },
+   "web": {
+    "name": "Granit Xhaka",
+    "type": "calf",
+    "summary_pt": "Saiu logo no início contra o Chelsea (8 nov) com suspeita de lesão na barriga da perna; vai fazer exames, ainda sem palavras do treinador.",
+    "timeline": {
+     "min_days": 13,
+     "max_days": 42,
+     "back_date_earliest": "2026-11-21",
+     "back_date_latest": "2026-12-20",
+     "from_manager": false
+    },
+    "source": "https://www.sportsmole.co.uk/football/sunderland/injury-news/news/granit-goes-xhaka-forced-off-with-injury-in-sunderland-chelsea_608727.html",
+    "source_date": "2026-11-08",
+    "researched": "2026-11-08"
+   },
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
+  },
+  "547": {
+   "name": "Mundle",
+   "team": 20,
+   "status": "i",
+   "chance": 0,
+   "news": "Knee injury - Unknown return date",
+   "news_added": "2026-09-09T14:00:08.462705Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": true,
+   "model_days": {
+    "min": 3,
+    "typical": 30.1,
+    "max": 90.3,
+    "since": "2026-11-08T18:02:50Z"
+   },
+   "web": null,
+   "prob": {
+    "J11": 0.11,
+    "J12": 0.3,
+    "J13": 0.37,
+    "J14": 0.44,
+    "J15": 0.56,
+    "J16": 0.64
+   },
+   "likely_return": "J15",
+   "likely_return_p": 0.56
+  }
+ },
+ "durations_basis": "UEFA Elite Club Injury Study (Ekstrand et al., BJSM 2020;54:421-6, tabela 1): min = percentil 10, typ = mediana, max = percentil 90, em dias. Lesões que a FPL dá como \"lesionado\" tendem a ser das mais longas; o modelo condiciona ao tempo já passado."
+}
