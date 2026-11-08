@@ -351,3 +351,8 @@ Ponto de regresso: commit 9dbd642 / tag `antes-rotina`.
   - O Registar explica que a FPL só mostra as trocas depois do deadline. O registo que já está nos dados oficiais diz "já nos dados oficiais" e não conta (`applyLog` já ignorava trocas cujo jogador que entra já está no plantel).
   - Resumo: aviso "Dados" quando o live.json tem mais de 48 h (sev 3 a partir de 96 h).
 - **Teste com dados simulados:** pendente aplicado (Bruno e rival), aviso de 3 dias, sem erros.
+
+## Ícone da app (8 nov 2026)
+- `manifest.webmanifest` + `icons/` (192, 512, apple-touch 180, favicon 32) e as meta tags no `<head>` do `index.html`: no telemóvel, "Adicionar ao ecrã principal" mostra o ícone e abre em ecrã inteiro (`display: standalone`).
+- Desenho escolhido pelo Bruno: `fusao-a-3d` (FPL em roxo sobre degradê ciano-verde, corte diagonal roxo com BRUNORUSSIA FC, bola clássica 3D com rastos). Refazer: `py -X utf8 _build/patches/icone.py fusao-a-3d`; ver alternativas: `… icone.py amostra <desenhos>` → `_build/shots/icones.png`.
+- A bola oficial da Champions não se pode usar (desenho da UEFA/adidas); a bola é desenhada por nós (icosaedro truncado projetado).
