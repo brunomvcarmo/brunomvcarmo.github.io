@@ -7,7 +7,8 @@ Uso (a partir da raiz do repositório):
 Fases:
   dados     fpl_fetch.py (live.json/rivals.json) + espelho.py (espelho, calendário, validação da última jornada)
             + research_week.py (projeções, odds, xgstat, OddAlerts) + lineups_rw.py (onzes) + h2h_week.py (H2H)
-  gerar     gen25.py (bloco de dados, inclui duplas/brancas) + swapdata.py (troca no index.html) + weekly_app.py (tabelas)
+            + discorda.py medir (pontos reais das discordâncias guardadas: quem teve razão, a app ou o consenso)
+  gerar     gen25.py (bloco de dados, inclui duplas/brancas e as discordâncias app × consenso, guardadas antes do deadline) + swapdata.py (troca no index.html) + weekly_app.py (tabelas)
   testes    test.py + test_tutorial.py + test_aovivo.py (precisam do Playwright: bash _build/setup-cloud.sh)
   semana    dados + gerar + testes (sem parar para as partes à mão — ver abaixo)
   deadline  depois do deadline da próxima jornada: fpl_fetch.py + apply_picks.py (plantéis, capitães e chips reais)
@@ -27,7 +28,8 @@ FASES = {
               ('Espelho da API e calendário', P('_build/pool/espelho.py')),
               ('Pesquisa: projeções, odds, dificuldade', P('_build/pool/research_week.py')),
               ('Onzes prováveis', P('_build/pool/lineups_rw.py')),
-              ('Liga H2H', P('_build/pool/h2h_week.py'))],
+              ('Liga H2H', P('_build/pool/h2h_week.py')),
+              ('Onde a app discorda: medir quem teve razão', P('_build/pool/discorda.py', 'medir'))],
     'gerar': [('Bloco de dados (gen25)', P('_build/pool/gen25.py')),
               ('Troca no index.html', P('_build/build/swapdata.py', '_build/redesign/data25.js')),
               ('Tabelas da app', P('_build/pool/weekly_app.py'))],

@@ -182,7 +182,7 @@ def apply(pool, snap, FIXG, horizon, nextgw, avail_fn, last=6):
     for p in pool:
         s = snap[p['id']]
         team_avg_for = avg * att.get(p['t'], 1)
-        F, U, Xs, A, RR, E = [], [], [], [], [], []
+        F, U, Xs, A, RR, E, BL = [], [], [], [], [], [], []
         raw = p.pop('_raw')
         for gi, g in enumerate(horizon):
             ll = lam.get((g, p['t']), [])
@@ -212,10 +212,13 @@ def apply(pool, snap, FIXG, horizon, nextgw, avail_fn, last=6):
                     if g == nextgw: note = (note + ' ' + rnote).strip()
             blend = (0.25 * f_ + 0.35 * u_ + 0.40 * x_) if x_ is not None else (0.40 * f_ + 0.60 * u_)
             v = blend * a_ * r_
+            BL.append(blend)
             if ll and a_ * r_ > 0 and (p['m3'] > 0) : v = max(v, 0.3)
             F.append(round(f_, 1)); U.append(round(u_, 1)); Xs.append(None if x_ is None else round(x_, 1))
             A.append(round(a_, 2)); RR.append(r_); E.append(round(v, 1))
             if g == nextgw: p['rd'] = note
         p['ep'] = E
+        # V59: partes de cada jornada para o discorda.py (só a parte "nossa" = 0.40 F + 0.60 U, sem os sites)
+        p['_cmp'] = dict(F=F, U=U, X=Xs, bl=BL)
         p['k'] = [F[0], U[0], Xs[0], round(A[0] * RR[0], 2)]  # components for the next gameweek
     return lam

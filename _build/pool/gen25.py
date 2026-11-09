@@ -386,3 +386,11 @@ with open(_BD + 'redesign/data25.js', 'a', encoding='utf-8', newline='\n') as fh
     fh.write('const AVAIL_PRED = ' + json.dumps(AVAIL, ensure_ascii=False, separators=(',', ':')) + ';\n')
     fh.write('const DGW_DATA = ' + json.dumps(DGW, ensure_ascii=False, separators=(',', ':')) + ';\n')
 print('DGW_DATA', len(DGW['events']), 'rondas de taça com jornada em conflito')
+
+# ---------- V59 (9 nov): onde a app discorda da FPL e dos sites (discorda.py) ----------
+# Consenso = mediana de FPL (ep_next) + sites; compara com a app completa e com a parte só nossa. Guarda as
+# discordâncias da próxima jornada em _build/research/discorda.json (antes do deadline) para medir quem tem razão.
+import discorda
+DIS = discorda.build(pool, None, FX, HORIZON, NEXT, deadline, LV)
+with open(_BD + 'redesign/data25.js', 'a', encoding='utf-8', newline='\n') as fh:
+    fh.write('const DISAGREE = ' + json.dumps(DIS, ensure_ascii=False, separators=(',', ':')) + ';\n')

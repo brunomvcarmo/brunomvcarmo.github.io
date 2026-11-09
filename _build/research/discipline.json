@@ -297,7 +297,7 @@
     "ban": 2,
     "cutoff_matches": 32,
     "cutoff_gw": 32,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -315,7 +315,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -333,7 +333,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -351,7 +351,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -369,7 +369,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -387,7 +387,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -405,7 +405,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -423,7 +423,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -441,7 +441,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -459,7 +459,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -5041,7 +5041,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -5059,7 +5059,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -5077,7 +5077,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -5095,7 +5095,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -5113,7 +5113,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": {
     "yc": 4,
@@ -5124,10 +5124,6 @@
     "y90": 0.324,
     "share": 1.0,
     "pm": [
-     [
-      10,
-      0.277
-     ],
      [
       11,
       0.277
@@ -5158,21 +5154,14 @@
      ]
     ],
     "pb": {
-     "11": 0.277,
-     "12": 0.2,
-     "13": 0.145,
-     "14": 0.105,
-     "15": 0.076,
-     "16": 0.055,
-     "17": 0.04
+     "12": 0.277,
+     "13": 0.2,
+     "14": 0.145,
+     "15": 0.105,
+     "16": 0.076,
+     "17": 0.055
     },
     "ex": [
-     [
-      10,
-      [
-       11
-      ]
-     ],
      [
       11,
       [
@@ -5189,6 +5178,12 @@
       13,
       [
        14
+      ]
+     ],
+     [
+      14,
+      [
+       15
       ]
      ]
     ],
@@ -5212,7 +5207,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -5230,7 +5225,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -5248,7 +5243,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -5266,7 +5261,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -5284,7 +5279,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -5302,7 +5297,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -5320,7 +5315,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 9
+    "team_matches_played": 10
    },
    "risk": null
   },
@@ -6709,5 +6704,5 @@
    "risk": null
   }
  },
- "updated": "2026-11-08T18:02:50Z"
+ "updated": "2026-11-09T15:41:13Z"
 }
