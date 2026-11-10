@@ -1,6 +1,6 @@
 {
- "last": 9,
- "next": 10,
+ "last": 10,
+ "next": 11,
  "lastFinal": true,
  "table": [
   {
@@ -9,10 +9,32 @@
    "team": "Rodri Team",
    "w": 9,
    "d": 0,
-   "l": 0,
+   "l": 1,
    "pts": 27,
-   "pf": 584,
+   "pf": 644,
    "rank": 1
+  },
+  {
+   "entry": 2713965,
+   "name": "Tomás Corregedor",
+   "team": "Bruno + 10",
+   "w": 7,
+   "d": 0,
+   "l": 3,
+   "pts": 21,
+   "pf": 652,
+   "rank": 2
+  },
+  {
+   "entry": 4243640,
+   "name": "Tiago Guerreiro",
+   "team": "Lups FC",
+   "w": 7,
+   "d": 0,
+   "l": 3,
+   "pts": 21,
+   "pf": 636,
+   "rank": 3
   },
   {
    "entry": 5799879,
@@ -20,10 +42,21 @@
    "team": "olimpikos",
    "w": 7,
    "d": 0,
-   "l": 2,
+   "l": 3,
    "pts": 21,
-   "pf": 552,
-   "rank": 2
+   "pf": 612,
+   "rank": 4
+  },
+  {
+   "entry": 1885251,
+   "name": "Dan Robinson",
+   "team": "CHEIRAMUCU",
+   "w": 6,
+   "d": 2,
+   "l": 2,
+   "pts": 20,
+   "pf": 665,
+   "rank": 5
   },
   {
    "entry": 630696,
@@ -31,32 +64,10 @@
    "team": "SLB77",
    "w": 6,
    "d": 0,
-   "l": 3,
+   "l": 4,
    "pts": 18,
-   "pf": 598,
-   "rank": 3
-  },
-  {
-   "entry": 2713965,
-   "name": "Tomás Corregedor",
-   "team": "Bruno + 10",
-   "w": 6,
-   "d": 0,
-   "l": 3,
-   "pts": 18,
-   "pf": 594,
-   "rank": 4
-  },
-  {
-   "entry": 4243640,
-   "name": "Tiago Guerreiro",
-   "team": "Lups FC",
-   "w": 6,
-   "d": 0,
-   "l": 3,
-   "pts": 18,
-   "pf": 575,
-   "rank": 5
+   "pf": 654,
+   "rank": 6
   },
   {
    "entry": 2330867,
@@ -64,21 +75,21 @@
    "team": "Guerreiro F C",
    "w": 6,
    "d": 0,
-   "l": 3,
+   "l": 4,
    "pts": 18,
-   "pf": 564,
-   "rank": 6
+   "pf": 613,
+   "rank": 7
   },
   {
-   "entry": 1885251,
-   "name": "Dan Robinson",
-   "team": "CHEIRAMUCU",
-   "w": 5,
-   "d": 2,
-   "l": 2,
-   "pts": 17,
-   "pf": 595,
-   "rank": 7
+   "entry": 2400508,
+   "name": "marco milhano",
+   "team": "marco's Team",
+   "w": 6,
+   "d": 0,
+   "l": 4,
+   "pts": 18,
+   "pf": 551,
+   "rank": 8
   },
   {
    "entry": 5406100,
@@ -86,54 +97,54 @@
    "team": "SL Guinness",
    "w": 5,
    "d": 1,
-   "l": 3,
-   "pts": 16,
-   "pf": 584,
-   "rank": 8
-  },
-  {
-   "entry": 2400508,
-   "name": "marco milhano",
-   "team": "marco's Team",
-   "w": 5,
-   "d": 0,
    "l": 4,
-   "pts": 15,
-   "pf": 493,
+   "pts": 16,
+   "pf": 636,
    "rank": 9
   },
   {
    "entry": 4159737,
    "name": "Luis Pico",
    "team": "Pico FC",
-   "w": 4,
+   "w": 5,
    "d": 1,
    "l": 4,
-   "pts": 13,
-   "pf": 496,
+   "pts": 16,
+   "pf": 569,
    "rank": 10
   },
   {
    "entry": 1969702,
    "name": "Sergio Casinha",
    "team": "Estrelas D Bensafrim",
-   "w": 4,
+   "w": 5,
    "d": 0,
    "l": 5,
-   "pts": 12,
-   "pf": 535,
+   "pts": 15,
+   "pf": 601,
    "rank": 11
   },
   {
    "entry": 5191766,
    "name": "Bruno Carmo",
    "team": "Brunorussia FC",
-   "w": 3,
+   "w": 4,
    "d": 0,
    "l": 6,
-   "pts": 9,
-   "pf": 542,
+   "pts": 12,
+   "pf": 603,
    "rank": 12
+  },
+  {
+   "entry": 2347397,
+   "name": "Andre Filipe da Luz Gonçalves",
+   "team": "Já fui",
+   "w": 4,
+   "d": 0,
+   "l": 6,
+   "pts": 12,
+   "pf": 534,
+   "rank": 13
   },
   {
    "entry": 1973102,
@@ -141,21 +152,21 @@
    "team": "Xarola Team",
    "w": 3,
    "d": 0,
-   "l": 6,
+   "l": 7,
    "pts": 9,
-   "pf": 537,
-   "rank": 13
+   "pf": 608,
+   "rank": 14
   },
   {
-   "entry": 2347397,
-   "name": "Andre Filipe da Luz Gonçalves",
-   "team": "Já fui",
+   "entry": 2345657,
+   "name": "rui moreira",
+   "team": "BADATEAM",
    "w": 3,
    "d": 0,
-   "l": 6,
+   "l": 7,
    "pts": 9,
-   "pf": 481,
-   "rank": 14
+   "pf": 550,
+   "rank": 15
   },
   {
    "entry": 7188462,
@@ -163,10 +174,21 @@
    "team": "MitraMaxi97",
    "w": 3,
    "d": 0,
-   "l": 6,
+   "l": 7,
    "pts": 9,
-   "pf": 466,
-   "rank": 15
+   "pf": 512,
+   "rank": 16
+  },
+  {
+   "entry": 3973926,
+   "name": "Pedro Bengalinha",
+   "team": "BengalinhaFC",
+   "w": 3,
+   "d": 0,
+   "l": 7,
+   "pts": 9,
+   "pf": 511,
+   "rank": 17
   },
   {
    "entry": 3397966,
@@ -174,10 +196,10 @@
    "team": "Pinela FC",
    "w": 3,
    "d": 0,
-   "l": 6,
+   "l": 7,
    "pts": 9,
-   "pf": 450,
-   "rank": 16
+   "pf": 499,
+   "rank": 18
   },
   {
    "entry": 2342874,
@@ -185,10 +207,10 @@
    "team": "SLBengalinha",
    "w": 3,
    "d": 0,
-   "l": 6,
+   "l": 7,
    "pts": 9,
-   "pf": 443,
-   "rank": 17
+   "pf": 496,
+   "rank": 19
   },
   {
    "entry": 8030866,
@@ -196,40 +218,18 @@
    "team": "Henriquejunior",
    "w": 3,
    "d": 0,
-   "l": 6,
+   "l": 7,
    "pts": 9,
-   "pf": 415,
-   "rank": 18
-  },
-  {
-   "entry": 2345657,
-   "name": "rui moreira",
-   "team": "BADATEAM",
-   "w": 2,
-   "d": 0,
-   "l": 7,
-   "pts": 6,
-   "pf": 487,
-   "rank": 19
-  },
-  {
-   "entry": 3973926,
-   "name": "Pedro Bengalinha",
-   "team": "BengalinhaFC",
-   "w": 2,
-   "d": 0,
-   "l": 7,
-   "pts": 6,
-   "pf": 438,
+   "pf": 467,
    "rank": 20
   }
  ],
  "managers": {
   "bruno": {
    "pos": 12,
-   "next": "Renato Pinela",
-   "nextEntry": 3397966,
-   "nextTeam": "Pinela FC",
+   "next": "Tiago Guerreiro",
+   "nextEntry": 4243640,
+   "nextTeam": "Lups FC",
    "results": [
     {
      "gw": 1,
@@ -293,21 +293,28 @@
      "team": "MitraMaxi97",
      "mine": 54,
      "theirs": 55
+    },
+    {
+     "gw": 10,
+     "opp": "Renato Pinela",
+     "team": "Pinela FC",
+     "mine": 61,
+     "theirs": 49
     }
    ],
    "schedule": [
     {
-     "gw": 10,
-     "opp": "Renato Pinela",
-     "team": "Pinela FC"
+     "gw": 11,
+     "opp": "Tiago Guerreiro",
+     "team": "Lups FC"
     }
    ]
   },
   "marco": {
-   "pos": 13,
-   "next": "Luis Pico",
-   "nextEntry": 4159737,
-   "nextTeam": "Pico FC",
+   "pos": 14,
+   "next": "rui moreira",
+   "nextEntry": 2345657,
+   "nextTeam": "BADATEAM",
    "results": [
     {
      "gw": 1,
@@ -371,13 +378,20 @@
      "team": "SLB77",
      "mine": 45,
      "theirs": 59
+    },
+    {
+     "gw": 10,
+     "opp": "Luis Pico",
+     "team": "Pico FC",
+     "mine": 71,
+     "theirs": 73
     }
    ],
    "schedule": [
     {
-     "gw": 10,
-     "opp": "Luis Pico",
-     "team": "Pico FC"
+     "gw": 11,
+     "opp": "rui moreira",
+     "team": "BADATEAM"
     }
    ]
   }
@@ -1306,10 +1320,192 @@
     "a": 2400508,
     "an": "marco milhano",
     "at": "marco's Team",
-    "ap": 0,
+    "ap": 58,
     "b": 2330867,
     "bn": "Pedro Guerreiro",
     "bt": "Guerreiro F C",
+    "bp": 49
+   },
+   {
+    "a": 2345657,
+    "an": "rui moreira",
+    "at": "BADATEAM",
+    "ap": 63,
+    "b": 630696,
+    "bn": "Filipe Borges",
+    "bt": "SLB77",
+    "bp": 56
+   },
+   {
+    "a": 1973102,
+    "an": "Marco Carmo",
+    "at": "Xarola Team",
+    "ap": 71,
+    "b": 4159737,
+    "bn": "Luis Pico",
+    "bt": "Pico FC",
+    "bp": 73
+   },
+   {
+    "a": 1885251,
+    "an": "Dan Robinson",
+    "at": "CHEIRAMUCU",
+    "ap": 70,
+    "b": 2342874,
+    "bn": "Miguel Bengalinha",
+    "bt": "SLBengalinha",
+    "bp": 53
+   },
+   {
+    "a": 8030866,
+    "an": "Henrique Rodrigues",
+    "at": "Henriquejunior",
+    "ap": 52,
+    "b": 2713965,
+    "bn": "Tomás Corregedor",
+    "bt": "Bruno + 10",
+    "bp": 58
+   },
+   {
+    "a": 2152388,
+    "an": "Nelson Rodrigues",
+    "at": "Rodri Team",
+    "ap": 60,
+    "b": 4243640,
+    "bn": "Tiago Guerreiro",
+    "bt": "Lups FC",
+    "bp": 61
+   },
+   {
+    "a": 5799879,
+    "an": "Nuno Rodrigues",
+    "at": "olimpikos",
+    "ap": 60,
+    "b": 1969702,
+    "bn": "Sergio Casinha",
+    "bt": "Estrelas D Bensafrim",
+    "bp": 66
+   },
+   {
+    "a": 3973926,
+    "an": "Pedro Bengalinha",
+    "at": "BengalinhaFC",
+    "ap": 73,
+    "b": 7188462,
+    "bn": "Paulo Couceiro",
+    "bt": "MitraMaxi97",
+    "bp": 46
+   },
+   {
+    "a": 5191766,
+    "an": "Bruno Carmo",
+    "at": "Brunorussia FC",
+    "ap": 61,
+    "b": 3397966,
+    "bn": "Renato Pinela",
+    "bt": "Pinela FC",
+    "bp": 49
+   },
+   {
+    "a": 2347397,
+    "an": "Andre Filipe da Luz Gonçalves",
+    "at": "Já fui",
+    "ap": 53,
+    "b": 5406100,
+    "bn": "Frederico Borges",
+    "bt": "SL Guinness",
+    "bp": 52
+   }
+  ],
+  "11": [
+   {
+    "a": 3397966,
+    "an": "Renato Pinela",
+    "at": "Pinela FC",
+    "ap": 0,
+    "b": 2400508,
+    "bn": "marco milhano",
+    "bt": "marco's Team",
+    "bp": 0
+   },
+   {
+    "a": 7188462,
+    "an": "Paulo Couceiro",
+    "at": "MitraMaxi97",
+    "ap": 0,
+    "b": 5406100,
+    "bn": "Frederico Borges",
+    "bt": "SL Guinness",
+    "bp": 0
+   },
+   {
+    "a": 1969702,
+    "an": "Sergio Casinha",
+    "at": "Estrelas D Bensafrim",
+    "ap": 0,
+    "b": 2347397,
+    "bn": "Andre Filipe da Luz Gonçalves",
+    "bt": "Já fui",
+    "bp": 0
+   },
+   {
+    "a": 4243640,
+    "an": "Tiago Guerreiro",
+    "at": "Lups FC",
+    "ap": 0,
+    "b": 5191766,
+    "bn": "Bruno Carmo",
+    "bt": "Brunorussia FC",
+    "bp": 0
+   },
+   {
+    "a": 2713965,
+    "an": "Tomás Corregedor",
+    "at": "Bruno + 10",
+    "ap": 0,
+    "b": 3973926,
+    "bn": "Pedro Bengalinha",
+    "bt": "BengalinhaFC",
+    "bp": 0
+   },
+   {
+    "a": 2342874,
+    "an": "Miguel Bengalinha",
+    "at": "SLBengalinha",
+    "ap": 0,
+    "b": 5799879,
+    "bn": "Nuno Rodrigues",
+    "bt": "olimpikos",
+    "bp": 0
+   },
+   {
+    "a": 4159737,
+    "an": "Luis Pico",
+    "at": "Pico FC",
+    "ap": 0,
+    "b": 2152388,
+    "bn": "Nelson Rodrigues",
+    "bt": "Rodri Team",
+    "bp": 0
+   },
+   {
+    "a": 630696,
+    "an": "Filipe Borges",
+    "at": "SLB77",
+    "ap": 0,
+    "b": 8030866,
+    "bn": "Henrique Rodrigues",
+    "bt": "Henriquejunior",
+    "bp": 0
+   },
+   {
+    "a": 2330867,
+    "an": "Pedro Guerreiro",
+    "at": "Guerreiro F C",
+    "ap": 0,
+    "b": 1885251,
+    "bn": "Dan Robinson",
+    "bt": "CHEIRAMUCU",
     "bp": 0
    },
    {
@@ -1317,89 +1513,9 @@
     "an": "rui moreira",
     "at": "BADATEAM",
     "ap": 0,
-    "b": 630696,
-    "bn": "Filipe Borges",
-    "bt": "SLB77",
-    "bp": 0
-   },
-   {
-    "a": 1973102,
-    "an": "Marco Carmo",
-    "at": "Xarola Team",
-    "ap": 0,
-    "b": 4159737,
-    "bn": "Luis Pico",
-    "bt": "Pico FC",
-    "bp": 0
-   },
-   {
-    "a": 1885251,
-    "an": "Dan Robinson",
-    "at": "CHEIRAMUCU",
-    "ap": 0,
-    "b": 2342874,
-    "bn": "Miguel Bengalinha",
-    "bt": "SLBengalinha",
-    "bp": 0
-   },
-   {
-    "a": 8030866,
-    "an": "Henrique Rodrigues",
-    "at": "Henriquejunior",
-    "ap": 0,
-    "b": 2713965,
-    "bn": "Tomás Corregedor",
-    "bt": "Bruno + 10",
-    "bp": 0
-   },
-   {
-    "a": 2152388,
-    "an": "Nelson Rodrigues",
-    "at": "Rodri Team",
-    "ap": 0,
-    "b": 4243640,
-    "bn": "Tiago Guerreiro",
-    "bt": "Lups FC",
-    "bp": 0
-   },
-   {
-    "a": 5799879,
-    "an": "Nuno Rodrigues",
-    "at": "olimpikos",
-    "ap": 0,
-    "b": 1969702,
-    "bn": "Sergio Casinha",
-    "bt": "Estrelas D Bensafrim",
-    "bp": 0
-   },
-   {
-    "a": 3973926,
-    "an": "Pedro Bengalinha",
-    "at": "BengalinhaFC",
-    "ap": 0,
-    "b": 7188462,
-    "bn": "Paulo Couceiro",
-    "bt": "MitraMaxi97",
-    "bp": 0
-   },
-   {
-    "a": 5191766,
-    "an": "Bruno Carmo",
-    "at": "Brunorussia FC",
-    "ap": 0,
-    "b": 3397966,
-    "bn": "Renato Pinela",
-    "bt": "Pinela FC",
-    "bp": 0
-   },
-   {
-    "a": 2347397,
-    "an": "Andre Filipe da Luz Gonçalves",
-    "at": "Já fui",
-    "ap": 0,
-    "b": 5406100,
-    "bn": "Frederico Borges",
-    "bt": "SL Guinness",
+    "b": 1973102,
+    "bn": "Marco Carmo",
+    "bt": "Xarola Team",
     "bp": 0
    }
   ]

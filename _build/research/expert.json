@@ -1,142 +1,144 @@
 {
  "sources": [
   {
-   "key": "false9_captain",
-   "url": "https://thefalse9.com/2026/11/fpl-gw10-captain-picks.html",
-   "page_date": "2026-11-01"
+   "key": "fantasytool_captain",
+   "url": "https://thefantasytool.com/captain-picks-fpl",
+   "page_date": "2026-11-10"
   },
   {
-   "key": "false9_transfers",
-   "url": "https://thefalse9.com/2026/11/fpl-gameweek-10-transfers-evanilson-most-bought-joao-pedro-sold.html",
-   "page_date": "2026-11-01"
+   "key": "onefpl_injuries",
+   "url": "https://onefpl.com/blog/gvardiol-guehi-injuries-man-city-fpl-gw11-sell-hold-2026",
+   "page_date": "2026-11-08"
   },
   {
    "key": "ffs_teamnews",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/11/03/saliba-back-in-training-latest-fpl-team-news-pre-gameweek-10",
-   "page_date": "2026-11-03"
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/van-dijk-out-of-international-duty-szoboszlai-injury-update",
+   "page_date": "2026-11-10"
   }
  ],
  "captain_rankings": [
   {
-   "source": "false9_captain",
+   "source": "fantasytool_captain",
    "order": [
     "Erling Haaland",
-    "Gabriel",
-    "Ezri Konsa"
+    "Morgan Rogers",
+    "Cole Palmer",
+    "Mohammed Kudus",
+    "Alexander Isak"
    ]
   }
  ],
  "mentions": [
   {
-   "source": "false9_captain",
+   "source": "fantasytool_captain",
    "id": 411,
    "name": "Erling Haaland",
    "stance": "captain",
-   "note": "Default captain: 100% fit, 6.56 xG (highest), Forest away"
+   "note": "Top captain: 7.0 pts, Fulham at home, 99% to start"
   },
   {
-   "source": "false9_captain",
-   "id": 4,
-   "name": "Gabriel",
+   "source": "fantasytool_captain",
+   "id": 40,
+   "name": "Morgan Rogers",
    "stance": "captain",
-   "note": "Differential captain: Hull at home, form 6.8"
+   "note": "2nd: 5.7 pts, Leeds at home"
   },
   {
-   "source": "false9_captain",
+   "source": "fantasytool_captain",
+   "id": 154,
+   "name": "Cole Palmer",
+   "stance": "captain",
+   "note": "3rd: 5.5 pts, Leeds at home"
+  },
+  {
+   "source": "fantasytool_captain",
+   "id": 512,
+   "name": "Mohammed Kudus",
+   "stance": "differential",
+   "note": "5.3 pts, Ipswich at home, 2% owned"
+  },
+  {
+   "source": "fantasytool_captain",
    "id": 379,
    "name": "Alexander Isak",
    "stance": "start",
-   "note": "Second-highest xG (4.27); Palace away"
+   "note": "5.2 pts, Man Utd at home"
   },
   {
-   "source": "false9_captain",
-   "id": 79,
-   "name": "Evanilson",
-   "stance": "buy",
-   "note": "Best form in the table (8.5); Ipswich away"
+   "source": "fantasytool_captain",
+   "id": 15,
+   "name": "Martin Ødegaard",
+   "stance": "start",
+   "note": "5.2 pts, Newcastle away"
   },
   {
-   "source": "false9_captain",
-   "id": 12,
-   "name": "Bukayo Saka",
+   "source": "fantasytool_captain",
+   "id": 627,
+   "name": "Bradley Barcola",
+   "stance": "differential",
+   "note": "5.1 pts, Man Utd at home, 4% owned"
+  },
+  {
+   "source": "fantasytool_captain",
+   "id": 115,
+   "name": "Maxim De Cuyper",
+   "stance": "start",
+   "note": "5.1 pts, Hull away"
+  },
+  {
+   "source": "fantasytool_captain",
+   "id": 124,
+   "name": "Pascal Groß",
+   "stance": "start",
+   "note": "5.1 pts, Hull away"
+  },
+  {
+   "source": "fantasytool_captain",
+   "id": 504,
+   "name": "Luka Vušković",
+   "stance": "start",
+   "note": "5.0 pts, Hull away"
+  },
+  {
+   "source": "onefpl_injuries",
+   "id": 391,
+   "name": "Joško Gvardiol",
+   "stance": "hold",
+   "note": "Fitness concern, no return date; break helps"
+  },
+  {
+   "source": "onefpl_injuries",
+   "id": 388,
+   "name": "Marc Guéhi",
    "stance": "avoid",
-   "note": "Thigh injury, 0%, no return date"
-  },
-  {
-   "source": "false9_captain",
-   "id": 165,
-   "name": "João Pedro",
-   "stance": "avoid",
-   "note": "Thigh injury, 0%, no return date"
-  },
-  {
-   "source": "false9_transfers",
-   "id": 79,
-   "name": "Evanilson",
-   "stance": "buy",
-   "note": "Most bought (190k), best form, price rising"
-  },
-  {
-   "source": "false9_transfers",
-   "id": 166,
-   "name": "Nicolas Jackson",
-   "stance": "hold",
-   "note": "Heavily bought, price up £0.2m"
-  },
-  {
-   "source": "false9_transfers",
-   "id": 68,
-   "name": "Marcus Tavernier",
-   "stance": "hold",
-   "note": "55 points, already widely owned"
-  },
-  {
-   "source": "false9_transfers",
-   "id": 165,
-   "name": "João Pedro",
-   "stance": "sell",
-   "note": "Most sold (357k): thigh injury"
-  },
-  {
-   "source": "false9_transfers",
-   "id": 399,
-   "name": "Rayan Cherki",
-   "stance": "sell",
-   "note": "Weak form (2.8), rotation; 103k sold"
-  },
-  {
-   "source": "false9_transfers",
-   "id": 8,
-   "name": "Riccardo Calafiori",
-   "stance": "hold",
-   "note": "Sales not about fitness; 100% on FPL"
+   "note": "Hip, withdrew from England; no return date"
   },
   {
    "source": "ffs_teamnews",
-   "id": 12,
-   "name": "Bukayo Saka",
-   "stance": "avoid",
-   "note": "Still out (quad); \"weeks\" per Arteta"
+   "id": 356,
+   "name": "Virgil van Dijk",
+   "stance": "hold",
+   "note": "Withdrew from Netherlands; fitness issue"
   },
   {
    "source": "ffs_teamnews",
-   "id": 397,
-   "name": "Antoine Semenyo",
-   "stance": "avoid",
-   "note": "Medium-term absentee (knee)"
+   "id": 368,
+   "name": "Dominik Szoboszlai",
+   "stance": "hold",
+   "note": "Knee sprain, decision at the last minute for Hungary"
   }
  ],
  "team_notes": [
   {
-   "team": "Arsenal",
-   "note": "Saka fora várias semanas (coxa); Saliba de volta aos treinos; Calafiori e Rice com dúvidas segundo alguns sites (a FPL dá o Calafiori a 100%)."
+   "team": "Man City",
+   "note": "Guéhi (anca) saiu da seleção; Gvardiol e Khusanov em dúvida; Semenyo só em dezembro."
   },
   {
-   "team": "Man City",
-   "note": "Semenyo fora a médio prazo; Cherki a rodar (45 e 35 minutos nas duas últimas)."
+   "team": "Liverpool",
+   "note": "Van Dijk saiu da seleção (problema físico); Szoboszlai com entorse no joelho; Gravenberch dia a dia; Frimpong fora."
   }
  ],
  "notes": [
-  "Terça 3 nov: poucos artigos da J10 publicados; The False 9 usado só como opinião (já teve números errados)."
+  "Terça 10 nov, início da pausa das seleções: quase nenhum artigo da J11 publicado. Rever na véspera do deadline (sáb 21 nov 11:00), depois dos jogos das seleções."
  ]
 }

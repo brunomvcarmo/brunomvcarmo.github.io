@@ -10,5 +10,6 @@ _build/data_j7/
 _build/research_j7/
 _build/pool/*_j7.py
 _build/research/*_j8.json
+_build/research/*_j10.json
 # fotografias das recomendações de cada execução da rotina (temporárias)
 _build/rotina/recs-*.json

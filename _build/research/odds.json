@@ -1,180 +1,40 @@
 {
  "_meta": {
-  "collected": "2026-11-03",
-  "gameweek": 10,
+  "collected": "2026-11-10",
+  "gameweek": 11,
   "notes": [
-   "Odds decimais da bet365 nas páginas de cada jogo do kickoff.co.uk, lidas a 2026-11-03.",
+   "Odds decimais da bet365 nas páginas de cada jogo do kickoff.co.uk, lidas a 2026-11-10.",
    "cs_home/cs_away sem preço direto; win_to_nil como aproximação."
   ]
  },
  "matches": [
   {
-   "home": "Everton",
-   "away": "Coventry City",
+   "home": "Man City",
+   "away": "Fulham",
    "odds": {
-    "home": 1.7,
-    "draw": 3.9,
-    "away": 4.5
-   },
-   "over25": 1.73,
-   "under25": 2.1,
-   "btts_yes": 1.7,
-   "btts_no": 2.05,
-   "cs_home": null,
-   "cs_away": null,
-   "win_to_nil_home": 3.25,
-   "win_to_nil_away": 9.0,
-   "source": "bet365 via kickoff.co.uk",
-   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/everton-vs-coventry/",
-   "date": "2026-11-03"
-  },
-  {
-   "home": "Leeds",
-   "away": "Spurs",
-   "odds": {
-    "home": 2.6,
-    "draw": 3.3,
-    "away": 2.63
-   },
-   "over25": 1.91,
-   "under25": 1.91,
-   "btts_yes": 1.75,
-   "btts_no": 2.0,
-   "cs_home": null,
-   "cs_away": null,
-   "win_to_nil_home": 4.5,
-   "win_to_nil_away": 4.5,
-   "source": "bet365 via kickoff.co.uk",
-   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/leeds-united-vs-tottenham/",
-   "date": "2026-11-03"
-  },
-  {
-   "home": "Arsenal",
-   "away": "Hull City",
-   "odds": {
-    "home": 1.14,
-    "draw": 7.0,
-    "away": 19.0
+    "home": 1.42,
+    "draw": 4.75,
+    "away": 6.5
    },
    "over25": 1.5,
    "under25": 2.62,
-   "btts_yes": 2.25,
-   "btts_no": 1.57,
+   "btts_yes": 1.67,
+   "btts_no": 2.1,
    "cs_home": null,
    "cs_away": null,
-   "win_to_nil_home": 1.73,
-   "win_to_nil_away": 26.0,
+   "win_to_nil_home": 2.75,
+   "win_to_nil_away": 13.0,
    "source": "bet365 via kickoff.co.uk",
-   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/arsenal-vs-hull/",
-   "date": "2026-11-03"
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/man-city-vs-fulham/",
+   "date": "2026-11-10"
   },
   {
-   "home": "Fulham",
-   "away": "Newcastle",
+   "home": "Aston Villa",
+   "away": "Sunderland",
    "odds": {
-    "home": 2.05,
-    "draw": 3.6,
-    "away": 3.2
-   },
-   "over25": 1.67,
-   "under25": 2.2,
-   "btts_yes": 1.57,
-   "btts_no": 2.25,
-   "cs_home": null,
-   "cs_away": null,
-   "win_to_nil_home": 4.0,
-   "win_to_nil_away": 7.0,
-   "source": "bet365 via kickoff.co.uk",
-   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/fulham-vs-newcastle/",
-   "date": "2026-11-03"
-  },
-  {
-   "home": "Nott'm Forest",
-   "away": "Man City",
-   "odds": {
-    "home": 4.33,
-    "draw": 3.9,
-    "away": 1.67
-   },
-   "over25": 1.62,
-   "under25": 2.3,
-   "btts_yes": 1.62,
-   "btts_no": 2.2,
-   "cs_home": null,
-   "cs_away": null,
-   "win_to_nil_home": 9.0,
-   "win_to_nil_away": 3.4,
-   "source": "bet365 via kickoff.co.uk",
-   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/nottingham-forest-vs-man-city/",
-   "date": "2026-11-03"
-  },
-  {
-   "home": "Brighton",
-   "away": "Brentford",
-   "odds": {
-    "home": 1.85,
-    "draw": 3.7,
-    "away": 3.7
-   },
-   "over25": 1.62,
-   "under25": 2.3,
-   "btts_yes": 1.53,
-   "btts_no": 2.38,
-   "cs_home": null,
-   "cs_away": null,
-   "win_to_nil_home": 3.75,
-   "win_to_nil_away": 8.0,
-   "source": "bet365 via kickoff.co.uk",
-   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/brighton-vs-brentford/",
-   "date": "2026-11-03"
-  },
-  {
-   "home": "Crystal Palace",
-   "away": "Liverpool",
-   "odds": {
-    "home": 4.33,
-    "draw": 4.2,
-    "away": 1.65
-   },
-   "over25": 1.57,
-   "under25": 2.38,
-   "btts_yes": 1.62,
-   "btts_no": 2.2,
-   "cs_home": null,
-   "cs_away": null,
-   "win_to_nil_home": 10.0,
-   "win_to_nil_away": 3.25,
-   "source": "bet365 via kickoff.co.uk",
-   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/crystal-palace-vs-liverpool/",
-   "date": "2026-11-03"
-  },
-  {
-   "home": "Ipswich Town",
-   "away": "Bournemouth",
-   "odds": {
-    "home": 3.9,
-    "draw": 3.5,
-    "away": 1.83
-   },
-   "over25": 1.67,
-   "under25": 2.2,
-   "btts_yes": 1.62,
-   "btts_no": 2.2,
-   "cs_home": null,
-   "cs_away": null,
-   "win_to_nil_home": 8.0,
-   "win_to_nil_away": 3.5,
-   "source": "bet365 via kickoff.co.uk",
-   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/ipswich-vs-bournemouth/",
-   "date": "2026-11-03"
-  },
-  {
-   "home": "Sunderland",
-   "away": "Chelsea",
-   "odds": {
-    "home": 3.7,
-    "draw": 3.5,
-    "away": 1.91
+    "home": 1.7,
+    "draw": 3.75,
+    "away": 4.75
    },
    "over25": 1.8,
    "under25": 2.0,
@@ -182,31 +42,171 @@
    "btts_no": 2.05,
    "cs_home": null,
    "cs_away": null,
-   "win_to_nil_home": 7.0,
-   "win_to_nil_away": 3.5,
+   "win_to_nil_home": 3.25,
+   "win_to_nil_away": 9.0,
    "source": "bet365 via kickoff.co.uk",
-   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/sunderland-vs-chelsea/",
-   "date": "2026-11-03"
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/aston-villa-vs-sunderland/",
+   "date": "2026-11-10"
   },
   {
-   "home": "Man Utd",
-   "away": "Aston Villa",
+   "home": "Bournemouth",
+   "away": "Nott'm Forest",
    "odds": {
-    "home": 2.15,
-    "draw": 3.6,
-    "away": 3.0
+    "home": 1.95,
+    "draw": 3.5,
+    "away": 3.75
    },
-   "over25": 1.62,
-   "under25": 2.3,
-   "btts_yes": 1.5,
-   "btts_no": 2.5,
+   "over25": 1.8,
+   "under25": 2.0,
+   "btts_yes": 1.7,
+   "btts_no": 2.05,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 3.5,
+   "win_to_nil_away": 7.0,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/bournemouth-vs-nottingham-forest/",
+   "date": "2026-11-10"
+  },
+  {
+   "home": "Chelsea",
+   "away": "Leeds",
+   "odds": {
+    "home": 1.85,
+    "draw": 3.6,
+    "away": 3.9
+   },
+   "over25": 1.73,
+   "under25": 2.1,
+   "btts_yes": 1.67,
+   "btts_no": 2.1,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 3.5,
+   "win_to_nil_away": 8.0,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/chelsea-vs-leeds-united/",
+   "date": "2026-11-10"
+  },
+  {
+   "home": "Coventry City",
+   "away": "Crystal Palace",
+   "odds": {
+    "home": 2.35,
+    "draw": 3.5,
+    "away": 2.88
+   },
+   "over25": 1.67,
+   "under25": 2.2,
+   "btts_yes": 1.57,
+   "btts_no": 2.25,
    "cs_home": null,
    "cs_away": null,
    "win_to_nil_home": 4.5,
+   "win_to_nil_away": 6.0,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/coventry-vs-crystal-palace/",
+   "date": "2026-11-10"
+  },
+  {
+   "home": "Spurs",
+   "away": "Ipswich Town",
+   "odds": {
+    "home": 1.53,
+    "draw": 4.1,
+    "away": 5.5
+   },
+   "over25": 1.62,
+   "under25": 2.3,
+   "btts_yes": 1.67,
+   "btts_no": 2.1,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 2.75,
+   "win_to_nil_away": 11.0,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/tottenham-vs-ipswich/",
+   "date": "2026-11-10"
+  },
+  {
+   "home": "Newcastle",
+   "away": "Arsenal",
+   "odds": {
+    "home": 5.25,
+    "draw": 4.1,
+    "away": 1.57
+   },
+   "over25": 1.73,
+   "under25": 2.1,
+   "btts_yes": 1.8,
+   "btts_no": 1.95,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 10.0,
+   "win_to_nil_away": 2.75,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/newcastle-vs-arsenal/",
+   "date": "2026-11-10"
+  },
+  {
+   "home": "Hull City",
+   "away": "Brighton",
+   "odds": {
+    "home": 5.75,
+    "draw": 4.2,
+    "away": 1.5
+   },
+   "over25": 1.67,
+   "under25": 2.2,
+   "btts_yes": 1.75,
+   "btts_no": 2.0,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 11.0,
+   "win_to_nil_away": 2.62,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/hull-vs-brighton/",
+   "date": "2026-11-10"
+  },
+  {
+   "home": "Liverpool",
+   "away": "Man Utd",
+   "odds": {
+    "home": 1.7,
+    "draw": 4.1,
+    "away": 4.33
+   },
+   "over25": 1.5,
+   "under25": 2.63,
+   "btts_yes": 1.53,
+   "btts_no": 2.38,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 3.5,
+   "win_to_nil_away": 10.0,
+   "source": "bet365 via kickoff.co.uk",
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/liverpool-vs-man-united/",
+   "date": "2026-11-10"
+  },
+  {
+   "home": "Brentford",
+   "away": "Everton",
+   "odds": {
+    "home": 2.0,
+    "draw": 3.5,
+    "away": 3.5
+   },
+   "over25": 1.73,
+   "under25": 2.1,
+   "btts_yes": 1.62,
+   "btts_no": 2.2,
+   "cs_home": null,
+   "cs_away": null,
+   "win_to_nil_home": 3.75,
    "win_to_nil_away": 6.5,
    "source": "bet365 via kickoff.co.uk",
-   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/man-united-vs-aston-villa/",
-   "date": "2026-11-03"
+   "url": "https://www.kickoff.co.uk/english-premier-league-predictions-stats-odds/brentford-vs-everton/",
+   "date": "2026-11-10"
   }
  ],
  "odds_overview_source": {

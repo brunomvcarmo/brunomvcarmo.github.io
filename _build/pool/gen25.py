@@ -304,7 +304,7 @@ SRC_LABEL = {'ffhub_guide': 'Fantasy Football Hub', 'rotowire_rankings': 'RotoWi
              'ffs_early_scout_picks': 'FFS Scout Picks', 'ffs_brentfordfc': 'FFS (brentfordfc.com)', 'fffix_transfer_tips': 'Fantasy Football Fix',
              'fplpage_buy': 'fpl.page', 'statszone_captain': 'The Stats Zone', 'fplcopilot_tc': 'FPL Copilot', 'false9_captain': 'The False 9',
              'false9_chips': 'The False 9', 'false9_transfers': 'The False 9', 'false9_defenders': 'The False 9',
-             'onefpl_targets': 'OneFPL', 'statszone_captain': 'The Stats Zone', 'ffhub_guide': 'Fantasy Football Hub'}
+             'onefpl_targets': 'OneFPL', 'onefpl_injuries': 'OneFPL', 'fantasytool_captain': 'The Fantasy Tool', 'ffs_teamnews': 'Fantasy Football Scout', 'statszone_captain': 'The Stats Zone', 'ffhub_guide': 'Fantasy Football Hub'}
 EXPERT = dict(players={str(k): v for k, v in agg.items()},
               captains=EX['captain_rankings'],
               sources=[dict(key=s['key'], label=SRC_LABEL.get(s['key'], s['key']), url=s['url'], date=s.get('page_date')) for s in EX['sources']],

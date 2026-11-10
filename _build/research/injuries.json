@@ -170,12 +170,18 @@
   },
   "388": {
    "name": "Marc Guéhi",
-   "type": "unknown",
-   "summary_pt": "Saiu lesionado ao intervalo em Forest (7 nov); o City não disse o que é nem prazo; próximo jogo só a 21 nov (Fulham).",
-   "timeline": null,
-   "source": "https://thefalse9.com/2026/11/marc-guehi-injury-update-return-date.html",
-   "source_date": "2026-11-08",
-   "researched": "2026-11-08"
+   "type": "hip",
+   "summary_pt": "Saiu ao intervalo em Forest (7 nov) com dor na anca, que o incomodava há semanas; saiu da seleção inglesa e fica no City a recuperar para o Fulham (21 nov). Sem prazo oficial.",
+   "timeline": {
+    "min_days": 7,
+    "max_days": 28,
+    "back_date_earliest": "2026-11-14",
+    "back_date_latest": "2026-12-05",
+    "from_manager": false
+   },
+   "source": "https://www.rotowire.com/soccer/headlines/marc-guehi-injury-withdraws-from-england-squad-545879",
+   "source_date": "2026-11-09",
+   "researched": "2026-11-10"
   },
   "173": {
    "name": "Bobby Thomas",
@@ -384,7 +390,7 @@
   "371": {
    "name": "Ryan Gravenberch",
    "type": "foot",
-   "summary_pt": "Dor no calcanhar; Iraola: 'é coisa de dia a dia, questão de dor' – podia jogar contra o Palace (8 nov).",
+   "summary_pt": "Dor no calcanhar; ficou fora da seleção holandesa. Iraola: 'dia a dia, questão de dor'. Duas semanas de pausa para recuperar antes do Man Utd (22 nov).",
    "timeline": {
     "min_days": 0,
     "max_days": 14,
@@ -392,9 +398,9 @@
     "back_date_latest": "2026-11-22",
     "from_manager": true
    },
-   "source": "https://www.fantasyfootballscout.co.uk/2026/11/06/gravenberch-ekitike-liverpool-injury-latest-for-fpl-gameweek-10",
-   "source_date": "2026-11-06",
-   "researched": "2026-11-08"
+   "source": "https://britbrief.co.uk/sports/football/liverpool-injury-latest-van-dijk-szoboszlai-gravenberch-leoni-ekitike.html",
+   "source_date": "2026-11-10",
+   "researched": "2026-11-10"
   },
   "6": {
    "name": "William Saliba",
@@ -410,9 +416,63 @@
    "source": "https://www.fantasyfootballscout.co.uk/2026/11/08/fpl-notes-artetas-plan-for-saliba-rice-fine-belloumi-injury",
    "source_date": "2026-11-08",
    "researched": "2026-11-08"
+  },
+  "356": {
+   "name": "Virgil van Dijk",
+   "type": "unknown",
+   "summary_pt": "Saiu da seleção holandesa por 'problema físico' depois do Palace; jogava com um problema pequeno há semanas. O Liverpool conta com as duas semanas de descanso para o Man Utd (22 nov).",
+   "timeline": {
+    "min_days": 0,
+    "max_days": 14,
+    "back_date_earliest": "2026-11-10",
+    "back_date_latest": "2026-11-24",
+    "from_manager": false
+   },
+   "source": "https://britbrief.co.uk/sports/football/liverpool-injury-latest-van-dijk-szoboszlai-gravenberch-leoni-ekitike.html",
+   "source_date": "2026-11-10",
+   "researched": "2026-11-10"
+  },
+  "368": {
+   "name": "Dominik Szoboszlai",
+   "type": "knee",
+   "summary_pt": "Entorse no joelho contra o Palace (saiu aos 69'); foi à Hungria depois de exames e a federação decide à última hora se joga. Sem prazo do Liverpool.",
+   "timeline": {
+    "min_days": 0,
+    "max_days": 21,
+    "back_date_earliest": "2026-11-10",
+    "back_date_latest": "2026-12-01",
+    "from_manager": false
+   },
+   "source": "https://www.fantasyfootballscout.co.uk/2026/11/10/van-dijk-out-of-international-duty-szoboszlai-injury-update",
+   "source_date": "2026-11-10",
+   "researched": "2026-11-10"
+  },
+  "393": {
+   "name": "Abdukodir Khusanov",
+   "type": "unknown",
+   "summary_pt": "Jogou os 90' em Forest mas saiu da seleção do Usbequistão; o City não disse o que tem.",
+   "timeline": null,
+   "source": "https://britbrief.co.uk/sports/football/man-city-injury-latest-khusanov-guehi-gvardiol.html",
+   "source_date": "2026-11-10",
+   "researched": "2026-11-10"
+  },
+  "552": {
+   "name": "Brian Brobbey",
+   "type": "muscle",
+   "summary_pt": "Saiu da seleção holandesa depois do fim de semana; parece mais precaução por lesões recentes do que lesão nova.",
+   "timeline": {
+    "min_days": 0,
+    "max_days": 14,
+    "back_date_earliest": "2026-11-10",
+    "back_date_latest": "2026-11-24",
+    "from_manager": false
+   },
+   "source": "https://www.fantasyfootballscout.co.uk/2026/11/10/van-dijk-out-of-international-duty-szoboszlai-injury-update",
+   "source_date": "2026-11-10",
+   "researched": "2026-11-10"
   }
  },
- "updated": "2026-11-09T15:41:13Z",
+ "updated": "2026-11-10T14:29:00Z",
  "players": {
   "12": {
    "name": "Saka",
@@ -472,18 +532,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 54.6,
-    "max": 163.7,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 55.1,
+    "max": 165.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.02,
-    "J12": 0.08,
-    "J13": 0.13,
-    "J14": 0.17,
-    "J15": 0.27,
-    "J16": 0.37
+    "J11": 0.01,
+    "J12": 0.07,
+    "J13": 0.12,
+    "J14": 0.15,
+    "J15": 0.26,
+    "J16": 0.35
    },
    "likely_return": null,
    "likely_return_p": null
@@ -568,15 +628,15 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.78,
-    "J12": 0.9,
-    "J13": 0.93,
-    "J14": 0.94,
-    "J15": 0.97,
+    "J11": 0.74,
+    "J12": 0.89,
+    "J13": 0.92,
+    "J14": 0.93,
+    "J15": 0.96,
     "J16": 0.98
    },
    "likely_return": "J11",
-   "likely_return_p": 0.78
+   "likely_return_p": 0.74
   },
   "65": {
    "name": "J.Araujo",
@@ -592,18 +652,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 46.2,
-    "max": 138.5,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 46.6,
+    "max": 139.9,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.03,
-    "J12": 0.13,
-    "J13": 0.18,
-    "J14": 0.22,
-    "J15": 0.34,
-    "J16": 0.42
+    "J11": 0.02,
+    "J12": 0.12,
+    "J13": 0.16,
+    "J14": 0.21,
+    "J15": 0.32,
+    "J16": 0.4
    },
    "likely_return": null,
    "likely_return_p": null
@@ -628,15 +688,15 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.54,
-    "J12": 0.72,
-    "J13": 0.76,
-    "J14": 0.79,
-    "J15": 0.86,
-    "J16": 0.89
+    "J11": 0.51,
+    "J12": 0.69,
+    "J13": 0.74,
+    "J14": 0.78,
+    "J15": 0.85,
+    "J16": 0.88
    },
    "likely_return": "J11",
-   "likely_return_p": 0.54
+   "likely_return_p": 0.51
   },
   "573": {
    "name": "Sanchez",
@@ -658,15 +718,15 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.67,
-    "J12": 0.81,
-    "J13": 0.84,
-    "J14": 0.86,
-    "J15": 0.9,
-    "J16": 0.92
+    "J11": 0.63,
+    "J12": 0.78,
+    "J13": 0.82,
+    "J14": 0.84,
+    "J15": 0.89,
+    "J16": 0.91
    },
    "likely_return": "J11",
-   "likely_return_p": 0.67
+   "likely_return_p": 0.63
   },
   "89": {
    "name": "Henry",
@@ -688,15 +748,15 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.61,
-    "J12": 0.7,
-    "J13": 0.76,
-    "J14": 0.79,
-    "J15": 0.85,
-    "J16": 0.88
+    "J11": 0.58,
+    "J12": 0.68,
+    "J13": 0.74,
+    "J14": 0.77,
+    "J15": 0.83,
+    "J16": 0.87
    },
    "likely_return": "J11",
-   "likely_return_p": 0.61
+   "likely_return_p": 0.58
   },
   "99": {
    "name": "Milambo",
@@ -712,18 +772,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 54.6,
-    "max": 163.7,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 55.1,
+    "max": 165.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
     "J11": 0.03,
-    "J12": 0.08,
-    "J13": 0.13,
-    "J14": 0.17,
-    "J15": 0.26,
-    "J16": 0.34
+    "J12": 0.07,
+    "J13": 0.12,
+    "J14": 0.16,
+    "J15": 0.24,
+    "J16": 0.33
    },
    "likely_return": null,
    "likely_return_p": null
@@ -802,21 +862,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 28.0,
-    "max": 84.1,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 28.5,
+    "max": 85.5,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.16,
-    "J12": 0.29,
-    "J13": 0.39,
-    "J14": 0.45,
-    "J15": 0.56,
-    "J16": 0.65
+    "J11": 0.13,
+    "J12": 0.26,
+    "J13": 0.36,
+    "J14": 0.42,
+    "J15": 0.54,
+    "J16": 0.63
    },
    "likely_return": "J15",
-   "likely_return_p": 0.56
+   "likely_return_p": 0.54
   },
   "121": {
    "name": "Mitoma",
@@ -892,18 +952,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 54.6,
-    "max": 163.7,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 55.1,
+    "max": 165.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
     "J11": 0.02,
-    "J12": 0.09,
-    "J13": 0.13,
-    "J14": 0.17,
-    "J15": 0.27,
-    "J16": 0.35
+    "J12": 0.08,
+    "J13": 0.12,
+    "J14": 0.15,
+    "J15": 0.25,
+    "J16": 0.34
    },
    "likely_return": null,
    "likely_return_p": null
@@ -922,18 +982,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 54.6,
-    "max": 163.7,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 55.1,
+    "max": 165.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
     "J11": 0.02,
-    "J12": 0.09,
-    "J13": 0.13,
-    "J14": 0.17,
-    "J15": 0.27,
-    "J16": 0.35
+    "J12": 0.08,
+    "J13": 0.12,
+    "J14": 0.15,
+    "J15": 0.25,
+    "J16": 0.34
    },
    "likely_return": null,
    "likely_return_p": null
@@ -958,15 +1018,15 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.89,
-    "J12": 0.96,
-    "J13": 0.97,
-    "J14": 0.98,
+    "J11": 0.86,
+    "J12": 0.94,
+    "J13": 0.96,
+    "J14": 0.97,
     "J15": 0.99,
     "J16": 0.99
    },
    "likely_return": "J11",
-   "likely_return_p": 0.89
+   "likely_return_p": 0.86
   },
   "652": {
    "name": "Azeez",
@@ -988,15 +1048,15 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.89,
-    "J12": 0.96,
-    "J13": 0.97,
-    "J14": 0.98,
+    "J11": 0.86,
+    "J12": 0.94,
+    "J13": 0.96,
+    "J14": 0.97,
     "J15": 0.99,
     "J16": 0.99
    },
    "likely_return": "J11",
-   "likely_return_p": 0.89
+   "likely_return_p": 0.86
   },
   "28": {
    "name": "Martinez",
@@ -1106,15 +1166,15 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.52,
-    "J12": 0.66,
-    "J13": 0.73,
-    "J14": 0.76,
-    "J15": 0.82,
-    "J16": 0.87
+    "J11": 0.49,
+    "J12": 0.63,
+    "J13": 0.71,
+    "J14": 0.74,
+    "J15": 0.8,
+    "J16": 0.86
    },
-   "likely_return": "J11",
-   "likely_return_p": 0.52
+   "likely_return": "J12",
+   "likely_return_p": 0.63
   },
   "151": {
    "name": "Acheampong",
@@ -1160,21 +1220,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 22.2,
-    "max": 66.6,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 22.7,
+    "max": 68.1,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.17,
-    "J12": 0.37,
-    "J13": 0.5,
-    "J14": 0.56,
-    "J15": 0.67,
-    "J16": 0.77
+    "J11": 0.13,
+    "J12": 0.33,
+    "J13": 0.47,
+    "J14": 0.53,
+    "J15": 0.65,
+    "J16": 0.75
    },
    "likely_return": "J14",
-   "likely_return_p": 0.56
+   "likely_return_p": 0.53
   },
   "165": {
    "name": "João Pedro",
@@ -1346,21 +1406,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 37.0,
-    "max": 111.0,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 37.5,
+    "max": 112.5,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.05,
-    "J12": 0.18,
-    "J13": 0.24,
-    "J14": 0.31,
-    "J15": 0.45,
-    "J16": 0.52
+    "J11": 0.04,
+    "J12": 0.16,
+    "J13": 0.22,
+    "J14": 0.29,
+    "J15": 0.42,
+    "J16": 0.51
    },
    "likely_return": "J16",
-   "likely_return_p": 0.52
+   "likely_return_p": 0.51
   },
   "182": {
    "name": "Amenda",
@@ -1376,21 +1436,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 26.7,
-    "max": 80.0,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 27.1,
+    "max": 81.4,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.12,
-    "J12": 0.31,
-    "J13": 0.39,
-    "J14": 0.47,
-    "J15": 0.6,
-    "J16": 0.68
+    "J11": 0.09,
+    "J12": 0.28,
+    "J13": 0.36,
+    "J14": 0.44,
+    "J15": 0.58,
+    "J16": 0.66
    },
    "likely_return": "J15",
-   "likely_return_p": 0.6
+   "likely_return_p": 0.58
   },
   "187": {
    "name": "Eccles",
@@ -1406,21 +1466,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 29.9,
-    "max": 89.8,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 30.4,
+    "max": 91.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.09,
-    "J12": 0.26,
-    "J13": 0.33,
-    "J14": 0.41,
-    "J15": 0.55,
-    "J16": 0.62
+    "J11": 0.07,
+    "J12": 0.23,
+    "J13": 0.31,
+    "J14": 0.39,
+    "J15": 0.53,
+    "J16": 0.61
    },
    "likely_return": "J15",
-   "likely_return_p": 0.55
+   "likely_return_p": 0.53
   },
   "193": {
    "name": "Wright",
@@ -1436,18 +1496,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 43.4,
-    "max": 130.1,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 43.8,
+    "max": 131.5,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.03,
-    "J12": 0.13,
-    "J13": 0.19,
-    "J14": 0.25,
-    "J15": 0.37,
-    "J16": 0.45
+    "J11": 0.02,
+    "J12": 0.12,
+    "J13": 0.17,
+    "J14": 0.23,
+    "J15": 0.35,
+    "J16": 0.43
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1466,21 +1526,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 39.5,
-    "max": 118.4,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 39.9,
+    "max": 119.8,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.05,
-    "J12": 0.18,
-    "J13": 0.24,
-    "J14": 0.29,
-    "J15": 0.42,
-    "J16": 0.51
+    "J11": 0.03,
+    "J12": 0.16,
+    "J13": 0.22,
+    "J14": 0.27,
+    "J15": 0.4,
+    "J16": 0.49
    },
-   "likely_return": "J16",
-   "likely_return_p": 0.51
+   "likely_return": null,
+   "likely_return_p": null
   },
   "208": {
    "name": "Sarr",
@@ -1572,50 +1632,6 @@
    "likely_return": "J12",
    "likely_return_p": 0.91
   },
-  "268": {
-   "name": "King",
-   "team": 10,
-   "status": "d",
-   "chance": 75,
-   "news": "Groin injury - 75% chance of playing",
-   "news_added": "2026-11-07T20:00:09.169385Z",
-   "source": "API oficial da FPL (bootstrap-static, via live.json)",
-   "type": "groin",
-   "type_pt": "virilha/adutor",
-   "basis": "notícia",
-   "late": false,
-   "model_days": {
-    "min": 11.2,
-    "typical": 15.2,
-    "max": 29.2,
-    "since": "2026-11-07T20:00:09Z"
-   },
-   "web": {
-    "name": "Josh King",
-    "type": "groin",
-    "summary_pt": "Sentiu a virilha contra o Newcastle (7 nov); Arbeloa: 'parece nada de grave', talvez exames; está convocado para Inglaterra.",
-    "timeline": {
-     "min_days": 13,
-     "max_days": null,
-     "back_date_earliest": "2026-11-21",
-     "back_date_latest": null,
-     "from_manager": false
-    },
-    "source": "https://thefalse9.com/2026/11/josh-king-injury-update-return-date.html",
-    "source_date": "2026-11-07",
-    "researched": "2026-11-08"
-   },
-   "prob": {
-    "J11": 0.75,
-    "J12": 0.91,
-    "J13": 0.97,
-    "J14": 0.99,
-    "J15": 1.0,
-    "J16": 1.0
-   },
-   "likely_return": "J11",
-   "likely_return_p": 0.75
-  },
   "278": {
    "name": "Hughes",
    "team": 11,
@@ -1630,18 +1646,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 49.6,
-    "max": 148.9,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 50.1,
+    "max": 150.3,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.03,
-    "J12": 0.11,
-    "J13": 0.16,
-    "J14": 0.2,
-    "J15": 0.33,
-    "J16": 0.39
+    "J11": 0.02,
+    "J12": 0.1,
+    "J13": 0.14,
+    "J14": 0.18,
+    "J15": 0.31,
+    "J16": 0.37
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1660,18 +1676,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 54.6,
-    "max": 163.7,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 55.1,
+    "max": 165.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
     "J11": 0.02,
-    "J12": 0.09,
-    "J13": 0.13,
-    "J14": 0.17,
-    "J15": 0.28,
-    "J16": 0.34
+    "J12": 0.08,
+    "J13": 0.12,
+    "J14": 0.15,
+    "J15": 0.27,
+    "J16": 0.33
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1770,15 +1786,15 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.73,
-    "J12": 0.84,
-    "J13": 0.88,
-    "J14": 0.9,
-    "J15": 0.94,
-    "J16": 0.95
+    "J11": 0.7,
+    "J12": 0.82,
+    "J13": 0.86,
+    "J14": 0.88,
+    "J15": 0.93,
+    "J16": 0.94
    },
    "likely_return": "J11",
-   "likely_return_p": 0.73
+   "likely_return_p": 0.7
   },
   "632": {
    "name": "Ansah",
@@ -1794,21 +1810,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 30.6,
-    "max": 91.9,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 31.1,
+    "max": 93.3,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.11,
-    "J12": 0.27,
-    "J13": 0.34,
-    "J14": 0.4,
-    "J15": 0.55,
-    "J16": 0.61
+    "J11": 0.08,
+    "J12": 0.24,
+    "J13": 0.32,
+    "J14": 0.38,
+    "J15": 0.53,
+    "J16": 0.6
    },
    "likely_return": "J15",
-   "likely_return_p": 0.55
+   "likely_return_p": 0.53
   },
   "331": {
    "name": "Gudmundsson",
@@ -1898,18 +1914,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 51.5,
-    "max": 154.4,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 51.9,
+    "max": 155.8,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.02,
-    "J12": 0.09,
-    "J13": 0.15,
-    "J14": 0.19,
-    "J15": 0.28,
-    "J16": 0.37
+    "J11": 0.01,
+    "J12": 0.08,
+    "J13": 0.13,
+    "J14": 0.17,
+    "J15": 0.27,
+    "J16": 0.35
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1928,21 +1944,65 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 51.5,
-    "max": 154.4,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 51.9,
+    "max": 155.8,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.03,
-    "J12": 0.1,
-    "J13": 0.15,
-    "J14": 0.18,
-    "J15": 0.28,
-    "J16": 0.37
+    "J11": 0.02,
+    "J12": 0.09,
+    "J13": 0.13,
+    "J14": 0.17,
+    "J15": 0.27,
+    "J16": 0.35
    },
    "likely_return": null,
    "likely_return_p": null
+  },
+  "356": {
+   "name": "Virgil",
+   "team": 14,
+   "status": "d",
+   "chance": 75,
+   "news": "Unspecified injury - 75% chance of playing",
+   "news_added": "2026-11-09T18:00:09.325472Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "notícia",
+   "late": false,
+   "model_days": {
+    "min": 0.0,
+    "typical": 7.2,
+    "max": 21.2,
+    "since": "2026-11-09T18:00:09Z"
+   },
+   "web": {
+    "name": "Virgil van Dijk",
+    "type": "unknown",
+    "summary_pt": "Saiu da seleção holandesa por 'problema físico' depois do Palace; jogava com um problema pequeno há semanas. O Liverpool conta com as duas semanas de descanso para o Man Utd (22 nov).",
+    "timeline": {
+     "min_days": 0,
+     "max_days": 14,
+     "back_date_earliest": "2026-11-10",
+     "back_date_latest": "2026-11-24",
+     "from_manager": false
+    },
+    "source": "https://britbrief.co.uk/sports/football/liverpool-injury-latest-van-dijk-szoboszlai-gravenberch-leoni-ekitike.html",
+    "source_date": "2026-11-10",
+    "researched": "2026-11-10"
+   },
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
   },
   "357": {
    "name": "Frimpong",
@@ -2002,18 +2062,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 54.6,
-    "max": 163.7,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 55.1,
+    "max": 165.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
     "J11": 0.02,
-    "J12": 0.09,
-    "J13": 0.13,
-    "J14": 0.17,
-    "J15": 0.26,
-    "J16": 0.34
+    "J12": 0.08,
+    "J13": 0.12,
+    "J14": 0.15,
+    "J15": 0.24,
+    "J16": 0.33
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2032,18 +2092,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 54.6,
-    "max": 163.7,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 55.1,
+    "max": 165.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
     "J11": 0.02,
-    "J12": 0.09,
-    "J13": 0.13,
-    "J14": 0.17,
-    "J15": 0.26,
-    "J16": 0.34
+    "J12": 0.08,
+    "J13": 0.12,
+    "J14": 0.15,
+    "J15": 0.24,
+    "J16": 0.33
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2069,7 +2129,7 @@
    "web": {
     "name": "Ryan Gravenberch",
     "type": "foot",
-    "summary_pt": "Dor no calcanhar; Iraola: 'é coisa de dia a dia, questão de dor' – podia jogar contra o Palace (8 nov).",
+    "summary_pt": "Dor no calcanhar; ficou fora da seleção holandesa. Iraola: 'dia a dia, questão de dor'. Duas semanas de pausa para recuperar antes do Man Utd (22 nov).",
     "timeline": {
      "min_days": 0,
      "max_days": 14,
@@ -2077,9 +2137,9 @@
      "back_date_latest": "2026-11-22",
      "from_manager": true
     },
-    "source": "https://www.fantasyfootballscout.co.uk/2026/11/06/gravenberch-ekitike-liverpool-injury-latest-for-fpl-gameweek-10",
-    "source_date": "2026-11-06",
-    "researched": "2026-11-08"
+    "source": "https://britbrief.co.uk/sports/football/liverpool-injury-latest-van-dijk-szoboszlai-gravenberch-leoni-ekitike.html",
+    "source_date": "2026-11-10",
+    "researched": "2026-11-10"
    },
    "prob": {
     "J11": 0.75,
@@ -2112,10 +2172,10 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.11,
-    "J12": 0.16,
-    "J13": 0.18,
-    "J14": 0.2,
+    "J11": 0.1,
+    "J12": 0.15,
+    "J13": 0.17,
+    "J14": 0.19,
     "J15": 0.24,
     "J16": 0.28
    },
@@ -2130,24 +2190,30 @@
    "news": "Unspecified injury - 75% chance of playing",
    "news_added": "2026-11-07T21:30:08.741792Z",
    "source": "API oficial da FPL (bootstrap-static, via live.json)",
-   "type": "unknown",
-   "type_pt": "não especificada",
-   "basis": "tipo",
+   "type": "hip",
+   "type_pt": "anca",
+   "basis": "notícia",
    "late": false,
    "model_days": {
-    "min": 4,
-    "typical": 13,
-    "max": 45,
+    "min": 3.1,
+    "typical": 16.6,
+    "max": 34.1,
     "since": "2026-11-07T21:30:08Z"
    },
    "web": {
     "name": "Marc Guéhi",
-    "type": "unknown",
-    "summary_pt": "Saiu lesionado ao intervalo em Forest (7 nov); o City não disse o que é nem prazo; próximo jogo só a 21 nov (Fulham).",
-    "timeline": null,
-    "source": "https://thefalse9.com/2026/11/marc-guehi-injury-update-return-date.html",
-    "source_date": "2026-11-08",
-    "researched": "2026-11-08"
+    "type": "hip",
+    "summary_pt": "Saiu ao intervalo em Forest (7 nov) com dor na anca, que o incomodava há semanas; saiu da seleção inglesa e fica no City a recuperar para o Fulham (21 nov). Sem prazo oficial.",
+    "timeline": {
+     "min_days": 7,
+     "max_days": 28,
+     "back_date_earliest": "2026-11-14",
+     "back_date_latest": "2026-12-05",
+     "from_manager": false
+    },
+    "source": "https://www.rotowire.com/soccer/headlines/marc-guehi-injury-withdraws-from-england-squad-545879",
+    "source_date": "2026-11-09",
+    "researched": "2026-11-10"
    },
    "prob": {
     "J11": 0.75,
@@ -2262,15 +2328,15 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.65,
-    "J12": 0.77,
-    "J13": 0.83,
-    "J14": 0.86,
-    "J15": 0.91,
-    "J16": 0.94
+    "J11": 0.62,
+    "J12": 0.76,
+    "J13": 0.82,
+    "J14": 0.85,
+    "J15": 0.9,
+    "J16": 0.93
    },
    "likely_return": "J11",
-   "likely_return_p": 0.65
+   "likely_return_p": 0.62
   },
   "423": {
    "name": "Shaw",
@@ -2350,15 +2416,15 @@
     "researched": "2026-11-08"
    },
    "prob": {
-    "J11": 0.74,
-    "J12": 0.87,
+    "J11": 0.72,
+    "J12": 0.86,
     "J13": 0.91,
-    "J14": 0.94,
+    "J14": 0.93,
     "J15": 0.97,
     "J16": 0.98
    },
    "likely_return": "J11",
-   "likely_return_p": 0.74
+   "likely_return_p": 0.72
   },
   "433": {
    "name": "Ugarte",
@@ -2374,18 +2440,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 54.6,
-    "max": 163.7,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 55.1,
+    "max": 165.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
     "J11": 0.02,
-    "J12": 0.08,
-    "J13": 0.13,
-    "J14": 0.17,
-    "J15": 0.27,
-    "J16": 0.35
+    "J12": 0.07,
+    "J13": 0.12,
+    "J14": 0.15,
+    "J15": 0.26,
+    "J16": 0.34
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2448,21 +2514,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 30.0,
-    "max": 90.0,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 30.5,
+    "max": 91.4,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.09,
-    "J12": 0.28,
-    "J13": 0.35,
-    "J14": 0.43,
-    "J15": 0.53,
-    "J16": 0.62
+    "J11": 0.07,
+    "J12": 0.25,
+    "J13": 0.33,
+    "J14": 0.4,
+    "J15": 0.51,
+    "J16": 0.6
    },
    "likely_return": "J15",
-   "likely_return_p": 0.53
+   "likely_return_p": 0.51
   },
   "458": {
    "name": "Joelinton",
@@ -2484,15 +2550,15 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.57,
+    "J11": 0.56,
     "J12": 0.73,
-    "J13": 0.78,
+    "J13": 0.77,
     "J14": 0.81,
-    "J15": 0.86,
+    "J15": 0.85,
     "J16": 0.89
    },
    "likely_return": "J11",
-   "likely_return_p": 0.57
+   "likely_return_p": 0.56
   },
   "475": {
    "name": "Savona",
@@ -2508,18 +2574,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 54.6,
-    "max": 163.7,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 55.1,
+    "max": 165.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.02,
-    "J12": 0.07,
-    "J13": 0.13,
-    "J14": 0.17,
-    "J15": 0.27,
-    "J16": 0.35
+    "J11": 0.01,
+    "J12": 0.06,
+    "J13": 0.12,
+    "J14": 0.15,
+    "J15": 0.25,
+    "J16": 0.34
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2598,18 +2664,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 54.6,
-    "max": 163.7,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 55.1,
+    "max": 165.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.02,
-    "J12": 0.09,
-    "J13": 0.14,
-    "J14": 0.18,
-    "J15": 0.28,
-    "J16": 0.34
+    "J11": 0.01,
+    "J12": 0.08,
+    "J13": 0.13,
+    "J14": 0.17,
+    "J15": 0.27,
+    "J16": 0.33
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2658,18 +2724,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 54.6,
-    "max": 163.7,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 55.1,
+    "max": 165.2,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.02,
-    "J12": 0.09,
-    "J13": 0.14,
-    "J14": 0.18,
-    "J15": 0.28,
-    "J16": 0.34
+    "J11": 0.01,
+    "J12": 0.08,
+    "J13": 0.13,
+    "J14": 0.17,
+    "J15": 0.27,
+    "J16": 0.33
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2694,15 +2760,15 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.39,
-    "J12": 0.55,
-    "J13": 0.61,
-    "J14": 0.65,
-    "J15": 0.73,
-    "J16": 0.76
+    "J11": 0.36,
+    "J12": 0.53,
+    "J13": 0.59,
+    "J14": 0.63,
+    "J15": 0.71,
+    "J16": 0.75
    },
    "likely_return": "J12",
-   "likely_return_p": 0.55
+   "likely_return_p": 0.53
   },
   "578": {
    "name": "Mudryk",
@@ -2718,21 +2784,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 29.5,
-    "max": 88.4,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 29.9,
+    "max": 89.8,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.09,
-    "J12": 0.29,
-    "J13": 0.38,
-    "J14": 0.44,
-    "J15": 0.57,
-    "J16": 0.63
+    "J11": 0.07,
+    "J12": 0.26,
+    "J13": 0.36,
+    "J14": 0.41,
+    "J15": 0.55,
+    "J16": 0.61
    },
    "likely_return": "J15",
-   "likely_return_p": 0.57
+   "likely_return_p": 0.55
   },
   "532": {
    "name": "Ballard",
@@ -2748,21 +2814,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 22.4,
-    "max": 67.1,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 22.9,
+    "max": 68.6,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.17,
-    "J12": 0.42,
-    "J13": 0.49,
-    "J14": 0.57,
-    "J15": 0.68,
-    "J16": 0.75
+    "J11": 0.13,
+    "J12": 0.38,
+    "J13": 0.46,
+    "J14": 0.54,
+    "J15": 0.66,
+    "J16": 0.74
    },
    "likely_return": "J14",
-   "likely_return_p": 0.57
+   "likely_return_p": 0.54
   },
   "543": {
    "name": "Diarra",
@@ -2784,22 +2850,22 @@
    },
    "web": null,
    "prob": {
-    "J11": 0.62,
-    "J12": 0.78,
-    "J13": 0.82,
-    "J14": 0.86,
-    "J15": 0.9,
-    "J16": 0.93
+    "J11": 0.58,
+    "J12": 0.76,
+    "J13": 0.8,
+    "J14": 0.84,
+    "J15": 0.89,
+    "J16": 0.92
    },
    "likely_return": "J11",
-   "likely_return_p": 0.62
+   "likely_return_p": 0.58
   },
   "544": {
    "name": "Xhaka",
    "team": 20,
    "status": "d",
    "chance": 75,
-   "news": "Unspecified injury - 75% chance of playing",
+   "news": "Calf injury - 75% chance of playing",
    "news_added": "2026-11-08T14:30:09.504002Z",
    "source": "API oficial da FPL (bootstrap-static, via live.json)",
    "type": "calf",
@@ -2852,21 +2918,65 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 30.5,
-    "max": 91.6,
-    "since": "2026-11-09T15:41:13Z"
+    "typical": 31.0,
+    "max": 93.0,
+    "since": "2026-11-10T14:29:00Z"
    },
    "web": null,
    "prob": {
-    "J11": 0.09,
-    "J12": 0.27,
-    "J13": 0.35,
-    "J14": 0.42,
-    "J15": 0.54,
-    "J16": 0.63
+    "J11": 0.06,
+    "J12": 0.25,
+    "J13": 0.32,
+    "J14": 0.4,
+    "J15": 0.52,
+    "J16": 0.61
    },
    "likely_return": "J15",
-   "likely_return_p": 0.54
+   "likely_return_p": 0.52
+  },
+  "552": {
+   "name": "Brobbey",
+   "team": 20,
+   "status": "d",
+   "chance": 75,
+   "news": "Muscular injury - 75% chance of playing",
+   "news_added": "2026-11-10T11:30:10.818854Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "muscle",
+   "type_pt": "muscular",
+   "basis": "notícia",
+   "late": false,
+   "model_days": {
+    "min": 0.0,
+    "typical": 6.5,
+    "max": 20.5,
+    "since": "2026-11-10T11:30:10Z"
+   },
+   "web": {
+    "name": "Brian Brobbey",
+    "type": "muscle",
+    "summary_pt": "Saiu da seleção holandesa depois do fim de semana; parece mais precaução por lesões recentes do que lesão nova.",
+    "timeline": {
+     "min_days": 0,
+     "max_days": 14,
+     "back_date_earliest": "2026-11-10",
+     "back_date_latest": "2026-11-24",
+     "from_manager": false
+    },
+    "source": "https://www.fantasyfootballscout.co.uk/2026/11/10/van-dijk-out-of-international-duty-szoboszlai-injury-update",
+    "source_date": "2026-11-10",
+    "researched": "2026-11-10"
+   },
+   "prob": {
+    "J11": 0.75,
+    "J12": 0.91,
+    "J13": 0.97,
+    "J14": 0.99,
+    "J15": 1.0,
+    "J16": 1.0
+   },
+   "likely_return": "J11",
+   "likely_return_p": 0.75
   }
  },
  "durations_basis": "UEFA Elite Club Injury Study (Ekstrand et al., BJSM 2020;54:421-6, tabela 1): min = percentil 10, typ = mediana, max = percentil 90, em dias. Lesões que a FPL dá como \"lesionado\" tendem a ser das mais longas; o modelo condiciona ao tempo já passado."

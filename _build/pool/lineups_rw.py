@@ -68,6 +68,8 @@ page = get('https://www.rotowire.com/soccer/lineups.php')
 t = re.sub(r'<script.*?</script>|<style.*?</style>', '', page, flags=re.S)
 t = re.sub(r'<[^>]+>', '|', t); t = html.unescape(t); t = re.sub(r'\s+', ' ', t); t = re.sub(r'\|( ?\|)+', '|', t)
 hdr = re.findall(r'\|(\w+ \d+)\| ([\d:]+ [AP]M ET)\|Tickets\|Alerts\|(\w+)\|(\w+)\|', t)
+# só os jogos desta jornada (na pausa das seleções o RotoWire já mostra jogos da seguinte, ainda sem onze)
+hdr = [x for x in hdr if any(f['team_h'] == SHORT.get(x[2]) and f['team_a'] == SHORT.get(x[3]) for f in fx)]
 tok = [x.strip() for x in t.split('|') if x.strip()]
 POS = {'GK', 'DL', 'DC', 'DR', 'DMC', 'MC', 'ML', 'MR', 'AML', 'AMC', 'AMR', 'FW', 'DML', 'DMR', 'WBL', 'WBR', 'FWL', 'FWR'}
 sides = []

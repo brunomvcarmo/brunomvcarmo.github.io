@@ -138,11 +138,11 @@ def external(pid, g, X):
     return sum(vals) / len(vals) if vals else None
 
 # ---- own reading for the next gameweek (availability / minutes), each with a reason shown in the app ----
-# J10 (3 nov 2026): fontes = API oficial (estado, minutos J7-J9), RotoWire (onzes prováveis), FF Scout, The False 9.
+# J11 (10 nov 2026, pausa das seleções; deadline sáb 21 nov 11:00): fontes = API oficial (estado, minutos J8-J10),
+# RotoWire (onzes prováveis), FF Scout, OneFPL, Brit Brief. Rever na véspera do deadline (lesões nos jogos das seleções).
 READING = {
-    'Rayan Cherki': (0.7, 'Está a rodar no City: 0, 45 e 35 minutos nas últimas três jornadas (API oficial).'),
-    'Matheus Santos Carneiro da Cunha': (0.85, 'Voltou ao onze aos poucos: 6, 45 e 65 minutos nas últimas três (API oficial).'),
-    'Dominic Solanke-Mitchell': (0.85, '25 e 65 minutos nas duas últimas: o Spurs tem rodado o ponta de lança.'),
+    'Rayan Cherki': (0.8, 'Rodou no City (45 e 35 minutos) antes dos 90 na J10 (API oficial).'),
+    'Dominic Solanke-Mitchell': (0.8, '25, 65 e 47 minutos nas três últimas: o Spurs tem rodado o ponta de lança.'),
     'Martin Dubravka': (0.05, '2.º guarda-redes: só joga se o titular falhar.'),
 }
 READ_KIND = {'Martin Dubravka': 'role', 'Rayan Cherki': 'role'}
