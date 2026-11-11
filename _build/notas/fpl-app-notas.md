@@ -380,3 +380,18 @@ Ponto de regresso: commit a0a07fc ("Ponto de partida antes da V59").
 - **Pausa das seleções nos textos:** fazer as trocas só na quinta 19/sexta 20, depois dos jogos das seleções; deadline sáb 21 nov às 11:00 (mais cedo, City–Fulham às 12:30); depois três jornadas em dez dias (J11, J12 27-29 nov com a Europa a 24-26 nov, J13 a meio da semana 1-3 dez). Rever tudo na véspera do deadline (`atualizar.py dados` + leitura + `gerar`, como a "Última hora" da rotina).
 - `index.html`: os "(provisória)" fixos do HTML passaram a `<span class="gw-prov">`, escondidos quando `GW_META.lastProvisional` é false (diziam "Classificação após a J10 (provisória)").
 - Rotina diária: o registo só tem o teste de 5 nov — as execuções na nuvem continuam sem rede para a FPL e sem push (ver V56).
+
+## V60 (11 nov 2026) — ficha do jogador corrigida e acabamentos visuais
+- **Bug:** "Pontos por jornada" na ficha (`openPlayer`) usava uma grelha de 6 colunas com altura fixa (feita quando a época ia na J6); a partir da J7 as barras passavam para uma 2.ª linha por cima do texto e dos "Próximos jogos". Agora `.pc-bars` é uma fila flex que desliza (abre nas últimas jornadas) com os minutos por baixo de cada barra. **Lição:** nada na app pode assumir um número fixo de jornadas — testar com 38.
+- **Telemóvel (≤960 px):** cabeçalho numa linha (marca, Bruno/Marco, «?» = tutorial) e `.mnav` fixo em baixo com ícones; `body` leva `padding-bottom`. O nome da equipa e o Team ID só aparecem no computador.
+- **Ícones:** SVG em `mask` (variáveis `--ic-*` no `:root`) para definições, procurar, avisos e áreas; os botões mantêm o texto (tamanho 0) para os leitores de ecrã.
+- "Os teus atalhos" sem atalhos passa a uma linha (`.fav-min`; mantém `.fav-chips` porque o `test.py` o lê). Separadores esbatem-se do lado onde há mais (`v60Tabs`). Rodapé da barra lateral usa `gw-date`; rodapé da página usa `gw-prov`.
+- Tudo em `_build/patches/patch60.py` (bloco CSS "V60" no fim do `<style>`).
+
+## V61 (11 nov 2026) — ícone da app no painel e separador Notícias
+- **Painel:** o quadrado "FPL" passou a ser o ícone da app (`icons/icon-192.png`, com o texto "FPL" por baixo se a imagem faltar — é o caso do artefacto do claude.ai, que não tem a pasta `icons/`).
+- **Esta semana › Notícias** (a pedido): notícias da semana com data, fonte e link — o que os treinadores disseram, lesões, seleções, calendário. Dados em `_build/research/noticias.json` → `const NEWS` no bloco de dados (`_build/pool/noticias.py` escreve só essa linha; o `gen25.py` importa-o e também a escreve). `renderNews` ordena: primeiro as que falam do plantel do gestor ou de quem entra na troca sugerida (marcadas), depois por `imp` e data; filtros por tipo; por baixo, "Avisos oficiais da FPL" com o cartão de jogador. `nwLine` põe uma linha no Resumo. Entra no modo simples.
+- Se `NEWS.gw` for menor que a próxima jornada, o separador avisa que as notícias são da jornada anterior (acontece depois de um `gerar` sem atualizar o `noticias.json`).
+- Notícias só de sites/conferências de imprensa (com link); estados e pontos continuam a vir só da FPL.
+- Corrigido um resto de um patch antigo (`\g<1>8\g<2>`) no cabeçalho "Antes do deadline" do Bruno em "Mais detalhes desta jornada".
+- `_build/patches/patch61.py`.

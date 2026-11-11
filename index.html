@@ -605,8 +605,10 @@
   .pc-kpis .l { font-size: 11.5px; color: var(--muted); } .pc-kpis .v { font-family: var(--font-display); font-size: 22px; font-weight: 700; line-height: 1.15; }
   @media (max-width: 480px) { .pc-kpis { grid-template-columns: repeat(2, 1fr); } }
   .pc-sheet h3 { font-size: 15px; margin: 14px 0 6px; }
-  .pc-bars { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; align-items: end; height: 96px; }
-  .pc-bar { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 2px; font-size: 11px; }
+  .pc-bars { display: flex; gap: 4px; align-items: flex-end; overflow-x: auto; padding: 2px 0 6px; scrollbar-width: thin; }
+  .pc-bar { flex: 1 0 28px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 112px; gap: 2px; font-size: 11px; }
+  .pc-bar .m { color: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .pc-bar.neg .v { color: var(--bad); }
   .pc-bar .b { width: 70%; max-width: 34px; background: var(--accent); border-radius: 3px 3px 0 0; min-height: 2px; }
   .pc-bar.nomin .b { background: var(--line-strong); }
   .pc-bar .v { font-weight: 600; font-variant-numeric: tabular-nums; } .pc-bar .g { color: var(--muted); }
@@ -1445,6 +1447,129 @@
   .dgw-plan-list li { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--surface); }
   .dgw-plan-list li b.g { font-family: 'IBM Plex Mono', monospace; }
   .dgw-path { margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: var(--accent-weak); color: var(--ink); font-size: 14px; }
+
+  /* ===================== V60 (11 nov 2026): acabamentos — mesmo estilo, mais cuidado ===================== */
+  :root {
+    --radius: 12px;
+    --shadow: 0 1px 2px rgba(28, 21, 40, 0.05), 0 10px 24px -14px rgba(28, 21, 40, 0.16);
+    --ic-set: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M4%207h9M17%207h3M4%2017h3M11%2017h9'/%3E%3Ccircle%20cx='15'%20cy='7'%20r='2'/%3E%3Ccircle%20cx='9'%20cy='17'%20r='2'/%3E%3C/svg%3E");
+    --ic-srch: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Ccircle%20cx='11'%20cy='11'%20r='6.5'/%3E%3Cpath%20d='m20%2020-4.2-4.2'/%3E%3C/svg%3E");
+    --ic-bell: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M6%2010a6%206%200%200%201%2012%200c0%204.5%201.5%206%202%206.5H4c.5-.5%202-2%202-6.5'/%3E%3Cpath%20d='M10%2019.5a2%202%200%200%200%204%200'/%3E%3C/svg%3E");
+    --ic-semana: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Crect%20x='3.5'%20y='5'%20width='17'%20height='15.5'%20rx='2.5'/%3E%3Cpath%20d='M8%203v4M16%203v4M3.5%2010h17M9%2015.2l2%202%204-4'/%3E%3C/svg%3E");
+    --ic-jogos: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Crect%20x='3'%20y='5'%20width='18'%20height='14'%20rx='2'/%3E%3Cpath%20d='M12%205v14M3%209.5h2.5v5H3M21%209.5h-2.5v5H21'/%3E%3Ccircle%20cx='12'%20cy='12'%20r='2.3'/%3E%3C/svg%3E");
+    --ic-competicao: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M8%204h8v5a4%204%200%200%201-8%200zM8%206H5a3%203%200%200%200%203%204M16%206h3a3%203%200%200%201-3%204M12%2013v4M8.5%2020h7M10%2017h4'/%3E%3C/svg%3E");
+    --ic-mercado: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Ccircle%20cx='9'%20cy='8'%20r='3.2'/%3E%3Cpath%20d='M3%2020c0-3.3%202.7-6%206-6s6%202.7%206%206M16%205.2a3.2%203.2%200%200%201%200%205.6M17.5%2014.3c2.1.8%203.5%202.9%203.5%205.7'/%3E%3C/svg%3E");
+    --ic-epoca: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M4%204v16h16'/%3E%3Cpath%20d='m7.5%2015%203.5-4%203%202.5L19%208'/%3E%3C/svg%3E");
+    --ic-avancado: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Crect%20x='4'%20y='4'%20width='6.5'%20height='6.5'%20rx='1.5'/%3E%3Crect%20x='13.5'%20y='4'%20width='6.5'%20height='6.5'%20rx='1.5'/%3E%3Crect%20x='4'%20y='13.5'%20width='6.5'%20height='6.5'%20rx='1.5'/%3E%3Crect%20x='13.5'%20y='13.5'%20width='6.5'%20height='6.5'%20rx='1.5'/%3E%3C/svg%3E");
+  }
+  body { -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+  /* botões e separadores: resposta ao toque e ao rato */
+  .btn, .subtab, .nav-item, .mswitch-btn, .theme-btn, .seg-btn, .fav-chip, .mnav-btn { transition: background-color .12s ease, border-color .12s ease, color .12s ease, box-shadow .12s ease; }
+  .btn:hover { border-color: var(--accent-mid); }
+  .btn:active, .theme-btn:active { transform: translateY(1px); }
+  .btn.primary { box-shadow: 0 1px 2px rgba(28, 21, 40, .18); }
+  .subtabs { border-radius: 10px; position: relative; }
+  .subtabs.more-r { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent); }
+  .subtabs.more-l { -webkit-mask-image: linear-gradient(270deg, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(270deg, #000 calc(100% - 40px), transparent); }
+  .subtabs.more-l.more-r { -webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent); }
+  .view-head h1 { letter-spacing: 0; }
+  .fav-star { color: var(--muted); font-size: 18px; }
+  .fav-star[aria-pressed="true"] { color: var(--warn); }
+  .fav-sub { font-size: 12.5px; }
+  thead th { font-size: 10.5px; letter-spacing: .07em; }
+  .kpi, .card { border-color: color-mix(in srgb, var(--line) 80%, transparent); }
+  details.more-week > summary { border-radius: var(--radius); }
+  details.more-week > summary:hover { border-color: var(--accent-mid); color: var(--ink); }
+  /* ícones desenhados em vez de emojis */
+  .set-btn, .bell, .srch-btn { font-size: 0 !important; position: relative; }
+  .set-btn, .bell { display: inline-grid; place-items: center; }
+  .set-btn::before, .bell::before, .srch-btn::before { content: ""; width: 18px; height: 18px; background: var(--ink-2); -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat; }
+  .set-btn { --ic: var(--ic-set); } .bell { --ic: var(--ic-bell); } .srch-btn { --ic: var(--ic-srch); }
+  .theme-btn:hover::before { background: var(--accent); }
+  /* barra lateral (computador): ícone por área e marca na área aberta */
+  .brand-mark { border-radius: 9px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12), 0 2px 6px rgba(65, 32, 95, .25); }
+  .nav-item[data-view] { justify-content: flex-start; gap: 10px; }
+  .nav-item[data-view]::before { content: ""; flex: none; width: 18px; height: 18px; background: currentColor; opacity: .75; -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat; }
+  .nav-item[data-view] > :first-child { margin-left: auto; }
+  .nav-item[aria-current="page"] { box-shadow: inset 3px 0 0 var(--accent); }
+  .nav-item[aria-current="page"]::before { opacity: 1; }
+  .nav-item[data-view="semana"], .mnav-btn[data-v="semana"] { --ic: var(--ic-semana); } .nav-item[data-view="jogos"], .mnav-btn[data-v="jogos"] { --ic: var(--ic-jogos); }
+  .nav-item[data-view="competicao"], .mnav-btn[data-v="competicao"] { --ic: var(--ic-competicao); } .nav-item[data-view="mercado"], .mnav-btn[data-v="mercado"] { --ic: var(--ic-mercado); }
+  .nav-item[data-view="epoca"], .mnav-btn[data-v="epoca"] { --ic: var(--ic-epoca); } .nav-item[data-view="avancado"] { --ic: var(--ic-avancado); }
+  /* "Os teus atalhos" sem atalhos: uma linha só */
+  .fav-card.fav-min { padding: 9px 14px; box-shadow: none; background: transparent; border-style: dashed; border-color: var(--line-strong); }
+  .fav-card.fav-min .fav-rec { margin-top: 0; }
+  .fav-card.fav-min .fav-chips { display: inline; }
+  .fav-min-row { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+  /* ficha do jogador */
+  .pc-sheet { border-radius: 16px; }
+  .pc-kpis > div { border: 1px solid var(--line); border-radius: 10px; }
+  .pc-close { display: grid; place-items: center; z-index: 2; }
+  .pc-close:hover { border-color: var(--accent-mid); color: var(--accent); }
+  .pc-fx div { border-radius: 8px; }
+
+  /* ---------- telemóvel e tablet: cabeçalho numa linha e menu fixo em baixo ---------- */
+  @media (max-width: 960px) {
+    body { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
+    .sidebar { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px 10px; padding: 10px 16px; }
+    .brand { grid-area: 1 / 1; padding: 0; }
+    .team-card { grid-area: 1 / 2; background: none; border: 0; padding: 0; }
+    .team-card > div:not(.manager-switch) { display: none; }
+    .mswitch-btn { padding: 8px 6px; overflow: hidden; text-overflow: ellipsis; }
+    .mfav { grid-row: 2; grid-column: 1 / -1; padding-bottom: 2px; }
+    .tour-again { grid-area: 1 / 3; margin: 0; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); font-size: 0; text-decoration: none; display: grid; place-items: center; }
+    .tour-again::before { content: "?"; font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--ink-2); }
+    .mnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; gap: 0 !important; padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 0px));
+      background: color-mix(in srgb, var(--surface) 94%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+      border-top: 1px solid var(--line); box-shadow: 0 -6px 20px -12px rgba(28, 21, 40, .25); }
+    .mnav-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: 0 !important; background: none !important;
+      min-height: 50px; padding: 6px 2px 4px !important; font-size: 11px !important; font-weight: 600; color: var(--muted); white-space: nowrap; border-radius: 10px; }
+    .mnav-btn::before { content: ""; width: 22px; height: 22px; background: currentColor; -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat; }
+    .mnav-btn.here { color: var(--accent); }
+    .mnav-btn.here::after { content: ""; position: absolute; top: -4px; left: 50%; width: 28px; height: 3px; margin-left: -14px; border-radius: 0 0 3px 3px; background: var(--accent); }
+    .mnav-btn:active { background: var(--accent-weak) !important; }
+    .mnav-btn .al-dot { top: 1px; right: auto; left: calc(50% + 4px); }
+    .mnav-btn .av-dot { top: 0; right: auto; left: calc(50% + 6px); background: none; }
+    .view { padding-top: 18px; }
+    .view-head { margin-bottom: 14px; }
+    .page-foot { margin-bottom: 8px; }
+  }
+  @media (max-width: 520px) {
+    .brand-text { display: none; }
+    .view-head p { font-size: 13.5px; }
+    h1 { font-size: 24px; }
+    .status-items { width: 100%; align-items: stretch; }
+    .status-item { flex-direction: column; align-items: flex-start; justify-content: center; gap: 0; padding: 4px 10px; min-height: 40px; }
+    .status-item.deadline { flex: 1 1 auto; }
+    .status-item .k { font-size: 9.5px; white-space: nowrap; line-height: 1.3; }
+    .status-item .v, .status-item.deadline #countdown { font-size: 14.5px !important; line-height: 1.2; color: var(--ink); }
+    .status-item.deadline #countdown { color: var(--accent-strong) !important; font-weight: 700; }
+    .theme-btn { width: 40px; height: 40px; flex: none; }
+    .btn { min-height: 36px; }
+    .btn.small { min-height: 30px; }
+    .subtab { padding: 8px 13px; }
+  }
+
+  /* ===================== V61: ícone da app no painel e Notícias ===================== */
+  .brand-mark { position: relative; width: 38px; height: 38px; overflow: hidden; border-radius: 10px; }
+  .brand-mark img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; }
+  .nw-f { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 14px; }
+  .nw-list { display: grid; gap: 10px; }
+  .nw-it { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: var(--surface); }
+  .nw-it.rel { border-color: var(--accent-mid); background: var(--accent-weak); }
+  .nw-it.imp3 { box-shadow: inset 3px 0 0 var(--warn); }
+  .nw-top { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .nw-tag { font-size: 10.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 7px; border-radius: 5px; background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line); }
+  .nw-it h3 { margin: 0 0 4px; font-size: 16.5px; line-height: 1.25; }
+  .nw-it p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink-2); max-width: 78ch; }
+  .nw-ft { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; justify-content: space-between; margin-top: 10px; }
+  .nw-ps { display: flex; flex-wrap: wrap; gap: 6px; }
+  .nw-p { font: inherit; font-size: 12.5px; font-weight: 600; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+  .nw-p:hover { border-color: var(--accent-mid); color: var(--accent-strong); }
+  .nw-p small { font-weight: 500; color: var(--muted); }
+  .nw-src { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+  .nw-src:hover { color: var(--accent); }
+  .nw-line button { font-size: inherit; }
 </style>
 </head>
 <body>
@@ -1453,7 +1578,7 @@
   <!-- ===================== BARRA LATERAL ===================== -->
   <aside class="sidebar" aria-label="Navegação">
     <div class="brand">
-      <div class="brand-mark" aria-hidden="true">FPL</div>
+      <div class="brand-mark" aria-hidden="true">FPL<img src="icons/icon-192.png" alt="" onerror="this.remove()"></div>
       <div class="brand-text"><b>Painel FPL</b><span>Época 2026/27</span></div>
     </div>
 
@@ -1482,7 +1607,7 @@
       </div>
     </nav>
 
-    <div class="sidebar-foot">Dados da API oficial da FPL · atualizado a 13 out 2026. Pontos esperados e notas de equipa são estimativas próprias.</div>
+    <div class="sidebar-foot">Dados da API oficial da FPL · atualizado a <span class="gw-date">13 out 2026</span>. Pontos esperados e notas de equipa são estimativas próprias.</div>
   </aside>
 
   <!-- ===================== CONTEÚDO ===================== -->
@@ -1513,6 +1638,7 @@
       </div>
       <div class="subtabs" role="tablist" aria-label="Esta semana">
         <button class="subtab" type="button" data-sub="resumo">Resumo</button>
+        <button class="subtab" type="button" data-sub="noticias">Notícias</button>
         <button class="subtab" type="button" data-sub="onze">Onze e banco</button>
         <button class="subtab" type="button" data-sub="capitao">Capitão</button>
         <button class="subtab" type="button" data-sub="transferencias">Transferências</button>
@@ -1523,6 +1649,7 @@
 <section class="card fav-card" id="fav-card"></section>
 <div class="live-banner" id="live-banner" role="status" hidden></div>
 <div class="auto-line" id="auto-line" hidden></div>
+<div class="auto-line nw-line" id="news-line" hidden></div>
       <section class="card" id="todo" style="margin-bottom:16px"></section>
       <section class="card" id="alerts" style="margin-bottom:16px"></section>
       <section class="card dis59-card" id="dis59-resumo" style="margin-bottom:16px" hidden></section>
@@ -1540,7 +1667,9 @@
         <div class="stack">
           <div class="mgr-view" data-mgr="bruno">
             <section class="card feature">
-              \g<1>8\g<2><ol class="todo-list" id="bruno-todo-list"></ol>\n              <p class="note" id="bruno-todo-note"></p>
+              <div class="card-head"><div><h2>Antes do deadline — Brunorussia FC</h2><div class="card-sub">Três decisões para a J<span class="gw-n">8</span>.</div></div></div>
+              <ol class="todo-list" id="bruno-todo-list"></ol>
+              <p class="note" id="bruno-todo-note"></p>
             </section>
           </div>
           <div class="mgr-view" data-mgr="marco">
@@ -1573,6 +1702,10 @@
         </div>
       </div>
       </details>
+      </div>
+      <div class="subview" data-sub="noticias" hidden>
+        <section class="card" id="news-root"></section>
+        <section class="card" id="news-fpl"></section>
       </div>
       <div class="subview" data-sub="onze" hidden>
 
@@ -2439,7 +2572,7 @@
     </section>
 
 
-    <div class="page-foot"><button type="button" class="linklike adv-link" data-goto="avancado">Avançado (simulador, tabelas, regras)</button> · Painel FPL · Brunorussia FC e Xarola Team · dados até à J<span class="gw-l">6</span> (provisória), recolhidos a <span class="gw-date">13 out 2026</span>.</div>
+    <div class="page-foot"><button type="button" class="linklike adv-link" data-goto="avancado">Avançado (simulador, tabelas, regras)</button> · Painel FPL · Brunorussia FC e Xarola Team · dados até à J<span class="gw-l">6</span><span class="gw-prov"> (provisória)</span>, recolhidos a <span class="gw-date">13 out 2026</span>.</div>
   </main>
 </div>
 
@@ -2453,6 +2586,7 @@
 <script>
 // ======================= DADOS DA JORNADA (V24) =======================
 // Gerado por _build/pool/gen25.py. Tudo o que muda de semana para semana e não é texto vive aqui.
+const NEWS = {"updated":"2026-11-11","gw":11,"items":[{"d":"2026-11-10","tag":"selecoes","imp":3,"t":"Haaland e Ødegaard falharam o primeiro treino da Noruega","x":"Os dois não treinaram na terça (10 nov). O selecionador Ståle Solbakken falou em «coisas pequenas», disse que não é doença e não deu pormenores. Na quarta (11 nov) o Haaland já voltou ao treino. A Noruega joga com o País de Gales e a Dinamarca. Ver se jogam e quantos minutos antes de fechar o capitão e a troca.","ids":[411,15],"src":"Goal","url":"https://www.goal.com/en-us/news/norway-erling-haaland-martin-odegaard-staale-solbakken/blt22ae4006f2f80fd2"},{"d":"2026-11-11","tag":"selecoes","imp":3,"t":"Konsa fora do Inglaterra–Croácia por causa do joelho","x":"Sentiu o joelho na vitória do Arsenal em Praga (Liga dos Campeões); o Arteta disse que a substituição foi por precaução. Jogou os 90 minutos contra o Hull na J10, mas a Inglaterra deixou-o de fora do jogo de quinta (12 nov). Deve voltar aos treinos antes do jogo com a Espanha, no domingo. Na FPL continua sem aviso (100%).","ids":[31],"src":"The False 9","url":"https://thefalse9.com/2026/11/fpl-international-break-injuries-11-november.html"},{"d":"2026-11-11","tag":"selecoes","imp":2,"t":"Szoboszlai: a Hungria só decide à última hora","x":"Saiu aos 69 minutos contra o Crystal Palace com um problema no joelho; o Iraola disse que não estava a 100%. Foi à seleção e fez mais exames: a federação húngara diz que a decisão sobre o jogo de sábado (Geórgia) fica para a última hora. O Kerkez também treinou à parte na Hungria, sem explicação.","ids":[368,358],"src":"Sport Witness","url":"https://sportwitness.co.uk/2-liverpool-players-out-of-main-training-on-international-duty-worry-for-iraola/"},{"d":"2026-11-09","tag":"selecoes","imp":2,"t":"Guéhi saiu da seleção inglesa; Gvardiol também é dúvida","x":"O Guéhi saiu ao intervalo em Nottingham (7 nov) com dor na anca e deixou a seleção inglesa; o Dan Burn foi chamado para o lugar. O Gvardiol saiu no mesmo jogo, e o Maresca disse que já tinha «problemas durante a semana». Os dois estão a 75% na FPL. O City recebe o Fulham (J11) e depois vai a casa do Arsenal (J12).","ids":[388,391],"src":"RotoWire","url":"https://www.rotowire.com/soccer/headlines/marc-guehi-injury-withdraws-from-england-squad-545879"},{"d":"2026-11-10","tag":"selecoes","imp":2,"t":"Van Dijk e Gravenberch fora da seleção holandesa","x":"O Van Dijk saiu da seleção por um «problema físico» que já trazia há semanas (75% na FPL desde 9 nov). O Gravenberch tem dores no calcanhar; o Iraola diz que é «dia a dia». O Liverpool conta com as duas semanas de pausa para os ter contra o Man Utd (domingo 22 nov).","ids":[356,371],"src":"Brit Brief","url":"https://britbrief.co.uk/sports/football/liverpool-injury-latest-van-dijk-szoboszlai-gravenberch-leoni-ekitike.html"},{"d":"2026-11-11","tag":"calendario","imp":2,"t":"Deadline mais cedo: sábado 21 nov às 11:00","x":"A J11 abre com o Man City–Fulham às 12:30, por isso o deadline é às 11:00 de Lisboa. Depois vêm três jornadas em dez dias: J11 (21-23 nov), J12 (27-29 nov, com jogos europeus a meio da semana) e J13 a meio da semana (1-3 dez). Conta com rotação nas equipas que jogam na Europa.","ids":[],"src":"FPL (calendário oficial)","url":"https://fantasy.premierleague.com/fixtures"},{"d":"2026-11-06","tag":"treinador","imp":2,"t":"João Pedro: Alonso reavalia-o depois da pausa","x":"Lesão na coxa num treino a 23-24 out. O Alonso falou em «umas semanas» e disse que o volta a avaliar depois da pausa, antes do Chelsea–Leeds (21 nov). Na FPL está a 0%, sem data de regresso.","ids":[165],"src":"Fantasy Football Scout","url":"https://www.fantasyfootballscout.co.uk/2026/11/06/lacroix-martinez-joao-pedro-chelsea-injury-latest-for-fpl-gameweek-10"},{"d":"2026-10-29","tag":"treinador","imp":2,"t":"Bobby Thomas: Lampard fala num problema pequeno","x":"O Lampard disse que é um «pequeno problema na barriga da perna», nada de longa duração; antes do jogo com o Everton (6 nov) disse só «vamos ver». Na FPL está a 50%.","ids":[173],"src":"The Phoenix","url":"https://thephoenix.counterpress.media/news/a-small-calf-injury-frank-lampard-shares-good-news-on-bobby-thomas-174692"},{"d":"2026-11-10","tag":"lesao","imp":1,"t":"Brobbey com pequena rotura muscular","x":"Saiu da seleção holandesa com uma pequena rotura na parte de trás da coxa. Segundo um jornalista holandês, deve ficar umas semanas de fora e é pouco provável que jogue logo a seguir à pausa. O Sunderland ainda não disse nada.","ids":[552],"src":"Sport Witness","url":"https://sportwitness.co.uk/sunderland-star-withdraws-from-international-duty-set-for-weeks-out-injured/"},{"d":"2026-11-06","tag":"treinador","imp":1,"t":"Man Utd: Rashford «dia a dia», Sesko só no ano novo","x":"O Carrick avalia o Rashford (anca) dia a dia; a imprensa aponta o regresso para o jogo com o Liverpool (22 nov). O Sesko (canela) fica de fora «por um período mais longo» — a imprensa fala no ano novo.","ids":[429,439],"src":"The False 9","url":"https://thefalse9.com/2026/11/rashford-hip-injury-update-return-date.html"},{"d":"2026-11-06","tag":"treinador","imp":1,"t":"Saka: Arteta fala em «semanas»","x":"Lesão na coxa contra o Bayern (21 out). O Arteta disse que são «semanas» e que só volta ao relvado depois da pausa; a imprensa fala em 6 a 8 semanas. Na FPL está a 0%.","ids":[12],"src":"Fantasy Football Scout","url":"https://www.fantasyfootballscout.co.uk/2026/11/06/konsa-saliba-saka-arsenal-injury-latest-for-fpl-gameweek-10"},{"d":"2026-11-08","tag":"lesao","imp":1,"t":"Xhaka saiu lesionado contra o Chelsea","x":"Saiu logo no início do jogo (8 nov) com suspeita de lesão na barriga da perna e vai fazer exames. Ainda não há palavras do treinador. Na FPL está a 75%.","ids":[544],"src":"Sports Mole","url":"https://www.sportsmole.co.uk/football/sunderland/injury-news/news/granit-goes-xhaka-forced-off-with-injury-in-sunderland-chelsea_608727.html"}]};
 const GW_META = {"next": 11, "last": 10, "lastProvisional": false, "horizon": [11, 12, 13, 14, 15], "deadline": "2026-11-21T11:00:00Z", "deadlineLabel": "Sáb 21 Nov · 11:00", "window": "21-23 nov", "dataDate": "10 nov 2026", "poolSource": "cópia pública da API oficial (FPL-Elo-Insights, atualizada 2×/dia), validada contra a API oficial", "h2h": {"bruno": {"pos": 12, "next": "Tiago Guerreiro", "nextEntry": 4243640, "nextTeam": "Lups FC", "results": [{"gw": 1, "opp": "Henrique Rodrigues", "team": "Henriquejunior", "mine": 59, "theirs": 61}, {"gw": 2, "opp": "Dan Robinson", "team": "CHEIRAMUCU", "mine": 104, "theirs": 90}, {"gw": 3, "opp": "Nuno Rodrigues", "team": "olimpikos", "mine": 56, "theirs": 67}, {"gw": 4, "opp": "Nelson Rodrigues", "team": "Rodri Team", "mine": 72, "theirs": 74}, {"gw": 5, "opp": "marco milhano", "team": "marco's Team", "mine": 37, "theirs": 59}, {"gw": 6, "opp": "Pedro Bengalinha", "team": "BengalinhaFC", "mine": 71, "theirs": 50}, {"gw": 7, "opp": "Frederico Borges", "team": "SL Guinness", "mine": 60, "theirs": 76}, {"gw": 8, "opp": "Andre Filipe da Luz Gonçalves", "team": "Já fui", "mine": 29, "theirs": 17}, {"gw": 9, "opp": "Paulo Couceiro", "team": "MitraMaxi97", "mine": 54, "theirs": 55}, {"gw": 10, "opp": "Renato Pinela", "team": "Pinela FC", "mine": 61, "theirs": 49}], "schedule": [{"gw": 11, "opp": "Tiago Guerreiro", "team": "Lups FC"}]}, "marco": {"pos": 14, "next": "rui moreira", "nextEntry": 2345657, "nextTeam": "BADATEAM", "results": [{"gw": 1, "opp": "Frederico Borges", "team": "SL Guinness", "mine": 40, "theirs": 60}, {"gw": 2, "opp": "Andre Filipe da Luz Gonçalves", "team": "Já fui", "mine": 97, "theirs": 92}, {"gw": 3, "opp": "Paulo Couceiro", "team": "MitraMaxi97", "mine": 55, "theirs": 50}, {"gw": 4, "opp": "Renato Pinela", "team": "Pinela FC", "mine": 92, "theirs": 69}, {"gw": 5, "opp": "Tiago Guerreiro", "team": "Lups FC", "mine": 43, "theirs": 63}, {"gw": 6, "opp": "Sergio Casinha", "team": "Estrelas D Bensafrim", "mine": 61, "theirs": 74}, {"gw": 7, "opp": "Miguel Bengalinha", "team": "SLBengalinha", "mine": 68, "theirs": 76}, {"gw": 8, "opp": "Tomás Corregedor", "team": "Bruno + 10", "mine": 36, "theirs": 42}, {"gw": 9, "opp": "Filipe Borges", "team": "SLB77", "mine": 45, "theirs": 59}, {"gw": 10, "opp": "Luis Pico", "team": "Pico FC", "mine": 71, "theirs": 73}], "schedule": [{"gw": 11, "opp": "rui moreira", "team": "BADATEAM"}]}}, "ftConfirmed": false, "squadsGw": 10};
 const POOL_KEYS = ["id", "n", "t", "c", "p", "sp", "s", "ch", "nw", "o", "lo", "ti", "to", "cc", "cs", "en", "tp", "pts", "mn", "xg", "xa", "dc", "m3", "ep", "k", "rd"];
 const POOL24 = [
@@ -3152,8 +3286,8 @@ const DISAGREE = {"gws":[11,12,13,14,15],"next":11,"gen":"2026-11-10T14:29:09Z",
 </script>
 <script>
   // ===== V47 (16 out 2026): índice único das áreas e separadores — menu, pesquisa e guia =====
-  const APP_AREAS = [{"v": "semana", "n": "Esta semana", "d": "O que fazer antes do deadline: o resumo, o onze e o banco, o capitão, as transferências e as chips.", "subs": ["Resumo", "Onze e banco", "Capitão", "Transferências", "Registar o que fiz", "Chips"]}, {"v": "jogos", "n": "Jogos", "d": "Os jogos da jornada, os onzes prováveis, os pontos ao vivo e quem jogou a meio da semana.", "subs": ["Jogos da jornada", "Onzes prováveis", "Ao vivo", "Europa e descanso"]}, {"v": "competicao", "n": "Rivais", "d": "A liga clássica e o H2H: classificação, previsões, adversários e o que os rivais devem fazer.", "subs": ["Classificação", "Previsão da classificação", "H2H", "Comparar equipas", "Vigiar rivais", "Equipa para ganhar a…", "Orçamentos e chips"]}, {"v": "mercado", "n": "Jogadores", "d": "Procurar, comparar e escolher jogadores.", "subs": ["Pesquisa", "Comparador", "Equipa ideal", "Equipa simulada", "Em forma", "Preços e alternativas", "Lesões e castigos", "Onde a app discorda"]}, {"v": "epoca", "n": "A minha época", "d": "Como tem corrido a tua época: pontos, ranking, jornada a jornada, previsões e orçamento.", "subs": ["Evolução e ranking", "Por jornada", "Jogador a jogador", "Previsões vs real", "Orçamento do plantel"]}, {"v": "avancado", "n": "Avançado", "d": "Simulador, tabelas e referência. Tudo continua a funcionar como antes.", "subs": ["Simulador", "Hot takes", "Picks em falta", "Capitães da liga", "Plantel vs liga", "Tabelas das equipas", "Regras e fontes", "Calibração"]}];
-  const APP_INDEX = [{"v": "semana", "s": "resumo", "a": "Esta semana", "n": "Resumo", "syn": ["resumo", "avisos", "alertas", "o que fazer", "início", "inicio", "números", "gráficos"]}, {"v": "semana", "s": "onze", "a": "Esta semana", "n": "Onze e banco", "syn": ["onze", "banco", "campo", "titulares", "formação", "pontos esperados", "jogador a jogador", "próximas 5", "substituições"]}, {"v": "semana", "s": "capitao", "a": "Esta semana", "n": "Capitão", "syn": ["capitão", "braçadeira", "vice", "capitão h2h", "estratégia", "diferenciais", "triple captain"]}, {"v": "semana", "s": "transferencias", "a": "Esta semana", "n": "Transferências", "syn": ["transferências", "trocas", "compras", "vendas", "planeador", "plano automático", "plano manual", "hits", "sugestão"]}, {"v": "semana", "s": "registo", "a": "Esta semana", "n": "Registar o que fiz", "syn": ["registar", "registo", "o que fiz", "confirmar troca"]}, {"v": "semana", "s": "chips", "a": "Esta semana", "n": "Chips", "syn": ["chips", "wildcard", "free hit", "bench boost", "triple captain", "plano de chips"]}, {"v": "semana", "s": "chips", "a": "Esta semana", "n": "Duplas e brancas (J20-J38)", "h": "dgw-card", "syn": ["dupla", "duplas", "branca", "brancas", "dgw", "bgw", "jornada dupla", "jornada branca", "double gameweek", "blank gameweek", "chips segunda metade", "chips 2.ª metade", "segunda metade", "jogos adiados", "adiado", "taças"]}, {"v": "jogos", "s": "jornada", "a": "Jogos", "n": "Jogos da jornada", "syn": ["jogos", "calendário", "fixtures", "odds", "casas de apostas", "dificuldade"]}, {"v": "jogos", "s": "onzes", "a": "Jogos", "n": "Onzes prováveis", "syn": ["onzes prováveis", "titulares prováveis", "lesões", "escalações", "line-ups"]}, {"v": "jogos", "s": "aovivo", "a": "Jogos", "n": "Ao vivo", "syn": ["ao vivo", "direto", "live", "pontos ao vivo", "tempo real"]}, {"v": "jogos", "s": "europa", "a": "Jogos", "n": "Europa e descanso", "syn": ["europa", "liga dos campeões", "champions", "descanso", "taça da liga", "rotação"]}, {"v": "competicao", "s": "classificacao", "a": "Rivais", "n": "Classificação", "syn": ["classificação", "liga", "tabela", "mini-liga", "liga clássica"]}, {"v": "competicao", "s": "previsao", "a": "Rivais", "n": "Previsão da classificação", "syn": ["previsão da classificação", "previsão", "quem ganha a liga", "top 3", "simulação da liga"]}, {"v": "competicao", "s": "h2h", "a": "Rivais", "n": "H2H", "syn": ["h2h", "confronto", "adversário", "head to head", "resultados"]}, {"v": "competicao", "s": "comparar", "a": "Rivais", "n": "Comparar equipas", "syn": ["comparar equipas", "lado a lado", "comparar gestores"]}, {"v": "competicao", "s": "vigiar", "a": "Rivais", "n": "Vigiar rivais", "syn": ["vigiar rivais", "rivais", "previsão dos rivais", "o que os rivais vão fazer"]}, {"v": "competicao", "s": "ganhar", "a": "Rivais", "n": "Equipa para ganhar a…", "syn": ["equipa para ganhar", "ganhar a", "probabilidade de ganhar", "bater rivais"]}, {"v": "competicao", "s": "orcamentos", "a": "Rivais", "n": "Orçamentos e chips", "syn": ["orçamentos", "budget", "dinheiro", "valor da equipa", "chips da liga"]}, {"v": "mercado", "s": "pesquisa", "a": "Jogadores", "n": "Pesquisa", "syn": ["pesquisa", "procurar jogador", "jogadores", "filtros"]}, {"v": "mercado", "s": "comparador", "a": "Jogadores", "n": "Comparador", "syn": ["comparador", "comparar jogadores"]}, {"v": "mercado", "s": "ideal", "a": "Jogadores", "n": "Equipa ideal", "syn": ["equipa ideal", "equipa perfeita", "melhor equipa", "otimizador", "dream team"]}, {"v": "mercado", "s": "simulada", "a": "Jogadores", "n": "Equipa simulada", "syn": ["equipa simulada", "simular equipa", "montar equipa"]}, {"v": "mercado", "s": "forma", "a": "Jogadores", "n": "Em forma", "syn": ["em forma", "forma", "quentes"]}, {"v": "mercado", "s": "precos", "a": "Jogadores", "n": "Preços e alternativas", "syn": ["preços", "subidas", "descidas", "alternativas", "substitutos"]}, {"v": "mercado", "s": "lesoes", "a": "Jogadores", "n": "Lesões e castigos", "syn": ["lesão", "lesões", "lesionados", "regresso", "quando volta", "data de regresso", "amarelos", "cartões", "cartão amarelo", "vermelho", "castigo", "castigos", "suspensão", "suspensos", "disponibilidade"]}, {"v": "mercado", "s": "discorda", "a": "Jogadores", "n": "Onde a app discorda", "syn": ["discorda", "discordância", "discordâncias", "consenso", "subestimado", "subestimados", "sobrestimado", "sobrestimados", "diferencial", "diferenciais", "super diferencial", "app vs sites", "app vs fpl", "quem tem razão", "vantagem"]}, {"v": "epoca", "s": "evolucao", "a": "A minha época", "n": "Evolução e ranking", "syn": ["evolução", "ranking", "ranking geral", "gráfico de pontos"]}, {"v": "epoca", "s": "jornada", "a": "A minha época", "n": "Por jornada", "syn": ["por jornada", "jornadas anteriores", "histórico"]}, {"v": "epoca", "s": "detalhe", "a": "A minha época", "n": "Jogador a jogador", "syn": ["jogador a jogador", "onze ótimo", "pontos perdidos no banco"]}, {"v": "epoca", "s": "previsoes", "a": "A minha época", "n": "Previsões vs real", "syn": ["previsões vs real", "medir o modelo", "erro do modelo", "acerto"]}, {"v": "epoca", "s": "orcamento", "a": "A minha época", "n": "Orçamento do plantel", "syn": ["orçamento do plantel", "budget", "dinheiro", "valor do plantel", "banco"]}, {"v": "avancado", "s": "simulador", "a": "Avançado", "n": "Simulador", "syn": ["simulador", "testar trocas", "simular transferências"]}, {"v": "avancado", "s": "hot", "a": "Avançado", "n": "Hot takes", "syn": ["hot takes", "diferenciadores", "podem surpreender"]}, {"v": "avancado", "s": "lacunas", "a": "Avançado", "n": "Picks em falta", "syn": ["picks em falta", "lacunas", "template"]}, {"v": "avancado", "s": "capitaes", "a": "Avançado", "n": "Capitães da liga", "syn": ["capitães da liga", "capitães"]}, {"v": "avancado", "s": "posse", "a": "Avançado", "n": "Plantel vs liga", "syn": ["plantel vs liga", "posse", "ownership", "eo"]}, {"v": "avancado", "s": "equipas", "a": "Avançado", "n": "Tabelas das equipas", "syn": ["equipas", "saldo de xg", "xg", "forma das equipas", "criadores", "sequência", "perfil do capitão"]}, {"v": "avancado", "s": "regras", "a": "Avançado", "n": "Regras e fontes", "syn": ["regras", "pontuação", "fontes", "como funciona"]}, {"v": "avancado", "s": "calibracao", "a": "Avançado", "n": "Calibração", "syn": ["calibração", "ajustar o modelo"]}];
+  const APP_AREAS = [{"v": "semana", "n": "Esta semana", "d": "O que fazer antes do deadline: o resumo, o onze e o banco, o capitão, as transferências e as chips.", "subs": ["Resumo", "Notícias", "Onze e banco", "Capitão", "Transferências", "Registar o que fiz", "Chips"]}, {"v": "jogos", "n": "Jogos", "d": "Os jogos da jornada, os onzes prováveis, os pontos ao vivo e quem jogou a meio da semana.", "subs": ["Jogos da jornada", "Onzes prováveis", "Ao vivo", "Europa e descanso"]}, {"v": "competicao", "n": "Rivais", "d": "A liga clássica e o H2H: classificação, previsões, adversários e o que os rivais devem fazer.", "subs": ["Classificação", "Previsão da classificação", "H2H", "Comparar equipas", "Vigiar rivais", "Equipa para ganhar a…", "Orçamentos e chips"]}, {"v": "mercado", "n": "Jogadores", "d": "Procurar, comparar e escolher jogadores.", "subs": ["Pesquisa", "Comparador", "Equipa ideal", "Equipa simulada", "Em forma", "Preços e alternativas", "Lesões e castigos", "Onde a app discorda"]}, {"v": "epoca", "n": "A minha época", "d": "Como tem corrido a tua época: pontos, ranking, jornada a jornada, previsões e orçamento.", "subs": ["Evolução e ranking", "Por jornada", "Jogador a jogador", "Previsões vs real", "Orçamento do plantel"]}, {"v": "avancado", "n": "Avançado", "d": "Simulador, tabelas e referência. Tudo continua a funcionar como antes.", "subs": ["Simulador", "Hot takes", "Picks em falta", "Capitães da liga", "Plantel vs liga", "Tabelas das equipas", "Regras e fontes", "Calibração"]}];
+  const APP_INDEX = [{"v": "semana", "s": "resumo", "a": "Esta semana", "n": "Resumo", "syn": ["resumo", "avisos", "alertas", "o que fazer", "início", "inicio", "números", "gráficos"]}, {"v": "semana", "s": "noticias", "a": "Esta semana", "n": "Notícias", "syn": ["notícias", "noticias", "novidades", "treinador", "treinadores", "conferência de imprensa", "imprensa", "seleções", "selecções", "o que disse", "updates", "lesões da semana"]}, {"v": "semana", "s": "onze", "a": "Esta semana", "n": "Onze e banco", "syn": ["onze", "banco", "campo", "titulares", "formação", "pontos esperados", "jogador a jogador", "próximas 5", "substituições"]}, {"v": "semana", "s": "capitao", "a": "Esta semana", "n": "Capitão", "syn": ["capitão", "braçadeira", "vice", "capitão h2h", "estratégia", "diferenciais", "triple captain"]}, {"v": "semana", "s": "transferencias", "a": "Esta semana", "n": "Transferências", "syn": ["transferências", "trocas", "compras", "vendas", "planeador", "plano automático", "plano manual", "hits", "sugestão"]}, {"v": "semana", "s": "registo", "a": "Esta semana", "n": "Registar o que fiz", "syn": ["registar", "registo", "o que fiz", "confirmar troca"]}, {"v": "semana", "s": "chips", "a": "Esta semana", "n": "Chips", "syn": ["chips", "wildcard", "free hit", "bench boost", "triple captain", "plano de chips"]}, {"v": "semana", "s": "chips", "a": "Esta semana", "n": "Duplas e brancas (J20-J38)", "h": "dgw-card", "syn": ["dupla", "duplas", "branca", "brancas", "dgw", "bgw", "jornada dupla", "jornada branca", "double gameweek", "blank gameweek", "chips segunda metade", "chips 2.ª metade", "segunda metade", "jogos adiados", "adiado", "taças"]}, {"v": "jogos", "s": "jornada", "a": "Jogos", "n": "Jogos da jornada", "syn": ["jogos", "calendário", "fixtures", "odds", "casas de apostas", "dificuldade"]}, {"v": "jogos", "s": "onzes", "a": "Jogos", "n": "Onzes prováveis", "syn": ["onzes prováveis", "titulares prováveis", "lesões", "escalações", "line-ups"]}, {"v": "jogos", "s": "aovivo", "a": "Jogos", "n": "Ao vivo", "syn": ["ao vivo", "direto", "live", "pontos ao vivo", "tempo real"]}, {"v": "jogos", "s": "europa", "a": "Jogos", "n": "Europa e descanso", "syn": ["europa", "liga dos campeões", "champions", "descanso", "taça da liga", "rotação"]}, {"v": "competicao", "s": "classificacao", "a": "Rivais", "n": "Classificação", "syn": ["classificação", "liga", "tabela", "mini-liga", "liga clássica"]}, {"v": "competicao", "s": "previsao", "a": "Rivais", "n": "Previsão da classificação", "syn": ["previsão da classificação", "previsão", "quem ganha a liga", "top 3", "simulação da liga"]}, {"v": "competicao", "s": "h2h", "a": "Rivais", "n": "H2H", "syn": ["h2h", "confronto", "adversário", "head to head", "resultados"]}, {"v": "competicao", "s": "comparar", "a": "Rivais", "n": "Comparar equipas", "syn": ["comparar equipas", "lado a lado", "comparar gestores"]}, {"v": "competicao", "s": "vigiar", "a": "Rivais", "n": "Vigiar rivais", "syn": ["vigiar rivais", "rivais", "previsão dos rivais", "o que os rivais vão fazer"]}, {"v": "competicao", "s": "ganhar", "a": "Rivais", "n": "Equipa para ganhar a…", "syn": ["equipa para ganhar", "ganhar a", "probabilidade de ganhar", "bater rivais"]}, {"v": "competicao", "s": "orcamentos", "a": "Rivais", "n": "Orçamentos e chips", "syn": ["orçamentos", "budget", "dinheiro", "valor da equipa", "chips da liga"]}, {"v": "mercado", "s": "pesquisa", "a": "Jogadores", "n": "Pesquisa", "syn": ["pesquisa", "procurar jogador", "jogadores", "filtros"]}, {"v": "mercado", "s": "comparador", "a": "Jogadores", "n": "Comparador", "syn": ["comparador", "comparar jogadores"]}, {"v": "mercado", "s": "ideal", "a": "Jogadores", "n": "Equipa ideal", "syn": ["equipa ideal", "equipa perfeita", "melhor equipa", "otimizador", "dream team"]}, {"v": "mercado", "s": "simulada", "a": "Jogadores", "n": "Equipa simulada", "syn": ["equipa simulada", "simular equipa", "montar equipa"]}, {"v": "mercado", "s": "forma", "a": "Jogadores", "n": "Em forma", "syn": ["em forma", "forma", "quentes"]}, {"v": "mercado", "s": "precos", "a": "Jogadores", "n": "Preços e alternativas", "syn": ["preços", "subidas", "descidas", "alternativas", "substitutos"]}, {"v": "mercado", "s": "lesoes", "a": "Jogadores", "n": "Lesões e castigos", "syn": ["lesão", "lesões", "lesionados", "regresso", "quando volta", "data de regresso", "amarelos", "cartões", "cartão amarelo", "vermelho", "castigo", "castigos", "suspensão", "suspensos", "disponibilidade"]}, {"v": "mercado", "s": "discorda", "a": "Jogadores", "n": "Onde a app discorda", "syn": ["discorda", "discordância", "discordâncias", "consenso", "subestimado", "subestimados", "sobrestimado", "sobrestimados", "diferencial", "diferenciais", "super diferencial", "app vs sites", "app vs fpl", "quem tem razão", "vantagem"]}, {"v": "epoca", "s": "evolucao", "a": "A minha época", "n": "Evolução e ranking", "syn": ["evolução", "ranking", "ranking geral", "gráfico de pontos"]}, {"v": "epoca", "s": "jornada", "a": "A minha época", "n": "Por jornada", "syn": ["por jornada", "jornadas anteriores", "histórico"]}, {"v": "epoca", "s": "detalhe", "a": "A minha época", "n": "Jogador a jogador", "syn": ["jogador a jogador", "onze ótimo", "pontos perdidos no banco"]}, {"v": "epoca", "s": "previsoes", "a": "A minha época", "n": "Previsões vs real", "syn": ["previsões vs real", "medir o modelo", "erro do modelo", "acerto"]}, {"v": "epoca", "s": "orcamento", "a": "A minha época", "n": "Orçamento do plantel", "syn": ["orçamento do plantel", "budget", "dinheiro", "valor do plantel", "banco"]}, {"v": "avancado", "s": "simulador", "a": "Avançado", "n": "Simulador", "syn": ["simulador", "testar trocas", "simular transferências"]}, {"v": "avancado", "s": "hot", "a": "Avançado", "n": "Hot takes", "syn": ["hot takes", "diferenciadores", "podem surpreender"]}, {"v": "avancado", "s": "lacunas", "a": "Avançado", "n": "Picks em falta", "syn": ["picks em falta", "lacunas", "template"]}, {"v": "avancado", "s": "capitaes", "a": "Avançado", "n": "Capitães da liga", "syn": ["capitães da liga", "capitães"]}, {"v": "avancado", "s": "posse", "a": "Avançado", "n": "Plantel vs liga", "syn": ["plantel vs liga", "posse", "ownership", "eo"]}, {"v": "avancado", "s": "equipas", "a": "Avançado", "n": "Tabelas das equipas", "syn": ["equipas", "saldo de xg", "xg", "forma das equipas", "criadores", "sequência", "perfil do capitão"]}, {"v": "avancado", "s": "regras", "a": "Avançado", "n": "Regras e fontes", "syn": ["regras", "pontuação", "fontes", "como funciona"]}, {"v": "avancado", "s": "calibracao", "a": "Avançado", "n": "Calibração", "syn": ["calibração", "ajustar o modelo"]}];
   const VIEW_ALIAS = {"resumo": ["semana", "resumo"], "campo": ["semana", "onze"], "pontos": ["semana", "onze"], "decisoes": ["semana", "transferencias"], "decisoes-trocas": ["semana", "transferencias"], "decisoes-capitao": ["semana", "capitao"], "decisoes-estrategia": ["semana", "capitao"], "decisoes-simulador": ["avancado", "simulador"], "decisoes-chips": ["semana", "chips"], "decisoes-hot": ["avancado", "hot"], "planeador": ["semana", "transferencias"], "planeador-plano": ["semana", "transferencias"], "planeador-registo": ["semana", "registo"], "calendario": ["jogos", "jornada"], "onzes": ["jogos", "onzes"], "aovivo": ["jogos", "aovivo"], "europa": ["jogos", "europa"], "equipas": ["avancado", "equipas"], "equipas-europa": ["jogos", "europa"], "equipas-europa-eq": ["jogos", "europa"], "historico": ["epoca", "evolucao"], "historico-evolucao": ["epoca", "evolucao"], "historico-jornada": ["epoca", "jornada"], "historico-detalhe": ["epoca", "detalhe"], "historico-previsoes": ["epoca", "previsoes"], "historico-modelo": ["epoca", "previsoes"], "plantel": ["mercado", "forma"], "plantel-forma": ["mercado", "forma"], "plantel-orcamento": ["epoca", "orcamento"], "plantel-precos": ["mercado", "precos"], "plantel-alternativas": ["mercado", "precos"], "liga": ["competicao", "classificacao"], "liga-classificacao": ["competicao", "classificacao"], "liga-posse": ["avancado", "posse"], "liga-lacunas": ["avancado", "lacunas"], "liga-capitaes": ["avancado", "capitaes"], "liga-orcamentos": ["competicao", "orcamentos"], "liga-simulacao": ["mercado", "simulada"], "h2h": ["competicao", "h2h"], "comparar": ["competicao", "comparar"], "previsao": ["competicao", "previsao"], "jogadores": ["mercado", "pesquisa"], "jogadores-pesquisa": ["mercado", "pesquisa"], "jogadores-comparar": ["mercado", "comparador"], "jogadores-ideal": ["mercado", "ideal"], "ideal": ["mercado", "ideal"], "rivais": ["competicao", "vigiar"], "ganhar": ["competicao", "ganhar"], "regras": ["avancado", "regras"], "campo-campo": ["semana", "onze"], "campo-jornada": ["semana", "onze"], "campo-plano": ["semana", "onze"], "calendario-jogos": ["jogos", "jornada"], "calendario-plantel": ["jogos", "jornada"], "h2h-calendario": ["competicao", "h2h"], "h2h-adversario": ["competicao", "h2h"], "equipas-saldo": ["avancado", "equipas"], "equipas-forma": ["avancado", "equipas"], "equipas-criadores": ["avancado", "equipas"], "equipas-sequencia": ["avancado", "equipas"], "equipas-capitao": ["avancado", "equipas"], "comparar-resumo": ["competicao", "comparar"], "comparar-grafico": ["competicao", "comparar"], "comparar-pontos": ["competicao", "comparar"], "comparar-jogadores": ["competicao", "comparar"], "comparar-orcamento": ["competicao", "comparar"], "previsao-tabela": ["competicao", "previsao"], "previsao-frente": ["competicao", "previsao"], "previsao-metodo": ["competicao", "previsao"], "aovivo-equipa": ["jogos", "aovivo"], "aovivo-h2h": ["jogos", "aovivo"], "aovivo-liga": ["jogos", "aovivo"], "regras-pontuacao": ["avancado", "regras"], "regras-fontes": ["avancado", "regras"]};
   // LEAGUE_SQUADS: plantéis, capitães, banco, valor e chips dos 20 (atualizado por _build/pool/apply_picks.py
   // depois de cada deadline e, no site, pelo live.json). (V52: aqui no início para todas as vistas o poderem ler.)
@@ -6173,6 +6307,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 21 Nov, 12:30", "h": 15, "a": 10, "
     try { lazyRender('avancado/simulador', renderSimulator); } catch (e) { console.error(e); }
     try { lazyRender('semana/onze', renderPitch); renderChipPlan(); renderEuro(); CMP.a = null; renderCompare(); if (prevVisible()) renderPrevisao(); lazyRender('semana/capitao', renderCapH2H); renderGlance(); renderPlayers(); renderPc(); renderPlanner(); renderLogView(); renderRivals(); renderAlerts(); renderSim(); renderTodo(); renderHistKpi(); lazyRender('semana/capitao', renderStrategy); renderAutoPlan(); renderGlance2(); renderIdeal(); renderLigaBudgets(); lazyRender('competicao/h2h', renderH2HVis); closePlayer(); } catch (e) { console.error(e); }
     try { renderAoVivo(); } catch (e) { console.error(e); }
+    try { if (typeof NW_READY !== 'undefined' && NW_READY) { lazyRender('semana/noticias', renderNews); nwLine(); } } catch (e) {}   // V61 (só depois do arranque)
     try { if (typeof renderShortcuts === 'function' && typeof APP_INDEX !== 'undefined') renderShortcuts(); } catch (e) {}
     try { lazyRender('competicao/ganhar', renderWin); } catch (e) { console.error(e); }
     try { if (PC_READY) renderPcLists(); } catch (e) { console.error(e); }
@@ -6877,9 +7012,9 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 21 Nov, 12:30", "h": 15, "a": 10, "
       <p style="margin:-6px 0 12px">${distLine(p, 0)}</p>
       <h3>Pontos por jornada</h3>
       <div class="pc-bars" role="img" aria-label="Pontos por jornada: ${pts.map((v, i) => `J${i + 1} ${v}`).join(', ')}">
-        ${pts.map((v, i) => `<div class="pc-bar${(mins[i] || 0) === 0 ? ' nomin' : ''}" title="J${i + 1}: ${v} pts, ${mins[i] || 0} min"><span class="v">${v}</span><span class="b" style="height:${Math.max(2, Math.max(0, v) / maxP * 64)}px"></span><span class="g">J${i + 1}</span></div>`).join('')}
+        ${pts.map((v, i) => `<div class="pc-bar${(mins[i] || 0) === 0 ? ' nomin' : ''}${v < 0 ? ' neg' : ''}" title="J${i + 1}: ${v} pts, ${mins[i] || 0} min"><span class="v">${v}</span><span class="b" style="height:${Math.max(2, Math.max(0, v) / maxP * 60)}px"></span><span class="g">J${i + 1}</span><span class="m">${mins[i] || 0}'</span></div>`).join('')}
       </div>
-      <p class="note" style="margin:6px 0 0">Minutos: ${mins.map((m, i) => `J${i + 1} ${m}`).join(' · ')}. Últimas 3 jornadas: xG ${(p.xg3 || 0).toFixed(2)} · xA ${(p.xa3 || 0).toFixed(2)}${p.cls !== 'gk' ? ` · contribuição defensiva ${(p.dc90 || 0).toFixed(1)}/90` : ''}. Total J1-J${pts.length}: ${sumPts} pts (API oficial).</p>
+      <p class="note" style="margin:6px 0 0">Por baixo de cada jornada: minutos jogados (barra cinzenta = não jogou)${pts.length > 12 ? '; desliza para ver as primeiras jornadas' : ''}. Últimas 3 jornadas: xG ${(p.xg3 || 0).toFixed(2)} · xA ${(p.xa3 || 0).toFixed(2)}${p.cls !== 'gk' ? ` · contribuição defensiva ${(p.dc90 || 0).toFixed(1)}/90` : ''}. Total J1-J${pts.length}: ${sumPts} pts (API oficial).</p>
       <h3>Próximos ${HZ.length} jogos</h3>
       <div class="pc-fx">${HZ.map((g, i) => { const fx = fxLabel(p, g); return `<div style="background:var(--fdr-${fx.d});color:var(--fdr-${fx.d}-ink)"><div class="gwl">J${g}</div><div>${fx.txt}</div><div class="e">${f1(epAt(p, i))}</div></div>`; }).join('')}</div>
       <p class="note" style="margin:6px 0 0">Total J${HZ[0]}-J${HZ[HZ.length - 1]}: ${f1(sum5(p))} pts esperados. Cor = dificuldade nos fixture tickers.</p>
@@ -6892,6 +7027,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 21 Nov, 12:30", "h": 15, "a": 10, "
     pcReturn = from || document.activeElement;
     bd.hidden = false; document.body.classList.add('pc-open');
     bd.querySelector('.pc-sheet').scrollTop = 0;
+    const pb = bd.querySelector('.pc-bars'); if (pb) pb.scrollLeft = pb.scrollWidth;   // V60: as últimas jornadas à vista
     bd.querySelector('.pc-sheet').focus();
   }
   function closePlayer() {
@@ -10220,7 +10356,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 21 Nov, 12:30", "h": 15, "a": 10, "
     } catch (e) { console.error(e); }
   }
   v53Texts();
-  var APP_VERSION = 'V59';
+  var APP_VERSION = 'V61';
   var TUT = {list: [], i: 0, mode: 'full', active: false, miss: []};
   const tutN = v => +(String(v || '').replace(/\D/g, '')) || 0;
   const tutSleep = ms => new Promise(r => setTimeout(r, ms));
@@ -10241,12 +10377,14 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 21 Nov, 12:30", "h": 15, "a": 10, "
       {id: 'avisos58', ix: 'semana/resumo', since: 'V58', opt: true, sel: '#alerts', t: 'Regressos e castigos nos avisos', d: () => 'Os avisos mostram a jornada provável de regresso dos teus lesionados (e de quem tens no plano), se compensa aguentar com o banco ou vender, e quem está a 1 amarelo de um jogo de castigo. Na ficha de cada jogador há a mesma informação: "Regresso provável" e "Amarelos".'},
       {id: 'superdif59', ix: 'semana/resumo', since: 'V59', opt: true, sel: '#dis59-resumo', t: 'Super diferenciais', d: () => 'Os 2 ou 3 jogadores de que a app gosta muito mais do que a FPL e os sites e que quase nenhum rival tem. "Comparar" e "Pôr no plano" levam-te logo ao comparador e ao planeador. Na ficha de cada jogador há a mesma comparação: "App 6,1 · consenso 4,8".'},
       {id: 'dados57', ix: 'semana/registo', since: 'V57', opt: true, sel: '#log-root', t: 'Plantéis iguais aos da FPL', d: () => 'Os plantéis (o teu, o do Marco e os dos rivais) vêm dos dados oficiais da FPL, que se atualizam sozinhos na véspera e no dia de cada deadline. A FPL só mostra as transferências da jornada seguinte depois do deadline: até lá, regista aqui o que fizeste. Quando os dados oficiais trazem a troca, aparece "Transferência feita para a J__" e o registo deixa de contar (nunca conta duas vezes). Se os dados tiverem mais de 48 h, o Resumo avisa.'},
+      {id: 'visual60', ix: 'semana/resumo', since: 'V60', opt: true, sel: '.mnav, .nav', t: 'Menu sempre à mão', d: () => 'No telemóvel, as 5 áreas ficam agora numa barra fixa em baixo e o cabeçalho ocupa uma só linha (o «?» abre este tutorial). Na ficha de um jogador, os pontos por jornada estão numa só fila que desliza, com os minutos por baixo.'},
       {id: 'rotina56', ix: 'semana/resumo', since: 'V56', opt: true, sel: '#auto-line', t: 'Atualização automática diária', d: () => 'Todos os dias às 9h uma rotina na nuvem vê se há trabalho: depois de cada jornada faz a atualização completa; na véspera do deadline revê lesões, onzes prováveis e preços. Esta linha diz quando foi a última e de que tipo; se a troca, o capitão ou a chip sugeridos mudarem, aparece um aviso "Mudou desde ontem" no Resumo.'},
       {id: 'faixa', ix: 'semana/resumo', since: 'V30', opt: true, sel: '#live-banner', t: 'Atualização automática', d: () => 'A faixa verde diz quando os dados oficiais (classificação, plantéis, preços, lesões) foram atualizados sozinhos.'},
       {id: 'atalhos', ix: 'semana/resumo', since: 'V48', sel: '#fav-card', t: 'Atalhos e recentes', d: () => 'Toca na ☆ ao lado de um título para o guardares aqui. "Usaste recentemente" mostra os 3 últimos sítios. Separado para o Bruno e o Marco.'},
     ]},
     {id: 'semana', t: 'Esta semana', steps: [
       {id: 'todo', ix: 'semana/resumo', since: 'V37', sel: '#todo', t: 'O que fazer', d: () => { const m = (SUGGESTED_MOVES[curMgr()] || {}).transfers || []; return `Começa sempre aqui: a troca${m.length ? ` (${m.map(x => `${shortName(FULL_POOL_BY_ID[x.out].name)} → ${shortName(FULL_POOL_BY_ID[x.in].name)}`).join(', ')})` : ''}, o capitão (${tutSafe(() => shortName(tutXi().cap.name), '—')}) e o onze para a J${GW_META.next}.`; }},
+      {id: 'noticias61', ix: 'semana/noticias', since: 'V61', sel: '#news-root', t: 'Notícias', d: () => `O que os treinadores disseram, lesões, jogos das seleções e mudanças de calendário desta semana, com a fonte e a data. As que falam do ${curMgr() === 'marco' ? 'plantel do Marco' : 'teu plantel'} ou da troca sugerida aparecem primeiro. Agora há ${tutSafe(() => nwItems(curMgr()).length, 0)}.`},
       {id: 'avisos', ix: 'semana/resumo', since: 'V31', sel: '#alerts', t: 'Avisos', d: () => `Lesões, onzes prováveis, preços a mexer e o que falta antes do deadline (${GW_META.deadlineLabel}). Agora há ${tutSafe(() => buildAlerts().length, 0)}.`},
       {id: 'campo', ix: 'semana/onze', since: 'V27', sel: '#pitch-root', t: 'Onze e banco', d: () => `O onze sugerido no campo, com C (capitão) e V (vice). ${tutSafe(() => { const X = tutXi(); return `Formação ${X.form.join('-')}, capitão ${shortName(X.cap.name)} ≈${f1(epAt(X.cap, 0))} pts.`; }, '')}`},
       {id: 'banco', ix: 'semana/onze', since: 'V29', sel: '#bench-card', t: 'Quanto vale o banco', d: () => 'Simula as substituições automáticas e diz qual a melhor ordem do banco e quantos pontos ela vale.'},
@@ -10319,7 +10457,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 21 Nov, 12:30", "h": 15, "a": 10, "
   }
   function tutTarget(st) {
     if (!st.sel) return null;
-    return [...document.querySelectorAll(st.sel)].find(x => x.offsetParent !== null && x.getBoundingClientRect().height > 0) || null;
+    return [...document.querySelectorAll(st.sel)].find(x => (x.offsetParent !== null || getComputedStyle(x).position === 'fixed') && x.getBoundingClientRect().height > 0) || null;
   }
   function tutPlace() {
     const box = document.getElementById('tut-box'), spot = document.getElementById('tut-spot'); if (!box || !spot) return;
@@ -10458,6 +10596,70 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 21 Nov, 12:30", "h": 15, "a": 10, "
     const f = w.querySelector('.btn.primary') || w.querySelector('.btn'); if (f) f.focus();
   }
   // o guia antigo passa a abrir as boas-vindas (⚙ "Ver o tutorial" chama startTour)
+
+  // ---------- V61: Notícias da semana (research/noticias.json → const NEWS no bloco de dados) ----------
+  var NW_F = 'todas';
+  function nwData() { return (typeof NEWS !== 'undefined' && NEWS && Array.isArray(NEWS.items)) ? NEWS : {items: []}; }
+  function nwEsc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c])); }
+  function nwDate(d) { const x = new Date(d + 'T12:00:00Z'); return isNaN(x) ? '' : `${['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'][x.getUTCDay()]} ${x.getUTCDate()} ${['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'][x.getUTCMonth()]}`; }
+  // notícias com a marca do gestor: jogadores do plantel (sq) e os que entram na troca sugerida (sug); essas vêm primeiro
+  function nwItems(mgr) {
+    const sq = new Set(squadOf(mgr).filter(Boolean).map(p => p.id));
+    const sug = new Set(((SUGGESTED_MOVES[mgr] || {}).transfers || []).map(m => m.in));
+    return nwData().items.map(it => {
+      const ids = (it.ids || []).filter(id => FULL_POOL_BY_ID[id]);
+      const a = ids.filter(id => sq.has(id)), b = ids.filter(id => sug.has(id) && !sq.has(id));
+      return Object.assign({}, it, {ids, sq: a, sug: b, rel: a.length || b.length ? 1 : 0});
+    }).sort((x, y) => (y.rel - x.rel) || ((y.imp || 1) - (x.imp || 1)) || (x.d < y.d ? 1 : x.d > y.d ? -1 : 0));
+  }
+  function renderNews() {
+    const el = document.getElementById('news-root'); if (!el) return;
+    const mgr = curMgr(), N = nwData(), L = nwItems(mgr);
+    const TAG = {selecoes: 'Seleções', lesao: 'Lesões', treinador: 'Treinadores', castigo: 'Castigos', calendario: 'Calendário', mercado: 'Mercado'};
+    const tags = Object.keys(TAG).filter(t => L.some(it => it.tag === t));
+    const F = NW_F === 'meu' || NW_F === 'todas' || tags.includes(NW_F) ? NW_F : 'todas';
+    const show = L.filter(it => F === 'todas' || (F === 'meu' ? it.rel : it.tag === F));
+    const nRel = L.filter(it => it.rel).length;
+    const fb = (k, lbl) => `<button type="button" class="btn small${F === k ? ' primary' : ''}" data-nwf="${k}" aria-pressed="${F === k}">${lbl}</button>`;
+    const upd = N.updated ? nwDate(N.updated) : '';
+    const team = mgr === 'marco' ? 'Xarola Team' : 'Brunorussia FC';
+    el.innerHTML = `
+      <div class="card-head"><div><h2>Notícias da J${GW_META.next}</h2><div class="card-sub">O que os treinadores disseram, lesões, seleções e calendário — só o que pode mexer com a FPL. ${team}${upd ? ' · atualizado a ' + upd : ''}.</div></div></div>
+      ${N.gw && N.gw < GW_META.next ? `<div class="callout"><span class="icon">!</span><div class="body"><p>Estas notícias são da J${N.gw}: ainda não foram atualizadas para a J${GW_META.next}.</p></div></div>` : ''}
+      ${L.length ? `<div class="nw-f" role="group" aria-label="Filtrar notícias">${fb('todas', `Todas (${L.length})`)}${fb('meu', `Do meu plantel (${nRel})`)}${tags.map(t => fb(t, TAG[t])).join('')}</div>` : ''}
+      <div class="nw-list">${show.length ? show.map(it => `
+        <article class="nw-it imp${it.imp || 1}${it.rel ? ' rel' : ''}">
+          <div class="nw-top"><span class="nw-tag">${TAG[it.tag] || it.tag}</span><span>${nwDate(it.d)}</span>
+            ${it.sq.length ? `<span class="status-chip insquad">No ${mgr === 'marco' ? 'plantel do Marco' : 'teu plantel'}</span>` : ''}
+            ${it.sug.length ? '<span class="status-chip watch">Troca sugerida (entra)</span>' : ''}
+            ${(it.imp || 1) >= 3 ? '<span class="status-chip fall">Pode mudar a decisão</span>' : ''}</div>
+          <h3>${nwEsc(it.t)}</h3>
+          <p>${nwEsc(it.x)}</p>
+          <div class="nw-ft"><span class="nw-ps">${it.ids.map(id => { const p = FULL_POOL_BY_ID[id]; return `<button type="button" class="nw-p" data-pid="${id}">${nwEsc(shortName(p.name))} <small>${SHORT(p.team)}</small></button>`; }).join('')}</span>
+            ${/^https?:\/\//.test(it.url || '') ? `<a class="nw-src" href="${nwEsc(it.url)}" target="_blank" rel="noopener noreferrer">Fonte: ${nwEsc(it.src)} ↗</a>` : `<span class="nw-src">Fonte: ${nwEsc(it.src)}</span>`}</div>
+        </article>`).join('') : `<p class="note">${L.length ? (F === 'meu' ? 'Nenhuma notícia desta semana fala de jogadores do teu plantel ou da troca sugerida.' : 'Nenhuma notícia neste filtro.') : 'Ainda não há notícias para esta jornada.'}</p>`}</div>
+      <p class="note">As notícias vêm de sites e conferências de imprensa e podem mudar até ao deadline (${GW_META.deadlineLabel}). Toca num jogador para abrir a ficha. Os estados oficiais (lesionado, dúvida) e os pontos vêm sempre da FPL.</p>`;
+    el.querySelectorAll('[data-nwf]').forEach(b => b.addEventListener('click', () => { NW_F = b.dataset.nwf; renderNews(); const n = el.querySelector(`[data-nwf="${NW_F}"]`); if (n) n.focus(); }));
+    // avisos oficiais da FPL no plantel (e em quem entra na troca sugerida)
+    const of = document.getElementById('news-fpl');
+    if (of) {
+      const inIds = ((SUGGESTED_MOVES[mgr] || {}).transfers || []).map(m => m.in);
+      const ps = [...squadOf(mgr).filter(Boolean), ...inIds.map(id => FULL_POOL_BY_ID[id]).filter(Boolean)].filter((p, i, a) => a.indexOf(p) === i && p.status && p.status !== 'a');
+      of.innerHTML = `<div class="card-head"><div><h2>Avisos oficiais da FPL</h2><div class="card-sub">${team} · jogadores do plantel (e da troca sugerida) com aviso no site da FPL</div></div></div>
+        ${ps.length ? playerCards(ps, p => ({note: p.news || (STATUS_TXT[p.status] || ['—'])[0]})) : '<p class="note">Nenhum jogador do plantel tem aviso na FPL neste momento.</p>'}`;
+    }
+  }
+  // Resumo: uma linha a dizer quantas notícias importantes há
+  function nwLine() {
+    const el = document.getElementById('news-line'); if (!el) return;
+    const L = nwItems(curMgr()), rel = L.filter(it => it.rel).length, imp = L.filter(it => (it.imp || 1) >= 3).length;
+    el.hidden = !L.length; if (!L.length) return;
+    el.innerHTML = `Notícias da semana: <b>${L.length}</b>${rel ? ` · ${rel} sobre o ${curMgr() === 'marco' ? 'plantel do Marco' : 'teu plantel'}` : ''}${imp ? ` · ${imp} que ${imp === 1 ? 'pode' : 'podem'} mudar a decisão` : ''} — <button type="button" class="linklike" id="news-go">ver notícias</button>`;
+    el.querySelector('#news-go').addEventListener('click', () => showView('semana', 'noticias'));
+  }
+  var NW_READY = true;
+  lazyRender('semana/noticias', renderNews);
+  try { nwLine(); } catch (e) { console.error(e); }
   function startTour(force) { tutWelcome(!!force); }
   (function tourInit() {
     const nav = document.querySelector('.sidebar-foot, .sidebar');
@@ -11157,7 +11359,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 21 Nov, 12:30", "h": 15, "a": 10, "
   // ⚙ Definições (modo simples/completo, tema, tutorial). Tudo guardado no browser.
   // ===================================================================
   var V48 = {mode: 'completo'};
-  const SIMPLE_KEEP = {semana: ['resumo', 'onze', 'capitao', 'transferencias', 'registo'], competicao: ['classificacao', 'vigiar'], mercado: ['pesquisa', 'lesoes']};
+  const SIMPLE_KEEP = {semana: ['resumo', 'noticias', 'onze', 'capitao', 'transferencias', 'registo'], competicao: ['classificacao', 'vigiar'], mercado: ['pesquisa', 'lesoes']};
   const favK = () => 'fpl-favs-' + curMgr(), recK = () => 'fpl-recent-' + curMgr();
   const favList = () => lsGet(favK()) || [];
   const recList = () => lsGet(recK()) || [];
@@ -11176,7 +11378,9 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 21 Nov, 12:30", "h": 15, "a": 10, "
   function renderShortcuts() {
     const F = favList().filter(tokName), cur = curTok(), R = recList().filter(t => t !== cur && tokName(t)).slice(0, 3);
     const card = document.getElementById('fav-card');
-    if (card) card.innerHTML = `<div class="card-head"><div><h2>Os teus atalhos</h2><div class="card-sub">${curMgr() === 'marco' ? 'Xarola Team' : 'Brunorussia FC'} · toca na ☆ ao lado do título de uma área ou de um separador para a guardares aqui</div></div></div>
+    if (card) card.classList.toggle('fav-min', !F.length);
+    if (card && !F.length) card.innerHTML = `<div class="fav-min-row"><span class="note fav-chips"><b>Os teus atalhos</b> · toca na ☆ ao lado de um título ou separador para o guardares aqui.</span>${R.length ? `<span class="fav-rec"><span class="note">Recentes:</span> ${R.map(t => chipBtn(t, 'fav-chip ghost')).join('')}</span>` : ''}</div>`;
+    else if (card) card.innerHTML = `<div class="card-head"><div><h2>Os teus atalhos</h2><div class="card-sub">${curMgr() === 'marco' ? 'Xarola Team' : 'Brunorussia FC'} · toca na ☆ ao lado do título de uma área ou de um separador para a guardares aqui</div></div></div>
       <div class="fav-chips">${F.length ? F.map(t => chipBtn(t, 'fav-chip')).join('') : '<span class="note">Ainda não tens atalhos.</span>'}</div>
       ${R.length ? `<div class="fav-rec"><span class="note">Usaste recentemente:</span> ${R.map(t => chipBtn(t, 'fav-chip ghost')).join('')}</div>` : ''}`;
     const nav = document.getElementById('nav-favs');
@@ -11385,7 +11589,13 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sáb 21 Nov, 12:30", "h": 15, "a": 10, "
     // ao mudar de separador no telemóvel, o separador escolhido fica à vista
     const st = view.querySelector(':scope > .subtabs .subtab[aria-selected="true"]');
     if (st && st.parentElement.scrollWidth > st.parentElement.clientWidth) { const r = st.parentElement; r.scrollLeft = st.offsetLeft - (r.clientWidth - st.clientWidth) / 2; }
+    try { v60Tabs(); } catch (e) { console.error(e); }
   }
+  // V60: os separadores que não cabem no ecrã esbatem-se do lado onde há mais
+  function v60Fade(t) { t.classList.toggle('more-r', t.scrollLeft + t.clientWidth < t.scrollWidth - 6); t.classList.toggle('more-l', t.scrollLeft > 6); }
+  function v60Tabs() { document.querySelectorAll('.view:not([hidden]) > .subtabs').forEach(v60Fade); }
+  document.querySelectorAll('.subtabs').forEach(t => t.addEventListener('scroll', () => v60Fade(t), {passive: true}));
+  window.addEventListener('resize', () => { try { v60Tabs(); } catch (e) {} });
   function parseToken(tok) {
     if (!tok) return null;
     const i = tok.indexOf('-');
