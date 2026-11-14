@@ -121,6 +121,22 @@ details.topics>summary .sum-l{display:grid;min-width:0}
     padding:6px max(10px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(10px, env(safe-area-inset-left, 0px))}
   .wrap{padding-bottom:110px}
 }
+/* swipe, undo, resume */
+.card.noanim{transition:none!important}
+.card.drag-yes .face{border-color:var(--ok);box-shadow:0 0 0 4px var(--ok-soft), var(--shadow)}
+.card.drag-no .face{border-color:var(--bad);box-shadow:0 0 0 4px var(--bad-soft), var(--shadow)}
+@keyframes cardIn{from{opacity:.2;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.scene.enter{animation:cardIn .28s ease-out}
+.swipehint{display:none;font-size:13px;color:var(--muted);text-align:center;margin-top:10px;min-height:1em}
+@media (hover:none){.swipehint{display:block}}
+.linkbtn{border:0;background:none;color:var(--azul);font-weight:700;font-size:14px;padding:0}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom, 0px));z-index:30;transform:translate(-50%, 12px);opacity:0;transition:opacity .2s, transform .2s;
+  width:max-content;max-width:min(92vw, 440px);display:flex;align-items:center;gap:14px;background:var(--ink);color:var(--bg);border-radius:16px;padding:10px 10px 10px 16px;box-shadow:0 8px 24px rgba(20,30,60,.25);font-size:15px}
+.toast.show{opacity:1;transform:translate(-50%, 0)}
+.toast span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toast button{flex:none;border:0;border-radius:10px;padding:8px 14px;font-weight:700;background:var(--azul);color:var(--azul-ink)}
+@media (max-width:700px){ .toast{bottom:calc(92px + env(safe-area-inset-bottom, 0px))} }
+@media (prefers-reduced-motion: reduce){ .scene.enter{animation:none} .toast{transition:none} }
 /* card */
 .scene{perspective:1400px;margin-bottom:16px}
 .card{position:relative;display:grid;min-height:260px;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.3,.7,.3,1);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:pan-y}
@@ -279,6 +295,7 @@ footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);display
       </div>
       <div class="actions one" id="actions"></div>
       <div class="keys" id="keys"></div>
+      <div class="swipehint" id="swipeHint"></div>
     </div>
 
     <div id="summary" hidden></div>
@@ -297,6 +314,7 @@ footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);display
   <footer>
     <span id="totals"></span>
   </footer>
+  <div class="toast" id="toast" role="status" hidden><span id="toastMsg"></span><button type="button" id="toastBtn"></button></div>
 </div>
 
 <script>
@@ -1079,6 +1097,8 @@ var T = {
   nWords:function(n){return n+' palavras';}, some:'alguns temas', nothing:'Nada escolhido', everything:'Tudo',
   oneTopics:function(n){return 'Escolher temas soltos ('+n+')';},
   stats:function(r,a){return r+' certas'+(a?' · '+a+' a repetir':'');},
+  undoBtn:'Desfazer', markedKnow:'Sabia', markedAgain:'Volta a aparecer', resumed:function(n){return 'A continuar no cartão '+n;}, startOver:'Recomeçar',
+  swipeFlip:'Desliza para a direita se sabias, para a esquerda para repetir', swipeLearn:'Desliza para mudar de cartão',
   prev:'Anterior', practise:'Praticar com flashcards', keysLearn:'Teclado: ← anterior · → seguinte · espaço ouve · no telemóvel, desliza o cartão',
   round:'Ronda', all:'todas', weak:'Só as que ainda não sei', topics:'Temas', topicsN:function(a,b){return 'Temas: '+a+' de '+b+' escolhidos';},
   selAll:'Escolher todos', selNone:'Limpar', selGroup:'Escolher todos', unselGroup:'Tirar todos', card:'Cartão', of:'de', know:'Sei', dont:'Repetir', show:'Mostrar resposta',
@@ -1097,6 +1117,8 @@ var T = {
   nWords:function(n){return n+' words';}, some:'some topics', nothing:'Nothing chosen yet', everything:'Everything',
   oneTopics:function(n){return 'Choose single topics ('+n+')';},
   stats:function(r,a){return r+' right'+(a?' · '+a+' to repeat':'');},
+  undoBtn:'Undo', markedKnow:'Known', markedAgain:'Will come back', resumed:function(n){return 'Continuing from card '+n;}, startOver:'Start over',
+  swipeFlip:'Swipe right if you knew it, left to see it again', swipeLearn:'Swipe left or right to change card',
   prev:'Previous', practise:'Practise these as flashcards', keysLearn:'Keys: ← previous · → next · space to listen · on a phone, swipe the card',
   round:'Cards per round', all:'all', weak:'Only words I don’t know yet', topics:'Topics', topicsN:function(a,b){return 'Topics & settings · '+a+' of '+b+' topics';},
   selAll:'Choose all topics', selNone:'Clear all', selGroup:'Select all', unselGroup:'Deselect all', card:'Card', of:'of', know:'I know it', dont:'Again', show:'Show answer',
@@ -1211,14 +1233,49 @@ function newRound(includeKnown){
   shuffle(q);
   R = {queue:q, total:q.length, done:0, firstOk:0, missed:[], flipped:false, checked:false, result:null};
   var ld = deck(); if(!ld.length) ld = deck(true);
-  LR = {list: ld, i: 0};
-  renderStudy();
+  var lk = learnKey();
+  LR = {list: ld, i: Math.max(0, Math.min(LPOS[lk] || 0, ld.length - 1)), key: lk};
+  UNDO = null;
+  instant(renderStudy);
 }
 var LR = {list: [], i: 0};
+var LPOS = load('p103-learnpos', {});
+function learnKey(){ return S.cats.slice().sort().join(',') + (S.weak ? '|weak' : ''); }
+function saveLearnPos(){ LPOS[LR.key] = LR.i; store('p103-learnpos', LPOS); }
 function learnStep(d){
   if(!LR.list.length) return;
-  LR.i = Math.max(0, Math.min(LR.list.length - 1, LR.i + d));
-  renderStudy();
+  var ni = Math.max(0, Math.min(LR.list.length - 1, LR.i + d));
+  if(ni === LR.i) return;
+  LR.i = ni; saveLearnPos();
+  instant(renderStudy);
+}
+function learnRestart(){ LR.i = 0; saveLearnPos(); instant(renderStudy); }
+// change cards without the flip animation (so the next answer is never shown), then slide the new card in
+function instant(fn){
+  var card = $('card'), sc = card.parentNode;
+  card.classList.add('noanim'); fn(); void card.offsetWidth; card.classList.remove('noanim');
+  sc.classList.remove('enter'); void sc.offsetWidth; sc.classList.add('enter');
+}
+// small message at the bottom (with an optional button, e.g. Undo)
+var toastT = null, toastFn = null;
+function toast(msg, btn, fn){
+  var el = $('toast'), b = $('toastBtn');
+  $('toastMsg').textContent = msg; b.hidden = !btn; b.textContent = btn || ''; toastFn = fn || null;
+  el.hidden = false; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(hideToast, 4500);
+}
+function hideToast(){ var el = $('toast'); el.classList.remove('show'); setTimeout(function(){ if(!el.classList.contains('show')) el.hidden = true; }, 250); }
+// undo the last answer
+var UNDO = null;
+function undo(){
+  if(!UNDO || UNDO.R !== R) return;
+  R.queue = UNDO.queue.map(function(x){ x.c.miss = x.miss; return x.c; });
+  R.done = UNDO.done; R.firstOk = UNDO.firstOk; R.missed = UNDO.missed;
+  if(UNDO.prev) P[UNDO.key] = UNDO.prev; else delete P[UNDO.key];
+  store('p103-progress', P);
+  R.flipped = false; R.checked = false; R.result = null; R.typed = '';
+  UNDO = null; hideToast();
+  instant(renderStudy); renderTopics(); renderTotals();
 }
 function renderLearn(){
   var t = L(), list = LR.list;
@@ -1226,7 +1283,8 @@ function renderLearn(){
   $('player').hidden = false;
   var it = list[LR.i], cat = catOf(it.cat), last = LR.i === list.length - 1;
   $('stRound').textContent = t.card + ' ' + (LR.i + 1) + ' ' + t.of + ' ' + list.length;
-  $('stCounts').textContent = '';
+  $('stCounts').innerHTML = LR.i > 0 ? '<button type="button" class="linkbtn" data-act="restart">↺ '+t.startOver+'</button>' : '';
+  $('swipeHint').textContent = t.swipeLearn;
   $('barFill').style.width = ((LR.i + 1) / list.length * 100) + '%';
   var card = $('card');
   card.classList.remove('flipped');
@@ -1247,7 +1305,9 @@ function renderLearn(){
 function cur(){ return R && R.queue[0]; }
 function grade(known){
   var c = cur(); if(!c) return;
-  var k = c.it.key, p = P[k] || {b:0, n:0, w:0};
+  var k = c.it.key;
+  UNDO = {R: R, queue: R.queue.map(function(x){ return {c:x, miss:x.miss}; }), done: R.done, firstOk: R.firstOk, missed: R.missed.slice(), key: k, prev: P[k] ? Object.assign({}, P[k]) : null};
+  var p = P[k] ? Object.assign({}, P[k]) : {b:0, n:0, w:0};
   p.n++;
   if(known){
     p.b = c.miss ? Math.max(1, p.b) : Math.min(p.b + 1, 5);
@@ -1260,7 +1320,9 @@ function grade(known){
   }
   P[k] = p; store('p103-progress', P);
   R.flipped = false; R.checked = false; R.result = null;
-  renderStudy(); renderTopics(); renderTotals();
+  instant(renderStudy); renderTopics(); renderTotals();
+  var t = L();
+  toast((known ? t.markedKnow : t.markedAgain) + ': ' + c.it.pt, t.undoBtn, undo);
 }
 
 // render
@@ -1340,6 +1402,7 @@ function renderStudy(){
   var it = c.it, cat = catOf(it.cat), front = c.dir === 'pt-en' ? 'pt' : 'en', back = front === 'pt' ? 'en' : 'pt';
   $('stRound').textContent = t.card + ' ' + Math.min(R.done + 1, R.total) + ' ' + t.of + ' ' + R.total;
   $('stCounts').textContent = R.done || R.missed.length ? t.stats(R.firstOk, R.missed.length) : '';
+  $('swipeHint').textContent = S.mode === 'flip' && R.flipped ? t.swipeFlip : '';
   $('barFill').style.width = (R.done / R.total * 100) + '%';
   $('fTag').textContent = cat[S.lang]; $('bTag').textContent = cat[S.lang];
   $('fLang').textContent = t[front]; $('bLang').textContent = t[back];
@@ -1415,10 +1478,15 @@ function saveS(){ store('p103-settings', S); }
 // events
 document.addEventListener('click', function(e){
   var b = e.target.closest('button, .card'); if(!b) return;
+  if(b.id === 'toastBtn'){ var f = toastFn; hideToast(); if(f) f(); return; }
+  if(b.dataset.act === 'restart'){ learnRestart(); return; }
   if(b.id === 'uiLang'){ S.lang = S.lang === 'pt' ? 'en' : 'pt'; saveS(); renderChrome(); renderStudy(); if(!$('list').hidden) renderList(); return; }
   if(b.dataset.view){
     if(b.dataset.view === 'list') return showTab('list');
-    S.mode = b.dataset.view; saveS(); showTab('study'); renderChrome(); if(R){ R.flipped=false; R.checked=false; } renderStudy(); return;
+    var was = S.mode;
+    S.mode = b.dataset.view; saveS(); showTab('study'); renderChrome(); if(R){ R.flipped=false; R.checked=false; } instant(renderStudy);
+    if(S.mode === 'learn' && was !== 'learn') announceResume();
+    return;
   }
   if(b.dataset.dir){ S.dir = b.dataset.dir; saveS(); renderChrome(); newRound(); return; }
   if(b.dataset.cat){ var i = S.cats.indexOf(b.dataset.cat); if(i>=0) S.cats.splice(i,1); else S.cats.push(b.dataset.cat); saveS(); renderTopics(); newRound(); return; }
@@ -1443,7 +1511,7 @@ document.addEventListener('click', function(e){
     if(a === 'prev') return learnStep(-1);
     if(a === 'practise'){ S.mode = 'flip'; saveS(); renderChrome(); newRound(); return; }
   }
-  if(b.id === 'card' || a === 'flip'){ if(S.mode === 'flip' && R && cur()){ R.flipped = !R.flipped; renderStudy(); } return; }
+  if(b.id === 'card' || a === 'flip'){ if(b.id === 'card' && Date.now() - swipedAt < 350) return; if(S.mode === 'flip' && R && cur()){ R.flipped = !R.flipped; renderStudy(); } return; }
   if(a === 'yes') return grade(true);
   if(a === 'no') return grade(false);
   if(a === 'next-ok') return grade(true);
@@ -1484,15 +1552,42 @@ $('typeForm').addEventListener('submit', function(e){
   renderStudy();
   if(CAN_SPEAK && back === 'pt' && R.result !== 'wrong') speak(c.it.pt);
 });
-var touchX = null, swipedAt = 0;
-$('card').addEventListener('touchstart', function(e){ touchX = e.touches[0].clientX; }, {passive:true});
-$('card').addEventListener('touchend', function(e){
-  if(touchX === null || S.mode !== 'learn') return;
-  var dx = e.changedTouches[0].clientX - touchX; touchX = null;
-  if(Math.abs(dx) > 50){ swipedAt = Date.now(); learnStep(dx < 0 ? 1 : -1); }
-}, {passive:true});
+// swipe: Learn = change card; Flashcards (after flipping) = right "I know it", left "Again"
+var drag = null, swipedAt = 0;
+function canSwipe(){ return (S.mode === 'learn' && LR.list.length) || (S.mode === 'flip' && R && R.flipped && cur()); }
+(function(){
+  var card = $('card');
+  function reset(){ card.style.transition = ''; card.style.transform = ''; card.classList.remove('drag-yes', 'drag-no'); }
+  card.addEventListener('touchstart', function(e){ var t = e.touches[0]; drag = {x: t.clientX, y: t.clientY, dx: 0, on: false}; }, {passive:true});
+  card.addEventListener('touchmove', function(e){
+    if(!drag) return;
+    var t = e.touches[0], dx = t.clientX - drag.x, dy = t.clientY - drag.y;
+    if(!drag.on){
+      if(Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) drag.on = true;
+      else { if(Math.abs(dy) > 10) drag = null; return; }
+    }
+    if(!canSwipe()) return;
+    drag.dx = dx;
+    card.style.transition = 'none';
+    card.style.transform = 'translateX(' + dx + 'px) rotate(' + (dx / 22) + 'deg)' + (card.classList.contains('flipped') ? ' rotateY(180deg)' : '');
+    card.classList.toggle('drag-yes', S.mode === 'flip' && dx > 60);
+    card.classList.toggle('drag-no', S.mode === 'flip' && dx < -60);
+  }, {passive:true});
+  card.addEventListener('touchend', function(){
+    if(!drag) return;
+    var d = drag; drag = null;
+    if(!d.on || Math.abs(d.dx) < 70 || !canSwipe()){ reset(); return; }
+    swipedAt = Date.now();
+    card.classList.add('noanim'); reset(); void card.offsetWidth; card.classList.remove('noanim');
+    if(S.mode === 'learn') learnStep(d.dx < 0 ? 1 : -1);
+    else grade(d.dx > 0);
+  }, {passive:true});
+  card.addEventListener('touchcancel', function(){ drag = null; reset(); }, {passive:true});
+})();
+function announceResume(){ if(S.mode === 'learn' && LR.i > 0) toast(L().resumed(LR.i + 1), L().startOver, learnRestart); }
 document.addEventListener('keydown', function(e){
   var tag = (e.target.tagName || '').toLowerCase();
+  if((e.ctrlKey || e.metaKey) && (e.key === 'z' || e.key === 'Z') && UNDO && tag !== 'input'){ e.preventDefault(); undo(); return; }
   if(!$('study').hidden && S.mode === 'learn' && LR.list.length && tag !== 'input' && tag !== 'select'){
     if(e.key === 'ArrowRight'){ e.preventDefault(); learnStep(1); }
     else if(e.key === 'ArrowLeft'){ e.preventDefault(); learnStep(-1); }
@@ -1516,6 +1611,7 @@ $('listCat').addEventListener('change', renderList);
 
 renderChrome();
 newRound();
+announceResume();
 </script>
 </body>
 </html>
