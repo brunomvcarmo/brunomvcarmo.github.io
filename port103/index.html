@@ -80,6 +80,43 @@ details.topics[open]>summary .chev{transform:rotate(180deg)}
 .status{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted);margin-bottom:6px;font-variant-numeric:tabular-nums;flex-wrap:wrap}
 .bar{height:8px;background:var(--azul-soft);border-radius:99px;overflow:hidden;margin-bottom:16px}
 .bar i{display:block;height:100%;background:var(--azul);width:0;transition:width .3s}
+/* one menu for the four ways to study */
+.views{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:5px;margin-bottom:14px;box-shadow:0 2px 10px rgba(80,105,160,.06)}
+.views button{border:0;background:none;border-radius:16px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:13px;font-weight:700;color:var(--muted);-webkit-tap-highlight-color:transparent}
+.views svg{width:22px;height:22px}
+.views button[aria-pressed="true"]{background:var(--azul-soft);color:var(--azul)}
+/* what am I studying */
+details.topics>summary .sum-l{display:grid;min-width:0}
+.sum-k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.sum-v{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sum-btn{flex:none;color:var(--azul);background:var(--azul-soft);font-size:14px;font-weight:700;padding:6px 14px;border-radius:999px}
+.groups{display:grid;gap:10px}
+.grp{border:1px solid var(--line);border-radius:18px;background:var(--bg)}
+.grp-row{width:100%;display:flex;align-items:center;gap:12px;background:none;border:0;padding:12px 14px;text-align:left;border-radius:18px;-webkit-tap-highlight-color:transparent}
+.tick{width:24px;height:24px;border-radius:8px;border:2px solid var(--line);flex:none;display:grid;place-items:center;background:var(--surface)}
+.grp-row[aria-pressed="true"] .tick{background:var(--azul);border-color:var(--azul)}
+.grp-row[aria-pressed="true"] .tick::after{content:"";width:6px;height:11px;border:solid var(--azul-ink);border-width:0 2.5px 2.5px 0;transform:translateY(-1px) rotate(45deg)}
+.grp-row[aria-pressed="mixed"] .tick{border-color:var(--azul)}
+.grp-row[aria-pressed="mixed"] .tick::after{content:"";width:10px;height:3px;background:var(--azul);border-radius:2px}
+.grp-txt{display:grid;min-width:0}
+.grp-name{font-weight:700;font-size:16px}
+.grp-meta{font-size:13px;color:var(--muted)}
+.grp-more>summary{list-style:none;cursor:pointer;padding:0 14px 12px 50px;font-size:13px;font-weight:700;color:var(--azul)}
+.grp-more>summary::-webkit-details-marker{display:none}
+.grp-more .chips{padding:0 14px 14px}
+.settings{display:grid;border-top:1px solid var(--line);padding-top:12px}
+.settings h3{font-family:var(--f-display);font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 2px}
+.set-row{display:flex;justify-content:space-between;align-items:center;gap:8px 12px;padding:8px 0;font-size:15px;flex-wrap:wrap}
+.set-row .seg button{padding:6px 10px}
+.switch{appearance:none;-webkit-appearance:none;width:44px;height:26px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;flex:none;margin:0;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
+.switch:checked{background:var(--azul)}
+.switch:checked::after{transform:translateX(18px)}
+@media (max-width:700px){
+  .views{position:fixed;left:0;right:0;bottom:0;z-index:20;margin:0;border-radius:22px 22px 0 0;border-width:1px 0 0;box-shadow:0 -4px 18px rgba(80,105,160,.10);
+    padding:6px max(10px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(10px, env(safe-area-inset-left, 0px))}
+  .wrap{padding-bottom:110px}
+}
 /* card */
 .scene{perspective:1400px;margin-bottom:16px}
 .card{position:relative;display:grid;min-height:260px;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.3,.7,.3,1);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:pan-y}
@@ -184,31 +221,26 @@ footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);display
     <button class="ghost" id="uiLang" type="button" hidden></button>
   </header>
 
-  <nav class="tabs" role="tablist">
-    <button role="tab" id="tabStudy" aria-selected="true" type="button"></button>
-    <button role="tab" id="tabList" aria-selected="false" type="button"></button>
-  </nav>
+  <nav class="views" id="views" aria-label="Study mode"></nav>
 
   <section id="study">
-    <div class="controls">
-      <div class="seg" id="dirSeg" role="group"></div>
-      <div class="seg" id="modeSeg" role="group"></div>
-    </div>
-
     <details class="topics" id="topics">
-      <summary><span id="topicsTitle"></span><span class="chev" aria-hidden="true">▾</span></summary>
+      <summary>
+        <span class="sum-l"><span class="sum-k" id="topicsLabel"></span><span class="sum-v" id="topicsTitle"></span></span>
+        <span class="sum-btn" id="topicsBtn"></span>
+      </summary>
       <div class="topics-body">
-        <div class="settings-row">
-          <label class="inline" for="roundSize" id="roundWrap"><span id="lblRound"></span>
+        <div id="topicGroups" class="groups"></div>
+        <div class="settings">
+          <h3 id="setTitle"></h3>
+          <div class="set-row" id="dirRow"><span id="lblDir"></span><div class="seg" id="dirSeg" role="group"></div></div>
+          <div class="set-row" id="roundWrap"><label for="roundSize" id="lblRound"></label>
             <select id="roundSize"><option value="10">10</option><option value="20">20</option><option value="40">40</option><option value="0"></option></select>
-          </label>
-          <label class="inline" for="weakOnly"><input type="checkbox" id="weakOnly"> <span id="lblWeak"></span></label>
+          </div>
+          <label class="set-row" for="weakOnly"><span id="lblWeak"></span><input type="checkbox" id="weakOnly" class="switch"></label>
+          <div class="set-row"><span id="resetWrap"></span></div>
         </div>
-        <div class="topics-actions">
-          <button class="ghost" type="button" id="allTopics"></button>
-          <button class="ghost" type="button" id="noTopics"></button>
-        </div>
-        <div id="topicGroups" class="topics-body" style="padding:0"></div>
+        <button class="btn primary" type="button" data-act="closetopics" id="doneBtn"></button>
       </div>
     </details>
 
@@ -259,7 +291,6 @@ footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);display
 
   <footer>
     <span id="totals"></span>
-    <span id="resetWrap"><button class="ghost" type="button" id="resetBtn"></button></span>
   </footer>
 </div>
 
@@ -267,11 +298,11 @@ footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);display
 // ======================= VOCABULÁRIO (PORT 103, Aulas 10–13) =======================
 // Formato: "português = inglês", uma palavra por linha.
 var GROUPS = [
- {id:'casa', pt:'Casa (Aula 10)', en:'Home (Aula 10)'},
- {id:'comida', pt:'Comida e restaurante (Aula 11)', en:'Food & restaurant (Aula 11)'},
- {id:'compras', pt:'Compras e roupa (Aula 12)', en:'Shopping & clothes (Aula 12)'},
- {id:'viagens', pt:'Viagens e tempo (Aula 13)', en:'Travel & weather (Aula 13)'},
- {id:'gram', pt:'Gramática', en:'Grammar'}
+ {id:'casa', pt:'Casa', en:'Home', aula:'Aula 10'},
+ {id:'comida', pt:'Comida e restaurante', en:'Food & restaurant', aula:'Aula 11'},
+ {id:'compras', pt:'Compras e roupa', en:'Shopping & clothes', aula:'Aula 12'},
+ {id:'viagens', pt:'Viagens e tempo', en:'Travel & weather', aula:'Aula 13'},
+ {id:'gram', pt:'Gramática', en:'Grammar', aula:'Verbs, plurals…'}
 ];
 var CATS = [
 {id:'habitacao', g:'casa', pt:'Lugares e tipos de casa', en:'Places & housing', d:`
@@ -1038,7 +1069,11 @@ A cama é grande. = The bed is big.`});
 // ======================= APP =======================
 var T = {
  pt:{sub:'Aulas 10–13 · Português europeu', other:'English', study:'Estudar', list:'Lista de palavras',
-  dir:{'pt-en':'PT → EN','en-pt':'EN → PT','mix':'Misturado'}, mode:{learn:'Aprender',flip:'Virar cartões',type:'Escrever'},
+  dir:{'pt-en':'Português','en-pt':'Inglês','mix':'Misturado'}, mode:{learn:'Aprender',flip:'Cartões',type:'Escrever',list:'Lista'},
+  studying:'A estudar', change:'Mudar', closeP:'Fechar', setTitle:'Definições', dirLbl:'Mostrar primeiro', done:'Pronto',
+  nWords:function(n){return n+' palavras';}, some:'alguns temas', nothing:'Nada escolhido', everything:'Tudo',
+  oneTopics:function(n){return 'Escolher temas soltos ('+n+')';},
+  stats:function(r,a){return r+' certas'+(a?' · '+a+' a repetir':'');},
   prev:'Anterior', practise:'Praticar com flashcards', keysLearn:'Teclado: ← anterior · → seguinte · espaço ouve · no telemóvel, desliza o cartão',
   round:'Ronda', all:'todas', weak:'Só as que ainda não sei', topics:'Temas', topicsN:function(a,b){return 'Temas: '+a+' de '+b+' escolhidos';},
   selAll:'Escolher todos', selNone:'Limpar', selGroup:'Escolher todos', unselGroup:'Tirar todos', card:'Cartão', of:'de', know:'Sei', dont:'Repetir', show:'Mostrar resposta',
@@ -1052,7 +1087,11 @@ var T = {
   legNew:'por estudar', legLearn:'a aprender', legKnown:'já sei', totals:function(k,n){return 'Já sabes '+k+' de '+n+' palavras e frases';},
   reset:'Apagar o progresso', resetQ:'Apagar tudo?', yes:'Sim, apagar', no:'Não', pt:'PORTUGUÊS', en:'INGLÊS', nores:'Nada encontrado.'},
  en:{sub:'Aulas 10–13 · European Portuguese', other:'Português', study:'Study', list:'Word list',
-  dir:{'pt-en':'PT → EN','en-pt':'EN → PT','mix':'Mixed'}, mode:{learn:'Learn',flip:'Flip cards',type:'Type'},
+  dir:{'pt-en':'Portuguese','en-pt':'English','mix':'Mixed'}, mode:{learn:'Learn',flip:'Flashcards',type:'Type',list:'Word list'},
+  studying:'Studying', change:'Change', closeP:'Close', setTitle:'Settings', dirLbl:'Show first', done:'Done',
+  nWords:function(n){return n+' words';}, some:'some topics', nothing:'Nothing chosen yet', everything:'Everything',
+  oneTopics:function(n){return 'Choose single topics ('+n+')';},
+  stats:function(r,a){return r+' right'+(a?' · '+a+' to repeat':'');},
   prev:'Previous', practise:'Practise these as flashcards', keysLearn:'Keys: ← previous · → next · space to listen · on a phone, swipe the card',
   round:'Cards per round', all:'all', weak:'Only words I don’t know yet', topics:'Topics', topicsN:function(a,b){return 'Topics & settings · '+a+' of '+b+' topics';},
   selAll:'Choose all topics', selNone:'Clear all', selGroup:'Select all', unselGroup:'Deselect all', card:'Card', of:'of', know:'I know it', dont:'Again', show:'Show answer',
@@ -1224,13 +1263,20 @@ function renderChrome(){
   var t = L();
   document.documentElement.lang = S.lang === 'pt' ? 'pt-PT' : 'en';
   $('sub').textContent = t.sub; $('uiLang').textContent = t.other;
-  $('tabStudy').textContent = t.study; $('tabList').textContent = t.list;
+  var view = $('list').hidden ? S.mode : 'list';
+  var ICO = {learn:'<path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/>',
+    flip:'<rect x="3" y="6" width="13" height="14" rx="2.5"/><path d="M8 3h10.5A2.5 2.5 0 0 1 21 5.5V16"/>',
+    type:'<rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/>',
+    list:'<path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/>'};
+  $('views').innerHTML = ['learn','flip','type','list'].map(function(m){
+    return '<button type="button" data-view="'+m+'" aria-pressed="'+(view===m)+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICO[m]+'</svg><span>'+t.mode[m]+'</span></button>';
+  }).join('');
   $('dirSeg').innerHTML = ['pt-en','en-pt','mix'].map(function(d){ return '<button type="button" data-dir="'+d+'" aria-pressed="'+(S.dir===d)+'">'+t.dir[d]+'</button>'; }).join('');
-  $('dirSeg').hidden = S.mode === 'learn'; $('roundWrap').hidden = S.mode === 'learn';
-  $('modeSeg').innerHTML = ['learn','flip','type'].map(function(m){ return '<button type="button" data-mode="'+m+'" aria-pressed="'+(S.mode===m)+'">'+t.mode[m]+'</button>'; }).join('');
+  $('dirRow').hidden = S.mode === 'learn'; $('roundWrap').hidden = S.mode === 'learn';
+  $('lblDir').textContent = t.dirLbl; $('setTitle').textContent = t.setTitle; $('doneBtn').textContent = t.done;
+  $('topicsLabel').textContent = t.studying;
   $('lblRound').textContent = t.round; $('roundSize').value = String(S.round); $('roundSize').options[3].textContent = t.all;
   $('lblWeak').textContent = t.weak; $('weakOnly').checked = !!S.weak;
-  $('allTopics').textContent = t.selAll; $('noTopics').textContent = t.selNone;
   $('answer').placeholder = t.placeholder; $('checkBtn').textContent = t.check;
   $('search').placeholder = t.search;
   $('legend').innerHTML = '<span><i class="dot"></i>'+t.legNew+'</span><span><i class="dot l1"></i>'+t.legLearn+'</span><span><i class="dot l2"></i>'+t.legKnown+'</span>';
@@ -1241,16 +1287,23 @@ function renderChrome(){
   renderTopics(); renderTotals(); resetFooter();
 }
 function renderTopics(){
-  var t = L();
-  $('topicsTitle').textContent = t.topicsN(S.cats.length, CATS.length);
+  var t = L(), open = {}, names = [], full = 0;
+  document.querySelectorAll('.grp-more[open]').forEach(function(d){ open[d.dataset.g] = 1; });
   $('topicGroups').innerHTML = GROUPS.map(function(g){
     var gc = CATS.filter(function(c){ return c.g===g.id; });
-    var allOn = gc.every(function(c){ return S.cats.indexOf(c.id)>=0; });
-    return '<div class="grp"><div class="grp-head"><h3>'+esc(g[S.lang])+'</h3><button type="button" class="ghost small" data-grp="'+g.id+'" data-on="'+(allOn?1:0)+'">'+(allOn?t.unselGroup:t.selGroup)+'</button></div><div class="chips">' + gc.map(function(c){
-      var its = BYCAT[c.id], k = its.filter(function(it){ return level(it.key)===2; }).length;
-      return '<button type="button" class="chip" data-cat="'+c.id+'" aria-pressed="'+(S.cats.indexOf(c.id)>=0)+'">'+esc(c[S.lang])+' <small>'+k+'/'+its.length+'</small></button>';
-    }).join('') + '</div></div>';
+    var on = gc.filter(function(c){ return S.cats.indexOf(c.id)>=0; }).length;
+    var state = on === gc.length ? 'true' : on ? 'mixed' : 'false';
+    if(on){ names.push(g[S.lang] + (on < gc.length ? ' (' + t.some + ')' : '')); if(on === gc.length) full++; }
+    var seen = {}; gc.forEach(function(c){ BYCAT[c.id].forEach(function(it){ seen[it.key] = 1; }); });
+    return '<div class="grp"><button type="button" class="grp-row" data-grp="'+g.id+'" data-on="'+(state==='true'?1:0)+'" aria-pressed="'+state+'">'
+      + '<span class="tick" aria-hidden="true"></span><span class="grp-txt"><span class="grp-name">'+esc(g[S.lang])+'</span><span class="grp-meta">'+esc(g.aula)+' · '+t.nWords(Object.keys(seen).length)+'</span></span></button>'
+      + '<details class="grp-more" data-g="'+g.id+'"'+(open[g.id]?' open':'')+'><summary>'+t.oneTopics(gc.length)+'</summary><div class="chips">' + gc.map(function(c){
+        var its = BYCAT[c.id], k = its.filter(function(it){ return level(it.key)===2; }).length;
+        return '<button type="button" class="chip" data-cat="'+c.id+'" aria-pressed="'+(S.cats.indexOf(c.id)>=0)+'">'+esc(c[S.lang])+' <small>'+k+'/'+its.length+'</small></button>';
+      }).join('') + '</div></details></div>';
   }).join('');
+  $('topicsTitle').textContent = !names.length ? t.nothing : full === GROUPS.length ? t.everything : names.join(', ');
+  $('topicsBtn').textContent = $('topics').open ? t.closeP : t.change;
 }
 function renderTotals(){
   var k = Object.keys(UNIQUE).filter(function(key){ return level(key)===2; }).length;
@@ -1281,7 +1334,7 @@ function renderStudy(){
   player.hidden = false;
   var it = c.it, cat = catOf(it.cat), front = c.dir === 'pt-en' ? 'pt' : 'en', back = front === 'pt' ? 'en' : 'pt';
   $('stRound').textContent = t.card + ' ' + Math.min(R.done + 1, R.total) + ' ' + t.of + ' ' + R.total;
-  $('stCounts').textContent = '✓ ' + R.firstOk + ' · ↺ ' + R.missed.length;
+  $('stCounts').textContent = R.done || R.missed.length ? t.stats(R.firstOk, R.missed.length) : '';
   $('barFill').style.width = (R.done / R.total * 100) + '%';
   $('fTag').textContent = cat[S.lang]; $('bTag').textContent = cat[S.lang];
   $('fLang').textContent = t[front]; $('bLang').textContent = t[back];
@@ -1349,7 +1402,7 @@ function renderList(){
 }
 function showTab(which){
   $('study').hidden = which !== 'study'; $('list').hidden = which !== 'list';
-  $('tabStudy').setAttribute('aria-selected', which === 'study'); $('tabList').setAttribute('aria-selected', which === 'list');
+  document.querySelectorAll('#views button').forEach(function(btn){ btn.setAttribute('aria-pressed', which === 'list' ? btn.dataset.view === 'list' : btn.dataset.view === S.mode); });
   if(which === 'list') renderList();
 }
 function saveS(){ store('p103-settings', S); }
@@ -1358,10 +1411,11 @@ function saveS(){ store('p103-settings', S); }
 document.addEventListener('click', function(e){
   var b = e.target.closest('button, .card'); if(!b) return;
   if(b.id === 'uiLang'){ S.lang = S.lang === 'pt' ? 'en' : 'pt'; saveS(); renderChrome(); renderStudy(); if(!$('list').hidden) renderList(); return; }
-  if(b.id === 'tabStudy') return showTab('study');
-  if(b.id === 'tabList') return showTab('list');
+  if(b.dataset.view){
+    if(b.dataset.view === 'list') return showTab('list');
+    S.mode = b.dataset.view; saveS(); showTab('study'); renderChrome(); if(R){ R.flipped=false; R.checked=false; } renderStudy(); return;
+  }
   if(b.dataset.dir){ S.dir = b.dataset.dir; saveS(); renderChrome(); newRound(); return; }
-  if(b.dataset.mode){ S.mode = b.dataset.mode; saveS(); renderChrome(); if(R){ R.flipped=false; R.checked=false; } renderStudy(); return; }
   if(b.dataset.cat){ var i = S.cats.indexOf(b.dataset.cat); if(i>=0) S.cats.splice(i,1); else S.cats.push(b.dataset.cat); saveS(); renderTopics(); newRound(); return; }
   if(b.dataset.grp){
     var ids = CATS.filter(function(c){ return c.g===b.dataset.grp; }).map(function(c){ return c.id; });
@@ -1393,7 +1447,9 @@ document.addEventListener('click', function(e){
   if(a === 'newround') return newRound();
   if(a === 'includeall') return newRound(true);
   if(a === 'opentopics'){ $('topics').open = true; $('topics').scrollIntoView({block:'start', behavior:'smooth'}); return; }
+  if(a === 'closetopics'){ $('topics').open = false; window.scrollTo({top:0, behavior:'smooth'}); return; }
 });
+$('topics').addEventListener('toggle', function(){ $('topicsBtn').textContent = this.open ? L().closeP : L().change; });
 $('typeForm').addEventListener('submit', function(e){
   e.preventDefault();
   var c = cur(); if(!c || R.checked) return;
