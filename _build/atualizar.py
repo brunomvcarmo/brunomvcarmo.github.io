@@ -9,7 +9,8 @@ Fases:
             + research_week.py (projeções, odds, xgstat, OddAlerts) + lineups_rw.py (onzes) + h2h_week.py (H2H)
             + discorda.py medir (pontos reais das discordâncias guardadas: quem teve razão, a app ou o consenso)
   gerar     gen25.py (bloco de dados, inclui duplas/brancas e as discordâncias app × consenso, guardadas antes do deadline) + swapdata.py (troca no index.html) + weekly_app.py (tabelas)
-  testes    test.py + test_tutorial.py + test_aovivo.py (precisam do Playwright: bash _build/setup-cloud.sh)
+  testes    test.py + test_tutorial.py + test_aovivo.py + test_lab.py (precisam do Playwright: bash _build/setup-cloud.sh)
+            e, no fim, lab.py conselho (V62: guarda em lab/advice.json o conselho da app para a próxima jornada)
   semana    dados + gerar + testes (sem parar para as partes à mão — ver abaixo)
   deadline  depois do deadline da próxima jornada: fpl_fetch.py + apply_picks.py (plantéis, capitães e chips reais)
 
@@ -35,12 +36,14 @@ FASES = {
               ('Tabelas da app', P('_build/pool/weekly_app.py'))],
     'testes': [('Testes da app', P('_build/scripts/test.py')),
                ('Testes do tutorial', P('_build/scripts/test_tutorial.py')),
-               ('Testes do Ao vivo', P('_build/scripts/test_aovivo.py', '.', '_build/shots'))],
+               ('Testes do Ao vivo', P('_build/scripts/test_aovivo.py', '.', '_build/shots')),
+               ('Testes do Laboratório', P('_build/scripts/test_lab.py')),
+               ('Laboratório: fotografia do conselho', P('_build/pool/lab.py', 'conselho'))],
     'deadline': [('Dados oficiais da FPL', P('scripts/fpl_fetch.py')),
                  ('Plantéis reais da jornada', P('_build/pool/apply_picks.py'))],
 }
 FASES['semana'] = FASES['dados'] + FASES['gerar'] + FASES['testes']
-OK_TEST = {'Testes da app': 'ERRORS 0', 'Testes do tutorial': 'TOTAL ERRORS 0', 'Testes do Ao vivo': 'ERRORS 0'}
+OK_TEST = {'Testes da app': 'ERRORS 0', 'Testes do tutorial': 'TOTAL ERRORS 0', 'Testes do Ao vivo': 'ERRORS 0', 'Testes do Laboratório': 'ERRORS 0'}
 
 
 def main():

@@ -1,5 +1,6 @@
-# Atualiza live.json com os dados da API oficial da FPL (classificação, plantéis, chips, preços, lesões)
-# e rivals.json (histórico completo de cada rival, para prever transferências, capitão e chips).
+# Atualiza live.json com os dados da API oficial da FPL (classificação, plantéis, chips, preços, lesões),
+# rivals.json (histórico completo de cada rival, para prever transferências, capitão e chips)
+# e history/points-J<n>.json (pontos e minutos de todos os jogadores em cada jornada, para o Laboratório).
 name: Atualizar dados FPL
 
 on:
@@ -34,12 +35,13 @@ jobs:
       - name: Ir buscar os dados à API da FPL
         if: steps.quando.outputs.run == 'true'
         run: python scripts/fpl_fetch.py
-      - name: Guardar live.json e rivals.json no repositório
+      - name: Guardar live.json, rivals.json e history/ no repositório
         if: steps.quando.outputs.run == 'true'
         run: |
           git config user.name "fpl-bot"
           git config user.email "fpl-bot@users.noreply.github.com"
           git add live.json rivals.json
+          if [ -d history ]; then git add history; fi
           if git diff --staged --quiet; then
             echo "Sem alterações."
           else

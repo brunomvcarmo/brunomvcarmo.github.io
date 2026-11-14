@@ -1,0 +1,47 @@
+{
+ "nota": "Experiências do Laboratório criadas pelo Claude Code (aparecem em todos os dispositivos, só de leitura na app). Escrito por _build/pool/lab.py — ver a secção \"Laboratório\" do CLAUDE.md. mgr = bruno | marco.",
+ "experiments": [
+  {
+   "id": "xmwgpe5qt3wj",
+   "name": "Exemplo: 3 do Arsenal + Haaland",
+   "gw": 11,
+   "created": "2026-11-14",
+   "budget": 101.7,
+   "bmode": "livre",
+   "ids": [
+    4,
+    31,
+    15,
+    411,
+    249,
+    166,
+    112,
+    426,
+    45,
+    504,
+    334,
+    68,
+    183,
+    496,
+    385
+   ],
+   "locked": [
+    4,
+    31,
+    15,
+    411
+   ],
+   "cap": null,
+   "vice": null,
+   "xi": null,
+   "bench": null,
+   "auto": true,
+   "note": "Exemplo criado pelo Claude Code a 14 nov, para mostrar como aparecem as experiências do repositório. Pede «apaga a experiência de exemplo do Laboratório» se não a quiseres.",
+   "src": "raiz",
+   "ghost": null,
+   "mgr": "bruno",
+   "by": "claude"
+  }
+ ],
+ "updated": "2026-11-14T17:52:51Z"
+}

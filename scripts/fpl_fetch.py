@@ -1,6 +1,9 @@
 """Recolhe da API oficial da FPL o que a app precisa para se atualizar sozinha no GitHub Pages
 e escreve live.json na raiz do repositório. Escreve também rivals.json (previsão dos rivais): histórico completo
 de transferências, capitão/vice/chip/onze de cada jornada jogada, chips e o mercado da semana (mais comprados).
+E (V62, Laboratório) history/points-J<n>.json: os pontos e os minutos oficiais de TODOS os jogadores em CADA jornada
+(event/N/live), mais history/index.json — é com eles que a app soma os pontos das equipas fantasma.
+Só o histórico (por exemplo para o preencher pela primeira vez): python scripts/fpl_fetch.py historico
 
 Corre numa GitHub Action (ver .github/workflows/fpl-update.yml). Só usa a biblioteca padrão do Python.
 Para testar contra outro servidor: FPL_BASE=http://localhost:8000/api/ python scripts/fpl_fetch.py
@@ -19,6 +22,7 @@ CLASSIC = int(os.environ.get('FPL_CLASSIC', '457722'))
 H2H = int(os.environ.get('FPL_H2H', '457789'))
 OUT = os.environ.get('FPL_OUT', 'live.json')
 RIVALS = os.environ.get('FPL_RIVALS', 'rivals.json')
+HIST = os.environ.get('FPL_HIST', 'history')
 UA = {'User-Agent': 'Mozilla/5.0 (fpl-app updater; github actions)', 'Accept': 'application/json'}
 
 
@@ -34,10 +38,54 @@ def get(path, tries=3):
             time.sleep(2 + 3 * k)
 
 
+def write_history(stamp, events):
+    """history/points-J<n>.json = {event, final, generated, points: {id: [pontos, minutos]}} para cada jornada começada.
+    As jornadas já confirmadas pela FPL (data_checked) ficam guardadas e não voltam a ser pedidas; a jornada a decorrer
+    (ou acabada mas ainda sem bónus confirmados) é escrita com final=false e refeita em cada execução.
+    history/index.json = {generated, gws: {n: final}} diz à app que ficheiros existem."""
+    os.makedirs(HIST, exist_ok=True)
+    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    checked = {e['id'] for e in events if e.get('data_checked')}
+    started = sorted(e['id'] for e in events if e.get('finished') or e.get('is_current') or e.get('data_checked'))
+    idx, new = {}, 0
+    for g in started:
+        path = os.path.join(HIST, f'points-J{g}.json')
+        try:
+            old = json.load(open(path, encoding='utf-8'))
+        except (OSError, ValueError):
+            old = None
+        if old and old.get('final') and old.get('points'):
+            idx[str(g)] = True
+            continue
+        try:
+            lv = get(f'event/{g}/live/?t={stamp}')
+        except RuntimeError as e:
+            print(f'aviso: sem os pontos da J{g} ({e})', file=sys.stderr)
+            lv = None
+        pts = {str(x['id']): [x['stats'].get('total_points', 0), x['stats'].get('minutes', 0)]
+               for x in (lv or {}).get('elements', [])}
+        if not pts:   # o pedido falhou ou veio vazio: fica o ficheiro da última vez, se houver
+            if old and old.get('points'):
+                idx[str(g)] = bool(old.get('final'))
+            continue
+        with open(path, 'w', encoding='utf-8', newline='\n') as f:
+            json.dump({'event': g, 'final': g in checked, 'generated': now, 'points': pts}, f, ensure_ascii=False, separators=(',', ':'))
+        idx[str(g)] = g in checked
+        new += 1
+        time.sleep(0.3)
+    with open(os.path.join(HIST, 'index.json'), 'w', encoding='utf-8', newline='\n') as f:
+        json.dump({'generated': now, 'gws': dict(sorted(idx.items(), key=lambda kv: int(kv[0])))}, f, ensure_ascii=False, separators=(',', ':'))
+    prov = [g for g, fin in idx.items() if not fin]
+    print(f'history/: {len(idx)} jornadas ({new} escritas agora' + (f'; provisórias: J{", J".join(prov)}' if prov else '') + ')')
+
+
 def main():
     stamp = int(time.time())
     boot = get(f'bootstrap-static/?t={stamp}')
     events = boot['events']
+    if 'historico' in sys.argv[1:]:   # só os pontos por jornada (não mexe no live.json nem no rivals.json)
+        write_history(stamp, events)
+        return
     cur = next((e['id'] for e in events if e.get('is_current')), None)
     finished = [e['id'] for e in events if e.get('finished') or e.get('data_checked')]
     last_finished = max(finished) if finished else None
@@ -137,6 +185,10 @@ def main():
     with open(OUT, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
     print(f'live.json: J{cur} (última fechada J{last_finished}), {len(standings)} gestores, {len(elements)} jogadores')
+    try:
+        write_history(stamp, events)
+    except Exception as e:   # o histórico nunca pode impedir o live.json e o rivals.json
+        print(f'aviso: history/ não foi atualizado ({e})', file=sys.stderr)
     write_rivals(stamp, events, cur, last_finished, boot, raw)
 
 
