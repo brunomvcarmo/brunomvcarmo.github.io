@@ -1,0 +1,1441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f9fd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161c2c" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PORT 103">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Flashcards PORT 103</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: one study column (max 720px); azulejo tile strip as the only ornament; card in the centre, controls above, grading below */
+:root{
+  --bg:#f7f9fd; --surface:#ffffff; --ink:#2f3a55; --muted:#7f8aa3; --line:#e6ebf4;
+  --azul:#6b8fdb; --azul-ink:#ffffff; --azul-soft:#eef3fd; --tile:#dfe8f8;
+  --ok:#3f9c77; --ok-soft:#e8f6ef; --bad:#d27264; --bad-soft:#fdeeeb; --warn:#bb8c2f; --warn-soft:#fcf5e3;
+  --shadow:0 2px 6px rgba(80,105,160,.06),0 14px 34px rgba(80,105,160,.08);
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --r:20px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#161c2c; --surface:#1e263a; --ink:#e3e8f3; --muted:#a0abc2; --line:#2e3850;
+  --azul:#93b3f1; --azul-ink:#161c2c; --azul-soft:#253150; --tile:#34456c;
+  --ok:#6ccc9f; --ok-soft:#1d3a30; --bad:#f19a8a; --bad-soft:#40272a; --warn:#ebc06a; --warn-soft:#3a3120;
+  --shadow:0 2px 6px rgba(0,0,0,.18),0 14px 34px rgba(0,0,0,.22);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161c2c; --surface:#1e263a; --ink:#e3e8f3; --muted:#a0abc2; --line:#2e3850;
+  --azul:#93b3f1; --azul-ink:#161c2c; --azul-soft:#253150; --tile:#34456c;
+  --ok:#6ccc9f; --ok-soft:#1d3a30; --bad:#f19a8a; --bad-soft:#40272a; --warn:#ebc06a; --warn-soft:#3a3120;
+  --shadow:0 2px 6px rgba(0,0,0,.18),0 14px 34px rgba(0,0,0,.22);
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 48px}
+.tiles{height:12px;background:
+  radial-gradient(circle at 50% 50%, var(--azul) 0 22%, transparent 23%) 0 0/24px 24px,
+  conic-gradient(from 45deg, var(--tile) 25%, transparent 0 50%, var(--tile) 0 75%, transparent 0) 0 0/24px 24px, var(--azul-soft)}
+header.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-block:20px 12px;flex-wrap:wrap}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(26px,5vw,34px);line-height:1.05;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 span{color:var(--azul)}
+.sub{color:var(--muted);font-size:14px;margin-top:4px}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--azul);outline-offset:2px}
+.ghost{background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px}
+.ghost:hover{border-color:var(--azul)}
+nav.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px}
+nav.tabs button{background:none;border:0;padding:10px 14px;font-weight:700;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-1px}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--azul)}
+.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-bottom:12px}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;box-shadow:0 2px 8px rgba(80,105,160,.05)}
+.seg button{border:0;background:none;padding:6px 12px;border-radius:999px;font-size:14px;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--azul);color:var(--azul-ink);font-weight:700}
+label.inline{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted)}
+select{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px}
+details.topics{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:14px}
+details.topics>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;justify-content:space-between;gap:10px;align-items:center;font-weight:700}
+details.topics>summary::-webkit-details-marker{display:none}
+details.topics>summary .chev{transition:transform .2s;color:var(--muted)}
+details.topics[open]>summary .chev{transform:rotate(180deg)}
+.topics-body{padding:0 14px 14px;display:grid;gap:14px}
+.topics-actions{display:flex;gap:8px;flex-wrap:wrap}
+.grp-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.grp h3{font-family:var(--f-display);font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0;font-weight:700}
+.ghost.small{padding:3px 10px;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:5px 10px;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--azul-soft);border-color:var(--azul);font-weight:700}
+.chip small{color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.status{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted);margin-bottom:6px;font-variant-numeric:tabular-nums;flex-wrap:wrap}
+.bar{height:8px;background:var(--azul-soft);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.bar i{display:block;height:100%;background:var(--azul);width:0;transition:width .3s}
+/* card */
+.scene{perspective:1400px;margin-bottom:16px}
+.card{position:relative;display:grid;min-height:260px;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.3,.7,.3,1);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:pan-y}
+.settings-row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.card.flipped{transform:rotateY(180deg)}
+.face{position:relative;grid-area:1 / 1;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--surface);border:1px solid var(--line);border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 22px 24px;text-align:center;gap:12px;box-shadow:var(--shadow);overflow:hidden}
+.face.back{transform:rotateY(180deg)}
+.face.back::before{content:"";position:absolute;inset:0 0 auto 0;height:12px;background:
+  radial-gradient(circle at 50% 50%, var(--azul) 0 22%, transparent 23%) 0 0/24px 24px,
+  conic-gradient(from 45deg, var(--tile) 25%, transparent 0 50%, var(--tile) 0 75%, transparent 0) 0 0/24px 24px, var(--azul-soft)}
+.face .tag{position:absolute;top:12px;left:14px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.face.back .tag{top:20px}
+.face .lang{position:absolute;top:12px;right:14px;font-size:12px;font-weight:700;color:var(--azul);letter-spacing:.06em}
+.face.back .lang{top:20px}
+.word{font-family:var(--f-display);font-weight:600;font-size:clamp(26px,6vw,40px);line-height:1.15;text-wrap:balance;overflow-wrap:anywhere;max-width:100%}
+.word.long{font-size:clamp(20px,4.4vw,28px)}
+.hint{color:var(--muted);font-size:14px}
+.trans{font-size:clamp(17px,3.8vw,22px);color:var(--muted);border-top:2px solid var(--azul-soft);padding-top:10px;max-width:100%;overflow-wrap:anywhere;text-wrap:balance}
+.btn:disabled{opacity:.4;cursor:default}
+.speak{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 12px;font-size:14px;display:inline-flex;gap:6px;align-items:center}
+.speak:hover{border-color:var(--azul)}
+.speak svg{width:16px;height:16px}
+.feedback{font-weight:700;border-radius:10px;padding:6px 12px;font-size:15px}
+.feedback.ok{background:var(--ok-soft);color:var(--ok)}
+.feedback.bad{background:var(--bad-soft);color:var(--bad)}
+.feedback.warn{background:var(--warn-soft);color:var(--warn)}
+.yours{font-size:14px;color:var(--muted)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.actions.one{grid-template-columns:1fr}
+.btn{border:0;border-radius:18px;padding:15px 18px;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .12s, filter .12s}
+.btn:not(:disabled):hover{filter:brightness(1.03);transform:translateY(-1px)}
+.btn.primary{box-shadow:0 6px 16px rgba(107,143,219,.28)}
+.btn.primary{background:var(--azul);color:var(--azul-ink)}
+.btn.no{background:var(--bad-soft);color:var(--bad)}
+.btn.yes{background:var(--ok-soft);color:var(--ok)}
+.btn.plain{background:var(--surface);border:1px solid var(--line)}
+.btn kbd{font-family:var(--f-body);font-size:12px;opacity:.7;border:1px solid currentColor;border-radius:5px;padding:0 5px}
+.typebox{display:flex;gap:8px;margin-bottom:10px}
+.typebox input{flex:1;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px 14px;font-size:17px}
+.typebox input:focus{border-color:var(--azul)}
+.accents{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.accents button{border:1px solid var(--line);background:var(--surface);border-radius:8px;min-width:36px;padding:4px 8px;font-size:16px}
+.keys{font-size:13px;color:var(--muted);text-align:center;margin-top:10px}
+/* summary */
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:24px 20px;display:grid;gap:14px}
+.summary h2{font-family:var(--f-display);margin:0;font-size:26px}
+.nums{display:flex;gap:24px;flex-wrap:wrap}
+.nums div{display:grid}
+.nums b{font-family:var(--f-display);font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
+.nums span{font-size:13px;color:var(--muted)}
+.review{display:grid;gap:4px;font-size:15px}
+.review div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-block:4px}
+.review div span:last-child{color:var(--muted);text-align:right}
+/* list */
+.listtools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.listtools input{flex:1 1 220px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.lgroup{margin-bottom:22px}
+.lgroup h3{font-family:var(--f-display);font-size:18px;margin:0 0 6px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.lgroup h3 small{font-family:var(--f-body);font-size:13px;color:var(--muted);font-weight:400}
+.row{display:grid;grid-template-columns:12px minmax(0,1fr) minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}
+.row .pt{font-weight:700;overflow-wrap:anywhere}
+.row .en{color:var(--muted);overflow-wrap:anywhere}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.dot.l1{background:var(--warn)} .dot.l2{background:var(--ok)}
+.row .speak{padding:4px 8px}
+.legend{display:flex;gap:14px;font-size:13px;color:var(--muted);margin-bottom:12px;flex-wrap:wrap}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted);align-items:center}
+.confirm{display:inline-flex;gap:8px;align-items:center}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:28px;padding:28px 20px;text-align:center;display:grid;gap:12px;justify-items:center}
+@media (max-width:520px){
+  .row{grid-template-columns:10px minmax(0,1fr) auto}
+  .row .en{grid-column:2;grid-row:2;font-size:14px}
+  .row .speak{grid-row:1 / span 2;grid-column:3}
+  .card{min-height:220px}
+  header.top{padding-block:14px 8px}
+  h1{font-size:24px}
+  .sub{font-size:13px;margin-top:2px}
+  nav.tabs{margin-bottom:12px}
+  nav.tabs button{padding:8px 12px}
+  .controls{gap:8px;margin-bottom:10px}
+  .seg{display:flex;width:100%}
+  .seg button{flex:1;padding:7px 6px}
+  details.topics{margin-bottom:12px}
+  details.topics>summary{padding:10px 14px;font-size:15px}
+  .bar{margin-bottom:12px}
+  .face{padding:46px 18px 20px}
+  .btn{padding:14px 12px}
+}
+@media (hover:none){ .keys, .btn kbd{display:none} }
+@media (prefers-reduced-motion: reduce){.card{transition:none}.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="tiles" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Flashcards <span>PORT 103</span></h1>
+      <div class="sub" id="sub"></div>
+    </div>
+    <button class="ghost" id="uiLang" type="button" hidden></button>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tabStudy" aria-selected="true" type="button"></button>
+    <button role="tab" id="tabList" aria-selected="false" type="button"></button>
+  </nav>
+
+  <section id="study">
+    <div class="controls">
+      <div class="seg" id="dirSeg" role="group"></div>
+      <div class="seg" id="modeSeg" role="group"></div>
+    </div>
+
+    <details class="topics" id="topics">
+      <summary><span id="topicsTitle"></span><span class="chev" aria-hidden="true">▾</span></summary>
+      <div class="topics-body">
+        <div class="settings-row">
+          <label class="inline" for="roundSize" id="roundWrap"><span id="lblRound"></span>
+            <select id="roundSize"><option value="10">10</option><option value="20">20</option><option value="40">40</option><option value="0"></option></select>
+          </label>
+          <label class="inline" for="weakOnly"><input type="checkbox" id="weakOnly"> <span id="lblWeak"></span></label>
+        </div>
+        <div class="topics-actions">
+          <button class="ghost" type="button" id="allTopics"></button>
+          <button class="ghost" type="button" id="noTopics"></button>
+        </div>
+        <div id="topicGroups" class="topics-body" style="padding:0"></div>
+      </div>
+    </details>
+
+    <div id="player">
+      <div class="status"><span id="stRound"></span><span id="stCounts"></span></div>
+      <div class="bar"><i id="barFill"></i></div>
+      <div class="scene">
+        <div class="card" id="card" tabindex="0" role="button">
+          <div class="face front">
+            <span class="tag" id="fTag"></span><span class="lang" id="fLang"></span>
+            <div class="word" id="fWord"></div>
+            <div class="trans" id="fTrans" hidden></div>
+            <div class="hint" id="fHint"></div>
+            <button class="speak" type="button" id="fSpeak" hidden></button>
+          </div>
+          <div class="face back">
+            <span class="tag" id="bTag"></span><span class="lang" id="bLang"></span>
+            <div class="word" id="bWord"></div>
+            <div class="feedback" id="bFeedback" hidden></div>
+            <div class="yours" id="bYours" hidden></div>
+            <button class="speak" type="button" id="bSpeak" hidden></button>
+          </div>
+        </div>
+      </div>
+      <div id="typeArea" hidden>
+        <form class="typebox" id="typeForm" autocomplete="off">
+          <input id="answer" type="text" autocapitalize="off" spellcheck="false">
+          <button class="btn primary" type="submit" id="checkBtn"></button>
+        </form>
+        <div class="accents" id="accents"></div>
+      </div>
+      <div class="actions one" id="actions"></div>
+      <div class="keys" id="keys"></div>
+    </div>
+
+    <div id="summary" hidden></div>
+    <div id="emptyDeck" hidden></div>
+  </section>
+
+  <section id="list" hidden>
+    <div class="listtools">
+      <input id="search" type="search">
+      <select id="listCat"></select>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div id="listBody"></div>
+  </section>
+
+  <footer>
+    <span id="totals"></span>
+    <span id="resetWrap"><button class="ghost" type="button" id="resetBtn"></button></span>
+  </footer>
+</div>
+
+<script>
+// ======================= VOCABULÁRIO (PORT 103, Aulas 10–13) =======================
+// Formato: "português = inglês", uma palavra por linha.
+var GROUPS = [
+ {id:'casa', pt:'Casa (Aula 10)', en:'Home (Aula 10)'},
+ {id:'comida', pt:'Comida e restaurante (Aula 11)', en:'Food & restaurant (Aula 11)'},
+ {id:'compras', pt:'Compras e roupa (Aula 12)', en:'Shopping & clothes (Aula 12)'},
+ {id:'viagens', pt:'Viagens e tempo (Aula 13)', en:'Travel & weather (Aula 13)'},
+ {id:'gram', pt:'Gramática', en:'Grammar'}
+];
+var CATS = [
+{id:'habitacao', g:'casa', pt:'Lugares e tipos de casa', en:'Places & housing', d:`
+a praia = beach
+a cidade = city
+o rio = river
+a montanha = mountain
+o campo = countryside
+a vila = town
+a aldeia = village
+o bairro = neighbourhood
+a casa individual = detached house
+a casa geminada = semi-detached house
+as casas em banda = terraced / row houses
+a casa do monte (Alentejo) = traditional rural Alentejo house
+o palacete = small palace / manor house
+a mansão = mansion
+o prédio = apartment building
+os apartamentos = apartments
+o bungalow = bungalow
+a tenda = tent
+o abrigo de pedra (iglô) = stone shelter (igloo-shaped)
+o castelo = castle
+a autocaravana = motorhome`},
+{id:'exterior', g:'casa', pt:'Exterior e andares', en:'Outside & levels', d:`
+o telhado = roof
+a chaminé = chimney
+o sótão = attic
+a parede = wall
+a janela / as janelas = window / windows
+a porta = door
+o jardim = garden
+a caixa de correio = mailbox
+a cerca = fence
+a garagem = garage
+o portão da garagem = garage gate / door
+o terraço = terrace
+o primeiro andar = first floor / upper storey
+o rés-do-chão = ground floor
+a cave = basement
+o andar = floor / storey`},
+{id:'divisoes', g:'casa', pt:'Divisões da casa', en:'Rooms', d:`
+a sala de estar = living room
+o quarto / os quartos = bedroom / bedrooms
+a cozinha = kitchen
+a casa de banho = bathroom
+a sala de jantar = dining room
+a lavandaria = laundry room
+o escritório = office / study
+a varanda = balcony
+o quintal = backyard
+o corredor = hallway
+a escada = stairs
+a despensa = pantry
+o roupeiro = wardrobe / closet`},
+{id:'cozinha', g:'casa', pt:'Na cozinha', en:'Kitchen', d:`
+o armário = cabinet / cupboard
+o exaustor = extractor / range hood
+a placa do fogão = stovetop
+a placa de vitrocerâmica = ceramic hob
+o lava-louça = kitchen sink
+o fogão = stove / cooker
+o forno = oven
+o frigorífico = refrigerator
+a máquina de lavar loiça = dishwasher
+a torradeira = toaster
+o micro-ondas = microwave
+a máquina de café = coffee maker
+a torneira = tap / faucet
+a mesa e as cadeiras = table and chairs
+a panela = saucepan / pot
+a frigideira = frying pan
+o prato = plate
+o copo = glass
+os talheres = cutlery
+a faca = knife
+o garfo = fork
+a colher = spoon`},
+{id:'jantar', g:'casa', pt:'Na sala de jantar', en:'Dining room', d:`
+a mesa de jantar = dining table
+as cadeiras = chairs
+o aparador / o buffet = sideboard / buffet cabinet
+a vitrina / a cristaleira = display / china cabinet
+a porcelana = porcelain
+a faiança portuguesa = Portuguese earthenware
+a louça = tableware
+os têxteis de mesa = table linens
+o centro de mesa = centrepiece
+o candeeiro suspenso = pendant light`},
+{id:'estar', g:'casa', pt:'Na sala de estar', en:'Living room', d:`
+o candeeiro de teto = ceiling lamp
+o candeeiro de pé = floor lamp
+o candeeiro de mesa = table lamp
+os quadros = paintings
+o relógio de parede = wall clock
+o Galo de Barcelos = traditional Portuguese rooster motif
+a mesa de centro = coffee table
+o sofá = sofa
+as poltronas = armchairs
+a estante / as prateleiras = bookshelf / shelves
+a lareira = fireplace
+o tapete = rug
+os cortinados / as cortinas = curtains
+a televisão = television
+o controlo remoto = remote control
+as fotografias = photographs
+os espelhos = mirrors
+as plantas = plants
+os jarros / os vasos decorativos = decorative vases
+o ar condicionado = air conditioning
+o radiador = radiator
+as almofadas = cushions
+a manta = throw blanket`},
+{id:'banho', g:'casa', pt:'Na casa de banho', en:'Bathroom', d:`
+a banheira = bathtub
+o chuveiro = shower
+o lavatório = washbasin / sink
+o tapete = bath mat / rug
+a torneira = faucet / tap
+a sanita = toilet
+a prateleira = shelf
+a água de colónia = cologne
+o gel de banho = shower gel
+o toalheiro = towel rail
+o interruptor = light switch
+a saboneteira = soap dish
+a tomada = power outlet
+o sabonete = bar soap
+o espelho = mirror
+o champô = shampoo
+a toalha = towel
+a escova de barbear = shaving brush
+a máquina de barbear = razor / shaver
+o pente = comb
+a caixa de primeiros socorros = first-aid kit
+a escova = hairbrush
+o papel higiénico = toilet paper`},
+{id:'quarto', g:'casa', pt:'No quarto', en:'Bedroom', d:`
+a cama = bed
+a mesa de cabeceira = bedside table
+o roupeiro / o guarda-fatos = wardrobe
+a cómoda = chest of drawers
+a almofada = pillow
+os lençóis = sheets
+o cobertor = blanket
+o edredão = duvet / comforter
+o candeeiro = lamp
+o despertador = alarm clock
+a colcha = bedspread
+a cortina = curtain
+o tapete = rug / mat
+a carpete = carpet`},
+{id:'escritorio', g:'casa', pt:'No escritório', en:'Home office', d:`
+a secretária = desk
+a cadeira giratória regulável = adjustable swivel chair
+as estantes verticais = vertical shelves
+as soluções de arrumação = storage solutions
+os blocos de gavetas = drawer units
+as caixas organizadoras = storage boxes
+as canetas = pens
+os lápis = pencils
+os blocos de notas = notepads
+as notas aderentes / os post-its = sticky notes
+a agenda = planner
+os organizadores de secretária = desk organisers
+os dossiers e as pastas = files and folders
+o computador portátil = laptop
+o computador de secretária = desktop computer
+o rato = computer mouse
+o teclado = keyboard
+os auscultadores = headphones
+a impressora = printer
+o candeeiro de mesa = desk lamp
+as plantas de interior = houseplants
+o caixote do lixo = wastebasket`},
+{id:'despensa', g:'casa', pt:'Na despensa', en:'Pantry & supplies', d:`
+o azeite = olive oil
+o vinagre = vinegar
+o bacalhau = salted cod
+o arroz = rice
+a massa = pasta
+as leguminosas = pulses / legumes
+o feijão = beans
+o grão-de-bico = chickpeas
+as conservas = canned goods
+o atum = tuna
+as sardinhas = sardines
+a polpa de tomate = tomato purée
+o molho de tomate = tomato sauce
+o pão = bread
+a broa = cornbread
+o chouriço = Portuguese sausage
+os enchidos = cured sausages
+o café = coffee
+o chá = tea
+o açúcar = sugar
+a farinha = flour
+o fermento = yeast / raising agent
+o sal = salt
+as especiarias = spices
+as cebolas = onions
+os alhos = garlic cloves
+as batatas = potatoes
+os detergentes = detergents
+os esfregões = scouring pads
+os panos = cleaning cloths
+o papel de cozinha = kitchen paper / paper towel
+os aventais = aprons
+os sacos de compras reutilizáveis = reusable shopping bags`},
+{id:'adjetivos', g:'casa', pt:'Adjetivos para descrever', en:'Describing adjectives', d:`
+moderno/a = modern
+antiquado/a = old-fashioned
+barato/a = inexpensive / cheap
+caro/a = expensive
+pequeno/a = small
+grande = big / large
+curto/a = short
+comprido/a = long
+espaçoso/a = spacious
+estreito/a = narrow
+maravilhoso/a = wonderful
+limpo/a = clean
+sujo/a = dirty
+arejado/a = airy
+acolhedor/a = cosy / welcoming
+luminoso/a = bright / full of light`},
+{id:'verboscasa', g:'casa', pt:'Verbos da casa', en:'Home verbs', d:`
+construir = to build
+viver / morar = to live / to reside
+alugar = to rent
+vender = to sell
+pintar = to paint
+abrir = to open
+fechar = to close
+tocar = to touch / to play
+chegar = to arrive
+visitar = to visit
+acordar = to wake up
+levantar-se = to get up
+subir = to go upstairs / to climb
+descer = to go down
+pendurar = to hang
+mostrar = to show
+dormir = to sleep
+comer = to eat
+cozinhar = to cook
+cozer no forno = to bake
+lavar = to wash
+limpar = to clean
+varrer = to sweep
+limpar o pó = to dust
+semear = to sow
+cavar = to dig
+podar = to prune
+apanhar / colher = to pick / to harvest
+cultivar = to cultivate
+regar = to water`},
+{id:'lugar', g:'casa', pt:'Preposições de lugar', en:'Location words', d:`
+à esquerda de = to the left of
+à direita de = to the right of
+por cima de = above / on top of
+perto de = near
+longe de = far from
+em frente de / à frente de = in front of
+entre = between
+por trás de = behind
+na / no = in the / on the
+para = to / towards
+onde? = where?
+onde fica? = where is it (located)?`},
+{id:'frasescasa', g:'casa', pt:'Frases sobre a casa', en:'Home phrases', d:`
+Esta é a minha casa nova. O que achas? = This is my new house. What do you think?
+É grande e moderna! Quantos quartos tem? = It is big and modern! How many bedrooms does it have?
+Onde fica o teu apartamento? = Where is your apartment located?
+Fica na Rua Direita, por trás do hospital. = It is on Rua Direita, behind the hospital.
+Onde estão os pratos? = Where are the plates?
+Os pratos estão na cozinha. = The plates are in the kitchen.
+Esta janela dá para o jardim. = This window faces the garden.
+Esta porta dá para a sala de estar. = This door opens onto the living room.
+Nesta casa há duas casas de banho. = In this house there are two bathrooms.
+Esta casa tem duas casas de banho. = This house has two bathrooms.`},
+{id:'refeicoes', g:'comida', pt:'Refeições e lugares', en:'Meals & places to eat', d:`
+o alimento / a alimentação = food / nutrition
+o pequeno-almoço = breakfast
+o almoço = lunch
+o lanche = afternoon snack
+o jantar = dinner
+a ceia = late supper
+a refeição / as refeições = meal / meals
+o café = café / coffee
+a padaria = bakery
+a pastelaria = pastry shop
+o restaurante = restaurant
+a cantina = canteen
+o buffet = buffet
+a entrada = starter
+o prato principal = main course
+a sobremesa / o doce = dessert
+a sopa = soup
+o marisco = seafood / shellfish
+a salada = salad
+a carne = meat
+o peixe = fish
+a dieta mediterrânica = Mediterranean diet`},
+{id:'proteinas', g:'comida', pt:'Carne, peixe e proteínas', en:'Meat, fish & protein', d:`
+a carne de vaca / a carne de boi = beef
+a carne de frango = chicken
+o porco = pork
+o peixe = fish
+o atum = tuna
+o tofu = tofu
+os ovos = eggs
+o bacalhau = cod (often salt cod)
+a dourada = sea bream
+o bife = steak
+o camarão = shrimp`},
+{id:'legumes', g:'comida', pt:'Legumes e ingredientes', en:'Vegetables & ingredients', d:`
+a cenoura = carrot
+a alface = lettuce
+o brócolo / os brócolos = broccoli
+o pepino = cucumber
+a courgette / a abobrinha = zucchini / courgette
+o cogumelo = mushroom
+a couve-de-bruxelas = Brussels sprout
+as batatas = potatoes
+a pimenta = pepper
+a salsa = parsley
+os coentros = coriander / cilantro
+o molho = sauce
+a lentilha = lentils
+o arroz = rice
+as favas = broad beans / fava beans
+o azeite = olive oil
+o tomate = tomato
+a cebola = onion
+o alho = garlic
+o sal = salt
+o pão = bread
+a massa = pasta
+a farinha = flour
+o feijão = beans`},
+{id:'fruta', g:'comida', pt:'Fruta e laticínios', en:'Fruit & dairy', d:`
+a maçã = apple
+a banana = banana
+a laranja = orange
+o limão = lemon
+o morango = strawberry
+o ananás = pineapple
+o leite = milk
+o queijo = cheese
+o iogurte = yogurt
+a manteiga = butter
+o queijo fresco = fresh cheese`},
+{id:'bebidas', g:'comida', pt:'Bebidas', en:'Drinks', d:`
+a água = water
+a água com gás = sparkling water
+a água mineral = mineral water
+o sumo de laranja = orange juice
+o sumo de maçã = apple juice
+a cerveja = beer
+o refrigerante = soft drink
+o chá = tea
+o café = coffee
+o leite com chocolate = chocolate milk
+o vinho tinto = red wine
+o vinho branco = white wine
+o champanhe / o espumante = champagne / sparkling wine
+o cocktail / o coquetel = cocktail`},
+{id:'regionais', g:'comida', pt:'Pratos portugueses', en:'Portuguese dishes', d:`
+o pastel de nata = Portuguese custard tart
+o galão = coffee with milk in a tall glass
+a francesinha = Porto sandwich dish
+o bacalhau com broa = cod with cornbread
+o leitão assado = roast suckling pig
+a chanfana = slow-cooked goat or lamb dish
+a caldeirada = fish / seafood stew
+as sardinhas = sardines
+as espetadas = skewers
+o choco frito = fried cuttlefish
+o cozido das Furnas = Azorean geothermal stew
+o queijo da Serra = Serra cheese
+o rancho = stew with meat, pasta and chickpeas
+a sopa de cação = dogfish soup
+as migas = bread-based side dish
+os choquinhos = small cuttlefish
+o pudim abade de Priscos = Portuguese egg-and-caramel pudding`},
+{id:'gostos', g:'comida', pt:'Gostos e frequência', en:'Likes & frequency', d:`
+eu adoro… = I love…
+eu gosto muito de… = I really like…
+eu não gosto de… = I do not like…
+eu não gosto nada de… = I do not like … at all
+eu detesto… = I hate…
+não sei o que é… = I do not know what … is
+vou provar um dia = I will try it one day
+sempre = always
+nunca = never
+às vezes = sometimes
+frequentemente = frequently
+raramente = rarely
+habitualmente = usually
+muitas vezes = often / many times
+comer = to eat
+beber = to drink
+almoçar = to have lunch
+lanchar = to have a snack
+jantar = to have dinner
+cear = to have a late supper
+tomar o pequeno-almoço = to have breakfast`},
+{id:'restaurante', g:'comida', pt:'No restaurante', en:'At the restaurant', d:`
+o empregado / a empregada = server / waiter
+o cliente / a cliente = customer
+o chefe = chef
+a ementa = menu
+o prato = dish / plate
+a conta = bill / check
+à parte = on the side / separately
+por cima = on top
+como entrada… = as a starter…
+como prato principal… = as a main course…
+como sobremesa… = for dessert…
+para beber… = to drink…
+o creme de marisco = seafood cream soup
+a salada vegetariana = vegetarian salad
+a salada mista = mixed salad
+a dourada grelhada = grilled sea bream
+as batatas cozidas = boiled potatoes
+cozer / cozido = to boil / boiled
+assar / assado = to roast / roasted
+grelhar / grelhado = to grill / grilled
+fritar / frito = to fry / fried
+estufar / estufado = to stew / stewed`},
+{id:'frasesrest', g:'comida', pt:'Frases do restaurante', en:'Restaurant phrases', d:`
+Como entrada, queria… = As a starter, I would like…
+Como prato principal, queria… = As a main course, I would like…
+E para beber? = And to drink?
+E como sobremesa? = And for dessert?
+Quer pão? = Would you like bread?
+A conta, por favor. = The bill, please.
+Trago já! = I will bring it right away!
+É tudo, obrigado. = That is everything, thank you.
+Já sabem o que vão comer? = Do you already know what you are going to eat?
+Queríamos dois cremes de marisco como entrada. = We would like two seafood cream soups as starters.
+Eu queria uma salada vegetariana com queijo. = I would like a vegetarian salad with cheese.
+E para o senhor? = And for you, sir?
+Eu queria uma dourada grelhada, por favor. = I would like a grilled sea bream, please.
+O prato de peixe vem com batatas cozidas e salada mista. = The fish dish comes with boiled potatoes and mixed salad.
+Queríamos uma água mineral e uma cerveja. = We would like a mineral water and a beer.
+Tomam café? = Would you like coffee?
+Também não, obrigado. Queríamos só a conta. = No coffee either, thank you. We would just like the bill.
+Eu queria peixe grelhado, por favor. = I would like grilled fish, please.`},
+{id:'lojas', g:'compras', pt:'Lojas e serviços', en:'Shops & services', d:`
+o mercado = market
+a feira de rua = street market
+a loja de rua = street shop
+o supermercado = supermarket
+o hipermercado = hypermarket
+o centro comercial = shopping centre
+a loja online = online shop
+a sapataria = shoe store
+o banco = bank
+a livraria = bookshop
+a loja de equipamento eletrónico = electronics shop
+a farmácia = pharmacy
+a loja de roupa = clothing shop
+os correios = post office
+a mercearia = grocery shop
+a frutaria = fruit shop
+a perfumaria = perfume shop
+o cinema = cinema / movie theatre`},
+{id:'produtos', g:'compras', pt:'Produtos', en:'Products', d:`
+os sapatos = shoes
+as botas = boots
+as sandálias = sandals
+as sapatilhas / os ténis = trainers / sneakers
+os comprimidos = tablets / pills
+as vitaminas = vitamins
+o creme solar = sunscreen
+o xarope = syrup
+as t-shirts = T-shirts
+os vestidos = dresses
+as camisas = shirts
+as calças = trousers
+os telemóveis = mobile phones
+os computadores = computers
+os tablets = tablets
+os televisores = televisions
+as maçãs = apples
+as bananas = bananas
+as peras = pears
+os morangos = strawberries
+os envelopes = envelopes
+os selos = postage stamps
+as caixas de papel = paper boxes
+os postais = postcards
+os livros = books
+a encomenda = parcel / order
+o correio normal = regular mail
+o correio azul internacional = priority international mail
+o recibo = receipt
+a promoção = sale / promotion
+o provador = changing room / fitting room
+a faculdade = university / college`},
+{id:'frasescompras', g:'compras', pt:'Frases das compras', en:'Shopping phrases', d:`
+Posso ajudar? = Can I help?
+Posso ajudá-la? = Can I help you? (to a woman)
+Posso ajudá-lo? = Can I help you? (to a man)
+Faça favor. = Please / go ahead
+Faça o favor de dizer. = Please, go ahead and tell me
+Estou só a ver, obrigado. = I am just looking, thank you
+Por agora, não preciso de nada. = I do not need anything for now
+Posso ver? = May I see?
+Posso experimentar? = May I try it on?
+Posso provar? = May I taste it?
+Desculpe, tem o livro…? = Excuse me, do you have the book…?
+Desculpe, pode ajudar-me? = Excuse me, can you help me?
+Tem este portátil em stock? = Do you have this laptop in stock?
+Tem estes sapatos? = Do you have these shoes?
+Desculpe, o que é isso? = Excuse me, what is that?
+Posso ver melhor? = Can I look more closely?
+Posso tocar? = May I touch it?
+Quanto é? = How much is it?
+Quanto custa? = How much does it cost?
+Tem multibanco? = Can I pay by card here?
+Posso pagar com cartão? = Can I pay by card?
+Posso pagar com dinheiro? = Can I pay cash?
+Vou levar. = I will take it
+Não vou levar. = I will not take it
+Com certeza. = Certainly
+Não há problema. = No problem
+Que pena! = What a shame!
+Pode ficar à vontade. = Feel free / make yourself comfortable
+Estas calças estão em promoção. = These trousers are on sale.
+Qual é o teu número? = What is your size?
+Ficam-te muito bem! = They look great on you!
+Numa livraria posso comprar livros. = In a bookshop I can buy books.`},
+{id:'roupa', g:'compras', pt:'Roupa', en:'Clothes', d:`
+o casaco = jacket / coat
+a t-shirt = T-shirt
+o vestido = dress
+as calças de ganga = jeans
+as camisas = shirts
+os calções = shorts
+a saia = skirt
+a camisola = sweater / pullover
+o blusão = jacket`},
+{id:'cores', g:'compras', pt:'Cores', en:'Colours', d:`
+azul / azuis = blue
+verde / verdes = green
+cor-de-rosa = pink
+cor de laranja = orange
+amarelo/a = yellow
+vermelho/a = red
+cinzento/a = grey
+preto/a = black
+branco/a = white
+roxo/a = purple`},
+{id:'demonstrativos', g:'compras', pt:'Isto, isso, aquilo', en:'This & that', d:`
+isto = this (near me)
+isso = that (near you)
+aquilo = that over there (far from both)
+este vestido / esta encomenda = this dress / this parcel
+esse vestido / essa encomenda = that dress / that parcel (near you)
+aquele vestido / aquela encomenda = that dress / that parcel (over there)
+estes sapatos / estas calças = these shoes / these trousers
+esses sapatos / essas calças = those shoes / those trousers (near you)
+aqueles sapatos / aquelas calças = those shoes / those trousers (over there)
+O que é isto? = What is this?
+Essas calças são giras. = Those trousers are nice.`},
+{id:'tiposviagem', g:'viagens', pt:'Viagens e atividades', en:'Trips & activities', d:`
+a viagem citadina = city break
+a viagem de sol e praia = seaside / beach holiday
+a viagem gastronómica = food / culinary tour
+a viagem de natureza / o ecoturismo = nature trip / ecotourism
+a viagem de trabalho = business trip
+as férias numa estância de esqui = ski resort holiday
+as férias num parque de campismo = camping trip
+em família = with family
+em casal = as a couple
+com amigos = with friends
+sozinho/a = alone
+visitar cidades / museus = to visit cities / museums
+passear = to take a walk / to stroll
+ver monumentos = to see monuments
+descansar = to rest
+apanhar sol = to sunbathe
+nadar = to swim
+provar comida típica = to taste traditional food
+andar na natureza = to walk in nature
+respirar ar puro = to breathe fresh air
+ter reuniões = to have meetings
+ir a uma conferência = to attend a conference
+esquiar = to ski
+acampar = to camp
+as ruas = streets
+as árvores = trees
+a neve = snow
+o ar livre = outdoors`},
+{id:'transportes', g:'viagens', pt:'Transportes', en:'Transport', d:`
+o comboio = train
+o bilhete = ticket
+a plataforma = platform
+partir / sair = to depart / to leave
+o avião = aeroplane / airplane
+o check-in = check-in
+a porta de embarque = boarding gate
+a mala = suitcase
+as malas = suitcases
+o autocarro = bus
+a paragem = bus stop
+o centro = centre
+o barco = boat
+o cruzeiro = cruise
+o carro = car
+o táxi = taxi
+o aeroporto = airport
+estacionar = to park
+a viagem = trip / journey
+os Caminhos de Santiago = the Camino de Santiago routes
+o Comboio do Douro = Douro train
+o moliceiro = traditional Aveiro boat
+a Estrada Nacional N2 = Portugal's National Road N2`},
+{id:'mala', g:'viagens', pt:'O que levas na mala?', en:'What to pack', d:`
+a camisa = shirt
+os chinelos = flip-flops / slippers
+a máquina fotográfica = camera
+a tenda = tent
+o cantil / o termo de água = water bottle / thermos
+o tablet = tablet
+o telemóvel = mobile phone
+a carteira = wallet / purse
+o protetor solar = sunscreen
+o garfo = fork
+a colher = spoon
+o cachecol = scarf
+os óculos de neve = snow goggles
+o canivete = pocket knife
+a toalha de praia = beach towel
+o chapéu = hat
+a lanterna = flashlight / torch
+o gorro = beanie / winter hat
+a caneta = pen
+os óculos de sol = sunglasses`},
+{id:'perguntasviagem', g:'viagens', pt:'Perguntas de viagem', en:'Travel questions', d:`
+Onde é que compro o bilhete? = Where do I buy a ticket?
+A que horas é que parte o comboio? = What time does the train depart?
+Onde é que fica a plataforma? = Where is the platform?
+Onde é que é o check-in? = Where is check-in?
+Quantas malas é que tens? = How many suitcases do you have?
+Onde é que é a paragem? = Where is the bus stop?
+Quanto é que custa o bilhete? = How much does a ticket cost?
+Onde é que está o barco? = Where is the boat?
+A que horas é que sai? = What time does it leave?
+Quanto é que é a viagem? = How much is the journey?
+Onde é que posso estacionar? = Where can I park?
+Como é que vamos para o aeroporto? = How do we get to the airport?
+Onde fica a plataforma do comboio? = Where is the train platform?`},
+{id:'calendario', g:'viagens', pt:'Estações e meses', en:'Seasons & months', d:`
+a primavera = spring
+o verão = summer
+o outono = autumn / fall
+o inverno = winter
+janeiro = January
+fevereiro = February
+março = March
+abril = April
+maio = May
+junho = June
+julho = July
+agosto = August
+setembro = September
+outubro = October
+novembro = November
+dezembro = December
+o mês / os meses = month / months
+o ano = year`},
+{id:'tempo', g:'viagens', pt:'O tempo (clima)', en:'Weather', d:`
+o clima = climate
+a temperatura = temperature
+Está muito frio! = It is very cold!
+Está muito calor! = It is very hot!
+Está a nevar! = It is snowing!
+Está a chover! = It is raining!
+Está muito vento! = It is very windy!
+O céu está nublado. = The sky is cloudy.
+Está a trovejar! = It is thundering!
+movimentado/a = busy / crowded`},
+{id:'indefinidos', g:'gram', pt:'Muito, pouco, outro…', en:'Indefinites', d:`
+muito / muitos / muita / muitas = much / many
+pouco / poucos / pouca / poucas = little / few
+outro / outros / outra / outras = other / another
+algum / alguns / alguma / algumas = some / any
+nenhum / nenhuns / nenhuma / nenhumas = none / not any
+Vou a muitos restaurantes. = I go to many restaurants.
+Adoro fazer algumas compras. = I love doing some shopping.
+Eu conheço poucos festivais. = I know few festivals.
+Não conheço nenhum restaurante aqui perto. = I do not know any restaurant near here.
+Não há ninguém na piscina. = There is nobody in the pool.
+Não gosto nada de viajar de avião. = I do not like travelling by plane at all.`},
+{id:'contracoes', g:'gram', pt:'Contrações', en:'Contractions', d:`
+de + o / de + a = do / da
+em + o / em + a = no / na
+a + o / a + a = ao / à
+por + o / por + a = pelo / pela
+o quarto do apartamento = the bedroom of the apartment
+a porta da garagem = the garage door
+no campo = in the countryside
+na cidade = in the city
+vou ao mar = I am going to the sea
+vou à praia = I am going to the beach
+passear pelas ruas = to stroll through the streets`},
+{id:'plurais', g:'gram', pt:'Plurais', en:'Plurals', d:`
+as casas = plural: a casa (house)
+os copos = plural: o copo (glass)
+os jantares = plural: o jantar (dinner)
+os pudins = plural: o pudim (pudding)
+os sons = plural: o som (sound)
+os galões = plural: o galão (milky coffee)
+os pães = plural: o pão (bread)
+os jornais = plural: o jornal (newspaper)
+os rouxinóis = plural: o rouxinol (nightingale)
+os lápis = plural: o lápis (pencil)
+os óculos = glasses (always plural)
+as calças = trousers (always plural)`}
+];
+
+// Conjugações (presente), tiradas das tabelas do guia
+var PERSONS = ['eu','tu','ele / ela / você','nós','vós','eles / elas / vocês'];
+var VERBS = [
+ ['ser','to be — identity, characteristics','sou|és|é|somos|sois|são'],
+ ['estar','to be — location, states, weather','estou|estás|está|estamos|estais|estão'],
+ ['ter','to have','tenho|tens|tem|temos|tendes|têm'],
+ ['ficar','to be located / to stay','fico|ficas|fica|ficamos|ficais|ficam'],
+ ['haver','there is / there are = há','hei|hás|há|havemos|haveis|hão'],
+ ['saber','to know','sei|sabes|sabe|sabemos||sabem'],
+ ['trazer','to bring','trago|trazes|traz|trazemos||trazem'],
+ ['poder','can / to be able to','posso|podes|pode|podemos|podeis|podem'],
+ ['pôr','to put','ponho|pões|põe|pomos||põem'],
+ ['vir','to come','venho|vens|vem|vimos||vêm'],
+ ['querer','to want','quero|queres|quer|queremos||querem'],
+ ['dever','should / ought to','devo|deves|deve|devemos||devem'],
+ ['comprar','to buy','compro|compras|compra|compramos|comprais|compram']
+];
+VERBS.forEach(function(v){
+  var forms = v[2].split('|'), lines = [];
+  forms.forEach(function(f,i){
+    if(!f) return;
+    var p = PERSONS[i];
+    lines.push({pt: p + ' ' + f, en: v[0].toUpperCase() + ' (' + v[1] + ') · ' + p, form: f, pron: p, verb: v[0]});
+  });
+  CATS.push({id:'v-'+v[0].replace('ô','o'), g:'gram', pt:'Verbo ' + v[0].toUpperCase(), en:'Verb ' + v[0].toUpperCase(), items: lines});
+});
+CATS.push({id:'polidez', g:'gram', pt:'Pedir com educação', en:'Polite requests', d:`
+eu queria = I would like (polite)
+nós queríamos = we would like (polite)
+eu quero = I want
+Devemos comer frutas e legumes todos os dias. = We should eat fruit and vegetables every day.
+O apartamento é espaçoso. = The apartment is spacious.
+O apartamento está renovado. = The apartment is renovated.
+O Mateo é italiano. = Mateo is Italian.
+Como estás? = How are you?
+Estão a estudar juntos. = They are studying together.
+A cama é grande. = The bed is big.`});
+
+// ======================= APP =======================
+var T = {
+ pt:{sub:'Aulas 10–13 · Português europeu', other:'English', study:'Estudar', list:'Lista de palavras',
+  dir:{'pt-en':'PT → EN','en-pt':'EN → PT','mix':'Misturado'}, mode:{learn:'Aprender',flip:'Virar cartões',type:'Escrever'},
+  prev:'Anterior', practise:'Praticar com flashcards', keysLearn:'Teclado: ← anterior · → seguinte · espaço ouve · no telemóvel, desliza o cartão',
+  round:'Ronda', all:'todas', weak:'Só as que ainda não sei', topics:'Temas', topicsN:function(a,b){return 'Temas: '+a+' de '+b+' escolhidos';},
+  selAll:'Escolher todos', selNone:'Limpar', selGroup:'Escolher todos', unselGroup:'Tirar todos', card:'Cartão', of:'de', know:'Sei', dont:'Repetir', show:'Mostrar resposta',
+  tap:'Toca no cartão para virar', check:'Verificar', next:'Seguinte', placeholder:'Escreve a resposta…', listen:'Ouvir',
+  right:'Certo!', almost:'Quase! Atenção aos acentos.', wrong:'Ainda não.', yours:'Escreveste: ', iwasright:'Eu tinha razão',
+  keysFlip:'Teclado: espaço vira · → sei · ← repetir', keysType:'Teclado: Enter verifica e avança',
+  doneT:'Ronda acabada!', firstTry:'à primeira', repeated:'repetidas', mastered:'palavras que já sabes',
+  toReview:'Para rever', newRound:'Nova ronda', allKnown:'Já sabes todas as palavras destes temas! 🎉',
+  includeAll:'Estudar também as que já sei', noTopics:'Escolhe pelo menos um tema para começar.', openTopics:'Escolher temas',
+  search:'Procurar em português ou inglês…', allCats:'Todos os temas',
+  legNew:'por estudar', legLearn:'a aprender', legKnown:'já sei', totals:function(k,n){return 'Já sabes '+k+' de '+n+' palavras e frases';},
+  reset:'Apagar o progresso', resetQ:'Apagar tudo?', yes:'Sim, apagar', no:'Não', pt:'PORTUGUÊS', en:'INGLÊS', nores:'Nada encontrado.'},
+ en:{sub:'Aulas 10–13 · European Portuguese', other:'Português', study:'Study', list:'Word list',
+  dir:{'pt-en':'PT → EN','en-pt':'EN → PT','mix':'Mixed'}, mode:{learn:'Learn',flip:'Flip cards',type:'Type'},
+  prev:'Previous', practise:'Practise these as flashcards', keysLearn:'Keys: ← previous · → next · space to listen · on a phone, swipe the card',
+  round:'Cards per round', all:'all', weak:'Only words I don’t know yet', topics:'Topics', topicsN:function(a,b){return 'Topics & settings · '+a+' of '+b+' topics';},
+  selAll:'Choose all topics', selNone:'Clear all', selGroup:'Select all', unselGroup:'Deselect all', card:'Card', of:'of', know:'I know it', dont:'Again', show:'Show answer',
+  tap:'Tap the card to flip it', check:'Check', next:'Next', placeholder:'Type the answer…', listen:'Listen',
+  right:'Correct!', almost:'Almost! Watch the accents.', wrong:'Not yet.', yours:'You wrote: ', iwasright:'I was right',
+  keysFlip:'Keys: space flips · → know · ← again', keysType:'Keys: Enter checks and moves on',
+  doneT:'Round finished!', firstTry:'first try', repeated:'repeated', mastered:'words you already know',
+  toReview:'To review', newRound:'New round', allKnown:'You already know every word in these topics! 🎉',
+  includeAll:'Also study the ones I know', noTopics:'Choose at least one topic to start.', openTopics:'Choose topics',
+  search:'Search in Portuguese or English…', allCats:'All topics',
+  legNew:'not studied', legLearn:'learning', legKnown:'known', totals:function(k,n){return 'You know '+k+' of '+n+' words and phrases';},
+  reset:'Reset progress', resetQ:'Erase everything?', yes:'Yes, erase', no:'No', pt:'PORTUGUESE', en:'ENGLISH', nores:'Nothing found.'}
+};
+var KNOWN_BOX = 3;
+function load(k, d){ try{ var v = localStorage.getItem(k); return v ? Object.assign({}, d, JSON.parse(v)) : d; }catch(e){ return d; } }
+function store(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+var S = load('p103-settings', {lang:'pt', dir:'pt-en', mode:'flip', round:20, weak:false, cats:null});
+S.lang = 'en'; // interface always in English
+var P = load('p103-progress', {});
+function L(){ return T[S.lang]; }
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+// build items
+var ITEMS = [], BYCAT = {};
+CATS.forEach(function(c){
+  var arr = c.items ? c.items.slice() : c.d.split('\n').map(function(l){ return l.trim(); }).filter(Boolean).map(function(l){
+    var i = l.indexOf(' = '); return {pt: l.slice(0,i).trim(), en: l.slice(i+3).trim()};
+  });
+  arr.forEach(function(it){ it.cat = c.id; it.key = it.pt; ITEMS.push(it); });
+  BYCAT[c.id] = arr;
+});
+var UNIQUE = {}; ITEMS.forEach(function(it){ UNIQUE[it.key] = 1; });
+var NUNIQUE = Object.keys(UNIQUE).length;
+if(!S.cats) S.cats = CATS.filter(function(c){ return c.g !== 'gram'; }).map(function(c){ return c.id; });
+S.cats = S.cats.filter(function(id){ return BYCAT[id]; });
+function catOf(id){ for(var i=0;i<CATS.length;i++) if(CATS[i].id===id) return CATS[i]; }
+function box(key){ return P[key] ? P[key].b : 0; }
+function level(key){ var b = box(key); if(!P[key]) return 0; return b >= KNOWN_BOX ? 2 : 1; }
+
+// speech
+var VOICE = null;
+function pickVoice(){
+  if(!('speechSynthesis' in window)) return;
+  var vs = speechSynthesis.getVoices();
+  VOICE = vs.find(function(v){ return /pt[-_]PT/i.test(v.lang); }) || vs.find(function(v){ return /^pt/i.test(v.lang); }) || null;
+}
+if('speechSynthesis' in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function sayable(s){
+  return s.replace(/\([^)]*\)/g,' ').replace(/\/(?:a|os|as|es)(?:\/(?:os|as))*(?=[\s.,!?…]|$)/g,'').replace(/\s\/\s/g,', ').replace(/…/g,'').trim();
+}
+function speak(s){
+  if(!('speechSynthesis' in window)) return;
+  try{
+    speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(sayable(s));
+    u.lang = VOICE ? VOICE.lang : 'pt-PT'; if(VOICE) u.voice = VOICE; u.rate = 0.9;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+var SPK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+var CAN_SPEAK = 'speechSynthesis' in window;
+
+// answer checking
+function norm(s){ return s.toLowerCase().replace(/\([^)]*\)/g,' ').replace(/[.,!?¡¿…"“”:;]/g,' ').replace(/\s+/g,' ').trim(); }
+function plain(s){ return s.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/-/g,' ').replace(/['’]/g,'').replace(/\s+/g,' ').trim(); }
+function stripLead(s, lang){
+  return lang === 'pt' ? s.replace(/^(o|a|os|as|um|uma) /,'') : s.replace(/^(to|the|a|an) /,'');
+}
+function variants(it, lang){
+  if(it.form){
+    if(lang === 'en') return [it.verb, norm(it.verb), plain(it.verb)];
+    var o = [norm(it.pt), it.form];
+    it.pron.split('/').forEach(function(p){ o.push(norm(p)+' '+it.form); });
+    return o;
+  }
+  var src = lang === 'pt' ? it.pt : it.en, out = {};
+  var base = src.replace(/\([^)]*\)/g,' ');
+  var parts = [base].concat(base.split(/\s*\/\s*|\s*·\s*/));
+  if(lang === 'en') parts = parts.concat(base.split(/\s*,\s*|\s*\/\s*/));
+  parts.forEach(function(p){
+    p = p.replace(/\/(?:a|os|as|es)(?:\/(?:os|as))*$/,'');
+    var n = norm(p); if(n.length < 2 && norm(base).length >= 2) return;
+    out[n] = 1; out[stripLead(n, lang)] = 1;
+  });
+  if(lang === 'pt' && /\/a\b/.test(src)) out[norm(src.replace(/\/a\b.*$/,''))] = 1;
+  return Object.keys(out).filter(Boolean);
+}
+function checkAnswer(it, lang, ans){
+  var a = norm(ans); if(!a) return 'wrong';
+  var vs = variants(it, lang), a2 = stripLead(a, lang);
+  if(vs.indexOf(a) >= 0 || vs.indexOf(a2) >= 0) return 'right';
+  var pa = plain(a), pa2 = plain(a2);
+  for(var i=0;i<vs.length;i++){ var pv = plain(vs[i]); if(pv === pa || pv === pa2) return 'almost'; }
+  return 'wrong';
+}
+
+// session
+var R = null; // {queue, total, done, firstOk, wrongKeys, cur, flipped, checked, result}
+function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function deck(includeKnown){
+  var seen = {}, out = [];
+  CATS.forEach(function(c){ if(S.cats.indexOf(c.id) < 0) return; BYCAT[c.id].forEach(function(it){ if(!seen[it.key]){ seen[it.key]=1; out.push(it); } }); });
+  if(S.weak && !includeKnown) out = out.filter(function(it){ return box(it.key) < KNOWN_BOX; });
+  return out;
+}
+function newRound(includeKnown){
+  var d = shuffle(deck(includeKnown));
+  d.sort(function(a,b){ return box(a.key) - box(b.key); });
+  var n = +S.round || d.length;
+  var q = d.slice(0, n).map(function(it){ return {it:it, dir: S.dir === 'mix' ? (Math.random() < .5 ? 'pt-en' : 'en-pt') : S.dir, miss:false}; });
+  shuffle(q);
+  R = {queue:q, total:q.length, done:0, firstOk:0, missed:[], flipped:false, checked:false, result:null};
+  var ld = deck(); if(!ld.length) ld = deck(true);
+  LR = {list: ld, i: 0};
+  renderStudy();
+}
+var LR = {list: [], i: 0};
+function learnStep(d){
+  if(!LR.list.length) return;
+  LR.i = Math.max(0, Math.min(LR.list.length - 1, LR.i + d));
+  renderStudy();
+}
+function renderLearn(){
+  var t = L(), list = LR.list;
+  if(!list.length) return;
+  $('player').hidden = false;
+  var it = list[LR.i], cat = catOf(it.cat), last = LR.i === list.length - 1;
+  $('stRound').textContent = t.card + ' ' + (LR.i + 1) + ' ' + t.of + ' ' + list.length;
+  $('stCounts').textContent = '';
+  $('barFill').style.width = ((LR.i + 1) / list.length * 100) + '%';
+  var card = $('card');
+  card.classList.remove('flipped');
+  card.setAttribute('aria-label', it.pt + ' — ' + it.en);
+  $('fTag').textContent = cat[S.lang]; $('fLang').textContent = t.pt;
+  setWord($('fWord'), it.pt);
+  var tr = $('fTrans'); tr.hidden = false; tr.textContent = it.en;
+  $('fHint').textContent = '';
+  var fs = $('fSpeak'); fs.hidden = !CAN_SPEAK; fs.innerHTML = SPK + t.listen;
+  $('typeArea').hidden = true;
+  var act = $('actions');
+  act.className = 'actions';
+  act.innerHTML = '<button class="btn plain" type="button" data-act="prev"'+(LR.i === 0 ? ' disabled' : '')+'><kbd>←</kbd> '+t.prev+'</button>'
+    + (last ? '<button class="btn primary" type="button" data-act="practise">'+t.practise+'</button>'
+            : '<button class="btn primary" type="button" data-act="next">'+t.next+' <kbd>→</kbd></button>');
+  $('keys').textContent = t.keysLearn;
+}
+function cur(){ return R && R.queue[0]; }
+function grade(known){
+  var c = cur(); if(!c) return;
+  var k = c.it.key, p = P[k] || {b:0, n:0, w:0};
+  p.n++;
+  if(known){
+    p.b = c.miss ? Math.max(1, p.b) : Math.min(p.b + 1, 5);
+    R.queue.shift(); R.done++; if(!c.miss) R.firstOk++;
+  } else {
+    p.b = 0; p.w++;
+    if(!c.miss){ c.miss = true; R.missed.push(c.it); }
+    R.queue.shift();
+    R.queue.splice(Math.min(3, R.queue.length), 0, c);
+  }
+  P[k] = p; store('p103-progress', P);
+  R.flipped = false; R.checked = false; R.result = null;
+  renderStudy(); renderTopics(); renderTotals();
+}
+
+// render
+function renderChrome(){
+  var t = L();
+  document.documentElement.lang = S.lang === 'pt' ? 'pt-PT' : 'en';
+  $('sub').textContent = t.sub; $('uiLang').textContent = t.other;
+  $('tabStudy').textContent = t.study; $('tabList').textContent = t.list;
+  $('dirSeg').innerHTML = ['pt-en','en-pt','mix'].map(function(d){ return '<button type="button" data-dir="'+d+'" aria-pressed="'+(S.dir===d)+'">'+t.dir[d]+'</button>'; }).join('');
+  $('dirSeg').hidden = S.mode === 'learn'; $('roundWrap').hidden = S.mode === 'learn';
+  $('modeSeg').innerHTML = ['learn','flip','type'].map(function(m){ return '<button type="button" data-mode="'+m+'" aria-pressed="'+(S.mode===m)+'">'+t.mode[m]+'</button>'; }).join('');
+  $('lblRound').textContent = t.round; $('roundSize').value = String(S.round); $('roundSize').options[3].textContent = t.all;
+  $('lblWeak').textContent = t.weak; $('weakOnly').checked = !!S.weak;
+  $('allTopics').textContent = t.selAll; $('noTopics').textContent = t.selNone;
+  $('answer').placeholder = t.placeholder; $('checkBtn').textContent = t.check;
+  $('search').placeholder = t.search;
+  $('legend').innerHTML = '<span><i class="dot"></i>'+t.legNew+'</span><span><i class="dot l1"></i>'+t.legLearn+'</span><span><i class="dot l2"></i>'+t.legKnown+'</span>';
+  var lc = $('listCat'), v = lc.value || 'all';
+  lc.innerHTML = '<option value="all">'+t.allCats+'</option>' + CATS.map(function(c){ return '<option value="'+c.id+'">'+esc(c[S.lang])+'</option>'; }).join('');
+  lc.value = v;
+  $('accents').innerHTML = ['á','à','â','ã','é','ê','í','ó','ô','õ','ú','ç'].map(function(ch){ return '<button type="button" data-ch="'+ch+'">'+ch+'</button>'; }).join('');
+  renderTopics(); renderTotals(); resetFooter();
+}
+function renderTopics(){
+  var t = L();
+  $('topicsTitle').textContent = t.topicsN(S.cats.length, CATS.length);
+  $('topicGroups').innerHTML = GROUPS.map(function(g){
+    var gc = CATS.filter(function(c){ return c.g===g.id; });
+    var allOn = gc.every(function(c){ return S.cats.indexOf(c.id)>=0; });
+    return '<div class="grp"><div class="grp-head"><h3>'+esc(g[S.lang])+'</h3><button type="button" class="ghost small" data-grp="'+g.id+'" data-on="'+(allOn?1:0)+'">'+(allOn?t.unselGroup:t.selGroup)+'</button></div><div class="chips">' + gc.map(function(c){
+      var its = BYCAT[c.id], k = its.filter(function(it){ return level(it.key)===2; }).length;
+      return '<button type="button" class="chip" data-cat="'+c.id+'" aria-pressed="'+(S.cats.indexOf(c.id)>=0)+'">'+esc(c[S.lang])+' <small>'+k+'/'+its.length+'</small></button>';
+    }).join('') + '</div></div>';
+  }).join('');
+}
+function renderTotals(){
+  var k = Object.keys(UNIQUE).filter(function(key){ return level(key)===2; }).length;
+  $('totals').textContent = L().totals(k, NUNIQUE);
+}
+function resetFooter(){ $('resetWrap').innerHTML = '<button class="ghost" type="button" id="resetBtn">'+L().reset+'</button>'; }
+function setWord(el, s){ el.textContent = s; el.classList.toggle('long', s.length > 34); }
+function renderStudy(){
+  var t = L();
+  var player = $('player'), sum = $('summary'), emp = $('emptyDeck');
+  player.hidden = true; sum.hidden = true; emp.hidden = true;
+  if(!S.cats.length){
+    emp.hidden = false;
+    emp.className = 'empty';
+    emp.innerHTML = '<div>'+t.noTopics+'</div><button class="btn primary" type="button" data-act="opentopics">'+t.openTopics+'</button>';
+    return;
+  }
+  if(S.mode === 'learn'){ renderLearn(); return; }
+  $('fTrans').hidden = true;
+  if(!R) return;
+  if(R.total === 0){
+    emp.hidden = false; emp.className = 'empty';
+    emp.innerHTML = '<div>'+t.allKnown+'</div><button class="btn primary" type="button" data-act="includeall">'+t.includeAll+'</button>';
+    return;
+  }
+  var c = cur();
+  if(!c){ renderSummary(); return; }
+  player.hidden = false;
+  var it = c.it, cat = catOf(it.cat), front = c.dir === 'pt-en' ? 'pt' : 'en', back = front === 'pt' ? 'en' : 'pt';
+  $('stRound').textContent = t.card + ' ' + Math.min(R.done + 1, R.total) + ' ' + t.of + ' ' + R.total;
+  $('stCounts').textContent = '✓ ' + R.firstOk + ' · ↺ ' + R.missed.length;
+  $('barFill').style.width = (R.done / R.total * 100) + '%';
+  $('fTag').textContent = cat[S.lang]; $('bTag').textContent = cat[S.lang];
+  $('fLang').textContent = t[front]; $('bLang').textContent = t[back];
+  setWord($('fWord'), it[front]); setWord($('bWord'), it[back]);
+  var typing = S.mode === 'type';
+  $('fHint').textContent = typing ? '' : t.tap;
+  var fs = $('fSpeak'), bs = $('bSpeak');
+  fs.hidden = !(CAN_SPEAK && front === 'pt'); bs.hidden = !CAN_SPEAK;
+  fs.innerHTML = SPK + t.listen; bs.innerHTML = SPK + t.listen;
+  var card = $('card');
+  card.classList.toggle('flipped', R.flipped);
+  card.setAttribute('aria-label', R.flipped ? it[back] : it[front]);
+  var fb = $('bFeedback'), yrs = $('bYours');
+  fb.hidden = true; yrs.hidden = true;
+  $('typeArea').hidden = !typing;
+  var act = $('actions');
+  if(typing){
+    var inp = $('answer');
+    inp.disabled = R.checked; inp.lang = back === 'pt' ? 'pt-PT' : 'en';
+    $('checkBtn').hidden = R.checked;
+    $('accents').hidden = back !== 'pt' || R.checked;
+    if(R.checked){
+      fb.hidden = false;
+      fb.className = 'feedback ' + (R.result === 'right' ? 'ok' : R.result === 'almost' ? 'warn' : 'bad');
+      fb.textContent = R.result === 'right' ? t.right : R.result === 'almost' ? t.almost : t.wrong;
+      if(R.result !== 'right' && R.typed){ yrs.hidden = false; yrs.textContent = t.yours + R.typed; }
+      var ok = R.result !== 'wrong';
+      act.className = ok ? 'actions one' : 'actions';
+      act.innerHTML = ok ? '<button class="btn primary" type="button" data-act="next-ok">'+t.next+' <kbd>Enter</kbd></button>'
+        : '<button class="btn plain" type="button" data-act="override">'+t.iwasright+'</button><button class="btn primary" type="button" data-act="next-bad">'+t.next+' <kbd>Enter</kbd></button>';
+    } else {
+      act.className = 'actions one'; act.innerHTML = '';
+      inp.value = '';
+      setTimeout(function(){ if(!$('study').hidden) inp.focus(); }, 30);
+    }
+    $('keys').textContent = t.keysType;
+  } else {
+    if(!R.flipped){ act.className = 'actions one'; act.innerHTML = '<button class="btn primary" type="button" data-act="flip">'+t.show+' <kbd>Espaço</kbd></button>'; }
+    else { act.className = 'actions'; act.innerHTML = '<button class="btn no" type="button" data-act="no"><kbd>←</kbd> '+t.dont+'</button><button class="btn yes" type="button" data-act="yes">'+t.know+' <kbd>→</kbd></button>'; }
+    if(S.lang === 'en') act.innerHTML = act.innerHTML.replace('Espaço','Space');
+    $('keys').textContent = t.keysFlip;
+  }
+}
+function renderSummary(){
+  var t = L(), sum = $('summary');
+  sum.hidden = false; sum.className = 'summary';
+  var known = Object.keys(UNIQUE).filter(function(key){ return level(key)===2; }).length;
+  sum.innerHTML = '<h2>'+t.doneT+'</h2><div class="nums"><div><b>'+R.firstOk+'/'+R.total+'</b><span>'+t.firstTry+'</span></div><div><b>'+R.missed.length+'</b><span>'+t.repeated+'</span></div><div><b>'+known+'</b><span>'+t.mastered+'</span></div></div>'
+    + (R.missed.length ? '<div><strong>'+t.toReview+'</strong><div class="review">' + R.missed.map(function(it){ return '<div><span>'+esc(it.pt)+'</span><span>'+esc(it.en)+'</span></div>'; }).join('') + '</div></div>' : '')
+    + '<button class="btn primary" type="button" data-act="newround">'+t.newRound+'</button>';
+  $('barFill').style.width = '100%';
+}
+function renderList(){
+  var t = L(), q = plain(norm($('search').value || '')), sel = $('listCat').value || 'all';
+  var html = CATS.filter(function(c){ return sel === 'all' || c.id === sel; }).map(function(c){
+    var rows = BYCAT[c.id].filter(function(it){ return !q || plain(norm(it.pt)).indexOf(q) >= 0 || plain(norm(it.en)).indexOf(q) >= 0; });
+    if(!rows.length) return '';
+    return '<div class="lgroup"><h3>'+esc(c[S.lang])+' <small>'+rows.length+'</small></h3>' + rows.map(function(it){
+      var lv = level(it.key);
+      return '<div class="row"><i class="dot'+(lv?' l'+lv:'')+'" title="'+[t.legNew,t.legLearn,t.legKnown][lv]+'"></i><span class="pt" lang="pt-PT">'+esc(it.pt)+'</span><span class="en">'+esc(it.en)+'</span>'
+        + (CAN_SPEAK ? '<button class="speak" type="button" data-say="'+esc(it.pt)+'" aria-label="'+t.listen+'">'+SPK+'</button>' : '<span></span>') + '</div>';
+    }).join('') + '</div>';
+  }).join('');
+  $('listBody').innerHTML = html || '<p>'+t.nores+'</p>';
+}
+function showTab(which){
+  $('study').hidden = which !== 'study'; $('list').hidden = which !== 'list';
+  $('tabStudy').setAttribute('aria-selected', which === 'study'); $('tabList').setAttribute('aria-selected', which === 'list');
+  if(which === 'list') renderList();
+}
+function saveS(){ store('p103-settings', S); }
+
+// events
+document.addEventListener('click', function(e){
+  var b = e.target.closest('button, .card'); if(!b) return;
+  if(b.id === 'uiLang'){ S.lang = S.lang === 'pt' ? 'en' : 'pt'; saveS(); renderChrome(); renderStudy(); if(!$('list').hidden) renderList(); return; }
+  if(b.id === 'tabStudy') return showTab('study');
+  if(b.id === 'tabList') return showTab('list');
+  if(b.dataset.dir){ S.dir = b.dataset.dir; saveS(); renderChrome(); newRound(); return; }
+  if(b.dataset.mode){ S.mode = b.dataset.mode; saveS(); renderChrome(); if(R){ R.flipped=false; R.checked=false; } renderStudy(); return; }
+  if(b.dataset.cat){ var i = S.cats.indexOf(b.dataset.cat); if(i>=0) S.cats.splice(i,1); else S.cats.push(b.dataset.cat); saveS(); renderTopics(); newRound(); return; }
+  if(b.dataset.grp){
+    var ids = CATS.filter(function(c){ return c.g===b.dataset.grp; }).map(function(c){ return c.id; });
+    if(b.dataset.on === '1') S.cats = S.cats.filter(function(id){ return ids.indexOf(id)<0; });
+    else ids.forEach(function(id){ if(S.cats.indexOf(id)<0) S.cats.push(id); });
+    saveS(); renderTopics(); newRound(); return;
+  }
+  if(b.id === 'allTopics'){ S.cats = CATS.map(function(c){ return c.id; }); saveS(); renderTopics(); newRound(); return; }
+  if(b.id === 'noTopics'){ S.cats = []; saveS(); renderTopics(); R = null; renderStudy(); return; }
+  if(b.dataset.ch){ var inp = $('answer'), s = inp.selectionStart||inp.value.length, en = inp.selectionEnd||s; inp.value = inp.value.slice(0,s) + b.dataset.ch + inp.value.slice(en); inp.focus(); inp.setSelectionRange(s+1,s+1); return; }
+  if(b.dataset.say){ speak(b.dataset.say); return; }
+  if(b.id === 'fSpeak' || b.id === 'bSpeak'){ e.stopPropagation(); if(S.mode === 'learn'){ if(LR.list.length) speak(LR.list[LR.i].pt); return; } var c0 = cur(); if(c0) speak(c0.it.pt); return; }
+  if(b.id === 'resetBtn'){ var t = L(); $('resetWrap').innerHTML = '<span class="confirm">'+t.resetQ+' <button class="ghost" type="button" id="resetYes">'+t.yes+'</button><button class="ghost" type="button" id="resetNo">'+t.no+'</button></span>'; return; }
+  if(b.id === 'resetYes'){ P = {}; store('p103-progress', P); resetFooter(); renderTopics(); renderTotals(); newRound(); if(!$('list').hidden) renderList(); return; }
+  if(b.id === 'resetNo'){ resetFooter(); return; }
+  var a = b.dataset.act;
+  if(S.mode === 'learn'){
+    if(b.id === 'card'){ if(Date.now() - swipedAt > 500) learnStep(1); return; }
+    if(a === 'next') return learnStep(1);
+    if(a === 'prev') return learnStep(-1);
+    if(a === 'practise'){ S.mode = 'flip'; saveS(); renderChrome(); newRound(); return; }
+  }
+  if(b.id === 'card' || a === 'flip'){ if(S.mode === 'flip' && R && cur()){ R.flipped = !R.flipped; renderStudy(); } return; }
+  if(a === 'yes') return grade(true);
+  if(a === 'no') return grade(false);
+  if(a === 'next-ok') return grade(true);
+  if(a === 'next-bad') return grade(false);
+  if(a === 'override'){ R.result = 'right'; return grade(true); }
+  if(a === 'newround') return newRound();
+  if(a === 'includeall') return newRound(true);
+  if(a === 'opentopics'){ $('topics').open = true; $('topics').scrollIntoView({block:'start', behavior:'smooth'}); return; }
+});
+$('typeForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var c = cur(); if(!c || R.checked) return;
+  var back = c.dir === 'pt-en' ? 'en' : 'pt';
+  R.typed = $('answer').value.trim();
+  R.result = checkAnswer(c.it, back, R.typed);
+  R.checked = true; R.flipped = true;
+  renderStudy();
+  if(CAN_SPEAK && back === 'pt' && R.result !== 'wrong') speak(c.it.pt);
+});
+var touchX = null, swipedAt = 0;
+$('card').addEventListener('touchstart', function(e){ touchX = e.touches[0].clientX; }, {passive:true});
+$('card').addEventListener('touchend', function(e){
+  if(touchX === null || S.mode !== 'learn') return;
+  var dx = e.changedTouches[0].clientX - touchX; touchX = null;
+  if(Math.abs(dx) > 50){ swipedAt = Date.now(); learnStep(dx < 0 ? 1 : -1); }
+}, {passive:true});
+document.addEventListener('keydown', function(e){
+  var tag = (e.target.tagName || '').toLowerCase();
+  if(!$('study').hidden && S.mode === 'learn' && LR.list.length && tag !== 'input' && tag !== 'select'){
+    if(e.key === 'ArrowRight'){ e.preventDefault(); learnStep(1); }
+    else if(e.key === 'ArrowLeft'){ e.preventDefault(); learnStep(-1); }
+    else if(e.key === ' ' && tag !== 'button'){ e.preventDefault(); speak(LR.list[LR.i].pt); }
+    return;
+  }
+  if($('study').hidden || !R || !cur()) return;
+  if(S.mode === 'type'){
+    if(R.checked && e.key === 'Enter'){ e.preventDefault(); grade(R.result !== 'wrong'); }
+    return;
+  }
+  if(tag === 'input' || tag === 'select' || (tag === 'button' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.target.id !== 'card')) return;
+  if(e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); R.flipped = !R.flipped; renderStudy(); }
+  else if(e.key === 'ArrowRight' && R.flipped){ grade(true); }
+  else if(e.key === 'ArrowLeft' && R.flipped){ grade(false); }
+});
+$('roundSize').addEventListener('change', function(){ S.round = +this.value; saveS(); newRound(); });
+$('weakOnly').addEventListener('change', function(){ S.weak = this.checked; saveS(); newRound(); });
+$('search').addEventListener('input', renderList);
+$('listCat').addEventListener('change', renderList);
+
+renderChrome();
+newRound();
+</script>
+</body>
+</html>
