@@ -1,0 +1,72 @@
+import sys, pathlib
+from playwright.sync_api import sync_playwright
+here = pathlib.Path(sys.argv[1]).resolve()
+import tempfile; base = pathlib.Path(tempfile.gettempdir())
+shots = base / "port103-shots"; shots.mkdir(exist_ok=True)
+src = here.read_text(encoding="utf-8")
+if not src.lstrip().lower().startswith("<!doctype"):
+    w = base / "_wrapped.html"
+    w.write_text('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>:root{color-scheme:light}body{margin:0}[hidden]{display:none!important}</style></head><body>' + src + '</body></html>', encoding="utf-8")
+    here = w
+fails = []
+def ok(cond, msg):
+    print(("  ok   " if cond else "  FAIL ") + msg)
+    if not cond: fails.append(msg)
+SWIPE = """(dx) => { const c = document.getElementById('card'); const r = c.getBoundingClientRect(); const y = r.top + r.height/2, x0 = r.left + r.width/2;
+  const t = (x) => new Touch({identifier: 1, target: c, clientX: x, clientY: y});
+  c.dispatchEvent(new TouchEvent('touchstart', {touches: [t(x0)], changedTouches: [t(x0)], bubbles: true}));
+  for (let i = 1; i <= 5; i++) c.dispatchEvent(new TouchEvent('touchmove', {touches: [t(x0 + dx*i/5)], changedTouches: [t(x0 + dx*i/5)], bubbles: true}));
+  c.dispatchEvent(new TouchEvent('touchend', {touches: [], changedTouches: [t(x0 + dx)], bubbles: true})); }"""
+with sync_playwright() as p:
+    b = p.chromium.launch()
+    ctx = b.new_context(viewport={"width": 375, "height": 740}, device_scale_factor=2, is_mobile=True, has_touch=True)
+    pg = ctx.new_page(); errs = []; pg.on("pageerror", lambda e: errs.append(str(e)))
+    pg.goto(here.as_uri()); pg.wait_for_timeout(700)
+    st = lambda: pg.text_content("#stRound")
+    print("1. Continue where I left off (Learn)")
+    pg.click('[data-view="learn"]'); pg.wait_for_timeout(200)
+    for _ in range(5): pg.click('[data-act="next"]')
+    word6 = pg.text_content("#fWord")
+    pg.reload(); pg.wait_for_timeout(700)
+    ok(st().startswith("Card 6 of"), "after reopening the app it is still on card 6 (" + st() + ")")
+    ok(pg.text_content("#fWord") == word6, "same word as before: " + word6)
+    ok(pg.is_visible("#toast") and "Continuing from card 6" in pg.text_content("#toastMsg"), "message: " + pg.text_content("#toastMsg"))
+    pg.screenshot(path=str(shots / "feat-1-resume.png"))
+    pg.evaluate(SWIPE, -150); pg.wait_for_timeout(300)
+    ok(st().startswith("Card 7 of"), "swipe left in Learn goes to the next card (" + st() + ")")
+    pg.click('[data-act="restart"]'); pg.wait_for_timeout(200)
+    ok(st().startswith("Card 1 of"), "Start over goes back to card 1")
+    print("2. Swipe in Flashcards")
+    pg.click('[data-view="flip"]'); pg.wait_for_timeout(300)
+    pg.evaluate(SWIPE, 160); pg.wait_for_timeout(300)
+    ok(st() == "Card 1 of 20", "swiping before seeing the answer does nothing (" + st() + ")")
+    pg.tap("#card"); pg.wait_for_timeout(600)
+    ok("Swipe right" in pg.text_content("#swipeHint"), "tip shown after flipping: " + pg.text_content("#swipeHint"))
+    w1 = pg.text_content("#fWord")
+    pg.evaluate(SWIPE, 160); pg.wait_for_timeout(50)
+    ok(pg.evaluate("getComputedStyle(document.getElementById('card')).transform") in ("none", "matrix(1, 0, 0, 1, 0, 0)"), "next card appears straight away, without showing its answer")
+    pg.wait_for_timeout(300)
+    ok(st() == "Card 2 of 20", "swipe right = I know it (" + st() + ")")
+    known = pg.evaluate("(w) => { const p = JSON.parse(localStorage.getItem('p103-progress') || '{}'); return p[w] && p[w].b; }", w1)
+    ok(known == 1, "progress saved for '%s' (box %s)" % (w1, known))
+    ok(pg.is_visible("#toastBtn") and pg.text_content("#toastBtn") == "Undo", "toast: '%s' with Undo" % pg.text_content("#toastMsg"))
+    pg.screenshot(path=str(shots / "feat-2-undo-toast.png"))
+    print("4. Undo")
+    pg.click("#toastBtn"); pg.wait_for_timeout(300)
+    ok(st() == "Card 1 of 20" and pg.text_content("#fWord") == w1, "Undo brings back the same card (" + st() + ", " + pg.text_content("#fWord") + ")")
+    back = pg.evaluate("(w) => { const p = JSON.parse(localStorage.getItem('p103-progress') || '{}'); return p[w] || null; }", w1)
+    ok(back is None, "Undo also removes the saved progress")
+    pg.tap("#card"); pg.wait_for_timeout(600)
+    pg.evaluate(SWIPE, -160); pg.wait_for_timeout(500)
+    ok("1 to repeat" in pg.text_content("#stCounts"), "swipe left = Again (" + pg.text_content("#stCounts") + ")")
+    pg.tap("#card"); pg.wait_for_timeout(600); pg.click('[data-act="yes"]'); pg.wait_for_timeout(200)
+    ok("Known" in pg.text_content("#toastMsg"), "buttons also show Undo: " + pg.text_content("#toastMsg"))
+    pg.click('[data-view="type"]'); pg.wait_for_timeout(200)
+    pg.fill("#answer", "zzz"); pg.click("#checkBtn"); pg.wait_for_timeout(500); pg.click('[data-act="next-bad"]'); pg.wait_for_timeout(200)
+    before = st(); pg.click("#toastBtn"); pg.wait_for_timeout(300)
+    ok(pg.is_enabled("#answer") and pg.input_value("#answer") == "", "Undo works in Type mode too (%s -> %s)" % (before, st()))
+    pg.click('[data-view="flip"]'); pg.wait_for_timeout(300)
+    pg.screenshot(path=str(shots / "feat-3-flip.png"))
+    ok(not errs, "no JS errors " + str(errs))
+    b.close()
+print("FAILS", len(fails))

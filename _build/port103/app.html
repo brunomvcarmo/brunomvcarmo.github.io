@@ -1,0 +1,2354 @@
+<title>Flashcards PORT 103</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: one study column (max 720px); azulejo tile strip as the only ornament; card in the centre, controls above, grading below */
+:root{
+  --bg:#f7f9fd; --surface:#ffffff; --ink:#2f3a55; --muted:#7f8aa3; --line:#e6ebf4;
+  --azul:#6b8fdb; --azul-ink:#ffffff; --azul-soft:#eef3fd; --tile:#dfe8f8;
+  --ok:#3f9c77; --ok-soft:#e8f6ef; --bad:#d27264; --bad-soft:#fdeeeb; --warn:#bb8c2f; --warn-soft:#fcf5e3;
+  --shadow:0 2px 6px rgba(80,105,160,.06),0 14px 34px rgba(80,105,160,.08);
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --r:20px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#161c2c; --surface:#1e263a; --ink:#e3e8f3; --muted:#a0abc2; --line:#2e3850;
+  --azul:#93b3f1; --azul-ink:#161c2c; --azul-soft:#253150; --tile:#34456c;
+  --ok:#6ccc9f; --ok-soft:#1d3a30; --bad:#f19a8a; --bad-soft:#40272a; --warn:#ebc06a; --warn-soft:#3a3120;
+  --shadow:0 2px 6px rgba(0,0,0,.18),0 14px 34px rgba(0,0,0,.22);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161c2c; --surface:#1e263a; --ink:#e3e8f3; --muted:#a0abc2; --line:#2e3850;
+  --azul:#93b3f1; --azul-ink:#161c2c; --azul-soft:#253150; --tile:#34456c;
+  --ok:#6ccc9f; --ok-soft:#1d3a30; --bad:#f19a8a; --bad-soft:#40272a; --warn:#ebc06a; --warn-soft:#3a3120;
+  --shadow:0 2px 6px rgba(0,0,0,.18),0 14px 34px rgba(0,0,0,.22);
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 48px}
+.tiles{height:12px;background:
+  radial-gradient(circle at 50% 50%, var(--azul) 0 22%, transparent 23%) 0 0/24px 24px,
+  conic-gradient(from 45deg, var(--tile) 25%, transparent 0 50%, var(--tile) 0 75%, transparent 0) 0 0/24px 24px, var(--azul-soft)}
+header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-block:20px 12px}
+header.top>div{min-width:0}
+.theme-btn{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--azul);display:grid;place-items:center;box-shadow:0 2px 8px rgba(80,105,160,.08);-webkit-tap-highlight-color:transparent;transition:transform .15s}
+.theme-btn:hover{transform:rotate(-12deg)}
+.theme-btn svg{width:22px;height:22px}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(26px,5vw,34px);line-height:1.05;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 span{color:var(--azul)}
+.sub{color:var(--muted);font-size:14px;margin-top:4px}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--azul);outline-offset:2px}
+.ghost{background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px}
+.ghost:hover{border-color:var(--azul)}
+nav.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px}
+nav.tabs button{background:none;border:0;padding:10px 14px;font-weight:700;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-1px}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--azul)}
+.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-bottom:12px}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;box-shadow:0 2px 8px rgba(80,105,160,.05)}
+.seg button{border:0;background:none;padding:6px 12px;border-radius:999px;font-size:14px;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--azul);color:var(--azul-ink);font-weight:700}
+label.inline{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted)}
+select{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px}
+details.topics{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:14px}
+details.topics>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;justify-content:space-between;gap:10px;align-items:center;font-weight:700}
+details.topics>summary::-webkit-details-marker{display:none}
+details.topics>summary .chev{transition:transform .2s;color:var(--muted)}
+details.topics[open]>summary .chev{transform:rotate(180deg)}
+.topics-body{padding:0 14px 14px;display:grid;gap:14px}
+.topics-actions{display:flex;gap:8px;flex-wrap:wrap}
+.grp-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.grp h3{font-family:var(--f-display);font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0;font-weight:700}
+.ghost.small{padding:3px 10px;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:5px 10px;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--azul-soft);border-color:var(--azul);font-weight:700}
+.chip small{color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.status{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted);margin-bottom:6px;font-variant-numeric:tabular-nums;flex-wrap:wrap}
+.bar{height:8px;background:var(--azul-soft);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.bar i{display:block;height:100%;background:var(--azul);width:0;transition:width .3s}
+/* one menu for the four ways to study */
+.views{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:5px;margin-bottom:14px;box-shadow:0 2px 10px rgba(80,105,160,.06)}
+.views button{border:0;background:none;border-radius:16px;padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12.5px;font-weight:700;color:var(--muted);-webkit-tap-highlight-color:transparent}
+.views svg{width:22px;height:22px}
+.views button[aria-pressed="true"]{background:var(--azul-soft);color:var(--azul)}
+/* what am I studying */
+details.topics>summary .sum-l{display:grid;min-width:0}
+.sum-k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.sum-v{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sum-btn{flex:none;color:var(--azul);background:var(--azul-soft);font-size:14px;font-weight:700;padding:6px 14px;border-radius:999px}
+.groups{display:grid;gap:10px}
+.grp{border:1px solid var(--line);border-radius:18px;background:var(--bg)}
+.grp-row{width:100%;display:flex;align-items:center;gap:12px;background:none;border:0;padding:12px 14px;text-align:left;border-radius:18px;-webkit-tap-highlight-color:transparent}
+.tick{width:24px;height:24px;border-radius:8px;border:2px solid var(--line);flex:none;display:grid;place-items:center;background:var(--surface)}
+.grp-row[aria-pressed="true"] .tick{background:var(--azul);border-color:var(--azul)}
+.grp-row[aria-pressed="true"] .tick::after{content:"";width:6px;height:11px;border:solid var(--azul-ink);border-width:0 2.5px 2.5px 0;transform:translateY(-1px) rotate(45deg)}
+.grp-row[aria-pressed="mixed"] .tick{border-color:var(--azul)}
+.grp-row[aria-pressed="mixed"] .tick::after{content:"";width:10px;height:3px;background:var(--azul);border-radius:2px}
+.grp-txt{display:grid;min-width:0}
+.grp-name{font-weight:700;font-size:16px}
+.grp-meta{font-size:13px;color:var(--muted)}
+.grp-more>summary{list-style:none;cursor:pointer;padding:0 14px 12px 50px;font-size:13px;font-weight:700;color:var(--azul)}
+.grp-more>summary::-webkit-details-marker{display:none}
+.grp-more .chips{padding:0 14px 14px}
+.settings{display:grid;border-top:1px solid var(--line);padding-top:12px}
+.settings h3{font-family:var(--f-display);font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 2px}
+.set-row{display:flex;justify-content:space-between;align-items:center;gap:8px 12px;padding:8px 0;font-size:15px;flex-wrap:wrap}
+.set-row .seg button{padding:6px 10px}
+.switch{appearance:none;-webkit-appearance:none;width:44px;height:26px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;flex:none;margin:0;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
+.switch:checked{background:var(--azul)}
+.switch:checked::after{transform:translateX(18px)}
+@media (max-width:700px){
+  .views{position:fixed;left:0;right:0;bottom:0;z-index:20;margin:0;border-radius:22px 22px 0 0;border-width:1px 0 0;box-shadow:0 -4px 18px rgba(80,105,160,.10);
+    padding:6px max(10px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(10px, env(safe-area-inset-left, 0px))}
+  .wrap{padding-bottom:110px}
+}
+/* practice */
+.p-head h2{font-family:var(--f-display);font-size:26px;margin:4px 0 4px}
+.p-head p{margin:0 0 16px;color:var(--muted)}
+.p-tiles{display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:12px}
+.p-tile{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;column-gap:14px;row-gap:4px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+.p-tile svg{grid-row:1 / span 3;width:42px;height:42px;padding:9px;border-radius:14px;background:var(--azul-soft);color:var(--azul)}
+.p-tile-t{font-family:var(--f-display);font-weight:700;font-size:18px}
+.p-tile-d{color:var(--muted);font-size:14px}
+.p-tile-n{font-size:13px;font-weight:700;color:var(--azul)}
+.p-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.p-title{font-family:var(--f-display);font-weight:700;font-size:18px;flex:1;text-align:center}
+.p-count{min-width:70px}
+.linkbtn.muted{color:var(--muted);font-weight:400}
+.p-filter{margin-bottom:12px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.p-filter .chip{flex:none}
+.p-card{background:var(--surface);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:16px 10px 20px;margin-bottom:14px;display:grid;gap:10px;justify-items:center;text-align:center}
+.p-kicker{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.p-verb{font-family:var(--f-display);font-size:32px;font-weight:700}
+.p-verb small{font-family:var(--f-body);font-size:15px;font-weight:400;color:var(--muted)}
+.p-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.p-tags span{background:var(--azul-soft);border-radius:999px;padding:5px 12px;font-size:14px}
+.p-sent{font-family:var(--f-display);font-size:clamp(20px,5vw,26px);font-weight:600;line-height:1.35;text-wrap:balance}
+.p-word{font-family:var(--f-display);font-size:clamp(26px,7vw,36px);font-weight:700}
+.p-en{color:var(--muted);font-size:15px}
+.blank{display:inline-block;min-width:3.2em;border-bottom:3px solid var(--azul);margin:0 4px;vertical-align:-2px;height:1em}
+.filled{color:var(--azul);border-bottom:3px solid var(--azul-soft)}
+.p-help{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--muted);margin-bottom:10px}
+.chip.mini{padding:4px 10px;font-size:14px}
+.p-links{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px}
+.p-fb{border-radius:20px;padding:14px 16px;margin-bottom:14px;display:grid;gap:8px}
+.p-fb.ok{background:var(--ok-soft)} .p-fb.bad{background:var(--bad-soft)} .p-fb.warn{background:var(--warn-soft)}
+.p-res{font-weight:700;font-size:16px}
+.p-fb.ok .p-res{color:var(--ok)} .p-fb.bad .p-res{color:var(--bad)} .p-fb.warn .p-res{color:var(--warn)}
+.p-full{font-family:var(--f-display);font-size:18px}
+.why{font-size:15px}
+.p-again{font-size:13px;color:var(--muted)}
+.vt{border-collapse:collapse;font-size:15px;justify-self:start}
+.vt caption{text-align:left;font-weight:700;font-size:13px;color:var(--muted);padding-bottom:4px}
+.vt td{padding:3px 14px 3px 0}
+.vt tr.hl td{font-weight:700;color:var(--azul)}
+.typebox input.nudge{animation:nudge .3s}
+@keyframes nudge{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.scene-svg{width:100%;max-width:520px;height:auto;border-radius:16px;border:1px solid var(--line)}
+.swall{fill:var(--azul-soft)} .sfloor{fill:var(--tile)}
+.scene-svg .so{fill:var(--surface);stroke:var(--muted);stroke-width:1.4}
+.scene-svg .sa{fill:var(--tile);stroke:var(--muted);stroke-width:1.2}
+.scene-svg .sg{fill:var(--ok-soft);stroke:var(--ok);stroke-width:1.2}
+.scene-svg .sm{fill:var(--bg);stroke:var(--muted);stroke-width:1.4}
+.scene-svg .sd{fill:var(--ink);stroke:none}
+.scene-svg .sl{stroke:var(--muted);stroke-width:1.4;fill:none}
+.scene-svg .th{stroke-width:3;stroke-linecap:round}
+.scene-svg .sw{stroke:var(--azul);stroke-width:1.2}
+.scene-svg .hl .so,.scene-svg .hl .sa,.scene-svg .hl .sm{stroke:var(--azul);stroke-width:2.6}
+.scene-svg .hl .sl{stroke:var(--azul)}
+.scene-svg .st{font:700 11.5px var(--f-body);fill:var(--muted);text-anchor:middle;paint-order:stroke;stroke:var(--azul-soft);stroke-width:3px}
+.scene-svg .st.hl{fill:var(--azul);font-weight:700}
+.p-intro{color:var(--muted);margin:0 0 12px}
+.pool{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:12px 14px;margin-bottom:12px;position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;box-shadow:var(--shadow)}
+.pool-h{font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between}
+.pool-h small{color:var(--muted);font-weight:400}
+.chip.item{background:var(--surface);font-weight:700}
+.pool .chip.item{background:var(--azul-soft);border-color:var(--azul)}
+.chip.good{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+.chip.badc{border-color:var(--bad);color:var(--bad);background:var(--bad-soft)}
+.chip:disabled{cursor:default;opacity:1}
+.stores{display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:10px;margin-bottom:14px}
+.store{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:10px 12px;min-height:72px}
+.store-h{display:grid;margin-bottom:6px}
+.store-h small{color:var(--muted);font-size:12px}
+.muted{color:var(--muted)}
+.review.fix div{align-items:flex-start}
+.review.fix small{color:var(--bad)}
+.sheet-bg{position:fixed;inset:0;background:rgba(20,28,48,.35);z-index:40}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;background:var(--surface);border-radius:24px 24px 0 0;box-shadow:0 -10px 30px rgba(20,30,60,.2);max-height:80vh;overflow:auto;
+  padding:16px max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))}
+.sheet-h{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px;font-size:16px}
+.sheet-grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:8px;max-width:640px;margin:0 auto}
+.store-pick{display:grid;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:14px;padding:10px 12px;font-size:15px}
+.store-pick small{color:var(--muted);font-size:12px}
+.store-pick[aria-pressed="true"]{border-color:var(--azul);background:var(--azul-soft)}
+.store-pick.back{grid-column:1 / -1}
+@media (min-width:701px){ .sheet{left:50%;right:auto;bottom:24px;transform:translateX(-50%);width:min(640px, 92vw);border-radius:24px} }
+/* swipe, undo, resume */
+.card.noanim{transition:none!important}
+.card.drag-yes .face{border-color:var(--ok);box-shadow:0 0 0 4px var(--ok-soft), var(--shadow)}
+.card.drag-no .face{border-color:var(--bad);box-shadow:0 0 0 4px var(--bad-soft), var(--shadow)}
+@keyframes cardIn{from{opacity:.2;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.scene.enter{animation:cardIn .28s ease-out}
+.swipehint{display:none;font-size:13px;color:var(--muted);text-align:center;margin-top:10px;min-height:1em}
+@media (hover:none){.swipehint{display:block}}
+.linkbtn{border:0;background:none;color:var(--azul);font-weight:700;font-size:14px;padding:0}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom, 0px));z-index:30;transform:translate(-50%, 12px);opacity:0;transition:opacity .2s, transform .2s;
+  width:max-content;max-width:min(92vw, 440px);display:flex;align-items:center;gap:14px;background:var(--ink);color:var(--bg);border-radius:16px;padding:10px 10px 10px 16px;box-shadow:0 8px 24px rgba(20,30,60,.25);font-size:15px}
+.toast.show{opacity:1;transform:translate(-50%, 0)}
+.toast span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toast button{flex:none;border:0;border-radius:10px;padding:8px 14px;font-weight:700;background:var(--azul);color:var(--azul-ink)}
+@media (max-width:700px){ .toast{bottom:calc(92px + env(safe-area-inset-bottom, 0px))} }
+@media (prefers-reduced-motion: reduce){ .scene.enter{animation:none} .toast{transition:none} }
+/* card */
+.scene{perspective:1400px;margin-bottom:16px}
+.card{position:relative;display:grid;min-height:260px;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.3,.7,.3,1);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:pan-y}
+.settings-row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.card.flipped{transform:rotateY(180deg)}
+.face{position:relative;grid-area:1 / 1;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--surface);border:1px solid var(--line);border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 22px 24px;text-align:center;gap:12px;box-shadow:var(--shadow);overflow:hidden}
+.face.back{transform:rotateY(180deg)}
+.face.back::before{content:"";position:absolute;inset:0 0 auto 0;height:12px;background:
+  radial-gradient(circle at 50% 50%, var(--azul) 0 22%, transparent 23%) 0 0/24px 24px,
+  conic-gradient(from 45deg, var(--tile) 25%, transparent 0 50%, var(--tile) 0 75%, transparent 0) 0 0/24px 24px, var(--azul-soft)}
+.face .tag{position:absolute;top:12px;left:14px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.face.back .tag{top:20px}
+.face .lang{position:absolute;top:12px;right:14px;font-size:12px;font-weight:700;color:var(--azul);letter-spacing:.06em}
+.face.back .lang{top:20px}
+.word{font-family:var(--f-display);font-weight:600;font-size:clamp(26px,6vw,40px);line-height:1.15;text-wrap:balance;overflow-wrap:anywhere;max-width:100%}
+.word.long{font-size:clamp(20px,4.4vw,28px)}
+.hint{color:var(--muted);font-size:14px}
+.trans{font-size:clamp(17px,3.8vw,22px);color:var(--muted);border-top:2px solid var(--azul-soft);padding-top:10px;max-width:100%;overflow-wrap:anywhere;text-wrap:balance}
+.btn:disabled{opacity:.4;cursor:default}
+.speak{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 12px;font-size:14px;display:inline-flex;gap:6px;align-items:center}
+.speak:hover{border-color:var(--azul)}
+.speak svg{width:16px;height:16px}
+.feedback{font-weight:700;border-radius:10px;padding:6px 12px;font-size:15px}
+.feedback.ok{background:var(--ok-soft);color:var(--ok)}
+.feedback.bad{background:var(--bad-soft);color:var(--bad)}
+.feedback.warn{background:var(--warn-soft);color:var(--warn)}
+.yours{font-size:14px;color:var(--muted)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.actions.one{grid-template-columns:1fr}
+.btn{border:0;border-radius:18px;padding:15px 18px;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .12s, filter .12s}
+.btn:not(:disabled):hover{filter:brightness(1.03);transform:translateY(-1px)}
+.btn.primary{box-shadow:0 6px 16px rgba(107,143,219,.28)}
+.btn.primary{background:var(--azul);color:var(--azul-ink)}
+.btn.no{background:var(--bad-soft);color:var(--bad)}
+.btn.yes{background:var(--ok-soft);color:var(--ok)}
+.btn.plain{background:var(--surface);border:1px solid var(--line)}
+.btn kbd{font-family:var(--f-body);font-size:12px;opacity:.7;border:1px solid currentColor;border-radius:5px;padding:0 5px}
+.typebox{display:flex;gap:8px;margin-bottom:10px}
+.typebox input{flex:1;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px 14px;font-size:17px}
+.typebox input:focus{border-color:var(--azul)}
+.accents{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.accents button{border:1px solid var(--line);background:var(--surface);border-radius:8px;min-width:36px;padding:4px 8px;font-size:16px}
+.keys{font-size:13px;color:var(--muted);text-align:center;margin-top:10px}
+/* summary */
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:24px 20px;display:grid;gap:14px}
+.summary h2{font-family:var(--f-display);margin:0;font-size:26px}
+.nums{display:flex;gap:24px;flex-wrap:wrap}
+.nums div{display:grid}
+.nums b{font-family:var(--f-display);font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
+.nums span{font-size:13px;color:var(--muted)}
+.review{display:grid;gap:4px;font-size:15px}
+.review div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-block:4px}
+.review div span:last-child{color:var(--muted);text-align:right}
+/* list */
+.listtools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.listtools input{flex:1 1 220px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.lgroup{margin-bottom:22px}
+.lgroup h3{font-family:var(--f-display);font-size:18px;margin:0 0 6px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.lgroup h3 small{font-family:var(--f-body);font-size:13px;color:var(--muted);font-weight:400}
+.row{display:grid;grid-template-columns:12px minmax(0,1fr) minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}
+.row .pt{font-weight:700;overflow-wrap:anywhere}
+.row .en{color:var(--muted);overflow-wrap:anywhere}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.dot.l1{background:var(--warn)} .dot.l2{background:var(--ok)}
+.row .speak{padding:4px 8px}
+.legend{display:flex;gap:14px;font-size:13px;color:var(--muted);margin-bottom:12px;flex-wrap:wrap}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted);align-items:center}
+.confirm{display:inline-flex;gap:8px;align-items:center}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:28px;padding:28px 20px;text-align:center;display:grid;gap:12px;justify-items:center}
+@media (max-width:520px){
+  .row{grid-template-columns:10px minmax(0,1fr) auto}
+  .row .en{grid-column:2;grid-row:2;font-size:14px}
+  .row .speak{grid-row:1 / span 2;grid-column:3}
+  .card{min-height:220px}
+  header.top{padding-block:14px 8px}
+  h1{font-size:24px}
+  .sub{font-size:13px;margin-top:2px}
+  nav.tabs{margin-bottom:12px}
+  nav.tabs button{padding:8px 12px}
+  .controls{gap:8px;margin-bottom:10px}
+  .seg{display:flex;width:100%}
+  .seg button{flex:1;padding:7px 6px}
+  details.topics{margin-bottom:12px}
+  details.topics>summary{padding:10px 14px;font-size:15px}
+  .bar{margin-bottom:12px}
+  .face{padding:46px 18px 20px}
+  .btn{padding:14px 12px}
+}
+@media (hover:none){ .keys, .btn kbd{display:none} }
+@media (prefers-reduced-motion: reduce){.card{transition:none}.bar i{transition:none}}
+</style>
+
+<div class="tiles" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Flashcards <span>PORT 103</span></h1>
+      <div class="sub" id="sub"></div>
+    </div>
+    <button class="ghost" id="uiLang" type="button" hidden></button>
+    <button class="theme-btn" id="themeBtn" type="button"></button>
+  </header>
+
+  <nav class="views" id="views" aria-label="Study mode"></nav>
+
+  <section id="study">
+    <details class="topics" id="topics">
+      <summary>
+        <span class="sum-l"><span class="sum-k" id="topicsLabel"></span><span class="sum-v" id="topicsTitle"></span></span>
+        <span class="sum-btn" id="topicsBtn"></span>
+      </summary>
+      <div class="topics-body">
+        <div id="topicGroups" class="groups"></div>
+        <div class="settings">
+          <h3 id="setTitle"></h3>
+          <div class="set-row" id="dirRow"><span id="lblDir"></span><div class="seg" id="dirSeg" role="group"></div></div>
+          <div class="set-row" id="roundWrap"><label for="roundSize" id="lblRound"></label>
+            <select id="roundSize"><option value="10">10</option><option value="20">20</option><option value="40">40</option><option value="0"></option></select>
+          </div>
+          <label class="set-row" for="weakOnly"><span id="lblWeak"></span><input type="checkbox" id="weakOnly" class="switch"></label>
+          <div class="set-row"><span id="resetWrap"></span></div>
+        </div>
+        <button class="btn primary" type="button" data-act="closetopics" id="doneBtn"></button>
+      </div>
+    </details>
+
+    <div id="player">
+      <div class="status"><span id="stRound"></span><span id="stCounts"></span></div>
+      <div class="bar"><i id="barFill"></i></div>
+      <div class="scene">
+        <div class="card" id="card" tabindex="0" role="button">
+          <div class="face front">
+            <span class="tag" id="fTag"></span><span class="lang" id="fLang"></span>
+            <div class="word" id="fWord"></div>
+            <div class="trans" id="fTrans" hidden></div>
+            <div class="hint" id="fHint"></div>
+            <button class="speak" type="button" id="fSpeak" hidden></button>
+          </div>
+          <div class="face back">
+            <span class="tag" id="bTag"></span><span class="lang" id="bLang"></span>
+            <div class="word" id="bWord"></div>
+            <div class="feedback" id="bFeedback" hidden></div>
+            <div class="yours" id="bYours" hidden></div>
+            <button class="speak" type="button" id="bSpeak" hidden></button>
+          </div>
+        </div>
+      </div>
+      <div id="typeArea" hidden>
+        <form class="typebox" id="typeForm" autocomplete="off">
+          <input id="answer" type="text" autocapitalize="off" spellcheck="false">
+          <button class="btn primary" type="submit" id="checkBtn"></button>
+        </form>
+        <div class="accents" id="accents"></div>
+      </div>
+      <div class="actions one" id="actions"></div>
+      <div class="keys" id="keys"></div>
+      <div class="swipehint" id="swipeHint"></div>
+    </div>
+
+    <div id="summary" hidden></div>
+    <div id="emptyDeck" hidden></div>
+  </section>
+
+  <section id="list" hidden>
+    <div class="listtools">
+      <input id="search" type="search">
+      <select id="listCat"></select>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div id="listBody"></div>
+  </section>
+
+  <section id="practice" hidden><div id="pBody"></div></section>
+
+  <footer>
+    <span id="totals"></span>
+  </footer>
+  <div class="sheet-bg" id="sheetBg" hidden></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" hidden></div>
+  <div class="toast" id="toast" role="status" hidden><span id="toastMsg"></span><button type="button" id="toastBtn"></button></div>
+</div>
+
+<script>
+// ======================= VOCABULÁRIO (PORT 103, Aulas 10–13) =======================
+// Formato: "português = inglês", uma palavra por linha.
+var GROUPS = [
+ {id:'casa', pt:'Casa', en:'Home', aula:'Aula 10'},
+ {id:'comida', pt:'Comida e restaurante', en:'Food & restaurant', aula:'Aula 11'},
+ {id:'compras', pt:'Compras e roupa', en:'Shopping & clothes', aula:'Aula 12'},
+ {id:'viagens', pt:'Viagens e tempo', en:'Travel & weather', aula:'Aula 13'},
+ {id:'gram', pt:'Gramática', en:'Grammar', aula:'Verbs, plurals…'}
+];
+var CATS = [
+{id:'habitacao', g:'casa', pt:'Lugares e tipos de casa', en:'Places & housing', d:`
+a praia = beach
+a cidade = city
+o rio = river
+a montanha = mountain
+o campo = countryside
+a vila = town
+a aldeia = village
+o bairro = neighbourhood
+a casa individual = detached house
+a casa geminada = semi-detached house
+as casas em banda = terraced / row houses
+a casa do monte (Alentejo) = traditional rural Alentejo house
+o palacete = small palace / manor house
+a mansão = mansion
+o prédio = apartment building
+os apartamentos = apartments
+o bungalow = bungalow
+a tenda = tent
+o abrigo de pedra (iglô) = stone shelter (igloo-shaped)
+o castelo = castle
+a autocaravana = motorhome`},
+{id:'exterior', g:'casa', pt:'Exterior e andares', en:'Outside & levels', d:`
+o telhado = roof
+a chaminé = chimney
+o sótão = attic
+a parede = wall
+a janela / as janelas = window / windows
+a porta = door
+o jardim = garden
+a caixa de correio = mailbox
+a cerca = fence
+a garagem = garage
+o portão da garagem = garage gate / door
+o terraço = terrace
+o primeiro andar = first floor / upper storey
+o rés-do-chão = ground floor
+a cave = basement
+o andar = floor / storey`},
+{id:'divisoes', g:'casa', pt:'Divisões da casa', en:'Rooms', d:`
+a sala de estar = living room
+o quarto / os quartos = bedroom / bedrooms
+a cozinha = kitchen
+a casa de banho = bathroom
+a sala de jantar = dining room
+a lavandaria = laundry room
+o escritório = office / study
+a varanda = balcony
+o quintal = backyard
+o corredor = hallway
+a escada = stairs
+a despensa = pantry
+o roupeiro = wardrobe / closet`},
+{id:'cozinha', g:'casa', pt:'Na cozinha', en:'Kitchen', d:`
+o armário = cabinet / cupboard
+o exaustor = extractor / range hood
+a placa do fogão = stovetop
+a placa de vitrocerâmica = ceramic hob
+o lava-louça = kitchen sink
+o fogão = stove / cooker
+o forno = oven
+o frigorífico = refrigerator
+a máquina de lavar loiça = dishwasher
+a torradeira = toaster
+o micro-ondas = microwave
+a máquina de café = coffee maker
+a torneira = tap / faucet
+a mesa e as cadeiras = table and chairs
+a panela = saucepan / pot
+a frigideira = frying pan
+o prato = plate
+o copo = glass
+os talheres = cutlery
+a faca = knife
+o garfo = fork
+a colher = spoon`},
+{id:'jantar', g:'casa', pt:'Na sala de jantar', en:'Dining room', d:`
+a mesa de jantar = dining table
+as cadeiras = chairs
+o aparador / o buffet = sideboard / buffet cabinet
+a vitrina / a cristaleira = display / china cabinet
+a porcelana = porcelain
+a faiança portuguesa = Portuguese earthenware
+a louça = tableware
+os têxteis de mesa = table linens
+o centro de mesa = centrepiece
+o candeeiro suspenso = pendant light`},
+{id:'estar', g:'casa', pt:'Na sala de estar', en:'Living room', d:`
+o candeeiro de teto = ceiling lamp
+o candeeiro de pé = floor lamp
+o candeeiro de mesa = table lamp
+os quadros = paintings
+o relógio de parede = wall clock
+o Galo de Barcelos = traditional Portuguese rooster motif
+a mesa de centro = coffee table
+o sofá = sofa
+as poltronas = armchairs
+a estante / as prateleiras = bookshelf / shelves
+a lareira = fireplace
+o tapete = rug
+os cortinados / as cortinas = curtains
+a televisão = television
+o controlo remoto = remote control
+as fotografias = photographs
+os espelhos = mirrors
+as plantas = plants
+os jarros / os vasos decorativos = decorative vases
+o ar condicionado = air conditioning
+o radiador = radiator
+as almofadas = cushions
+a manta = throw blanket`},
+{id:'banho', g:'casa', pt:'Na casa de banho', en:'Bathroom', d:`
+a banheira = bathtub
+o chuveiro = shower
+o lavatório = washbasin / sink
+o tapete = bath mat / rug
+a torneira = faucet / tap
+a sanita = toilet
+a prateleira = shelf
+a água de colónia = cologne
+o gel de banho = shower gel
+o toalheiro = towel rail
+o interruptor = light switch
+a saboneteira = soap dish
+a tomada = power outlet
+o sabonete = bar soap
+o espelho = mirror
+o champô = shampoo
+a toalha = towel
+a escova de barbear = shaving brush
+a máquina de barbear = razor / shaver
+o pente = comb
+a caixa de primeiros socorros = first-aid kit
+a escova = hairbrush
+o papel higiénico = toilet paper`},
+{id:'quarto', g:'casa', pt:'No quarto', en:'Bedroom', d:`
+a cama = bed
+a mesa de cabeceira = bedside table
+o roupeiro / o guarda-fatos = wardrobe
+a cómoda = chest of drawers
+a almofada = pillow
+os lençóis = sheets
+o cobertor = blanket
+o edredão = duvet / comforter
+o candeeiro = lamp
+o despertador = alarm clock
+a colcha = bedspread
+a cortina = curtain
+o tapete = rug / mat
+a carpete = carpet`},
+{id:'escritorio', g:'casa', pt:'No escritório', en:'Home office', d:`
+a secretária = desk
+a cadeira giratória regulável = adjustable swivel chair
+as estantes verticais = vertical shelves
+as soluções de arrumação = storage solutions
+os blocos de gavetas = drawer units
+as caixas organizadoras = storage boxes
+as canetas = pens
+os lápis = pencils
+os blocos de notas = notepads
+as notas aderentes / os post-its = sticky notes
+a agenda = planner
+os organizadores de secretária = desk organisers
+os dossiers e as pastas = files and folders
+o computador portátil = laptop
+o computador de secretária = desktop computer
+o rato = computer mouse
+o teclado = keyboard
+os auscultadores = headphones
+a impressora = printer
+o candeeiro de mesa = desk lamp
+as plantas de interior = houseplants
+o caixote do lixo = wastebasket`},
+{id:'despensa', g:'casa', pt:'Na despensa', en:'Pantry & supplies', d:`
+o azeite = olive oil
+o vinagre = vinegar
+o bacalhau = salted cod
+o arroz = rice
+a massa = pasta
+as leguminosas = pulses / legumes
+o feijão = beans
+o grão-de-bico = chickpeas
+as conservas = canned goods
+o atum = tuna
+as sardinhas = sardines
+a polpa de tomate = tomato purée
+o molho de tomate = tomato sauce
+o pão = bread
+a broa = cornbread
+o chouriço = Portuguese sausage
+os enchidos = cured sausages
+o café = coffee
+o chá = tea
+o açúcar = sugar
+a farinha = flour
+o fermento = yeast / raising agent
+o sal = salt
+as especiarias = spices
+as cebolas = onions
+os alhos = garlic cloves
+as batatas = potatoes
+os detergentes = detergents
+os esfregões = scouring pads
+os panos = cleaning cloths
+o papel de cozinha = kitchen paper / paper towel
+os aventais = aprons
+os sacos de compras reutilizáveis = reusable shopping bags`},
+{id:'adjetivos', g:'casa', pt:'Adjetivos para descrever', en:'Describing adjectives', d:`
+moderno/a = modern
+antiquado/a = old-fashioned
+barato/a = inexpensive / cheap
+caro/a = expensive
+pequeno/a = small
+grande = big / large
+curto/a = short
+comprido/a = long
+espaçoso/a = spacious
+estreito/a = narrow
+maravilhoso/a = wonderful
+limpo/a = clean
+sujo/a = dirty
+arejado/a = airy
+acolhedor/a = cosy / welcoming
+luminoso/a = bright / full of light`},
+{id:'verboscasa', g:'casa', pt:'Verbos da casa', en:'Home verbs', d:`
+construir = to build
+viver / morar = to live / to reside
+alugar = to rent
+vender = to sell
+pintar = to paint
+abrir = to open
+fechar = to close
+tocar = to touch / to play
+chegar = to arrive
+visitar = to visit
+acordar = to wake up
+levantar-se = to get up
+subir = to go upstairs / to climb
+descer = to go down
+pendurar = to hang
+mostrar = to show
+dormir = to sleep
+comer = to eat
+cozinhar = to cook
+cozer no forno = to bake
+lavar = to wash
+limpar = to clean
+varrer = to sweep
+limpar o pó = to dust
+semear = to sow
+cavar = to dig
+podar = to prune
+apanhar / colher = to pick / to harvest
+cultivar = to cultivate
+regar = to water`},
+{id:'lugar', g:'casa', pt:'Preposições de lugar', en:'Location words', d:`
+à esquerda de = to the left of
+à direita de = to the right of
+por cima de = above / on top of
+perto de = near
+longe de = far from
+em frente de / à frente de = in front of
+entre = between
+por trás de = behind
+na / no = in the / on the
+para = to / towards
+onde? = where?
+onde fica? = where is it (located)?`},
+{id:'frasescasa', g:'casa', pt:'Frases sobre a casa', en:'Home phrases', d:`
+Esta é a minha casa nova. O que achas? = This is my new house. What do you think?
+É grande e moderna! Quantos quartos tem? = It is big and modern! How many bedrooms does it have?
+Onde fica o teu apartamento? = Where is your apartment located?
+Fica na Rua Direita, por trás do hospital. = It is on Rua Direita, behind the hospital.
+Onde estão os pratos? = Where are the plates?
+Os pratos estão na cozinha. = The plates are in the kitchen.
+Esta janela dá para o jardim. = This window faces the garden.
+Esta porta dá para a sala de estar. = This door opens onto the living room.
+Nesta casa há duas casas de banho. = In this house there are two bathrooms.
+Esta casa tem duas casas de banho. = This house has two bathrooms.`},
+{id:'refeicoes', g:'comida', pt:'Refeições e lugares', en:'Meals & places to eat', d:`
+o alimento / a alimentação = food / nutrition
+o pequeno-almoço = breakfast
+o almoço = lunch
+o lanche = afternoon snack
+o jantar = dinner
+a ceia = late supper
+a refeição / as refeições = meal / meals
+o café = café / coffee
+a padaria = bakery
+a pastelaria = pastry shop
+o restaurante = restaurant
+a cantina = canteen
+o buffet = buffet
+a entrada = starter
+o prato principal = main course
+a sobremesa / o doce = dessert
+a sopa = soup
+o marisco = seafood / shellfish
+a salada = salad
+a carne = meat
+o peixe = fish
+a dieta mediterrânica = Mediterranean diet`},
+{id:'proteinas', g:'comida', pt:'Carne, peixe e proteínas', en:'Meat, fish & protein', d:`
+a carne de vaca / a carne de boi = beef
+a carne de frango = chicken
+o porco = pork
+o peixe = fish
+o atum = tuna
+o tofu = tofu
+os ovos = eggs
+o bacalhau = cod (often salt cod)
+a dourada = sea bream
+o bife = steak
+o camarão = shrimp`},
+{id:'legumes', g:'comida', pt:'Legumes e ingredientes', en:'Vegetables & ingredients', d:`
+a cenoura = carrot
+a alface = lettuce
+o brócolo / os brócolos = broccoli
+o pepino = cucumber
+a courgette / a abobrinha = zucchini / courgette
+o cogumelo = mushroom
+a couve-de-bruxelas = Brussels sprout
+as batatas = potatoes
+a pimenta = pepper
+a salsa = parsley
+os coentros = coriander / cilantro
+o molho = sauce
+a lentilha = lentils
+o arroz = rice
+as favas = broad beans / fava beans
+o azeite = olive oil
+o tomate = tomato
+a cebola = onion
+o alho = garlic
+o sal = salt
+o pão = bread
+a massa = pasta
+a farinha = flour
+o feijão = beans`},
+{id:'fruta', g:'comida', pt:'Fruta e laticínios', en:'Fruit & dairy', d:`
+a maçã = apple
+a banana = banana
+a laranja = orange
+o limão = lemon
+o morango = strawberry
+o ananás = pineapple
+o leite = milk
+o queijo = cheese
+o iogurte = yogurt
+a manteiga = butter
+o queijo fresco = fresh cheese`},
+{id:'bebidas', g:'comida', pt:'Bebidas', en:'Drinks', d:`
+a água = water
+a água com gás = sparkling water
+a água mineral = mineral water
+o sumo de laranja = orange juice
+o sumo de maçã = apple juice
+a cerveja = beer
+o refrigerante = soft drink
+o chá = tea
+o café = coffee
+o leite com chocolate = chocolate milk
+o vinho tinto = red wine
+o vinho branco = white wine
+o champanhe / o espumante = champagne / sparkling wine
+o cocktail / o coquetel = cocktail`},
+{id:'regionais', g:'comida', pt:'Pratos portugueses', en:'Portuguese dishes', d:`
+o pastel de nata = Portuguese custard tart
+o galão = coffee with milk in a tall glass
+a francesinha = Porto sandwich dish
+o bacalhau com broa = cod with cornbread
+o leitão assado = roast suckling pig
+a chanfana = slow-cooked goat or lamb dish
+a caldeirada = fish / seafood stew
+as sardinhas = sardines
+as espetadas = skewers
+o choco frito = fried cuttlefish
+o cozido das Furnas = Azorean geothermal stew
+o queijo da Serra = Serra cheese
+o rancho = stew with meat, pasta and chickpeas
+a sopa de cação = dogfish soup
+as migas = bread-based side dish
+os choquinhos = small cuttlefish
+o pudim abade de Priscos = Portuguese egg-and-caramel pudding`},
+{id:'gostos', g:'comida', pt:'Gostos e frequência', en:'Likes & frequency', d:`
+eu adoro… = I love…
+eu gosto muito de… = I really like…
+eu não gosto de… = I do not like…
+eu não gosto nada de… = I do not like … at all
+eu detesto… = I hate…
+não sei o que é… = I do not know what … is
+vou provar um dia = I will try it one day
+sempre = always
+nunca = never
+às vezes = sometimes
+frequentemente = frequently
+raramente = rarely
+habitualmente = usually
+muitas vezes = often / many times
+comer = to eat
+beber = to drink
+almoçar = to have lunch
+lanchar = to have a snack
+jantar = to have dinner
+cear = to have a late supper
+tomar o pequeno-almoço = to have breakfast`},
+{id:'restaurante', g:'comida', pt:'No restaurante', en:'At the restaurant', d:`
+o empregado / a empregada = server / waiter
+o cliente / a cliente = customer
+o chefe = chef
+a ementa = menu
+o prato = dish / plate
+a conta = bill / check
+à parte = on the side / separately
+por cima = on top
+como entrada… = as a starter…
+como prato principal… = as a main course…
+como sobremesa… = for dessert…
+para beber… = to drink…
+o creme de marisco = seafood cream soup
+a salada vegetariana = vegetarian salad
+a salada mista = mixed salad
+a dourada grelhada = grilled sea bream
+as batatas cozidas = boiled potatoes
+cozer / cozido = to boil / boiled
+assar / assado = to roast / roasted
+grelhar / grelhado = to grill / grilled
+fritar / frito = to fry / fried
+estufar / estufado = to stew / stewed`},
+{id:'frasesrest', g:'comida', pt:'Frases do restaurante', en:'Restaurant phrases', d:`
+Como entrada, queria… = As a starter, I would like…
+Como prato principal, queria… = As a main course, I would like…
+E para beber? = And to drink?
+E como sobremesa? = And for dessert?
+Quer pão? = Would you like bread?
+A conta, por favor. = The bill, please.
+Trago já! = I will bring it right away!
+É tudo, obrigado. = That is everything, thank you.
+Já sabem o que vão comer? = Do you already know what you are going to eat?
+Queríamos dois cremes de marisco como entrada. = We would like two seafood cream soups as starters.
+Eu queria uma salada vegetariana com queijo. = I would like a vegetarian salad with cheese.
+E para o senhor? = And for you, sir?
+Eu queria uma dourada grelhada, por favor. = I would like a grilled sea bream, please.
+O prato de peixe vem com batatas cozidas e salada mista. = The fish dish comes with boiled potatoes and mixed salad.
+Queríamos uma água mineral e uma cerveja. = We would like a mineral water and a beer.
+Tomam café? = Would you like coffee?
+Também não, obrigado. Queríamos só a conta. = No coffee either, thank you. We would just like the bill.
+Eu queria peixe grelhado, por favor. = I would like grilled fish, please.`},
+{id:'lojas', g:'compras', pt:'Lojas e serviços', en:'Shops & services', d:`
+o mercado = market
+a feira de rua = street market
+a loja de rua = street shop
+o supermercado = supermarket
+o hipermercado = hypermarket
+o centro comercial = shopping centre
+a loja online = online shop
+a sapataria = shoe store
+o banco = bank
+a livraria = bookshop
+a loja de equipamento eletrónico = electronics shop
+a farmácia = pharmacy
+a loja de roupa = clothing shop
+os correios = post office
+a mercearia = grocery shop
+a frutaria = fruit shop
+a perfumaria = perfume shop
+o cinema = cinema / movie theatre`},
+{id:'produtos', g:'compras', pt:'Produtos', en:'Products', d:`
+os sapatos = shoes
+as botas = boots
+as sandálias = sandals
+as sapatilhas / os ténis = trainers / sneakers
+os comprimidos = tablets / pills
+as vitaminas = vitamins
+o creme solar = sunscreen
+o xarope = syrup
+as t-shirts = T-shirts
+os vestidos = dresses
+as camisas = shirts
+as calças = trousers
+os telemóveis = mobile phones
+os computadores = computers
+os tablets = tablets
+os televisores = televisions
+as maçãs = apples
+as bananas = bananas
+as peras = pears
+os morangos = strawberries
+os envelopes = envelopes
+os selos = postage stamps
+as caixas de papel = paper boxes
+os postais = postcards
+os livros = books
+a encomenda = parcel / order
+o correio normal = regular mail
+o correio azul internacional = priority international mail
+o recibo = receipt
+a promoção = sale / promotion
+o provador = changing room / fitting room
+a faculdade = university / college`},
+{id:'frasescompras', g:'compras', pt:'Frases das compras', en:'Shopping phrases', d:`
+Posso ajudar? = Can I help?
+Posso ajudá-la? = Can I help you? (to a woman)
+Posso ajudá-lo? = Can I help you? (to a man)
+Faça favor. = Please / go ahead
+Faça o favor de dizer. = Please, go ahead and tell me
+Estou só a ver, obrigado. = I am just looking, thank you
+Por agora, não preciso de nada. = I do not need anything for now
+Posso ver? = May I see?
+Posso experimentar? = May I try it on?
+Posso provar? = May I taste it?
+Desculpe, tem o livro…? = Excuse me, do you have the book…?
+Desculpe, pode ajudar-me? = Excuse me, can you help me?
+Tem este portátil em stock? = Do you have this laptop in stock?
+Tem estes sapatos? = Do you have these shoes?
+Desculpe, o que é isso? = Excuse me, what is that?
+Posso ver melhor? = Can I look more closely?
+Posso tocar? = May I touch it?
+Quanto é? = How much is it?
+Quanto custa? = How much does it cost?
+Tem multibanco? = Can I pay by card here?
+Posso pagar com cartão? = Can I pay by card?
+Posso pagar com dinheiro? = Can I pay cash?
+Vou levar. = I will take it
+Não vou levar. = I will not take it
+Com certeza. = Certainly
+Não há problema. = No problem
+Que pena! = What a shame!
+Pode ficar à vontade. = Feel free / make yourself comfortable
+Estas calças estão em promoção. = These trousers are on sale.
+Qual é o teu número? = What is your size?
+Ficam-te muito bem! = They look great on you!
+Numa livraria posso comprar livros. = In a bookshop I can buy books.`},
+{id:'roupa', g:'compras', pt:'Roupa', en:'Clothes', d:`
+o casaco = jacket / coat
+a t-shirt = T-shirt
+o vestido = dress
+as calças de ganga = jeans
+as camisas = shirts
+os calções = shorts
+a saia = skirt
+a camisola = sweater / pullover
+o blusão = jacket`},
+{id:'cores', g:'compras', pt:'Cores', en:'Colours', d:`
+azul / azuis = blue
+verde / verdes = green
+cor-de-rosa = pink
+cor de laranja = orange
+amarelo/a = yellow
+vermelho/a = red
+cinzento/a = grey
+preto/a = black
+branco/a = white
+roxo/a = purple`},
+{id:'demonstrativos', g:'compras', pt:'Isto, isso, aquilo', en:'This & that', d:`
+isto = this (near me)
+isso = that (near you)
+aquilo = that over there (far from both)
+este vestido / esta encomenda = this dress / this parcel
+esse vestido / essa encomenda = that dress / that parcel (near you)
+aquele vestido / aquela encomenda = that dress / that parcel (over there)
+estes sapatos / estas calças = these shoes / these trousers
+esses sapatos / essas calças = those shoes / those trousers (near you)
+aqueles sapatos / aquelas calças = those shoes / those trousers (over there)
+O que é isto? = What is this?
+Essas calças são giras. = Those trousers are nice.`},
+{id:'tiposviagem', g:'viagens', pt:'Viagens e atividades', en:'Trips & activities', d:`
+a viagem citadina = city break
+a viagem de sol e praia = seaside / beach holiday
+a viagem gastronómica = food / culinary tour
+a viagem de natureza / o ecoturismo = nature trip / ecotourism
+a viagem de trabalho = business trip
+as férias numa estância de esqui = ski resort holiday
+as férias num parque de campismo = camping trip
+em família = with family
+em casal = as a couple
+com amigos = with friends
+sozinho/a = alone
+visitar cidades / museus = to visit cities / museums
+passear = to take a walk / to stroll
+ver monumentos = to see monuments
+descansar = to rest
+apanhar sol = to sunbathe
+nadar = to swim
+provar comida típica = to taste traditional food
+andar na natureza = to walk in nature
+respirar ar puro = to breathe fresh air
+ter reuniões = to have meetings
+ir a uma conferência = to attend a conference
+esquiar = to ski
+acampar = to camp
+as ruas = streets
+as árvores = trees
+a neve = snow
+o ar livre = outdoors`},
+{id:'transportes', g:'viagens', pt:'Transportes', en:'Transport', d:`
+o comboio = train
+o bilhete = ticket
+a plataforma = platform
+partir / sair = to depart / to leave
+o avião = aeroplane / airplane
+o check-in = check-in
+a porta de embarque = boarding gate
+a mala = suitcase
+as malas = suitcases
+o autocarro = bus
+a paragem = bus stop
+o centro = centre
+o barco = boat
+o cruzeiro = cruise
+o carro = car
+o táxi = taxi
+o aeroporto = airport
+estacionar = to park
+a viagem = trip / journey
+os Caminhos de Santiago = the Camino de Santiago routes
+o Comboio do Douro = Douro train
+o moliceiro = traditional Aveiro boat
+a Estrada Nacional N2 = Portugal's National Road N2`},
+{id:'mala', g:'viagens', pt:'O que levas na mala?', en:'What to pack', d:`
+a camisa = shirt
+os chinelos = flip-flops / slippers
+a máquina fotográfica = camera
+a tenda = tent
+o cantil / o termo de água = water bottle / thermos
+o tablet = tablet
+o telemóvel = mobile phone
+a carteira = wallet / purse
+o protetor solar = sunscreen
+o garfo = fork
+a colher = spoon
+o cachecol = scarf
+os óculos de neve = snow goggles
+o canivete = pocket knife
+a toalha de praia = beach towel
+o chapéu = hat
+a lanterna = flashlight / torch
+o gorro = beanie / winter hat
+a caneta = pen
+os óculos de sol = sunglasses`},
+{id:'perguntasviagem', g:'viagens', pt:'Perguntas de viagem', en:'Travel questions', d:`
+Onde é que compro o bilhete? = Where do I buy a ticket?
+A que horas é que parte o comboio? = What time does the train depart?
+Onde é que fica a plataforma? = Where is the platform?
+Onde é que é o check-in? = Where is check-in?
+Quantas malas é que tens? = How many suitcases do you have?
+Onde é que é a paragem? = Where is the bus stop?
+Quanto é que custa o bilhete? = How much does a ticket cost?
+Onde é que está o barco? = Where is the boat?
+A que horas é que sai? = What time does it leave?
+Quanto é que é a viagem? = How much is the journey?
+Onde é que posso estacionar? = Where can I park?
+Como é que vamos para o aeroporto? = How do we get to the airport?
+Onde fica a plataforma do comboio? = Where is the train platform?`},
+{id:'calendario', g:'viagens', pt:'Estações e meses', en:'Seasons & months', d:`
+a primavera = spring
+o verão = summer
+o outono = autumn / fall
+o inverno = winter
+janeiro = January
+fevereiro = February
+março = March
+abril = April
+maio = May
+junho = June
+julho = July
+agosto = August
+setembro = September
+outubro = October
+novembro = November
+dezembro = December
+o mês / os meses = month / months
+o ano = year`},
+{id:'tempo', g:'viagens', pt:'O tempo (clima)', en:'Weather', d:`
+o clima = climate
+a temperatura = temperature
+Está muito frio! = It is very cold!
+Está muito calor! = It is very hot!
+Está a nevar! = It is snowing!
+Está a chover! = It is raining!
+Está muito vento! = It is very windy!
+O céu está nublado. = The sky is cloudy.
+Está a trovejar! = It is thundering!
+movimentado/a = busy / crowded`},
+{id:'indefinidos', g:'gram', pt:'Muito, pouco, outro…', en:'Indefinites', d:`
+muito / muitos / muita / muitas = much / many
+pouco / poucos / pouca / poucas = little / few
+outro / outros / outra / outras = other / another
+algum / alguns / alguma / algumas = some / any
+nenhum / nenhuns / nenhuma / nenhumas = none / not any
+Vou a muitos restaurantes. = I go to many restaurants.
+Adoro fazer algumas compras. = I love doing some shopping.
+Eu conheço poucos festivais. = I know few festivals.
+Não conheço nenhum restaurante aqui perto. = I do not know any restaurant near here.
+Não há ninguém na piscina. = There is nobody in the pool.
+Não gosto nada de viajar de avião. = I do not like travelling by plane at all.`},
+{id:'contracoes', g:'gram', pt:'Contrações', en:'Contractions', d:`
+de + o / de + a = do / da
+em + o / em + a = no / na
+a + o / a + a = ao / à
+por + o / por + a = pelo / pela
+o quarto do apartamento = the bedroom of the apartment
+a porta da garagem = the garage door
+no campo = in the countryside
+na cidade = in the city
+vou ao mar = I am going to the sea
+vou à praia = I am going to the beach
+passear pelas ruas = to stroll through the streets`},
+{id:'plurais', g:'gram', pt:'Plurais', en:'Plurals', d:`
+as casas = plural: a casa (house)
+os copos = plural: o copo (glass)
+os jantares = plural: o jantar (dinner)
+os pudins = plural: o pudim (pudding)
+os sons = plural: o som (sound)
+os galões = plural: o galão (milky coffee)
+os pães = plural: o pão (bread)
+os jornais = plural: o jornal (newspaper)
+os rouxinóis = plural: o rouxinol (nightingale)
+os lápis = plural: o lápis (pencil)
+os óculos = glasses (always plural)
+as calças = trousers (always plural)`}
+];
+
+// Conjugações (presente), tiradas das tabelas do guia
+var PERSONS = ['eu','tu','ele / ela / você','nós','vós','eles / elas / vocês'];
+var VERBS = [
+ ['ser','to be — identity, characteristics','sou|és|é|somos|sois|são'],
+ ['estar','to be — location, states, weather','estou|estás|está|estamos|estais|estão'],
+ ['ter','to have','tenho|tens|tem|temos|tendes|têm'],
+ ['ficar','to be located / to stay','fico|ficas|fica|ficamos|ficais|ficam'],
+ ['haver','there is / there are = há','hei|hás|há|havemos|haveis|hão'],
+ ['saber','to know','sei|sabes|sabe|sabemos||sabem'],
+ ['trazer','to bring','trago|trazes|traz|trazemos||trazem'],
+ ['poder','can / to be able to','posso|podes|pode|podemos|podeis|podem'],
+ ['pôr','to put','ponho|pões|põe|pomos||põem'],
+ ['vir','to come','venho|vens|vem|vimos||vêm'],
+ ['querer','to want','quero|queres|quer|queremos||querem'],
+ ['dever','should / ought to','devo|deves|deve|devemos||devem'],
+ ['comprar','to buy','compro|compras|compra|compramos|comprais|compram']
+];
+VERBS.forEach(function(v){
+  var forms = v[2].split('|'), lines = [];
+  forms.forEach(function(f,i){
+    if(!f) return;
+    var p = PERSONS[i];
+    lines.push({pt: p + ' ' + f, en: v[0].toUpperCase() + ' (' + v[1] + ') · ' + p, form: f, pron: p, verb: v[0]});
+  });
+  CATS.push({id:'v-'+v[0].replace('ô','o'), g:'gram', pt:'Verbo ' + v[0].toUpperCase(), en:'Verb ' + v[0].toUpperCase(), items: lines});
+});
+CATS.push({id:'polidez', g:'gram', pt:'Pedir com educação', en:'Polite requests', d:`
+eu queria = I would like (polite)
+nós queríamos = we would like (polite)
+eu quero = I want
+Devemos comer frutas e legumes todos os dias. = We should eat fruit and vegetables every day.
+O apartamento é espaçoso. = The apartment is spacious.
+O apartamento está renovado. = The apartment is renovated.
+O Mateo é italiano. = Mateo is Italian.
+Como estás? = How are you?
+Estão a estudar juntos. = They are studying together.
+A cama é grande. = The bed is big.`});
+
+// ======================= APP =======================
+var T = {
+ pt:{sub:'Aulas 10–13 · Português europeu', other:'English', study:'Estudar', list:'Lista de palavras',
+  dir:{'pt-en':'Português','en-pt':'Inglês','mix':'Misturado'}, mode:{learn:'Aprender',flip:'Cartões',type:'Escrever',practice:'Praticar',list:'Lista'},
+  studying:'A estudar', change:'Mudar', closeP:'Fechar', setTitle:'Definições', dirLbl:'Mostrar primeiro', done:'Pronto',
+  nWords:function(n){return n+' palavras';}, some:'alguns temas', nothing:'Nada escolhido', everything:'Tudo',
+  oneTopics:function(n){return 'Escolher temas soltos ('+n+')';},
+  stats:function(r,a){return r+' certas'+(a?' · '+a+' a repetir':'');},
+  undoBtn:'Desfazer', markedKnow:'Sabia', markedAgain:'Volta a aparecer', resumed:function(n){return 'A continuar no cartão '+n;}, startOver:'Recomeçar',
+  swipeFlip:'Desliza para a direita se sabias, para a esquerda para repetir', swipeLearn:'Desliza para mudar de cartão',
+  prev:'Anterior', practise:'Praticar com flashcards', keysLearn:'Teclado: ← anterior · → seguinte · espaço ouve · no telemóvel, desliza o cartão',
+  round:'Ronda', all:'todas', weak:'Só as que ainda não sei', topics:'Temas', topicsN:function(a,b){return 'Temas: '+a+' de '+b+' escolhidos';},
+  selAll:'Escolher todos', selNone:'Limpar', selGroup:'Escolher todos', unselGroup:'Tirar todos', card:'Cartão', of:'de', know:'Sei', dont:'Repetir', show:'Mostrar resposta',
+  tap:'Toca no cartão para virar', check:'Verificar', next:'Seguinte', placeholder:'Escreve a resposta…', listen:'Ouvir',
+  right:'Certo!', almost:'Quase! Atenção aos acentos.', wrong:'Ainda não.', yours:'Escreveste: ', iwasright:'Eu tinha razão',
+  keysFlip:'Teclado: espaço vira · → sei · ← repetir', keysType:'Teclado: Enter verifica e avança',
+  doneT:'Ronda acabada!', firstTry:'à primeira', repeated:'repetidas', mastered:'palavras que já sabes',
+  toReview:'Para rever', newRound:'Nova ronda', allKnown:'Já sabes todas as palavras destes temas! 🎉',
+  includeAll:'Estudar também as que já sei', noTopics:'Escolhe pelo menos um tema para começar.', openTopics:'Escolher temas',
+  search:'Procurar em português ou inglês…', allCats:'Todos os temas',
+  legNew:'por estudar', legLearn:'a aprender', legKnown:'já sei', totals:function(k,n){return 'Já sabes '+k+' de '+n+' palavras e frases';},
+  reset:'Apagar o progresso', resetQ:'Apagar tudo?', yes:'Sim, apagar', no:'Não', pt:'PORTUGUÊS', en:'INGLÊS', nores:'Nada encontrado.'},
+ en:{sub:'Aulas 10–13 · European Portuguese', other:'Português', study:'Study', list:'Word list',
+  dir:{'pt-en':'Portuguese','en-pt':'English','mix':'Mixed'}, mode:{learn:'Learn',flip:'Cards',type:'Type',practice:'Practice',list:'Words'},
+  studying:'Studying', change:'Change', closeP:'Close', setTitle:'Settings', dirLbl:'Show first', done:'Done',
+  nWords:function(n){return n+' words';}, some:'some topics', nothing:'Nothing chosen yet', everything:'Everything',
+  oneTopics:function(n){return 'Choose single topics ('+n+')';},
+  stats:function(r,a){return r+' right'+(a?' · '+a+' to repeat':'');},
+  undoBtn:'Undo', markedKnow:'Known', markedAgain:'Will come back', resumed:function(n){return 'Continuing from card '+n;}, startOver:'Start over',
+  swipeFlip:'Swipe right if you knew it, left to see it again', swipeLearn:'Swipe left or right to change card',
+  prev:'Previous', practise:'Practise these as flashcards', keysLearn:'Keys: ← previous · → next · space to listen · on a phone, swipe the card',
+  round:'Cards per round', all:'all', weak:'Only words I don’t know yet', topics:'Topics', topicsN:function(a,b){return 'Topics & settings · '+a+' of '+b+' topics';},
+  selAll:'Choose all topics', selNone:'Clear all', selGroup:'Select all', unselGroup:'Deselect all', card:'Card', of:'of', know:'I know it', dont:'Again', show:'Show answer',
+  tap:'Tap the card to flip it', check:'Check', next:'Next', placeholder:'Type the answer…', listen:'Listen',
+  right:'Correct!', almost:'Almost! Watch the accents.', wrong:'Not yet.', yours:'You wrote: ', iwasright:'I was right',
+  keysFlip:'Keys: space flips · → know · ← again', keysType:'Keys: Enter checks and moves on',
+  doneT:'Round finished!', firstTry:'first try', repeated:'repeated', mastered:'words you already know',
+  toReview:'To review', newRound:'New round', allKnown:'You already know every word in these topics! 🎉',
+  includeAll:'Also study the ones I know', noTopics:'Choose at least one topic to start.', openTopics:'Choose topics',
+  search:'Search in Portuguese or English…', allCats:'All topics',
+  legNew:'not studied', legLearn:'learning', legKnown:'known', totals:function(k,n){return 'You know '+k+' of '+n+' words and phrases';},
+  reset:'Reset progress', resetQ:'Erase everything?', yes:'Yes, erase', no:'No', pt:'PORTUGUESE', en:'ENGLISH', nores:'Nothing found.'}
+};
+var KNOWN_BOX = 3;
+function load(k, d){ try{ var v = localStorage.getItem(k); return v ? Object.assign({}, d, JSON.parse(v)) : d; }catch(e){ return d; } }
+function store(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+var S = load('p103-settings', {lang:'pt', dir:'pt-en', mode:'flip', round:20, weak:false, cats:null});
+S.lang = 'en'; // interface always in English
+var P = load('p103-progress', {});
+function L(){ return T[S.lang]; }
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+// build items
+var ITEMS = [], BYCAT = {};
+CATS.forEach(function(c){
+  var arr = c.items ? c.items.slice() : c.d.split('\n').map(function(l){ return l.trim(); }).filter(Boolean).map(function(l){
+    var i = l.indexOf(' = '); return {pt: l.slice(0,i).trim(), en: l.slice(i+3).trim()};
+  });
+  arr.forEach(function(it){ it.cat = c.id; it.key = it.pt; ITEMS.push(it); });
+  BYCAT[c.id] = arr;
+});
+var UNIQUE = {}; ITEMS.forEach(function(it){ UNIQUE[it.key] = 1; });
+var NUNIQUE = Object.keys(UNIQUE).length;
+if(!S.cats) S.cats = CATS.filter(function(c){ return c.g !== 'gram'; }).map(function(c){ return c.id; });
+S.cats = S.cats.filter(function(id){ return BYCAT[id]; });
+function catOf(id){ for(var i=0;i<CATS.length;i++) if(CATS[i].id===id) return CATS[i]; }
+function box(key){ return P[key] ? P[key].b : 0; }
+function level(key){ var b = box(key); if(!P[key]) return 0; return b >= KNOWN_BOX ? 2 : 1; }
+
+// speech
+var VOICE = null;
+function pickVoice(){
+  if(!('speechSynthesis' in window)) return;
+  var vs = speechSynthesis.getVoices();
+  VOICE = vs.find(function(v){ return /pt[-_]PT/i.test(v.lang); }) || vs.find(function(v){ return /^pt/i.test(v.lang); }) || null;
+}
+if('speechSynthesis' in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function sayable(s){
+  return s.replace(/\([^)]*\)/g,' ').replace(/\/(?:a|os|as|es)(?:\/(?:os|as))*(?=[\s.,!?…]|$)/g,'').replace(/\s\/\s/g,', ').replace(/…/g,'').trim();
+}
+function speak(s){
+  if(!('speechSynthesis' in window)) return;
+  try{
+    speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(sayable(s));
+    u.lang = VOICE ? VOICE.lang : 'pt-PT'; if(VOICE) u.voice = VOICE; u.rate = 0.9;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+var SPK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+var CAN_SPEAK = 'speechSynthesis' in window;
+
+// answer checking
+function norm(s){ return s.toLowerCase().replace(/\([^)]*\)/g,' ').replace(/[.,!?¡¿…"“”:;]/g,' ').replace(/\s+/g,' ').trim(); }
+function plain(s){ return s.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/-/g,' ').replace(/['’]/g,'').replace(/\s+/g,' ').trim(); }
+function stripLead(s, lang){
+  return lang === 'pt' ? s.replace(/^(o|a|os|as|um|uma) /,'') : s.replace(/^(to|the|a|an) /,'');
+}
+function variants(it, lang){
+  if(it.form){
+    if(lang === 'en') return [it.verb, norm(it.verb), plain(it.verb)];
+    var o = [norm(it.pt), it.form];
+    it.pron.split('/').forEach(function(p){ o.push(norm(p)+' '+it.form); });
+    return o;
+  }
+  var src = lang === 'pt' ? it.pt : it.en, out = {};
+  var base = src.replace(/\([^)]*\)/g,' ');
+  var parts = [base].concat(base.split(/\s*\/\s*|\s*·\s*/));
+  if(lang === 'en') parts = parts.concat(base.split(/\s*,\s*|\s*\/\s*/));
+  parts.forEach(function(p){
+    p = p.replace(/\/(?:a|os|as|es)(?:\/(?:os|as))*$/,'');
+    var n = norm(p); if(n.length < 2 && norm(base).length >= 2) return;
+    out[n] = 1; out[stripLead(n, lang)] = 1;
+  });
+  if(lang === 'pt' && /\/a\b/.test(src)) out[norm(src.replace(/\/a\b.*$/,''))] = 1;
+  return Object.keys(out).filter(Boolean);
+}
+function checkAnswer(it, lang, ans){
+  var a = norm(ans); if(!a) return 'wrong';
+  var vs = variants(it, lang), a2 = stripLead(a, lang);
+  if(vs.indexOf(a) >= 0 || vs.indexOf(a2) >= 0) return 'right';
+  var pa = plain(a), pa2 = plain(a2);
+  for(var i=0;i<vs.length;i++){ var pv = plain(vs[i]); if(pv === pa || pv === pa2) return 'almost'; }
+  return 'wrong';
+}
+
+// session
+var R = null; // {queue, total, done, firstOk, wrongKeys, cur, flipped, checked, result}
+function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function deck(includeKnown){
+  var seen = {}, out = [];
+  CATS.forEach(function(c){ if(S.cats.indexOf(c.id) < 0) return; BYCAT[c.id].forEach(function(it){ if(!seen[it.key]){ seen[it.key]=1; out.push(it); } }); });
+  if(S.weak && !includeKnown) out = out.filter(function(it){ return box(it.key) < KNOWN_BOX; });
+  return out;
+}
+function newRound(includeKnown){
+  var d = shuffle(deck(includeKnown));
+  d.sort(function(a,b){ return box(a.key) - box(b.key); });
+  var n = +S.round || d.length;
+  var q = d.slice(0, n).map(function(it){ return {it:it, dir: S.dir === 'mix' ? (Math.random() < .5 ? 'pt-en' : 'en-pt') : S.dir, miss:false}; });
+  shuffle(q);
+  R = {queue:q, total:q.length, done:0, firstOk:0, missed:[], flipped:false, checked:false, result:null};
+  var ld = deck(); if(!ld.length) ld = deck(true);
+  var lk = learnKey();
+  LR = {list: ld, i: Math.max(0, Math.min(LPOS[lk] || 0, ld.length - 1)), key: lk};
+  UNDO = null;
+  instant(renderStudy);
+}
+var LR = {list: [], i: 0};
+var LPOS = load('p103-learnpos', {});
+function learnKey(){ return S.cats.slice().sort().join(',') + (S.weak ? '|weak' : ''); }
+function saveLearnPos(){ LPOS[LR.key] = LR.i; store('p103-learnpos', LPOS); }
+function learnStep(d){
+  if(!LR.list.length) return;
+  var ni = Math.max(0, Math.min(LR.list.length - 1, LR.i + d));
+  if(ni === LR.i) return;
+  LR.i = ni; saveLearnPos();
+  instant(renderStudy);
+}
+function learnRestart(){ LR.i = 0; saveLearnPos(); instant(renderStudy); }
+// change cards without the flip animation (so the next answer is never shown), then slide the new card in
+function instant(fn){
+  var card = $('card'), sc = card.parentNode;
+  card.classList.add('noanim'); fn(); void card.offsetWidth; card.classList.remove('noanim');
+  sc.classList.remove('enter'); void sc.offsetWidth; sc.classList.add('enter');
+}
+// small message at the bottom (with an optional button, e.g. Undo)
+var toastT = null, toastFn = null;
+function toast(msg, btn, fn){
+  var el = $('toast'), b = $('toastBtn');
+  $('toastMsg').textContent = msg; b.hidden = !btn; b.textContent = btn || ''; toastFn = fn || null;
+  el.hidden = false; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(hideToast, 4500);
+}
+function hideToast(){ var el = $('toast'); el.classList.remove('show'); setTimeout(function(){ if(!el.classList.contains('show')) el.hidden = true; }, 250); }
+// undo the last answer
+var UNDO = null;
+function undo(){
+  if(!UNDO || UNDO.R !== R) return;
+  R.queue = UNDO.queue.map(function(x){ x.c.miss = x.miss; return x.c; });
+  R.done = UNDO.done; R.firstOk = UNDO.firstOk; R.missed = UNDO.missed;
+  if(UNDO.prev) P[UNDO.key] = UNDO.prev; else delete P[UNDO.key];
+  store('p103-progress', P);
+  R.flipped = false; R.checked = false; R.result = null; R.typed = '';
+  UNDO = null; hideToast();
+  instant(renderStudy); renderTopics(); renderTotals();
+}
+function renderLearn(){
+  var t = L(), list = LR.list;
+  if(!list.length) return;
+  $('player').hidden = false;
+  var it = list[LR.i], cat = catOf(it.cat), last = LR.i === list.length - 1;
+  $('stRound').textContent = t.card + ' ' + (LR.i + 1) + ' ' + t.of + ' ' + list.length;
+  $('stCounts').innerHTML = LR.i > 0 ? '<button type="button" class="linkbtn" data-act="restart">↺ '+t.startOver+'</button>' : '';
+  $('swipeHint').textContent = t.swipeLearn;
+  $('barFill').style.width = ((LR.i + 1) / list.length * 100) + '%';
+  var card = $('card');
+  card.classList.remove('flipped');
+  card.setAttribute('aria-label', it.pt + ' — ' + it.en);
+  $('fTag').textContent = cat[S.lang]; $('fLang').textContent = t.pt;
+  setWord($('fWord'), it.pt);
+  var tr = $('fTrans'); tr.hidden = false; tr.textContent = it.en;
+  $('fHint').textContent = '';
+  var fs = $('fSpeak'); fs.hidden = !CAN_SPEAK; fs.innerHTML = SPK + t.listen;
+  $('typeArea').hidden = true;
+  var act = $('actions');
+  act.className = 'actions';
+  act.innerHTML = '<button class="btn plain" type="button" data-act="prev"'+(LR.i === 0 ? ' disabled' : '')+'><kbd>←</kbd> '+t.prev+'</button>'
+    + (last ? '<button class="btn primary" type="button" data-act="practise">'+t.practise+'</button>'
+            : '<button class="btn primary" type="button" data-act="next">'+t.next+' <kbd>→</kbd></button>');
+  $('keys').textContent = t.keysLearn;
+}
+function cur(){ return R && R.queue[0]; }
+function grade(known){
+  var c = cur(); if(!c) return;
+  var k = c.it.key;
+  UNDO = {R: R, queue: R.queue.map(function(x){ return {c:x, miss:x.miss}; }), done: R.done, firstOk: R.firstOk, missed: R.missed.slice(), key: k, prev: P[k] ? Object.assign({}, P[k]) : null};
+  var p = P[k] ? Object.assign({}, P[k]) : {b:0, n:0, w:0};
+  p.n++;
+  if(known){
+    p.b = c.miss ? Math.max(1, p.b) : Math.min(p.b + 1, 5);
+    R.queue.shift(); R.done++; if(!c.miss) R.firstOk++;
+  } else {
+    p.b = 0; p.w++;
+    if(!c.miss){ c.miss = true; R.missed.push(c.it); }
+    R.queue.shift();
+    R.queue.splice(Math.min(3, R.queue.length), 0, c);
+  }
+  P[k] = p; store('p103-progress', P);
+  R.flipped = false; R.checked = false; R.result = null;
+  instant(renderStudy); renderTopics(); renderTotals();
+  var t = L();
+  toast((known ? t.markedKnow : t.markedAgain) + ': ' + c.it.pt, t.undoBtn, undo);
+}
+
+// render
+function renderChrome(){
+  var t = L();
+  document.documentElement.lang = S.lang === 'pt' ? 'pt-PT' : 'en';
+  $('sub').textContent = t.sub; $('uiLang').textContent = t.other;
+  var view = currentView();
+  var ICO = {learn:'<path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/>',
+    flip:'<rect x="3" y="6" width="13" height="14" rx="2.5"/><path d="M8 3h10.5A2.5 2.5 0 0 1 21 5.5V16"/>',
+    type:'<rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/>',
+    list:'<path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/>',
+    practice:'<path d="M9 3h6v3a2 2 0 1 0 4 0V3h0a2 2 0 0 1 2 2v4h-3a2 2 0 1 0 0 4h3v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6h3a2 2 0 1 0 0-4H3V5a2 2 0 0 1 2-2h4z"/>'};
+  $('views').innerHTML = ['learn','flip','type','practice','list'].map(function(m){
+    return '<button type="button" data-view="'+m+'" aria-pressed="'+(view===m)+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICO[m]+'</svg><span>'+t.mode[m]+'</span></button>';
+  }).join('');
+  $('dirSeg').innerHTML = ['pt-en','en-pt','mix'].map(function(d){ return '<button type="button" data-dir="'+d+'" aria-pressed="'+(S.dir===d)+'">'+t.dir[d]+'</button>'; }).join('');
+  $('dirRow').hidden = S.mode === 'learn'; $('roundWrap').hidden = S.mode === 'learn';
+  $('lblDir').textContent = t.dirLbl; $('setTitle').textContent = t.setTitle; $('doneBtn').textContent = t.done;
+  $('topicsLabel').textContent = t.studying;
+  $('lblRound').textContent = t.round; $('roundSize').value = String(S.round); $('roundSize').options[3].textContent = t.all;
+  $('lblWeak').textContent = t.weak; $('weakOnly').checked = !!S.weak;
+  $('answer').placeholder = t.placeholder; $('checkBtn').textContent = t.check;
+  $('search').placeholder = t.search;
+  $('legend').innerHTML = '<span><i class="dot"></i>'+t.legNew+'</span><span><i class="dot l1"></i>'+t.legLearn+'</span><span><i class="dot l2"></i>'+t.legKnown+'</span>';
+  var lc = $('listCat'), v = lc.value || 'all';
+  lc.innerHTML = '<option value="all">'+t.allCats+'</option>' + CATS.map(function(c){ return '<option value="'+c.id+'">'+esc(c[S.lang])+'</option>'; }).join('');
+  lc.value = v;
+  $('accents').innerHTML = ['á','à','â','ã','é','ê','í','ó','ô','õ','ú','ç'].map(function(ch){ return '<button type="button" data-ch="'+ch+'">'+ch+'</button>'; }).join('');
+  renderTopics(); renderTotals(); resetFooter();
+}
+function renderTopics(){
+  var t = L(), open = {}, names = [], full = 0;
+  document.querySelectorAll('.grp-more[open]').forEach(function(d){ open[d.dataset.g] = 1; });
+  $('topicGroups').innerHTML = GROUPS.map(function(g){
+    var gc = CATS.filter(function(c){ return c.g===g.id; });
+    var on = gc.filter(function(c){ return S.cats.indexOf(c.id)>=0; }).length;
+    var state = on === gc.length ? 'true' : on ? 'mixed' : 'false';
+    if(on){ names.push(g[S.lang] + (on < gc.length ? ' (' + t.some + ')' : '')); if(on === gc.length) full++; }
+    var seen = {}; gc.forEach(function(c){ BYCAT[c.id].forEach(function(it){ seen[it.key] = 1; }); });
+    return '<div class="grp"><button type="button" class="grp-row" data-grp="'+g.id+'" data-on="'+(state==='true'?1:0)+'" aria-pressed="'+state+'">'
+      + '<span class="tick" aria-hidden="true"></span><span class="grp-txt"><span class="grp-name">'+esc(g[S.lang])+'</span><span class="grp-meta">'+esc(g.aula)+' · '+t.nWords(Object.keys(seen).length)+'</span></span></button>'
+      + '<details class="grp-more" data-g="'+g.id+'"'+(open[g.id]?' open':'')+'><summary>'+t.oneTopics(gc.length)+'</summary><div class="chips">' + gc.map(function(c){
+        var its = BYCAT[c.id], k = its.filter(function(it){ return level(it.key)===2; }).length;
+        return '<button type="button" class="chip" data-cat="'+c.id+'" aria-pressed="'+(S.cats.indexOf(c.id)>=0)+'">'+esc(c[S.lang])+' <small>'+k+'/'+its.length+'</small></button>';
+      }).join('') + '</div></details></div>';
+  }).join('');
+  $('topicsTitle').textContent = !names.length ? t.nothing : full === GROUPS.length ? t.everything : names.join(', ');
+  $('topicsBtn').textContent = $('topics').open ? t.closeP : t.change;
+}
+function renderTotals(){
+  var k = Object.keys(UNIQUE).filter(function(key){ return level(key)===2; }).length;
+  $('totals').textContent = L().totals(k, NUNIQUE);
+}
+function resetFooter(){ $('resetWrap').innerHTML = '<button class="ghost" type="button" id="resetBtn">'+L().reset+'</button>'; }
+function setWord(el, s){ el.textContent = s; el.classList.toggle('long', s.length > 34); }
+function renderStudy(){
+  var t = L();
+  var player = $('player'), sum = $('summary'), emp = $('emptyDeck');
+  player.hidden = true; sum.hidden = true; emp.hidden = true;
+  if(!S.cats.length){
+    emp.hidden = false;
+    emp.className = 'empty';
+    emp.innerHTML = '<div>'+t.noTopics+'</div><button class="btn primary" type="button" data-act="opentopics">'+t.openTopics+'</button>';
+    return;
+  }
+  if(S.mode === 'learn'){ renderLearn(); return; }
+  $('fTrans').hidden = true;
+  if(!R) return;
+  if(R.total === 0){
+    emp.hidden = false; emp.className = 'empty';
+    emp.innerHTML = '<div>'+t.allKnown+'</div><button class="btn primary" type="button" data-act="includeall">'+t.includeAll+'</button>';
+    return;
+  }
+  var c = cur();
+  if(!c){ renderSummary(); return; }
+  player.hidden = false;
+  var it = c.it, cat = catOf(it.cat), front = c.dir === 'pt-en' ? 'pt' : 'en', back = front === 'pt' ? 'en' : 'pt';
+  $('stRound').textContent = t.card + ' ' + Math.min(R.done + 1, R.total) + ' ' + t.of + ' ' + R.total;
+  $('stCounts').textContent = R.done || R.missed.length ? t.stats(R.firstOk, R.missed.length) : '';
+  $('swipeHint').textContent = S.mode === 'flip' && R.flipped ? t.swipeFlip : '';
+  $('barFill').style.width = (R.done / R.total * 100) + '%';
+  $('fTag').textContent = cat[S.lang]; $('bTag').textContent = cat[S.lang];
+  $('fLang').textContent = t[front]; $('bLang').textContent = t[back];
+  setWord($('fWord'), it[front]); setWord($('bWord'), it[back]);
+  var typing = S.mode === 'type';
+  $('fHint').textContent = typing ? '' : t.tap;
+  var fs = $('fSpeak'), bs = $('bSpeak');
+  fs.hidden = !(CAN_SPEAK && front === 'pt'); bs.hidden = !CAN_SPEAK;
+  fs.innerHTML = SPK + t.listen; bs.innerHTML = SPK + t.listen;
+  var card = $('card');
+  card.classList.toggle('flipped', R.flipped);
+  card.setAttribute('aria-label', R.flipped ? it[back] : it[front]);
+  var fb = $('bFeedback'), yrs = $('bYours');
+  fb.hidden = true; yrs.hidden = true;
+  $('typeArea').hidden = !typing;
+  var act = $('actions');
+  if(typing){
+    var inp = $('answer');
+    inp.disabled = R.checked; inp.lang = back === 'pt' ? 'pt-PT' : 'en';
+    $('checkBtn').hidden = R.checked;
+    $('accents').hidden = back !== 'pt' || R.checked;
+    if(R.checked){
+      fb.hidden = false;
+      fb.className = 'feedback ' + (R.result === 'right' ? 'ok' : R.result === 'almost' ? 'warn' : 'bad');
+      fb.textContent = R.result === 'right' ? t.right : R.result === 'almost' ? t.almost : t.wrong;
+      if(R.result !== 'right' && R.typed){ yrs.hidden = false; yrs.textContent = t.yours + R.typed; }
+      var ok = R.result !== 'wrong';
+      act.className = ok ? 'actions one' : 'actions';
+      act.innerHTML = ok ? '<button class="btn primary" type="button" data-act="next-ok">'+t.next+' <kbd>Enter</kbd></button>'
+        : '<button class="btn plain" type="button" data-act="override">'+t.iwasright+'</button><button class="btn primary" type="button" data-act="next-bad">'+t.next+' <kbd>Enter</kbd></button>';
+    } else {
+      act.className = 'actions one'; act.innerHTML = '';
+      inp.value = '';
+      setTimeout(function(){ if(!$('study').hidden) inp.focus(); }, 30);
+    }
+    $('keys').textContent = t.keysType;
+  } else {
+    if(!R.flipped){ act.className = 'actions one'; act.innerHTML = '<button class="btn primary" type="button" data-act="flip">'+t.show+' <kbd>Espaço</kbd></button>'; }
+    else { act.className = 'actions'; act.innerHTML = '<button class="btn no" type="button" data-act="no"><kbd>←</kbd> '+t.dont+'</button><button class="btn yes" type="button" data-act="yes">'+t.know+' <kbd>→</kbd></button>'; }
+    if(S.lang === 'en') act.innerHTML = act.innerHTML.replace('Espaço','Space');
+    $('keys').textContent = t.keysFlip;
+  }
+}
+function renderSummary(){
+  var t = L(), sum = $('summary');
+  sum.hidden = false; sum.className = 'summary';
+  var known = Object.keys(UNIQUE).filter(function(key){ return level(key)===2; }).length;
+  sum.innerHTML = '<h2>'+t.doneT+'</h2><div class="nums"><div><b>'+R.firstOk+'/'+R.total+'</b><span>'+t.firstTry+'</span></div><div><b>'+R.missed.length+'</b><span>'+t.repeated+'</span></div><div><b>'+known+'</b><span>'+t.mastered+'</span></div></div>'
+    + (R.missed.length ? '<div><strong>'+t.toReview+'</strong><div class="review">' + R.missed.map(function(it){ return '<div><span>'+esc(it.pt)+'</span><span>'+esc(it.en)+'</span></div>'; }).join('') + '</div></div>' : '')
+    + '<button class="btn primary" type="button" data-act="newround">'+t.newRound+'</button>';
+  $('barFill').style.width = '100%';
+}
+function renderList(){
+  var t = L(), q = plain(norm($('search').value || '')), sel = $('listCat').value || 'all';
+  var html = CATS.filter(function(c){ return sel === 'all' || c.id === sel; }).map(function(c){
+    var rows = BYCAT[c.id].filter(function(it){ return !q || plain(norm(it.pt)).indexOf(q) >= 0 || plain(norm(it.en)).indexOf(q) >= 0; });
+    if(!rows.length) return '';
+    return '<div class="lgroup"><h3>'+esc(c[S.lang])+' <small>'+rows.length+'</small></h3>' + rows.map(function(it){
+      var lv = level(it.key);
+      return '<div class="row"><i class="dot'+(lv?' l'+lv:'')+'" title="'+[t.legNew,t.legLearn,t.legKnown][lv]+'"></i><span class="pt" lang="pt-PT">'+esc(it.pt)+'</span><span class="en">'+esc(it.en)+'</span>'
+        + (CAN_SPEAK ? '<button class="speak" type="button" data-say="'+esc(it.pt)+'" aria-label="'+t.listen+'">'+SPK+'</button>' : '<span></span>') + '</div>';
+    }).join('') + '</div>';
+  }).join('');
+  $('listBody').innerHTML = html || '<p>'+t.nores+'</p>';
+}
+function showTab(which){
+  $('study').hidden = which !== 'study'; $('list').hidden = which !== 'list'; $('practice').hidden = which !== 'practice';
+  document.querySelectorAll('#views button').forEach(function(btn){ btn.setAttribute('aria-pressed', which === 'study' ? btn.dataset.view === S.mode : btn.dataset.view === which); });
+  if(which === 'list') renderList();
+  if(which === 'practice') pHome();
+  hideToast();
+}
+function currentView(){
+  if(!$('list').hidden) return 'list';
+  if(!$('practice').hidden) return 'practice';
+  return S.mode;
+}
+function saveS(){ store('p103-settings', S); }
+
+// ======================= PRACTICE (exercises from the study guide) =======================
+var PX = load('p103-practice', {});   // {activity: {id: {r: right, w: wrong, s: 1 right last time / 2 wrong last time}}}
+function pxRec(act, id, ok){ var a = PX[act] || (PX[act] = {}); var o = a[id] || {r:0, w:0, s:0}; if(ok){ o.r++; o.s = 1; } else { o.w++; o.s = 2; } a[id] = o; store('p103-practice', PX); }
+function pxS(act, id){ var o = (PX[act] || {})[id]; return o ? o.s : 0; }
+function pxRight(act, items){ return items.filter(function(it){ return pxS(act, it.id) === 1; }).length; }
+// wrong last time first, then never seen, then the ones already right
+function pickRound(act, items, n){
+  var g = [[], [], []];
+  items.forEach(function(it){ var s = pxS(act, it.id); g[s === 2 ? 0 : s === 0 ? 1 : 2].push(it); });
+  return shuffle(shuffle(g[0]).concat(shuffle(g[1]), shuffle(g[2])).slice(0, n));
+}
+function pnorm(s){ return String(s || '').toLowerCase().replace(/[.,!?¡¿…"“”;:]/g, ' ').replace(/\s+/g, ' ').trim(); }
+function accentBar(target){ return '<div class="accents">' + ['à','á','â','ã','é','ê','í','ó','ô','õ','ú','ç'].map(function(ch){ return '<button type="button" data-ch="'+ch+'" data-target="'+target+'">'+ch+'</button>'; }).join('') + '</div>'; }
+
+// ---------- A. Grammar ----------
+var GTOPICS = [
+  {id:'verbs', en:'Verb forms'}, {id:'serestar', en:'Ser or estar'}, {id:'hatem', en:'Há, ter, ficar'},
+  {id:'demo', en:'This & that'}, {id:'quant', en:'Muito, pouco, algum…'}, {id:'contr', en:'Contractions'},
+  {id:'plural', en:'Plurals'}, {id:'agree', en:'Adjective endings'}, {id:'polite', en:'Ordering & likes'}
+];
+var GS = {
+ serestar:[
+  ['A casa ___ moderna.','The house is modern.',['é'],'SER: a characteristic — what the house is like.'],
+  ['Os pratos ___ na cozinha.','The plates are in the kitchen.',['estão'],'ESTAR: where movable things are.'],
+  ['Nós ___ estudantes.','We are students.',['somos'],'SER: identity — who someone is.'],
+  ['Hoje ___ muito frio.','Today it is very cold.',['está'],'ESTAR: weather.'],
+  ['O apartamento ___ espaçoso.','The apartment is spacious.',['é'],'SER: a stable description.'],
+  ['Eles ___ a estudar juntos.','They are studying together.',['estão'],'ESTAR a + infinitive: something happening right now.'],
+  ['O apartamento ___ renovado.','The apartment is renovated.',['está'],'ESTAR: a condition that changed (it has been renovated).'],
+  ['Como ___ ? (tu)','How are you?',['estás'],'ESTAR: greetings and how someone is.'],
+  ['O Mateo ___ italiano.','Mateo is Italian.',['é'],'SER: nationality / identity.'],
+  ['A máquina de lavar roupa ___ na casa de banho.','The washing machine is in the bathroom.',['está'],'ESTAR: where an object is.'],
+  ['A cama ___ grande.','The bed is big.',['é'],'SER: what the bed is like.'],
+  ['___ a chover!','It is raining!',['está'],'ESTAR: weather (Está a chover).'],
+  ['O céu ___ nublado.','The sky is cloudy.',['está'],'ESTAR: the weather right now.'],
+  ['Estas calças ___ em promoção.','These trousers are on sale.',['estão'],'ESTAR: a temporary situation (on sale now).'],
+  ['Essas calças ___ giras.','Those trousers are nice.',['são'],'SER: what the trousers are like.'],
+  ['O apartamento ___ na Rua Gomes Freire.','The apartment is on Rua Gomes Freire.',['é','fica'],'A fixed address: SER (as on the slide) or FICAR.']
+ ],
+ hatem:[
+  ['Nesta casa ___ duas casas de banho.','In this house there are two bathrooms.',['há'],'HÁ = there is / there are (something exists there).'],
+  ['Esta casa ___ duas casas de banho.','This house has two bathrooms.',['tem'],'TER = to have (the house has them).'],
+  ['No meu apartamento ___ dois quartos.','In my apartment there are two bedrooms.',['há'],'HÁ = there are.'],
+  ['A casa nova ___ cinco quartos.','The new house has five bedrooms.',['tem'],'TER = has.'],
+  ['Não ___ ninguém na piscina.','There is nobody in the pool.',['há'],'HÁ = there is (here: there is nobody).'],
+  ['Onde ___ o teu apartamento?','Where is your apartment (located)?',['fica'],'FICAR = to be located (for places that do not move).'],
+  ['O apartamento ___ por trás do hospital.','The apartment is behind the hospital.',['fica','é'],'FICAR: the location of a building.'],
+  ['Eu ___ uma casa no campo.','I have a house in the countryside.',['tenho'],'TER: eu tenho = I have.'],
+  ['Nós ___ uma casa geminada.','We have a semi-detached house.',['temos'],'TER: nós temos = we have.']
+ ],
+ demo:[
+  ['O que é ___ ? (the thing is in my hand)','What is this?',['isto'],'ISTO = this thing, near me (the speaker).'],
+  ['O que é ___ ? (the thing is near you, the listener)','What is that?',['isso'],'ISSO = that thing, near the person you talk to.'],
+  ['O que é ___ ? (the thing is far from both of us)','What is that over there?',['aquilo'],'AQUILO = that thing, far from both.'],
+  ['___ vestido é bonito. (near me)','This dress is pretty.',['este'],'ESTE: masculine singular (o vestido), near me.'],
+  ['___ encomenda é para ti. (near me)','This parcel is for you.',['esta'],'ESTA: feminine singular (a encomenda), near me.'],
+  ['___ sapatos são caros. (near me)','These shoes are expensive.',['estes'],'ESTES: masculine plural (os sapatos), near me.'],
+  ['___ calças são giras. (near you)','Those trousers are nice.',['essas'],'ESSAS: feminine plural (as calças), near you.'],
+  ['___ vestido é caro. (near you)','That dress is expensive.',['esse'],'ESSE: masculine singular (o vestido), near you.'],
+  ['___ sapatos são pretos. (far from both)','Those shoes over there are black.',['aqueles'],'AQUELES: masculine plural, far from both.'],
+  ['___ encomenda é grande. (far from both)','That parcel over there is big.',['aquela'],'AQUELA: feminine singular, far from both.'],
+  ['___ janela dá para o jardim. (near me)','This window faces the garden.',['esta'],'ESTA: feminine singular (a janela), near me.']
+ ],
+ quant:[
+  ['Vou a ___ restaurantes. (many)','I go to many restaurants.',['muitos'],'MUITOS: masculine plural (os restaurantes).'],
+  ['Adoro fazer ___ compras. (some)','I love doing some shopping.',['algumas'],'ALGUMAS: feminine plural (as compras).'],
+  ['Eu conheço ___ festivais. (few)','I know few festivals.',['poucos'],'POUCOS: masculine plural (os festivais).'],
+  ['Não conheço ___ restaurante aqui perto. (none)','I do not know any restaurant near here.',['nenhum'],'NENHUM: masculine singular (o restaurante).'],
+  ['Há ___ árvores no jardim. (many)','There are many trees in the garden.',['muitas'],'MUITAS: feminine plural (as árvores).'],
+  ['Há ___ água no frigorífico. (little)','There is little water in the fridge.',['pouca'],'POUCA: feminine singular (a água).'],
+  ['Queria ___ café, por favor. (another)','I would like another coffee, please.',['outro'],'OUTRO: masculine singular (o café). No "um" before outro.'],
+  ['Não há ___ cadeira na cozinha. (no / not any)','There is no chair in the kitchen.',['nenhuma'],'NENHUMA: feminine singular (a cadeira).'],
+  ['Tens ___ malas? (some)','Do you have some suitcases?',['algumas'],'ALGUMAS: feminine plural (as malas).'],
+  ['Há ___ neve na montanha. (a lot of)','There is a lot of snow on the mountain.',['muita'],'MUITA: feminine singular (a neve).']
+ ],
+ contr:[
+  ['Vou ___ praia.','I am going to the beach.',['à'],'a + a = à (a praia is feminine).'],
+  ['Vou ___ mar.','I am going to the sea.',['ao'],'a + o = ao (o mar is masculine).'],
+  ['O quarto ___ apartamento é grande.','The bedroom of the apartment is big.',['do'],'de + o = do (o apartamento).'],
+  ['A porta ___ garagem é branca.','The garage door is white.',['da'],'de + a = da (a garagem).'],
+  ['Moro ___ campo.','I live in the countryside.',['no'],'em + o = no (o campo).'],
+  ['Moro ___ cidade.','I live in the city.',['na'],'em + a = na (a cidade).'],
+  ['Gosto de passear ___ ruas.','I like to stroll through the streets.',['pelas'],'por + as = pelas (as ruas).'],
+  ['Gosto de ir ___ Algarve em junho.','I like going to the Algarve in June.',['ao'],'a + o = ao (o Algarve).'],
+  ['Os pratos estão ___ cozinha.','The plates are in the kitchen.',['na'],'em + a = na (a cozinha).'],
+  ['Passeamos ___ jardim.','We walk through the garden.',['pelo'],'por + o = pelo (o jardim).'],
+  ['As janelas ___ quartos são grandes.','The windows of the bedrooms are big.',['dos'],'de + os = dos (os quartos).']
+ ],
+ plural:[
+  ['uma casa → duas ___','one house → two houses',['casas'],'Ends in -a: add -s.'],
+  ['um copo → dois ___','one glass → two glasses',['copos'],'Ends in -o: add -s.'],
+  ['um jantar → dois ___','one dinner → two dinners',['jantares'],'Ends in -r: add -es.'],
+  ['um pudim → dois ___','one pudding → two puddings',['pudins'],'Ends in -m: change it to -ns.'],
+  ['um som → dois ___','one sound → two sounds',['sons'],'Ends in -m: change it to -ns.'],
+  ['um galão → dois ___','one galão → two',['galões'],'-ão usually becomes -ões.'],
+  ['um pão → dois ___','one loaf of bread → two',['pães'],'pão → pães: an exception to memorise.'],
+  ['um jornal → dois ___','one newspaper → two newspapers',['jornais'],'-al becomes -ais.'],
+  ['um rouxinol → dois ___','one nightingale → two nightingales',['rouxinóis'],'-ol becomes -óis.'],
+  ['um lápis → dois ___','one pencil → two pencils',['lápis'],'Words like lápis do not change in the plural.'],
+  ['uma televisão → duas ___','one television → two televisions',['televisões'],'-ão becomes -ões.'],
+  ['um armário → dois ___','one cupboard → two cupboards',['armários'],'Ends in -o: add -s.']
+ ],
+ agree:[
+  ['A casa é ___ . (modern)','The house is modern.',['moderna'],'Adjectives match the noun: a casa is feminine → moderna.'],
+  ['Os quartos são ___ . (clean)','The bedrooms are clean.',['limpos'],'os quartos: masculine plural → limpos.'],
+  ['As casas são ___ . (expensive)','The houses are expensive.',['caras'],'as casas: feminine plural → caras.'],
+  ['A sala é ___ . (bright)','The living room is bright.',['luminosa'],'a sala: feminine → luminosa.'],
+  ['O corredor é ___ . (narrow)','The hallway is narrow.',['estreito'],'o corredor: masculine → estreito.'],
+  ['As calças são ___ . (black)','The trousers are black.',['pretas'],'as calças: feminine plural → pretas.'],
+  ['O vestido é ___ . (red)','The dress is red.',['vermelho'],'o vestido: masculine → vermelho.'],
+  ['As camisas são ___ . (blue)','The shirts are blue.',['azuis'],'azul → azuis in the plural (same for both genders).'],
+  ['Os sapatos são ___ . (white)','The shoes are white.',['brancos'],'os sapatos: masculine plural → brancos.'],
+  ['A saia é ___ . (yellow)','The skirt is yellow.',['amarela'],'a saia: feminine → amarela.'],
+  ['Os casacos são ___ . (green)','The coats are green.',['verdes'],'verde → verdes (same for both genders).'],
+  ['A cozinha está ___ . (dirty)','The kitchen is dirty.',['suja'],'a cozinha: feminine → suja.']
+ ],
+ polite:[
+  ['Eu ___ uma dourada grelhada, por favor.','I would like a grilled sea bream, please.',['queria'],'QUERIA (eu) = I would like: the polite way to order (not "quero").'],
+  ['Nós ___ uma água mineral e uma cerveja.','We would like a mineral water and a beer.',['queríamos'],'QUERÍAMOS (nós) = we would like (polite).'],
+  ['___ comer frutas e legumes todos os dias. (nós)','We should eat fruit and vegetables every day.',['devemos'],'DEVER: nós devemos = we should.'],
+  ['Eu gosto muito ___ bacalhau.','I really like cod.',['de'],'GOSTAR always needs DE: gosto de…'],
+  ['Ela lancha ___ com os colegas.','She always has a snack with her colleagues.',['sempre'],'SEMPRE = always.'],
+  ['Ele ___ come num buffet.','He never eats at a buffet.',['nunca'],'NUNCA = never.'],
+  ['Eu não gosto ___ de couves de Bruxelas.','I do not like Brussels sprouts at all.',['nada'],'NÃO GOSTO NADA DE = I do not like … at all.'],
+  ['Numa livraria ___ comprar livros. (eu)','In a bookshop I can buy books.',['posso'],'PODER: eu posso = I can.'],
+  ['___ pagar com cartão? (eu)','Can I pay by card?',['posso'],'PODER: eu posso = can I…?'],
+  ['Eu ___ viajar no verão. (preferir)','I prefer to travel in summer.',['prefiro'],'PREFERIR: eu prefiro.']
+ ]
+};
+var GITEMS = [];
+Object.keys(GS).forEach(function(t){ GS[t].forEach(function(r, i){ GITEMS.push({id: t + ':' + i, t: t, q: r[0], en: r[1], a: r[2], why: r[3]}); }); });
+VERBS.forEach(function(v){
+  v[2].split('|').forEach(function(f, i){ if(f) GITEMS.push({id: 'v:' + v[0] + ':' + i, t: 'verbs', verb: v[0], ven: v[1], pi: i, pron: PERSONS[i], tense: 'Presente', tenseEn: 'present', a: [f]}); });
+});
+GITEMS.push({id:'v:querer:imp0', t:'verbs', verb:'querer', ven:'to want', pron:'eu', tense:'Imperfeito', tenseEn:'polite: I would like', a:['queria'], imp:1});
+GITEMS.push({id:'v:querer:imp3', t:'verbs', verb:'querer', ven:'to want', pron:'nós', tense:'Imperfeito', tenseEn:'polite: we would like', a:['queríamos'], imp:1});
+function verbTable(it){
+  if(it.imp) return '<div class="why">On the slide, QUERER is used politely: <b>eu queria</b> (I would like), <b>nós queríamos</b> (we would like). Do not confuse with <i>quero</i> (I want).</div>';
+  var v = VERBS.filter(function(x){ return x[0] === it.verb; })[0], f = v[2].split('|');
+  return '<table class="vt"><caption>' + v[0].toUpperCase() + ' — presente</caption>' + PERSONS.map(function(p, i){
+    return f[i] ? '<tr' + (i === it.pi ? ' class="hl"' : '') + '><td>' + p + '</td><td>' + f[i] + '</td></tr>' : '';
+  }).join('') + '</table>' + (v[0] === 'comprar' ? '<div class="why">COMPRAR is a regular -ar verb: compr + o, as, a, amos, ais, am.</div>' : '');
+}
+function blankHtml(q, fill){ return esc(q).replace('___', fill ? '<b class="filled">' + esc(fill) + '</b>' : '<span class="blank"></span>'); }
+var ACT = {};
+ACT.grammar = {
+  title: 'Grammar drills',
+  prompt: function(it){
+    if(it.t === 'verbs') return '<div class="p-kicker">Conjugate the verb</div><div class="p-verb">' + it.verb.toUpperCase() + ' <small>(' + esc(it.ven) + ')</small></div>'
+      + '<div class="p-tags"><span>Person: <b>' + esc(it.pron) + '</b></span><span>Tense: <b>' + it.tense + '</b> (' + esc(it.tenseEn) + ')</span></div>'
+      + '<div class="p-sent">' + esc(it.pron) + ' <span class="blank"></span></div>';
+    var tp = GTOPICS.filter(function(x){ return x.id === it.t; })[0];
+    return '<div class="p-kicker">' + tp.en + ' · fill in the missing word</div><div class="p-sent">' + blankHtml(it.q) + '</div><div class="p-en">' + esc(it.en) + '</div>';
+  },
+  check: function(it, ans){
+    var a = pnorm(ans);
+    if(it.t === 'verbs') a = a.replace(/^(eu|tu|ele|ela|você|voce|nós|nos|vós|vos|eles|elas|vocês|voces)( \/ (ela|você|elas|vocês))* /, '');
+    var acc = it.a.map(pnorm), corr = it.a[0];
+    var res = acc.indexOf(a) >= 0 ? true : acc.some(function(x){ return plain(x) === plain(a); }) ? 'almost' : false;
+    var full = it.t === 'verbs' ? esc(it.pron) + ' <b class="filled">' + esc(corr) + '</b>' : blankHtml(it.q, corr);
+    var why = it.t === 'verbs' ? verbTable(it) : '<div class="why">' + esc(it.why) + '</div>';
+    if(res === true) return {ok: true, html: '<div class="p-res">Correct!</div><div class="p-full">' + full + '</div>' + (it.t === 'verbs' ? '' : why)};
+    if(res === 'almost') return {ok: 'almost', html: '<div class="p-res">Almost — check the accent: <b>' + esc(corr) + '</b></div><div class="p-full">' + full + '</div>' + why};
+    return {ok: false, html: '<div class="p-res">' + (a ? 'Not quite. You wrote <s>' + esc(ans) + '</s>.' : 'Here is the answer.') + ' Correct: <b>' + esc(corr) + '</b>' + (it.a.length > 1 ? ' (or ' + it.a.slice(1).map(esc).join(', ') + ')' : '') + '</div><div class="p-full">' + full + '</div>' + why};
+  },
+  review: function(it){ return it.t === 'verbs' ? it.verb.toUpperCase() + ' · ' + it.pron + ' → ' + it.a[0] : it.q.replace('___', '[' + it.a[0] + ']'); }
+};
+
+// ---------- B. Where in the house? ----------
+var ROOMS = {
+  cozinha:{pt:'a cozinha', en:'kitchen', syn:['cozinha']},
+  jantar:{pt:'a sala de jantar', en:'dining room', syn:['sala de jantar','sala']},
+  estar:{pt:'a sala de estar', en:'living room', syn:['sala de estar','sala']},
+  banho:{pt:'a casa de banho', en:'bathroom', syn:['casa de banho']},
+  quarto:{pt:'o quarto', en:'bedroom', syn:['quarto']},
+  escritorio:{pt:'o escritório', en:'office / study', syn:['escritório']},
+  despensa:{pt:'a despensa', en:'pantry', syn:['despensa']},
+  lavandaria:{pt:'a lavandaria', en:'laundry room', syn:['lavandaria']},
+  garagem:{pt:'a garagem', en:'garage', syn:['garagem']},
+  jardim:{pt:'o jardim', en:'garden', syn:['jardim']},
+  quintal:{pt:'o quintal', en:'backyard', syn:['quintal']},
+  varanda:{pt:'a varanda', en:'balcony', syn:['varanda']},
+  telhado:{pt:'o telhado', en:'roof', syn:['telhado']}
+};
+var HOUSE_RAW = [
+ ['o fogão','stove','cozinha'],['o forno','oven','cozinha'],['o frigorífico','refrigerator','cozinha'],['o exaustor','extractor / range hood','cozinha'],
+ ['o lava-louça','kitchen sink','cozinha'],['a máquina de lavar loiça','dishwasher','cozinha'],['a torradeira','toaster','cozinha'],['o micro-ondas','microwave','cozinha'],
+ ['a panela','saucepan','cozinha'],['a frigideira','frying pan','cozinha'],['a placa do fogão','stovetop','cozinha'],['a máquina de café','coffee maker','cozinha'],
+ ['os talheres','cutlery','cozinha jantar'],['o prato','plate','cozinha jantar'],['o copo','glass','cozinha jantar'],['a louça','tableware','jantar cozinha'],
+ ['a torneira','tap / faucet','cozinha banho lavandaria jardim'],['o armário','cupboard','cozinha despensa quarto banho'],
+ ['a mesa de jantar','dining table','jantar'],['o aparador','sideboard','jantar estar'],['a cristaleira','china cabinet','jantar estar'],['o centro de mesa','centrepiece','jantar'],
+ ['o candeeiro suspenso','pendant light','jantar estar cozinha'],['a porcelana','porcelain','jantar'],['os têxteis de mesa','table linens','jantar cozinha'],
+ ['o sofá','sofa','estar'],['as poltronas','armchairs','estar'],['a mesa de centro','coffee table','estar'],['a lareira','fireplace','estar'],
+ ['a televisão','television','estar quarto'],['o controlo remoto','remote control','estar quarto'],['o candeeiro de pé','floor lamp','estar quarto escritorio'],
+ ['os cortinados','curtains','estar quarto jantar'],['as almofadas','cushions','estar quarto'],['a manta','throw blanket','estar quarto'],
+ ['o relógio de parede','wall clock','estar cozinha jantar escritorio'],['a estante','bookshelf','estar escritorio quarto'],
+ ['a banheira','bathtub','banho'],['o chuveiro','shower','banho'],['o lavatório','washbasin','banho'],['a sanita','toilet','banho'],['o champô','shampoo','banho'],
+ ['o sabonete','bar soap','banho'],['o gel de banho','shower gel','banho'],['o toalheiro','towel rail','banho'],['a toalha','towel','banho'],
+ ['o papel higiénico','toilet paper','banho despensa'],['a escova de barbear','shaving brush','banho'],['a máquina de barbear','razor / shaver','banho'],
+ ['a saboneteira','soap dish','banho'],['a caixa de primeiros socorros','first-aid kit','banho cozinha'],['a água de colónia','cologne','banho quarto'],
+ ['o pente','comb','banho quarto'],['a escova','hairbrush','banho quarto'],['o espelho','mirror','banho quarto estar'],
+ ['a cama','bed','quarto'],['a mesa de cabeceira','bedside table','quarto'],['o guarda-fatos','wardrobe','quarto'],['a cómoda','chest of drawers','quarto'],
+ ['os lençóis','sheets','quarto'],['o cobertor','blanket','quarto'],['o edredão','duvet','quarto'],['a colcha','bedspread','quarto'],['o despertador','alarm clock','quarto'],
+ ['a almofada','pillow','quarto estar'],
+ ['a secretária','desk','escritorio'],['a cadeira giratória','swivel chair','escritorio'],['o computador de secretária','desktop computer','escritorio'],
+ ['o teclado','keyboard','escritorio quarto'],['o rato','computer mouse','escritorio quarto'],['a impressora','printer','escritorio'],
+ ['os dossiers e as pastas','files and folders','escritorio'],['os blocos de gavetas','drawer units','escritorio'],['o caixote do lixo','wastebasket','escritorio cozinha'],
+ ['o computador portátil','laptop','escritorio quarto estar'],['os auscultadores','headphones','escritorio quarto estar'],['a agenda','planner','escritorio'],
+ ['o azeite','olive oil','despensa cozinha'],['o arroz','rice','despensa cozinha'],['a farinha','flour','despensa cozinha'],['o açúcar','sugar','despensa cozinha'],
+ ['as conservas','canned goods','despensa cozinha'],['o feijão','beans','despensa cozinha'],['o grão-de-bico','chickpeas','despensa cozinha'],['a massa','pasta','despensa cozinha'],
+ ['os detergentes','detergents','despensa lavandaria cozinha'],['os esfregões','scouring pads','despensa cozinha'],['os panos','cleaning cloths','despensa cozinha lavandaria'],
+ ['o papel de cozinha','kitchen paper','despensa cozinha'],['os aventais','aprons','cozinha despensa'],
+ ['a máquina de lavar roupa','washing machine','lavandaria banho cozinha'],['o carro','car','garagem'],['o portão da garagem','garage door','garagem'],
+ ['a chaminé','chimney','telhado'],['a cerca','fence','jardim quintal'],['as plantas','plants','jardim quintal varanda estar escritorio'],
+ ['a caixa de correio','mailbox','jardim quintal']
+];
+var HITEMS = HOUSE_RAW.map(function(r, i){ return {id: 'h' + i, pt: r[0], en: r[1], rooms: r[2].split(' ')}; });
+function roomsOf(ans){
+  var a = plain(pnorm(ans)).replace(/^(fica |esta |está )/, '').replace(/^(em |na |no |nas |nos |a |o |as |os |ao |numa |num )+/, '').trim();
+  return Object.keys(ROOMS).filter(function(k){ return ROOMS[k].syn.some(function(s){ return plain(s) === a; }); });
+}
+function roomList(ids){ return ids.map(function(k){ return '<b>' + ROOMS[k].pt + '</b> (' + ROOMS[k].en + ')'; }).join(', '); }
+ACT.house = {
+  title: 'Where in the house?',
+  prompt: function(it){
+    return '<div class="p-kicker">In which room or area is this normally found? Answer in Portuguese.</div><div class="p-word">' + esc(it.pt) + '</div>'
+      + (CAN_SPEAK ? '<button class="speak" type="button" data-say="' + esc(it.pt) + '">' + SPK + 'Listen</button>' : '');
+  },
+  extra: function(){ return '<div class="p-help">Room names: ' + Object.keys(ROOMS).map(function(k){ return '<button type="button" class="chip mini" data-fill="' + ROOMS[k].pt + '">' + ROOMS[k].pt + '</button>'; }).join('') + '</div>'; },
+  check: function(it, ans){
+    var got = roomsOf(ans), hit = got.filter(function(k){ return it.rooms.indexOf(k) >= 0; });
+    var obj = '<b>' + esc(it.pt) + '</b> (' + esc(it.en) + ')';
+    if(hit.length){
+      var others = it.rooms.filter(function(k){ return hit.indexOf(k) < 0; });
+      return {ok: true, html: '<div class="p-res">Correct! ' + obj + ' → ' + roomList(hit) + '</div>' + (others.length ? '<div class="why">Also possible: ' + roomList(others) + '</div>' : '')};
+    }
+    var msg = !pnorm(ans) ? 'Here is the answer.' : got.length ? 'Not quite — not usually in ' + roomList(got) + '.' : 'I don’t recognise “' + esc(ans) + '” as a room from the guide.';
+    return {ok: false, html: '<div class="p-res">' + msg + '</div><div class="why">' + obj + ' is normally in ' + roomList(it.rooms) + '.</div>'};
+  },
+  review: function(it){ return it.pt + ' (' + it.en + ') → ' + it.rooms.map(function(k){ return ROOMS[k].pt; }).join(' / '); }
+};
+
+// ---------- D. Where is it? (prepositions with pictures) ----------
+var PREPS = [
+  {b:'em cima de', m:'on (touching the top of something)'}, {b:'por cima de', m:'above (higher up, not touching)'},
+  {b:'ao lado de', m:'next to'}, {b:'entre', m:'between (entre X e Y)'},
+  {b:'à esquerda de', m:'to the left of (as you look at the picture)'}, {b:'à direita de', m:'to the right of (as you look at the picture)'},
+  {b:'em frente de', alt:['à frente de'], m:'in front of (closer to you)'}, {b:'atrás de', alt:['por trás de'], m:'behind (further from you)'},
+  {b:'perto de', m:'near'}, {b:'longe de', m:'far from'}
+];
+// split "em cima da" → {base:"em cima de", art:"a"}; "entre o" → {base:"entre", art:"o"}
+function splitPrep(s){
+  s = pnorm(s);
+  var m = s.match(/^(.*?)\s*\b(do|da|dos|das)$/);
+  if(m && m[1]) return {base: (m[1] + ' de').trim(), art: m[2].slice(1), contracted: true};
+  m = s.match(/^(.*?)\s+de\s+(o|a|os|as)$/);
+  if(m) return {base: m[1] + ' de', art: m[2], contracted: false};
+  m = s.match(/^(entre)\s+(o|a|os|as)$/);
+  if(m) return {base: 'entre', art: m[2], contracted: true};
+  return {base: s.replace(/\s+de$/, ' de'), art: null, contracted: false};
+}
+function prepInfo(base){
+  var p = plain(base);
+  return PREPS.filter(function(x){ return [x.b].concat(x.alt || []).some(function(b){ return plain(b) === p || plain(b) === p + ' de'; }); })[0];
+}
+// "em cima da mesa" → "em cima de"
+function phraseBase(phrase){
+  var p = plain(pnorm(phrase)), best = null;
+  PREPS.forEach(function(x){ [x.b].concat(x.alt || []).forEach(function(b){ var stem = plain(b).replace(/ de$/, ''); if(p.indexOf(stem) === 0 && (!best || stem.length > best.len)) best = {b: b, len: stem.length}; }); });
+  return best ? best.b : '';
+}
+var VERB_RE = /(^|\s)(está|estão|fica|ficam)(\s|$)/;
+function contrOf(base, art){ if(base === 'entre') return 'entre ' + art; return base.replace(/ de$/, '') + ' d' + art; }
+var SCENES = [
+ {id:'quarto', pt:'O quarto', en:'Bedroom', objs:[
+   {id:'roup',k:'wardrobe',x:288,y:40,w:58,h:145,lb:'roupeiro',lx:317,ly:30},
+   {id:'quad',k:'frame',x:168,y:38,w:56,h:38,lb:'quadro',lx:196,ly:90},
+   {id:'cab',k:'nightstand',x:68,y:145,w:42,h:40,lb:'mesa de cabeceira',lx:86,ly:203},
+   {id:'cand',k:'lamp',x:76,y:104,w:26,h:41,lb:'candeeiro',lx:89,ly:97},
+   {id:'cama',k:'bed',x:120,y:118,w:140,h:67,lb:'cama',lx:200,ly:162},
+   {id:'alm',k:'pillow',x:134,y:137,w:34,h:12,lb:'almofada',lx:162,ly:131},
+   {id:'tap',k:'rug',x:150,y:198,w:96,h:20,lb:'tapete',lx:198,ly:212}],
+  qs:[
+   {s:'O candeeiro está ___ mesa de cabeceira.', a:['em cima da','por cima da'], art:'a', hl:['cand','cab']},
+   {s:'A mesa de cabeceira está ___ cama.', a:['à esquerda da','ao lado da','perto da'], art:'a', hl:['cab','cama']},
+   {s:'O quadro está ___ cama.', a:['por cima da'], art:'a', hl:['quad','cama']},
+   {s:'O tapete está ___ cama.', a:['em frente da','à frente da'], art:'a', hl:['tap','cama']},
+   {s:'A cama está ___ mesa de cabeceira e o roupeiro.', a:['entre a'], art:'a', hl:['cama','cab','roup']},
+   {s:'O roupeiro está ___ mesa de cabeceira.', a:['longe da','à direita da'], art:'a', hl:['roup','cab']},
+   {s:'A cama está ___ tapete.', a:['atrás do','por trás do'], art:'o', hl:['cama','tap']},
+   {full:'Onde está a almofada?', subj:'A almofada', verb:'está', a:['em cima da cama','por cima da cama'], hl:['alm']},
+   {full:'Onde está o candeeiro?', subj:'O candeeiro', verb:'está', a:['em cima da mesa de cabeceira','por cima da mesa de cabeceira','à esquerda da cama','ao lado da cama','perto da cama'], hl:['cand']}]},
+ {id:'cozinha', pt:'A cozinha', en:'Kitchen', objs:[
+   {id:'frig',k:'fridge',x:12,y:40,w:56,h:145,lb:'frigorífico',lx:40,ly:30},
+   {id:'arm',k:'box',x:84,y:40,w:62,h:38,lb:'armários',lx:115,ly:63},
+   {id:'balc',k:'box',x:80,y:148,w:70,h:37},
+   {id:'micro',k:'micro',x:90,y:121,w:48,h:27,lb:'micro-ondas',lx:115,ly:171},
+   {id:'exa',k:'hood',x:156,y:40,w:60,h:30,lb:'exaustor',lx:186,ly:85},
+   {id:'pan',k:'pot',x:172,y:117,w:28,h:18,lb:'panela',lx:186,ly:110},
+   {id:'fog',k:'stove',x:156,y:135,w:60,h:50,lb:'fogão',lx:186,ly:203},
+   {id:'lava',k:'sink',x:226,y:135,w:70,h:50,lb:'lava-louça',lx:261,ly:166},
+   {id:'cx',k:'bin',x:312,y:150,w:32,h:35,lb:'caixote do lixo',lx:320,ly:203}],
+  qs:[
+   {s:'O exaustor está ___ fogão.', a:['por cima do'], art:'o', hl:['exa','fog']},
+   {s:'A panela está ___ fogão.', a:['em cima do','por cima do'], art:'o', hl:['pan','fog']},
+   {s:'O fogão está ___ micro-ondas e o lava-louça.', a:['entre o'], art:'o', hl:['fog','micro','lava']},
+   {s:'O frigorífico está ___ caixote do lixo.', a:['longe do'], art:'o', hl:['frig','cx']},
+   {s:'O lava-louça está ___ fogão.', a:['à direita do','ao lado do','perto do'], art:'o', hl:['lava','fog']},
+   {s:'O exaustor está ___ armários.', a:['à direita dos','ao lado dos','perto dos'], art:'os', hl:['exa','arm']},
+   {s:'O frigorífico está ___ armários.', a:['à esquerda dos','ao lado dos','perto dos'], art:'os', hl:['frig','arm']},
+   {full:'Onde está a panela?', subj:'A panela', verb:'está', a:['em cima do fogão','por cima do fogão'], hl:['pan']},
+   {full:'Onde está o micro-ondas?', subj:'O micro-ondas', verb:'está', a:['à esquerda do fogão','perto do fogão','ao lado do fogão','à direita do frigorífico','perto do frigorífico','ao lado do frigorífico','entre o frigorífico e o fogão'], hl:['micro']}]},
+ {id:'banho', pt:'A casa de banho', en:'Bathroom', objs:[
+   {id:'chuv',k:'shower',x:40,y:38,w:50,h:50,lb:'chuveiro',lx:68,ly:102},
+   {id:'banh',k:'tub',x:14,y:135,w:122,h:50,lb:'banheira',lx:75,ly:166},
+   {id:'san',k:'toilet',x:165,y:125,w:46,h:60,lb:'sanita',lx:188,ly:203},
+   {id:'toal',k:'rail',x:224,y:96,w:32,h:32,lb:'toalheiro',lx:240,ly:88},
+   {id:'esp',k:'mirror',x:274,y:40,w:50,h:62,lb:'espelho',lx:299,ly:75},
+   {id:'lav',k:'basin',x:268,y:122,w:62,h:63,lb:'lavatório',lx:299,ly:203},
+   {id:'tap',k:'rug',x:30,y:198,w:90,h:20,lb:'tapete',lx:75,ly:212}],
+  qs:[
+   {s:'O espelho está ___ lavatório.', a:['por cima do'], art:'o', hl:['esp','lav']},
+   {s:'A sanita está ___ banheira e o lavatório.', a:['entre a'], art:'a', hl:['san','banh','lav']},
+   {s:'O tapete está ___ banheira.', a:['em frente da','à frente da'], art:'a', hl:['tap','banh']},
+   {s:'O lavatório está ___ sanita.', a:['à direita da','ao lado da','perto da'], art:'a', hl:['lav','san']},
+   {s:'A banheira está ___ lavatório.', a:['longe do','à esquerda do'], art:'o', hl:['banh','lav']},
+   {s:'O chuveiro está ___ banheira.', a:['por cima da'], art:'a', hl:['chuv','banh']},
+   {s:'A banheira está ___ tapete.', a:['atrás do','por trás do'], art:'o', hl:['banh','tap']},
+   {full:'Onde está o espelho?', subj:'O espelho', verb:'está', a:['por cima do lavatório'], hl:['esp']},
+   {full:'Onde está o toalheiro?', subj:'O toalheiro', verb:'está', a:['entre a sanita e o lavatório','ao lado do lavatório','perto do lavatório','à esquerda do lavatório','à direita da sanita','perto da sanita','ao lado da sanita'], hl:['toal']}]},
+ {id:'estar', pt:'A sala de estar', en:'Living room', objs:[
+   {id:'pl',k:'plant',x:12,y:128,w:38,h:57,lb:'planta',lx:31,ly:203},
+   {id:'cp',k:'lamp',x:66,y:62,w:34,h:123,lb:'candeeiro de pé',lx:83,ly:52},
+   {id:'quad',k:'frame',x:150,y:34,w:60,h:40,lb:'quadro',lx:180,ly:88},
+   {id:'sofa',k:'sofa',x:112,y:112,w:136,h:73,lb:'sofá',lx:180,ly:172},
+   {id:'a1',k:'pillow',x:128,y:128,w:30,h:14,lb:'almofadas',lx:180,ly:106},
+   {id:'a2',k:'pillow',x:202,y:128,w:30,h:14},
+   {id:'mc',k:'table',x:140,y:202,w:80,h:20,lb:'mesa de centro',lx:180,ly:199},
+   {id:'mov',k:'box',x:288,y:140,w:52,h:45},
+   {id:'tv',k:'tv',x:282,y:96,w:64,h:42,lb:'televisão',lx:314,ly:88}],
+  qs:[
+   {s:'As almofadas estão ___ sofá.', a:['em cima do','por cima do'], art:'o', hl:['a1','a2','sofa']},
+   {s:'A mesa de centro está ___ sofá.', a:['em frente do','à frente do'], art:'o', hl:['mc','sofa']},
+   {s:'O candeeiro de pé está ___ sofá.', a:['à esquerda do','ao lado do','perto do'], art:'o', hl:['cp','sofa']},
+   {s:'O quadro está ___ sofá.', a:['por cima do'], art:'o', hl:['quad','sofa']},
+   {s:'A planta está ___ televisão.', a:['longe da'], art:'a', hl:['pl','tv']},
+   {s:'O sofá está ___ candeeiro de pé e a televisão.', a:['entre o'], art:'o', hl:['sofa','cp','tv']},
+   {s:'O sofá está ___ mesa de centro.', a:['atrás da','por trás da'], art:'a', hl:['sofa','mc']},
+   {s:'A planta está ___ candeeiro de pé.', a:['à esquerda do','ao lado do','perto do'], art:'o', hl:['pl','cp']},
+   {full:'Onde está a mesa de centro?', subj:'A mesa de centro', verb:'está', a:['em frente do sofá','à frente do sofá'], hl:['mc']},
+   {full:'Onde está a televisão?', subj:'A televisão', verb:'está', a:['à direita do sofá','ao lado do sofá','perto do sofá','longe da planta','longe do candeeiro de pé'], hl:['tv']}]},
+ {id:'jantar', pt:'A sala de jantar', en:'Dining room', objs:[
+   {id:'cris',k:'cabinet',x:12,y:38,w:52,h:147,lb:'cristaleira',lx:38,ly:30},
+   {id:'pend',k:'pendant',x:158,y:48,w:44,h:20,lb:'candeeiro suspenso',lx:252,ly:62},
+   {id:'centro',k:'vase',x:170,y:104,w:20,h:26,lb:'centro de mesa',lx:180,ly:97},
+   {id:'c1',k:'chair',x:86,y:118,w:28,h:67,lb:'cadeira',lx:100,ly:110},
+   {id:'c2',k:'chair',x:246,y:118,w:28,h:67,flip:1,lb:'cadeira',lx:260,ly:110},
+   {id:'mesa',k:'table',x:118,y:130,w:124,h:55,lb:'mesa',lx:180,ly:160},
+   {id:'apa',k:'sideboard',x:290,y:135,w:58,h:50,lb:'aparador',lx:319,ly:203},
+   {id:'prat',k:'plates',x:302,y:121,w:34,h:14,lb:'pratos',lx:319,ly:114}],
+  qs:[
+   {s:'O candeeiro suspenso está ___ mesa.', a:['por cima da'], art:'a', hl:['pend','mesa']},
+   {s:'O centro de mesa está ___ mesa.', a:['em cima da','por cima da'], art:'a', hl:['centro','mesa']},
+   {s:'Os pratos estão ___ aparador.', a:['em cima do','por cima do'], art:'o', hl:['prat','apa']},
+   {s:'A mesa está ___ cristaleira e o aparador.', a:['entre a'], art:'a', hl:['mesa','cris','apa']},
+   {s:'A cristaleira está ___ aparador.', a:['longe do','à esquerda do'], art:'o', hl:['cris','apa']},
+   {s:'O aparador está ___ cadeiras.', a:['à direita das','perto das','ao lado das'], art:'as', hl:['apa','c1','c2']},
+   {s:'A mesa está ___ cadeiras.', a:['entre as'], art:'as', hl:['mesa','c1','c2']},
+   {full:'Onde estão os pratos?', subj:'Os pratos', verb:'estão', a:['em cima do aparador','por cima do aparador'], hl:['prat']},
+   {full:'Onde está o centro de mesa?', subj:'O centro de mesa', verb:'está', a:['em cima da mesa','por cima da mesa'], hl:['centro']}]}
+];
+var DITEMS = [];
+SCENES.forEach(function(sc){ sc.qs.forEach(function(q, i){ q.id = sc.id + ':' + i; q.scene = sc.id; DITEMS.push(q); }); });
+function sceneOf(id){ return SCENES.filter(function(s){ return s.id === id; })[0]; }
+// --- drawing (simple flat furniture) ---
+function Rc(x, y, w, h, r, c){ return '<rect class="' + (c || 'so') + '" x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + (r || 0) + '"/>'; }
+function Ln(x1, y1, x2, y2, c){ return '<line class="' + (c || 'sl') + '" x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '"/>'; }
+function El(cx, cy, rx, ry, c){ return '<ellipse class="' + (c || 'so') + '" cx="' + cx + '" cy="' + cy + '" rx="' + rx + '" ry="' + ry + '"/>'; }
+function Pg(pts, c){ return '<polygon class="' + (c || 'so') + '" points="' + pts.join(' ') + '"/>'; }
+function shape(o){
+  var x = o.x, y = o.y, w = o.w, h = o.h;
+  switch(o.k){
+    case 'wardrobe': return Rc(x, y, w, h, 4) + Ln(x + w/2, y + 6, x + w/2, y + h - 6) + El(x + w/2 - 6, y + h/2, 2, 2, 'sd') + El(x + w/2 + 6, y + h/2, 2, 2, 'sd');
+    case 'nightstand': return Rc(x, y, w, h, 3) + Ln(x + 4, y + h/2, x + w - 4, y + h/2) + El(x + w/2, y + h/4 + 1, 2, 2, 'sd');
+    case 'lamp': return Pg([(x + w*.15) + ',' + y, (x + w*.85) + ',' + y, (x + w) + ',' + (y + Math.min(h*.4, 22)), x + ',' + (y + Math.min(h*.4, 22))], 'sa') + Ln(x + w/2, y + Math.min(h*.4, 22), x + w/2, y + h - 3) + Rc(x + w*.2, y + h - 4, w*.6, 4, 1);
+    case 'pendant': return Ln(x + w/2, 0, x + w/2, y) + Pg([(x + w*.3) + ',' + y, (x + w*.7) + ',' + y, (x + w) + ',' + (y + h), x + ',' + (y + h)], 'sa');
+    case 'frame': return Rc(x, y, w, h, 2) + Rc(x + 5, y + 5, w - 10, h - 10, 1, 'sa') + Pg([(x + 9) + ',' + (y + h - 8), (x + w*.45) + ',' + (y + 12), (x + w - 9) + ',' + (y + h - 8)], 'sg');
+    case 'rug': return El(x + w/2, y + h/2, w/2, h/2, 'sa');
+    case 'pillow': return El(x + w/2, y + h/2, w/2, h/2);
+    case 'bed': return Rc(x, y, 9, h, 3) + Rc(x, y + h*.42, w, h*.33, 7) + Rc(x + w - 7, y + h*.3, 7, h*.7, 3) + Ln(x + 14, y + h*.75, x + 14, y + h) + Ln(x + w - 16, y + h*.75, x + w - 16, y + h);
+    case 'plant': return Rc(x + w*.22, y + h*.6, w*.56, h*.4, 3, 'sa') + El(x + w/2, y + h*.32, w*.32, h*.3, 'sg') + El(x + w*.28, y + h*.45, w*.22, h*.16, 'sg') + El(x + w*.72, y + h*.45, w*.22, h*.16, 'sg');
+    case 'sofa': return Rc(x + 6, y, w - 12, h*.55, 10) + Rc(x, y + h*.45, w, h*.33, 7) + Rc(x - 4, y + h*.3, 15, h*.55, 6) + Rc(x + w - 11, y + h*.3, 15, h*.55, 6) + Ln(x + 10, y + h*.78, x + 10, y + h) + Ln(x + w - 10, y + h*.78, x + w - 10, y + h);
+    case 'table': return Rc(x, y, w, 7, 2) + Ln(x + 9, y + 7, x + 9, y + h) + Ln(x + w - 9, y + 7, x + w - 9, y + h);
+    case 'chair': var bx = o.flip ? x + w - 6 : x; return Rc(bx, y, 6, h*.58, 2) + Rc(x, y + h*.52, w, 6, 2) + Ln(x + 3, y + h*.52 + 6, x + 3, y + h) + Ln(x + w - 3, y + h*.52 + 6, x + w - 3, y + h);
+    case 'fridge': return Rc(x, y, w, h, 6) + Ln(x, y + h*.36, x + w, y + h*.36) + Ln(x + w - 9, y + h*.12, x + w - 9, y + h*.26, 'sl th') + Ln(x + w - 9, y + h*.45, x + w - 9, y + h*.62, 'sl th');
+    case 'stove': return Rc(x, y, w, h, 3) + Rc(x + 8, y + 15, w - 16, h - 22, 2, 'sa') + El(x + w*.3, y + 4, 7, 1.8, 'sd') + El(x + w*.7, y + 4, 7, 1.8, 'sd');
+    case 'hood': return Rc(x + w*.35, 0, w*.3, y, 0) + Pg([(x + w*.3) + ',' + y, (x + w*.7) + ',' + y, (x + w) + ',' + (y + h), x + ',' + (y + h)]);
+    case 'pot': return Rc(x, y + 3, w, h - 3, 4) + Ln(x - 5, y + 7, x, y + 7, 'sl th') + Ln(x + w, y + 7, x + w + 5, y + 7, 'sl th') + Ln(x + 3, y + 3, x + w - 3, y + 3, 'sl th');
+    case 'micro': return Rc(x, y, w, h, 3) + Rc(x + 4, y + 4, w*.6, h - 8, 2, 'sa') + El(x + w*.83, y + h*.35, 2, 2, 'sd');
+    case 'sink': return Rc(x, y, w, h, 3) + Rc(x + w*.25, y + 4, w*.5, 8, 3, 'sa') + Ln(x + w/2, y, x + w/2, y - 12, 'sl th') + Ln(x + w/2, y - 12, x + w/2 + 9, y - 12, 'sl th') + Ln(x + w/2, y + 18, x + w/2, y + h - 4);
+    case 'bin': return Pg([x + ',' + y, (x + w) + ',' + y, (x + w - 4) + ',' + (y + h), (x + 4) + ',' + (y + h)]) + Ln(x - 2, y, x + w + 2, y, 'sl th');
+    case 'tub': return Rc(x, y, w, h, 16) + Rc(x - 3, y - 3, w + 6, 7, 3) + Ln(x + 14, y + h, x + 14, y + h + 4) + Ln(x + w - 14, y + h, x + w - 14, y + h + 4);
+    case 'shower': return Ln(x, y, x + w*.7, y, 'sl th') + Ln(x + w*.7, y, x + w*.7, y + h*.35, 'sl th') + Pg([(x + w*.5) + ',' + (y + h*.35), (x + w*.9) + ',' + (y + h*.35), (x + w) + ',' + (y + h*.55), (x + w*.4) + ',' + (y + h*.55)]) + Ln(x + w*.5, y + h*.65, x + w*.46, y + h*.85, 'sl sw') + Ln(x + w*.7, y + h*.65, x + w*.7, y + h*.9, 'sl sw') + Ln(x + w*.9, y + h*.65, x + w*.94, y + h*.85, 'sl sw');
+    case 'toilet': return Rc(x + w*.55, y, w*.45, h*.42, 4) + Rc(x, y + h*.42, w, h*.2, 6) + Rc(x + w*.2, y + h*.6, w*.5, h*.4, 4);
+    case 'basin': return Rc(x, y, w, h*.28, 9) + Rc(x + w*.37, y + h*.28, w*.26, h*.72, 3) + Ln(x + w/2, y, x + w/2, y - 9, 'sl th');
+    case 'mirror': return Rc(x, y, w, h, 14, 'sm') + Ln(x + 12, y + 14, x + 24, y + 26, 'sl sw');
+    case 'rail': return Ln(x, y, x + w, y, 'sl th') + Rc(x + 5, y, w - 10, h, 2, 'sa');
+    case 'tv': return Rc(x, y, w, h, 3) + Rc(x + 3, y + 3, w - 6, h - 6, 2, 'sd');
+    case 'plates': return El(x + w/2, y + h - 3, w/2, 3) + El(x + w/2, y + h - 7, w/2, 3) + El(x + w/2, y + h - 11, w/2, 3);
+    case 'vase': return Rc(x + w*.22, y + h*.35, w*.56, h*.65, 5, 'sa') + El(x + w*.3, y + h*.25, 4, 4, 'sg') + El(x + w*.7, y + h*.22, 4, 4, 'sg') + El(x + w*.5, y + h*.1, 4, 4, 'sg');
+    case 'cabinet': return Rc(x, y, w, h, 3) + Rc(x + 5, y + 6, w - 10, h*.55, 2, 'sm') + Ln(x + 5, y + 6 + h*.18, x + w - 5, y + 6 + h*.18) + Ln(x + 5, y + 6 + h*.36, x + w - 5, y + 6 + h*.36) + Ln(x + w/2, y + h*.66, x + w/2, y + h - 5);
+    case 'sideboard': return Rc(x, y, w, h, 3) + Ln(x + w/3, y + 5, x + w/3, y + h - 5) + Ln(x + 2*w/3, y + 5, x + 2*w/3, y + h - 5);
+    default: return Rc(x, y, w, h, 4);
+  }
+}
+function sceneSvg(sc, hl){
+  hl = hl || [];
+  var body = sc.objs.map(function(o){ return '<g class="' + (hl.indexOf(o.id) >= 0 ? 'hl' : '') + '">' + shape(o) + '</g>'; }).join('');
+  var labels = sc.objs.filter(function(o){ return o.lb; }).map(function(o){ return '<text class="st' + (hl.indexOf(o.id) >= 0 ? ' hl' : '') + '" x="' + o.lx + '" y="' + o.ly + '">' + esc(o.lb) + '</text>'; }).join('');
+  return '<svg class="scene-svg" viewBox="0 0 360 225" role="img" aria-label="' + esc(sc.en) + ': ' + sc.objs.filter(function(o){ return o.lb; }).map(function(o){ return o.lb; }).join(', ') + '">'
+    + '<rect class="swall" x="0" y="0" width="360" height="186"/><rect class="sfloor" x="0" y="185" width="360" height="40"/>' + body + labels + '</svg>';
+}
+function prepExplain(base){ var p = prepInfo(base); return p ? '<i>' + esc(base) + '</i> = ' + p.m : ''; }
+function articleWord(art){ return {o:'masculine singular (o)', a:'feminine singular (a)', os:'masculine plural (os)', as:'feminine plural (as)'}[art]; }
+ACT.prep = {
+  title: 'Where is it?',
+  prompt: function(it){
+    var sc = sceneOf(it.scene);
+    return '<div class="p-kicker">' + sc.pt + ' (' + sc.en + ') · left and right as you look at the picture</div>' + sceneSvg(sc, it.hl)
+      + (it.full ? '<div class="p-sent">' + esc(it.full) + '</div><div class="p-en">Answer with a complete sentence: ' + esc(it.subj) + ' ' + it.verb + ' …</div>'
+                 : '<div class="p-sent">' + blankHtml(it.s) + '</div>');
+  },
+  hint: function(it){
+    var base0 = phraseBase(it.a[0]), used = it.a.map(function(x){ var p = prepInfo(phraseBase(x)); return p && p.b; });
+    var opts = shuffle(PREPS.filter(function(p){ return used.indexOf(p.b) < 0; })).slice(0, 3).map(function(p){ return p.b; });
+    opts.push(base0);
+    opts = shuffle(opts).map(function(b){ return it.full ? b : contrOf(b, it.art); });
+    return '<div class="p-help">' + (it.full ? 'The preposition is one of these (you still write the whole sentence): ' : 'Choose one: ')
+      + opts.map(function(o){ return it.full ? '<span class="chip mini">' + esc(o) + '</span>' : '<button type="button" class="chip mini" data-fill="' + esc(o) + '">' + esc(o) + '</button>'; }).join('') + '</div>';
+  },
+  check: function(it, ans){
+    var a = pnorm(ans), acc = it.a.map(pnorm), model, phrase = a;
+    if(it.full){
+      model = it.subj + ' ' + it.verb + ' ' + it.a[0] + '.';
+      var hasVerb = VERB_RE.test(a);
+      var hit = acc.filter(function(x){ return a.indexOf(x) >= 0; })[0];
+      if(hit && hasVerb) return {ok: true, html: '<div class="p-res">Correct!</div><div class="p-full">' + esc(ans) + '</div>' + (acc.length > 1 ? '<div class="why">Other good answers: ' + it.a.filter(function(x){ return pnorm(x) !== hit; }).slice(0, 3).map(function(x){ return esc(it.subj + ' ' + it.verb + ' ' + x + '.'); }).join(' · ') + '</div>' : '')};
+      if(hit) return {ok: false, html: '<div class="p-res">Good location, but write a complete sentence with the verb.</div><div class="p-full">' + esc(model) + '</div><div class="why">Use <b>' + it.verb + '</b> for location: ' + esc(it.subj) + ' ' + it.verb + ' …</div>'};
+      if(acc.some(function(x){ return plain(a).indexOf(plain(x)) >= 0; }) && hasVerb) return {ok: 'almost', html: '<div class="p-res">Almost — check the accents.</div><div class="p-full">' + esc(model) + '</div>'};
+      phrase = a.replace(/^.*?(está|estão|fica|ficam)\s*/, '');
+      var mineF = prepInfo(phraseBase(phrase));
+      return {ok: false, html: '<div class="p-res">' + (a ? 'Not quite.' : 'Here is the answer.') + ' A good answer:</div><div class="p-full">' + esc(model) + '</div><div class="why">'
+        + (mineF && a ? 'You used <i>' + esc(mineF.b) + '</i> = ' + mineF.m + '. ' : '') + 'Look at the picture: ' + prepExplain(phraseBase(it.a[0])) + '.</div>'
+        + (it.a.length > 1 ? '<div class="why">Also correct: ' + it.a.slice(1, 4).map(function(x){ return esc(it.subj + ' ' + it.verb + ' ' + x + '.'); }).join(' · ') + '</div>' : '')};
+    }
+    var full = blankHtml(it.s, it.a[0]);
+    if(acc.indexOf(a) >= 0) return {ok: true, html: '<div class="p-res">Correct!</div><div class="p-full">' + blankHtml(it.s, ans.trim()) + '</div><div class="why">' + prepExplain(splitPrep(a).base) + '</div>'};
+    if(acc.some(function(x){ return plain(x) === plain(a); })) return {ok: 'almost', html: '<div class="p-res">Almost — check the accent: <b>' + esc(it.a.filter(function(x){ return plain(x) === plain(a); })[0]) + '</b></div><div class="p-full">' + full + '</div>'};
+    var u = splitPrep(a), good = it.a.map(splitPrep), sameBase = good.filter(function(g){ return plain(g.base) === plain(u.base) || (prepInfo(u.base) && prepInfo(u.base) === prepInfo(g.base)); })[0];
+    var corr = '<div class="p-full">' + full + '</div>';
+    if(sameBase){
+      var right = contrOf(sameBase.base, it.art);
+      if(u.art === it.art && !u.contracted) return {ok: false, html: '<div class="p-res">Right preposition — now contract it: <b>' + esc(right) + '</b></div>' + corr + '<div class="why">de + ' + it.art + ' = d' + it.art + '. In Portuguese “de o / de a / de os / de as” always becomes do / da / dos / das.</div>'};
+      return {ok: false, html: '<div class="p-res">Right preposition, wrong ending. Correct: <b>' + esc(right) + '</b></div>' + corr + '<div class="why">The next word is ' + articleWord(it.art) + ', so ' + (sameBase.base === 'entre' ? 'entre ' + it.art : 'de + ' + it.art + ' = d' + it.art) + '.</div>'};
+    }
+    var mine = prepInfo(u.base);
+    return {ok: false, html: '<div class="p-res">' + (a ? 'Not quite.' : 'Here is the answer.') + ' Correct: <b>' + esc(it.a[0]) + '</b>' + (it.a.length > 1 ? ' (or ' + it.a.slice(1).map(esc).join(', ') + ')' : '') + '</div>' + corr
+      + '<div class="why">' + (mine ? 'You wrote <i>' + esc(u.base) + '</i> = ' + mine.m + '. ' : '') + 'Look at the picture: ' + prepExplain(good[0].base) + '.</div>'};
+  },
+  review: function(it){ return it.full ? it.subj + ' ' + it.verb + ' ' + it.a[0] + '.' : it.s.replace('___', '[' + it.a[0] + ']'); }
+};
+
+// ---------- the question-by-question engine (grammar, house, prepositions) ----------
+var PQ = null;
+function pStart(act, items, opt){ PQ = {act: act, items: items, total: items.length, queue: items.slice(), done: 0, firstOk: 0, tried: {}, wrongIds: {}, wrong: [], fb: null, hint: false, opt: opt || {}}; pRender(); }
+function pAnswer(val){
+  var it = PQ.queue[0], res = ACT[PQ.act].check(it, val);
+  if(!PQ.tried[it.id]){ PQ.tried[it.id] = 1; pxRec(PQ.act, it.id, res.ok === true); }
+  PQ.fb = res; PQ.typed = val; pRender();
+}
+function pNext(){
+  var it = PQ.queue.shift();
+  if(PQ.fb.ok === true){ PQ.done++; if(!PQ.wrongIds[it.id]) PQ.firstOk++; }
+  else { if(!PQ.wrongIds[it.id]){ PQ.wrongIds[it.id] = 1; PQ.wrong.push(it); } PQ.queue.splice(Math.min(3, PQ.queue.length), 0, it); }
+  PQ.fb = null; PQ.hint = false; pRender();
+}
+function pTop(title, right){
+  return '<div class="p-top"><button type="button" class="linkbtn" data-p="home">‹ Activities</button><span class="p-title">' + title + '</span><span class="p-count">' + (right || '') + '</span></div>';
+}
+function pRender(){
+  var A = ACT[PQ.act], it = PQ.queue[0], h = '';
+  if(PQ.act === 'grammar') h += gChips();
+  if(PQ.act === 'prep') h += dChips();
+  if(!it){
+    $('pBody').innerHTML = pTop(A.title, '') + h + '<div class="summary"><h2>Well done!</h2><div class="nums"><div><b>' + PQ.firstOk + '/' + PQ.total + '</b><span>right the first time</span></div><div><b>' + PQ.wrong.length + '</b><span>practised again</span></div></div>'
+      + (PQ.wrong.length ? '<div><strong>To review</strong><div class="review">' + PQ.wrong.map(function(x){ return '<div><span>' + esc(A.review(x)) + '</span></div>'; }).join('') + '</div></div>' : '')
+      + '<div class="actions">' + '<button class="btn plain" type="button" data-p="home">Activities</button><button class="btn primary" type="button" data-p="again">' + (PQ.act === 'prep' ? 'Next room' : 'New round') + '</button></div></div>';
+    return;
+  }
+  var pos = Math.min(PQ.done + 1, PQ.total);
+  h += '<div class="status"><span>Question ' + pos + ' of ' + PQ.total + '</span><span>' + (PQ.wrong.length ? PQ.wrong.length + ' to repeat' : '') + '</span></div><div class="bar"><i style="width:' + (PQ.done / PQ.total * 100) + '%"></i></div>';
+  h += '<div class="p-card">' + A.prompt(it) + '</div>';
+  if(!PQ.fb){
+    h += '<form class="typebox" id="pForm" autocomplete="off"><input id="pIn" type="text" autocapitalize="off" spellcheck="false" lang="pt-PT" placeholder="' + (it.full ? 'Write the full sentence…' : 'Type your answer…') + '"><button class="btn primary" type="submit">Check</button></form>'
+      + accentBar('pIn') + (A.extra ? A.extra(it) : '') + (PQ.hint && A.hint ? A.hint(it) : '')
+      + '<div class="p-links">' + (A.hint && !PQ.hint ? '<button type="button" class="linkbtn" data-p="hint">Show a hint</button>' : '') + '<button type="button" class="linkbtn muted" data-p="dunno">I don’t know</button></div>';
+  } else {
+    var cls = PQ.fb.ok === true ? 'ok' : PQ.fb.ok === 'almost' ? 'warn' : 'bad';
+    h += '<div class="p-fb ' + cls + '">' + PQ.fb.html + (PQ.fb.ok === true ? '' : '<div class="p-again">This one will come back later in the round.</div>') + '</div>'
+      + '<div class="actions one"><button class="btn primary" type="button" data-p="next" id="pNextBtn">Next <kbd>Enter</kbd></button></div>';
+  }
+  $('pBody').innerHTML = pTop(A.title, '') + h;
+  setTimeout(function(){ var f = $(PQ.fb ? 'pNextBtn' : 'pIn'); if(f && !$('practice').hidden) f.focus({preventScroll: true}); }, 30);
+}
+// grammar topic chips
+var GSEL = 'all';
+function gChips(){
+  return '<div class="chips p-filter">' + [{id:'all', en:'All topics'}].concat(GTOPICS).map(function(t){
+    var its = t.id === 'all' ? GITEMS : GITEMS.filter(function(x){ return x.t === t.id; });
+    return '<button type="button" class="chip" data-gt="' + t.id + '" aria-pressed="' + (GSEL === t.id) + '">' + t.en + ' <small>' + pxRight('grammar', its) + '/' + its.length + '</small></button>';
+  }).join('') + '</div>';
+}
+function startGrammar(){ var pool = GSEL === 'all' ? GITEMS : GITEMS.filter(function(x){ return x.t === GSEL; }); pStart('grammar', pickRound('grammar', pool, 15)); }
+function startHouse(){ pStart('house', pickRound('house', HITEMS, 15)); }
+var DSEL = null;
+function dChips(){
+  return '<div class="chips p-filter">' + SCENES.map(function(sc){
+    var its = DITEMS.filter(function(x){ return x.scene === sc.id; });
+    return '<button type="button" class="chip" data-room="' + sc.id + '" aria-pressed="' + (DSEL === sc.id) + '">' + sc.en + ' <small>' + pxRight('prep', its) + '/' + its.length + '</small></button>';
+  }).join('') + '</div>';
+}
+function startPrep(next){
+  if(!DSEL) DSEL = (SCENES.filter(function(sc){ return pxRight('prep', DITEMS.filter(function(x){ return x.scene === sc.id; })) < sc.qs.length; })[0] || SCENES[0]).id;
+  else if(next){ var i = SCENES.map(function(s){ return s.id; }).indexOf(DSEL); DSEL = SCENES[(i + 1) % SCENES.length].id; }
+  var its = DITEMS.filter(function(x){ return x.scene === DSEL; });
+  var blanks = shuffle(its.filter(function(x){ return !x.full; })), fulls = shuffle(its.filter(function(x){ return x.full; }));
+  pStart('prep', blanks.concat(fulls));
+}
+
+// ---------- C. Which shop? ----------
+var SHOPS = {
+  padaria:{pt:'a padaria', en:'bakery'}, pastelaria:{pt:'a pastelaria', en:'pastry shop'}, sapataria:{pt:'a sapataria', en:'shoe shop'},
+  farmacia:{pt:'a farmácia', en:'pharmacy'}, frutaria:{pt:'a frutaria', en:'fruit shop'}, mercearia:{pt:'a mercearia', en:'grocery shop'},
+  livraria:{pt:'a livraria', en:'bookshop'}, roupa:{pt:'a loja de roupa', en:'clothing shop'},
+  eletronica:{pt:'a loja de equipamento eletrónico', en:'electronics shop'}, correios:{pt:'os correios', en:'post office'}
+};
+var SHOP_RAW = [
+ ['o pão','bread','padaria pastelaria mercearia'],['a broa','cornbread','padaria mercearia'],
+ ['o pastel de nata','custard tart','pastelaria padaria'],['o galão','milky coffee in a glass','pastelaria'],['o pudim','pudding','pastelaria'],
+ ['os sapatos','shoes','sapataria'],['as botas','boots','sapataria'],['as sandálias','sandals','sapataria'],['as sapatilhas','trainers','sapataria'],['os chinelos','flip-flops / slippers','sapataria roupa'],
+ ['os comprimidos','tablets / pills','farmacia'],['as vitaminas','vitamins','farmacia'],['o xarope','syrup','farmacia'],['o creme solar','sunscreen','farmacia'],
+ ['a caixa de primeiros socorros','first-aid kit','farmacia'],['o champô','shampoo','farmacia mercearia'],['o sabonete','bar soap','farmacia mercearia'],
+ ['as maçãs','apples','frutaria'],['as bananas','bananas','frutaria'],['as peras','pears','frutaria'],['os morangos','strawberries','frutaria'],['as laranjas','oranges','frutaria'],
+ ['os limões','lemons','frutaria'],['o ananás','pineapple','frutaria'],['as batatas','potatoes','frutaria mercearia'],['as cebolas','onions','frutaria mercearia'],
+ ['a alface','lettuce','frutaria mercearia'],['as cenouras','carrots','frutaria mercearia'],
+ ['o arroz','rice','mercearia'],['o azeite','olive oil','mercearia'],['o açúcar','sugar','mercearia'],['a farinha','flour','mercearia'],['o feijão','beans','mercearia'],
+ ['as conservas','canned goods','mercearia'],['a massa','pasta','mercearia'],['o sal','salt','mercearia'],['o vinagre','vinegar','mercearia'],['o leite','milk','mercearia'],
+ ['os ovos','eggs','mercearia'],['a manteiga','butter','mercearia'],['o iogurte','yogurt','mercearia'],['o chá','tea','mercearia'],['o bacalhau','salted cod','mercearia'],
+ ['os livros','books','livraria'],['as canetas','pens','livraria'],['os lápis','pencils','livraria'],['os blocos de notas','notepads','livraria'],['a agenda','planner','livraria'],
+ ['as t-shirts','T-shirts','roupa'],['os vestidos','dresses','roupa'],['as camisas','shirts','roupa'],['as calças','trousers','roupa'],['as calças de ganga','jeans','roupa'],
+ ['os calções','shorts','roupa'],['a saia','skirt','roupa'],['a camisola','sweater','roupa'],['o casaco','coat / jacket','roupa'],['o cachecol','scarf','roupa'],['o gorro','winter hat','roupa'],
+ ['os telemóveis','mobile phones','eletronica'],['os computadores','computers','eletronica'],['os tablets','tablets','eletronica'],['os televisores','televisions','eletronica'],
+ ['a impressora','printer','eletronica'],['os auscultadores','headphones','eletronica'],['a máquina fotográfica','camera','eletronica'],['o computador portátil','laptop','eletronica'],
+ ['os envelopes','envelopes','correios'],['os selos','postage stamps','correios'],['as caixas de papel','paper boxes','correios'],['os postais','postcards','correios livraria']
+];
+var SITEMS = SHOP_RAW.map(function(r, i){ return {id: 's' + i, pt: r[0], en: r[1], shops: r[2].split(' ')}; });
+var SH = null;
+function startShops(){
+  var chosen = [], used = {};
+  Object.keys(SHOPS).forEach(function(k){   // at least two items for every shop, mistakes first
+    pickRound('shops', SITEMS.filter(function(it){ return it.shops[0] === k; }), 2).forEach(function(it){ chosen.push(it); used[it.id] = 1; });
+  });
+  pickRound('shops', SITEMS.filter(function(it){ return !used[it.id]; }), 24 - chosen.length).forEach(function(it){ chosen.push(it); });
+  SH = {items: shuffle(chosen), place: {}, checked: false};
+  shRender();
+}
+function shRender(){
+  var left = SH.items.filter(function(it){ return !SH.place[it.id]; });
+  var h = pTop('Which shop?', '');
+  if(!SH.checked) h += '<p class="p-intro">Tap an item, then choose the shop where you can buy it. Check your answers when every item has a shop.</p>';
+  if(!SH.checked) h += '<div class="pool"><div class="pool-h">Items to sort <small>' + left.length + ' left</small></div><div class="chips">' + (left.length ? left.map(function(it){ return '<button type="button" class="chip item" data-item="' + it.id + '">' + esc(it.pt) + '</button>'; }).join('') : '<span class="muted">All sorted! Check your answers below.</span>') + '</div></div>';
+  var wrong = 0;
+  if(SH.checked){
+    var bad = SH.items.filter(function(it){ return it.shops.indexOf(SH.place[it.id]) < 0; });
+    h += '<div class="summary"><h2>' + (bad.length ? (SH.items.length - bad.length) + ' of ' + SH.items.length + ' right' : 'All ' + SH.items.length + ' right!') + '</h2>'
+      + (bad.length ? '<div class="review fix">' + bad.map(function(it){ return '<div><span><b>' + esc(it.pt) + '</b> (' + esc(it.en) + ')<br><small>You chose ' + SHOPS[SH.place[it.id]].pt + '</small></span><span>→ ' + it.shops.map(function(k){ return SHOPS[k].pt + ' (' + SHOPS[k].en + ')'; }).join(' or ') + '</span></div>'; }).join('') + '</div>' : '')
+      + '<div class="actions"><button class="btn plain" type="button" data-p="home">Activities</button><button class="btn primary" type="button" data-p="shnew">New round' + (bad.length ? ' (with my mistakes)' : '') + '</button></div></div><div class="pool-h" style="margin:16px 0 8px">Your answers</div>';
+  }
+  h += '<div class="stores">' + Object.keys(SHOPS).map(function(k){
+    var its = SH.items.filter(function(it){ return SH.place[it.id] === k; });
+    return '<div class="store"><div class="store-h"><b>' + SHOPS[k].pt + '</b><small>' + SHOPS[k].en + '</small></div><div class="chips">' + its.map(function(it){
+      var ok = it.shops.indexOf(k) >= 0; if(SH.checked && !ok) wrong++;
+      return '<button type="button" class="chip item' + (SH.checked ? (ok ? ' good' : ' badc') : '') + '" data-item="' + it.id + '"' + (SH.checked ? ' disabled' : '') + '>' + (SH.checked ? (ok ? '✓ ' : '✗ ') : '') + esc(it.pt) + '</button>';
+    }).join('') + '</div></div>';
+  }).join('') + '</div>';
+  if(!SH.checked){
+    h += '<div class="actions one"><button class="btn primary" type="button" data-p="shcheck"' + (left.length ? ' disabled' : '') + '>' + (left.length ? 'Sort all items first (' + left.length + ' left)' : 'Check my answers') + '</button></div>';
+  }
+  $('pBody').innerHTML = h;
+}
+function shSheet(id){
+  var it = SITEMS.filter(function(x){ return x.id === id; })[0];
+  $('sheet').innerHTML = '<div class="sheet-h"><span>Where can you buy <b>' + esc(it.pt) + '</b>?</span><button type="button" class="linkbtn" data-p="shclose">Close</button></div><div class="sheet-grid">'
+    + Object.keys(SHOPS).map(function(k){ return '<button type="button" class="store-pick" data-pick="' + k + '" data-for="' + id + '" aria-pressed="' + (SH.place[id] === k) + '"><b>' + SHOPS[k].pt + '</b><small>' + SHOPS[k].en + '</small></button>'; }).join('')
+    + (SH.place[id] ? '<button type="button" class="store-pick back" data-pick="" data-for="' + id + '"><b>Back to the list</b><small>remove from this shop</small></button>' : '') + '</div>';
+  $('sheet').hidden = false; $('sheetBg').hidden = false;
+}
+function shClose(){ $('sheet').hidden = true; $('sheetBg').hidden = true; }
+
+// ---------- practice home ----------
+function pHome(){
+  PQ = null;
+  var tiles = [
+    {go:'grammar', t:'Grammar drills', d:'Verb forms, ser or estar, há / tem, this & that, contractions, plurals…', n: pxRight('grammar', GITEMS), of: GITEMS.length, ico:'<path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h6M8 11h8"/>'},
+    {go:'house', t:'Where in the house?', d:'See an object, write the room where it belongs.', n: pxRight('house', HITEMS), of: HITEMS.length, ico:'<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>'},
+    {go:'shops', t:'Which shop?', d:'Sort 24 items into the right shop, then check.', n: pxRight('shops', SITEMS), of: SITEMS.length, ico:'<path d="M4 8h16l-1.5 12h-13z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>'},
+    {go:'prep', t:'Where is it?', d:'Look at a room and fill in the preposition: em cima da, entre, por cima do…', n: pxRight('prep', DITEMS), of: DITEMS.length, ico:'<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 14h4v-4H7zM14 14h3"/>'}
+  ];
+  $('pBody').innerHTML = '<div class="p-head"><h2>Practice</h2><p>Exercises from the study guide. You answer first; mistakes come back until you get them right.</p></div><div class="p-tiles">'
+    + tiles.map(function(t){ return '<button type="button" class="p-tile" data-p="' + t.go + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + t.ico + '</svg><span class="p-tile-t">' + t.t + '</span><span class="p-tile-d">' + t.d + '</span><span class="p-tile-n">' + t.n + ' / ' + t.of + ' right last time</span></button>'; }).join('') + '</div>';
+}
+function pClick(b){
+  var p = b.dataset.p;
+  if(p === 'home'){ shClose(); pHome(); window.scrollTo({top: 0}); return true; }
+  if(p === 'grammar'){ startGrammar(); return true; }
+  if(p === 'house'){ startHouse(); return true; }
+  if(p === 'prep'){ startPrep(); return true; }
+  if(p === 'shops'){ startShops(); return true; }
+  if(p === 'next'){ pNext(); return true; }
+  if(p === 'dunno'){ pAnswer(''); return true; }
+  if(p === 'hint'){ var v = $('pIn') ? $('pIn').value : ''; PQ.hint = true; pRender(); if($('pIn')) $('pIn').value = v; return true; }
+  if(p === 'again'){ if(PQ.act === 'grammar') startGrammar(); else if(PQ.act === 'house') startHouse(); else startPrep(true); return true; }
+  if(p === 'shcheck'){ SH.checked = true; SH.items.forEach(function(it){ pxRec('shops', it.id, it.shops.indexOf(SH.place[it.id]) >= 0); }); shRender(); window.scrollTo({top: 0, behavior: 'smooth'}); return true; }
+  if(p === 'shnew'){ startShops(); window.scrollTo({top: 0}); return true; }
+  if(p === 'shclose'){ shClose(); return true; }
+  if(b.dataset.gt){ GSEL = b.dataset.gt; startGrammar(); return true; }
+  if(b.dataset.room){ DSEL = b.dataset.room; startPrep(); return true; }
+  if(b.dataset.fill !== undefined && $('pIn')){ $('pIn').value = b.dataset.fill; $('pIn').focus(); return true; }
+  if(b.dataset.item && SH && !SH.checked){ shSheet(b.dataset.item); return true; }
+  if(b.dataset.store && SH && !SH.checked){ var first = SH.items.filter(function(it){ return !SH.place[it.id]; })[0]; if(first) shSheet(first.id); return true; }
+  if(b.dataset.pick !== undefined && b.dataset.for){ if(b.dataset.pick) SH.place[b.dataset.for] = b.dataset.pick; else delete SH.place[b.dataset.for]; shClose(); shRender(); return true; }
+  return false;
+}
+
+// events
+document.addEventListener('click', function(e){
+  var b = e.target.closest('button, .card'); if(!b) return;
+  if(b.id === 'toastBtn'){ var f = toastFn; hideToast(); if(f) f(); return; }
+  if((!$('practice').hidden || b.closest('#sheet')) && pClick(b)) return;
+  if(b.dataset.act === 'restart'){ learnRestart(); return; }
+  if(b.id === 'uiLang'){ S.lang = S.lang === 'pt' ? 'en' : 'pt'; saveS(); renderChrome(); renderStudy(); if(!$('list').hidden) renderList(); return; }
+  if(b.dataset.view){
+    if(b.dataset.view === 'list') return showTab('list');
+    if(b.dataset.view === 'practice') return showTab('practice');
+    var was = S.mode;
+    S.mode = b.dataset.view; saveS(); showTab('study'); renderChrome(); if(R){ R.flipped=false; R.checked=false; } instant(renderStudy);
+    if(S.mode === 'learn' && was !== 'learn') announceResume();
+    return;
+  }
+  if(b.dataset.dir){ S.dir = b.dataset.dir; saveS(); renderChrome(); newRound(); return; }
+  if(b.dataset.cat){ var i = S.cats.indexOf(b.dataset.cat); if(i>=0) S.cats.splice(i,1); else S.cats.push(b.dataset.cat); saveS(); renderTopics(); newRound(); return; }
+  if(b.dataset.grp){
+    var ids = CATS.filter(function(c){ return c.g===b.dataset.grp; }).map(function(c){ return c.id; });
+    if(b.dataset.on === '1') S.cats = S.cats.filter(function(id){ return ids.indexOf(id)<0; });
+    else ids.forEach(function(id){ if(S.cats.indexOf(id)<0) S.cats.push(id); });
+    saveS(); renderTopics(); newRound(); return;
+  }
+  if(b.id === 'allTopics'){ S.cats = CATS.map(function(c){ return c.id; }); saveS(); renderTopics(); newRound(); return; }
+  if(b.id === 'noTopics'){ S.cats = []; saveS(); renderTopics(); R = null; renderStudy(); return; }
+  if(b.dataset.ch){ var inp = $(b.dataset.target || 'answer'), s = inp.selectionStart||inp.value.length, en = inp.selectionEnd||s; inp.value = inp.value.slice(0,s) + b.dataset.ch + inp.value.slice(en); inp.focus(); inp.setSelectionRange(s+1,s+1); return; }
+  if(b.dataset.say){ speak(b.dataset.say); return; }
+  if(b.id === 'fSpeak' || b.id === 'bSpeak'){ e.stopPropagation(); if(S.mode === 'learn'){ if(LR.list.length) speak(LR.list[LR.i].pt); return; } var c0 = cur(); if(c0) speak(c0.it.pt); return; }
+  if(b.id === 'resetBtn'){ var t = L(); $('resetWrap').innerHTML = '<span class="confirm">'+t.resetQ+' <button class="ghost" type="button" id="resetYes">'+t.yes+'</button><button class="ghost" type="button" id="resetNo">'+t.no+'</button></span>'; return; }
+  if(b.id === 'resetYes'){ P = {}; store('p103-progress', P); resetFooter(); renderTopics(); renderTotals(); newRound(); if(!$('list').hidden) renderList(); return; }
+  if(b.id === 'resetNo'){ resetFooter(); return; }
+  var a = b.dataset.act;
+  if(S.mode === 'learn'){
+    if(b.id === 'card'){ if(Date.now() - swipedAt > 500) learnStep(1); return; }
+    if(a === 'next') return learnStep(1);
+    if(a === 'prev') return learnStep(-1);
+    if(a === 'practise'){ S.mode = 'flip'; saveS(); renderChrome(); newRound(); return; }
+  }
+  if(b.id === 'card' || a === 'flip'){ if(b.id === 'card' && Date.now() - swipedAt < 350) return; if(S.mode === 'flip' && R && cur()){ R.flipped = !R.flipped; renderStudy(); } return; }
+  if(a === 'yes') return grade(true);
+  if(a === 'no') return grade(false);
+  if(a === 'next-ok') return grade(true);
+  if(a === 'next-bad') return grade(false);
+  if(a === 'override'){ R.result = 'right'; return grade(true); }
+  if(a === 'newround') return newRound();
+  if(a === 'includeall') return newRound(true);
+  if(a === 'opentopics'){ $('topics').open = true; $('topics').scrollIntoView({block:'start', behavior:'smooth'}); return; }
+  if(a === 'closetopics'){ $('topics').open = false; window.scrollTo({top:0, behavior:'smooth'}); return; }
+});
+// light / dark switch (remembers the choice; follows the phone until you press it)
+var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>';
+var DARKQ = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
+function isDark(){ var a = document.documentElement.getAttribute('data-theme'); return a ? a === 'dark' : !!(DARKQ && DARKQ.matches); }
+function showTheme(){
+  var d = isDark(), b = $('themeBtn');
+  b.innerHTML = d ? SUN : MOON;
+  b.setAttribute('aria-label', d ? 'Switch to light mode' : 'Switch to dark mode'); b.title = b.getAttribute('aria-label');
+  document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){ m.content = d ? '#161c2c' : '#f7f9fd'; });
+}
+(function(){ var th = null; try{ th = localStorage.getItem('p103-theme'); }catch(e){} if(th === 'dark' || th === 'light') document.documentElement.setAttribute('data-theme', th); showTheme(); })();
+if(DARKQ && DARKQ.addEventListener) DARKQ.addEventListener('change', showTheme);
+$('themeBtn').addEventListener('click', function(){
+  var th = isDark() ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', th);
+  try{ localStorage.setItem('p103-theme', th); }catch(e){}
+  showTheme();
+});
+$('topics').addEventListener('toggle', function(){ $('topicsBtn').textContent = this.open ? L().closeP : L().change; });
+$('typeForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var c = cur(); if(!c || R.checked) return;
+  var back = c.dir === 'pt-en' ? 'en' : 'pt';
+  R.typed = $('answer').value.trim();
+  R.result = checkAnswer(c.it, back, R.typed);
+  R.checked = true; R.flipped = true;
+  renderStudy();
+  if(CAN_SPEAK && back === 'pt' && R.result !== 'wrong') speak(c.it.pt);
+});
+// swipe: Learn = change card; Flashcards (after flipping) = right "I know it", left "Again"
+var drag = null, swipedAt = 0;
+function canSwipe(){ return (S.mode === 'learn' && LR.list.length) || (S.mode === 'flip' && R && R.flipped && cur()); }
+(function(){
+  var card = $('card');
+  function reset(){ card.style.transition = ''; card.style.transform = ''; card.classList.remove('drag-yes', 'drag-no'); }
+  card.addEventListener('touchstart', function(e){ var t = e.touches[0]; drag = {x: t.clientX, y: t.clientY, dx: 0, on: false}; }, {passive:true});
+  card.addEventListener('touchmove', function(e){
+    if(!drag) return;
+    var t = e.touches[0], dx = t.clientX - drag.x, dy = t.clientY - drag.y;
+    if(!drag.on){
+      if(Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) drag.on = true;
+      else { if(Math.abs(dy) > 10) drag = null; return; }
+    }
+    if(!canSwipe()) return;
+    drag.dx = dx;
+    card.style.transition = 'none';
+    card.style.transform = 'translateX(' + dx + 'px) rotate(' + (dx / 22) + 'deg)' + (card.classList.contains('flipped') ? ' rotateY(180deg)' : '');
+    card.classList.toggle('drag-yes', S.mode === 'flip' && dx > 60);
+    card.classList.toggle('drag-no', S.mode === 'flip' && dx < -60);
+  }, {passive:true});
+  card.addEventListener('touchend', function(){
+    if(!drag) return;
+    var d = drag; drag = null;
+    if(!d.on || Math.abs(d.dx) < 70 || !canSwipe()){ reset(); return; }
+    swipedAt = Date.now();
+    card.classList.add('noanim'); reset(); void card.offsetWidth; card.classList.remove('noanim');
+    if(S.mode === 'learn') learnStep(d.dx < 0 ? 1 : -1);
+    else grade(d.dx > 0);
+  }, {passive:true});
+  card.addEventListener('touchcancel', function(){ drag = null; reset(); }, {passive:true});
+})();
+document.addEventListener('submit', function(e){
+  if(e.target.id !== 'pForm') return;
+  e.preventDefault();
+  var v = $('pIn').value.trim();
+  if(!v){ $('pIn').focus(); $('pIn').classList.remove('nudge'); void $('pIn').offsetWidth; $('pIn').classList.add('nudge'); return; }
+  pAnswer(v);
+});
+$('sheetBg').addEventListener('click', shClose);
+document.addEventListener('keydown', function(e){
+  if($('practice').hidden) return;
+  if(e.key === 'Escape' && !$('sheet').hidden){ shClose(); return; }
+  var tag = (e.target.tagName || '').toLowerCase();
+  if(e.key === 'Enter' && PQ && PQ.fb && tag !== 'button'){ e.preventDefault(); pNext(); }
+});
+function announceResume(){ if(S.mode === 'learn' && LR.i > 0) toast(L().resumed(LR.i + 1), L().startOver, learnRestart); }
+document.addEventListener('keydown', function(e){
+  var tag = (e.target.tagName || '').toLowerCase();
+  if((e.ctrlKey || e.metaKey) && (e.key === 'z' || e.key === 'Z') && UNDO && tag !== 'input'){ e.preventDefault(); undo(); return; }
+  if(!$('study').hidden && S.mode === 'learn' && LR.list.length && tag !== 'input' && tag !== 'select'){
+    if(e.key === 'ArrowRight'){ e.preventDefault(); learnStep(1); }
+    else if(e.key === 'ArrowLeft'){ e.preventDefault(); learnStep(-1); }
+    else if(e.key === ' ' && tag !== 'button'){ e.preventDefault(); speak(LR.list[LR.i].pt); }
+    return;
+  }
+  if($('study').hidden || !R || !cur()) return;
+  if(S.mode === 'type'){
+    if(R.checked && e.key === 'Enter'){ e.preventDefault(); grade(R.result !== 'wrong'); }
+    return;
+  }
+  if(tag === 'input' || tag === 'select' || (tag === 'button' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.target.id !== 'card')) return;
+  if(e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); R.flipped = !R.flipped; renderStudy(); }
+  else if(e.key === 'ArrowRight' && R.flipped){ grade(true); }
+  else if(e.key === 'ArrowLeft' && R.flipped){ grade(false); }
+});
+$('roundSize').addEventListener('change', function(){ S.round = +this.value; saveS(); newRound(); });
+$('weakOnly').addEventListener('change', function(){ S.weak = this.checked; saveS(); newRound(); });
+$('search').addEventListener('input', renderList);
+$('listCat').addEventListener('change', renderList);
+
+renderChrome();
+newRound();
+announceResume();
+</script>
