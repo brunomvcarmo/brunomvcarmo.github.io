@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fora da Caixa</title>
+<meta name="description" content="Quiz de futebol da Premier League: o óbvio não marca. Quanto mais rara a resposta certa, mais longe o remate. Joga quantas vezes quiseres.">
+<meta name="theme-color" content="#0b1020">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b1020; --bg2:#10172c; --panel:#151d36; --panel2:#1c2646; --line:#26315a;
+  --ink:#f3f1ea; --mute:#98a2c0; --acc:#d7ff3a; --acc-ink:#11160a; --bad:#ff5d6c; --warn:#ffb020;
+  --t0:#3a4466; --t1:#c9d1e0; --t2:#4ade80; --t3:#facc15; --t4:#fb923c; --t5:#c084fc;
+  --r:18px; --display:'Bricolage Grotesque',system-ui,sans-serif; --sans:'Inter',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.4}
+body{min-height:100dvh;background:radial-gradient(1200px 600px at 50% -200px,#1a2550 0%,var(--bg) 60%) fixed}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+.wrap{max-width:520px;margin:0 auto;padding:max(12px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom))}
+.screen{display:none}
+.screen.on{display:block;animation:screenIn .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes screenIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- início ---------- */
+.brand{display:flex;align-items:center;gap:10px;margin:8px 0 4px}
+.brand svg{width:34px;height:34px;flex:none}
+.brand h1{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:-.02em;margin:0;line-height:1}
+.brand h1 em{font-style:normal;color:var(--acc)}
+.tag{color:var(--mute);margin:10px 0 18px;font-size:15px}
+.tag b{color:var(--ink)}
+.hero{position:relative;border-radius:var(--r);overflow:hidden;background:var(--panel);border:1px solid var(--line);margin-bottom:14px}
+.hero svg{display:block;width:100%;height:auto}
+.hero .ladder{position:absolute;right:10px;top:10px;display:grid;gap:4px;font-size:11px;font-weight:600}
+.ladder span{display:flex;align-items:center;gap:6px;background:rgba(11,16,32,.72);padding:3px 8px 3px 6px;border-radius:99px;backdrop-filter:blur(4px)}
+.ladder i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.modes{display:grid;gap:10px}
+.mode{display:flex;align-items:center;gap:14px;text-align:left;width:100%;padding:16px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line);transition:transform .15s,border-color .15s,background .15s}
+.mode:hover{border-color:#3a4a85;background:var(--panel2)}
+.mode:active{transform:scale(.98)}
+.mode .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;flex:none;background:var(--bg2)}
+.mode.main{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.mode.main .ic{background:rgba(0,0,0,.12)}
+.mode.main small{color:#3c4a12}
+.mode.main:hover{background:#e2ff6b}
+.mode b{display:block;font-family:var(--display);font-size:19px;font-weight:800;letter-spacing:-.01em}
+.mode small{color:var(--mute);font-size:13px}
+.mode .go{margin-left:auto;font-size:20px;opacity:.7}
+.mode.friend{border-color:var(--t5);background:linear-gradient(135deg,#2a1d4a,var(--panel))}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0 8px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 6px;text-align:center}
+.stat b{display:block;font-family:var(--display);font-size:22px;font-weight:800}
+.stat span{font-size:11px;color:var(--mute)}
+.foot{color:var(--mute);font-size:12px;text-align:center;margin-top:14px}
+.foot a{color:var(--mute)}
+.linkbtn{color:var(--acc);font-weight:600;text-decoration:underline;text-underline-offset:3px;padding:6px}
+
+/* ---------- jogo ---------- */
+.top{display:flex;align-items:center;gap:10px;margin:4px 0 10px;min-height:44px}
+.iconbtn{width:40px;height:40px;border-radius:12px;background:var(--panel);border:1px solid var(--line);display:grid;place-items:center;font-size:18px}
+.prog{display:flex;gap:5px;align-items:center}
+.prog{min-width:0;flex:0 1 auto}
+.prog i{width:16px;height:8px;border-radius:99px;background:var(--t0);transition:background .3s,transform .3s}
+.prog i.cur{background:var(--ink);transform:scaleY(1.3)}
+.lives{display:flex;gap:4px;font-size:20px}
+.lives span{transition:transform .4s,opacity .4s,filter .4s}
+.lives span.lost{opacity:.25;filter:grayscale(1);transform:scale(.8)}
+.lives span.pop{animation:heartPop .6s}
+@keyframes heartPop{30%{transform:scale(1.6)}100%{transform:scale(1)}}
+.streak{font-size:13px;font-weight:700;color:var(--warn);background:rgba(255,176,32,.12);padding:4px 8px;border-radius:99px;display:none}
+.streak.on{display:inline-block;animation:heartPop .5s}
+.score{margin-left:auto;text-align:right}
+.score b{font-family:var(--display);font-size:24px;font-weight:800;display:block;line-height:1}
+.score span{font-size:11px;color:var(--mute)}
+.timer{position:relative;width:44px;height:44px;flex:none}
+.timer svg{width:44px;height:44px;transform:rotate(-90deg)}
+.timer circle{fill:none;stroke-width:4}
+.timer .bgc{stroke:var(--t0)}
+.timer .fg{stroke:var(--acc);stroke-linecap:round;stroke-dasharray:113.1;stroke-dashoffset:0}
+.timer b{position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-size:15px}
+.timer.low .fg{stroke:var(--bad)}
+.timer.low b{color:var(--bad);animation:tick 1s infinite}
+@keyframes tick{50%{transform:scale(1.18)}}
+.qcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 14px;margin-bottom:10px;position:relative}
+.qcard.enter{animation:qIn .45s cubic-bezier(.2,.9,.25,1.15)}
+@keyframes qIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.qnum{font-size:12px;color:var(--mute);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.qtxt{font-family:var(--display);font-weight:800;font-size:23px;line-height:1.15;letter-spacing:-.01em;margin:6px 0 4px}
+.qsub{font-size:13px;color:var(--mute)}
+.answer{position:relative;margin-bottom:10px}
+.answer input{width:100%;padding:15px 16px;border-radius:14px;border:2px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit;font-size:17px;outline:none;transition:border-color .2s}
+.answer input:focus{border-color:var(--acc)}
+.answer input::placeholder{color:#6e789a}
+.sug{list-style:none;margin:6px 0 0;padding:6px;position:absolute;left:0;right:0;z-index:20;background:var(--panel2);border:1px solid #33407a;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.5);display:none}
+.sug.on{display:block;animation:screenIn .15s}
+.sug li{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;cursor:pointer}
+.sug li.sel,.sug li:hover{background:#2a3766}
+.sug .kit{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:10px;font-weight:800;flex:none;background:var(--bg2);color:var(--mute)}
+.sug .nm{font-weight:600}
+.sug .nm small{display:block;font-weight:400;color:var(--mute);font-size:12px}
+.sug .empty{color:var(--mute);padding:10px;font-size:14px}
+.skip{display:block;margin:-2px 0 8px auto;font-size:13px;color:var(--mute);padding:4px 2px}
+.pitch{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#14532d}
+.pitch svg{display:block;width:100%;height:auto}
+.flash{position:absolute;left:0;right:0;top:26%;text-align:center;pointer-events:none;opacity:0}
+.flash b{display:inline-block;font-family:var(--display);font-weight:800;font-size:56px;letter-spacing:-.03em;line-height:1;text-shadow:0 4px 0 rgba(0,0,0,.35),0 0 30px rgba(0,0,0,.4)}
+.flash small{display:block;font-weight:700;font-size:16px;margin-top:6px;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.flash.go{animation:flashIn 1.6s cubic-bezier(.2,.9,.2,1) forwards}
+@keyframes flashIn{0%{opacity:0;transform:scale(.4) rotate(-6deg)}15%{opacity:1;transform:scale(1.12) rotate(2deg)}25%{transform:scale(1) rotate(0)}80%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.confetti i{position:absolute;top:30%;left:50%;width:8px;height:12px;border-radius:2px;opacity:0;animation:conf 1.4s ease-out forwards}
+@keyframes conf{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot))}}
+.shake{animation:shake .45s}
+@keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+
+.reveal{margin-top:10px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px 16px;display:none}
+.reveal.on{display:block;animation:qIn .4s cubic-bezier(.2,.9,.25,1.1)}
+.rhead{display:flex;align-items:center;gap:12px}
+.badge{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:15px;color:#0b1020;flex:none;line-height:1;text-align:center}
+.badge.miss{background:var(--t0);color:var(--ink);font-size:22px}
+.rhead b{font-family:var(--display);font-size:20px;font-weight:800;display:block;line-height:1.1}
+.rhead span{color:var(--mute);font-size:13px}
+.rhead .pts{margin-left:auto;font-family:var(--display);font-weight:800;font-size:26px}
+.why{margin:12px 0 0;font-size:14px;color:var(--mute)}
+.why b{color:var(--ink)}
+.meter{margin:12px 0 4px;height:10px;border-radius:99px;background:linear-gradient(90deg,var(--t1),var(--t2),var(--t3),var(--t4),var(--t5));position:relative}
+.meter i{position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:var(--ink);border:3px solid var(--bg);transform:translate(-50%,-50%);transition:left .9s cubic-bezier(.2,.9,.2,1);left:0}
+.meterlbl{display:flex;justify-content:space-between;font-size:11px;color:var(--mute)}
+.alts{margin-top:12px;display:grid;gap:6px}
+.alts h4{margin:4px 0 0;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px 5px 6px;border-radius:99px;background:var(--bg2);border:1px solid var(--line);font-size:13px}
+.chip i{width:9px;height:9px;border-radius:50%;flex:none}
+.chip small{color:var(--mute)}
+.btn{display:block;width:100%;padding:15px;border-radius:14px;background:var(--acc);color:var(--acc-ink);font-family:var(--display);font-weight:800;font-size:18px;margin-top:14px;transition:transform .12s,background .15s}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+.btn.friend{background:var(--t5);color:#1a0d2e}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row2 .btn{margin-top:10px;font-size:16px;padding:14px 8px}
+
+/* ---------- fim ---------- */
+.endhead{text-align:center;padding:12px 0 4px}
+.endhead .lbl{color:var(--mute);font-size:14px}
+.big{font-family:var(--display);font-weight:800;font-size:76px;line-height:1;letter-spacing:-.04em;margin:6px 0}
+.endhead .rec{display:inline-block;background:var(--acc);color:var(--acc-ink);font-weight:700;font-size:13px;padding:4px 10px;border-radius:99px;animation:heartPop .6s .6s both}
+.shots{display:flex;justify-content:center;gap:6px;margin:14px 0}
+.shots i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800;color:#0b1020;animation:qIn .4s both}
+.recap{display:grid;gap:8px;margin-top:8px}
+.rc{display:flex;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.rc .badge{width:40px;height:40px;font-size:12px;border-radius:10px}
+.rc .badge.miss{font-size:16px}
+.rc p{margin:0;font-size:13px;color:var(--mute)}
+.rc p b{color:var(--ink);font-weight:600}
+.rc .pts{margin-left:auto;font-weight:700}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,40px);opacity:0;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;font-weight:600;font-size:14px;transition:all .3s;z-index:50;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+dialog{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:var(--r);padding:20px;max-width:440px;width:calc(100% - 32px)}
+dialog::backdrop{background:rgba(5,8,18,.7);backdrop-filter:blur(3px)}
+dialog h2{font-family:var(--display);margin:0 0 10px;font-size:24px}
+dialog ol{padding-left:20px;margin:0;display:grid;gap:8px;font-size:15px}
+dialog .tiers{display:grid;gap:6px;margin:14px 0 4px}
+dialog .tiers div{display:flex;gap:10px;align-items:center;font-size:14px}
+dialog .tiers i{width:12px;height:12px;border-radius:50%}
+dialog .tiers b{width:52px}
+.loading{text-align:center;color:var(--mute);padding:80px 0}
+.loading .ballspin{width:40px;height:40px;margin:0 auto 14px;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (min-width:600px){.qtxt{font-size:26px}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="s-load" class="screen on">
+    <div class="loading">
+      <svg class="ballspin" viewBox="0 0 40 40"><use href="#ballsym"/></svg>
+      A aquecer no relvado…
+    </div>
+  </div>
+
+  <!-- ===================== INÍCIO ===================== -->
+  <div id="s-home" class="screen">
+    <div class="brand">
+      <svg viewBox="0 0 40 40"><use href="#ballsym"/></svg>
+      <h1>Fora da <em>Caixa</em></h1>
+    </div>
+    <p class="tag">O óbvio não marca. Responde certo, mas <b>com a resposta que mais ninguém se lembra</b>: quanto mais rara, mais longe o remate e mais pontos.</p>
+
+    <div class="hero" aria-hidden="true">
+      <svg id="heroPitch" viewBox="0 0 360 230"></svg>
+      <div class="ladder">
+        <span><i style="background:var(--t5)"></i>50 m · 50</span>
+        <span><i style="background:var(--t4)"></i>35 m · 40</span>
+        <span><i style="background:var(--t3)"></i>25 m · 30</span>
+        <span><i style="background:var(--t2)"></i>18 m · 20</span>
+        <span><i style="background:var(--t1)"></i>11 m · 10</span>
+      </div>
+    </div>
+
+    <div class="modes">
+      <button class="mode friend" id="m-friend" hidden>
+        <span class="ic">⚔️</span>
+        <span><b>Desafio de um amigo</b><small id="friendTxt">As mesmas 7 perguntas que ele jogou</small></span>
+        <span class="go">›</span>
+      </button>
+      <button class="mode main" id="m-7">
+        <span class="ic">⚽</span>
+        <span><b>Jogo rápido</b><small>7 perguntas novas · 25 s cada · sempre que quiseres</small></span>
+        <span class="go">›</span>
+      </button>
+      <button class="mode" id="m-fim">
+        <span class="ic">♾️</span>
+        <span><b>Sem fim</b><small>3 vidas · séries multiplicam · golo do meio-campo dá uma vida</small></span>
+        <span class="go">›</span>
+      </button>
+      <button class="mode" id="m-dia">
+        <span class="ic">📅</span>
+        <span><b>Desafio do dia</b><small id="diaTxt">As mesmas 7 para toda a gente hoje</small></span>
+        <span class="go">›</span>
+      </button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b id="st-jogos">0</b><span>jogos</span></div>
+      <div class="stat"><b id="st-best">0</b><span>recorde (7)</span></div>
+      <div class="stat"><b id="st-fim">0</b><span>recorde sem fim</span></div>
+      <div class="stat"><b id="st-golacos">0</b><span>do meio-campo</span></div>
+    </div>
+    <p class="foot"><button class="linkbtn" id="howBtn">Como se joga</button></p>
+    <p class="foot" id="dataFoot"></p>
+  </div>
+
+  <!-- ===================== JOGO ===================== -->
+  <div id="s-game" class="screen">
+    <div class="top">
+      <button class="iconbtn" id="quit" aria-label="Sair">✕</button>
+      <div class="prog" id="prog"></div>
+      <div class="lives" id="lives" hidden></div>
+      <span class="streak" id="streak"></span>
+      <div class="score"><b id="score">0</b><span>pontos</span></div>
+      <div class="timer" id="timer">
+        <svg viewBox="0 0 44 44"><circle class="bgc" cx="22" cy="22" r="18"/><circle class="fg" id="tfg" cx="22" cy="22" r="18"/></svg>
+        <b id="tnum">25</b>
+      </div>
+    </div>
+
+    <div class="qcard" id="qcard">
+      <div class="qnum" id="qnum">Pergunta 1</div>
+      <div class="qtxt" id="qtxt"></div>
+      <div class="qsub" id="qsub"></div>
+    </div>
+
+    <div class="answer" id="answer">
+      <input id="resp" type="text" inputmode="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Escreve o nome de um jogador…" aria-label="Resposta">
+      <ul class="sug" id="sug" role="listbox"></ul>
+    </div>
+    <button class="skip" id="skip">Não sei, passar ›</button>
+
+    <div class="pitch" id="pitchBox">
+      <svg id="pitch" viewBox="0 0 360 250"></svg>
+      <div class="flash" id="flash"><b id="flashB"></b><small id="flashS"></small></div>
+      <div class="confetti" id="confetti"></div>
+    </div>
+
+    <div class="reveal" id="reveal"></div>
+  </div>
+
+  <!-- ===================== FIM ===================== -->
+  <div id="s-end" class="screen">
+    <div class="endhead">
+      <div class="lbl" id="endLbl">Resultado</div>
+      <div class="big" id="endScore">0</div>
+      <div id="endRec"></div>
+      <div class="shots" id="endShots"></div>
+      <div class="lbl" id="endSub"></div>
+    </div>
+    <button class="btn" id="again">Jogar outra vez</button>
+    <div class="row2">
+      <button class="btn friend" id="share">Desafiar amigo</button>
+      <button class="btn ghost" id="home">Início</button>
+    </div>
+    <div class="recap" id="recap"></div>
+  </div>
+</div>
+
+<dialog id="how">
+  <h2>Como se joga</h2>
+  <ol>
+    <li>Aparece uma pergunta sobre a <b>Premier League desta época</b> (por exemplo, "um jogador do Arsenal que já marcou").</li>
+    <li>Escreve o nome e escolhe o jogador na lista. Tens <b>25 segundos</b> e um só remate.</li>
+    <li>Qualquer resposta certa marca. Mas <b>quanto menos gestores da FPL tiverem esse jogador, mais longe é o remate</b> — e mais pontos.</li>
+  </ol>
+  <div class="tiers">
+    <div><i style="background:var(--t1)"></i><b>11 m</b>Penálti · 10 pontos (a resposta óbvia)</div>
+    <div><i style="background:var(--t2)"></i><b>18 m</b>Entrada da área · 20</div>
+    <div><i style="background:var(--t3)"></i><b>25 m</b>Fora da caixa · 30</div>
+    <div><i style="background:var(--t4)"></i><b>35 m</b>Bomba de longe · 40</div>
+    <div><i style="background:var(--t5)"></i><b>50 m</b>Do meio-campo · 50 (a mais rara)</div>
+  </div>
+  <p style="color:var(--mute);font-size:14px;margin:12px 0 0"><b style="color:var(--ink)">Sem fim:</b> 3 vidas; cada falhanço tira uma. A cada 3 golos seguidos o multiplicador sobe (×1,5, ×2…). Um golo do meio-campo devolve uma vida.<br>As perguntas são geradas a partir dos dados oficiais da FPL, por isso nunca acabam.</p>
+  <button class="btn" onclick="this.closest('dialog').close()">Bora</button>
+</dialog>
+<div class="toast" id="toast"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ballsym" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18" fill="#f3f1ea" stroke="#0b1020" stroke-width="2"/>
+      <path d="M20 12l7 5-2.7 8.3h-8.6L13 17z" fill="#0b1020"/>
+      <path d="M20 2v10M27 17l9-4M24.3 25.3l5.4 8M15.7 25.3l-5.4 8M13 17l-9-4" stroke="#0b1020" stroke-width="2" fill="none"/>
+    </symbol>
+    <pattern id="netp" width="5" height="5" patternUnits="userSpaceOnUse">
+      <path d="M0 0L5 5M5 0L0 5" stroke="rgba(255,255,255,.35)" stroke-width=".6"/>
+    </pattern>
+    <radialGradient id="spot" cx="50%" cy="0%" r="90%">
+      <stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<script>
+'use strict';
+// ======================================================================
+// Fora da Caixa — quiz de futebol com perguntas sem fim, a partir de dados.json
+// (gerado por scripts/quiz_dados.py a partir do espelho da API oficial da FPL).
+// ======================================================================
+const $ = s => document.querySelector(s);
+const TIERS = [
+  {m:0,  nome:'Falhado', pts:0, cor:'var(--t0)', hex:'#3a4466', emo:'⬛'},
+  {m:11, nome:'Penálti', pts:10, cor:'var(--t1)', hex:'#c9d1e0', emo:'⬜'},
+  {m:18, nome:'Entrada da área', pts:20, cor:'var(--t2)', hex:'#4ade80', emo:'🟩'},
+  {m:25, nome:'Fora da caixa', pts:30, cor:'var(--t3)', hex:'#facc15', emo:'🟨'},
+  {m:35, nome:'Bomba de longe', pts:40, cor:'var(--t4)', hex:'#fb923c', emo:'🟧'},
+  {m:50, nome:'Do meio-campo', pts:50, cor:'var(--t5)', hex:'#c084fc', emo:'🟪'},
+];
+const QTIME = 25, NQ = 7;
+const TEAMPT = {"Man City":"Manchester City","Man Utd":"Manchester United","Nott'm Forest":"Nottingham Forest","Spurs":"Tottenham"};
+const POSN = {gk:'guarda-redes', def:'defesa', mid:'médio', fwd:'avançado'};
+const POSA = {gk:'GR', def:'DEF', mid:'MED', fwd:'AV'};
+let D, P = [], TEAMS = {}, G = 1, TPL = [];
+
+// ---------- utilidades ----------
+const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/ø/g,'o').replace(/ß/g,'ss').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+const pl = (n, s, p) => n === 1 ? `1 ${s}` : `${n} ${p || s + 's'}`;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function rng(seed) { let a = seed >>> 0; return () => { a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const pick = (r, a) => a[Math.floor(r() * a.length)];
+const randInt = (r, lo, hi) => lo + Math.floor(r() * (hi - lo + 1));
+const teamName = id => { const n = TEAMS[id][0]; return TEAMPT[n] || n; };
+const doT = id => 'do ' + teamName(id);
+function hashStr(s) { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+function today() { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function toast(t) { const el = $('#toast'); el.textContent = t; el.classList.add('on'); clearTimeout(toast.k); toast.k = setTimeout(() => el.classList.remove('on'), 2200); }
+
+// ---------- memória local (só neste browser) ----------
+const STORE = 'fora-da-caixa-v1';
+function loadStats() { try { return Object.assign({jogos:0, best:0, bestFim:0, golacos:0, dia:{}, recent:[]}, JSON.parse(localStorage.getItem(STORE) || '{}')); } catch (e) { return {jogos:0, best:0, bestFim:0, golacos:0, dia:{}, recent:[]}; } }
+function saveStats(s) { try { localStorage.setItem(STORE, JSON.stringify(s)); } catch (e) {} }
+let ST = loadStats();
+
+// ======================================================================
+// Perguntas: modelos que se combinam com equipas, jornadas e limites ao acaso
+// ======================================================================
+function buildTemplates() {
+  const teams = Object.keys(TEAMS).map(Number);
+  const gws = Array.from({length: G}, (_, i) => i + 1);
+  const T = (o) => TPL.push(Object.assign({w:1, min:5, max:60}, o));
+  T({id:'eqGolo', w:3, min:4, make: r => { const t = pick(r, teams); return {key:'eqGolo'+t, txt:`Um jogador ${doT(t)} que já marcou esta época`, ok:p => p.equipa===t && p.golos>0, st:p => pl(p.golos,'golo')}; }});
+  T({id:'eqAssist', w:2, min:4, make: r => { const t = pick(r, teams); return {key:'eqAss'+t, txt:`Um jogador ${doT(t)} com pelo menos uma assistência`, ok:p => p.equipa===t && p.assist>0, st:p => pl(p.assist,'assistência')}; }});
+  T({id:'posGolos', w:2, make: r => { const pos = pick(r, ['def','mid','fwd']); const k = pos==='def' ? 1 : pos==='mid' ? randInt(r,1,3) : randInt(r,2,5);
+      return {key:'posG'+pos+k, txt: k===1 ? `Um ${POSN[pos]} que já marcou esta época` : `Um ${POSN[pos]} com pelo menos ${k} golos esta época`, sub:'Posição oficial da FPL', ok:p => p.pos===pos && p.golos>=k, st:p => `${POSA[p.pos]} · ${pl(p.golos,'golo')}`}; }});
+  T({id:'assistK', w:1, make: r => { const k = randInt(r,3,5); return {key:'assK'+k, txt:`Um jogador com pelo menos ${k} assistências esta época`, ok:p => p.assist>=k, st:p => pl(p.assist,'assistência')}; }});
+  T({id:'golJ', w:3, make: r => { const g = pick(r, gws); return {key:'golJ'+g, txt:`Um jogador que marcou na jornada ${g}`, ok:p => p.jGolos[g-1]>0, st:p => p.jGolos[g-1] ? `${pl(p.jGolos[g-1],'golo')} na J${g}` : `0 golos na J${g}`}; }});
+  T({id:'assJ', w:1, make: r => { const g = pick(r, gws); return {key:'assJ'+g, txt:`Um jogador que fez uma assistência na jornada ${g}`, ok:p => p.jAssist[g-1]>0, st:p => `${pl(p.jAssist[g-1],'assistência')} na J${g}`}; }});
+  T({id:'pontosJ', w:2, min:4, make: r => { const g = pick(r, gws), k = pick(r, [10,12]); return {key:'ptsJ'+g+'-'+k, txt:`Um jogador que fez ${k} ou mais pontos FPL na jornada ${g}`, ok:p => p.jPontos[g-1]>=k, st:p => `${pl(p.jPontos[g-1],'ponto')} na J${g}`}; }});
+  T({id:'verm', w:1, min:3, make: () => ({key:'verm', txt:'Um jogador que já viu um cartão vermelho esta época', ok:p => p.vermelhos>0, st:p => pl(p.vermelhos,'vermelho')})});
+  T({id:'autogolo', w:1, min:3, make: () => ({key:'og', txt:'Um jogador que já marcou um autogolo esta época', ok:p => p.autogolos>0, st:p => pl(p.autogolos,'autogolo')})});
+  T({id:'penFalh', w:1, min:3, make: () => ({key:'penF', txt:'Um jogador que já falhou um penálti esta época', ok:p => p.penFalh>0, st:p => `${pl(p.penFalh,'penálti')} falhado${p.penFalh===1?'':'s'}`})});
+  T({id:'gkCs', w:1, min:4, make: r => { const k = randInt(r,2,4); return {key:'gkcs'+k, txt:`Um guarda-redes com pelo menos ${k} jogos sem sofrer golos`, ok:p => p.pos==='gk' && p.cs>=k, st:p => `${pl(p.cs,'jogo')} sem sofrer`}; }});
+  T({id:'gkDef', w:1, min:4, make: r => { const k = pick(r,[20,25,30]); return {key:'gkdef'+k, txt:`Um guarda-redes com pelo menos ${k} defesas esta época`, ok:p => p.pos==='gk' && p.defesas>=k, st:p => pl(p.defesas,'defesa')}; }});
+  T({id:'barato', w:2, make: r => { const x = pick(r,[4.5,5.0,5.5]); return {key:'bar'+x, txt:`Um jogador que custa £${x.toFixed(1)}M ou menos e já marcou`, sub:'Preço atual na FPL', ok:p => p.preco<=x && p.golos>0, st:p => `£${p.preco.toFixed(1)}M · ${pl(p.golos,'golo')}`}; }});
+  T({id:'caro', w:1, make: r => { const x = pick(r,[8.5,9.0,10.0]); return {key:'caro'+x, txt:`Um jogador que custa £${x.toFixed(1)}M ou mais na FPL`, ok:p => p.preco>=x, st:p => `£${p.preco.toFixed(1)}M`}; }});
+  T({id:'eqPosMin', w:2, min:3, make: r => { const t = pick(r, teams), pos = pick(r, ['def','mid','fwd','mid','def']); const k = pos==='fwd' ? 180 : 360;
+      return {key:'epm'+t+pos, txt:`Um ${POSN[pos]} ${doT(t)} com pelo menos ${k} minutos jogados`, sub:'Posição oficial da FPL', ok:p => p.equipa===t && p.pos===pos && p.minutos>=k, st:p => `${POSA[p.pos]} · ${p.minutos} min`}; }});
+  T({id:'eqJogouJ', w:2, make: r => { const t = pick(r, teams), g = pick(r, gws); return {key:'ejj'+t+'-'+g, txt:`Um jogador ${doT(t)} que entrou em campo na jornada ${g}`, ok:p => p.equipa===t && p.jMinutos[g-1]>0, st:p => `${p.jMinutos[g-1]} min na J${g}`}; }});
+  T({id:'amarelos', w:1, make: r => { const k = randInt(r,3,4); return {key:'yc'+k, txt:`Um jogador com pelo menos ${k} cartões amarelos esta época`, ok:p => p.amarelos>=k, st:p => pl(p.amarelos,'amarelo')}; }});
+  T({id:'bonus', w:1, make: r => { const k = pick(r,[6,8,10]); return {key:'bns'+k, txt:`Um jogador com pelo menos ${k} pontos de bónus esta época`, ok:p => p.bonus>=k, st:p => `${p.bonus} de bónus`}; }});
+  T({id:'maisAss', w:1, make: () => ({key:'maisAss', txt:'Um jogador com mais assistências do que golos (e pelo menos 2 assistências)', ok:p => p.assist>=2 && p.assist>p.golos, st:p => `${pl(p.golos,'golo')}, ${pl(p.assist,'assistência')}`})});
+  T({id:'seca', w:1, min:4, make: () => ({key:'seca', txt:'Um avançado com 300+ minutos que ainda não marcou esta época', ok:p => p.pos==='fwd' && p.minutos>=300 && p.golos===0, st:p => `${p.minutos} min, ${pl(p.golos,'golo')}`})});
+  T({id:'bis', w:2, make: () => ({key:'bis', txt:'Um jogador que bisou (2+ golos) numa só jornada esta época', ok:p => p.jGolos.some(x => x>=2), st:p => { const i = p.jGolos.findIndex(x => x>=2); return i<0 ? 'nunca bisou' : `${pl(p.jGolos[i],'golo')} na J${i+1}`; }})});
+  T({id:'golAss', w:1, make: () => ({key:'golAss', txt:'Um jogador que marcou e assistiu na mesma jornada', ok:p => p.jGolos.some((x,i) => x>0 && p.jAssist[i]>0), st:p => { const i = p.jGolos.findIndex((x,j) => x>0 && p.jAssist[j]>0); return i<0 ? 'nunca o fez' : `golo e assistência na J${i+1}`; }})});
+  T({id:'eqTodas', w:1, min:3, make: r => { const t = pick(r, teams); return {key:'eqT'+t, txt:`Um jogador ${doT(t)} que jogou em todas as ${G} jornadas`, ok:p => p.equipa===t && p.jMinutos.every(x => x>0), st:p => `jogou em ${p.jMinutos.filter(x => x>0).length} de ${G}`}; }});
+  T({id:'pontosK', w:1, make: r => { const k = pick(r,[50,60,70]); return {key:'ptsK'+k, txt:`Um jogador com pelo menos ${k} pontos FPL esta época`, ok:p => p.pontos>=k, st:p => pl(p.pontos,'ponto')}; }});
+  T({id:'eqPontos', w:1, min:4, make: r => { const t = pick(r, teams); return {key:'eqP'+t, txt:`Um jogador ${doT(t)} com 30 ou mais pontos FPL esta época`, ok:p => p.equipa===t && p.pontos>=30, st:p => pl(p.pontos,'ponto')}; }});
+  T({id:'defAss', w:1, make: () => ({key:'defAss', txt:'Um defesa com pelo menos uma assistência esta época', sub:'Posição oficial da FPL', ok:p => p.pos==='def' && p.assist>0, st:p => `${POSA[p.pos]} · ${pl(p.assist,'assistência')}`})});
+}
+
+function weighted(r) { const tot = TPL.reduce((s, t) => s + t.w, 0); let x = r() * tot; for (const t of TPL) { x -= t.w; if (x < 0) return t; } return TPL[TPL.length - 1]; }
+function genQ(r, used, perTpl) {
+  for (let k = 0; k < 400; k++) {
+    const t = weighted(r);
+    if ((perTpl[t.id] || 0) >= 2) continue;
+    const q = t.make(r);
+    if (!q || used.has(q.key)) continue;
+    const valid = P.filter(q.ok);
+    if (valid.length < t.min || valid.length > t.max) continue;
+    valid.sort((a, b) => b.fama - a.fama);
+    q.valid = valid; q.tpl = t.id; q.sub = q.sub || `Premier League 2026/27, até à jornada ${G}`;
+    used.add(q.key); perTpl[t.id] = (perTpl[t.id] || 0) + 1;
+    return q;
+  }
+  return null;
+}
+function genSet(seed) { const r = rng(seed), used = new Set(), per = {}; const out = []; while (out.length < NQ) { const q = genQ(r, used, per); if (!q) break; out.push(q); } return out; }
+// semente nova cujas perguntas repetem o menos possível as dos últimos jogos (a semente sozinha refaz o jogo, para os desafios)
+function freshSeed() { const recent = new Set(ST.recent); let best = null; for (let k = 0; k < 25; k++) { const seed = (Math.random() * 2**32) >>> 0, qs = genSet(seed), rep = qs.filter(q => recent.has(q.key)).length; if (!best || rep < best[1]) best = [seed, rep, qs]; if (rep === 0) break; } return best; }
+function tierOf(q, p) { const i = q.valid.indexOf(p); if (i < 0) return 0; return Math.min(5, 1 + Math.floor(i / q.valid.length * 5)); }
+
+// ======================================================================
+// Relvado em perspetiva (SVG) e animações do remate
+// ======================================================================
+const PV = {W:360, H:250, Y0:62, Y1:250, D:57, K0:8.5, K1:19};
+function proj(x, d, v = PV) { const f = Math.max(0, d) / v.D; const k = v.K0 + (v.K1 - v.K0) * f; return [v.W/2 + x*k, v.Y0 + (v.Y1 - v.Y0) * Math.pow(f, .92), k]; }
+function poly(pts, v) { return pts.map(([x, d]) => proj(x, d, v).slice(0,2).map(n => n.toFixed(1)).join(',')).join(' '); }
+function drawPitch(svg, v, opts = {}) {
+  const ns = 'http://www.w3.org/2000/svg'; let h = '';
+  h += `<rect width="${v.W}" height="${v.H}" fill="#0f2a1a"/>`;
+  // bancada / céu
+  h += `<rect width="${v.W}" height="${v.Y0}" fill="#0b1020"/>`;
+  for (let i = 0; i < 60; i++) { const x = (i * 37.3) % v.W, y = 6 + (i * 13.7) % (v.Y0 - 30); h += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(i%3)*.4+.6}" fill="${['#2a3766','#3a4a85','#4b5ca0'][i%3]}"/>`; }
+  h += `<rect y="${v.Y0-30}" width="${v.W}" height="30" fill="#132042"/>`;
+  // faixas de relva
+  for (let d = 0, i = 0; d < v.D + 8; d += 5.5, i++) h += `<polygon points="${poly([[-80,d],[80,d],[80,d+5.5],[-80,d+5.5]], v)}" fill="${i%2 ? '#1c6b3c' : '#1f7743'}"/>`;
+  h += `<rect width="${v.W}" height="${v.H}" fill="url(#spot)"/>`;
+  const ln = 'fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.4"';
+  h += `<polyline ${ln} points="${poly([[-80,0],[80,0]], v)}"/>`;
+  h += `<polyline ${ln} points="${poly([[-9.16,0],[-9.16,5.5],[9.16,5.5],[9.16,0]], v)}"/>`;
+  h += `<polyline ${ln} points="${poly([[-20.16,0],[-20.16,16.5],[20.16,16.5],[20.16,0]], v)}"/>`;
+  const arc = []; for (let a = -53; a <= 53; a += 4) { const rad = a * Math.PI / 180; arc.push([9.15*Math.sin(rad), 11 + 9.15*Math.cos(rad)]); }
+  h += `<polyline ${ln} points="${poly(arc, v)}"/>`;
+  const [sx, sy] = proj(0, 11, v); h += `<ellipse cx="${sx}" cy="${sy}" rx="2.2" ry="1.2" fill="#fff"/>`;
+  const cc = []; for (let a = -90; a <= 90; a += 6) { const rad = a * Math.PI / 180; cc.push([9.15*Math.sin(rad), 52.5 - 9.15*Math.cos(rad)]); }
+  h += `<polyline ${ln} points="${poly(cc, v)}"/>`;
+  // marcas de distância
+  if (opts.markers !== false) TIERS.slice(1).forEach((t, i) => {
+    const [, y] = proj(0, t.m, v); const [xl] = proj(-80, t.m, v);
+    h += `<g class="mk" id="mk${i+1}" opacity=".85"><line x1="0" x2="${v.W}" y1="${y}" y2="${y}" stroke="${t.hex}" stroke-width="1" stroke-dasharray="3 5" opacity=".55"/>`;
+    h += `<rect x="6" y="${y-8}" width="40" height="16" rx="8" fill="rgba(11,16,32,.75)"/><text x="26" y="${y+4}" text-anchor="middle" font-size="10" font-weight="700" fill="${t.hex}" font-family="Inter,sans-serif">${t.m} m</text></g>`;
+  });
+  // baliza
+  const k0 = v.K0, gx = 7.32*k0/2, gh = 2.44*k0, cx = v.W/2, gy = v.Y0;
+  h += `<g id="net"><polygon points="${cx-gx},${gy} ${cx-gx+6},${gy-gh-5} ${cx+gx-6},${gy-gh-5} ${cx+gx},${gy}" fill="url(#netp)" stroke="rgba(255,255,255,.4)" stroke-width=".6"/>`;
+  h += `<rect x="${cx-gx}" y="${gy-gh}" width="${gx*2}" height="${gh}" fill="url(#netp)"/></g>`;
+  h += `<path d="M${cx-gx} ${gy}V${gy-gh}H${cx+gx}V${gy}" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>`;
+  // guarda-redes
+  h += `<g id="keeper" transform="translate(${cx},${gy})"><g id="kbody">
+    <rect x="-4" y="-17" width="8" height="10" rx="3" fill="#ffb020"/><circle cx="0" cy="-20.5" r="3.4" fill="#f1c7a0"/>
+    <rect x="-3.6" y="-8" width="3" height="8" rx="1.2" fill="#11160a"/><rect x="0.6" y="-8" width="3" height="8" rx="1.2" fill="#11160a"/>
+    <rect x="-9" y="-16" width="5" height="2.6" rx="1.3" fill="#ffb020" transform="rotate(-25 -4 -15)"/><rect x="4" y="-16" width="5" height="2.6" rx="1.3" fill="#ffb020" transform="rotate(25 4 -15)"/></g></g>`;
+  if (opts.ball !== false) h += `<ellipse id="shadow" cx="${sx}" cy="${sy}" rx="6" ry="2" fill="rgba(0,0,0,.35)"/><g id="ball" transform="translate(${sx},${sy-6})"><use href="#ballsym" x="-6" y="-6" width="12" height="12"/></g>`;
+  svg.innerHTML = h;
+}
+const ease = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+function tween(ms, fn, e = ease) { return new Promise(res => { const t0 = performance.now(); const step = now => { const t = Math.min(1, (now - t0) / ms); fn(e(t), t); if (t < 1) requestAnimationFrame(step); else res(); }; requestAnimationFrame(step); }); }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function ballSize(d) { return 7 + 9 * Math.min(1, d / PV.D); }
+function setBall(x, y, size, rot = 0, groundY = null) {
+  const b = document.getElementById('ball'), s = document.getElementById('shadow'); if (!b) return;
+  b.setAttribute('transform', `translate(${x.toFixed(1)},${y.toFixed(1)}) rotate(${rot.toFixed(0)})`);
+  b.firstElementChild.setAttribute('x', -size/2); b.firstElementChild.setAttribute('y', -size/2); b.firstElementChild.setAttribute('width', size); b.firstElementChild.setAttribute('height', size);
+  if (s) { s.setAttribute('cx', x.toFixed(1)); s.setAttribute('cy', (groundY ?? y + size/2).toFixed(1)); s.setAttribute('rx', (size*.5).toFixed(1)); s.setAttribute('ry', (size*.16).toFixed(1)); }
+}
+function placeBallAt(d, x) { const [bx, by] = proj(x, d); const sz = ballSize(d); setBall(bx, by - sz/2, sz, 0, by); }
+function keeper(dx, rot, ms) { const k = document.getElementById('kbody'); if (!k) return; tween(ms, t => k.setAttribute('transform', `translate(${(dx * t).toFixed(1)},${(4 * t).toFixed(1)}) rotate(${(rot * t).toFixed(0)} 0 -8)`), easeOut); }
+function highlightMarker(tier) { document.querySelectorAll('#pitch .mk').forEach((m, i) => { m.setAttribute('opacity', tier ? (i + 1 === tier ? '1' : '.25') : '.85'); }); }
+
+async function shoot(tier, kind) {
+  // tier 1-5: golo dessa distância; tier 0: falhado (kind: 'defesa' | 'poste' | 'fora')
+  const d = tier ? TIERS[tier].m : 11, r = Math.random;
+  const x0 = tier <= 1 ? 0 : (r() - .5) * (tier >= 4 ? 22 : 14);
+  // 1. a bola recua até à distância do remate
+  const [sx0, sy0] = proj(0, 11), [ex, ey] = proj(x0, d);
+  await tween(380 + d * 6, t => { const x = sx0 + (ex - sx0) * t, gy = sy0 + (ey - sy0) * t, sz = ballSize(11 + (d - 11) * t); setBall(x, gy - sz/2, sz, t * -360, gy); }, easeOut);
+  highlightMarker(tier);
+  await sleep(220);
+  // 2. remate em arco
+  const cx = PV.W/2, k0 = PV.K0, gy = PV.Y0;
+  let tx, ty;
+  const side = r() < .5 ? -1 : 1;
+  if (tier) { tx = cx + side * (1 + r() * 2.3) * k0; ty = gy - (.4 + r() * 1.7) * k0; }
+  else if (kind === 'poste') { tx = cx + side * 3.66 * k0; ty = gy - (.6 + r()) * k0; }
+  else if (kind === 'fora') { tx = cx + side * (4.5 + r() * 2) * k0; ty = gy - (2.8 + r() * 1.5) * k0; }
+  else { tx = cx + side * (1.2 + r() * 1.6) * k0; ty = gy - (.5 + r() * 1.2) * k0; }
+  const peak = Math.min(ey, ty) - 20 - d * 1.4, s0 = ballSize(d), s1 = 6;
+  const dur = 520 + d * 13;
+  const kDive = tier ? -side : side;   // no golo, o guarda-redes atira-se para o lado errado
+  setTimeout(() => keeper(kDive * (tier ? 16 : Math.abs(tx - cx) * .9), kDive * 70, 380), dur * .35);
+  await tween(dur, (t, raw) => {
+    const x = (1-t)*(1-t)*ex + 2*(1-t)*t*((ex+tx)/2) + t*t*tx;
+    const y = (1-t)*(1-t)*(ey - s0/2) + 2*(1-t)*t*peak + t*t*ty;
+    const groundY = ey + (gy - ey) * t;
+    setBall(x, y, s0 + (s1 - s0) * t, raw * (tier ? 900 : 600), groundY);
+  }, t => t);
+  if (tier) {
+    const net = document.getElementById('net'); net.style.transformOrigin = `${cx}px ${gy-10}px`; net.animate([{transform:'scale(1,1)'},{transform:'scale(1.08,1.12)'},{transform:'scale(.98,.97)'},{transform:'scale(1,1)'}], {duration:520, easing:'ease-out'});
+    await tween(260, t => setBall(tx + (cx - tx) * .2 * t, ty - 4 * t + 10 * t * t, s1, 0, gy), easeOut);
+  } else {
+    // ressalto: para trás e para o lado
+    const bx = tx + side * (kind === 'fora' ? 40 : 30), by = kind === 'fora' ? ty - 30 : gy + 40;
+    await tween(520, t => setBall(tx + (bx - tx) * t, ty + (by - ty) * t - 26 * Math.sin(Math.PI * t), s1 + 4 * t, t * 400, gy + 30 * t), easeOut);
+    $('#pitchBox').classList.add('shake'); setTimeout(() => $('#pitchBox').classList.remove('shake'), 500);
+  }
+}
+function flash(big, small, color) { const f = $('#flash'); $('#flashB').textContent = big; $('#flashB').style.color = color; $('#flashS').textContent = small; f.classList.remove('go'); void f.offsetWidth; f.classList.add('go'); }
+function confetti(n, colors) { const c = $('#confetti'); c.innerHTML = ''; for (let i = 0; i < n; i++) { const e = document.createElement('i'); const a = Math.random() * Math.PI * 2, d = 80 + Math.random() * 160; e.style.cssText = `background:${colors[i % colors.length]};--dx:${Math.cos(a)*d}px;--dy:${Math.sin(a)*d*.7 + 60}px;--rot:${Math.random()*720-360}deg;animation-delay:${Math.random()*120}ms`; c.appendChild(e); } }
+
+// ======================================================================
+// Estado do jogo
+// ======================================================================
+let S = null, timerId = null, sugList = [], sugSel = 0, busy = false;
+function show(id) { document.querySelectorAll('.screen').forEach(s => s.classList.toggle('on', s.id === id)); window.scrollTo(0, 0); }
+
+function startGame(mode, seed) {
+  if (mode === 'dia') seed = hashStr('dia:' + today());
+  let qs = [];
+  if (mode === 'fim') { if (seed == null) seed = (Math.random() * 2**32) >>> 0; }
+  else if (seed == null) { const f = freshSeed(); seed = f[0]; qs = f[2]; }
+  else qs = genSet(seed);
+  S = {mode, seed, i:0, score:0, shots:[], lives:3, streak:0, bestStreak:0, used:new Set(), per:{}, r:rng(seed), qs};
+  $('#prog').hidden = mode === 'fim'; $('#lives').hidden = mode !== 'fim';
+  $('#prog').innerHTML = mode === 'fim' ? '' : S.qs.map(() => '<i></i>').join('');
+  renderLives(); $('#streak').classList.remove('on'); $('#score').textContent = '0';
+  show('s-game'); nextQ();
+}
+function renderLives(popIdx) { $('#lives').innerHTML = [0,1,2].map(i => `<span class="${i >= S.lives ? 'lost' : ''} ${i === popIdx ? 'pop' : ''}">❤️</span>`).join(''); }
+function mult() { return S.mode === 'fim' ? Math.min(3, 1 + Math.floor(S.streak / 3) * .5) : 1; }
+
+function nextQ() {
+  let q;
+  if (S.mode === 'fim') { if (S.i % NQ === 0) S.per = {}; q = genQ(S.r, S.used, S.per) || genQ(S.r, S.used, {}); if (!q) { S.used.clear(); q = genQ(S.r, S.used, {}); } }
+  else q = S.qs[S.i];
+  S.q = q; S.answered = false;
+  [...$('#prog').children].forEach((e, i) => { e.className = i === S.i ? 'cur' : ''; if (S.shots[i]) e.style.background = TIERS[S.shots[i].tier].hex; else e.style.background = ''; });
+  $('#qnum').textContent = S.mode === 'fim' ? `Pergunta ${S.i + 1}` + (mult() > 1 ? ` · ×${String(mult()).replace('.', ',')}` : '') : `Pergunta ${S.i + 1} de ${S.qs.length}`;
+  $('#qtxt').textContent = q.txt; $('#qsub').textContent = q.sub;
+  const qc = $('#qcard'); qc.classList.remove('enter'); void qc.offsetWidth; qc.classList.add('enter');
+  $('#answer').hidden = false; $('#skip').hidden = false; $('#reveal').classList.remove('on'); $('#reveal').innerHTML = '';
+  const inp = $('#resp'); inp.value = ''; hideSug();
+  drawPitch($('#pitch'), PV); $('#confetti').innerHTML = '';
+  setTimeout(() => { try { inp.focus({preventScroll:true}); } catch (e) {} }, 350);
+  startTimer();
+}
+function startTimer() {
+  clearInterval(timerId); const fg = $('#tfg'), tm = $('#timer'); let left = QTIME; const end = Date.now() + QTIME * 1000;
+  fg.style.transition = 'none'; fg.style.strokeDashoffset = '0'; void fg.getBoundingClientRect();
+  fg.style.transition = `stroke-dashoffset ${QTIME}s linear`; fg.style.strokeDashoffset = '113.1';
+  tm.classList.remove('low'); $('#tnum').textContent = left;
+  timerId = setInterval(() => { left = Math.max(0, Math.ceil((end - Date.now()) / 1000)); $('#tnum').textContent = left; tm.classList.toggle('low', left <= 5); if (left <= 0) { clearInterval(timerId); answer(null, true); } }, 200);
+}
+function stopTimer() { clearInterval(timerId); const fg = $('#tfg'); const cs = getComputedStyle(fg).strokeDashoffset; fg.style.transition = 'none'; fg.style.strokeDashoffset = cs; $('#timer').classList.remove('low'); }
+
+// ---------- caixa de resposta ----------
+function search(txt) {
+  const q = norm(txt); if (q.length < 2) return [];
+  const res = [];
+  for (const p of P) {
+    let s = -1;
+    if (p.nWeb.startsWith(q)) s = 0; else if (p.nAll.split(' ').some(w => w.startsWith(q))) s = 1; else if (p.nAll.includes(q) || p.nWeb.includes(q)) s = 2;
+    if (s >= 0) res.push([s, p]);
+  }
+  res.sort((a, b) => a[0] - b[0] || b[1].fama - a[1].fama);
+  return res.slice(0, 6).map(x => x[1]);
+}
+function renderSug() {
+  const ul = $('#sug');
+  if (!sugList.length) { ul.innerHTML = $('#resp').value.trim().length >= 2 ? '<li class="empty">Nenhum jogador com esse nome</li>' : ''; ul.classList.toggle('on', $('#resp').value.trim().length >= 2); return; }
+  ul.innerHTML = sugList.map((p, i) => `<li role="option" data-i="${i}" class="${i === sugSel ? 'sel' : ''}"><span class="kit">${esc(TEAMS[p.equipa][1])}</span><span class="nm">${esc(p.nome)}<small>${esc(p.completo)} · ${esc(teamName(p.equipa))} · ${POSA[p.pos]}</small></span></li>`).join('');
+  ul.classList.add('on');
+}
+function hideSug() { sugList = []; sugSel = 0; $('#sug').classList.remove('on'); $('#sug').innerHTML = ''; }
+
+async function answer(p, timeout = false) {
+  if (!S || S.answered) return; S.answered = true; busy = true;
+  stopTimer(); hideSug(); $('#resp').blur(); $('#answer').hidden = true; $('#skip').hidden = true;
+  const q = S.q, tier = p ? tierOf(q, p) : 0;
+  const m = mult(); let pts = Math.round(TIERS[tier].pts * m), lifeBack = false;
+  if (tier) { S.streak++; S.bestStreak = Math.max(S.bestStreak, S.streak); }
+  else { S.streak = 0; if (S.mode === 'fim') { S.lives--; renderLives(S.lives); } }
+  if (S.mode === 'fim' && tier === 5 && S.lives < 3) { S.lives++; lifeBack = true; }
+  S.score += pts;
+  S.shots.push({q, p, tier, pts, timeout});
+  if (tier === 5) { ST.golacos++; saveStats(ST); }
+  $('#pitchBox').scrollIntoView({behavior:'smooth', block:'center'});
+  await sleep(150);
+  const kind = timeout ? 'defesa' : pick(Math.random, ['defesa','poste','fora']);
+  await shoot(tier, kind);
+  if (tier) {
+    const t = TIERS[tier];
+    flash(tier >= 4 ? 'GOLAÇO!' : 'GOLO!', `de ${t.m} m · +${pts}`, t.hex);
+    if (tier >= 3) confetti(tier * 10, [t.hex, '#f3f1ea', '#d7ff3a']);
+    try { navigator.vibrate && navigator.vibrate(tier >= 4 ? [30, 40, 60] : 30); } catch (e) {}
+  } else flash(timeout ? 'TEMPO!' : kind === 'defesa' ? 'DEFENDIDO' : kind === 'poste' ? 'AO POSTE!' : 'PARA FORA', p ? 'resposta errada' : timeout ? 'acabaram os 25 s' : 'passaste a vez', '#ff5d6c');
+  countUp($('#score'), S.score - pts, S.score);
+  if (S.mode === 'fim') { const st = $('#streak'); if (S.streak >= 2) { st.textContent = `🔥 ${S.streak} seguidos` + (mult() > 1 ? ` · ×${String(mult()).replace('.', ',')}` : ''); st.classList.remove('on'); void st.offsetWidth; st.classList.add('on'); } else st.classList.remove('on'); if (lifeBack) renderLives(S.lives - 1); }
+  await sleep(450);
+  renderReveal(q, p, tier, pts, timeout, lifeBack);
+  busy = false;
+}
+function countUp(el, a, b) { tween(600, t => el.textContent = Math.round(a + (b - a) * t), easeOut); }
+
+function chip(p, q) { const t = tierOf(q, p); return `<span class="chip"><i style="background:${TIERS[t].hex}"></i>${esc(p.nome)} <small>${esc(TEAMS[p.equipa][1])} · ${esc(q.st(p))}</small></span>`; }
+function renderReveal(q, p, tier, pts, timeout, lifeBack) {
+  const t = TIERS[tier], v = q.valid, last = S.mode !== 'fim' ? S.i >= S.qs.length - 1 : S.lives <= 0;
+  let h = '<div class="rhead">';
+  if (tier) h += `<div class="badge" style="background:${t.hex}">${t.m}<br>m</div><div><b>${t.nome}</b><span>${esc(p.nome)} · ${esc(q.st(p))}</span></div><div class="pts" style="color:${t.hex}">+${pts}</div>`;
+  else h += `<div class="badge miss">✕</div><div><b>${timeout ? 'Acabou o tempo' : p ? 'Não conta' : 'Passaste'}</b><span>${p ? esc(p.nome) + ': ' + esc(q.st(p)) : 'Havia ' + v.length + ' respostas certas'}</span></div><div class="pts" style="color:var(--mute)">0</div>`;
+  h += '</div>';
+  if (tier) {
+    const own = p.popular;
+    h += `<p class="why"><b>${String(own).replace('.', ',')}%</b> dos gestores da FPL têm ${esc(p.nome)}. Era a ${v.indexOf(p) + 1}.ª resposta mais óbvia de ${v.length} possíveis.</p>`;
+    const pos = v.length > 1 ? v.indexOf(p) / (v.length - 1) * 100 : 100;
+    h += `<div class="meter"><i id="mtr"></i></div><div class="meterlbl"><span>óbvio</span><span>raríssimo</span></div>`;
+    setTimeout(() => { const m = document.getElementById('mtr'); if (m) m.style.left = pos + '%'; }, 60);
+  }
+  if (lifeBack) h += `<p class="why" style="color:var(--t5)">❤️ Golo do meio-campo: recuperaste uma vida!</p>`;
+  const rare = v.slice(-3).reverse().filter(x => x !== p), obv = v.slice(0, 3).filter(x => x !== p);
+  h += '<div class="alts">';
+  if (rare.length) h += `<h4>Do meio-campo (as mais raras)</h4><div class="chips">${rare.map(x => chip(x, q)).join('')}</div>`;
+  if (obv.length) h += `<h4>As mais óbvias</h4><div class="chips">${obv.map(x => chip(x, q)).join('')}</div>`;
+  h += '</div>';
+  h += `<button class="btn" id="nextBtn">${last ? 'Ver resultado' : 'Próxima pergunta ›'}</button>`;
+  const rv = $('#reveal'); rv.innerHTML = h; rv.classList.add('on');
+  $('#nextBtn').onclick = () => { if (last) endGame(); else { S.i++; nextQ(); } };
+  setTimeout(() => { try { $('#nextBtn').focus({preventScroll:true}); } catch (e) {} rv.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 200);
+}
+
+function endGame() {
+  clearInterval(timerId);
+  const fim = S.mode === 'fim', golos = S.shots.filter(s => s.tier).length;
+  ST.jogos++;
+  if (!fim) { ST.recent = [...S.shots.map(s => s.q.key), ...ST.recent].slice(0, 60); }
+  let rec = false;
+  if (fim) { if (S.score > ST.bestFim) { ST.bestFim = S.score; rec = true; } }
+  else { if (S.score > ST.best) { ST.best = S.score; rec = S.score > 0; } }
+  if (S.mode === 'dia') { const k = today(); ST.dia[k] = Math.max(ST.dia[k] || 0, S.score); const ks = Object.keys(ST.dia).sort().slice(-10); ST.dia = Object.fromEntries(ks.map(x => [x, ST.dia[x]])); }
+  saveStats(ST);
+  $('#endLbl').textContent = fim ? 'Sem fim · pontuação final' : S.mode === 'dia' ? 'Desafio do dia · ' + new Date().toLocaleDateString('pt-PT', {day:'numeric', month:'long'}) : S.friend ? 'Desafio de um amigo' : 'Jogo rápido';
+  $('#endRec').innerHTML = rec ? '<span class="rec">Novo recorde!</span>' : '';
+  $('#endShots').innerHTML = fim && S.shots.length > 14 ? '' : S.shots.map((s, i) => `<i style="background:${TIERS[s.tier].hex};animation-delay:${200 + i * 90}ms;${s.tier ? '' : 'color:var(--mute)'}">${s.tier ? TIERS[s.tier].m : '✕'}</i>`).join('');
+  const far = Math.max(0, ...S.shots.map(s => TIERS[s.tier].m));
+  $('#endSub').textContent = fim ? `${S.shots.length} perguntas · ${golos} golos · melhor série ${S.bestStreak}` : `${golos} de ${S.shots.length} golos` + (far ? ` · remate mais longo: ${far} m` : '') + (S.friend && S.friendScore != null ? ` · o teu amigo fez ${S.friendScore}` : '');
+  $('#endScore').textContent = '0'; show('s-end'); countUp($('#endScore'), 0, S.score);
+  $('#share').textContent = fim ? 'Partilhar' : 'Desafiar amigo';
+  $('#recap').innerHTML = S.shots.map((s, i) => { const t = TIERS[s.tier]; return `<div class="rc"><div class="badge ${s.tier ? '' : 'miss'}" style="${s.tier ? 'background:' + t.hex : ''}">${s.tier ? t.m + ' m' : '✕'}</div><p><b>${esc(s.q.txt)}</b><br>${s.p ? esc(s.p.nome) + ' · ' + esc(s.q.st(s.p)) : s.timeout ? 'Sem resposta (tempo)' : 'Passou'}</p><span class="pts">${s.pts ? '+' + s.pts : ''}</span></div>`; }).join('');
+  if (S.score > 0 && rec) confettiEnd();
+}
+function confettiEnd() { const c = document.createElement('div'); c.className = 'confetti'; c.style.position = 'fixed'; document.body.appendChild(c); for (let i = 0; i < 60; i++) { const e = document.createElement('i'); const a = Math.random() * Math.PI * 2, d = 120 + Math.random() * 240; e.style.cssText = `top:20%;background:${['#d7ff3a','#c084fc','#facc15','#4ade80','#fb923c'][i%5]};--dx:${Math.cos(a)*d}px;--dy:${Math.sin(a)*d + 160}px;--rot:${Math.random()*720}deg;animation-duration:1.8s`; c.appendChild(e); } setTimeout(() => c.remove(), 2200); }
+
+async function share() {
+  const fim = S.mode === 'fim';
+  const row = S.shots.slice(0, 20).map(s => TIERS[s.tier].emo).join('');
+  const url = location.origin + location.pathname + (fim ? '' : `?jogo=${S.mode === 'dia' ? 'dia' : S.seed.toString(36)}&p=${S.score}`);
+  const txt = fim ? `Fora da Caixa ⚽ Sem fim: ${S.score} pontos, série de ${S.bestStreak}\n${row}` : `Fora da Caixa ⚽ ${S.score} pontos${S.mode === 'dia' ? ' no desafio do dia' : ''}\n${row}\nConsegues rematar de mais longe?`;
+  try { if (navigator.share) { await navigator.share({text: txt, url}); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+  try { await navigator.clipboard.writeText(txt + '\n' + url); toast('Copiado! Cola numa conversa'); } catch (e) { prompt('Copia isto:', txt + '\n' + url); }
+}
+
+// ======================================================================
+// Arranque
+// ======================================================================
+function renderHome() {
+  $('#st-jogos').textContent = ST.jogos; $('#st-best').textContent = ST.best; $('#st-fim').textContent = ST.bestFim; $('#st-golacos').textContent = ST.golacos;
+  const d = ST.dia[today()]; $('#diaTxt').textContent = d != null ? `Hoje fizeste ${d} · podes repetir` : 'As mesmas 7 para toda a gente hoje';
+}
+function heroAnim() {
+  const v = {W:360, H:230, Y0:66, Y1:230, D:57, K0:9, K1:18}; const svg = $('#heroPitch'); drawPitch(svg, v, {ball:false});
+  const ns = 'http://www.w3.org/2000/svg'; const pts = [[35, -10], [50, 8], [25, 14], [18, -6]];
+  const g = document.createElementNS(ns, 'g'); svg.appendChild(g);
+  let i = 0;
+  const loop = async () => {
+    if (!$('#s-home').classList.contains('on')) { setTimeout(loop, 800); return; }
+    const [d, x] = pts[i++ % pts.length]; const [sx, sy, k] = proj(x, d, v); const [tx, ty] = [v.W/2 + (i % 2 ? -1 : 1) * 2.2 * v.K0, v.Y0 - 1.6 * v.K0];
+    const tier = TIERS.findIndex(t => t.m === d);
+    g.innerHTML = `<path d="M${sx} ${sy} Q ${(sx+tx)/2} ${Math.min(sy,ty) - 30 - d} ${tx} ${ty}" fill="none" stroke="${TIERS[tier].hex}" stroke-width="2" stroke-dasharray="4 5" opacity=".9"/><use href="#ballsym" x="${sx-7}" y="${sy-14}" width="14" height="14"/>`;
+    const path = g.firstElementChild, ball = g.lastElementChild, L = path.getTotalLength();
+    path.style.strokeDashoffset = L; path.animate([{opacity:0}, {opacity:.9}], {duration:300});
+    await tween(900 + d * 10, t => { const p = path.getPointAtLength(L * t); const s = 14 - 8 * t; ball.setAttribute('x', p.x - s/2); ball.setAttribute('y', p.y - s/2); ball.setAttribute('width', s); ball.setAttribute('height', s); }, t => t);
+    svg.querySelector('#net')?.animate([{transform:'scale(1)'}, {transform:'scale(1.06,1.1)'}, {transform:'scale(1)'}], {duration:450});
+    setTimeout(loop, 1600);
+  };
+  svg.querySelector('#net').style.transformOrigin = `${v.W/2}px ${v.Y0 - 10}px`;
+  loop();
+}
+
+async function boot() {
+  try {
+    const res = await fetch('dados.json', {cache:'no-cache'}); D = await res.json();
+  } catch (e) { $('#s-load').innerHTML = '<div class="loading">Não consegui carregar os dados. Tenta outra vez daqui a pouco.</div>'; return; }
+  G = D.jornada; TEAMS = D.equipas;
+  P = D.jogadores.map(a => { const o = {}; D.campos.forEach((k, i) => o[k] = a[i]); o.equipa = Number(o.equipa); o.nWeb = norm(o.nome); o.nAll = norm(o.completo + ' ' + o.nome); o.fama = o.popular + o.pontos / 1000 + o.minutos / 1e6; return o; });
+  buildTemplates();
+  $('#dataFoot').textContent = `Dados oficiais da FPL até à jornada ${G} · ${P.length} jogadores · perguntas novas a cada jogo`;
+  renderHome(); heroAnim();
+  // desafio de um amigo (?jogo=semente&p=pontos)
+  const qs = new URLSearchParams(location.search), j = qs.get('jogo');
+  if (j) {
+    const fp = qs.get('p'); const btn = $('#m-friend'); btn.hidden = false;
+    $('#friendTxt').textContent = (j === 'dia' ? 'O desafio de hoje' : 'As mesmas 7 perguntas') + (fp ? ` · ele fez ${fp} pontos` : '');
+    btn.onclick = () => { if (j === 'dia') startGame('dia'); else { startGame('7', parseInt(j, 36) >>> 0); } S.friend = true; S.friendScore = fp != null ? Number(fp) : null; };
+  }
+  show('s-home');
+}
+
+// ---------- eventos ----------
+$('#m-7').onclick = () => startGame('7');
+$('#m-fim').onclick = () => startGame('fim');
+$('#m-dia').onclick = () => startGame('dia');
+$('#howBtn').onclick = () => $('#how').showModal();
+$('#again').onclick = () => { const m = S.mode === 'fim' ? 'fim' : S.mode === 'dia' ? 'dia' : '7'; startGame(m); };
+$('#home').onclick = () => { renderHome(); show('s-home'); };
+$('#share').onclick = share;
+$('#quit').onclick = () => { if (busy) return; clearInterval(timerId); if (S && S.shots.length && confirm('Terminar este jogo e ver o resultado?')) { endGame(); return; } renderHome(); show('s-home'); };
+$('#skip').onclick = () => answer(null);
+const inp = $('#resp');
+inp.addEventListener('input', () => { sugList = search(inp.value); sugSel = 0; renderSug(); });
+inp.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown') { sugSel = Math.min(sugList.length - 1, sugSel + 1); renderSug(); e.preventDefault(); }
+  else if (e.key === 'ArrowUp') { sugSel = Math.max(0, sugSel - 1); renderSug(); e.preventDefault(); }
+  else if (e.key === 'Enter') { if (sugList[sugSel]) answer(sugList[sugSel]); e.preventDefault(); }
+  else if (e.key === 'Escape') hideSug();
+});
+$('#sug').addEventListener('pointerdown', e => { const li = e.target.closest('li[data-i]'); if (!li) return; e.preventDefault(); answer(sugList[Number(li.dataset.i)]); });
+document.addEventListener('keydown', e => { if (e.key === 'Enter' && $('#s-game').classList.contains('on') && S?.answered && !busy && document.activeElement !== inp) { const b = document.getElementById('nextBtn'); if (b && document.activeElement !== b) { b.click(); e.preventDefault(); } } });
+boot();
+</script>
+</body>
+</html>
