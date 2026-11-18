@@ -35,10 +35,6 @@ jobs:
       - name: Ir buscar os dados à API da FPL
         if: steps.quando.outputs.run == 'true'
         run: python scripts/fpl_fetch.py
-      - name: Dados do jogo Fora da Caixa (foradacaixa/dados.json)
-        if: steps.quando.outputs.run == 'true'
-        continue-on-error: true
-        run: python scripts/quiz_dados.py --descarregar
       - name: Guardar live.json, rivals.json e history/ no repositório
         if: steps.quando.outputs.run == 'true'
         run: |
@@ -46,7 +42,6 @@ jobs:
           git config user.email "fpl-bot@users.noreply.github.com"
           git add live.json rivals.json
           if [ -d history ]; then git add history; fi
-          if [ -f foradacaixa/dados.json ]; then git add foradacaixa/dados.json; fi
           if git diff --staged --quiet; then
             echo "Sem alterações."
           else
