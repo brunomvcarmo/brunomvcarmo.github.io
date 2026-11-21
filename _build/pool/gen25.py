@@ -154,12 +154,13 @@ for mgr, e in ENTRY.items():
         q['sell'] = now if now <= q['buy'] else round(q['buy'] + math.floor(round((now - q['buy']) * 10) / 2) / 10, 1)
     h = next((r for r in x['history'] if r['event'] == x['picks']['event']), None) or next((r for r in x['history'] if r['event'] == LAST), None)
     if h: st['bank'] = h['bank'] / 10
-    # grátis para a próxima jornada pela regra da FPL (1 por jornada, até 5; Wildcard/Free Hit não gastam). ESTIMATIVA.
+    # grátis para a próxima jornada pela regra da FPL (1 por jornada, até 5). Na jornada de Wildcard/Free Hit o chip
+    # gasta a grátis dessa jornada e as guardadas ficam: na seguinte tem-se o mesmo número (21 nov: antes somava +1). ESTIMATIVA.
     wcfh = {c['event'] for c in x.get('chips', []) if c['name'] in ('wildcard', 'freehit')}
     ft, H = 1, {r['event']: r for r in x['history']}
     for g in range(2, NEXT):
-        used = 0 if g in wcfh else H.get(g, {}).get('event_transfers', 0)
-        ft = min(5, max(0, ft - used) + 1)
+        if g in wcfh: continue
+        ft = min(5, max(0, ft - H.get(g, {}).get('event_transfers', 0)) + 1)
     st['ft'] = ft
     STATE[mgr] = st
 

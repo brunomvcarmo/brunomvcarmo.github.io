@@ -106,13 +106,13 @@ if entry:
 # ---------- GW_META ----------
 gm, GW = grab('GW_META')
 GW['squadsGw'] = G
-# transferências grátis para a jornada seguinte (regra da FPL: +1 por jornada, até 5; Wildcard/Free Hit não gastam)
+# transferências grátis para a jornada seguinte (regra da FPL: +1 por jornada, até 5; na jornada de Wildcard/Free Hit fica igual)
 ftn = {}
 for mgr, e in (('bruno', '5191766'), ('marco', '1973102')):
     x = LV['entries'][e]; p = x['picks']; h = next((r for r in x['history'] if r['event'] == G), None)
     ft = ST[mgr]['ft']
     if p.get('active_chip') in ('wildcard', 'freehit'):
-        ftn[mgr] = min(5, ft + 1)
+        ftn[mgr] = ft   # o chip gasta a grátis desta jornada; as guardadas passam para a seguinte
     else:
         ftn[mgr] = min(5, max(0, ft - (h['event_transfers'] if h else 0)) + 1)
 GW['ftNext'] = ftn

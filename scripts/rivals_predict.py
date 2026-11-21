@@ -62,13 +62,14 @@ def squad_before(x, g):
 
 
 def free_transfers(x, g):
-    """Transferências grátis para a jornada g pela regra da FPL (1 por jornada, até 5; Wildcard/Free Hit não gastam)."""
+    """Transferências grátis para a jornada g pela regra da FPL (1 por jornada, até 5). Na jornada de Wildcard/Free Hit
+    o chip gasta a grátis dessa jornada e as guardadas ficam: na seguinte tem-se o mesmo número."""
     hist = {h[0]: h for h in x['history']}
     chips = {int(k): v.get('chip') for k, v in x['gws'].items()}
     ft = 1
     for k in range(2, g):
-        used = 0 if chips.get(k) in ('wildcard', 'freehit') else (hist[k][3] if k in hist else 0)
-        ft = min(5, max(0, ft - used) + 1)
+        if chips.get(k) in ('wildcard', 'freehit'): continue
+        ft = min(5, max(0, ft - (hist[k][3] if k in hist else 0)) + 1)
     return ft
 
 
