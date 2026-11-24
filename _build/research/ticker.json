@@ -3,12 +3,12 @@
 {
 "key": "xgstat",
 "url": "https://www.xgstat.com/competitions/premier-league/fixtures/fixture-difficulty",
-"date": "2026-11-10 (página: 'Ratings updated 10 Nov 2026')"
+"date": "2026-11-24 (página: 'Ratings updated 24 Nov 2026')"
 },
 {
 "key": "oddalerts",
 "url": "https://www.oddalerts.com/fpl/fixture-ticker",
-"date": "2026-11-10 (xG projetado a favor-contra, do mercado de apostas)"
+"date": "2026-11-24 (xG projetado a favor-contra, do mercado de apostas)"
 },
 {
 "key": "fplcopilot",
@@ -61,228 +61,6 @@
 }
 ],
 "fixtures": {
-"11": [
-{
-"team": 15,
-"opp": 10,
-"home": true,
-"fpl_fdr": 2,
-"ratings": {
-"xgstat": 1.3,
-"oddalerts_xgf": 2.29,
-"oddalerts_xga": 0.98
-}
-},
-{
-"team": 10,
-"opp": 15,
-"home": false,
-"fpl_fdr": 5,
-"ratings": {
-"xgstat": 4.8,
-"oddalerts_xgf": 0.98,
-"oddalerts_xga": 2.29
-}
-},
-{
-"team": 2,
-"opp": 20,
-"home": true,
-"fpl_fdr": 2,
-"ratings": {
-"xgstat": 1.6,
-"oddalerts_xgf": 1.82,
-"oddalerts_xga": 1.04
-}
-},
-{
-"team": 20,
-"opp": 2,
-"home": false,
-"fpl_fdr": 3,
-"ratings": {
-"xgstat": 4.4,
-"oddalerts_xgf": 1.04,
-"oddalerts_xga": 1.82
-}
-},
-{
-"team": 3,
-"opp": 18,
-"home": true,
-"fpl_fdr": 3,
-"ratings": {
-"xgstat": 2.0,
-"oddalerts_xgf": 1.61,
-"oddalerts_xga": 1.16
-}
-},
-{
-"team": 18,
-"opp": 3,
-"home": false,
-"fpl_fdr": 4,
-"ratings": {
-"xgstat": 4.1,
-"oddalerts_xgf": 1.16,
-"oddalerts_xga": 1.61
-}
-},
-{
-"team": 6,
-"opp": 13,
-"home": true,
-"fpl_fdr": 3,
-"ratings": {
-"xgstat": 2.4,
-"oddalerts_xgf": 1.73,
-"oddalerts_xga": 1.13
-}
-},
-{
-"team": 13,
-"opp": 6,
-"home": false,
-"fpl_fdr": 4,
-"ratings": {
-"xgstat": 3.6,
-"oddalerts_xgf": 1.13,
-"oddalerts_xga": 1.73
-}
-},
-{
-"team": 7,
-"opp": 8,
-"home": true,
-"fpl_fdr": 2,
-"ratings": {
-"xgstat": 2.8,
-"oddalerts_xgf": 1.53,
-"oddalerts_xga": 1.46
-}
-},
-{
-"team": 8,
-"opp": 7,
-"home": false,
-"fpl_fdr": 2,
-"ratings": {
-"xgstat": 3.2,
-"oddalerts_xgf": 1.46,
-"oddalerts_xga": 1.53
-}
-},
-{
-"team": 19,
-"opp": 12,
-"home": true,
-"fpl_fdr": 2,
-"ratings": {
-"xgstat": 1.5,
-"oddalerts_xgf": 2.07,
-"oddalerts_xga": 1.0
-}
-},
-{
-"team": 12,
-"opp": 19,
-"home": false,
-"fpl_fdr": 3,
-"ratings": {
-"xgstat": 4.5,
-"oddalerts_xgf": 1.0,
-"oddalerts_xga": 2.07
-}
-},
-{
-"team": 17,
-"opp": 1,
-"home": true,
-"fpl_fdr": 4,
-"ratings": {
-"xgstat": 3.9,
-"oddalerts_xgf": 0.92,
-"oddalerts_xga": 2.0
-}
-},
-{
-"team": 1,
-"opp": 17,
-"home": false,
-"fpl_fdr": 3,
-"ratings": {
-"xgstat": 2.0,
-"oddalerts_xgf": 2.0,
-"oddalerts_xga": 0.92
-}
-},
-{
-"team": 11,
-"opp": 5,
-"home": true,
-"fpl_fdr": 4,
-"ratings": {
-"xgstat": 3.2,
-"oddalerts_xgf": 0.89,
-"oddalerts_xga": 2.09
-}
-},
-{
-"team": 5,
-"opp": 11,
-"home": false,
-"fpl_fdr": 2,
-"ratings": {
-"xgstat": 2.7,
-"oddalerts_xgf": 2.09,
-"oddalerts_xga": 0.89
-}
-},
-{
-"team": 14,
-"opp": 16,
-"home": true,
-"fpl_fdr": 3,
-"ratings": {
-"xgstat": 2.5,
-"oddalerts_xgf": 2.05,
-"oddalerts_xga": 1.24
-}
-},
-{
-"team": 16,
-"opp": 14,
-"home": false,
-"fpl_fdr": 4,
-"ratings": {
-"xgstat": 3.6,
-"oddalerts_xgf": 1.24,
-"oddalerts_xga": 2.05
-}
-},
-{
-"team": 4,
-"opp": 9,
-"home": true,
-"fpl_fdr": 3,
-"ratings": {
-"xgstat": 2.2,
-"oddalerts_xgf": 1.63,
-"oddalerts_xga": 1.21
-}
-},
-{
-"team": 9,
-"opp": 4,
-"home": false,
-"fpl_fdr": 4,
-"ratings": {
-"xgstat": 3.8,
-"oddalerts_xgf": 1.21,
-"oddalerts_xga": 1.63
-}
-}
-],
 "12": [
 {
 "team": 18,
@@ -290,9 +68,9 @@
 "home": true,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 2.5,
-"oddalerts_xgf": 1.36,
-"oddalerts_xga": 1.5
+"xgstat": 2.3,
+"oddalerts_xgf": 1.44,
+"oddalerts_xga": 1.42
 }
 },
 {
@@ -301,9 +79,9 @@
 "home": false,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 3.5,
-"oddalerts_xgf": 1.5,
-"oddalerts_xga": 1.36
+"xgstat": 3.7,
+"oddalerts_xgf": 1.42,
+"oddalerts_xga": 1.44
 }
 },
 {
@@ -313,8 +91,8 @@
 "fpl_fdr": 2,
 "ratings": {
 "xgstat": 1.3,
-"oddalerts_xgf": 1.92,
-"oddalerts_xga": 0.92
+"oddalerts_xgf": 2.13,
+"oddalerts_xga": 0.91
 }
 },
 {
@@ -323,9 +101,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 4.6,
-"oddalerts_xgf": 0.92,
-"oddalerts_xga": 1.92
+"xgstat": 4.7,
+"oddalerts_xgf": 0.91,
+"oddalerts_xga": 2.13
 }
 },
 {
@@ -334,9 +112,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 1.6,
-"oddalerts_xgf": 1.73,
-"oddalerts_xga": 1.4
+"xgstat": 2.0,
+"oddalerts_xgf": 1.75,
+"oddalerts_xga": 1.41
 }
 },
 {
@@ -345,9 +123,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 4.4,
-"oddalerts_xgf": 1.4,
-"oddalerts_xga": 1.73
+"xgstat": 4.1,
+"oddalerts_xgf": 1.41,
+"oddalerts_xga": 1.75
 }
 },
 {
@@ -356,9 +134,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 3.4,
-"oddalerts_xgf": 1.32,
-"oddalerts_xga": 1.78
+"xgstat": 3.5,
+"oddalerts_xgf": 1.31,
+"oddalerts_xga": 1.89
 }
 },
 {
@@ -367,9 +145,9 @@
 "home": false,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 2.7,
-"oddalerts_xgf": 1.78,
-"oddalerts_xga": 1.32
+"xgstat": 2.6,
+"oddalerts_xgf": 1.89,
+"oddalerts_xga": 1.31
 }
 },
 {
@@ -378,9 +156,9 @@
 "home": true,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 3.1,
-"oddalerts_xgf": 1.25,
-"oddalerts_xga": 1.66
+"xgstat": 3.3,
+"oddalerts_xgf": 1.09,
+"oddalerts_xga": 1.83
 }
 },
 {
@@ -389,9 +167,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 2.9,
-"oddalerts_xgf": 1.66,
-"oddalerts_xga": 1.25
+"xgstat": 2.6,
+"oddalerts_xgf": 1.83,
+"oddalerts_xga": 1.09
 }
 },
 {
@@ -401,8 +179,8 @@
 "fpl_fdr": 3,
 "ratings": {
 "xgstat": 1.6,
-"oddalerts_xgf": 2.07,
-"oddalerts_xga": 1.07
+"oddalerts_xgf": 2.14,
+"oddalerts_xga": 1.08
 }
 },
 {
@@ -411,9 +189,9 @@
 "home": false,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 4.5,
-"oddalerts_xgf": 1.07,
-"oddalerts_xga": 2.07
+"xgstat": 4.4,
+"oddalerts_xgf": 1.08,
+"oddalerts_xga": 2.14
 }
 },
 {
@@ -422,9 +200,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 2.1,
-"oddalerts_xgf": 1.74,
-"oddalerts_xga": 1.1
+"xgstat": 2.2,
+"oddalerts_xgf": 1.73,
+"oddalerts_xga": 1.15
 }
 },
 {
@@ -434,8 +212,8 @@
 "fpl_fdr": 2,
 "ratings": {
 "xgstat": 3.8,
-"oddalerts_xgf": 1.1,
-"oddalerts_xga": 1.74
+"oddalerts_xgf": 1.15,
+"oddalerts_xga": 1.73
 }
 },
 {
@@ -444,7 +222,7 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 2.9,
+"xgstat": 2.8,
 "oddalerts_xgf": 1.39,
 "oddalerts_xga": 1.47
 }
@@ -466,9 +244,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 2.6,
-"oddalerts_xgf": 1.17,
-"oddalerts_xga": 1.49
+"xgstat": 2.7,
+"oddalerts_xgf": 1.06,
+"oddalerts_xga": 1.54
 }
 },
 {
@@ -478,8 +256,8 @@
 "fpl_fdr": 3,
 "ratings": {
 "xgstat": 3.2,
-"oddalerts_xgf": 1.49,
-"oddalerts_xga": 1.17
+"oddalerts_xgf": 1.54,
+"oddalerts_xga": 1.06
 }
 },
 {
@@ -489,8 +267,8 @@
 "fpl_fdr": 4,
 "ratings": {
 "xgstat": 2.3,
-"oddalerts_xgf": 1.61,
-"oddalerts_xga": 1.25
+"oddalerts_xgf": 1.66,
+"oddalerts_xga": 1.22
 }
 },
 {
@@ -500,8 +278,8 @@
 "fpl_fdr": 5,
 "ratings": {
 "xgstat": 3.7,
-"oddalerts_xgf": 1.25,
-"oddalerts_xga": 1.61
+"oddalerts_xgf": 1.22,
+"oddalerts_xga": 1.66
 }
 }
 ],
@@ -512,9 +290,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 2.4,
-"oddalerts_xgf": 1.66,
-"oddalerts_xga": 1.22
+"xgstat": 2.1,
+"oddalerts_xgf": 1.56,
+"oddalerts_xga": 1.4
 }
 },
 {
@@ -523,9 +301,9 @@
 "home": false,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 3.6,
-"oddalerts_xgf": 1.22,
-"oddalerts_xga": 1.66
+"xgstat": 3.9,
+"oddalerts_xgf": 1.4,
+"oddalerts_xga": 1.56
 }
 },
 {
@@ -534,9 +312,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 1.6,
-"oddalerts_xgf": 2.79,
-"oddalerts_xga": 0.75
+"xgstat": 1.8,
+"oddalerts_xgf": 2.08,
+"oddalerts_xga": 1.18
 }
 },
 {
@@ -545,9 +323,9 @@
 "home": false,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 4.4,
-"oddalerts_xgf": 0.75,
-"oddalerts_xga": 2.79
+"xgstat": 4.3,
+"oddalerts_xgf": 1.18,
+"oddalerts_xga": 2.08
 }
 },
 {
@@ -556,9 +334,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 3.1,
-"oddalerts_xgf": 1.18,
-"oddalerts_xga": 1.36
+"xgstat": 3.0,
+"oddalerts_xgf": 1.01,
+"oddalerts_xga": 1.65
 }
 },
 {
@@ -567,9 +345,9 @@
 "home": false,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 2.8,
-"oddalerts_xgf": 1.36,
-"oddalerts_xga": 1.18
+"xgstat": 2.9,
+"oddalerts_xgf": 1.65,
+"oddalerts_xga": 1.01
 }
 },
 {
@@ -578,9 +356,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 1.3,
-"oddalerts_xgf": 2.37,
-"oddalerts_xga": 0.96
+"xgstat": 1.2,
+"oddalerts_xgf": 2.12,
+"oddalerts_xga": 0.92
 }
 },
 {
@@ -589,9 +367,9 @@
 "home": false,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 4.6,
-"oddalerts_xgf": 0.96,
-"oddalerts_xga": 2.37
+"xgstat": 4.8,
+"oddalerts_xgf": 0.92,
+"oddalerts_xga": 2.12
 }
 },
 {
@@ -600,9 +378,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 1.4,
-"oddalerts_xgf": 2.2,
-"oddalerts_xga": 1.0
+"xgstat": 1.5,
+"oddalerts_xgf": 2.08,
+"oddalerts_xga": 1.02
 }
 },
 {
@@ -612,8 +390,8 @@
 "fpl_fdr": 5,
 "ratings": {
 "xgstat": 4.6,
-"oddalerts_xgf": 1.0,
-"oddalerts_xga": 2.2
+"oddalerts_xgf": 1.02,
+"oddalerts_xga": 2.08
 }
 },
 {
@@ -622,9 +400,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 2.0,
-"oddalerts_xgf": 1.58,
-"oddalerts_xga": 1.32
+"xgstat": 1.9,
+"oddalerts_xgf": 1.68,
+"oddalerts_xga": 1.21
 }
 },
 {
@@ -633,9 +411,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 4.0,
-"oddalerts_xgf": 1.32,
-"oddalerts_xga": 1.58
+"xgstat": 4.1,
+"oddalerts_xgf": 1.21,
+"oddalerts_xga": 1.68
 }
 },
 {
@@ -645,8 +423,8 @@
 "fpl_fdr": 4,
 "ratings": {
 "xgstat": 2.2,
-"oddalerts_xgf": 1.52,
-"oddalerts_xga": 1.4
+"oddalerts_xgf": 1.47,
+"oddalerts_xga": 1.43
 }
 },
 {
@@ -656,8 +434,8 @@
 "fpl_fdr": 4,
 "ratings": {
 "xgstat": 3.9,
-"oddalerts_xgf": 1.4,
-"oddalerts_xga": 1.52
+"oddalerts_xgf": 1.43,
+"oddalerts_xga": 1.47
 }
 },
 {
@@ -666,9 +444,9 @@
 "home": true,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 3.5,
-"oddalerts_xgf": 1.06,
-"oddalerts_xga": 1.83
+"xgstat": 3.3,
+"oddalerts_xgf": 1.03,
+"oddalerts_xga": 1.79
 }
 },
 {
@@ -677,9 +455,9 @@
 "home": false,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 2.5,
-"oddalerts_xgf": 1.83,
-"oddalerts_xga": 1.06
+"xgstat": 2.6,
+"oddalerts_xgf": 1.79,
+"oddalerts_xga": 1.03
 }
 },
 {
@@ -688,9 +466,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 3.4,
-"oddalerts_xgf": 1.78,
-"oddalerts_xga": 1.42
+"xgstat": 3.1,
+"oddalerts_xgf": 1.59,
+"oddalerts_xga": 1.69
 }
 },
 {
@@ -699,9 +477,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 2.6,
-"oddalerts_xgf": 1.42,
-"oddalerts_xga": 1.78
+"xgstat": 2.9,
+"oddalerts_xgf": 1.69,
+"oddalerts_xga": 1.59
 }
 },
 {
@@ -710,9 +488,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 2.5,
-"oddalerts_xgf": 1.69,
-"oddalerts_xga": 1.06
+"xgstat": 2.4,
+"oddalerts_xgf": 1.72,
+"oddalerts_xga": 1.11
 }
 },
 {
@@ -721,9 +499,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 3.4,
-"oddalerts_xgf": 1.06,
-"oddalerts_xga": 1.69
+"xgstat": 3.5,
+"oddalerts_xgf": 1.11,
+"oddalerts_xga": 1.72
 }
 }
 ],
@@ -734,9 +512,9 @@
 "home": true,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 2.8,
-"oddalerts_xgf": 1.71,
-"oddalerts_xga": 1.27
+"xgstat": 3.1,
+"oddalerts_xgf": 1.64,
+"oddalerts_xga": 1.95
 }
 },
 {
@@ -745,9 +523,9 @@
 "home": false,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 3.2,
-"oddalerts_xgf": 1.27,
-"oddalerts_xga": 1.71
+"xgstat": 3.0,
+"oddalerts_xgf": 1.95,
+"oddalerts_xga": 1.64
 }
 },
 {
@@ -757,8 +535,8 @@
 "fpl_fdr": 2,
 "ratings": {
 "xgstat": 1.7,
-"oddalerts_xgf": 2.15,
-"oddalerts_xga": 1.02
+"oddalerts_xgf": 2.02,
+"oddalerts_xga": 0.97
 }
 },
 {
@@ -768,8 +546,8 @@
 "fpl_fdr": 3,
 "ratings": {
 "xgstat": 4.4,
-"oddalerts_xgf": 1.02,
-"oddalerts_xga": 2.15
+"oddalerts_xgf": 0.97,
+"oddalerts_xga": 2.02
 }
 },
 {
@@ -778,9 +556,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 1.2,
-"oddalerts_xgf": 2.13,
-"oddalerts_xga": 0.83
+"xgstat": 1.3,
+"oddalerts_xgf": 1.9,
+"oddalerts_xga": 0.76
 }
 },
 {
@@ -789,9 +567,9 @@
 "home": false,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 4.8,
-"oddalerts_xgf": 0.83,
-"oddalerts_xga": 2.13
+"xgstat": 4.7,
+"oddalerts_xgf": 0.76,
+"oddalerts_xga": 1.9
 }
 },
 {
@@ -800,9 +578,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 1.3,
-"oddalerts_xgf": 2.15,
-"oddalerts_xga": 0.95
+"xgstat": 1.2,
+"oddalerts_xgf": 1.65,
+"oddalerts_xga": 1.01
 }
 },
 {
@@ -811,9 +589,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 4.7,
-"oddalerts_xgf": 0.95,
-"oddalerts_xga": 2.15
+"xgstat": 4.8,
+"oddalerts_xgf": 1.01,
+"oddalerts_xga": 1.65
 }
 },
 {
@@ -822,9 +600,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 1.1,
-"oddalerts_xgf": 1.91,
-"oddalerts_xga": 1.14
+"xgstat": 1.2,
+"oddalerts_xgf": 1.9,
+"oddalerts_xga": 1.12
 }
 },
 {
@@ -833,9 +611,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 4.9,
-"oddalerts_xgf": 1.14,
-"oddalerts_xga": 1.91
+"xgstat": 4.8,
+"oddalerts_xgf": 1.12,
+"oddalerts_xga": 1.9
 }
 },
 {
@@ -844,9 +622,9 @@
 "home": true,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 2.6,
-"oddalerts_xgf": 1.18,
-"oddalerts_xga": 1.64
+"xgstat": 2.5,
+"oddalerts_xgf": 1.32,
+"oddalerts_xga": 1.57
 }
 },
 {
@@ -856,8 +634,8 @@
 "fpl_fdr": 2,
 "ratings": {
 "xgstat": 3.4,
-"oddalerts_xgf": 1.64,
-"oddalerts_xga": 1.18
+"oddalerts_xgf": 1.57,
+"oddalerts_xga": 1.32
 }
 },
 {
@@ -866,9 +644,9 @@
 "home": true,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 3.5,
-"oddalerts_xgf": 1.37,
-"oddalerts_xga": 1.83
+"xgstat": 3.3,
+"oddalerts_xgf": 1.32,
+"oddalerts_xga": 1.72
 }
 },
 {
@@ -877,9 +655,9 @@
 "home": false,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 2.6,
-"oddalerts_xgf": 1.83,
-"oddalerts_xga": 1.37
+"xgstat": 2.8,
+"oddalerts_xgf": 1.72,
+"oddalerts_xga": 1.32
 }
 },
 {
@@ -888,9 +666,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 2.5,
-"oddalerts_xgf": 1.69,
-"oddalerts_xga": 1.15
+"xgstat": 2.6,
+"oddalerts_xgf": 1.35,
+"oddalerts_xga": 1.2
 }
 },
 {
@@ -899,9 +677,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 3.4,
-"oddalerts_xgf": 1.15,
-"oddalerts_xga": 1.69
+"xgstat": 3.3,
+"oddalerts_xgf": 1.2,
+"oddalerts_xga": 1.35
 }
 },
 {
@@ -910,9 +688,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 2.2,
-"oddalerts_xgf": 1.83,
-"oddalerts_xga": 1.25
+"xgstat": 2.1,
+"oddalerts_xgf": 1.41,
+"oddalerts_xga": 1.22
 }
 },
 {
@@ -921,9 +699,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 3.7,
-"oddalerts_xgf": 1.25,
-"oddalerts_xga": 1.83
+"xgstat": 3.8,
+"oddalerts_xgf": 1.22,
+"oddalerts_xga": 1.41
 }
 },
 {
@@ -932,9 +710,9 @@
 "home": true,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 3.6,
-"oddalerts_xgf": 0.93,
-"oddalerts_xga": 1.77
+"xgstat": 3.5,
+"oddalerts_xgf": 1.11,
+"oddalerts_xga": 1.59
 }
 },
 {
@@ -943,9 +721,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 2.3,
-"oddalerts_xgf": 1.77,
-"oddalerts_xga": 0.93
+"xgstat": 2.4,
+"oddalerts_xgf": 1.59,
+"oddalerts_xga": 1.11
 }
 }
 ],
@@ -956,9 +734,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 2.4,
-"oddalerts_xgf": 1.32,
-"oddalerts_xga": 1.59
+"xgstat": 2.5,
+"oddalerts_xgf": 1.57,
+"oddalerts_xga": 1.36
 }
 },
 {
@@ -967,9 +745,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 3.6,
-"oddalerts_xgf": 1.59,
-"oddalerts_xga": 1.32
+"xgstat": 3.5,
+"oddalerts_xgf": 1.36,
+"oddalerts_xga": 1.57
 }
 },
 {
@@ -978,9 +756,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 2.8,
-"oddalerts_xgf": 1.33,
-"oddalerts_xga": 1.78
+"xgstat": 3.1,
+"oddalerts_xgf": 1.32,
+"oddalerts_xga": 1.52
 }
 },
 {
@@ -989,9 +767,9 @@
 "home": false,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 3.2,
-"oddalerts_xgf": 1.78,
-"oddalerts_xga": 1.33
+"xgstat": 3.0,
+"oddalerts_xgf": 1.52,
+"oddalerts_xga": 1.32
 }
 },
 {
@@ -1000,9 +778,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 1.8,
-"oddalerts_xgf": 1.93,
-"oddalerts_xga": 1.09
+"xgstat": 1.7,
+"oddalerts_xgf": 1.88,
+"oddalerts_xga": 1.07
 }
 },
 {
@@ -1011,9 +789,9 @@
 "home": false,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 4.1,
-"oddalerts_xgf": 1.09,
-"oddalerts_xga": 1.93
+"xgstat": 4.2,
+"oddalerts_xgf": 1.07,
+"oddalerts_xga": 1.88
 }
 },
 {
@@ -1022,9 +800,9 @@
 "home": true,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 1.5,
-"oddalerts_xgf": 1.75,
-"oddalerts_xga": 1.3
+"xgstat": 1.3,
+"oddalerts_xgf": 2.17,
+"oddalerts_xga": 1.27
 }
 },
 {
@@ -1033,9 +811,9 @@
 "home": false,
 "fpl_fdr": 5,
 "ratings": {
-"xgstat": 4.6,
-"oddalerts_xgf": 1.3,
-"oddalerts_xga": 1.75
+"xgstat": 4.7,
+"oddalerts_xgf": 1.27,
+"oddalerts_xga": 2.17
 }
 },
 {
@@ -1045,8 +823,8 @@
 "fpl_fdr": 3,
 "ratings": {
 "xgstat": 1.5,
-"oddalerts_xgf": 1.93,
-"oddalerts_xga": 0.87
+"oddalerts_xgf": 1.97,
+"oddalerts_xga": 0.75
 }
 },
 {
@@ -1056,8 +834,8 @@
 "fpl_fdr": 5,
 "ratings": {
 "xgstat": 4.5,
-"oddalerts_xgf": 0.87,
-"oddalerts_xga": 1.93
+"oddalerts_xgf": 0.75,
+"oddalerts_xga": 1.97
 }
 },
 {
@@ -1066,9 +844,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 1.8,
-"oddalerts_xgf": 2.05,
-"oddalerts_xga": 1.11
+"xgstat": 1.7,
+"oddalerts_xgf": 1.96,
+"oddalerts_xga": 0.91
 }
 },
 {
@@ -1077,9 +855,9 @@
 "home": false,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 4.1,
-"oddalerts_xgf": 1.11,
-"oddalerts_xga": 2.05
+"xgstat": 4.2,
+"oddalerts_xgf": 0.91,
+"oddalerts_xga": 1.96
 }
 },
 {
@@ -1089,8 +867,8 @@
 "fpl_fdr": 3,
 "ratings": {
 "xgstat": 2.9,
-"oddalerts_xgf": 1.34,
-"oddalerts_xga": 1.33
+"oddalerts_xgf": 1.37,
+"oddalerts_xga": 1.2
 }
 },
 {
@@ -1099,9 +877,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 3.0,
-"oddalerts_xgf": 1.33,
-"oddalerts_xga": 1.34
+"xgstat": 2.9,
+"oddalerts_xgf": 1.2,
+"oddalerts_xga": 1.37
 }
 },
 {
@@ -1110,9 +888,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 3.3,
-"oddalerts_xgf": 1.23,
-"oddalerts_xga": 1.58
+"xgstat": 3.2,
+"oddalerts_xgf": 1.67,
+"oddalerts_xga": 1.66
 }
 },
 {
@@ -1121,9 +899,9 @@
 "home": false,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 2.7,
-"oddalerts_xgf": 1.58,
-"oddalerts_xga": 1.23
+"xgstat": 2.8,
+"oddalerts_xgf": 1.66,
+"oddalerts_xga": 1.67
 }
 },
 {
@@ -1132,9 +910,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 3.5,
-"oddalerts_xgf": 1.37,
-"oddalerts_xga": 1.78
+"xgstat": 3.3,
+"oddalerts_xgf": 1.31,
+"oddalerts_xga": 1.36
 }
 },
 {
@@ -1143,9 +921,9 @@
 "home": false,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 2.6,
-"oddalerts_xgf": 1.78,
-"oddalerts_xga": 1.37
+"xgstat": 2.8,
+"oddalerts_xgf": 1.36,
+"oddalerts_xga": 1.31
 }
 },
 {
@@ -1154,9 +932,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 2.8,
-"oddalerts_xgf": 1.12,
-"oddalerts_xga": 1.55
+"xgstat": 2.9,
+"oddalerts_xgf": 1.07,
+"oddalerts_xga": 1.25
 }
 },
 {
@@ -1166,8 +944,8 @@
 "fpl_fdr": 2,
 "ratings": {
 "xgstat": 3.1,
-"oddalerts_xgf": 1.55,
-"oddalerts_xga": 1.12
+"oddalerts_xgf": 1.25,
+"oddalerts_xga": 1.07
 }
 }
 ],
@@ -1178,9 +956,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 1.9,
-"oddalerts_xgf": 1.96,
-"oddalerts_xga": 1.24
+"xgstat": 1.8,
+"oddalerts_xgf": 1.95,
+"oddalerts_xga": 1.19
 }
 },
 {
@@ -1190,8 +968,8 @@
 "fpl_fdr": 4,
 "ratings": {
 "xgstat": 4.2,
-"oddalerts_xgf": 1.24,
-"oddalerts_xga": 1.96
+"oddalerts_xgf": 1.19,
+"oddalerts_xga": 1.95
 }
 },
 {
@@ -1201,8 +979,8 @@
 "fpl_fdr": 2,
 "ratings": {
 "xgstat": 1.2,
-"oddalerts_xgf": 2.17,
-"oddalerts_xga": 0.83
+"oddalerts_xgf": 2.18,
+"oddalerts_xga": 0.86
 }
 },
 {
@@ -1212,8 +990,8 @@
 "fpl_fdr": 4,
 "ratings": {
 "xgstat": 4.8,
-"oddalerts_xgf": 0.83,
-"oddalerts_xga": 2.17
+"oddalerts_xgf": 0.86,
+"oddalerts_xga": 2.18
 }
 },
 {
@@ -1222,9 +1000,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 2.1,
-"oddalerts_xgf": 1.69,
-"oddalerts_xga": 1.08
+"xgstat": 2.0,
+"oddalerts_xgf": 1.71,
+"oddalerts_xga": 1.06
 }
 },
 {
@@ -1233,9 +1011,9 @@
 "home": false,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 3.8,
-"oddalerts_xgf": 1.08,
-"oddalerts_xga": 1.69
+"xgstat": 3.9,
+"oddalerts_xgf": 1.06,
+"oddalerts_xga": 1.71
 }
 },
 {
@@ -1244,9 +1022,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 1.0,
-"oddalerts_xgf": 2.77,
-"oddalerts_xga": 0.77
+"xgstat": 1.1,
+"oddalerts_xgf": 2.83,
+"oddalerts_xga": 0.75
 }
 },
 {
@@ -1255,9 +1033,9 @@
 "home": false,
 "fpl_fdr": 5,
 "ratings": {
-"xgstat": 5.0,
-"oddalerts_xgf": 0.77,
-"oddalerts_xga": 2.77
+"xgstat": 4.9,
+"oddalerts_xgf": 0.75,
+"oddalerts_xga": 2.83
 }
 },
 {
@@ -1266,9 +1044,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 1.5,
-"oddalerts_xgf": 1.88,
-"oddalerts_xga": 1.09
+"xgstat": 1.4,
+"oddalerts_xgf": 1.84,
+"oddalerts_xga": 1.06
 }
 },
 {
@@ -1277,9 +1055,9 @@
 "home": false,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 4.4,
-"oddalerts_xgf": 1.09,
-"oddalerts_xga": 1.88
+"xgstat": 4.5,
+"oddalerts_xgf": 1.06,
+"oddalerts_xga": 1.84
 }
 },
 {
@@ -1288,9 +1066,9 @@
 "home": true,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 1.3,
+"xgstat": 1.2,
 "oddalerts_xgf": 2.79,
-"oddalerts_xga": 0.85
+"oddalerts_xga": 0.87
 }
 },
 {
@@ -1300,7 +1078,7 @@
 "fpl_fdr": 4,
 "ratings": {
 "xgstat": 4.8,
-"oddalerts_xgf": 0.85,
+"oddalerts_xgf": 0.87,
 "oddalerts_xga": 2.79
 }
 },
@@ -1310,9 +1088,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 2.0,
-"oddalerts_xgf": 1.39,
-"oddalerts_xga": 1.27
+"xgstat": 1.9,
+"oddalerts_xgf": 1.43,
+"oddalerts_xga": 1.34
 }
 },
 {
@@ -1321,9 +1099,9 @@
 "home": false,
 "fpl_fdr": 2,
 "ratings": {
-"xgstat": 3.9,
-"oddalerts_xgf": 1.27,
-"oddalerts_xga": 1.39
+"xgstat": 4.0,
+"oddalerts_xgf": 1.34,
+"oddalerts_xga": 1.43
 }
 },
 {
@@ -1334,7 +1112,7 @@
 "ratings": {
 "xgstat": 2.4,
 "oddalerts_xgf": 1.89,
-"oddalerts_xga": 1.17
+"oddalerts_xga": 1.15
 }
 },
 {
@@ -1344,7 +1122,7 @@
 "fpl_fdr": 3,
 "ratings": {
 "xgstat": 3.5,
-"oddalerts_xgf": 1.17,
+"oddalerts_xgf": 1.15,
 "oddalerts_xga": 1.89
 }
 },
@@ -1354,9 +1132,9 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 1.7,
-"oddalerts_xgf": 2.63,
-"oddalerts_xga": 0.77
+"xgstat": 1.5,
+"oddalerts_xgf": 2.82,
+"oddalerts_xga": 0.8
 }
 },
 {
@@ -1365,9 +1143,9 @@
 "home": false,
 "fpl_fdr": 5,
 "ratings": {
-"xgstat": 4.3,
-"oddalerts_xgf": 0.77,
-"oddalerts_xga": 2.63
+"xgstat": 4.5,
+"oddalerts_xgf": 0.8,
+"oddalerts_xga": 2.82
 }
 },
 {
@@ -1376,8 +1154,8 @@
 "home": true,
 "fpl_fdr": 3,
 "ratings": {
-"xgstat": 2.3,
-"oddalerts_xgf": 2.07,
+"xgstat": 2.4,
+"oddalerts_xgf": 2.11,
 "oddalerts_xga": 0.98
 }
 },
@@ -1387,9 +1165,231 @@
 "home": false,
 "fpl_fdr": 4,
 "ratings": {
-"xgstat": 3.8,
+"xgstat": 3.6,
 "oddalerts_xgf": 0.98,
-"oddalerts_xga": 2.07
+"oddalerts_xga": 2.11
+}
+}
+],
+"17": [
+{
+"team": 2,
+"opp": 13,
+"home": true,
+"fpl_fdr": 3,
+"ratings": {
+"xgstat": 2.6,
+"oddalerts_xgf": 1.46,
+"oddalerts_xga": 1.35
+}
+},
+{
+"team": 13,
+"opp": 2,
+"home": false,
+"fpl_fdr": 3,
+"ratings": {
+"xgstat": 3.5,
+"oddalerts_xgf": 1.35,
+"oddalerts_xga": 1.46
+}
+},
+{
+"team": 9,
+"opp": 20,
+"home": true,
+"fpl_fdr": 2,
+"ratings": {
+"xgstat": 2.0,
+"oddalerts_xgf": 1.8,
+"oddalerts_xga": 1.19
+}
+},
+{
+"team": 20,
+"opp": 9,
+"home": false,
+"fpl_fdr": 3,
+"ratings": {
+"xgstat": 3.8,
+"oddalerts_xgf": 1.19,
+"oddalerts_xga": 1.8
+}
+},
+{
+"team": 10,
+"opp": 5,
+"home": true,
+"fpl_fdr": 4,
+"ratings": {
+"xgstat": 2.7,
+"oddalerts_xgf": 1.2,
+"oddalerts_xga": 1.84
+}
+},
+{
+"team": 5,
+"opp": 10,
+"home": false,
+"fpl_fdr": 3,
+"ratings": {
+"xgstat": 3.3,
+"oddalerts_xgf": 1.84,
+"oddalerts_xga": 1.2
+}
+},
+{
+"team": 12,
+"opp": 4,
+"home": true,
+"fpl_fdr": 3,
+"ratings": {
+"xgstat": 3.5,
+"oddalerts_xgf": 1.11,
+"oddalerts_xga": 2.03
+}
+},
+{
+"team": 4,
+"opp": 12,
+"home": false,
+"fpl_fdr": 2,
+"ratings": {
+"xgstat": 2.6,
+"oddalerts_xgf": 2.03,
+"oddalerts_xga": 1.11
+}
+},
+{
+"team": 19,
+"opp": 3,
+"home": true,
+"fpl_fdr": 3,
+"ratings": {
+"xgstat": 2.8,
+"oddalerts_xgf": 1.35,
+"oddalerts_xga": 1.34
+}
+},
+{
+"team": 3,
+"opp": 19,
+"home": false,
+"fpl_fdr": 3,
+"ratings": {
+"xgstat": 3.2,
+"oddalerts_xgf": 1.34,
+"oddalerts_xga": 1.35
+}
+},
+{
+"team": 11,
+"opp": 14,
+"home": true,
+"fpl_fdr": 4,
+"ratings": {
+"xgstat": 3.7,
+"oddalerts_xgf": 0.99,
+"oddalerts_xga": 2.05
+}
+},
+{
+"team": 14,
+"opp": 11,
+"home": false,
+"fpl_fdr": 2,
+"ratings": {
+"xgstat": 2.3,
+"oddalerts_xgf": 2.05,
+"oddalerts_xga": 0.99
+}
+},
+{
+"team": 17,
+"opp": 15,
+"home": true,
+"fpl_fdr": 4,
+"ratings": {
+"xgstat": 3.8,
+"oddalerts_xgf": 1.18,
+"oddalerts_xga": 2.09
+}
+},
+{
+"team": 15,
+"opp": 17,
+"home": false,
+"fpl_fdr": 3,
+"ratings": {
+"xgstat": 2.3,
+"oddalerts_xgf": 2.09,
+"oddalerts_xga": 1.18
+}
+},
+{
+"team": 7,
+"opp": 6,
+"home": true,
+"fpl_fdr": 4,
+"ratings": {
+"xgstat": 3.2,
+"oddalerts_xgf": 0.91,
+"oddalerts_xga": 2.06
+}
+},
+{
+"team": 6,
+"opp": 7,
+"home": false,
+"fpl_fdr": 2,
+"ratings": {
+"xgstat": 2.8,
+"oddalerts_xgf": 2.06,
+"oddalerts_xga": 0.91
+}
+},
+{
+"team": 16,
+"opp": 18,
+"home": true,
+"fpl_fdr": 3,
+"ratings": {
+"xgstat": 2.0,
+"oddalerts_xgf": 1.62,
+"oddalerts_xga": 1.39
+}
+},
+{
+"team": 18,
+"opp": 16,
+"home": false,
+"fpl_fdr": 3,
+"ratings": {
+"xgstat": 4.0,
+"oddalerts_xgf": 1.39,
+"oddalerts_xga": 1.62
+}
+},
+{
+"team": 8,
+"opp": 1,
+"home": true,
+"fpl_fdr": 4,
+"ratings": {
+"xgstat": 4.0,
+"oddalerts_xgf": 0.75,
+"oddalerts_xga": 2.63
+}
+},
+{
+"team": 1,
+"opp": 8,
+"home": false,
+"fpl_fdr": 2,
+"ratings": {
+"xgstat": 2.0,
+"oddalerts_xgf": 2.63,
+"oddalerts_xga": 0.75
 }
 }
 ]

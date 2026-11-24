@@ -677,7 +677,7 @@
     const el = document.getElementById('lab-cmd'); if (!el || el.dataset.mgr === curMgr()) return;
     el.dataset.mgr = curMgr();
     el.innerHTML = `
-      <div class="card-head"><div><h2>Laboratório</h2><div class="card-sub">Experimenta equipas sem mexer na tua equipa verdadeira e vê, jornada a jornada, se as ideias resultam. ${curMgr() === 'marco' ? 'Xarola Team' : 'Brunorussia FC'}.</div></div></div>
+      <div class="card-head"><div><h2>Laboratório</h2><div class="card-sub">Experimenta equipas sem mexer na tua equipa verdadeira e vê, jornada a jornada, se as ideias resultam. ${curMgr() === 'marco' ? 'Xarola Team' : 'Brunorussia FC'}.</div></div><button type="button" class="btn small lab-guide" id="lab-guide-btn" data-lab="guia">Guia passo a passo</button></div>
       <form class="lab-cmdf" id="lab-cmdf" autocomplete="off"><input type="text" id="lab-cmd-in" placeholder="Escreve o que queres fazer, por ex.: troca Saka por Cherki" aria-label="Comando em linguagem simples" enterkeyhint="go"><button type="submit" class="btn primary">Fazer</button></form>
       <div class="lab-ex" id="lab-ex"></div>
       <div class="lab-out" id="lab-cmd-out" role="status" aria-live="polite" hidden></div>
@@ -997,6 +997,7 @@
   function labClick(ev) {
     const b = ev.target.closest('[data-lab]'); if (!b || b.disabled) return;
     const a = b.dataset.lab, id = +b.dataset.id || 0, S = labS(), U = LAB.ui; let x = labCur();
+    if (a === 'guia') { if (typeof tutStart === 'function') tutStart('lab'); return; }   // V63: Guia do Laboratório
     if (a !== 'ex' && a !== 'go' && a !== 'copy') labSay(null);
     if (a === 'ex') { const i = document.getElementById('lab-cmd-in'); if (i) { i.value = b.textContent; i.focus(); } return; }
     if (a === 'go') { const t = document.getElementById(b.dataset.to); if (t) t.scrollIntoView({behavior: 'smooth', block: 'start'}); return; }

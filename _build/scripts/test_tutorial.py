@@ -44,6 +44,45 @@ async def run_full(pg, label, errs):
     return seen
 
 
+
+async def run_lab(pg, label, errs):
+    """V63: o Guia do Laboratório (tutStart('lab')) do princípio ao fim. Faz coisas a sério numa experiência de exemplo:
+    a troca tem de dar certo, a troca contra as regras tem de ser recusada, o plantel verdadeiro não pode mudar e, ao
+    terminar sem escolher, o exemplo é apagado e a experiência aberta volta a ser a de antes."""
+    await pg.evaluate("showView('mercado','lab')"); await pg.wait_for_timeout(700)
+    before = await pg.evaluate("JSON.stringify({n: labS().list.length, sel: labS().sel, sq: squadOf(curMgr()).filter(Boolean).map(p => p.id)})")
+    await pg.click('#lab-guide-btn'); await pg.wait_for_timeout(900)
+    seen, guard = [], 0
+    while guard < 20:
+        guard += 1
+        s = await pg.evaluate(STATE)
+        if not s:
+            break
+        seen.append(s['id'])
+        if s['sel'] and not s['hasEl']: errs.append(f'{label}: passo {s["id"]} sem destaque')
+        if s['sel'] and s['hasEl'] and not s['vis']: errs.append(f'{label}: passo {s["id"]} com destaque fora do ecrã')
+        if s['overlap']: errs.append(f'{label}: passo {s["id"]} — a caixa tapa o destaque')
+        if s['id'] == 'lg-o-que' and not await pg.evaluate("!!labTutX() && labCur() === labTutX()"): errs.append(f'{label}: o exemplo do guia não foi criado e aberto')
+        await pg.click('#tut-box [data-t="next"]'); await pg.wait_for_timeout(200)
+        for _ in range(60):
+            if await pg.evaluate("!document.getElementById('tut-box') || TUT.shown === TUT.i"): break
+            await pg.wait_for_timeout(100)
+        await pg.wait_for_timeout(250)
+        if s['id'] == 'lg-regras':
+            o = await pg.evaluate("JSON.stringify([labTutOut('troca'), labTutOut('regra')])")
+            t, r = json.loads(o)
+            if not t['ok']: errs.append(f'{label}: a troca do guia falhou: {t}')
+            if r['ok'] or not r['txt']: errs.append(f'{label}: a troca contra as regras não foi recusada: {r}')
+    if len(seen) != 11: errs.append(f'{label}: guia com {len(seen)} passos (queria 11): {seen}')
+    after = await pg.evaluate("JSON.stringify({n: labS().list.length, sel: labS().sel, sq: squadOf(curMgr()).filter(Boolean).map(p => p.id), tut: !!LABTUT, ex: labS().list.some(x => x.name.startsWith('Exemplo do guia'))})")
+    b0, a0 = json.loads(before), json.loads(after)
+    if a0['sq'] != b0['sq']: errs.append(f'{label}: o guia mexeu no plantel verdadeiro')
+    if a0['ex'] or a0['tut'] or a0['n'] != b0['n'] or a0['sel'] != b0['sel']: errs.append(f'{label}: o exemplo do guia não foi apagado ao terminar: {after}')
+    miss = await pg.evaluate("TUT.miss")
+    if miss: errs.append(f'{label}: destaques que faltaram {miss}')
+    return seen
+
+
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch()
@@ -111,6 +150,30 @@ async def main():
             gaps = await pg.evaluate("APP_INDEX.filter(x => x.v && x.v !== 'avancado' && !tutAll().some(st => st.ix === x.v + '/' + x.s)).map(x => x.v + '/' + x.s)")
             if gaps: errs.append(f'separadores sem passo no tutorial: {gaps}')
             print(f'{w} boas-vindas/entradas · ERRORS {len(errs)}'); [print('   ', e) for e in errs[:12]]
+            total_err += len(errs)
+            await pg.close()
+        # V63: Guia do Laboratório — Bruno no computador, Marco no telemóvel, e as entradas (boas-vindas e Procurar)
+        for w, h, mgr in ((1280, 900, 'bruno'), (390, 844, 'marco')):
+            pg = await b.new_page(viewport={'width': w, 'height': h})
+            await pg.add_init_script("try{localStorage.setItem('fpl-tour-done','\"off\"')}catch(e){}")
+            errs = []
+            pg.on('pageerror', lambda e: errs.append('PAGEERR ' + str(e)))
+            pg.on('console', lambda m: errs.append('CONSOLE ' + m.text) if m.type in ('error', 'warning') and not ('Failed to load resource' in m.text or 'fonts.g' in m.text) else None)
+            await pg.goto(URL); await pg.wait_for_timeout(1200)
+            await pg.click(f'.mswitch-btn[data-manager="{mgr}"]'); await pg.wait_for_timeout(200)
+            seen = await run_lab(pg, f'{w} guia do laboratório {mgr}', errs)
+            await pg.evaluate("tutWelcome(true)"); await pg.wait_for_timeout(300)
+            if not await pg.query_selector('#tut-wel [data-w="lab"]'): errs.append('boas-vindas sem o botão do Guia do Laboratório')
+            await pg.click('#tut-wel [data-w="lab"]'); await pg.wait_for_timeout(900)
+            if await pg.evaluate("TUT.mode") != 'lab': errs.append('o botão das boas-vindas não abre o Guia do Laboratório')
+            await pg.click('#tut-box [data-t="exit"]'); await pg.wait_for_timeout(300)
+            if await pg.evaluate("!!LABTUT || labS().list.some(x => x.name.startsWith('Exemplo do guia'))"): errs.append('«Sair» não apagou o exemplo do guia')
+            if w < 960: await pg.click('#srch-btn')
+            await pg.fill('#srch-q', 'guia do laboratório'); await pg.wait_for_timeout(150); await pg.keyboard.press('Enter'); await pg.wait_for_timeout(900)
+            if await pg.evaluate("TUT.mode") != 'lab' or not await pg.query_selector('#tut-box'): errs.append('Procurar «guia do laboratório» não abre o guia')
+            else:
+                await pg.keyboard.press('Escape'); await pg.wait_for_timeout(200)
+            print(f'{w} guia do laboratório {mgr}: {len(seen)} passos · ERRORS {len(errs)}'); [print('   ', e) for e in errs[:12]]
             total_err += len(errs)
             await pg.close()
         print('TOTAL ERRORS', total_err)

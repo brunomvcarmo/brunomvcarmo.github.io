@@ -84,7 +84,7 @@
    "team": 1,
    "yellow": 1,
    "red": 0,
-   "minutes": 900,
+   "minutes": 969,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -93,7 +93,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -102,7 +102,7 @@
    "team": 1,
    "yellow": 2,
    "red": 0,
-   "minutes": 900,
+   "minutes": 990,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -111,7 +111,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -120,7 +120,7 @@
    "team": 1,
    "yellow": 1,
    "red": 0,
-   "minutes": 335,
+   "minutes": 425,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -129,7 +129,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -138,7 +138,7 @@
    "team": 1,
    "yellow": 2,
    "red": 0,
-   "minutes": 428,
+   "minutes": 448,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -147,16 +147,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "13": {
    "name": "Rice",
    "team": 1,
-   "yellow": 1,
+   "yellow": 2,
    "red": 0,
-   "minutes": 822,
+   "minutes": 912,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -165,7 +165,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -174,7 +174,7 @@
    "team": 1,
    "yellow": 1,
    "red": 0,
-   "minutes": 823,
+   "minutes": 913,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -183,16 +183,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "16": {
    "name": "Madueke",
    "team": 1,
-   "yellow": 2,
+   "yellow": 3,
    "red": 0,
-   "minutes": 428,
+   "minutes": 518,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -201,16 +201,68 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
-   "risk": null
+   "risk": {
+    "yc": 3,
+    "n": 5,
+    "need": 2,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.342,
+    "share": 1.0,
+    "pm": [
+     [
+      12,
+      0.29
+     ],
+     [
+      13,
+      0.29
+     ],
+     [
+      14,
+      0.29
+     ],
+     [
+      15,
+      0.29
+     ],
+     [
+      16,
+      0.29
+     ],
+     [
+      17,
+      0.29
+     ],
+     [
+      18,
+      0.29
+     ],
+     [
+      19,
+      0.29
+     ]
+    ],
+    "pb": {
+     "14": 0.084,
+     "15": 0.119,
+     "16": 0.127,
+     "17": 0.12,
+     "18": 0.107,
+     "19": 0.091
+    },
+    "ex": [],
+    "tot": 0.557
+   }
   },
   "17": {
    "name": "Merino",
    "team": 1,
    "yellow": 1,
    "red": 0,
-   "minutes": 202,
+   "minutes": 203,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -219,28 +271,25 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
-  "20": {
-   "name": "Dowman",
+  "25": {
+   "name": "Gyökeres",
    "team": 1,
-   "yellow": 0,
+   "yellow": 1,
    "red": 0,
-   "minutes": 19,
+   "minutes": 181,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": {
-    "until": "2026-11-29",
-    "news": "Suspended until 29 Nov"
-   },
+   "suspended": null,
    "pending_ban": null,
    "next_threshold": {
     "n": 5,
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -249,7 +298,7 @@
    "team": 1,
    "yellow": 1,
    "red": 0,
-   "minutes": 731,
+   "minutes": 821,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -258,7 +307,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -267,7 +316,7 @@
    "team": 1,
    "yellow": 2,
    "red": 0,
-   "minutes": 513,
+   "minutes": 533,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -276,7 +325,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -294,7 +343,7 @@
     "ban": 2,
     "cutoff_matches": 32,
     "cutoff_gw": 32,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -312,16 +361,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "36": {
    "name": "Maatsen",
    "team": 2,
-   "yellow": 1,
+   "yellow": 2,
    "red": 0,
-   "minutes": 631,
+   "minutes": 695,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -330,7 +379,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -339,7 +388,7 @@
    "team": 2,
    "yellow": 2,
    "red": 0,
-   "minutes": 609,
+   "minutes": 642,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -348,7 +397,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -357,7 +406,7 @@
    "team": 2,
    "yellow": 2,
    "red": 0,
-   "minutes": 790,
+   "minutes": 820,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -366,7 +415,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -375,7 +424,7 @@
    "team": 2,
    "yellow": 2,
    "red": 0,
-   "minutes": 355,
+   "minutes": 419,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -384,7 +433,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -393,7 +442,7 @@
    "team": 2,
    "yellow": 1,
    "red": 0,
-   "minutes": 487,
+   "minutes": 520,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -402,7 +451,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -420,7 +469,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -429,7 +478,7 @@
    "team": 2,
    "yellow": 2,
    "red": 0,
-   "minutes": 748,
+   "minutes": 794,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -438,7 +487,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -447,7 +496,7 @@
    "team": 2,
    "yellow": 1,
    "red": 0,
-   "minutes": 12,
+   "minutes": 29,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -456,7 +505,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -465,7 +514,7 @@
    "team": 2,
    "yellow": 1,
    "red": 0,
-   "minutes": 836,
+   "minutes": 900,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -474,7 +523,25 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "618": {
+   "name": "Goretzka",
+   "team": 2,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 240,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -483,7 +550,7 @@
    "team": 3,
    "yellow": 1,
    "red": 0,
-   "minutes": 926,
+   "minutes": 990,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -492,7 +559,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -501,7 +568,7 @@
    "team": 3,
    "yellow": 2,
    "red": 0,
-   "minutes": 919,
+   "minutes": 983,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -510,7 +577,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -519,7 +586,7 @@
    "team": 3,
    "yellow": 4,
    "red": 0,
-   "minutes": 873,
+   "minutes": 933,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -528,7 +595,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -536,58 +603,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.32,
+    "y90": 0.307,
     "share": 0.93,
     "pm": [
      [
-      11,
-      0.258
-     ],
-     [
       12,
-      0.258
+      0.248
      ],
      [
       13,
-      0.258
+      0.248
      ],
      [
       14,
-      0.258
+      0.248
      ],
      [
       15,
-      0.258
+      0.248
      ],
      [
       16,
-      0.258
+      0.248
      ],
      [
       17,
-      0.258
+      0.248
      ],
      [
       18,
-      0.258
+      0.248
+     ],
+     [
+      19,
+      0.248
      ]
     ],
     "pb": {
-     "12": 0.258,
-     "13": 0.191,
-     "14": 0.142,
-     "15": 0.105,
-     "16": 0.078,
-     "17": 0.058,
-     "18": 0.043
+     "13": 0.248,
+     "14": 0.187,
+     "15": 0.14,
+     "16": 0.105,
+     "17": 0.079,
+     "18": 0.06,
+     "19": 0.045
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -605,9 +666,15 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.833
+    "tot": 0.819
    }
   },
   "68": {
@@ -615,7 +682,7 @@
    "team": 3,
    "yellow": 4,
    "red": 0,
-   "minutes": 866,
+   "minutes": 930,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -624,7 +691,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -632,58 +699,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.321,
-    "share": 0.99,
+    "y90": 0.307,
+    "share": 1.0,
     "pm": [
      [
-      11,
-      0.271
-     ],
-     [
       12,
-      0.271
+      0.265
      ],
      [
       13,
-      0.271
+      0.265
      ],
      [
       14,
-      0.271
+      0.265
      ],
      [
       15,
-      0.271
+      0.265
      ],
      [
       16,
-      0.271
+      0.265
      ],
      [
       17,
-      0.271
+      0.265
      ],
      [
       18,
-      0.271
+      0.265
+     ],
+     [
+      19,
+      0.265
      ]
     ],
     "pb": {
-     "12": 0.271,
-     "13": 0.198,
-     "14": 0.144,
-     "15": 0.105,
-     "16": 0.076,
-     "17": 0.056,
-     "18": 0.041
+     "13": 0.265,
+     "14": 0.195,
+     "15": 0.143,
+     "16": 0.105,
+     "17": 0.077,
+     "18": 0.057,
+     "19": 0.042
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -701,17 +762,23 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.85
+    "tot": 0.842
    }
   },
   "69": {
    "name": "Scott",
    "team": 3,
-   "yellow": 1,
+   "yellow": 2,
    "red": 0,
-   "minutes": 446,
+   "minutes": 467,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -720,7 +787,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -729,7 +796,7 @@
    "team": 3,
    "yellow": 1,
    "red": 0,
-   "minutes": 544,
+   "minutes": 586,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -738,7 +805,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -747,7 +814,7 @@
    "team": 3,
    "yellow": 2,
    "red": 0,
-   "minutes": 377,
+   "minutes": 398,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -756,7 +823,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -765,7 +832,7 @@
    "team": 3,
    "yellow": 3,
    "red": 0,
-   "minutes": 753,
+   "minutes": 795,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -774,7 +841,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -782,52 +849,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.28,
-    "share": 1.0,
+    "y90": 0.271,
+    "share": 0.92,
     "pm": [
      [
-      11,
-      0.244
-     ],
-     [
       12,
-      0.244
+      0.22
      ],
      [
       13,
-      0.244
+      0.22
      ],
      [
       14,
-      0.244
+      0.22
      ],
      [
       15,
-      0.244
+      0.22
      ],
      [
       16,
-      0.244
+      0.22
      ],
      [
       17,
-      0.244
+      0.22
      ],
      [
       18,
-      0.244
+      0.22
+     ],
+     [
+      19,
+      0.22
      ]
     ],
     "pb": {
-     "13": 0.06,
-     "14": 0.09,
-     "15": 0.102,
-     "16": 0.103,
-     "17": 0.097,
-     "18": 0.088
+     "14": 0.049,
+     "15": 0.076,
+     "16": 0.089,
+     "17": 0.092,
+     "18": 0.09,
+     "19": 0.084
     },
     "ex": [],
-    "tot": 0.452
+    "tot": 0.395
    }
   },
   "74": {
@@ -844,7 +911,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -853,7 +920,7 @@
    "team": 3,
    "yellow": 3,
    "red": 0,
-   "minutes": 438,
+   "minutes": 480,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -862,7 +929,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -870,52 +937,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.37,
-    "share": 0.55,
+    "y90": 0.355,
+    "share": 0.74,
     "pm": [
      [
-      11,
-      0.184
-     ],
-     [
       12,
-      0.184
+      0.232
      ],
      [
       13,
-      0.184
+      0.232
      ],
      [
       14,
-      0.184
+      0.232
      ],
      [
       15,
-      0.184
+      0.232
      ],
      [
       16,
-      0.184
+      0.232
      ],
      [
       17,
-      0.184
+      0.232
      ],
      [
       18,
-      0.184
+      0.232
+     ],
+     [
+      19,
+      0.232
      ]
     ],
     "pb": {
-     "13": 0.034,
-     "14": 0.055,
-     "15": 0.067,
-     "16": 0.073,
-     "17": 0.075,
-     "18": 0.073
+     "14": 0.054,
+     "15": 0.083,
+     "16": 0.095,
+     "17": 0.098,
+     "18": 0.094,
+     "19": 0.086
     },
     "ex": [],
-    "tot": 0.304
+    "tot": 0.423
    }
   },
   "79": {
@@ -923,7 +990,7 @@
    "team": 3,
    "yellow": 1,
    "red": 0,
-   "minutes": 863,
+   "minutes": 927,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -932,7 +999,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -941,7 +1008,7 @@
    "team": 3,
    "yellow": 4,
    "red": 0,
-   "minutes": 926,
+   "minutes": 990,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -950,7 +1017,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -958,58 +1025,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.308,
+    "y90": 0.295,
     "share": 1.0,
     "pm": [
      [
-      11,
-      0.265
-     ],
-     [
       12,
-      0.265
+      0.256
      ],
      [
       13,
-      0.265
+      0.256
      ],
      [
       14,
-      0.265
+      0.256
      ],
      [
       15,
-      0.265
+      0.256
      ],
      [
       16,
-      0.265
+      0.256
      ],
      [
       17,
-      0.265
+      0.256
      ],
      [
       18,
-      0.265
+      0.256
+     ],
+     [
+      19,
+      0.256
      ]
     ],
     "pb": {
-     "12": 0.265,
-     "13": 0.195,
-     "14": 0.143,
-     "15": 0.105,
-     "16": 0.077,
-     "17": 0.057,
-     "18": 0.042
+     "13": 0.256,
+     "14": 0.19,
+     "15": 0.142,
+     "16": 0.105,
+     "17": 0.078,
+     "18": 0.058,
+     "19": 0.043
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -1027,9 +1088,15 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.843
+    "tot": 0.83
    }
   },
   "84": {
@@ -1046,7 +1113,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1055,7 +1122,7 @@
    "team": 4,
    "yellow": 3,
    "red": 0,
-   "minutes": 900,
+   "minutes": 990,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1064,7 +1131,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -1072,52 +1139,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.251,
+    "y90": 0.236,
     "share": 1.0,
     "pm": [
      [
-      11,
-      0.222
-     ],
-     [
       12,
-      0.222
+      0.211
      ],
      [
       13,
-      0.222
+      0.211
      ],
      [
       14,
-      0.222
+      0.211
      ],
      [
       15,
-      0.222
+      0.211
      ],
      [
       16,
-      0.222
+      0.211
      ],
      [
       17,
-      0.222
+      0.211
      ],
      [
       18,
-      0.222
+      0.211
+     ],
+     [
+      19,
+      0.211
      ]
     ],
     "pb": {
-     "13": 0.049,
-     "14": 0.077,
-     "15": 0.09,
-     "16": 0.093,
-     "17": 0.09,
-     "18": 0.084
+     "14": 0.044,
+     "15": 0.07,
+     "16": 0.083,
+     "17": 0.087,
+     "18": 0.086,
+     "19": 0.082
     },
     "ex": [],
-    "tot": 0.399
+    "tot": 0.371
    }
   },
   "88": {
@@ -1125,7 +1192,7 @@
    "team": 4,
    "yellow": 2,
    "red": 0,
-   "minutes": 744,
+   "minutes": 834,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1134,7 +1201,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1152,7 +1219,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1161,7 +1228,7 @@
    "team": 4,
    "yellow": 2,
    "red": 0,
-   "minutes": 777,
+   "minutes": 801,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1170,7 +1237,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1179,7 +1246,7 @@
    "team": 4,
    "yellow": 4,
    "red": 1,
-   "minutes": 810,
+   "minutes": 891,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1188,7 +1255,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -1196,58 +1263,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.335,
-    "share": 0.67,
+    "y90": 0.316,
+    "share": 0.97,
     "pm": [
      [
-      11,
-      0.2
-     ],
-     [
       12,
-      0.2
+      0.263
      ],
      [
       13,
-      0.2
+      0.263
      ],
      [
       14,
-      0.2
+      0.263
      ],
      [
       15,
-      0.2
+      0.263
      ],
      [
       16,
-      0.2
+      0.263
      ],
      [
       17,
-      0.2
+      0.263
      ],
      [
       18,
-      0.2
+      0.263
+     ],
+     [
+      19,
+      0.263
      ]
     ],
     "pb": {
-     "12": 0.2,
-     "13": 0.16,
-     "14": 0.128,
-     "15": 0.102,
-     "16": 0.082,
-     "17": 0.066,
-     "18": 0.052
+     "13": 0.263,
+     "14": 0.194,
+     "15": 0.143,
+     "16": 0.105,
+     "17": 0.078,
+     "18": 0.057,
+     "19": 0.042
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -1265,9 +1326,15 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.738
+    "tot": 0.84
    }
   },
   "102": {
@@ -1275,7 +1342,7 @@
    "team": 4,
    "yellow": 1,
    "red": 1,
-   "minutes": 379,
+   "minutes": 452,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1284,7 +1351,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1293,7 +1360,7 @@
    "team": 4,
    "yellow": 1,
    "red": 0,
-   "minutes": 473,
+   "minutes": 553,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1302,7 +1369,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1323,7 +1390,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -1332,12 +1399,8 @@
     "ban": 1,
     "cut": 19,
     "y90": 0.311,
-    "share": 0.75,
+    "share": 0.41,
     "pm": [
-     [
-      11,
-      0.0
-     ],
      [
       12,
       0.0
@@ -1348,38 +1411,37 @@
      ],
      [
       14,
-      0.208
+      0.121
      ],
      [
       15,
-      0.208
+      0.121
      ],
      [
       16,
-      0.208
+      0.121
      ],
      [
       17,
-      0.208
+      0.121
      ],
      [
       18,
-      0.208
+      0.121
+     ],
+     [
+      19,
+      0.121
      ]
     ],
     "pb": {
-     "15": 0.208,
-     "16": 0.165,
-     "17": 0.13,
-     "18": 0.103
+     "15": 0.121,
+     "16": 0.107,
+     "17": 0.094,
+     "18": 0.082,
+     "19": 0.072
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -1397,9 +1459,15 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.503
+    "tot": 0.404
    }
   },
   "108": {
@@ -1407,7 +1475,7 @@
    "team": 4,
    "yellow": 1,
    "red": 0,
-   "minutes": 57,
+   "minutes": 147,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1416,7 +1484,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1425,7 +1493,7 @@
    "team": 4,
    "yellow": 2,
    "red": 0,
-   "minutes": 613,
+   "minutes": 621,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1434,7 +1502,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1443,7 +1511,7 @@
    "team": 5,
    "yellow": 1,
    "red": 0,
-   "minutes": 517,
+   "minutes": 527,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1452,7 +1520,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1461,7 +1529,7 @@
    "team": 5,
    "yellow": 4,
    "red": 0,
-   "minutes": 782,
+   "minutes": 848,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1470,7 +1538,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -1478,58 +1546,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.342,
-    "share": 0.73,
+    "y90": 0.326,
+    "share": 0.81,
     "pm": [
      [
-      11,
-      0.222
-     ],
-     [
       12,
-      0.222
+      0.232
      ],
      [
       13,
-      0.222
+      0.232
      ],
      [
       14,
-      0.222
+      0.232
      ],
      [
       15,
-      0.222
+      0.232
      ],
      [
       16,
-      0.222
+      0.232
      ],
      [
       17,
-      0.222
+      0.232
      ],
      [
       18,
-      0.222
+      0.232
+     ],
+     [
+      19,
+      0.232
      ]
     ],
     "pb": {
-     "12": 0.222,
-     "13": 0.173,
-     "14": 0.134,
-     "15": 0.105,
-     "16": 0.081,
-     "17": 0.063,
-     "18": 0.049
+     "13": 0.232,
+     "14": 0.178,
+     "15": 0.137,
+     "16": 0.105,
+     "17": 0.081,
+     "18": 0.062,
+     "19": 0.048
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -1547,9 +1609,15 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.778
+    "tot": 0.795
    }
   },
   "115": {
@@ -1557,7 +1625,7 @@
    "team": 5,
    "yellow": 3,
    "red": 0,
-   "minutes": 822,
+   "minutes": 912,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1566,7 +1634,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -1574,52 +1642,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.266,
+    "y90": 0.249,
     "share": 0.9,
     "pm": [
      [
-      11,
-      0.212
-     ],
-     [
       12,
-      0.212
+      0.2
      ],
      [
       13,
-      0.212
+      0.2
      ],
      [
       14,
-      0.212
+      0.2
      ],
      [
       15,
-      0.212
+      0.2
      ],
      [
       16,
-      0.212
+      0.2
      ],
      [
       17,
-      0.212
+      0.2
      ],
      [
       18,
-      0.212
+      0.2
+     ],
+     [
+      19,
+      0.2
      ]
     ],
     "pb": {
-     "13": 0.045,
-     "14": 0.071,
-     "15": 0.084,
-     "16": 0.088,
-     "17": 0.087,
-     "18": 0.082
+     "14": 0.04,
+     "15": 0.064,
+     "16": 0.077,
+     "17": 0.082,
+     "18": 0.082,
+     "19": 0.079
     },
     "ex": [],
-    "tot": 0.374
+    "tot": 0.345
    }
   },
   "116": {
@@ -1627,7 +1695,7 @@
    "team": 5,
    "yellow": 2,
    "red": 0,
-   "minutes": 749,
+   "minutes": 839,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1636,7 +1704,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1644,17 +1712,20 @@
    "name": "Costinha",
    "team": 5,
    "yellow": 2,
-   "red": 0,
-   "minutes": 354,
+   "red": 1,
+   "minutes": 442,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
+   "suspended": {
+    "until": "2026-12-02",
+    "news": "Suspended until 2 Dec"
+   },
    "pending_ban": null,
    "next_threshold": {
     "n": 5,
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1663,7 +1734,7 @@
    "team": 5,
    "yellow": 4,
    "red": 0,
-   "minutes": 880,
+   "minutes": 970,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1672,7 +1743,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -1680,58 +1751,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.318,
+    "y90": 0.299,
     "share": 1.0,
     "pm": [
      [
-      11,
-      0.273
-     ],
-     [
       12,
-      0.273
+      0.259
      ],
      [
       13,
-      0.273
+      0.259
      ],
      [
       14,
-      0.273
+      0.259
      ],
      [
       15,
-      0.273
+      0.259
      ],
      [
       16,
-      0.273
+      0.259
      ],
      [
       17,
-      0.273
+      0.259
      ],
      [
       18,
-      0.273
+      0.259
+     ],
+     [
+      19,
+      0.259
      ]
     ],
     "pb": {
-     "12": 0.273,
-     "13": 0.198,
-     "14": 0.144,
-     "15": 0.105,
-     "16": 0.076,
-     "17": 0.056,
-     "18": 0.04
+     "13": 0.259,
+     "14": 0.192,
+     "15": 0.142,
+     "16": 0.105,
+     "17": 0.078,
+     "18": 0.058,
+     "19": 0.043
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -1749,9 +1814,15 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.852
+    "tot": 0.834
    }
   },
   "129": {
@@ -1759,7 +1830,7 @@
    "team": 5,
    "yellow": 1,
    "red": 0,
-   "minutes": 741,
+   "minutes": 807,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1768,7 +1839,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1786,7 +1857,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1795,7 +1866,7 @@
    "team": 5,
    "yellow": 1,
    "red": 0,
-   "minutes": 724,
+   "minutes": 747,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -1804,7 +1875,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1822,7 +1893,25 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "504": {
+   "name": "Vuskovic",
+   "team": 5,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 977,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -1840,728 +1929,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "639": {
    "name": "Andrés",
    "team": 5,
-   "yellow": 3,
-   "red": 0,
-   "minutes": 450,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": {
-    "yc": 3,
-    "n": 5,
-    "need": 2,
-    "ban": 1,
-    "cut": 19,
-    "y90": 0.365,
-    "share": 0.6,
-    "pm": [
-     [
-      11,
-      0.196
-     ],
-     [
-      12,
-      0.196
-     ],
-     [
-      13,
-      0.196
-     ],
-     [
-      14,
-      0.196
-     ],
-     [
-      15,
-      0.196
-     ],
-     [
-      16,
-      0.196
-     ],
-     [
-      17,
-      0.196
-     ],
-     [
-      18,
-      0.196
-     ]
-    ],
-    "pb": {
-     "13": 0.038,
-     "14": 0.062,
-     "15": 0.074,
-     "16": 0.08,
-     "17": 0.08,
-     "18": 0.077
-    },
-    "ex": [],
-    "tot": 0.334
-   }
-  },
-  "40": {
-   "name": "Rogers",
-   "team": 6,
-   "yellow": 3,
-   "red": 0,
-   "minutes": 906,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": {
-    "yc": 3,
-    "n": 5,
-    "need": 2,
-    "ban": 1,
-    "cut": 19,
-    "y90": 0.25,
-    "share": 1.0,
-    "pm": [
-     [
-      11,
-      0.221
-     ],
-     [
-      12,
-      0.221
-     ],
-     [
-      13,
-      0.221
-     ],
-     [
-      14,
-      0.221
-     ],
-     [
-      15,
-      0.221
-     ],
-     [
-      16,
-      0.221
-     ],
-     [
-      17,
-      0.221
-     ],
-     [
-      18,
-      0.221
-     ]
-    ],
-    "pb": {
-     "13": 0.049,
-     "14": 0.076,
-     "15": 0.089,
-     "16": 0.093,
-     "17": 0.09,
-     "18": 0.084
-    },
-    "ex": [],
-    "tot": 0.397
-   }
-  },
-  "142": {
-   "name": "James",
-   "team": 6,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 292,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "145": {
-   "name": "Fofana",
-   "team": 6,
-   "yellow": 2,
-   "red": 0,
-   "minutes": 518,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "149": {
-   "name": "Colwill",
-   "team": 6,
-   "yellow": 2,
-   "red": 0,
-   "minutes": 772,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "151": {
-   "name": "Acheampong",
-   "team": 6,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 607,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "154": {
-   "name": "Palmer",
-   "team": 6,
-   "yellow": 2,
-   "red": 1,
-   "minutes": 904,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "156": {
-   "name": "Neto",
-   "team": 6,
-   "yellow": 3,
-   "red": 0,
-   "minutes": 738,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": {
-    "yc": 3,
-    "n": 5,
-    "need": 2,
-    "ban": 1,
-    "cut": 19,
-    "y90": 0.283,
-    "share": 0.87,
-    "pm": [
-     [
-      11,
-      0.218
-     ],
-     [
-      12,
-      0.218
-     ],
-     [
-      13,
-      0.218
-     ],
-     [
-      14,
-      0.218
-     ],
-     [
-      15,
-      0.218
-     ],
-     [
-      16,
-      0.218
-     ],
-     [
-      17,
-      0.218
-     ],
-     [
-      18,
-      0.218
-     ]
-    ],
-    "pb": {
-     "13": 0.047,
-     "14": 0.074,
-     "15": 0.087,
-     "16": 0.091,
-     "17": 0.089,
-     "18": 0.083
-    },
-    "ex": [],
-    "tot": 0.388
-   }
-  },
-  "159": {
-   "name": "Caicedo",
-   "team": 6,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 461,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "161": {
-   "name": "Lavia",
-   "team": 6,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 483,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "165": {
-   "name": "João Pedro",
-   "team": 6,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 521,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "200": {
-   "name": "Lacroix",
-   "team": 6,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 634,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "560": {
-   "name": "Penders",
-   "team": 6,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 285,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "568": {
-   "name": "Barco",
-   "team": 6,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 118,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "91": {
-   "name": "Pinnock",
-   "team": 7,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 756,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "175": {
-   "name": "van Ewijk",
-   "team": 7,
-   "yellow": 2,
-   "red": 0,
-   "minutes": 834,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "176": {
-   "name": "Dasilva",
-   "team": 7,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 894,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "182": {
-   "name": "Amenda",
-   "team": 7,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 360,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "183": {
-   "name": "Rudoni",
-   "team": 7,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 754,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "185": {
-   "name": "Sakamoto",
-   "team": 7,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 422,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "188": {
-   "name": "Torp",
-   "team": 7,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 251,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "492": {
-   "name": "Awoniyi",
-   "team": 7,
-   "yellow": 0,
-   "red": 1,
-   "minutes": 466,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "575": {
-   "name": "Yirenkyi",
-   "team": 7,
-   "yellow": 3,
-   "red": 0,
-   "minutes": 647,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": {
-    "yc": 3,
-    "n": 5,
-    "need": 2,
-    "ban": 1,
-    "cut": 19,
-    "y90": 0.305,
-    "share": 0.91,
-    "pm": [
-     [
-      11,
-      0.182
-     ],
-     [
-      12,
-      0.182
-     ],
-     [
-      13,
-      0.221
-     ],
-     [
-      14,
-      0.235
-     ],
-     [
-      15,
-      0.24
-     ],
-     [
-      16,
-      0.242
-     ],
-     [
-      17,
-      0.242
-     ],
-     [
-      18,
-      0.242
-     ]
-    ],
-    "pb": {
-     "13": 0.033,
-     "14": 0.066,
-     "15": 0.089,
-     "16": 0.099,
-     "17": 0.099,
-     "18": 0.093
-    },
-    "ex": [],
-    "tot": 0.386
-   }
-  },
-  "153": {
-   "name": "Disasi",
-   "team": 8,
-   "yellow": 0,
-   "red": 1,
-   "minutes": 433,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "202": {
-   "name": "Richards",
-   "team": 8,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 924,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "203": {
-   "name": "Canvot",
-   "team": 8,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 720,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "207": {
-   "name": "Mingueza",
-   "team": 8,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 161,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "210": {
-   "name": "Wharton",
-   "team": 8,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 907,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "211": {
-   "name": "Yeremy",
-   "team": 8,
    "yellow": 4,
    "red": 0,
-   "minutes": 708,
+   "minutes": 540,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -2570,7 +1947,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -2578,58 +1955,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.362,
-    "share": 0.87,
+    "y90": 0.418,
+    "share": 0.73,
     "pm": [
      [
-      11,
-      0.27
-     ],
-     [
       12,
-      0.27
+      0.264
      ],
      [
       13,
-      0.27
+      0.264
      ],
      [
       14,
-      0.27
+      0.264
      ],
      [
       15,
-      0.27
+      0.264
      ],
      [
       16,
-      0.27
+      0.264
      ],
      [
       17,
-      0.27
+      0.264
      ],
      [
       18,
-      0.27
+      0.264
+     ],
+     [
+      19,
+      0.264
      ]
     ],
     "pb": {
-     "12": 0.27,
-     "13": 0.197,
-     "14": 0.144,
-     "15": 0.105,
-     "16": 0.077,
-     "17": 0.056,
-     "18": 0.041
+     "13": 0.264,
+     "14": 0.194,
+     "15": 0.143,
+     "16": 0.105,
+     "17": 0.077,
+     "18": 0.057,
+     "19": 0.042
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -2647,17 +2018,23 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.849
+    "tot": 0.841
    }
   },
-  "213": {
-   "name": "Lerma",
-   "team": 8,
+  "40": {
+   "name": "Rogers",
+   "team": 6,
    "yellow": 3,
    "red": 0,
-   "minutes": 251,
+   "minutes": 970,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -2666,7 +2043,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -2674,60 +2051,60 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.457,
-    "share": 0.34,
+    "y90": 0.24,
+    "share": 1.0,
     "pm": [
      [
-      11,
-      0.144
-     ],
-     [
       12,
-      0.144
+      0.213
      ],
      [
       13,
-      0.144
+      0.213
      ],
      [
       14,
-      0.144
+      0.213
      ],
      [
       15,
-      0.144
+      0.213
      ],
      [
       16,
-      0.144
+      0.213
      ],
      [
       17,
-      0.144
+      0.213
      ],
      [
       18,
-      0.144
+      0.213
+     ],
+     [
+      19,
+      0.213
      ]
     ],
     "pb": {
-     "13": 0.021,
-     "14": 0.036,
-     "15": 0.046,
-     "16": 0.052,
-     "17": 0.056,
-     "18": 0.057
+     "14": 0.045,
+     "15": 0.071,
+     "16": 0.084,
+     "17": 0.088,
+     "18": 0.087,
+     "19": 0.082
     },
     "ex": [],
-    "tot": 0.21
+    "tot": 0.377
    }
   },
-  "214": {
-   "name": "Kamada",
-   "team": 8,
-   "yellow": 2,
+  "142": {
+   "name": "James",
+   "team": 6,
+   "yellow": 1,
    "red": 0,
-   "minutes": 901,
+   "minutes": 292,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -2736,7 +2113,688 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "145": {
+   "name": "Fofana",
+   "team": 6,
+   "yellow": 2,
+   "red": 0,
+   "minutes": 582,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "149": {
+   "name": "Colwill",
+   "team": 6,
+   "yellow": 2,
+   "red": 0,
+   "minutes": 836,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "151": {
+   "name": "Acheampong",
+   "team": 6,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 653,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "154": {
+   "name": "Palmer",
+   "team": 6,
+   "yellow": 2,
+   "red": 1,
+   "minutes": 968,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "156": {
+   "name": "Neto",
+   "team": 6,
+   "yellow": 3,
+   "red": 0,
+   "minutes": 764,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": {
+    "yc": 3,
+    "n": 5,
+    "need": 2,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.277,
+    "share": 0.64,
+    "pm": [
+     [
+      12,
+      0.163
+     ],
+     [
+      13,
+      0.163
+     ],
+     [
+      14,
+      0.163
+     ],
+     [
+      15,
+      0.163
+     ],
+     [
+      16,
+      0.163
+     ],
+     [
+      17,
+      0.163
+     ],
+     [
+      18,
+      0.163
+     ],
+     [
+      19,
+      0.163
+     ]
+    ],
+    "pb": {
+     "14": 0.027,
+     "15": 0.044,
+     "16": 0.056,
+     "17": 0.062,
+     "18": 0.065,
+     "19": 0.065
+    },
+    "ex": [],
+    "tot": 0.254
+   }
+  },
+  "159": {
+   "name": "Caicedo",
+   "team": 6,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 461,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "161": {
+   "name": "Lavia",
+   "team": 6,
+   "yellow": 2,
+   "red": 0,
+   "minutes": 547,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "165": {
+   "name": "João Pedro",
+   "team": 6,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 521,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "200": {
+   "name": "Lacroix",
+   "team": 6,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 634,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "560": {
+   "name": "Penders",
+   "team": 6,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 285,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "568": {
+   "name": "Barco",
+   "team": 6,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 118,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "91": {
+   "name": "Pinnock",
+   "team": 7,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 822,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "175": {
+   "name": "van Ewijk",
+   "team": 7,
+   "yellow": 2,
+   "red": 0,
+   "minutes": 900,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "176": {
+   "name": "Dasilva",
+   "team": 7,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 894,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "182": {
+   "name": "Amenda",
+   "team": 7,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 360,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "183": {
+   "name": "Rudoni",
+   "team": 7,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 820,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "184": {
+   "name": "Grimes",
+   "team": 7,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 786,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "185": {
+   "name": "Sakamoto",
+   "team": 7,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 488,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "188": {
+   "name": "Torp",
+   "team": 7,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 297,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "492": {
+   "name": "Awoniyi",
+   "team": 7,
+   "yellow": 0,
+   "red": 1,
+   "minutes": 487,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "575": {
+   "name": "Yirenkyi",
+   "team": 7,
+   "yellow": 3,
+   "red": 0,
+   "minutes": 647,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": {
+    "yc": 3,
+    "n": 5,
+    "need": 2,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.305,
+    "share": 0.67,
+    "pm": [
+     [
+      12,
+      0.138
+     ],
+     [
+      13,
+      0.168
+     ],
+     [
+      14,
+      0.178
+     ],
+     [
+      15,
+      0.182
+     ],
+     [
+      16,
+      0.183
+     ],
+     [
+      17,
+      0.184
+     ],
+     [
+      18,
+      0.184
+     ],
+     [
+      19,
+      0.184
+     ]
+    ],
+    "pb": {
+     "14": 0.023,
+     "15": 0.046,
+     "16": 0.062,
+     "17": 0.071,
+     "18": 0.074,
+     "19": 0.074
+    },
+    "ex": [],
+    "tot": 0.276
+   }
+  },
+  "153": {
+   "name": "Disasi",
+   "team": 8,
+   "yellow": 0,
+   "red": 1,
+   "minutes": 499,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "202": {
+   "name": "Richards",
+   "team": 8,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 990,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "203": {
+   "name": "Canvot",
+   "team": 8,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 737,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "207": {
+   "name": "Mingueza",
+   "team": 8,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 161,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "210": {
+   "name": "Wharton",
+   "team": 8,
+   "yellow": 2,
+   "red": 0,
+   "minutes": 973,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "211": {
+   "name": "Yeremy",
+   "team": 8,
+   "yellow": 5,
+   "red": 0,
+   "minutes": 762,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": {
+    "until": "2026-12-02",
+    "news": "Suspended until 2 Dec"
+   },
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 10,
+    "ban": 2,
+    "cutoff_matches": 32,
+    "cutoff_gw": 32,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "213": {
+   "name": "Lerma",
+   "team": 8,
+   "yellow": 3,
+   "red": 0,
+   "minutes": 268,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": {
+    "yc": 3,
+    "n": 5,
+    "need": 2,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.448,
+    "share": 0.4,
+    "pm": [
+     [
+      12,
+      0.165
+     ],
+     [
+      13,
+      0.165
+     ],
+     [
+      14,
+      0.165
+     ],
+     [
+      15,
+      0.165
+     ],
+     [
+      16,
+      0.165
+     ],
+     [
+      17,
+      0.165
+     ],
+     [
+      18,
+      0.165
+     ],
+     [
+      19,
+      0.165
+     ]
+    ],
+    "pb": {
+     "14": 0.027,
+     "15": 0.046,
+     "16": 0.057,
+     "17": 0.064,
+     "18": 0.066,
+     "19": 0.066
+    },
+    "ex": [],
+    "tot": 0.26
+   }
+  },
+  "214": {
+   "name": "Kamada",
+   "team": 8,
+   "yellow": 2,
+   "red": 0,
+   "minutes": 967,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -2757,7 +2815,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -2766,7 +2824,7 @@
    "team": 8,
    "yellow": 2,
    "red": 0,
-   "minutes": 706,
+   "minutes": 754,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -2775,7 +2833,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -2784,7 +2842,7 @@
    "team": 9,
    "yellow": 1,
    "red": 0,
-   "minutes": 5,
+   "minutes": 10,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -2793,7 +2851,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -2802,7 +2860,7 @@
    "team": 9,
    "yellow": 2,
    "red": 0,
-   "minutes": 406,
+   "minutes": 427,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -2811,7 +2869,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -2819,17 +2877,20 @@
    "name": "Tarkowski",
    "team": 9,
    "yellow": 2,
-   "red": 0,
-   "minutes": 900,
+   "red": 1,
+   "minutes": 939,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
+   "suspended": {
+    "until": "2026-12-13",
+    "news": "Suspended until 13 Dec"
+   },
    "pending_ban": null,
    "next_threshold": {
     "n": 5,
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -2838,7 +2899,7 @@
    "team": 9,
    "yellow": 1,
    "red": 0,
-   "minutes": 799,
+   "minutes": 889,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -2847,16 +2908,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "233": {
    "name": "Mykolenko",
    "team": 9,
-   "yellow": 2,
+   "yellow": 3,
    "red": 0,
-   "minutes": 793,
+   "minutes": 883,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -2865,16 +2926,68 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
-   "risk": null
+   "risk": {
+    "yc": 3,
+    "n": 5,
+    "need": 2,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.254,
+    "share": 1.0,
+    "pm": [
+     [
+      12,
+      0.225
+     ],
+     [
+      13,
+      0.225
+     ],
+     [
+      14,
+      0.225
+     ],
+     [
+      15,
+      0.225
+     ],
+     [
+      16,
+      0.225
+     ],
+     [
+      17,
+      0.225
+     ],
+     [
+      18,
+      0.225
+     ],
+     [
+      19,
+      0.225
+     ]
+    ],
+    "pb": {
+     "14": 0.05,
+     "15": 0.078,
+     "16": 0.091,
+     "17": 0.094,
+     "18": 0.091,
+     "19": 0.085
+    },
+    "ex": [],
+    "tot": 0.405
+   }
   },
   "236": {
    "name": "Dewsbury-Hall",
    "team": 9,
    "yellow": 1,
    "red": 0,
-   "minutes": 895,
+   "minutes": 963,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -2883,7 +2996,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -2892,7 +3005,7 @@
    "team": 9,
    "yellow": 3,
    "red": 0,
-   "minutes": 778,
+   "minutes": 862,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -2901,7 +3014,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -2909,52 +3022,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.275,
-    "share": 1.0,
+    "y90": 0.258,
+    "share": 0.98,
     "pm": [
      [
-      11,
-      0.24
-     ],
-     [
       12,
-      0.24
+      0.223
      ],
      [
       13,
-      0.24
+      0.223
      ],
      [
       14,
-      0.24
+      0.223
      ],
      [
       15,
-      0.24
+      0.223
      ],
      [
       16,
-      0.24
+      0.223
      ],
      [
       17,
-      0.24
+      0.223
      ],
      [
       18,
-      0.24
+      0.223
+     ],
+     [
+      19,
+      0.223
      ]
     ],
     "pb": {
-     "13": 0.058,
-     "14": 0.088,
-     "15": 0.1,
-     "16": 0.101,
-     "17": 0.096,
-     "18": 0.088
+     "14": 0.05,
+     "15": 0.077,
+     "16": 0.09,
+     "17": 0.093,
+     "18": 0.091,
+     "19": 0.085
     },
     "ex": [],
-    "tot": 0.442
+    "tot": 0.401
    }
   },
   "242": {
@@ -2962,7 +3075,7 @@
    "team": 9,
    "yellow": 1,
    "red": 0,
-   "minutes": 637,
+   "minutes": 682,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -2971,7 +3084,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -2989,7 +3102,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -2998,7 +3111,7 @@
    "team": 9,
    "yellow": 3,
    "red": 0,
-   "minutes": 859,
+   "minutes": 949,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3007,7 +3120,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -3015,52 +3128,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.259,
+    "y90": 0.243,
     "share": 0.93,
     "pm": [
      [
-      11,
-      0.214
-     ],
-     [
       12,
-      0.214
+      0.203
      ],
      [
       13,
-      0.214
+      0.203
      ],
      [
       14,
-      0.214
+      0.203
      ],
      [
       15,
-      0.214
+      0.203
      ],
      [
       16,
-      0.214
+      0.203
      ],
      [
       17,
-      0.214
+      0.203
      ],
      [
       18,
-      0.214
+      0.203
+     ],
+     [
+      19,
+      0.203
      ]
     ],
     "pb": {
-     "13": 0.046,
-     "14": 0.072,
-     "15": 0.085,
-     "16": 0.089,
-     "17": 0.088,
-     "18": 0.083
+     "14": 0.041,
+     "15": 0.066,
+     "16": 0.078,
+     "17": 0.083,
+     "18": 0.083,
+     "19": 0.079
     },
     "ex": [],
-    "tot": 0.38
+    "tot": 0.352
    }
   },
   "246": {
@@ -3068,7 +3181,7 @@
    "team": 9,
    "yellow": 1,
    "red": 0,
-   "minutes": 591,
+   "minutes": 659,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3077,7 +3190,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3187,6 +3300,10 @@
      [
       18,
       0.256
+     ],
+     [
+      19,
+      0.256
      ]
     ],
     "pb": {
@@ -3195,7 +3312,8 @@
      "15": 0.142,
      "16": 0.105,
      "17": 0.078,
-     "18": 0.058
+     "18": 0.058,
+     "19": 0.043
     },
     "ex": [
      [
@@ -3339,46 +3457,51 @@
     "ban": 1,
     "cut": 19,
     "y90": 0.256,
-    "share": 0.85,
+    "share": 0.81,
     "pm": [
      [
       12,
-      0.195
+      0.187
      ],
      [
       13,
-      0.195
+      0.187
      ],
      [
       14,
-      0.195
+      0.187
      ],
      [
       15,
-      0.195
+      0.187
      ],
      [
       16,
-      0.195
+      0.187
      ],
      [
       17,
-      0.195
+      0.187
      ],
      [
       18,
-      0.195
+      0.187
+     ],
+     [
+      19,
+      0.187
      ]
     ],
     "pb": {
-     "14": 0.038,
-     "15": 0.061,
-     "16": 0.074,
-     "17": 0.079,
-     "18": 0.08
+     "14": 0.035,
+     "15": 0.057,
+     "16": 0.069,
+     "17": 0.075,
+     "18": 0.076,
+     "19": 0.074
     },
     "ex": [],
-    "tot": 0.332
+    "tot": 0.312
    }
   },
   "269": {
@@ -3494,7 +3617,7 @@
    "team": 11,
    "yellow": 1,
    "red": 0,
-   "minutes": 361,
+   "minutes": 405,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3503,7 +3626,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3521,7 +3644,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3530,7 +3653,7 @@
    "team": 11,
    "yellow": 2,
    "red": 0,
-   "minutes": 851,
+   "minutes": 941,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3539,7 +3662,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3548,7 +3671,7 @@
    "team": 11,
    "yellow": 2,
    "red": 0,
-   "minutes": 728,
+   "minutes": 811,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3557,7 +3680,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3566,7 +3689,7 @@
    "team": 11,
    "yellow": 1,
    "red": 0,
-   "minutes": 698,
+   "minutes": 721,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3575,7 +3698,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3584,7 +3707,7 @@
    "team": 11,
    "yellow": 1,
    "red": 0,
-   "minutes": 685,
+   "minutes": 775,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3593,7 +3716,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3611,7 +3734,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3620,7 +3743,7 @@
    "team": 11,
    "yellow": 5,
    "red": 0,
-   "minutes": 379,
+   "minutes": 446,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3629,7 +3752,7 @@
     "ban": 2,
     "cutoff_matches": 32,
     "cutoff_gw": 32,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3638,7 +3761,7 @@
    "team": 11,
    "yellow": 2,
    "red": 0,
-   "minutes": 854,
+   "minutes": 944,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3647,7 +3770,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3656,7 +3779,7 @@
    "team": 11,
    "yellow": 4,
    "red": 0,
-   "minutes": 886,
+   "minutes": 976,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3665,7 +3788,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -3673,58 +3796,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.298,
-    "share": 0.98,
+    "y90": 0.28,
+    "share": 1.0,
     "pm": [
      [
-      11,
-      0.254
-     ],
-     [
       12,
-      0.254
+      0.244
      ],
      [
       13,
-      0.254
+      0.244
      ],
      [
       14,
-      0.254
+      0.244
      ],
      [
       15,
-      0.254
+      0.244
      ],
      [
       16,
-      0.254
+      0.244
      ],
      [
       17,
-      0.254
+      0.244
      ],
      [
       18,
-      0.254
+      0.244
+     ],
+     [
+      19,
+      0.244
      ]
     ],
     "pb": {
-     "12": 0.254,
-     "13": 0.189,
-     "14": 0.141,
-     "15": 0.105,
-     "16": 0.079,
-     "17": 0.059,
-     "18": 0.044
+     "13": 0.244,
+     "14": 0.185,
+     "15": 0.14,
+     "16": 0.105,
+     "17": 0.08,
+     "18": 0.06,
+     "19": 0.045
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -3742,9 +3859,15 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.827
+    "tot": 0.814
    }
   },
   "572": {
@@ -3752,7 +3875,7 @@
    "team": 11,
    "yellow": 1,
    "red": 0,
-   "minutes": 900,
+   "minutes": 990,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3761,7 +3884,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3770,7 +3893,7 @@
    "team": 11,
    "yellow": 3,
    "red": 0,
-   "minutes": 498,
+   "minutes": 565,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3779,7 +3902,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -3787,52 +3910,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.349,
-    "share": 0.83,
+    "y90": 0.327,
+    "share": 0.74,
     "pm": [
      [
-      11,
-      0.25
-     ],
-     [
       12,
-      0.25
+      0.215
      ],
      [
       13,
-      0.25
+      0.215
      ],
      [
       14,
-      0.25
+      0.215
      ],
      [
       15,
-      0.25
+      0.215
      ],
      [
       16,
-      0.25
+      0.215
      ],
      [
       17,
-      0.25
+      0.215
      ],
      [
       18,
-      0.25
+      0.215
+     ],
+     [
+      19,
+      0.215
      ]
     ],
     "pb": {
-     "13": 0.063,
-     "14": 0.094,
-     "15": 0.106,
-     "16": 0.106,
-     "17": 0.099,
-     "18": 0.089
+     "14": 0.046,
+     "15": 0.073,
+     "16": 0.086,
+     "17": 0.09,
+     "18": 0.088,
+     "19": 0.083
     },
     "ex": [],
-    "tot": 0.466
+    "tot": 0.382
    }
   },
   "585": {
@@ -3849,16 +3972,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "586": {
    "name": "Mendy",
    "team": 11,
-   "yellow": 1,
+   "yellow": 2,
    "red": 0,
-   "minutes": 519,
+   "minutes": 609,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3867,16 +3990,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "589": {
    "name": "Gourna-Douath",
    "team": 11,
-   "yellow": 2,
+   "yellow": 3,
    "red": 0,
-   "minutes": 228,
+   "minutes": 273,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3885,16 +4008,68 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
-   "risk": null
+   "risk": {
+    "yc": 3,
+    "n": 5,
+    "need": 2,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.445,
+    "share": 0.5,
+    "pm": [
+     [
+      12,
+      0.199
+     ],
+     [
+      13,
+      0.199
+     ],
+     [
+      14,
+      0.199
+     ],
+     [
+      15,
+      0.199
+     ],
+     [
+      16,
+      0.199
+     ],
+     [
+      17,
+      0.199
+     ],
+     [
+      18,
+      0.199
+     ],
+     [
+      19,
+      0.199
+     ]
+    ],
+    "pb": {
+     "14": 0.04,
+     "15": 0.064,
+     "16": 0.077,
+     "17": 0.082,
+     "18": 0.082,
+     "19": 0.078
+    },
+    "ex": [],
+    "tot": 0.343
+   }
   },
   "638": {
    "name": "Norton-Cuffy",
    "team": 11,
    "yellow": 2,
    "red": 0,
-   "minutes": 168,
+   "minutes": 174,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3903,16 +4078,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "259": {
    "name": "Diop",
    "team": 12,
-   "yellow": 2,
+   "yellow": 3,
    "red": 0,
-   "minutes": 925,
+   "minutes": 990,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3921,16 +4096,68 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
-   "risk": null
+   "risk": {
+    "yc": 3,
+    "n": 5,
+    "need": 2,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.236,
+    "share": 1.0,
+    "pm": [
+     [
+      12,
+      0.211
+     ],
+     [
+      13,
+      0.211
+     ],
+     [
+      14,
+      0.211
+     ],
+     [
+      15,
+      0.211
+     ],
+     [
+      16,
+      0.211
+     ],
+     [
+      17,
+      0.211
+     ],
+     [
+      18,
+      0.211
+     ],
+     [
+      19,
+      0.211
+     ]
+    ],
+    "pb": {
+     "14": 0.044,
+     "15": 0.07,
+     "16": 0.083,
+     "17": 0.087,
+     "18": 0.086,
+     "19": 0.082
+    },
+    "ex": [],
+    "tot": 0.371
+   }
   },
   "267": {
    "name": "Lukić",
    "team": 12,
    "yellow": 2,
    "red": 0,
-   "minutes": 515,
+   "minutes": 580,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3939,7 +4166,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3948,7 +4175,7 @@
    "team": 12,
    "yellow": 1,
    "red": 0,
-   "minutes": 565,
+   "minutes": 630,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3957,7 +4184,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3966,7 +4193,7 @@
    "team": 12,
    "yellow": 2,
    "red": 0,
-   "minutes": 925,
+   "minutes": 982,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3975,7 +4202,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -3984,7 +4211,7 @@
    "team": 12,
    "yellow": 1,
    "red": 0,
-   "minutes": 447,
+   "minutes": 454,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -3993,7 +4220,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4002,7 +4229,7 @@
    "team": 12,
    "yellow": 1,
    "red": 0,
-   "minutes": 285,
+   "minutes": 319,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4011,7 +4238,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4020,7 +4247,7 @@
    "team": 12,
    "yellow": 2,
    "red": 1,
-   "minutes": 537,
+   "minutes": 571,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4029,7 +4256,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4038,7 +4265,7 @@
    "team": 12,
    "yellow": 3,
    "red": 0,
-   "minutes": 850,
+   "minutes": 915,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4047,7 +4274,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -4055,52 +4282,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.26,
-    "share": 0.98,
+    "y90": 0.249,
+    "share": 1.0,
     "pm": [
      [
-      11,
-      0.225
-     ],
-     [
       12,
-      0.225
+      0.22
      ],
      [
       13,
-      0.225
+      0.22
      ],
      [
       14,
-      0.225
+      0.22
      ],
      [
       15,
-      0.225
+      0.22
      ],
      [
       16,
-      0.225
+      0.22
      ],
      [
       17,
-      0.225
+      0.22
      ],
      [
       18,
-      0.225
+      0.22
+     ],
+     [
+      19,
+      0.22
      ]
     ],
     "pb": {
-     "13": 0.051,
-     "14": 0.079,
-     "15": 0.091,
-     "16": 0.094,
-     "17": 0.091,
-     "18": 0.085
+     "14": 0.048,
+     "15": 0.076,
+     "16": 0.088,
+     "17": 0.092,
+     "18": 0.09,
+     "19": 0.084
     },
     "ex": [],
-    "tot": 0.407
+    "tot": 0.394
    }
   },
   "592": {
@@ -4108,7 +4335,7 @@
    "team": 12,
    "yellow": 1,
    "red": 0,
-   "minutes": 606,
+   "minutes": 636,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4117,7 +4344,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4126,7 +4353,7 @@
    "team": 12,
    "yellow": 1,
    "red": 0,
-   "minutes": 687,
+   "minutes": 717,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4135,7 +4362,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4144,7 +4371,7 @@
    "team": 12,
    "yellow": 2,
    "red": 0,
-   "minutes": 195,
+   "minutes": 243,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4153,7 +4380,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4162,7 +4389,7 @@
    "team": 13,
    "yellow": 1,
    "red": 0,
-   "minutes": 325,
+   "minutes": 326,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4171,158 +4398,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "330": {
    "name": "Bogle",
    "team": 13,
-   "yellow": 3,
-   "red": 0,
-   "minutes": 836,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": {
-    "yc": 3,
-    "n": 5,
-    "need": 2,
-    "ban": 1,
-    "cut": 19,
-    "y90": 0.263,
-    "share": 1.0,
-    "pm": [
-     [
-      11,
-      0.231
-     ],
-     [
-      12,
-      0.231
-     ],
-     [
-      13,
-      0.231
-     ],
-     [
-      14,
-      0.231
-     ],
-     [
-      15,
-      0.231
-     ],
-     [
-      16,
-      0.231
-     ],
-     [
-      17,
-      0.231
-     ],
-     [
-      18,
-      0.231
-     ]
-    ],
-    "pb": {
-     "13": 0.053,
-     "14": 0.082,
-     "15": 0.095,
-     "16": 0.097,
-     "17": 0.093,
-     "18": 0.086
-    },
-    "ex": [],
-    "tot": 0.421
-   }
-  },
-  "331": {
-   "name": "Gudmundsson",
-   "team": 13,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 657,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "332": {
-   "name": "Justin",
-   "team": 13,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 907,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "334": {
-   "name": "Muharemović",
-   "team": 13,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 926,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "336": {
-   "name": "Okafor",
-   "team": 13,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 506,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "338": {
-   "name": "Ampadu",
-   "team": 13,
    "yellow": 4,
    "red": 0,
-   "minutes": 926,
+   "minutes": 895,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4331,7 +4416,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -4339,58 +4424,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.308,
-    "share": 1.0,
+    "y90": 0.315,
+    "share": 0.98,
     "pm": [
      [
-      11,
-      0.265
-     ],
-     [
       12,
-      0.265
+      0.266
      ],
      [
       13,
-      0.265
+      0.266
      ],
      [
       14,
-      0.265
+      0.266
      ],
      [
       15,
-      0.265
+      0.266
      ],
      [
       16,
-      0.265
+      0.266
      ],
      [
       17,
-      0.265
+      0.266
      ],
      [
       18,
-      0.265
+      0.266
+     ],
+     [
+      19,
+      0.266
      ]
     ],
     "pb": {
-     "12": 0.265,
-     "13": 0.195,
-     "14": 0.143,
-     "15": 0.105,
-     "16": 0.077,
-     "17": 0.057,
-     "18": 0.042
+     "13": 0.266,
+     "14": 0.195,
+     "15": 0.143,
+     "16": 0.105,
+     "17": 0.077,
+     "18": 0.057,
+     "19": 0.042
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -4408,17 +4487,23 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
     "tot": 0.843
    }
   },
-  "339": {
-   "name": "Longstaff",
+  "331": {
+   "name": "Gudmundsson",
    "team": 13,
-   "yellow": 1,
+   "yellow": 2,
    "red": 0,
-   "minutes": 161,
+   "minutes": 721,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4427,7 +4512,175 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "332": {
+   "name": "Justin",
+   "team": 13,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 971,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "334": {
+   "name": "Muharemović",
+   "team": 13,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 990,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "336": {
+   "name": "Okafor",
+   "team": 13,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 552,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "338": {
+   "name": "Ampadu",
+   "team": 13,
+   "yellow": 4,
+   "red": 0,
+   "minutes": 990,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": {
+    "yc": 4,
+    "n": 5,
+    "need": 1,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.295,
+    "share": 1.0,
+    "pm": [
+     [
+      12,
+      0.256
+     ],
+     [
+      13,
+      0.256
+     ],
+     [
+      14,
+      0.256
+     ],
+     [
+      15,
+      0.256
+     ],
+     [
+      16,
+      0.256
+     ],
+     [
+      17,
+      0.256
+     ],
+     [
+      18,
+      0.256
+     ],
+     [
+      19,
+      0.256
+     ]
+    ],
+    "pb": {
+     "13": 0.256,
+     "14": 0.19,
+     "15": 0.142,
+     "16": 0.105,
+     "17": 0.078,
+     "18": 0.058,
+     "19": 0.043
+    },
+    "ex": [
+     [
+      12,
+      [
+       13
+      ]
+     ],
+     [
+      13,
+      [
+       14
+      ]
+     ],
+     [
+      14,
+      [
+       15
+      ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
+     ]
+    ],
+    "tot": 0.83
+   }
+  },
+  "339": {
+   "name": "Longstaff",
+   "team": 13,
+   "yellow": 2,
+   "red": 0,
+   "minutes": 225,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4436,7 +4689,7 @@
    "team": 13,
    "yellow": 2,
    "red": 0,
-   "minutes": 659,
+   "minutes": 718,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4445,7 +4698,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4454,7 +4707,7 @@
    "team": 13,
    "yellow": 3,
    "red": 0,
-   "minutes": 889,
+   "minutes": 953,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4463,7 +4716,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -4471,52 +4724,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.234,
-    "share": 0.98,
+    "y90": 0.224,
+    "share": 1.0,
     "pm": [
      [
-      11,
-      0.205
-     ],
-     [
       12,
-      0.205
+      0.201
      ],
      [
       13,
-      0.205
+      0.201
      ],
      [
       14,
-      0.205
+      0.201
      ],
      [
       15,
-      0.205
+      0.201
      ],
      [
       16,
-      0.205
+      0.201
      ],
      [
       17,
-      0.205
+      0.201
      ],
      [
       18,
-      0.205
+      0.201
+     ],
+     [
+      19,
+      0.201
      ]
     ],
     "pb": {
-     "13": 0.042,
-     "14": 0.067,
-     "15": 0.08,
-     "16": 0.084,
-     "17": 0.084,
-     "18": 0.08
+     "14": 0.04,
+     "15": 0.064,
+     "16": 0.077,
+     "17": 0.082,
+     "18": 0.082,
+     "19": 0.079
     },
     "ex": [],
-    "tot": 0.356
+    "tot": 0.347
    }
   },
   "598": {
@@ -4524,7 +4777,7 @@
    "team": 13,
    "yellow": 1,
    "red": 0,
-   "minutes": 707,
+   "minutes": 771,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4533,7 +4786,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4542,7 +4795,7 @@
    "team": 14,
    "yellow": 1,
    "red": 0,
-   "minutes": 900,
+   "minutes": 990,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4551,7 +4804,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4560,7 +4813,7 @@
    "team": 14,
    "yellow": 3,
    "red": 0,
-   "minutes": 900,
+   "minutes": 990,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4569,7 +4822,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -4577,52 +4830,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.251,
+    "y90": 0.236,
     "share": 1.0,
     "pm": [
      [
-      11,
-      0.222
-     ],
-     [
       12,
-      0.222
+      0.211
      ],
      [
       13,
-      0.222
+      0.211
      ],
      [
       14,
-      0.222
+      0.211
      ],
      [
       15,
-      0.222
+      0.211
      ],
      [
       16,
-      0.222
+      0.211
      ],
      [
       17,
-      0.222
+      0.211
      ],
      [
       18,
-      0.222
+      0.211
+     ],
+     [
+      19,
+      0.211
      ]
     ],
     "pb": {
-     "13": 0.049,
-     "14": 0.077,
-     "15": 0.09,
-     "16": 0.093,
-     "17": 0.09,
-     "18": 0.084
+     "14": 0.044,
+     "15": 0.07,
+     "16": 0.083,
+     "17": 0.087,
+     "18": 0.086,
+     "19": 0.082
     },
     "ex": [],
-    "tot": 0.399
+    "tot": 0.371
    }
   },
   "357": {
@@ -4630,7 +4883,7 @@
    "team": 14,
    "yellow": 1,
    "red": 0,
-   "minutes": 199,
+   "minutes": 211,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4639,7 +4892,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4648,7 +4901,7 @@
    "team": 14,
    "yellow": 3,
    "red": 0,
-   "minutes": 822,
+   "minutes": 912,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4657,7 +4910,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -4665,52 +4918,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.266,
-    "share": 0.95,
+    "y90": 0.249,
+    "share": 0.96,
     "pm": [
      [
-      11,
-      0.223
-     ],
-     [
       12,
-      0.223
+      0.213
      ],
      [
       13,
-      0.223
+      0.213
      ],
      [
       14,
-      0.223
+      0.213
      ],
      [
       15,
-      0.223
+      0.213
      ],
      [
       16,
-      0.223
+      0.213
      ],
      [
       17,
-      0.223
+      0.213
      ],
      [
       18,
-      0.223
+      0.213
+     ],
+     [
+      19,
+      0.213
      ]
     ],
     "pb": {
-     "13": 0.05,
-     "14": 0.078,
-     "15": 0.09,
-     "16": 0.094,
-     "17": 0.091,
-     "18": 0.085
+     "14": 0.046,
+     "15": 0.072,
+     "16": 0.084,
+     "17": 0.089,
+     "18": 0.087,
+     "19": 0.082
     },
     "ex": [],
-    "tot": 0.402
+    "tot": 0.377
    }
   },
   "362": {
@@ -4718,7 +4971,7 @@
    "team": 14,
    "yellow": 2,
    "red": 0,
-   "minutes": 862,
+   "minutes": 952,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4727,7 +4980,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4736,7 +4989,7 @@
    "team": 14,
    "yellow": 1,
    "red": 0,
-   "minutes": 791,
+   "minutes": 881,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4745,7 +4998,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4754,7 +5007,7 @@
    "team": 14,
    "yellow": 1,
    "red": 0,
-   "minutes": 571,
+   "minutes": 661,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4763,7 +5016,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4781,7 +5034,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4790,7 +5043,7 @@
    "team": 14,
    "yellow": 4,
    "red": 0,
-   "minutes": 756,
+   "minutes": 827,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4799,7 +5052,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -4807,58 +5060,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.349,
-    "share": 1.0,
+    "y90": 0.331,
+    "share": 0.93,
     "pm": [
      [
-      11,
-      0.294
-     ],
-     [
       12,
-      0.294
+      0.265
      ],
      [
       13,
-      0.294
+      0.265
      ],
      [
       14,
-      0.294
+      0.265
      ],
      [
       15,
-      0.294
+      0.265
      ],
      [
       16,
-      0.294
+      0.265
      ],
      [
       17,
-      0.294
+      0.265
      ],
      [
       18,
-      0.294
+      0.265
+     ],
+     [
+      19,
+      0.265
      ]
     ],
     "pb": {
-     "12": 0.294,
-     "13": 0.208,
-     "14": 0.147,
-     "15": 0.103,
-     "16": 0.073,
-     "17": 0.052,
-     "18": 0.036
+     "13": 0.265,
+     "14": 0.195,
+     "15": 0.143,
+     "16": 0.105,
+     "17": 0.077,
+     "18": 0.057,
+     "19": 0.042
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -4876,9 +5123,15 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.877
+    "tot": 0.842
    }
   },
   "377": {
@@ -4886,7 +5139,7 @@
    "team": 14,
    "yellow": 2,
    "red": 0,
-   "minutes": 455,
+   "minutes": 473,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -4895,7 +5148,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -4903,6 +5156,24 @@
    "name": "Isak",
    "team": 14,
    "yellow": 1,
+   "red": 0,
+   "minutes": 831,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "579": {
+   "name": "Araujo",
+   "team": 14,
+   "yellow": 3,
    "red": 0,
    "minutes": 747,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
@@ -4913,25 +5184,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "579": {
-   "name": "Araujo",
-   "team": 14,
-   "yellow": 3,
-   "red": 0,
-   "minutes": 663,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -4939,60 +5192,60 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.301,
-    "share": 0.96,
+    "y90": 0.281,
+    "share": 0.94,
     "pm": [
      [
-      11,
-      0.251
-     ],
-     [
       12,
-      0.251
+      0.232
      ],
      [
       13,
-      0.251
+      0.232
      ],
      [
       14,
-      0.251
+      0.232
      ],
      [
       15,
-      0.251
+      0.232
      ],
      [
       16,
-      0.251
+      0.232
      ],
      [
       17,
-      0.251
+      0.232
      ],
      [
       18,
-      0.251
+      0.232
+     ],
+     [
+      19,
+      0.232
      ]
     ],
     "pb": {
-     "13": 0.063,
-     "14": 0.095,
-     "15": 0.106,
-     "16": 0.106,
-     "17": 0.099,
-     "18": 0.089
+     "14": 0.054,
+     "15": 0.083,
+     "16": 0.095,
+     "17": 0.098,
+     "18": 0.094,
+     "19": 0.086
     },
     "ex": [],
-    "tot": 0.469
+    "tot": 0.424
    }
   },
   "627": {
    "name": "Barcola",
    "team": 14,
-   "yellow": 3,
+   "yellow": 4,
    "red": 0,
-   "minutes": 579,
+   "minutes": 650,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5001,60 +5254,86 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
-    "yc": 3,
+    "yc": 4,
     "n": 5,
-    "need": 2,
+    "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.323,
-    "share": 0.87,
+    "y90": 0.38,
+    "share": 0.85,
     "pm": [
      [
-      11,
-      0.244
-     ],
-     [
       12,
-      0.244
+      0.275
      ],
      [
       13,
-      0.244
+      0.275
      ],
      [
       14,
-      0.244
+      0.275
      ],
      [
       15,
-      0.244
+      0.275
      ],
      [
       16,
-      0.244
+      0.275
      ],
      [
       17,
-      0.244
+      0.275
      ],
      [
       18,
-      0.244
+      0.275
+     ],
+     [
+      19,
+      0.275
      ]
     ],
     "pb": {
-     "13": 0.06,
-     "14": 0.09,
-     "15": 0.102,
-     "16": 0.103,
-     "17": 0.097,
-     "18": 0.088
+     "13": 0.275,
+     "14": 0.2,
+     "15": 0.145,
+     "16": 0.105,
+     "17": 0.076,
+     "18": 0.055,
+     "19": 0.04
     },
-    "ex": [],
-    "tot": 0.453
+    "ex": [
+     [
+      12,
+      [
+       13
+      ]
+     ],
+     [
+      13,
+      [
+       14
+      ]
+     ],
+     [
+      14,
+      [
+       15
+      ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
+     ]
+    ],
+    "tot": 0.855
    }
   },
   "155": {
@@ -5260,7 +5539,7 @@
    "team": 16,
    "yellow": 1,
    "red": 0,
-   "minutes": 653,
+   "minutes": 717,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5269,7 +5548,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5278,7 +5557,7 @@
    "team": 16,
    "yellow": 2,
    "red": 0,
-   "minutes": 327,
+   "minutes": 330,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5287,7 +5566,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5296,7 +5575,7 @@
    "team": 16,
    "yellow": 1,
    "red": 0,
-   "minutes": 195,
+   "minutes": 259,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5305,7 +5584,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5314,7 +5593,7 @@
    "team": 16,
    "yellow": 2,
    "red": 0,
-   "minutes": 712,
+   "minutes": 802,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5323,7 +5602,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5332,7 +5611,7 @@
    "team": 16,
    "yellow": 4,
    "red": 0,
-   "minutes": 855,
+   "minutes": 923,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5341,7 +5620,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -5349,58 +5628,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.324,
-    "share": 0.83,
+    "y90": 0.309,
+    "share": 0.75,
     "pm": [
      [
-      11,
-      0.177
-     ],
-     [
       12,
-      0.216
+      0.207
      ],
      [
       13,
-      0.229
+      0.207
      ],
      [
       14,
-      0.234
+      0.207
      ],
      [
       15,
-      0.236
+      0.207
      ],
      [
       16,
-      0.236
+      0.207
      ],
      [
       17,
-      0.236
+      0.207
      ],
      [
       18,
-      0.237
+      0.207
+     ],
+     [
+      19,
+      0.207
      ]
     ],
     "pb": {
-     "12": 0.177,
-     "13": 0.178,
-     "14": 0.148,
-     "15": 0.116,
-     "16": 0.09,
-     "17": 0.069,
-     "18": 0.053
+     "13": 0.207,
+     "14": 0.164,
+     "15": 0.13,
+     "16": 0.103,
+     "17": 0.082,
+     "18": 0.065,
+     "19": 0.051
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -5418,9 +5691,15 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.778
+    "tot": 0.752
    }
   },
   "419": {
@@ -5428,7 +5707,7 @@
    "team": 16,
    "yellow": 1,
    "red": 1,
-   "minutes": 582,
+   "minutes": 672,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5437,7 +5716,25 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "420": {
+   "name": "Yoro",
+   "team": 16,
+   "yellow": 0,
+   "red": 1,
+   "minutes": 447,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5455,7 +5752,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5473,7 +5770,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5482,7 +5779,7 @@
    "team": 16,
    "yellow": 2,
    "red": 0,
-   "minutes": 810,
+   "minutes": 900,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5491,7 +5788,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5500,7 +5797,7 @@
    "team": 16,
    "yellow": 2,
    "red": 0,
-   "minutes": 892,
+   "minutes": 913,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5509,7 +5806,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5518,7 +5815,7 @@
    "team": 16,
    "yellow": 1,
    "red": 0,
-   "minutes": 566,
+   "minutes": 652,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5527,7 +5824,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5536,7 +5833,7 @@
    "team": 16,
    "yellow": 1,
    "red": 0,
-   "minutes": 89,
+   "minutes": 134,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5545,7 +5842,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5563,7 +5860,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -5572,51 +5869,51 @@
     "ban": 1,
     "cut": 19,
     "y90": 0.33,
-    "share": 0.79,
+    "share": 0.46,
     "pm": [
      [
-      11,
-      0.229
-     ],
-     [
       12,
-      0.229
+      0.14
      ],
      [
       13,
-      0.229
+      0.14
      ],
      [
       14,
-      0.229
+      0.14
      ],
      [
       15,
-      0.229
+      0.14
      ],
      [
       16,
-      0.229
+      0.14
      ],
      [
       17,
-      0.229
+      0.14
      ],
      [
       18,
-      0.229
+      0.14
+     ],
+     [
+      19,
+      0.14
      ]
     ],
     "pb": {
-     "13": 0.052,
-     "14": 0.081,
-     "15": 0.094,
-     "16": 0.096,
-     "17": 0.093,
-     "18": 0.086
+     "14": 0.019,
+     "15": 0.033,
+     "16": 0.043,
+     "17": 0.05,
+     "18": 0.053,
+     "19": 0.055
     },
     "ex": [],
-    "tot": 0.416
+    "tot": 0.199
    }
   },
   "445": {
@@ -5624,7 +5921,7 @@
    "team": 17,
    "yellow": 1,
    "red": 0,
-   "minutes": 715,
+   "minutes": 805,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5633,7 +5930,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5651,7 +5948,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -5660,51 +5957,51 @@
     "ban": 1,
     "cut": 19,
     "y90": 0.482,
-    "share": 0.69,
+    "share": 0.35,
     "pm": [
      [
-      11,
-      0.281
-     ],
-     [
       12,
-      0.281
+      0.156
      ],
      [
       13,
-      0.281
+      0.156
      ],
      [
       14,
-      0.281
+      0.156
      ],
      [
       15,
-      0.281
+      0.156
      ],
      [
       16,
-      0.281
+      0.156
      ],
      [
       17,
-      0.281
+      0.156
      ],
      [
       18,
-      0.281
+      0.156
+     ],
+     [
+      19,
+      0.156
      ]
     ],
     "pb": {
-     "13": 0.079,
-     "14": 0.114,
-     "15": 0.123,
-     "16": 0.118,
-     "17": 0.106,
-     "18": 0.091
+     "14": 0.024,
+     "15": 0.041,
+     "16": 0.052,
+     "17": 0.059,
+     "18": 0.062,
+     "19": 0.063
     },
     "ex": [],
-    "tot": 0.539
+    "tot": 0.238
    }
   },
   "447": {
@@ -5712,7 +6009,7 @@
    "team": 17,
    "yellow": 2,
    "red": 0,
-   "minutes": 630,
+   "minutes": 631,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5721,16 +6018,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "448": {
    "name": "Burn",
    "team": 17,
-   "yellow": 1,
+   "yellow": 2,
    "red": 0,
-   "minutes": 272,
+   "minutes": 362,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5739,7 +6036,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5748,7 +6045,7 @@
    "team": 17,
    "yellow": 1,
    "red": 0,
-   "minutes": 899,
+   "minutes": 989,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5757,7 +6054,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5766,7 +6063,7 @@
    "team": 17,
    "yellow": 1,
    "red": 0,
-   "minutes": 33,
+   "minutes": 78,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5775,7 +6072,25 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "453": {
+   "name": "Barnes",
+   "team": 17,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 976,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5784,7 +6099,7 @@
    "team": 17,
    "yellow": 1,
    "red": 0,
-   "minutes": 325,
+   "minutes": 370,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5793,7 +6108,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5802,7 +6117,7 @@
    "team": 17,
    "yellow": 1,
    "red": 1,
-   "minutes": 97,
+   "minutes": 142,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5811,7 +6126,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5820,7 +6135,7 @@
    "team": 17,
    "yellow": 3,
    "red": 0,
-   "minutes": 433,
+   "minutes": 478,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5829,7 +6144,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -5837,52 +6152,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.372,
-    "share": 0.72,
+    "y90": 0.355,
+    "share": 0.55,
     "pm": [
      [
-      11,
-      0.234
-     ],
-     [
       12,
-      0.234
+      0.178
      ],
      [
       13,
-      0.234
+      0.178
      ],
      [
       14,
-      0.234
+      0.178
      ],
      [
       15,
-      0.234
+      0.178
      ],
      [
       16,
-      0.234
+      0.178
      ],
      [
       17,
-      0.234
+      0.178
      ],
      [
       18,
-      0.234
+      0.178
+     ],
+     [
+      19,
+      0.178
      ]
     ],
     "pb": {
-     "13": 0.055,
-     "14": 0.084,
-     "15": 0.097,
-     "16": 0.099,
-     "17": 0.094,
-     "18": 0.087
+     "14": 0.032,
+     "15": 0.052,
+     "16": 0.064,
+     "17": 0.07,
+     "18": 0.072,
+     "19": 0.071
     },
     "ex": [],
-    "tot": 0.429
+    "tot": 0.291
    }
   },
   "458": {
@@ -5899,7 +6214,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5908,7 +6223,7 @@
    "team": 17,
    "yellow": 1,
    "red": 0,
-   "minutes": 573,
+   "minutes": 663,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5917,7 +6232,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -5926,7 +6241,7 @@
    "team": 17,
    "yellow": 3,
    "red": 0,
-   "minutes": 707,
+   "minutes": 714,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -5935,7 +6250,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -5943,52 +6258,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.268,
-    "share": 0.37,
+    "y90": 0.267,
+    "share": 0.34,
     "pm": [
      [
-      11,
-      0.094
-     ],
-     [
       12,
-      0.094
+      0.088
      ],
      [
       13,
-      0.094
+      0.088
      ],
      [
       14,
-      0.094
+      0.088
      ],
      [
       15,
-      0.094
+      0.088
      ],
      [
       16,
-      0.094
+      0.088
      ],
      [
       17,
-      0.094
+      0.088
      ],
      [
       18,
-      0.094
+      0.088
+     ],
+     [
+      19,
+      0.088
      ]
     ],
     "pb": {
-     "13": 0.009,
-     "14": 0.016,
-     "15": 0.022,
-     "16": 0.026,
-     "17": 0.03,
-     "18": 0.032
+     "14": 0.008,
+     "15": 0.014,
+     "16": 0.019,
+     "17": 0.023,
+     "18": 0.027,
+     "19": 0.029
     },
     "ex": [],
-    "tot": 0.102
+    "tot": 0.091
    }
   },
   "465": {
@@ -5996,7 +6311,7 @@
    "team": 17,
    "yellow": 1,
    "red": 0,
-   "minutes": 351,
+   "minutes": 441,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6005,7 +6320,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6014,7 +6329,7 @@
    "team": 17,
    "yellow": 1,
    "red": 0,
-   "minutes": 900,
+   "minutes": 990,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6023,16 +6338,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "593": {
    "name": "Dedić",
    "team": 17,
-   "yellow": 1,
+   "yellow": 2,
    "red": 0,
-   "minutes": 624,
+   "minutes": 669,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6041,16 +6356,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "167": {
    "name": "Delap",
    "team": 18,
-   "yellow": 2,
+   "yellow": 3,
    "red": 0,
-   "minutes": 704,
+   "minutes": 768,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6059,16 +6374,68 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
-   "risk": null
+   "risk": {
+    "yc": 3,
+    "n": 5,
+    "need": 2,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.256,
+    "share": 0.89,
+    "pm": [
+     [
+      12,
+      0.203
+     ],
+     [
+      13,
+      0.203
+     ],
+     [
+      14,
+      0.203
+     ],
+     [
+      15,
+      0.203
+     ],
+     [
+      16,
+      0.203
+     ],
+     [
+      17,
+      0.203
+     ],
+     [
+      18,
+      0.203
+     ],
+     [
+      19,
+      0.203
+     ]
+    ],
+    "pb": {
+     "14": 0.041,
+     "15": 0.066,
+     "16": 0.079,
+     "17": 0.084,
+     "18": 0.083,
+     "19": 0.08
+    },
+    "ex": [],
+    "tot": 0.353
+   }
   },
   "201": {
    "name": "Muñoz",
    "team": 18,
-   "yellow": 1,
+   "yellow": 2,
    "red": 0,
-   "minutes": 662,
+   "minutes": 717,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6077,7 +6444,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6086,7 +6453,7 @@
    "team": 18,
    "yellow": 1,
    "red": 0,
-   "minutes": 919,
+   "minutes": 964,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6095,7 +6462,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6104,7 +6471,7 @@
    "team": 18,
    "yellow": 2,
    "red": 0,
-   "minutes": 566,
+   "minutes": 630,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6113,209 +6480,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "472": {
    "name": "Murillo",
    "team": 18,
-   "yellow": 3,
-   "red": 0,
-   "minutes": 925,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": {
-    "yc": 3,
-    "n": 5,
-    "need": 2,
-    "ban": 1,
-    "cut": 19,
-    "y90": 0.247,
-    "share": 1.0,
-    "pm": [
-     [
-      11,
-      0.219
-     ],
-     [
-      12,
-      0.219
-     ],
-     [
-      13,
-      0.219
-     ],
-     [
-      14,
-      0.219
-     ],
-     [
-      15,
-      0.219
-     ],
-     [
-      16,
-      0.219
-     ],
-     [
-      17,
-      0.219
-     ],
-     [
-      18,
-      0.219
-     ]
-    ],
-    "pb": {
-     "13": 0.048,
-     "14": 0.075,
-     "15": 0.088,
-     "16": 0.091,
-     "17": 0.089,
-     "18": 0.084
-    },
-    "ex": [],
-    "tot": 0.391
-   }
-  },
-  "473": {
-   "name": "Aina",
-   "team": 18,
-   "yellow": 3,
-   "red": 0,
-   "minutes": 433,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": {
-    "yc": 3,
-    "n": 5,
-    "need": 2,
-    "ban": 1,
-    "cut": 19,
-    "y90": 0.372,
-    "share": 0.17,
-    "pm": [
-     [
-      11,
-      0.06
-     ],
-     [
-      12,
-      0.06
-     ],
-     [
-      13,
-      0.06
-     ],
-     [
-      14,
-      0.06
-     ],
-     [
-      15,
-      0.06
-     ],
-     [
-      16,
-      0.06
-     ],
-     [
-      17,
-      0.06
-     ],
-     [
-      18,
-      0.06
-     ]
-    ],
-    "pb": {
-     "14": 0.007,
-     "15": 0.01,
-     "16": 0.012,
-     "17": 0.014,
-     "18": 0.016
-    },
-    "ex": [],
-    "tot": 0.046
-   }
-  },
-  "474": {
-   "name": "Jair Cunha",
-   "team": 18,
-   "yellow": 2,
-   "red": 0,
-   "minutes": 740,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "478": {
-   "name": "Netz",
-   "team": 18,
-   "yellow": 1,
-   "red": 0,
-   "minutes": 58,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "483": {
-   "name": "Ndoye",
-   "team": 18,
-   "yellow": 2,
-   "red": 0,
-   "minutes": 642,
-   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
-   "suspended": null,
-   "pending_ban": null,
-   "next_threshold": {
-    "n": 5,
-    "ban": 1,
-    "cutoff_matches": 19,
-    "cutoff_gw": 19,
-    "team_matches_played": 10
-   },
-   "risk": null
-  },
-  "486": {
-   "name": "McAtee",
-   "team": 18,
    "yellow": 4,
    "red": 0,
-   "minutes": 860,
+   "minutes": 989,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6324,7 +6498,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 4,
@@ -6332,58 +6506,52 @@
     "need": 1,
     "ban": 1,
     "cut": 19,
-    "y90": 0.323,
-    "share": 0.9,
+    "y90": 0.295,
+    "share": 1.0,
     "pm": [
      [
-      11,
-      0.253
-     ],
-     [
       12,
-      0.253
+      0.256
      ],
      [
       13,
-      0.253
+      0.256
      ],
      [
       14,
-      0.253
+      0.256
      ],
      [
       15,
-      0.253
+      0.256
      ],
      [
       16,
-      0.253
+      0.256
      ],
      [
       17,
-      0.253
+      0.256
      ],
      [
       18,
-      0.253
+      0.256
+     ],
+     [
+      19,
+      0.256
      ]
     ],
     "pb": {
-     "12": 0.253,
-     "13": 0.189,
-     "14": 0.141,
-     "15": 0.105,
-     "16": 0.079,
-     "17": 0.059,
-     "18": 0.044
+     "13": 0.256,
+     "14": 0.19,
+     "15": 0.142,
+     "16": 0.105,
+     "17": 0.078,
+     "18": 0.058,
+     "19": 0.043
     },
     "ex": [
-     [
-      11,
-      [
-       12
-      ]
-     ],
      [
       12,
       [
@@ -6401,17 +6569,23 @@
       [
        15
       ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
      ]
     ],
-    "tot": 0.826
+    "tot": 0.83
    }
   },
-  "491": {
-   "name": "Igor Jesus",
+  "473": {
+   "name": "Aina",
    "team": 18,
-   "yellow": 2,
+   "yellow": 3,
    "red": 0,
-   "minutes": 260,
+   "minutes": 441,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6420,7 +6594,226 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
+   },
+   "risk": {
+    "yc": 3,
+    "n": 5,
+    "need": 2,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.369,
+    "share": 0.2,
+    "pm": [
+     [
+      12,
+      0.07
+     ],
+     [
+      13,
+      0.07
+     ],
+     [
+      14,
+      0.07
+     ],
+     [
+      15,
+      0.07
+     ],
+     [
+      16,
+      0.07
+     ],
+     [
+      17,
+      0.07
+     ],
+     [
+      18,
+      0.07
+     ],
+     [
+      19,
+      0.07
+     ]
+    ],
+    "pb": {
+     "15": 0.009,
+     "16": 0.013,
+     "17": 0.016,
+     "18": 0.018,
+     "19": 0.02
+    },
+    "ex": [],
+    "tot": 0.061
+   }
+  },
+  "474": {
+   "name": "Jair Cunha",
+   "team": 18,
+   "yellow": 2,
+   "red": 0,
+   "minutes": 804,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "478": {
+   "name": "Netz",
+   "team": 18,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 76,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "483": {
+   "name": "Ndoye",
+   "team": 18,
+   "yellow": 2,
+   "red": 0,
+   "minutes": 661,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "486": {
+   "name": "McAtee",
+   "team": 18,
+   "yellow": 4,
+   "red": 0,
+   "minutes": 905,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": {
+    "yc": 4,
+    "n": 5,
+    "need": 1,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.313,
+    "share": 0.83,
+    "pm": [
+     [
+      12,
+      0.229
+     ],
+     [
+      13,
+      0.229
+     ],
+     [
+      14,
+      0.229
+     ],
+     [
+      15,
+      0.229
+     ],
+     [
+      16,
+      0.229
+     ],
+     [
+      17,
+      0.229
+     ],
+     [
+      18,
+      0.229
+     ],
+     [
+      19,
+      0.229
+     ]
+    ],
+    "pb": {
+     "13": 0.229,
+     "14": 0.177,
+     "15": 0.136,
+     "16": 0.105,
+     "17": 0.081,
+     "18": 0.062,
+     "19": 0.048
+    },
+    "ex": [
+     [
+      12,
+      [
+       13
+      ]
+     ],
+     [
+      13,
+      [
+       14
+      ]
+     ],
+     [
+      14,
+      [
+       15
+      ]
+     ],
+     [
+      15,
+      [
+       16
+      ]
+     ]
+    ],
+    "tot": 0.791
+   }
+  },
+  "491": {
+   "name": "Igor Jesus",
+   "team": 18,
+   "yellow": 2,
+   "red": 0,
+   "minutes": 305,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6429,7 +6822,7 @@
    "team": 18,
    "yellow": 1,
    "red": 0,
-   "minutes": 756,
+   "minutes": 801,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6438,7 +6831,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6447,7 +6840,7 @@
    "team": 19,
    "yellow": 2,
    "red": 0,
-   "minutes": 925,
+   "minutes": 990,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6456,7 +6849,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6474,7 +6867,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6483,7 +6876,7 @@
    "team": 19,
    "yellow": 1,
    "red": 0,
-   "minutes": 357,
+   "minutes": 422,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6492,7 +6885,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6510,7 +6903,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -6519,51 +6912,51 @@
     "ban": 1,
     "cut": 19,
     "y90": 0.284,
-    "share": 1.0,
+    "share": 0.67,
     "pm": [
      [
-      11,
-      0.247
-     ],
-     [
       12,
-      0.247
+      0.172
      ],
      [
       13,
-      0.247
+      0.172
      ],
      [
       14,
-      0.247
+      0.172
      ],
      [
       15,
-      0.247
+      0.172
      ],
      [
       16,
-      0.247
+      0.172
      ],
      [
       17,
-      0.247
+      0.172
      ],
      [
       18,
-      0.247
+      0.172
+     ],
+     [
+      19,
+      0.172
      ]
     ],
     "pb": {
-     "13": 0.061,
-     "14": 0.092,
-     "15": 0.104,
-     "16": 0.104,
-     "17": 0.098,
-     "18": 0.089
+     "14": 0.03,
+     "15": 0.049,
+     "16": 0.061,
+     "17": 0.067,
+     "18": 0.07,
+     "19": 0.069
     },
     "ex": [],
-    "tot": 0.459
+    "tot": 0.277
    }
   },
   "506": {
@@ -6571,7 +6964,7 @@
    "team": 19,
    "yellow": 1,
    "red": 0,
-   "minutes": 197,
+   "minutes": 250,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6580,7 +6973,43 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "512": {
+   "name": "Kudus",
+   "team": 19,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 624,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "515": {
+   "name": "Maddison",
+   "team": 19,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 256,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6598,7 +7027,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6607,7 +7036,7 @@
    "team": 19,
    "yellow": 3,
    "red": 0,
-   "minutes": 341,
+   "minutes": 406,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6616,7 +7045,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": {
     "yc": 3,
@@ -6624,52 +7053,52 @@
     "need": 2,
     "ban": 1,
     "cut": 19,
-    "y90": 0.411,
-    "share": 0.33,
+    "y90": 0.382,
+    "share": 0.51,
     "pm": [
      [
-      11,
-      0.125
-     ],
-     [
       12,
-      0.125
+      0.179
      ],
      [
       13,
-      0.125
+      0.179
      ],
      [
       14,
-      0.125
+      0.179
      ],
      [
       15,
-      0.125
+      0.179
      ],
      [
       16,
-      0.125
+      0.179
      ],
      [
       17,
-      0.125
+      0.179
      ],
      [
       18,
-      0.125
+      0.179
+     ],
+     [
+      19,
+      0.179
      ]
     ],
     "pb": {
-     "13": 0.016,
-     "14": 0.027,
-     "15": 0.036,
-     "16": 0.042,
-     "17": 0.046,
-     "18": 0.048
+     "14": 0.032,
+     "15": 0.052,
+     "16": 0.065,
+     "17": 0.071,
+     "18": 0.073,
+     "19": 0.072
     },
     "ex": [],
-    "tot": 0.167
+    "tot": 0.292
    }
   },
   "522": {
@@ -6677,7 +7106,7 @@
    "team": 19,
    "yellow": 2,
    "red": 0,
-   "minutes": 712,
+   "minutes": 713,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6686,16 +7115,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "525": {
    "name": "Fernandes",
    "team": 19,
-   "yellow": 2,
+   "yellow": 3,
    "red": 0,
-   "minutes": 538,
+   "minutes": 603,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6704,16 +7133,68 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
-   "risk": null
+   "risk": {
+    "yc": 3,
+    "n": 5,
+    "need": 2,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.317,
+    "share": 0.9,
+    "pm": [
+     [
+      12,
+      0.249
+     ],
+     [
+      13,
+      0.249
+     ],
+     [
+      14,
+      0.249
+     ],
+     [
+      15,
+      0.249
+     ],
+     [
+      16,
+      0.249
+     ],
+     [
+      17,
+      0.249
+     ],
+     [
+      18,
+      0.249
+     ],
+     [
+      19,
+      0.249
+     ]
+    ],
+    "pb": {
+     "14": 0.062,
+     "15": 0.093,
+     "16": 0.105,
+     "17": 0.105,
+     "18": 0.099,
+     "19": 0.089
+    },
+    "ex": [],
+    "tot": 0.463
+   }
   },
   "526": {
    "name": "Solanke",
    "team": 19,
    "yellow": 1,
    "red": 0,
-   "minutes": 512,
+   "minutes": 550,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6722,7 +7203,25 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "601": {
+   "name": "Williams-Barnett",
+   "team": 19,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 72,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6740,7 +7239,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6758,7 +7257,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6767,7 +7266,7 @@
    "team": 20,
    "yellow": 1,
    "red": 0,
-   "minutes": 707,
+   "minutes": 771,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6776,7 +7275,25 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
+   },
+   "risk": null
+  },
+  "534": {
+   "name": "Hume",
+   "team": 20,
+   "yellow": 1,
+   "red": 0,
+   "minutes": 730,
+   "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
+   "suspended": null,
+   "pending_ban": null,
+   "next_threshold": {
+    "n": 5,
+    "ban": 1,
+    "cutoff_matches": 19,
+    "cutoff_gw": 19,
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6794,7 +7311,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6803,7 +7320,7 @@
    "team": 20,
    "yellow": 1,
    "red": 1,
-   "minutes": 818,
+   "minutes": 882,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6812,7 +7329,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6821,7 +7338,7 @@
    "team": 20,
    "yellow": 2,
    "red": 0,
-   "minutes": 393,
+   "minutes": 457,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6830,7 +7347,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6839,7 +7356,7 @@
    "team": 20,
    "yellow": 1,
    "red": 0,
-   "minutes": 560,
+   "minutes": 624,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6848,7 +7365,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6866,7 +7383,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6875,7 +7392,7 @@
    "team": 20,
    "yellow": 1,
    "red": 0,
-   "minutes": 870,
+   "minutes": 934,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6884,7 +7401,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6902,16 +7419,16 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
   "551": {
    "name": "N.Angulo",
    "team": 20,
-   "yellow": 2,
+   "yellow": 3,
    "red": 0,
-   "minutes": 521,
+   "minutes": 534,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6920,9 +7437,61 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
-   "risk": null
+   "risk": {
+    "yc": 3,
+    "n": 5,
+    "need": 2,
+    "ban": 1,
+    "cut": 19,
+    "y90": 0.337,
+    "share": 0.26,
+    "pm": [
+     [
+      12,
+      0.085
+     ],
+     [
+      13,
+      0.085
+     ],
+     [
+      14,
+      0.085
+     ],
+     [
+      15,
+      0.085
+     ],
+     [
+      16,
+      0.085
+     ],
+     [
+      17,
+      0.085
+     ],
+     [
+      18,
+      0.085
+     ],
+     [
+      19,
+      0.085
+     ]
+    ],
+    "pb": {
+     "14": 0.007,
+     "15": 0.013,
+     "16": 0.018,
+     "17": 0.022,
+     "18": 0.025,
+     "19": 0.028
+    },
+    "ex": [],
+    "tot": 0.086
+   }
   },
   "552": {
    "name": "Brobbey",
@@ -6938,7 +7507,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6956,7 +7525,7 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   },
@@ -6965,7 +7534,7 @@
    "team": 20,
    "yellow": 1,
    "red": 0,
-   "minutes": 137,
+   "minutes": 201,
    "source": "API oficial da FPL (yellow_cards, red_cards, minutes)",
    "suspended": null,
    "pending_ban": null,
@@ -6974,10 +7543,10 @@
     "ban": 1,
     "cutoff_matches": 19,
     "cutoff_gw": 19,
-    "team_matches_played": 10
+    "team_matches_played": 11
    },
    "risk": null
   }
  },
- "updated": "2026-11-21T15:28:21Z"
+ "updated": "2026-11-24T21:50:42Z"
 }

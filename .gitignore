@@ -13,3 +13,4 @@ _build/research/*_j8.json
 _build/research/*_j10.json
 # fotografias das recomendações de cada execução da rotina (temporárias)
 _build/rotina/recs-*.json
+_build/research/*_j11.json

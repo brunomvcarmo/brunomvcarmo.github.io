@@ -1,55 +1,152 @@
 {
  "_como": "Notícias da semana para Esta semana › Notícias (V61). Escritas à mão com pesquisa na web: o que os treinadores disseram, lesões, seleções, castigos, calendário. Só notícias; pontos e estados oficiais vêm da API da FPL. Campos: d (data da notícia, AAAA-MM-DD), tag (selecoes | lesao | treinador | castigo | calendario | mercado), imp (3 = pode mudar uma decisão desta jornada, 2 = importante, 1 = para saber), t (título), x (texto, simples), ids (ids da FPL dos jogadores), src (nome da fonte), url. Depois de mudar: py -X utf8 _build/pool/noticias.py (escreve a const NEWS no index.html; o gen25.py também a escreve).",
- "updated": "2026-11-11",
- "gw": 11,
+ "updated": "2026-11-24",
+ "gw": 12,
  "items": [
-  {"d": "2026-11-10", "tag": "selecoes", "imp": 3,
-   "t": "Haaland e Ødegaard falharam o primeiro treino da Noruega",
-   "x": "Os dois não treinaram na terça (10 nov). O selecionador Ståle Solbakken falou em «coisas pequenas», disse que não é doença e não deu pormenores. Na quarta (11 nov) o Haaland já voltou ao treino. A Noruega joga com o País de Gales e a Dinamarca. Ver se jogam e quantos minutos antes de fechar o capitão e a troca.",
-   "ids": [411, 15], "src": "Goal", "url": "https://www.goal.com/en-us/news/norway-erling-haaland-martin-odegaard-staale-solbakken/blt22ae4006f2f80fd2"},
-  {"d": "2026-11-11", "tag": "selecoes", "imp": 3,
-   "t": "Konsa fora do Inglaterra–Croácia por causa do joelho",
-   "x": "Sentiu o joelho na vitória do Arsenal em Praga (Liga dos Campeões); o Arteta disse que a substituição foi por precaução. Jogou os 90 minutos contra o Hull na J10, mas a Inglaterra deixou-o de fora do jogo de quinta (12 nov). Deve voltar aos treinos antes do jogo com a Espanha, no domingo. Na FPL continua sem aviso (100%).",
-   "ids": [31], "src": "The False 9", "url": "https://thefalse9.com/2026/11/fpl-international-break-injuries-11-november.html"},
-  {"d": "2026-11-11", "tag": "selecoes", "imp": 2,
-   "t": "Szoboszlai: a Hungria só decide à última hora",
-   "x": "Saiu aos 69 minutos contra o Crystal Palace com um problema no joelho; o Iraola disse que não estava a 100%. Foi à seleção e fez mais exames: a federação húngara diz que a decisão sobre o jogo de sábado (Geórgia) fica para a última hora. O Kerkez também treinou à parte na Hungria, sem explicação.",
-   "ids": [368, 358], "src": "Sport Witness", "url": "https://sportwitness.co.uk/2-liverpool-players-out-of-main-training-on-international-duty-worry-for-iraola/"},
-  {"d": "2026-11-09", "tag": "selecoes", "imp": 2,
-   "t": "Guéhi saiu da seleção inglesa; Gvardiol também é dúvida",
-   "x": "O Guéhi saiu ao intervalo em Nottingham (7 nov) com dor na anca e deixou a seleção inglesa; o Dan Burn foi chamado para o lugar. O Gvardiol saiu no mesmo jogo, e o Maresca disse que já tinha «problemas durante a semana». Os dois estão a 75% na FPL. O City recebe o Fulham (J11) e depois vai a casa do Arsenal (J12).",
-   "ids": [388, 391], "src": "RotoWire", "url": "https://www.rotowire.com/soccer/headlines/marc-guehi-injury-withdraws-from-england-squad-545879"},
-  {"d": "2026-11-10", "tag": "selecoes", "imp": 2,
-   "t": "Van Dijk e Gravenberch fora da seleção holandesa",
-   "x": "O Van Dijk saiu da seleção por um «problema físico» que já trazia há semanas (75% na FPL desde 9 nov). O Gravenberch tem dores no calcanhar; o Iraola diz que é «dia a dia». O Liverpool conta com as duas semanas de pausa para os ter contra o Man Utd (domingo 22 nov).",
-   "ids": [356, 371], "src": "Brit Brief", "url": "https://britbrief.co.uk/sports/football/liverpool-injury-latest-van-dijk-szoboszlai-gravenberch-leoni-ekitike.html"},
-  {"d": "2026-11-11", "tag": "calendario", "imp": 2,
-   "t": "Deadline mais cedo: sábado 21 nov às 11:00",
-   "x": "A J11 abre com o Man City–Fulham às 12:30, por isso o deadline é às 11:00 de Lisboa. Depois vêm três jornadas em dez dias: J11 (21-23 nov), J12 (27-29 nov, com jogos europeus a meio da semana) e J13 a meio da semana (1-3 dez). Conta com rotação nas equipas que jogam na Europa.",
-   "ids": [], "src": "FPL (calendário oficial)", "url": "https://fantasy.premierleague.com/fixtures"},
-  {"d": "2026-11-06", "tag": "treinador", "imp": 2,
-   "t": "João Pedro: Alonso reavalia-o depois da pausa",
-   "x": "Lesão na coxa num treino a 23-24 out. O Alonso falou em «umas semanas» e disse que o volta a avaliar depois da pausa, antes do Chelsea–Leeds (21 nov). Na FPL está a 0%, sem data de regresso.",
-   "ids": [165], "src": "Fantasy Football Scout", "url": "https://www.fantasyfootballscout.co.uk/2026/11/06/lacroix-martinez-joao-pedro-chelsea-injury-latest-for-fpl-gameweek-10"},
-  {"d": "2026-10-29", "tag": "treinador", "imp": 2,
-   "t": "Bobby Thomas: Lampard fala num problema pequeno",
-   "x": "O Lampard disse que é um «pequeno problema na barriga da perna», nada de longa duração; antes do jogo com o Everton (6 nov) disse só «vamos ver». Na FPL está a 50%.",
-   "ids": [173], "src": "The Phoenix", "url": "https://thephoenix.counterpress.media/news/a-small-calf-injury-frank-lampard-shares-good-news-on-bobby-thomas-174692"},
-  {"d": "2026-11-10", "tag": "lesao", "imp": 1,
-   "t": "Brobbey com pequena rotura muscular",
-   "x": "Saiu da seleção holandesa com uma pequena rotura na parte de trás da coxa. Segundo um jornalista holandês, deve ficar umas semanas de fora e é pouco provável que jogue logo a seguir à pausa. O Sunderland ainda não disse nada.",
-   "ids": [552], "src": "Sport Witness", "url": "https://sportwitness.co.uk/sunderland-star-withdraws-from-international-duty-set-for-weeks-out-injured/"},
-  {"d": "2026-11-06", "tag": "treinador", "imp": 1,
-   "t": "Man Utd: Rashford «dia a dia», Sesko só no ano novo",
-   "x": "O Carrick avalia o Rashford (anca) dia a dia; a imprensa aponta o regresso para o jogo com o Liverpool (22 nov). O Sesko (canela) fica de fora «por um período mais longo» — a imprensa fala no ano novo.",
-   "ids": [429, 439], "src": "The False 9", "url": "https://thefalse9.com/2026/11/rashford-hip-injury-update-return-date.html"},
-  {"d": "2026-11-06", "tag": "treinador", "imp": 1,
-   "t": "Saka: Arteta fala em «semanas»",
-   "x": "Lesão na coxa contra o Bayern (21 out). O Arteta disse que são «semanas» e que só volta ao relvado depois da pausa; a imprensa fala em 6 a 8 semanas. Na FPL está a 0%.",
-   "ids": [12], "src": "Fantasy Football Scout", "url": "https://www.fantasyfootballscout.co.uk/2026/11/06/konsa-saliba-saka-arsenal-injury-latest-for-fpl-gameweek-10"},
-  {"d": "2026-11-08", "tag": "lesao", "imp": 1,
-   "t": "Xhaka saiu lesionado contra o Chelsea",
-   "x": "Saiu logo no início do jogo (8 nov) com suspeita de lesão na barriga da perna e vai fazer exames. Ainda não há palavras do treinador. Na FPL está a 75%.",
-   "ids": [544], "src": "Sports Mole", "url": "https://www.sportsmole.co.uk/football/sunderland/injury-news/news/granit-goes-xhaka-forced-off-with-injury-in-sunderland-chelsea_608727.html"}
+  {
+   "d": "2026-11-23",
+   "tag": "lesao",
+   "imp": 3,
+   "t": "Raya: sem cirurgia, mas dúvida para o Arsenal–City",
+   "x": "Saiu aos 70 minutos em Newcastle com o ombro esquerdo. O Arteta disse que não parece muito grave e que não precisa de operação, mas falha o Dortmund (terça). Faz mais exames na terça; o jogo com o City é no domingo às 16:30. Na FPL está a 50%. Quem o tem no Free Hit não precisa de se preocupar; quem joga com o plantel normal deve ter outro guarda-redes pronto.",
+   "ids": [
+    1,
+    2
+   ],
+   "src": "Fantasy Football Scout",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/raya-injury-latest-latest-fpl-team-news-pre-gameweek-12"
+  },
+  {
+   "d": "2026-11-18",
+   "tag": "calendario",
+   "imp": 3,
+   "t": "Premier League: o Free Hit faz sentido na J12",
+   "x": "O artigo oficial do jogo diz que o Free Hit é melhor do que o Bench Boost nesta jornada: permite largar o Haaland (vai ao Emirates) e escolher avançados com jogos fáceis — Bruno Fernandes, Jackson, Evanilson e três do Brighton (Groß, De Cuyper, Vušković). Lembra que os quatro chips da 1.ª metade têm de ser usados até à J19.",
+   "ids": [
+    411,
+    426,
+    166,
+    79,
+    124,
+    115,
+    504
+   ],
+   "src": "Premier League",
+   "url": "https://www.premierleague.com/en/news/4764341/plan-to-use-an-fpl-chip-in-gw12-which-one-will-be-best"
+  },
+  {
+   "d": "2026-11-21",
+   "tag": "calendario",
+   "imp": 2,
+   "t": "OneFPL: Free Hit na J12 só se o plantel estiver mesmo preso",
+   "x": "Diz que a J12 é uma boa jornada para o Free Hit para quem tem muito Arsenal e City, mas que gastá-lo para ganhar duas trocas pequenas não compensa: nesse caso usam-se as transferências grátis e guarda-se o chip para mais tarde.",
+   "ids": [],
+   "src": "OneFPL",
+   "url": "https://onefpl.com/blog/best-fpl-free-hit-gameweeks-2026-27"
+  },
+  {
+   "d": "2026-11-24",
+   "tag": "treinador",
+   "imp": 2,
+   "t": "Haaland sem lugar garantido como capitão",
+   "x": "O Copilot põe o Haaland só em 6.º (≈4,9 pts) e o Bruno Fernandes em 1.º (≈6,2, recebe o Brentford). O RotoWire diz que não há capitão óbvio: o Emirates é difícil, mas como quase todos o têm, tirar-lhe a braçadeira é um risco.",
+   "ids": [
+    411,
+    426,
+    379
+   ],
+   "src": "FPL Copilot",
+   "url": "https://fplcopilot.com/blog/fpl-captain-guide"
+  },
+  {
+   "d": "2026-11-23",
+   "tag": "treinador",
+   "imp": 2,
+   "t": "Maresca: só o Semenyo falta; Nunes recuperado",
+   "x": "O City recebe o Napoli na terça (Liga dos Campeões) e vai ao Emirates no domingo. O Maresca disse que o único ausente é o Semenyo (joelho, mais umas semanas). Os onzes prováveis para o Napoli têm o Haaland, o Cherki e o Doku — conta com rotação no domingo.",
+   "ids": [
+    397,
+    389,
+    411,
+    399,
+    400
+   ],
+   "src": "The False 9",
+   "url": "https://thefalse9.com/2026/11/man-city-vs-napoli-predicted-lineup-team-news-24-november.html"
+  },
+  {
+   "d": "2026-11-24",
+   "tag": "lesao",
+   "imp": 2,
+   "t": "Liverpool: Gravenberch e Gakpo fora da viagem a Bruges",
+   "x": "O Liverpool levou 22 jogadores para o Club Brugge (quarta); o Gravenberch e o Gakpo ficaram em casa. O Isak, o Wirtz e o Szoboszlai foram. O Liverpool vai a Everton no domingo às 12:00, três dias e meio depois.",
+   "ids": [
+    371,
+    367,
+    379,
+    366,
+    368
+   ],
+   "src": "Sports Mole",
+   "url": "https://www.sportsmole.co.uk/football/liverpool/champions-league/news/double-dutch-liverpool-confirm-22-man-squad-for-club-brugge-fixture_609758.html"
+  },
+  {
+   "d": "2026-11-23",
+   "tag": "lesao",
+   "imp": 2,
+   "t": "Arsenal: Zubimendi fora semanas, Saka só em dezembro",
+   "x": "O Zubimendi (posterior da coxa) fica de fora umas semanas e o Saka (quadríceps) não treina — a FPL aponta o regresso para 20 de dezembro. O Saliba já treina e jogou pelos sub-21, mas o Arteta quer dar-lhe minutos aos poucos.",
+   "ids": [
+    19,
+    12,
+    6
+   ],
+   "src": "Fantasy Football Scout",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/raya-injury-latest-latest-fpl-team-news-pre-gameweek-12"
+  },
+  {
+   "d": "2026-11-23",
+   "tag": "lesao",
+   "imp": 1,
+   "t": "Cash deve voltar para o Ipswich",
+   "x": "Levou uma pancada na cabeça pela Polónia e falhou o jogo com o Sunderland (protocolo de concussão). Falha o Galatasaray, mas deve estar apto para a J12 em Ipswich. Ruggeri e Onana continuam fora por várias semanas.",
+   "ids": [
+    32,
+    596,
+    48
+   ],
+   "src": "Fantasy Football Scout",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/raya-injury-latest-latest-fpl-team-news-pre-gameweek-12"
+  },
+  {
+   "d": "2026-11-24",
+   "tag": "castigo",
+   "imp": 2,
+   "t": "Castigados na J12 e quem está à beira",
+   "x": "Falham a J12 por castigo: Thiago (Brentford), Mateta e Yeremy (Palace), Dowman (Arsenal), Yoro (Man Utd) e Costinha (Brighton). Com 4 amarelos (o 5.º dá um jogo de castigo): Groß, Maguire, Tavernier, Mac Allister, entre outros.",
+   "ids": [
+    106,
+    223,
+    211,
+    20,
+    420,
+    119,
+    124,
+    418,
+    68
+   ],
+   "src": "AllAboutFPL",
+   "url": "https://allaboutfpl.com/2026/11/fpl-gw12-ultimate-guide-tips-captaincy-differentials-more/"
+  },
+  {
+   "d": "2026-11-24",
+   "tag": "calendario",
+   "imp": 2,
+   "t": "Três jornadas em dez dias, com a Europa pelo meio",
+   "x": "Liga dos Campeões e Liga Europa de 24 a 26 nov, a J12 de sexta 27 a domingo 29 (deadline sexta às 18:30 em Lisboa) e a J13 a meio da semana: deadline terça 1 dez às 18:30. Arsenal, Villa, City, Liverpool e Man Utd jogam a Liga dos Campeões; Bournemouth, Palace e Sunderland a Liga Europa; Brighton a Conferência. Conta com rotação.",
+   "ids": [],
+   "src": "Fantasy Premier League",
+   "url": "https://fantasy.premierleague.com/fixtures"
+  }
  ]
 }

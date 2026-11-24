@@ -1,144 +1,173 @@
 {
  "sources": [
   {
-   "key": "fantasytool_captain",
-   "url": "https://thefantasytool.com/captain-picks-fpl",
-   "page_date": "2026-11-10"
+   "key": "copilot_captain",
+   "url": "https://fplcopilot.com/blog/fpl-captain-guide",
+   "page_date": "2026-11-24"
   },
   {
-   "key": "onefpl_injuries",
-   "url": "https://onefpl.com/blog/gvardiol-guehi-injuries-man-city-fpl-gw11-sell-hold-2026",
-   "page_date": "2026-11-08"
+   "key": "pl_chips_gw12",
+   "url": "https://www.premierleague.com/en/news/4764341/plan-to-use-an-fpl-chip-in-gw12-which-one-will-be-best",
+   "page_date": "2026-11-18"
+  },
+  {
+   "key": "onefpl_freehit",
+   "url": "https://onefpl.com/blog/best-fpl-free-hit-gameweeks-2026-27",
+   "page_date": "2026-11-21"
   },
   {
    "key": "ffs_teamnews",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/van-dijk-out-of-international-duty-szoboszlai-injury-update",
-   "page_date": "2026-11-10"
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/raya-injury-latest-latest-fpl-team-news-pre-gameweek-12",
+   "page_date": "2026-11-23"
+  },
+  {
+   "key": "rotowire_gw12",
+   "url": "https://www.rotowire.com/soccer/article/fpl-gameweek-12-rankings-best-players-captain-picks-gw12-147867",
+   "page_date": "2026-11-23"
   }
  ],
  "captain_rankings": [
   {
-   "source": "fantasytool_captain",
+   "source": "copilot_captain",
    "order": [
-    "Erling Haaland",
-    "Morgan Rogers",
+    "Bruno Fernandes",
+    "Dominic Calvert-Lewin",
+    "Pascal Groß",
     "Cole Palmer",
-    "Mohammed Kudus",
-    "Alexander Isak"
+    "Martin Ødegaard",
+    "Erling Haaland"
    ]
   }
  ],
  "mentions": [
   {
-   "source": "fantasytool_captain",
-   "id": 411,
-   "name": "Erling Haaland",
+   "source": "copilot_captain",
+   "id": 426,
+   "name": "Bruno Fernandes",
    "stance": "captain",
-   "note": "Top captain: 7.0 pts, Fulham at home, 99% to start"
+   "note": "Top captain: 6.2 xPts, Brentford at home"
   },
   {
-   "source": "fantasytool_captain",
-   "id": 40,
-   "name": "Morgan Rogers",
+   "source": "copilot_captain",
+   "id": 346,
+   "name": "Dominic Calvert-Lewin",
    "stance": "captain",
-   "note": "2nd: 5.7 pts, Leeds at home"
+   "note": "2nd: 5.6 xPts, Coventry at home"
   },
   {
-   "source": "fantasytool_captain",
+   "source": "copilot_captain",
+   "id": 124,
+   "name": "Pascal Groß",
+   "stance": "captain",
+   "note": "3rd: 5.5 xPts, Newcastle at home"
+  },
+  {
+   "source": "copilot_captain",
    "id": 154,
    "name": "Cole Palmer",
-   "stance": "captain",
-   "note": "3rd: 5.5 pts, Leeds at home"
-  },
-  {
-   "source": "fantasytool_captain",
-   "id": 512,
-   "name": "Mohammed Kudus",
-   "stance": "differential",
-   "note": "5.3 pts, Ipswich at home, 2% owned"
-  },
-  {
-   "source": "fantasytool_captain",
-   "id": 379,
-   "name": "Alexander Isak",
    "stance": "start",
-   "note": "5.2 pts, Man Utd at home"
+   "note": "4th: 5.1 xPts, Forest away"
   },
   {
-   "source": "fantasytool_captain",
+   "source": "copilot_captain",
    "id": 15,
    "name": "Martin Ødegaard",
    "stance": "start",
-   "note": "5.2 pts, Newcastle away"
+   "note": "5th: 5.0 xPts, Man City at home"
   },
   {
-   "source": "fantasytool_captain",
-   "id": 627,
-   "name": "Bradley Barcola",
+   "source": "copilot_captain",
+   "id": 411,
+   "name": "Erling Haaland",
+   "stance": "start",
+   "note": "Only 6th: 4.9 xPts, Arsenal away"
+  },
+  {
+   "source": "copilot_captain",
+   "id": 480,
+   "name": "Morgan Gibbs-White",
    "stance": "differential",
-   "note": "5.1 pts, Man Utd at home, 4% owned"
+   "note": "4.9 xPts, Chelsea at home, 8.8% owned"
   },
   {
-   "source": "fantasytool_captain",
+   "source": "copilot_captain",
+   "id": 334,
+   "name": "Tarik Muharemović",
+   "stance": "differential",
+   "note": "4.9 xPts, Coventry at home, 7.3% owned"
+  },
+  {
+   "source": "copilot_captain",
+   "id": 366,
+   "name": "Florian Wirtz",
+   "stance": "differential",
+   "note": "4.5 xPts, Everton away, 9.8% owned"
+  },
+  {
+   "source": "pl_chips_gw12",
+   "id": 166,
+   "name": "Nicolas Jackson",
+   "stance": "start",
+   "note": "Free Hit target, Ipswich away"
+  },
+  {
+   "source": "pl_chips_gw12",
+   "id": 79,
+   "name": "Evanilson",
+   "stance": "start",
+   "note": "Free Hit target, Fulham away"
+  },
+  {
+   "source": "pl_chips_gw12",
    "id": 115,
    "name": "Maxim De Cuyper",
    "stance": "start",
-   "note": "5.1 pts, Hull away"
+   "note": "Brighton triple-up on a Free Hit"
   },
   {
-   "source": "fantasytool_captain",
-   "id": 124,
-   "name": "Pascal Groß",
-   "stance": "start",
-   "note": "5.1 pts, Hull away"
-  },
-  {
-   "source": "fantasytool_captain",
+   "source": "pl_chips_gw12",
    "id": 504,
    "name": "Luka Vušković",
    "stance": "start",
-   "note": "5.0 pts, Hull away"
+   "note": "Brighton triple-up on a Free Hit"
   },
   {
-   "source": "onefpl_injuries",
-   "id": 391,
-   "name": "Joško Gvardiol",
+   "source": "ffs_teamnews",
+   "id": 1,
+   "name": "David Raya",
    "stance": "hold",
-   "note": "Fitness concern, no return date; break helps"
+   "note": "Shoulder, no surgery; out vs Dortmund; City doubt"
   },
   {
-   "source": "onefpl_injuries",
-   "id": 388,
-   "name": "Marc Guéhi",
+   "source": "ffs_teamnews",
+   "id": 19,
+   "name": "Martín Zubimendi",
    "stance": "avoid",
-   "note": "Hip, withdrew from England; no return date"
+   "note": "Hamstring, a few weeks"
   },
   {
-   "source": "ffs_teamnews",
-   "id": 356,
-   "name": "Virgil van Dijk",
+   "source": "rotowire_gw12",
+   "id": 411,
+   "name": "Erling Haaland",
    "stance": "hold",
-   "note": "Withdrew from Netherlands; fitness issue"
-  },
-  {
-   "source": "ffs_teamnews",
-   "id": 368,
-   "name": "Dominik Szoboszlai",
-   "stance": "hold",
-   "note": "Knee sprain, decision at the last minute for Hungary"
+   "note": "No automatic captain; Arsenal away is hard, but high ownership makes fading him risky"
   }
  ],
  "team_notes": [
   {
+   "team": "Arsenal",
+   "note": "Raya (ombro) dúvida para o City; Zubimendi fora semanas; Saka só em meados/fim de dezembro; Saliba a ganhar ritmo."
+  },
+  {
    "team": "Man City",
-   "note": "Guéhi (anca) saiu da seleção; Gvardiol e Khusanov em dúvida; Semenyo só em dezembro."
+   "note": "Só o Semenyo falta; Nunes recuperado. Joga a Liga dos Campeões na terça (Napoli) antes de ir ao Emirates no domingo."
   },
   {
    "team": "Liverpool",
-   "note": "Van Dijk saiu da seleção (problema físico); Szoboszlai com entorse no joelho; Gravenberch dia a dia; Frimpong fora."
+   "note": "Gravenberch e Gakpo fora dos convocados para Bruges (quarta); Isak, Wirtz e Szoboszlai foram."
   }
  ],
  "notes": [
-  "Terça 10 nov, início da pausa das seleções: quase nenhum artigo da J11 publicado. Rever na véspera do deadline (sáb 21 nov 11:00), depois dos jogos das seleções."
+  "Terça 24 nov: o Copilot e a Premier League (Scout) põem o Haaland fora do topo dos capitães por causa da ida ao Emirates; a Premier League e a OneFPL dizem que o Free Hit na J12 é uma boa opção sobretudo para plantéis com muito Arsenal/City."
  ]
 }
