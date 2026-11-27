@@ -1727,6 +1727,17 @@
     .sh-row { grid-template-columns: 1fr; gap: 6px; }
     .sh-p .nm { font-size: 16.5px; }
   }
+
+  /* ===================== V66: usar ou guardar ===================== */
+  .sh-ft { margin-top: 12px; }
+  .sh-ft table { width: 100%; border-collapse: collapse; font-size: 13.5px; color: #fff; }
+  .sh-ft th { text-align: left; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #D9C6F0; font-weight: 700; padding: 0 8px 6px 0; border-bottom: 1px solid rgba(255, 255, 255, .25); }
+  .sh-ft td { padding: 7px 8px 7px 0; border-bottom: 1px solid rgba(255, 255, 255, .12); vertical-align: top; }
+  .sh-ft td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; font-family: inherit; font-size: 13.5px; }
+  .sh-ft tr.rec td { font-weight: 700; }
+  .sh-ft .rec-tag { display: inline-block; font-size: 10.5px; font-weight: 700; color: #41205F; background: #fff; border-radius: 999px; padding: 1px 7px; margin-left: 4px; }
+  .sh-ft .note { color: #D9C6F0; }
+  .sh-ft tbody tr:hover td { background: transparent; }
 </style>
 </head>
 <body>
@@ -5968,8 +5979,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
   // "aplicado" depois do utilizador confirmar o que fez no site).
   // J12 (24 nov 2026): RECOMENDAÇÕES — nada disto está aplicado ao plantel (sexta lição).
   const SUBS = [
-    {type:'transfer', out:'Rayan Cherki', in:'Martin Ødegaard', note:'£7.8M → £6.7M · Cherki a rodar no City; Ødegaard titular no Arsenal, recebe o City'},
-    {type:'transfer', out:'Jérémy Doku', in:'Florian Wirtz', note:'£7.5M → £7.4M · Wirtz titular no Liverpool (vai a Everton); o Doku vai ao Emirates'},
+    {type:'transfer', out:'Rayan Cherki', in:'Florian Wirtz', note:'£7.8M → £7.4M · Wirtz titular no Liverpool (vai a Everton); Cherki a rodar no City (RotoWire: banco no Emirates). Guarda a outra grátis: ficas com 2 para a J13'},
   ];
   function v53f1(v) { return (Math.round(v * 10) / 10).toFixed(1); }
   const CAPTAIN_CHANGE = {out:'Erling Haaland', in:'Alexander Isak', note:'o Isak vai a Everton (dom 12:00) e tem mais pontos esperados do que o Haaland, que vai ao Emirates depois do Napoli; o Copilot põe o Haaland só em 6.º para capitão'};
@@ -6012,7 +6022,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
   renderSubs();
 
 
-  document.getElementById('chip-advice').innerHTML = `<b>Nenhum chip esta semana: o Free Hit passa da J12 para a J14.</b> Medido com a app (24 nov): com o Free Hit, a melhor equipa da J12 daria ≈60,4 pts esperados contra ≈55,6 do teu plantel com as duas trocas grátis — <b>≈+4,8</b>. Mas na J14 o Free Hit rende o mesmo ou mais (≈+5,4), e usá-lo agora obrigava a deixar as duas trocas boas (Cherki → Ødegaard e Doku → Wirtz, ≈+16 em cinco jornadas) para a J13, ficando uma troca atrasado. Com as duas trocas, o teu onze fica com três jogadores no Arsenal–City (Haaland, Calafiori e Ødegaard) e, como diz a OneFPL, gastar o Free Hit para ganhar pouco mais do que duas trocas não compensa. Restam o <b>Free Hit</b> (plano: J14) e o <b>Bench Boost</b> (J16), até ao deadline da J19 (sex 1 jan 2027, 18:30) — depois perdem-se. Se até sexta houver más notícias (Isak, Wirtz ou Ødegaard fora), revê: o Free Hit na J12 volta a fazer sentido.`;
+  document.getElementById('chip-advice').innerHTML = `<b>Nenhum chip esta semana: o Free Hit passa da J12 para a J14.</b> Medido com a app (24 nov): com o Free Hit, a melhor equipa da J12 daria ≈60,4 pts esperados contra ≈55,6 do teu plantel com as duas trocas grátis — <b>≈+4,8</b>. Mas na J14 o Free Hit rende o mesmo ou mais (≈+5,4), e usá-lo agora atrasava a troca boa desta semana (Cherki → Wirtz) e as grátis guardadas. O teu onze tem três jogadores no Arsenal–City (Haaland, Calafiori e Doku) e, como diz a OneFPL, gastar o Free Hit para ganhar pouco mais do que duas trocas não compensa. Restam o <b>Free Hit</b> (plano: J14) e o <b>Bench Boost</b> (J16), até ao deadline da J19 (sex 1 jan 2027, 18:30) — depois perdem-se. Se até sexta houver más notícias (Isak, Wirtz ou Ødegaard fora), revê: o Free Hit na J12 volta a fazer sentido.`;
 
 
   // "Os teus chips" — inventário dos 8 chips (2 conjuntos de 4). Nenhum usado até agora, o que bate
@@ -7078,8 +7088,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
   // Trocas sugeridas para a jornada seguinte. NÃO estão aplicadas ao plantel (sexta lição): só mudam
   // o que o campo mostra no modo "Com a troca sugerida". ATUALIZAR A CADA JORNADA.
   const SUGGESTED_MOVES = {
-    bruno: {transfers: [{out: 399, in: 15}, {out: 400, in: 366}], optional: [],
-      alt: {why: 'Se preferires ficar com o Cherki (marcou ao Napoli; o RotoWire põe-no no banco no Emirates, outros sites dão-no como titular)', transfers: [{out: 400, in: 366}, {out: 176, in: 332}]}},
+    bruno: {transfers: [{out: 399, in: 366}], optional: [],   // J12: usar 1 e guardar 1 (a 2.ª troca só rendia ≈+2 em 5 jornadas: empate → guardar)
+      alt: {why: 'Se preferires ficar com o Cherki (marcou ao Napoli; o RotoWire põe-no no banco no Emirates, outros sites dão-no como titular)', transfers: [{out: 400, in: 366}]}},
     marco: {transfers: [], optional: [], cap: 426, vice: 379, fh: [385, 115, 112, 334, 426, 366, 124, 15, 379, 166, 249, 109, 332, 68, 60]},  // J12: Free Hit (o plantel verdadeiro não muda)
   };
   const PITCH_MODE = {bruno: 'sug', marco: 'sug'};
@@ -7270,7 +7280,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
   const CHIP_ABBR = {fh: 'FH', wc: 'WC', bb: 'BB', tc: 'TC'};
   const CHIP_PLAN = {
     12: {chip: 'fh', why: 'Free Hit (Marco): o Arsenal–Man City e o Raya em dúvida prendem o plantel; a equipa do Free Hit dá ≈+4,6 pts a mais do que as duas trocas grátis (contas de 24 nov) e o plantel volta ao que era na J13, onde entra o Wildcard.',
-         bruno: {why: 'Sem chip (Bruno). O Free Hit daria ≈+4,8 pts a mais do que as duas trocas grátis, quase o mesmo que na J14 (≈+5,4), e usá-lo agora atrasaria as duas trocas boas (Cherki e Doku). Passa para a J14.'}},
+         bruno: {why: 'Sem chip (Bruno). O Free Hit daria ≈+4,8 pts a mais do que as duas trocas grátis, quase o mesmo que na J14 (≈+5,4), e usá-lo agora atrasaria a troca boa desta semana (Cherki → Wirtz). Passa para a J14.'}},
     13: {chip: 'wc', why: 'Wildcard (Marco): jornada a meio da semana (deadline ter 1 dez às 18:30 em Lisboa). Refaz o plantel a pensar nas J13-J19 e no Bench Boost da J16; as 2 grátis guardadas ficam.'},
     14: {why: 'Sem chip. Afinar o plantel do Wildcard e garantir quatro suplentes que joguem, para o Bench Boost da J16.',
          bruno: {chip: 'fh', why: 'Free Hit (Bruno): pelas contas de 24 nov é a jornada em que o Free Hit mais rende (≈+5,4 pts sobre o plantel com as trocas planeadas). Confirmar na semana, com lesões e rotação.'}},
@@ -10378,7 +10388,12 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
 
   // ---------- Planeador automático ----------
   const AUTO = {mode: 'pontos', busy: false, res: {}};
-  function autoPlan(mgr, mode) {
+  // V66: valor (em pts) de chegar ao fim das 5 jornadas com ft grátis em vez de 1 — sem isto o planeador gastava-as
+  // só porque o horizonte acabava. FT_RULE: uma troca a mais só é sugerida se render mais de 2 pts nas 5 jornadas (no empate, guarda).
+  function ftKeep(ft) { return [0, 0, 2, 3.5, 4.5, 5][Math.min(5, Math.max(0, ft || 0))]; }
+  var FT_RULE = 2;
+  function autoPlan(mgr, mode, opt) {
+    opt = opt || {};
     const st0 = SQUAD_STATE[mgr], strat = stratFor(mgr);
     const wf = mode === 'estrategia' ? (p, gi) => stratWeight(p, gi, strat) : null;
     const val = (ids, gi) => xiValueW(ids.map(id => FULL_POOL_BY_ID[id]), gi, wf);
@@ -10414,30 +10429,34 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
           const cl = {}; let ok = true; ids.forEach(id => { const t = FULL_POOL_BY_ID[id].team; cl[t] = (cl[t] || 0) + 1; if (cl[t] > 3) ok = false; });
           if (ok) opts.push({moves: [{out: x.out, in: x.in}, {out: y.out, in: y.in}], ids, cost: x.cost + y.cost});
         }
-        opts.forEach(o => {
+        // V66: na 1.ª jornada, um número de trocas fixo (opt.firstN) ou trocas fixas (opt.force)
+        const forced = k === 0 && opt.force ? (() => { const ids = s.ids.slice(); let cost = 0; opt.force.forEach(m => { const i = ids.indexOf(m.out); if (i >= 0) { ids[i] = m.in; cost += FULL_POOL_BY_ID[m.in].price - s.sell[m.out]; } }); return [{moves: opt.force.filter(m => s.ids.includes(m.out)), ids, cost}]; })() : null;
+        (forced || opts.filter(o => k > 0 || opt.firstN == null || o.moves.length === opt.firstN)).forEach(o => {
           const n = o.moves.length, hits = Math.max(0, n - s.ft) * 4;
           const sell = {...s.sell}; o.moves.forEach(m => { delete sell[m.out]; sell[m.in] = FULL_POOL_BY_ID[m.in].price; });
           const pts = val(o.ids, k) - hits;
-          next.push({ids: o.ids, sell, bank: +(s.bank - o.cost).toFixed(1), ft: Math.min(5, Math.max(0, s.ft - n) + 1), acc: s.acc + pts,
-            h: s.acc + pts + (k + 1 < HZ.length ? fut(o.ids, k + 1) : 0), moves: [...s.moves, ...o.moves.map(m => ({...m, gw: g, hit: hits > 0}))], hits: (s.hits || 0) + hits});
+          const ftN = Math.min(5, Math.max(0, s.ft - n) + 1);
+          next.push({ids: o.ids, sell, bank: +(s.bank - o.cost).toFixed(1), ft: ftN, acc: s.acc + pts,
+            h: s.acc + pts + (k + 1 < HZ.length ? fut(o.ids, k + 1) : ftKeep(ftN)), moves: [...s.moves, ...o.moves.map(m => ({...m, gw: g, hit: hits > 0}))], hits: (s.hits || 0) + hits});
         });
       });
       const seen = new Set();
       beam = next.sort((a, b) => b.h - a.h).filter(s => { const q = sig(s.ids) + '|' + s.ft; if (seen.has(q)) return false; seen.add(q); return true; }).slice(0, B);
     });
-    const best = beam.sort((a, b) => b.acc - a.acc)[0];
+    const best = beam.sort((a, b) => (b.acc + ftKeep(b.ft)) - (a.acc + ftKeep(a.ft)))[0];
     const base = HZ.reduce((s, g, k) => s + bestXiValue(squadOf(mgr).filter(Boolean), k), 0);
     const plainVal = HZ.reduce((s, g, k) => s, 0);
     // pontos esperados "normais" do plano (mesmo em modo estratégia, para comparar na mesma escala)
-    let ids = st0.players.map(x => x.id), real = 0, hitsTot = 0;
+    let ids = st0.players.map(x => x.id), real = 0, hitsTot = 0, j1 = 0;
     HZ.forEach((g, k) => {
       const mv = best.moves.filter(m => m.gw === g);
       mv.forEach(m => { ids = ids.map(id => id === m.out ? m.in : id); });
       const n = mv.length; const ftNow = ftAt(st0.ft, best.moves, g);
       const h = Math.max(0, n - ftNow) * 4; hitsTot += h;
       real += bestXiValue(ids.map(id => FULL_POOL_BY_ID[id]), k) - h;
+      if (k === 0) j1 = bestXiValue(ids.map(id => FULL_POOL_BY_ID[id]), 0) - h - bestXiValue(squadOf(mgr).filter(Boolean), 0);
     });
-    return {moves: best.moves, gain: real - base, hits: hitsTot, bank: best.bank, mode, plainVal};
+    return {moves: best.moves, gain: real - base, hits: hitsTot, bank: best.bank, mode, plainVal, ftEnd: best.ft, keep: ftKeep(best.ft), j1, first: best.moves.filter(m => m.gw === HZ[0])};
   }
   function ftAt(ft0, moves, gw) { let ft = ft0; for (const g of HZ) { if (g === gw) return ft; const n = moves.filter(m => m.gw === g).length; ft = Math.min(5, Math.max(0, ft - n) + 1); } return ft; }
   function renderAutoPlan() {
@@ -10461,7 +10480,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     el.querySelectorAll('[data-am]').forEach(b => b.addEventListener('click', () => { AUTO.mode = b.dataset.am; renderAutoPlan(); }));
     el.querySelector('#ap-go').addEventListener('click', () => {
       if (AUTO.busy) return; AUTO.busy = true; renderAutoPlan();
-      setTimeout(() => { try { AUTO.res[mgr + '|' + AUTO.mode] = autoPlan(mgr, AUTO.mode); } catch (e) { console.error(e); } AUTO.busy = false; renderAutoPlan(); }, 40);
+      setTimeout(() => { try { AUTO.res[mgr + '|' + AUTO.mode] = autoPlanRule(mgr, AUTO.mode); } catch (e) { console.error(e); } AUTO.busy = false; renderAutoPlan(); }, 40);
     });
     const use = el.querySelector('#ap-use');
     if (use) use.addEventListener('click', () => planChange(pl => { pl.splice(0); r.moves.forEach(m => pl.push({gw: m.gw, out: m.out, in: m.in})); }));
@@ -10713,22 +10732,23 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
       ['bruno', 'marco'].forEach(m => { const el = document.getElementById('after-gw-' + m); if (el) el.innerHTML = afterGwCard(m); });
       renderH2H();
       { const P = id => FULL_POOL_BY_ID[id], e = id => v53f1(epAt(P(id), 0)), e5 = id => v53f1(P(id).epH.reduce((a, b) => a + b, 0)), el = document.getElementById('bruno-todo-list');
-      const bAfter = (() => { const st = SQUAD_STATE.bruno, sell = id => (st.players.find(q => q.id === id) || {}).sell || 0; return (st.bank + sell(399) + sell(400) - P(15).price - P(366).price).toFixed(1); })();
+      const bAfter = (() => { const st = SQUAD_STATE.bruno, sell = id => (st.players.find(q => q.id === id) || {}).sell || 0; return (st.bank + sell(399) - P(366).price).toFixed(1); })();
+      const X = pickXi(applyMoves(squadOf('bruno').filter(Boolean), SUGGESTED_MOVES.bruno.transfers), 0);
       if (el) el.innerHTML = `
-        <li><b>Quando: quinta à noite ou sexta de manhã.</b><span>A Europa joga-se de terça a quinta (City ter, Liverpool qua). Faz as trocas na <b>quinta à noite ou sexta de manhã</b>, depois dos onzes e das notícias da Liga dos Campeões. Deadline <b>sexta 27 às 18:30</b>; a J13 vem logo a seguir, a meio da semana (deadline terça 1 dez às 18:30).</span></li>
-        <li><b>Transferências (tens ${SQUAD_STATE.bruno.ft} grátis): Cherki → Ødegaard e Doku → Wirtz.</b><span>Os dois do City vão ao Emirates e o Cherki continua a rodar. O Ødegaard (£${P(15).price.toFixed(1)}M, titular no Arsenal) tem ≈${e(15)} pts esperados na J${GW_META.next} contra ≈${e(399)} do Cherki (≈${e5(15)} vs ≈${e5(399)} nas próximas cinco); o Wirtz (£${P(366).price.toFixed(1)}M, vai a Everton) tem ≈${e(366)} contra ≈${e(400)} do Doku (≈${e5(366)} vs ≈${e5(400)}). Juntas valem ≈+4,2 pts na J${GW_META.next} e ≈+16 em cinco jornadas, sem custo; ficas com £${bAfter}M no banco.</span></li>
-        <li><b>Capitão: Isak (≈${e(379)}), vice Wirtz (≈${e(366)}).</b><span>O Haaland (≈${e(411)}) vai ao Emirates, cinco dias depois do Napoli. Quase toda a liga o tem de capitão (o Sergio Casinha, teu adversário no H2H, também): se preferires não arriscar, a diferença é de ≈${v53f1(epAt(P(379), 0) - epAt(P(411), 0))} pts.</span></li>
-        <li><b>Onze: ${(() => { const r = pickXi(applyMoves(squadOf('bruno').filter(Boolean), SUGGESTED_MOVES.bruno.transfers), 0); return `com as trocas, banco ${[...r.benchGk, ...r.benchOut].map(p => shortName(p.name)).join(' → ')}`; })()}.</b><span>Sem chip esta semana: o Free Hit passa para a J14 (ver Chips). Antes do deadline vê os onzes prováveis em Jogos › Onzes prováveis — depois da Europa há sempre rotação.</span></li>`;
-      const n = document.getElementById('bruno-todo-note'); if (n) n.textContent = `Deadline: ${GW_META.deadlineLabel} em Lisboa. Nenhum chip esta semana; plano: Free Hit na J14 e Bench Boost na J16.`; }
+        <li><b>Quando: sexta, até às 18:30.</b><span>Os jogos europeus já acabaram (City ter, Liverpool qua). Vê os onzes prováveis e as últimas notícias antes de confirmar; a J${GW_META.next + 1} vem logo a seguir, a meio da semana (deadline terça 1 dez às 18:30).</span></li>
+        <li><b>Transferências (tens ${SQUAD_STATE.bruno.ft} grátis): Cherki → Wirtz, e guarda a outra.</b><span>O Wirtz (£${P(366).price.toFixed(1)}M, titular no Liverpool, vai a Everton) tem ≈${e(366)} pts esperados na J${GW_META.next} contra ≈${e(399)} do Cherki (≈${e5(366)} vs ≈${e5(399)} nas próximas cinco); ficas com £${bAfter}M no banco. A app comparou usar as 2, usar 1 e guardar: usar as duas só renderia ≈+2 pts a mais em cinco jornadas (vê «Usar ou guardar?» no cartão roxo) — um empate pela regra da app, e no empate não vale a pena perder a margem de ter <b>2 grátis na J${GW_META.next + 1}</b>, a meio da semana. Se preferires ficar com o Cherki: Doku → Wirtz, ≈1 pt a menos em cinco jornadas.</span></li>
+        <li><b>Capitão: ${shortName(X.cap.name)} (≈${v53f1(epAt(X.cap, 0))}), vice ${shortName(X.vice.name)} (≈${v53f1(epAt(X.vice, 0))}).</b><span>O Haaland (≈${e(411)}) vai ao Emirates, cinco dias depois do Napoli. Quase toda a liga o tem de capitão (o Sergio Casinha, teu adversário no H2H, também): se preferires não arriscar, a diferença é de ≈${v53f1(epAt(X.cap, 0) - epAt(P(411), 0))} pts.</span></li>
+        <li><b>Onze: com a troca, banco ${[...X.benchGk, ...X.benchOut].map(p => shortName(p.name)).join(' → ')}.</b><span>Sem chip esta semana: o Free Hit passa para a J14 (ver Chips).</span></li>`;
+      const n = document.getElementById('bruno-todo-note'); if (n) n.textContent = `Deadline: ${GW_META.deadlineLabel} em Lisboa. Uma troca e guarda a outra (2 grátis na J${GW_META.next + 1}); nenhum chip esta semana; plano: Free Hit na J14 e Bench Boost na J16.`; }
   { const P = id => FULL_POOL_BY_ID[id], e = (id, g = 0) => v53f1(epAt(P(id), g)), e5 = id => v53f1(P(id).epH.reduce((a, b) => a + b, 0));
-  document.getElementById('transfer-advice').innerHTML = `Tens <b>${FREE_TRANSFERS} transferências grátis</b> para a J${GW_META.next} (na J${GW_META.last} não fizeste nenhuma; confirmado no site). Sugestão: <b>Cherki → Ødegaard</b> e <b>Doku → Wirtz</b>. O Ødegaard dá ≈${e(15)} contra ≈${e(399)} do Cherki na J${GW_META.next} (≈${e5(15)} vs ≈${e5(399)} em cinco jornadas); o Wirtz dá ≈${e(366)} contra ≈${e(400)} do Doku (≈${e5(366)} vs ≈${e5(400)}). As duas sem custo; juntas ≈+4,2 na J${GW_META.next} e ≈+16 em cinco. É também o que o planeador automático escolhe para a J${GW_META.next}. Faz as trocas depois da Europa (quinta à noite ou sexta de manhã).`; }
+  document.getElementById('transfer-advice').innerHTML = `Tens <b>${FREE_TRANSFERS} transferências grátis</b> para a J${GW_META.next} (na J${GW_META.last} não fizeste nenhuma; confirmado no site). Sugestão: <b>Cherki → Wirtz e guarda a outra</b>. O Wirtz dá ≈${e(366)} contra ≈${e(399)} do Cherki na J${GW_META.next} (≈${e5(366)} vs ≈${e5(399)} em cinco jornadas). Usar as duas grátis só daria ≈+2 pts a mais em cinco jornadas — um empate pela regra da app, que não compensa chegar à J${GW_META.next + 1}, a meio da semana, com 2 grátis. Se preferires ficar com o Cherki, faz Doku → Wirtz (≈1 pt a menos em cinco jornadas). No cartão roxo do Resumo, «Usar ou guardar? Comparar» refaz estas contas com os dados do momento.`; }
   { const P = id => FULL_POOL_BY_ID[id], e = id => v53f1(epAt(P(id), 0)), H = HISTORY.find(h => h.gw === GW_META.last) || {};
   document.getElementById('gw2-suggestion').innerHTML = `
     <b>O que aconteceu na J${GW_META.last}:</b> ${H.points} pts (média ${H.avgPoints}). Sem transferências; capitão Haaland (2 pts). No H2H ganhaste 34-24 ao Tiago Guerreiro.
     <br><br>
-    <b>Para a J${GW_META.next} (deadline ${GW_META.deadlineLabel} em Lisboa):</b> a Europa joga-se a meio da semana (24-26 nov) e a J${GW_META.next + 1} vem logo a seguir, a meio da semana seguinte (deadline terça 1 dez às 18:30). O jogo grande é o Arsenal–Man City (dom 16:30): o Haaland tem só ≈${e(411)}. No H2H defrontas o Sergio Casinha.
+    <b>Para a J${GW_META.next} (deadline ${GW_META.deadlineLabel} em Lisboa):</b> a Europa jogou-se a meio da semana (24-26 nov) e a J${GW_META.next + 1} vem logo a seguir, a meio da semana seguinte (deadline terça 1 dez às 18:30). O jogo grande é o Arsenal–Man City (dom 16:30): o Haaland tem só ≈${e(411)}. No H2H defrontas o Sergio Casinha.
     <br><br>
-    Recomendação: <b>Cherki → Ødegaard</b> e <b>Doku → Wirtz</b> (duas grátis); capitão <b>Isak</b>, vice <b>Wirtz</b>; <b>sem chip</b> — o Free Hit fica para a J14.
+    Recomendação: <b>Cherki → Wirtz</b> e <b>guardar a outra grátis</b> (ficas com 2 para a J${GW_META.next + 1}); capitão <b>Isak</b>; <b>sem chip</b> — o Free Hit fica para a J14.
   `; }
     { const P = id => FULL_POOL_BY_ID[id], e = id => v53f1(epAt(P(id), 0));
     const FH = [385, 115, 112, 334, 426, 366, 124, 15, 379, 166, 249, 109, 332, 68, 60].map(P), fhX = pickXi(FH, 0), fhV = v53f1(xiValueW(FH, 0));
@@ -10745,7 +10765,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     } catch (e) { console.error(e); }
   }
   v53Texts();
-  var APP_VERSION = 'V65';
+  var APP_VERSION = 'V66';
   var TUT = {list: [], i: 0, mode: 'full', active: false, miss: []};
   const tutN = v => +(String(v || '').replace(/\D/g, '')) || 0;
   const tutSleep = ms => new Promise(r => setTimeout(r, ms));
@@ -10774,6 +10794,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     ]},
     {id: 'semana', t: 'Esta semana', steps: [
       {id: 'sughero65', ix: 'semana/resumo', since: 'V65', sel: '#sug-hero', t: 'A sugestão da semana', d: () => `O cartão roxo no topo é a sugestão da app para a J${GW_META.next}: as trocas (quem sai, quem entra e os pontos esperados de cada um), o capitão, a chip e quanto se ganha. Quando há uma alternativa razoável, aparece por baixo com os mesmos números. Também está no topo das Transferências. Toca num jogador para abrir a ficha. Depois do deadline desaparece.`},
+      {id: 'guardar66', ix: 'semana/resumo', since: 'V66', opt: true, sel: '#sug-hero .sh-ft', t: 'Usar ou guardar?', d: () => `Nem sempre compensa usar todas as transferências grátis. O botão «Usar ou guardar? Comparar» faz as contas na hora: guardar todas, usar 1 ou usar 2, cada uma com o melhor plano para as jornadas seguintes. Uma troca a mais só é recomendada se render mais de ${FT_RULE} pontos nas 5 jornadas — até lá (empate incluído), guardar dá mais margem.`},
       {id: 'todo', ix: 'semana/resumo', since: 'V37', sel: '#todo', t: 'O que fazer', d: () => { const m = (SUGGESTED_MOVES[curMgr()] || {}).transfers || []; return `Começa sempre aqui: a troca${m.length ? ` (${m.map(x => `${shortName(FULL_POOL_BY_ID[x.out].name)} → ${shortName(FULL_POOL_BY_ID[x.in].name)}`).join(', ')})` : ''}, o capitão (${tutSafe(() => shortName(tutXi().cap.name), '—')}) e o onze para a J${GW_META.next}.`; }},
       {id: 'noticias61', ix: 'semana/noticias', since: 'V61', sel: '#news-root', t: 'Notícias', d: () => `O que os treinadores disseram, lesões, jogos das seleções e mudanças de calendário desta semana, com a fonte e a data. As que falam do ${curMgr() === 'marco' ? 'plantel do Marco' : 'teu plantel'} ou da troca sugerida aparecem primeiro. Agora há ${tutSafe(() => nwItems(curMgr()).length, 0)}.`},
       {id: 'avisos', ix: 'semana/resumo', since: 'V31', sel: '#alerts', t: 'Avisos', d: () => `Lesões, onzes prováveis, preços a mexer e o que falta antes do deadline (${GW_META.deadlineLabel}). Agora há ${tutSafe(() => buildAlerts().length, 0)}.`},
@@ -11107,6 +11128,36 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     LABTUT.keep = b.dataset.labtut === 'keep'; tutEnd(true);
   });
 
+
+  // ---------- V66: usar ou guardar? (guardar todas · usar 1 · usar 2, cada uma com o melhor plano a seguir) ----------
+  function ftCompare(mgr) {
+    const st = SQUAD_STATE[mgr], R = [];
+    [0, 1, 2].forEach(n => { const r = autoPlan(mgr, 'pontos', {firstN: n}); R.push({n, first: r.first, tot: r.gain + r.keep, j1: r.j1, ftEnd: r.ftEnd, hits: Math.max(0, n - st.ft) * 4, next: Math.min(5, Math.max(0, st.ft - n) + 1)}); });
+    // a recomendada: começa em guardar todas e só sobe uma troca se ela render MAIS de FT_RULE pts (no empate, guarda)
+    let rec = R[0]; R.slice(1).forEach(r => { if (Math.round((r.tot - rec.tot) * 10) / 10 > FT_RULE) rec = r; });   // no empate, guarda
+    return {R, rec, ft: st.ft};
+  }
+  // o Plano automático com a regra: na 1.ª jornada usa o nº de trocas que o ftCompare recomenda (no empate, guarda)
+  function autoPlanRule(mgr, mode) {
+    const C = ftCompare(mgr); FTC[mgr] = C;
+    return autoPlan(mgr, mode, {firstN: C.rec.n});
+  }
+  var FTC = {};
+  function ftCompareHtml(mgr) {
+    const C = FTC[mgr]; if (!C) return '';
+    const P = id => shortName(FULL_POOL_BY_ID[id].name), g0 = C.R[0].tot;
+    const name = r => r.n === 0 ? `Guardar ${C.ft === 1 ? 'a grátis' : C.ft > 1 ? 'as ' + C.ft : ''}` : `Usar ${r.n}${r.hits ? ` (−${r.hits})` : ''}: ${r.first.map(m => `${P(m.out)} → ${P(m.in)}`).join(', ')}`;
+    return `<table><thead><tr><th>Opção na J${GW_META.next}</th><th class="num">J${GW_META.next}</th><th class="num">5 jornadas</th></tr></thead><tbody>
+      ${C.R.map(r => `<tr${r === C.rec ? ' class="rec"' : ''}><td>${name(r)}${r === C.rec ? '<span class="rec-tag">recomendado</span>' : ''}<br><span class="note">ficas com ${r.next} grátis para a J${GW_META.next + 1}</span></td><td class="num">${sgn(r.j1)}</td><td class="num">${r.n ? sgn(r.tot - g0) : '—'}</td></tr>`).join('')}
+      </tbody></table>
+      <p class="note" style="margin:6px 0 0">Pontos esperados face a não mexer, com o melhor plano para as jornadas seguintes; «5 jornadas» compara com guardar e já conta o valor de chegar ao fim com grátis guardadas. Uma troca a mais só é recomendada se render mais de ${FT_RULE} pts nas 5 jornadas (no empate, guarda): abaixo disso é ruído, e uma grátis guardada dá margem para lesões e jornadas a meio da semana.</p>`;
+  }
+  document.addEventListener('click', ev => {
+    const b = ev.target.closest('[data-shft]'); if (!b) return;
+    const box = b.closest('.sh-ft'), mgr = curMgr(); if (!box) return;
+    box.innerHTML = '<p class="note">A calcular as três opções (uns segundos)…</p>';
+    setTimeout(() => { try { FTC[mgr] = ftCompare(mgr); } catch (e) { console.error(e); } document.querySelectorAll('.sug-hero .sh-ft').forEach(x => { x.innerHTML = ftCompareHtml(mgr) || '<p class="note">Não consegui fazer as contas.</p>'; }); }, 40);
+  });
   // ---------- V65: a sugestão da semana em destaque (Resumo e Transferências) ----------
   // Tudo calculado dos dados: pontos esperados de quem sai e de quem entra, ganho na jornada e nas próximas 5.
   function shGain(sq, moves) {
@@ -11125,6 +11176,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     const G = shGain(sq, mv), team = fh && fh.length === 15 ? fh : applyMoves(sq, mv), X = pickXi(team, 0);
     const cap = (M.cap && FULL_POOL_BY_ID[M.cap]) || X.cap, vice = (M.vice && FULL_POOL_BY_ID[M.vice]) || X.vice;
     const hits = Math.max(0, mv.length - (st.ft || 0)) * 4;
+    const save = !fh && !done ? Math.max(0, (st.ft || 0) - mv.length) : 0, ftNext = Math.min(5, Math.max(0, (st.ft || 0) - mv.length) + 1);   // V66
     const nextChip = (() => { const P = typeof chipPlanFor === 'function' ? chipPlanFor(mgr) : CHIP_PLAN; const g = Object.keys(P).map(Number).sort((a, b) => a - b).find(k => k > GW_META.next && P[k].chip && !P[k].used); return g ? `${CHIP_NAMES[P[g].chip]} na J${g}` : ''; })();
     const rows = [];
     if (fh) {
@@ -11137,16 +11189,17 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     rows.push(`<div class="sh-row"><span class="sh-k">Capitão</span><span class="sh-v">${shP(cap)}<span class="sh-fh">vice <b>${shortName(vice.name)}</b> · ${pctR(pAtLeast(cap, 0, 10))} de fazer 10+</span></span></div>`);
     if (!fh) rows.push(`<div class="sh-row"><span class="sh-k">Chip</span><span class="sh-v sh-fh"><b>${cp.chip && !cp.used ? CHIP_NAMES[cp.chip] + ' nesta jornada' : 'Nenhum esta semana'}</b>${nextChip ? ` · a seguir: ${nextChip}` : ''}</span></div>`);
     const tot = fh ? `<div class="sh-tot"><span class="sh-big">≈${sgn(xiValueW(fh, 0) - xiValueW(sq, 0))}</span><span class="note">pts na J${GW_META.next} com o Free Hit, face a não mexer</span></div>`
-      : mv.length ? `<div class="sh-tot"><span class="sh-big">≈${sgn(G.g1)}</span><span class="note">pts na J${GW_META.next} · ≈${sgn(G.g5)} nas próximas ${HZ.length} · ${hits ? `custa −${hits}` : `usa ${mv.length} de ${st.ft} grátis, sem custo`}</span></div>` : '';
+      : mv.length ? `<div class="sh-tot"><span class="sh-big">≈${sgn(G.g1)}</span><span class="note">pts na J${GW_META.next} · ≈${sgn(G.g5)} nas próximas ${HZ.length} · ${hits ? `custa −${hits}` : `usa ${mv.length} de ${st.ft} grátis, sem custo`}${save ? ` · guarda ${save}: ficas com ${ftNext} grátis para a J${GW_META.next + 1}` : ''}</span></div>`
+      : !fh && !done ? `<div class="sh-tot"><span class="note">Guarda ${st.ft === 1 ? 'a grátis' : 'as ' + st.ft + ' grátis'}: ficas com ${ftNext} para a J${GW_META.next + 1}.</span></div>` : '';
     let alt = '';
     if (M.alt && (M.alt.transfers || []).length) {
       const A = shGain(sq, M.alt.transfers);
       alt = `<div class="sh-alt">${M.alt.why ? nwEsc(M.alt.why) + ': ' : 'Alternativa: '}<b>${M.alt.transfers.map(m => `${shortName(FULL_POOL_BY_ID[m.out].name)} → ${shortName(FULL_POOL_BY_ID[m.in].name)}`).join(' e ')}</b> — ≈${sgn(A.g1)} na J${GW_META.next} e ≈${sgn(A.g5)} nas próximas ${HZ.length}${mv.length ? ` (a sugestão dá ≈${sgn(G.g1)} e ≈${sgn(G.g5)})` : ''}; capitão ${shortName(A.xi.cap.name)}.</div>`;
     }
     const html = `<div class="sh-eye">A sugestão da app para a J${GW_META.next} · deadline ${GW_META.deadlineLabel}</div>
-      <h2>${done ? 'Trocas sugeridas feitas ✓' : fh ? 'Usa o Free Hit' : mv.length ? `Faz ${mv.length === 1 ? 'esta troca' : 'estas ' + mv.length + ' trocas'}` : 'Não mexas no plantel'}${mgr === 'marco' ? ' — Xarola Team' : ''}</h2>
+      <h2>${done ? 'Trocas sugeridas feitas ✓' : fh ? 'Usa o Free Hit' : mv.length ? `Faz ${mv.length === 1 ? 'esta troca' : 'estas ' + mv.length + ' trocas'}${save ? ` e guarda ${save === 1 ? '1 transferência' : save + ' transferências'}` : ''}` : 'Guarda as transferências'}${mgr === 'marco' ? ' — Xarola Team' : ''}</h2>
       <div class="sh-rows">${rows.join('')}</div>${tot}
-      <div class="sh-acts">${mv.length ? '<button type="button" class="btn primary" data-goto="semana" data-goto-sub="registo">Já fiz — registar</button>' : ''}<button type="button" class="btn" data-goto="semana" data-goto-sub="transferencias">Porquê</button><button type="button" class="btn" data-goto="semana" data-goto-sub="onze">Ver o onze</button></div>${alt}`;
+      <div class="sh-acts">${mv.length ? '<button type="button" class="btn primary" data-goto="semana" data-goto-sub="registo">Já fiz — registar</button>' : ''}<button type="button" class="btn" data-goto="semana" data-goto-sub="transferencias">Porquê</button><button type="button" class="btn" data-goto="semana" data-goto-sub="onze">Ver o onze</button></div>${alt}${!fh && !done && (st.ft || 0) > 0 ? `<div class="sh-ft">${ftCompareHtml(mgr) || '<button type="button" class="btn" data-shft>Usar ou guardar? Comparar</button>'}</div>` : ''}`;
     els.forEach(e => { e.innerHTML = html; e.hidden = false; e.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => showView(b.dataset.goto, b.dataset.gotoSub))); });
   }
   // o guia antigo passa a abrir as boas-vindas (⚙ "Ver o tutorial" chama startTour)
