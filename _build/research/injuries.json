@@ -379,7 +379,7 @@
    "researched": "2026-11-24"
   }
  },
- "updated": "2026-11-24T21:50:42Z",
+ "updated": "2026-11-27T10:06:36Z",
  "players": {
   "1": {
    "name": "Raya",
@@ -571,18 +571,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 62.2,
-    "max": 186.6,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 63.5,
+    "max": 190.4,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.06,
-    "J16": 0.14,
-    "J17": 0.19
+    "J14": 0.0,
+    "J15": 0.04,
+    "J16": 0.11,
+    "J17": 0.16
    },
    "likely_return": null,
    "likely_return_p": null
@@ -631,18 +631,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 55.2,
-    "max": 165.7,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 56.5,
+    "max": 169.5,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.08,
-    "J16": 0.15,
-    "J17": 0.24
+    "J14": 0.0,
+    "J15": 0.05,
+    "J16": 0.11,
+    "J17": 0.2
    },
    "likely_return": null,
    "likely_return_p": null
@@ -661,18 +661,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 53.8,
-    "max": 161.4,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 55.0,
+    "max": 165.1,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.08,
-    "J16": 0.16,
-    "J17": 0.25
+    "J14": 0.0,
+    "J15": 0.05,
+    "J16": 0.12,
+    "J17": 0.21
    },
    "likely_return": null,
    "likely_return_p": null
@@ -691,21 +691,51 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 16.2,
-    "max": 48.6,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 17.5,
+    "max": 52.4,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.11,
-    "J14": 0.24,
-    "J15": 0.54,
-    "J16": 0.68,
-    "J17": 0.78
+    "J13": 0.01,
+    "J14": 0.1,
+    "J15": 0.43,
+    "J16": 0.59,
+    "J17": 0.72
    },
-   "likely_return": "J15",
-   "likely_return_p": 0.54
+   "likely_return": "J16",
+   "likely_return_p": 0.59
+  },
+  "78": {
+   "name": "Kroupi.Jr",
+   "team": 3,
+   "status": "d",
+   "chance": 75,
+   "news": "Illness - 75% chance of playing",
+   "news_added": "2026-11-26T21:00:05.979236Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "illness",
+   "type_pt": "doença",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 1,
+    "typical": 3,
+    "max": 7,
+    "since": "2026-11-26T21:00:05Z"
+   },
+   "web": null,
+   "prob": {
+    "J12": 0.75,
+    "J13": 0.91,
+    "J14": 0.97,
+    "J15": 0.99,
+    "J16": 1.0,
+    "J17": 1.0
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.75
   },
   "573": {
    "name": "Sanchez",
@@ -727,15 +757,15 @@
    },
    "web": null,
    "prob": {
-    "J12": 0.2,
-    "J13": 0.33,
-    "J14": 0.42,
-    "J15": 0.6,
-    "J16": 0.69,
-    "J17": 0.76
+    "J12": 0.07,
+    "J13": 0.22,
+    "J14": 0.33,
+    "J15": 0.53,
+    "J16": 0.63,
+    "J17": 0.72
    },
    "likely_return": "J15",
-   "likely_return_p": 0.6
+   "likely_return_p": 0.53
   },
   "84": {
    "name": "Collins",
@@ -781,21 +811,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 14.1,
-    "max": 42.3,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 15.4,
+    "max": 46.1,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.15,
-    "J14": 0.32,
-    "J15": 0.58,
-    "J16": 0.73,
-    "J17": 0.82
+    "J13": 0.01,
+    "J14": 0.14,
+    "J15": 0.46,
+    "J16": 0.65,
+    "J17": 0.77
    },
-   "likely_return": "J15",
-   "likely_return_p": 0.58
+   "likely_return": "J16",
+   "likely_return_p": 0.65
   },
   "90": {
    "name": "Hickey",
@@ -832,60 +862,60 @@
    "team": 4,
    "status": "i",
    "chance": 0,
-   "news": "Knee injury - Unknown return date",
+   "news": "Lack of match fitness - Expected back 5 Dec",
    "news_added": "2026-07-23T12:01:23.384798Z",
    "source": "API oficial da FPL (bootstrap-static, via live.json)",
-   "type": "knee",
-   "type_pt": "joelho",
-   "basis": "tipo",
-   "late": true,
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "FPL",
+   "late": false,
    "model_days": {
-    "min": 3,
-    "typical": 62.2,
-    "max": 186.6,
-    "since": "2026-11-24T21:50:42Z"
+    "min": 131.5,
+    "typical": 134.5,
+    "max": 141.5,
+    "since": "2026-07-23T12:01:23Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.05,
-    "J16": 0.12,
-    "J17": 0.2
+    "J14": 0.48,
+    "J15": 0.89,
+    "J16": 0.97,
+    "J17": 0.99
    },
-   "likely_return": null,
-   "likely_return_p": null
+   "likely_return": "J15",
+   "likely_return_p": 0.89
   },
   "103": {
    "name": "Dasilva",
    "team": 4,
    "status": "i",
    "chance": 0,
-   "news": "Hamstring injury - Unknown return date",
+   "news": "Lack of match fitness - Expected back 5 Dec",
    "news_added": "2026-09-04T13:30:08.371955Z",
    "source": "API oficial da FPL (bootstrap-static, via live.json)",
-   "type": "hamstring",
-   "type_pt": "posterior da coxa",
-   "basis": "tipo",
-   "late": true,
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "FPL",
+   "late": false,
    "model_days": {
-    "min": 3,
-    "typical": 40.7,
-    "max": 122.0,
-    "since": "2026-11-24T21:50:42Z"
+    "min": 88.4,
+    "typical": 91.4,
+    "max": 98.4,
+    "since": "2026-09-04T13:30:08Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.01,
-    "J14": 0.03,
-    "J15": 0.13,
-    "J16": 0.25,
-    "J17": 0.37
+    "J13": 0.0,
+    "J14": 0.48,
+    "J15": 0.89,
+    "J16": 0.97,
+    "J17": 0.99
    },
-   "likely_return": null,
-   "likely_return_p": null
+   "likely_return": "J15",
+   "likely_return_p": 0.89
   },
   "107": {
    "name": "Furo",
@@ -901,21 +931,51 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 35.7,
-    "max": 107.0,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 36.9,
+    "max": 110.8,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.01,
-    "J14": 0.04,
-    "J15": 0.17,
-    "J16": 0.3,
-    "J17": 0.43
+    "J13": 0.0,
+    "J14": 0.01,
+    "J15": 0.11,
+    "J16": 0.24,
+    "J17": 0.37
    },
    "likely_return": null,
    "likely_return_p": null
+  },
+  "114": {
+   "name": "Boscagli",
+   "team": 5,
+   "status": "d",
+   "chance": 75,
+   "news": "Illness - 75% chance of playing",
+   "news_added": "2026-11-25T16:00:05.519144Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "illness",
+   "type_pt": "doença",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 1,
+    "typical": 3,
+    "max": 7,
+    "since": "2026-11-25T16:00:05Z"
+   },
+   "web": null,
+   "prob": {
+    "J12": 0.75,
+    "J13": 0.91,
+    "J14": 0.97,
+    "J15": 0.99,
+    "J16": 1.0,
+    "J17": 1.0
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.75
   },
   "121": {
    "name": "Mitoma",
@@ -961,18 +1021,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 37.7,
-    "max": 113.1,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 38.9,
+    "max": 116.8,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.01,
-    "J14": 0.04,
-    "J15": 0.17,
-    "J16": 0.3,
-    "J17": 0.4
+    "J13": 0.0,
+    "J14": 0.01,
+    "J15": 0.11,
+    "J16": 0.24,
+    "J17": 0.35
    },
    "likely_return": null,
    "likely_return_p": null
@@ -991,18 +1051,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 62.2,
-    "max": 186.6,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 63.5,
+    "max": 190.4,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.06,
-    "J16": 0.13,
-    "J17": 0.2
+    "J14": 0.0,
+    "J15": 0.03,
+    "J16": 0.1,
+    "J17": 0.16
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1021,18 +1081,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 62.2,
-    "max": 186.6,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 63.5,
+    "max": 190.4,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.06,
-    "J16": 0.13,
-    "J17": 0.2
+    "J14": 0.0,
+    "J15": 0.03,
+    "J16": 0.1,
+    "J17": 0.16
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1155,21 +1215,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 13.0,
-    "max": 39.0,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 14.3,
+    "max": 42.8,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.17,
-    "J14": 0.34,
-    "J15": 0.63,
-    "J16": 0.8,
-    "J17": 0.85
+    "J13": 0.02,
+    "J14": 0.15,
+    "J15": 0.5,
+    "J16": 0.73,
+    "J17": 0.8
    },
    "likely_return": "J15",
-   "likely_return_p": 0.63
+   "likely_return_p": 0.5
   },
   "158": {
    "name": "Gittens",
@@ -1185,51 +1245,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 29.8,
-    "max": 89.5,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 31.1,
+    "max": 93.3,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.02,
-    "J14": 0.06,
-    "J15": 0.23,
-    "J16": 0.43,
-    "J17": 0.53
+    "J13": 0.0,
+    "J14": 0.02,
+    "J15": 0.16,
+    "J16": 0.36,
+    "J17": 0.47
    },
-   "likely_return": "J17",
-   "likely_return_p": 0.53
-  },
-  "159": {
-   "name": "Caicedo",
-   "team": 6,
-   "status": "d",
-   "chance": 75,
-   "news": "Back injury - 75% chance of playing",
-   "news_added": "2026-11-21T16:30:05.451902Z",
-   "source": "API oficial da FPL (bootstrap-static, via live.json)",
-   "type": "back",
-   "type_pt": "costas",
-   "basis": "tipo",
-   "late": false,
-   "model_days": {
-    "min": 1,
-    "typical": 4,
-    "max": 14,
-    "since": "2026-11-21T16:30:05Z"
-   },
-   "web": null,
-   "prob": {
-    "J12": 0.75,
-    "J13": 0.91,
-    "J14": 0.97,
-    "J15": 0.99,
-    "J16": 1.0,
-    "J17": 1.0
-   },
-   "likely_return": "J12",
-   "likely_return_p": 0.75
+   "likely_return": null,
+   "likely_return_p": null
   },
   "165": {
    "name": "João Pedro",
@@ -1265,15 +1295,15 @@
     "researched": "2026-11-08"
    },
    "prob": {
-    "J12": 0.23,
-    "J13": 0.57,
-    "J14": 0.66,
-    "J15": 0.81,
-    "J16": 0.9,
-    "J17": 0.92
+    "J12": 0.0,
+    "J13": 0.39,
+    "J14": 0.53,
+    "J15": 0.74,
+    "J16": 0.85,
+    "J17": 0.89
    },
-   "likely_return": "J13",
-   "likely_return_p": 0.57
+   "likely_return": "J14",
+   "likely_return_p": 0.53
   },
   "200": {
    "name": "Lacroix",
@@ -1309,15 +1339,15 @@
     "researched": "2026-11-08"
    },
    "prob": {
-    "J12": 0.23,
-    "J13": 0.56,
-    "J14": 0.66,
-    "J15": 0.81,
-    "J16": 0.9,
-    "J17": 0.92
+    "J12": 0.0,
+    "J13": 0.39,
+    "J14": 0.53,
+    "J15": 0.74,
+    "J16": 0.85,
+    "J17": 0.89
    },
-   "likely_return": "J13",
-   "likely_return_p": 0.56
+   "likely_return": "J14",
+   "likely_return_p": 0.53
   },
   "180": {
    "name": "Woolfenden",
@@ -1333,18 +1363,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 44.6,
-    "max": 133.9,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 45.9,
+    "max": 137.7,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.02,
-    "J15": 0.12,
-    "J16": 0.22,
-    "J17": 0.34
+    "J14": 0.0,
+    "J15": 0.08,
+    "J16": 0.17,
+    "J17": 0.29
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1363,18 +1393,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 34.3,
-    "max": 102.9,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 35.6,
+    "max": 106.7,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.04,
-    "J15": 0.2,
-    "J16": 0.32,
-    "J17": 0.46
+    "J14": 0.01,
+    "J15": 0.14,
+    "J16": 0.26,
+    "J17": 0.4
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1423,18 +1453,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 37.6,
-    "max": 112.7,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 38.8,
+    "max": 116.5,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.03,
-    "J15": 0.17,
-    "J16": 0.28,
-    "J17": 0.42
+    "J14": 0.01,
+    "J15": 0.12,
+    "J16": 0.23,
+    "J17": 0.36
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1453,18 +1483,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 51.0,
-    "max": 153.0,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 52.3,
+    "max": 156.8,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.09,
-    "J16": 0.17,
-    "J17": 0.28
+    "J14": 0.0,
+    "J15": 0.06,
+    "J16": 0.13,
+    "J17": 0.24
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1472,9 +1502,9 @@
   "492": {
    "name": "Awoniyi",
    "team": 7,
-   "status": "d",
-   "chance": 75,
-   "news": "Ankle injury - 75% chance of playing",
+   "status": "i",
+   "chance": 0,
+   "news": "Ankle injury - Unknown return date",
    "news_added": "2026-11-21T16:30:05.778377Z",
    "source": "API oficial da FPL (bootstrap-static, via live.json)",
    "type": "ankle",
@@ -1489,15 +1519,15 @@
    },
    "web": null,
    "prob": {
-    "J12": 0.75,
-    "J13": 0.91,
-    "J14": 0.97,
-    "J15": 0.99,
-    "J16": 1.0,
-    "J17": 1.0
+    "J12": 0.02,
+    "J13": 0.31,
+    "J14": 0.51,
+    "J15": 0.72,
+    "J16": 0.8,
+    "J17": 0.86
    },
-   "likely_return": "J12",
-   "likely_return_p": 0.75
+   "likely_return": "J14",
+   "likely_return_p": 0.51
   },
   "575": {
    "name": "Yirenkyi",
@@ -1543,51 +1573,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 47.1,
-    "max": 141.2,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 48.3,
+    "max": 145.0,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.02,
-    "J15": 0.11,
-    "J16": 0.21,
-    "J17": 0.32
+    "J14": 0.0,
+    "J15": 0.07,
+    "J16": 0.17,
+    "J17": 0.27
    },
    "likely_return": null,
    "likely_return_p": null
-  },
-  "207": {
-   "name": "Mingueza",
-   "team": 8,
-   "status": "d",
-   "chance": 75,
-   "news": "Thigh injury - 75% chance of playing",
-   "news_added": "2026-11-21T17:30:05.672662Z",
-   "source": "API oficial da FPL (bootstrap-static, via live.json)",
-   "type": "thigh",
-   "type_pt": "coxa",
-   "basis": "tipo",
-   "late": false,
-   "model_days": {
-    "min": 4,
-    "typical": 13,
-    "max": 41,
-    "since": "2026-11-21T17:30:05Z"
-   },
-   "web": null,
-   "prob": {
-    "J12": 0.75,
-    "J13": 0.91,
-    "J14": 0.97,
-    "J15": 0.99,
-    "J16": 1.0,
-    "J17": 1.0
-   },
-   "likely_return": "J12",
-   "likely_return_p": 0.75
   },
   "208": {
    "name": "Sarr",
@@ -1609,15 +1609,15 @@
    },
    "web": null,
    "prob": {
-    "J12": 0.43,
-    "J13": 0.76,
-    "J14": 0.87,
-    "J15": 0.97,
-    "J16": 0.99,
+    "J12": 0.28,
+    "J13": 0.69,
+    "J14": 0.83,
+    "J15": 0.96,
+    "J16": 0.98,
     "J17": 0.99
    },
    "likely_return": "J13",
-   "likely_return_p": 0.76
+   "likely_return_p": 0.69
   },
   "577": {
    "name": "Tomiyasu",
@@ -1639,15 +1639,15 @@
    },
    "web": null,
    "prob": {
-    "J12": 0.44,
-    "J13": 0.76,
-    "J14": 0.87,
-    "J15": 0.97,
-    "J16": 0.99,
+    "J12": 0.29,
+    "J13": 0.69,
+    "J14": 0.83,
+    "J15": 0.96,
+    "J16": 0.98,
     "J17": 0.99
    },
    "likely_return": "J13",
-   "likely_return_p": 0.76
+   "likely_return_p": 0.69
   },
   "251": {
    "name": "Lecomte",
@@ -1699,15 +1699,15 @@
    },
    "web": null,
    "prob": {
-    "J12": 0.44,
-    "J13": 0.81,
-    "J14": 0.89,
-    "J15": 0.96,
+    "J12": 0.28,
+    "J13": 0.76,
+    "J14": 0.86,
+    "J15": 0.95,
     "J16": 0.98,
     "J17": 0.99
    },
    "likely_return": "J13",
-   "likely_return_p": 0.81
+   "likely_return_p": 0.76
   },
   "240": {
    "name": "Iroegbunam",
@@ -1730,7 +1730,7 @@
    "web": null,
    "prob": {
     "J12": 0.06,
-    "J13": 0.29,
+    "J13": 0.28,
     "J14": 0.45,
     "J15": 0.74,
     "J16": 0.82,
@@ -1753,18 +1753,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 57.3,
-    "max": 171.8,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 58.5,
+    "max": 175.6,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.08,
-    "J16": 0.14,
-    "J17": 0.22
+    "J14": 0.0,
+    "J15": 0.05,
+    "J16": 0.1,
+    "J17": 0.19
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1783,18 +1783,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 62.2,
-    "max": 186.6,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 63.5,
+    "max": 190.4,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.07,
-    "J16": 0.12,
-    "J17": 0.2
+    "J14": 0.0,
+    "J15": 0.04,
+    "J16": 0.09,
+    "J17": 0.16
    },
    "likely_return": null,
    "likely_return_p": null
@@ -1914,21 +1914,21 @@
    "type": "groin",
    "type_pt": "virilha/adutor",
    "basis": "tipo",
-   "late": false,
+   "late": true,
    "model_days": {
-    "min": 2,
-    "typical": 8,
-    "max": 27,
-    "since": "2026-11-05T18:30:08Z"
+    "min": 3,
+    "typical": 10.8,
+    "max": 35.0,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
-    "J12": 0.24,
-    "J13": 0.39,
-    "J14": 0.48,
+    "J12": 0.0,
+    "J13": 0.06,
+    "J14": 0.29,
     "J15": 0.69,
-    "J16": 0.75,
-    "J17": 0.82
+    "J16": 0.78,
+    "J17": 0.86
    },
    "likely_return": "J15",
    "likely_return_p": 0.69
@@ -1947,18 +1947,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 38.2,
-    "max": 114.7,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 39.5,
+    "max": 118.5,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.01,
-    "J14": 0.03,
-    "J15": 0.19,
-    "J16": 0.28,
-    "J17": 0.4
+    "J13": 0.0,
+    "J14": 0.01,
+    "J15": 0.13,
+    "J16": 0.22,
+    "J17": 0.34
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2007,18 +2007,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 59.1,
-    "max": 177.2,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 60.3,
+    "max": 181.0,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.06,
-    "J16": 0.13,
-    "J17": 0.21
+    "J14": 0.0,
+    "J15": 0.03,
+    "J16": 0.1,
+    "J17": 0.18
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2037,18 +2037,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 59.1,
-    "max": 177.2,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 60.3,
+    "max": 181.0,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.06,
-    "J16": 0.13,
-    "J17": 0.21
+    "J14": 0.0,
+    "J15": 0.03,
+    "J16": 0.1,
+    "J17": 0.18
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2116,39 +2116,39 @@
   "367": {
    "name": "Gakpo",
    "team": 14,
-   "status": "d",
-   "chance": 75,
-   "news": "Calf injury - 75% chance of playing",
+   "status": "i",
+   "chance": 0,
+   "news": "Calf injury - Expected back 2 Dec",
    "news_added": "2026-11-22T16:30:05.520808Z",
    "source": "API oficial da FPL (bootstrap-static, via live.json)",
    "type": "calf",
    "type_pt": "gémeo",
-   "basis": "tipo",
+   "basis": "FPL",
    "late": false,
    "model_days": {
-    "min": 4,
-    "typical": 13,
-    "max": 35,
+    "min": 6.3,
+    "typical": 9.3,
+    "max": 16.3,
     "since": "2026-11-22T16:30:05Z"
    },
    "web": null,
    "prob": {
-    "J12": 0.75,
-    "J13": 0.91,
-    "J14": 0.97,
-    "J15": 0.99,
-    "J16": 1.0,
-    "J17": 1.0
+    "J12": 0.0,
+    "J13": 0.47,
+    "J14": 0.74,
+    "J15": 0.94,
+    "J16": 0.98,
+    "J17": 0.99
    },
-   "likely_return": "J12",
-   "likely_return_p": 0.75
+   "likely_return": "J14",
+   "likely_return_p": 0.74
   },
   "371": {
    "name": "Gravenberch",
    "team": 14,
-   "status": "d",
-   "chance": 75,
-   "news": "Foot injury - 75% chance of playing",
+   "status": "i",
+   "chance": 0,
+   "news": "Foot injury - Unknown return date",
    "news_added": "2026-11-03T17:00:09.626695Z",
    "source": "API oficial da FPL (bootstrap-static, via live.json)",
    "type": "foot",
@@ -2177,6 +2177,36 @@
     "researched": "2026-11-24"
    },
    "prob": {
+    "J12": 0.08,
+    "J13": 0.43,
+    "J14": 0.63,
+    "J15": 0.88,
+    "J16": 0.95,
+    "J17": 0.98
+   },
+   "likely_return": "J14",
+   "likely_return_p": 0.63
+  },
+  "377": {
+   "name": "Munoz",
+   "team": 14,
+   "status": "d",
+   "chance": 75,
+   "news": "Knee injury - 75% chance of playing",
+   "news_added": "2026-11-26T03:30:05.640103Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "knee",
+   "type_pt": "joelho",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 3,
+    "typical": 16,
+    "max": 56,
+    "since": "2026-11-26T03:30:05Z"
+   },
+   "web": null,
+   "prob": {
     "J12": 0.75,
     "J13": 0.91,
     "J14": 0.97,
@@ -2198,21 +2228,21 @@
    "type": "achilles",
    "type_pt": "tendão de Aquiles",
    "basis": "tipo",
-   "late": false,
+   "late": true,
    "model_days": {
-    "min": 14,
-    "typical": 35,
-    "max": 180,
-    "since": "2026-07-23T12:01:23Z"
+    "min": 3,
+    "typical": 63.5,
+    "max": 190.4,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
-    "J12": 0.03,
-    "J13": 0.06,
-    "J14": 0.08,
-    "J15": 0.13,
-    "J16": 0.18,
-    "J17": 0.22
+    "J12": 0.0,
+    "J13": 0.0,
+    "J14": 0.0,
+    "J15": 0.03,
+    "J16": 0.09,
+    "J17": 0.16
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2281,89 +2311,15 @@
    },
    "web": null,
    "prob": {
-    "J12": 0.18,
-    "J13": 0.38,
-    "J14": 0.48,
-    "J15": 0.67,
-    "J16": 0.77,
-    "J17": 0.83
+    "J12": 0.01,
+    "J13": 0.26,
+    "J14": 0.37,
+    "J15": 0.61,
+    "J16": 0.72,
+    "J17": 0.8
    },
    "likely_return": "J15",
-   "likely_return_p": 0.67
-  },
-  "325": {
-   "name": "Darlow",
-   "team": 16,
-   "status": "d",
-   "chance": 75,
-   "news": "Unspecified injury - 75% chance of playing",
-   "news_added": "2026-11-20T17:00:04.943349Z",
-   "source": "API oficial da FPL (bootstrap-static, via live.json)",
-   "type": "unknown",
-   "type_pt": "não especificada",
-   "basis": "tipo",
-   "late": false,
-   "model_days": {
-    "min": 4,
-    "typical": 13,
-    "max": 45,
-    "since": "2026-11-20T17:00:04Z"
-   },
-   "web": null,
-   "prob": {
-    "J12": 0.75,
-    "J13": 0.91,
-    "J14": 0.97,
-    "J15": 0.99,
-    "J16": 1.0,
-    "J17": 1.0
-   },
-   "likely_return": "J12",
-   "likely_return_p": 0.75
-  },
-  "423": {
-   "name": "Shaw",
-   "team": 16,
-   "status": "d",
-   "chance": 75,
-   "news": "Unspecified injury - 75% chance of playing",
-   "news_added": "2026-10-12T21:30:08.995810Z",
-   "source": "API oficial da FPL (bootstrap-static, via live.json)",
-   "type": "unknown",
-   "type_pt": "não especificada",
-   "basis": "treinador",
-   "late": false,
-   "model_days": {
-    "min": 37.1,
-    "typical": 41.1,
-    "max": 55.1,
-    "since": "2026-10-12T21:30:08Z"
-   },
-   "web": {
-    "name": "Luke Shaw",
-    "type": "unknown",
-    "summary_pt": "Lesão não revelada desde 10 out (Spurs); Carrick disse a 2 nov que não volta antes da paragem; sem data.",
-    "timeline": {
-     "min_days": 13,
-     "max_days": null,
-     "back_date_earliest": "2026-11-21",
-     "back_date_latest": null,
-     "from_manager": true
-    },
-    "source": "https://www.fantasyfootballscout.co.uk/2026/11/02/amad-dorgu-rashford-latest-fpl-team-news-pre-gameweek-10",
-    "source_date": "2026-11-02",
-    "researched": "2026-11-08"
-   },
-   "prob": {
-    "J12": 0.75,
-    "J13": 0.91,
-    "J14": 0.97,
-    "J15": 0.99,
-    "J16": 1.0,
-    "J17": 1.0
-   },
-   "likely_return": "J12",
-   "likely_return_p": 0.75
+   "likely_return_p": 0.61
   },
   "429": {
    "name": "Rashford",
@@ -2399,14 +2355,14 @@
     "researched": "2026-11-08"
    },
    "prob": {
-    "J12": 0.26,
-    "J13": 0.53,
-    "J14": 0.64,
-    "J15": 0.84,
-    "J16": 0.91,
-    "J17": 0.95
+    "J12": 0.02,
+    "J13": 0.37,
+    "J14": 0.53,
+    "J15": 0.78,
+    "J16": 0.88,
+    "J17": 0.93
    },
-   "likely_return": "J13",
+   "likely_return": "J14",
    "likely_return_p": 0.53
   },
   "433": {
@@ -2423,18 +2379,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 62.2,
-    "max": 186.6,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 63.5,
+    "max": 190.4,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.06,
-    "J16": 0.13,
-    "J17": 0.21
+    "J14": 0.0,
+    "J15": 0.04,
+    "J16": 0.1,
+    "J17": 0.17
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2497,18 +2453,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 37.6,
-    "max": 112.9,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 38.9,
+    "max": 116.6,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.01,
-    "J14": 0.05,
-    "J15": 0.15,
-    "J16": 0.28,
-    "J17": 0.41
+    "J13": 0.0,
+    "J14": 0.02,
+    "J15": 0.1,
+    "J16": 0.22,
+    "J17": 0.35
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2563,15 +2519,15 @@
    },
    "web": null,
    "prob": {
-    "J12": 0.19,
-    "J13": 0.32,
-    "J14": 0.43,
-    "J15": 0.57,
-    "J16": 0.67,
-    "J17": 0.75
+    "J12": 0.06,
+    "J13": 0.21,
+    "J14": 0.34,
+    "J15": 0.5,
+    "J16": 0.62,
+    "J17": 0.71
    },
-   "likely_return": "J15",
-   "likely_return_p": 0.57
+   "likely_return": "J16",
+   "likely_return_p": 0.62
   },
   "475": {
    "name": "Savona",
@@ -2587,51 +2543,21 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 62.2,
-    "max": 186.6,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 63.5,
+    "max": 190.4,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.06,
-    "J16": 0.13,
-    "J17": 0.21
+    "J14": 0.0,
+    "J15": 0.03,
+    "J16": 0.1,
+    "J17": 0.17
    },
    "likely_return": null,
    "likely_return_p": null
-  },
-  "482": {
-   "name": "Hudson-Odoi",
-   "team": 18,
-   "status": "i",
-   "chance": 0,
-   "news": "Unspecified injury - Unknown return date",
-   "news_added": "2026-11-19T15:30:05.816247Z",
-   "source": "API oficial da FPL (bootstrap-static, via live.json)",
-   "type": "unknown",
-   "type_pt": "não especificada",
-   "basis": "tipo",
-   "late": false,
-   "model_days": {
-    "min": 4,
-    "typical": 13,
-    "max": 45,
-    "since": "2026-11-19T15:30:05Z"
-   },
-   "web": null,
-   "prob": {
-    "J12": 0.15,
-    "J13": 0.44,
-    "J14": 0.55,
-    "J15": 0.72,
-    "J16": 0.81,
-    "J17": 0.86
-   },
-   "likely_return": "J14",
-   "likely_return_p": 0.55
   },
   "487": {
    "name": "Dominguez",
@@ -2683,15 +2609,15 @@
    },
    "web": null,
    "prob": {
-    "J12": 0.43,
-    "J13": 0.81,
-    "J14": 0.89,
-    "J15": 0.97,
+    "J12": 0.28,
+    "J13": 0.76,
+    "J14": 0.87,
+    "J15": 0.96,
     "J16": 0.98,
     "J17": 0.99
    },
    "likely_return": "J13",
-   "likely_return_p": 0.81
+   "likely_return_p": 0.76
   },
   "403": {
    "name": "Sávio",
@@ -2737,18 +2663,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 62.2,
-    "max": 186.6,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 63.5,
+    "max": 190.4,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.07,
-    "J16": 0.12,
-    "J17": 0.2
+    "J14": 0.0,
+    "J15": 0.04,
+    "J16": 0.09,
+    "J17": 0.16
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2797,18 +2723,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 62.2,
-    "max": 186.6,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 63.5,
+    "max": 190.4,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
     "J13": 0.0,
-    "J14": 0.01,
-    "J15": 0.07,
-    "J16": 0.12,
-    "J17": 0.2
+    "J14": 0.0,
+    "J15": 0.04,
+    "J16": 0.09,
+    "J17": 0.16
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2827,18 +2753,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 37.1,
-    "max": 111.2,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 38.3,
+    "max": 115.0,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.02,
-    "J14": 0.05,
-    "J15": 0.2,
-    "J16": 0.29,
-    "J17": 0.41
+    "J13": 0.0,
+    "J14": 0.02,
+    "J15": 0.14,
+    "J16": 0.23,
+    "J17": 0.35
    },
    "likely_return": null,
    "likely_return_p": null
@@ -2857,21 +2783,51 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 30.0,
-    "max": 90.0,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 31.3,
+    "max": 93.8,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.02,
-    "J14": 0.08,
-    "J15": 0.25,
-    "J16": 0.4,
-    "J17": 0.51
+    "J13": 0.0,
+    "J14": 0.03,
+    "J15": 0.18,
+    "J16": 0.33,
+    "J17": 0.45
    },
-   "likely_return": "J17",
-   "likely_return_p": 0.51
+   "likely_return": null,
+   "likely_return_p": null
+  },
+  "535": {
+   "name": "Alderete",
+   "team": 20,
+   "status": "d",
+   "chance": 75,
+   "news": "Unspecified injury - 75% chance of playing",
+   "news_added": "2026-11-27T09:30:06.176281Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "unknown",
+   "type_pt": "não especificada",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 4,
+    "typical": 13,
+    "max": 45,
+    "since": "2026-11-27T09:30:06Z"
+   },
+   "web": null,
+   "prob": {
+    "J12": 0.75,
+    "J13": 0.91,
+    "J14": 0.97,
+    "J15": 0.99,
+    "J16": 1.0,
+    "J17": 1.0
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.75
   },
   "543": {
    "name": "Diarra",
@@ -2893,15 +2849,15 @@
    },
    "web": null,
    "prob": {
-    "J12": 0.22,
-    "J13": 0.36,
-    "J14": 0.49,
-    "J15": 0.65,
-    "J16": 0.75,
-    "J17": 0.81
+    "J12": 0.07,
+    "J13": 0.24,
+    "J14": 0.39,
+    "J15": 0.58,
+    "J16": 0.7,
+    "J17": 0.77
    },
    "likely_return": "J15",
-   "likely_return_p": 0.65
+   "likely_return_p": 0.58
   },
   "544": {
    "name": "Xhaka",
@@ -2937,15 +2893,15 @@
     "researched": "2026-11-08"
    },
    "prob": {
-    "J12": 0.15,
-    "J13": 0.3,
-    "J14": 0.47,
-    "J15": 0.68,
-    "J16": 0.81,
-    "J17": 0.88
+    "J12": 0.06,
+    "J13": 0.23,
+    "J14": 0.41,
+    "J15": 0.65,
+    "J16": 0.79,
+    "J17": 0.87
    },
    "likely_return": "J15",
-   "likely_return_p": 0.68
+   "likely_return_p": 0.65
   },
   "547": {
    "name": "Mundle",
@@ -2961,18 +2917,18 @@
    "late": true,
    "model_days": {
     "min": 3,
-    "typical": 38.2,
-    "max": 114.5,
-    "since": "2026-11-24T21:50:42Z"
+    "typical": 39.4,
+    "max": 118.3,
+    "since": "2026-11-27T10:06:36Z"
    },
    "web": null,
    "prob": {
     "J12": 0.0,
-    "J13": 0.01,
-    "J14": 0.05,
-    "J15": 0.17,
-    "J16": 0.29,
-    "J17": 0.4
+    "J13": 0.0,
+    "J14": 0.01,
+    "J15": 0.11,
+    "J16": 0.24,
+    "J17": 0.34
    },
    "likely_return": null,
    "likely_return_p": null
@@ -3011,15 +2967,45 @@
     "researched": "2026-11-10"
    },
    "prob": {
-    "J12": 0.32,
-    "J13": 0.51,
-    "J14": 0.65,
-    "J15": 0.8,
-    "J16": 0.88,
-    "J17": 0.92
+    "J12": 0.11,
+    "J13": 0.35,
+    "J14": 0.54,
+    "J15": 0.74,
+    "J16": 0.84,
+    "J17": 0.89
    },
-   "likely_return": "J13",
-   "likely_return_p": 0.51
+   "likely_return": "J14",
+   "likely_return_p": 0.54
+  },
+  "612": {
+   "name": "Methalie",
+   "team": 20,
+   "status": "d",
+   "chance": 75,
+   "news": "Illness - 75% chance of playing",
+   "news_added": "2026-11-26T21:00:06.487816Z",
+   "source": "API oficial da FPL (bootstrap-static, via live.json)",
+   "type": "illness",
+   "type_pt": "doença",
+   "basis": "tipo",
+   "late": false,
+   "model_days": {
+    "min": 1,
+    "typical": 3,
+    "max": 7,
+    "since": "2026-11-26T21:00:06Z"
+   },
+   "web": null,
+   "prob": {
+    "J12": 0.75,
+    "J13": 0.91,
+    "J14": 0.97,
+    "J15": 0.99,
+    "J16": 1.0,
+    "J17": 1.0
+   },
+   "likely_return": "J12",
+   "likely_return_p": 0.75
   }
  },
  "durations_basis": "UEFA Elite Club Injury Study (Ekstrand et al., BJSM 2020;54:421-6, tabela 1): min = percentil 10, typ = mediana, max = percentil 90, em dias. Lesões que a FPL dá como \"lesionado\" tendem a ser das mais longas; o modelo condiciona ao tempo já passado."

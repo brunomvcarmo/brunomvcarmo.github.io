@@ -1460,7 +1460,7 @@
    "measured": "2026-11-24T16:07:22Z"
   },
   "12": {
-   "saved": "2026-11-24T21:50:51Z",
+   "saved": "2026-11-27T10:06:49Z",
    "deadline": "2026-11-27T18:30:00Z",
    "src": "guardado antes do deadline",
    "rows": [
@@ -1595,6 +1595,19 @@
      "na J12 joga no campo do Nott'm Forest, um jogo fácil, e a app sobe muito o valor por causa do adversário"
     ],
     [
+     492,
+     "Taiwo Awoniyi",
+     "fwd",
+     "COV",
+     0.1,
+     0.1,
+     2.8,
+     4,
+     "minutos",
+     0,
+     "a app só conta com ≈3% de o ver jogar (lesão, dúvida, castigo ou previsão de regresso); os sites contam mais com ele"
+    ],
+    [
      198,
      "Dean Henderson",
      "gk",
@@ -1671,6 +1684,19 @@
      "forma",
      10,
      "está em forma (2, 13 e 14 pontos nas últimas 3 jornadas) e a app dá peso à forma recente; os sites olham mais para a época toda"
+    ],
+    [
+     367,
+     "Cody Gakpo",
+     "mid",
+     "LIV",
+     0.0,
+     0.0,
+     2.7,
+     4,
+     "minutos",
+     0,
+     "a app só conta com ≈0% de o ver jogar (lesão, dúvida, castigo ou previsão de regresso); os sites contam mais com ele"
     ],
     [
      379,

@@ -11,15 +11,15 @@
     "DEF — Murillo Costa dos Santos — titular provável",
     "DEF — Jair Paula da Cunha Filho — titular provável",
     "MID — Neco Williams — titular provável",
-    "MID — Xaver Schlager — titular provável",
     "MID — James McAtee — titular provável",
+    "MID — Xaver Schlager — titular provável",
     "MID — Daniel Muñoz Mejía — titular provável",
     "MID — Morgan Gibbs-White — titular provável",
     "MID — Igor Jesus — titular provável",
     "FWD — Liam Delap — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Callum Hudson-Odoi (dúvida); Nicolò Savona (dúvida); Nicolás Domínguez (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: Callum Hudson-Odoi (dúvida); Nicolás Domínguez (fora); Nicolò Savona (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   },
   "away": {
@@ -30,7 +30,7 @@
     "DEF — Wesley Fofana — titular provável",
     "DEF — Levi Samuels Colwill — titular provável",
     "DEF — Josh Acheampong — titular provável",
-    "MID — Jordan Henderson — titular provável",
+    "MID — Moisés Caicedo Corozo — DÚVIDA: o RotoWire marca-o como dúvida",
     "MID — Roméo Lavia — titular provável",
     "MID — Morgan Rogers — titular provável",
     "MID — Cole Palmer — titular provável",
@@ -38,7 +38,7 @@
     "FWD — Emmanuel Emegha — titular provável"
    ],
    "bench": "Lesões e dúvidas: Moisés Caicedo Corozo (dúvida); Jamie Bynoe-Gittens (dúvida); Jorrel Hato (fora); Reece James (fora); Joao Pedro (fora); Maxence Lacroix (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   }
  },
@@ -47,22 +47,22 @@
   "h": 16,
   "a": 4,
   "home": {
-   "formation": "4-2-3-1",
+   "formation": "3-4-2-1",
    "xi": [
     "GK — Senne Lammens — titular provável",
-    "DEF — Patrick Dorgu — titular provável",
+    "DEF — Leny Yoro — titular provável",
     "DEF — Harry Maguire — titular provável",
     "DEF — Lisandro Martínez — titular provável",
-    "DEF — Diogo Dalot Teixeira — titular provável",
-    "MID — Youri Tielemans — titular provável",
+    "MID — Patrick Dorgu — titular provável",
     "MID — Kobbie Mainoo — titular provável",
+    "MID — Youri Tielemans — titular provável",
+    "MID — Diogo Dalot Teixeira — titular provável",
     "MID — Bryan Mbeumo — titular provável",
     "MID — Bruno Fernandes — titular provável",
-    "MID — Amad Diallo — titular provável",
     "FWD — Matheus Santos Carneiro da Cunha — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Karl Darlow (dúvida); Luke Shaw (dúvida); Carlos Baleba (fora); Marcus Rashford (fora); Benjamin Sesko (fora); Manuel Ugarte Ribeiro (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: Carlos Baleba (fora); Marcus Rashford (fora); Benjamin Sesko (fora); Manuel Ugarte Ribeiro (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   },
   "away": {
@@ -70,18 +70,18 @@
    "xi": [
     "GK — Caoimhín Kelleher — titular provável",
     "DEF — Keane Lewis-Potter — titular provável",
-    "DEF — Sepp van den Berg — titular provável",
     "DEF — Kristoffer Ajer — titular provável",
+    "DEF — Sepp van den Berg — titular provável",
     "DEF — Michael Kayode — titular provável",
-    "MID — Vitaly Janelt — titular provável",
     "MID — Yehor Yarmoliuk — titular provável",
+    "MID — Vitaly Janelt — titular provável",
     "MID — Jaidon Anthony — titular provável",
     "MID — Mikkel Damsgaard — titular provável",
     "MID — Dango Ouattara — titular provável",
     "FWD — Callum Wilson — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Josh Dasilva (dúvida); Rico Henry (dúvida); Antoni Milambo (dúvida); Igor Thiago Nascimento Rodrigues (castigado); Nathan Collins (fora); Kaye Furo (fora); Aaron Hickey (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: Igor Thiago Nascimento Rodrigues (castigado); Nathan Collins (fora); Josh Dasilva (fora); Kaye Furo (fora); Rico Henry (fora); Aaron Hickey (fora); Antoni Milambo (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   }
  },
@@ -97,34 +97,34 @@
     "DEF — James Justin — titular provável",
     "DEF — Nico Elvedi — titular provável",
     "MID — Gabriel Gudmundsson — titular provável",
-    "MID — Ethan Ampadu — titular provável",
     "MID — Tanaka Ao — titular provável",
+    "MID — Ethan Ampadu — titular provável",
     "MID — Jayden Bogle — titular provável",
-    "MID — Noah Okafor — titular provável",
     "MID — Sean Longstaff — titular provável",
+    "MID — Noah Okafor — titular provável",
     "FWD — Dominic Calvert-Lewin — titular provável"
    ],
    "bench": "Lesões e dúvidas: Mateo Joseph Fernández-Regatillo (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   },
   "away": {
-   "formation": "4-2-3-1",
+   "formation": "3-4-2-1",
    "xi": [
     "GK — Carl Rushworth — titular provável",
-    "DEF — Stephen Mfuni — titular provável",
     "DEF — Ethan Pinnock — titular provável",
     "DEF — Bobby Thomas — titular provável",
-    "DEF — Milan van Ewijk — titular provável",
+    "DEF — Stephen Mfuni — titular provável",
+    "MID — Jay Dasilva — titular provável",
     "MID — Victor Torp — titular provável",
     "MID — Caleb Yirenkyi — DÚVIDA: dúvida 75% na FPL: Unspecified injury - 75% chance of playing",
-    "MID — Yann Gboho — titular provável",
+    "MID — Milan van Ewijk — titular provável",
     "MID — Jack Rudoni — titular provável",
     "MID — Tatsuhiro Sakamoto — titular provável",
     "FWD — Sidiki Cherif — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Taiwo Awoniyi (dúvida); Ephron Mason-Clark (dúvida); Caleb Yirenkyi (dúvida); Aurèle Amenda (fora); Josh Eccles (fora); Luke Woolfenden (fora); Haji Wright (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: Ephron Mason-Clark (dúvida); Caleb Yirenkyi (dúvida); Aurèle Amenda (fora); Taiwo Awoniyi (fora); Josh Eccles (fora); Luke Woolfenden (fora); Haji Wright (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   }
  },
@@ -148,7 +148,7 @@
     "FWD — Zian Flemming — titular provável"
    ],
    "bench": "Lesões e dúvidas: Leif Davis (dúvida)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   },
   "away": {
@@ -159,15 +159,15 @@
     "DEF — Pau Torres — titular provável",
     "DEF — Victor Lindelöf — titular provável",
     "DEF — Matty Cash — DÚVIDA: dúvida 75% na FPL: Concussion - 75% chance of playing",
-    "MID — Leon Goretzka — titular provável",
     "MID — Boubacar Kamara — titular provável",
+    "MID — Leon Goretzka — titular provável",
     "MID — Johan Manzambi — titular provável",
     "MID — John McGinn — titular provável",
-    "MID — Alysson Edward Franco da Rocha dos Santos — titular provável",
+    "MID — Ibrahim Mbaye — titular provável",
     "FWD — Nicolas Jackson — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Matty Cash (fora); Amadou Onana (fora); Matteo Ruggeri (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: Matty Cash (dúvida); Amadou Onana (fora); Matteo Ruggeri (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   }
  },
@@ -183,15 +183,15 @@
     "DEF — Jarrad Branthwaite — titular provável",
     "DEF — Michael Keane — titular provável",
     "DEF — Jake O'Brien — titular provável",
-    "MID — James Garner — titular provável",
     "MID — Harrison Armstrong — titular provável",
+    "MID — James Garner — titular provável",
     "MID — Jack Grealish — titular provável",
     "MID — Kiernan Dewsbury-Hall — titular provável",
     "MID — Merlin Röhl — titular provável",
     "FWD — Thierno Barry — titular provável"
    ],
    "bench": "Lesões e dúvidas: James Tarkowski (castigado)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   },
   "away": {
@@ -199,8 +199,8 @@
    "xi": [
     "GK — Alisson Becker — titular provável",
     "DEF — Milos Kerkez — titular provável",
-    "DEF — Jeremy Jacquet — titular provável",
     "DEF — Virgil van Dijk — titular provável",
+    "DEF — Jeremy Jacquet — titular provável",
     "DEF — Ronald Araujo — titular provável",
     "MID — Alexis Mac Allister — titular provável",
     "MID — Dominik Szoboszlai — titular provável",
@@ -209,8 +209,8 @@
     "MID — Bradley Barcola — titular provável",
     "FWD — Alexander Isak — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Conor Bradley (fora); Hugo Ekitiké (fora); Cody Gakpo (fora); Ryan Gravenberch (fora); Giovanni Leoni (fora); Amara Nallo (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: Ryan Gravenberch (dúvida); Victor Munoz (dúvida); Conor Bradley (fora); Hugo Ekitiké (fora); Cody Gakpo (fora); Giovanni Leoni (fora); Amara Nallo (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   }
  },
@@ -226,15 +226,15 @@
     "DEF — Nordi Mukiele — titular provável",
     "DEF — Luke O'Nien — titular provável",
     "DEF — Thomas Meunier — titular provável",
-    "MID — Noah Sadiki — titular provável",
     "MID — Jules Ahoka — titular provável",
+    "MID — Noah Sadiki — titular provável",
     "MID — Chemsdine Talbi — titular provável",
     "MID — Enzo Le Fée — titular provável",
     "MID — Trai Hume — titular provável",
     "FWD — Wilson Isidor — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Daniel Ballard (fora); Brian Brobbey (fora); Kevin Danso (fora); Habib Diarra (fora); Romaine Mundle (fora); Granit Xhaka (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: O. Alderete Fernandez (dúvida); Dayann Méthalie (dúvida); Daniel Ballard (fora); Brian Brobbey (fora); Kevin Danso (fora); Habib Diarra (fora); Romaine Mundle (fora); Granit Xhaka (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   },
   "away": {
@@ -242,8 +242,8 @@
    "xi": [
     "GK — Antonín Kinský — titular provável",
     "DEF — Destiny Udogie — titular provável",
-    "DEF — Jan Paul van Hecke — titular provável",
     "DEF — Marcos Senesi Barón — titular provável",
+    "DEF — Jan Paul van Hecke — titular provável",
     "DEF — Pedro Porro — titular provável",
     "MID — Sandro Tonali — titular provável",
     "MID — Mateus Fernandes — titular provável",
@@ -253,7 +253,7 @@
     "FWD — Dominic Solanke-Mitchell — titular provável"
    ],
    "bench": "Lesões e dúvidas: Tosin Adarabioyo (dúvida); Mykhailo Mudryk (dúvida); Sávio Moreira de Oliveira (fora); Wilson Odobert (fora); Xavi Simons (fora); Mathys Tel (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   }
  },
@@ -277,7 +277,7 @@
     "FWD — Rodrigo Muniz Carvalho — titular provável"
    ],
    "bench": "Lesões e dúvidas: Emile Smith Rowe (dúvida); Benjamin Lecomte (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   },
   "away": {
@@ -295,8 +295,8 @@
     "MID — Rayan Vitor Simplício Rocha — titular provável",
     "FWD — Francisco Evanilson de Lima Barbosa — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Julián Araujo Zúñiga (fora); Juanlu Sánchez (fora); Alex Tóth (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: Junior Kroupi (dúvida); Julián Araujo Zúñiga (fora); Juanlu Sánchez (fora); Alex Tóth (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   }
  },
@@ -319,8 +319,8 @@
     "MID — Dwight McNeil — titular provável",
     "FWD — Jørgen Strand Larsen — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Oscar Mingueza (dúvida); Takehiro Tomiyasu (dúvida); Jean-Philippe Mateta (castigado); Yéremy Pino Santos (castigado); Chadi Riad Dnanou (fora); Ismaïla Sarr (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: Takehiro Tomiyasu (dúvida); Jean-Philippe Mateta (castigado); Yéremy Pino Santos (castigado); Chadi Riad Dnanou (fora); Ismaïla Sarr (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   },
   "away": {
@@ -338,8 +338,8 @@
     "MID — Mohamed Belloumi — titular provável",
     "FWD — Oli McBurnie — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Tim Iroegbunam (dúvida); Ilyas Ansah (fora); Joe Gelhardt (fora); Charlie Hughes (fora); Eliot Matazo (fora); Hidemasa Morita (fora); Matt Targett (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: Ilyas Ansah (fora); Joe Gelhardt (fora); Charlie Hughes (fora); Tim Iroegbunam (fora); Eliot Matazo (fora); Hidemasa Morita (fora); Matt Targett (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   }
  },
@@ -351,7 +351,7 @@
    "formation": "4-2-3-1",
    "xi": [
     "GK — Bart Verbruggen — titular provável",
-    "DEF — Olivier Boscagli — titular provável",
+    "DEF — Olivier Boscagli — DÚVIDA: dúvida 75% na FPL: Illness - 75% chance of playing",
     "DEF — Lewis Dunk — titular provável",
     "DEF — Luka Vušković — titular provável",
     "DEF — Ferdi Kadıoğlu — titular provável",
@@ -362,8 +362,8 @@
     "MID — Diego Gómez Amarilla — titular provável",
     "FWD — Georginio Rutter — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Femi Azeez (dúvida); Jaouen Hadjam (dúvida); Pascal Struijk (dúvida); João Pedro Loureiro da Costa (castigado); Evan Ferguson (fora); Mitoma Kaoru (fora); Stefanos Tzimas (fora); Malick Yalcouyé (fora); Zadok Yohanna (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: Olivier Boscagli (dúvida); Jaouen Hadjam (dúvida); Matt O'Riley (dúvida); Stefanos Tzimas (dúvida); João Pedro Loureiro da Costa (castigado); Evan Ferguson (fora); Mitoma Kaoru (fora); Malick Yalcouyé (fora); Zadok Yohanna (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   },
   "away": {
@@ -371,8 +371,8 @@
    "xi": [
     "GK — Lukás Hornícek — titular provável",
     "DEF — Lewis Hall — DÚVIDA: dúvida 75% na FPL: Unspecified injury - 75% chance of playing",
-    "DEF — Malick Thiaw — titular provável",
     "DEF — Dan Burn — titular provável",
+    "DEF — Malick Thiaw — titular provável",
     "DEF — Tino Livramento — titular provável",
     "MID — Lewis Miley — titular provável",
     "MID — Jacob Ramsey — titular provável",
@@ -382,7 +382,7 @@
     "FWD — William Osula — titular provável"
    ],
    "bench": "Lesões e dúvidas: Lewis Hall (dúvida); Joelinton Cássio Apolinário de Lira (fora); Ewen Jaouen (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   }
  },
@@ -393,7 +393,7 @@
   "home": {
    "formation": "4-2-3-1",
    "xi": [
-    "GK — David Raya — DÚVIDA: dúvida 50% na FPL: Shoulder injury - 50% chance of playing",
+    "GK — Kepa Arrizabalaga Revuelta — titular provável",
     "DEF — Riccardo Calafiori — titular provável",
     "DEF — Gabriel dos Santos Magalhães — titular provável",
     "DEF — Ezri Konsa Ngoyo — titular provável",
@@ -405,27 +405,27 @@
     "MID — Noni Madueke — titular provável",
     "FWD — Kai Havertz — titular provável"
    ],
-   "bench": "Lesões e dúvidas: David Raya (fora); Bukayo Saka (fora); Martín Zubimendi Ibáñez (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: David Raya (dúvida); Bukayo Saka (fora); Martín Zubimendi Ibáñez (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   },
   "away": {
    "formation": "4-2-3-1",
    "xi": [
     "GK — Gianluigi Donnarumma — titular provável",
-    "DEF — Nico O'Reilly — titular provável",
+    "DEF — Joško Gvardiol — titular provável",
     "DEF — Marc Guéhi — titular provável",
     "DEF — Rúben dos Santos Gato Alves Dias — titular provável",
     "DEF — Abdukodir Khusanov — titular provável",
     "MID — Ayyoub Bouaddi — titular provável",
     "MID — Elliot Anderson — titular provável",
     "MID — Jérémy Doku — titular provável",
-    "MID — Enzo Fernández — titular provável",
+    "MID — Phil Foden — titular provável",
     "MID — Iliman Ndiaye — titular provável",
     "FWD — Erling Haaland — titular provável"
    ],
-   "bench": "Lesões e dúvidas: Matheus Nunes (dúvida); Antoine Semenyo (fora)",
-   "confidence": "Previsão do RotoWire lida a 24/11 16:07, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
+   "bench": "Lesões e dúvidas: Antoine Semenyo (fora)",
+   "confidence": "Previsão do RotoWire lida a 27/11 10:02, cruzada com o estado oficial da FPL. Uma só fonte de onzes: confirmar antes do deadline.",
    "sources": "RotoWire (rotowire.com/soccer/lineups.php); estado e notícias oficiais da API da FPL"
   }
  }
