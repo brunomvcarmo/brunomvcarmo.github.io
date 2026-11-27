@@ -6,7 +6,8 @@ SHOTS = str(_P(__file__).resolve().parents[1] / 'shots')
 _P(SHOTS).mkdir(parents=True, exist_ok=True)   # num clone novo a pasta ainda não existe
 os.makedirs(SHOTS, exist_ok=True)
 CHECK = '''() => {
-  const vis = el => !!(el && el.offsetParent !== null);
+  // V64: o que está dentro de uma parte fechada (<details>) não está à vista, mesmo com offsetParent
+  const vis = el => !!(el && el.offsetParent !== null && !el.closest('details:not([open])'));
   const v = [...document.querySelectorAll('.view')].filter(x => !x.hidden);
   const subs = v.length ? [...v[0].querySelectorAll(':scope > .subview')].filter(x => !x.hidden) : [];
   // empty visible containers that JS should have filled
@@ -51,7 +52,7 @@ async def main():
             for mgr in ['bruno','marco']:
                 await pg.click(f'.mswitch-btn[data-manager="{mgr}"]'); await pg.wait_for_timeout(150)
                 # só as áreas e separadores visíveis no modo (no simples o resto está escondido)
-                views = await pg.eval_on_selector_all('.nav-item[data-view]','els=>els.filter(e=>!e.hidden).map(e=>e.dataset.view)')
+                views = await pg.eval_on_selector_all('.nav-item[data-view]','els=>els.filter(e=>!e.hidden && !e.classList.contains("adv")).map(e=>e.dataset.view)')   # V64: as Regras e fontes saíram do menu
                 for v in views:
                     await goto_view(pg, v); await pg.wait_for_timeout(80)
                     subs = await pg.eval_on_selector_all(f'.view[data-view="{v}"] > .subtabs .subtab','els=>els.filter(e=>!e.hidden).map(e=>e.dataset.sub)')
@@ -68,7 +69,7 @@ async def main():
             extra = []
             if mode == 'completo':
                 # onzes picker
-                await goto_view(pg, 'jogos'); await pg.click('.view[data-view="jogos"] > .subtabs .subtab[data-sub="onzes"]'); await pg.click('.match-btn[data-match="4"]'); await pg.wait_for_timeout(100)
+                await pg.evaluate("showView('jogos','onzes')"); await pg.wait_for_timeout(150); await pg.click('.match-btn[data-match="4"]'); await pg.wait_for_timeout(100)
                 extra.append('onze: ' + await pg.evaluate("document.querySelector('#onze-detail h2').innerText"))
                 # atalhos: guardar o Capitão; aparece no Resumo; o Marco não o vê
                 await pg.click('.mswitch-btn[data-manager="bruno"]'); await pg.wait_for_timeout(200)
@@ -76,11 +77,11 @@ async def main():
                 await pg.click('.view[data-view="semana"] > .fav-sub'); await pg.wait_for_timeout(100)
                 await pg.evaluate("showView('semana','resumo')"); await pg.wait_for_timeout(150)
                 fav = await pg.evaluate("document.getElementById('fav-card').innerText")
-                if 'Capitão' not in fav: errs.append('FAV não aparece: ' + fav[:80])
+                if 'capitão' not in fav.lower(): errs.append('FAV não aparece: ' + fav[:80])   # V64: o Capitão está em «Onze e capitão»
                 if 'Usaste recentemente' not in fav: errs.append('RECENTES não aparecem')
                 await pg.click('.mswitch-btn[data-manager="marco"]'); await pg.wait_for_timeout(200)
                 favm = await pg.evaluate("document.querySelector('#fav-card .fav-chips').innerText")
-                if 'Capitão' in favm: errs.append('FAV não está separado por gestor')
+                if 'capitão' in favm.lower(): errs.append('FAV não está separado por gestor')
                 await pg.click('.mswitch-btn[data-manager="bruno"]'); await pg.wait_for_timeout(200)
                 if w < 960 and not await pg.is_visible('#mfav .fav-chip'): errs.append('FAV sem etiqueta no telemóvel')
                 # ligações entre ferramentas
@@ -108,6 +109,8 @@ async def main():
                 # deep link e endereços antigos
                 await pg.goto(URL + '#liga-capitaes'); await pg.wait_for_timeout(500)
                 extra.append('deep: ' + await pg.evaluate("document.getElementById('crumbs').innerText"))
+                await pg.click('.page-foot [data-goto="avancado"]'); await pg.wait_for_timeout(300)
+                if 'Regras e fontes' not in await pg.evaluate("document.getElementById('crumbs').innerText"): errs.append('RODAPÉ não abre as Regras e fontes')
                 for t in OLD:
                     await pg.goto(URL + '#' + t); await pg.wait_for_timeout(250)
                     c = await pg.evaluate("document.getElementById('crumbs').innerText")

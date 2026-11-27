@@ -1670,6 +1670,30 @@
   .lab-guide { flex: none; white-space: nowrap; }
   .tut-lab { display: inline-flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; }
   .tut-lab .btn { min-height: 32px; }
+
+  /* ===================== V64: arrumação — partes dentro de um separador ===================== */
+  .parts-nav { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .parts-nav .note { margin-right: 2px; }
+  .parts-go { font: inherit; font-size: 12.5px; font-weight: 600; border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+  .parts-go:hover { border-color: var(--accent-mid); color: var(--accent-strong); }
+  .part { display: grid; gap: 16px; min-width: 0; scroll-margin-top: 12px; }
+  .part > .subview { min-width: 0; }
+  details.part { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+  details.part > summary { list-style: none; cursor: pointer; padding: 14px 18px; display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; align-items: center; border-radius: var(--radius); }
+  details.part > summary::-webkit-details-marker { display: none; }
+  details.part > summary:hover { background: var(--surface-2); }
+  details.part > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .part-t { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--ink); }
+  .part-d { grid-column: 1; font-size: 13px; color: var(--muted); }
+  .part-i { grid-column: 2; grid-row: 1 / span 2; font-size: 12.5px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+  .part-i::after { content: " ▾"; }
+  details.part:not([open]) { gap: 0; }
+  details.part[open] { background: transparent; border-color: transparent; box-shadow: none; }
+  details.part[open] > summary { padding: 8px 2px 0; }
+  details.part[open] > summary:hover { background: transparent; }
+  details.part[open] .part-i::after { content: " ▴"; }
+  .v64-off { display: none !important; }
+  .nav-adv, .nav-item.adv { display: none !important; }
 </style>
 </head>
 <body>
@@ -2688,7 +2712,7 @@
     </section>
 
 
-    <div class="page-foot"><button type="button" class="linklike adv-link" data-goto="avancado">Avançado (simulador, tabelas, regras)</button> · Painel FPL · Brunorussia FC e Xarola Team · dados até à J<span class="gw-l">6</span><span class="gw-prov"> (provisória)</span>, recolhidos a <span class="gw-date">13 out 2026</span>.</div>
+    <div class="page-foot"><button type="button" class="linklike adv-link" data-goto="avancado">Regras e fontes</button> · Painel FPL · Brunorussia FC e Xarola Team · dados até à J<span class="gw-l">6</span><span class="gw-prov"> (provisória)</span>, recolhidos a <span class="gw-date">13 out 2026</span>.</div>
   </main>
 </div>
 
@@ -3407,6 +3431,132 @@ const DISAGREE = {"gws":[12,13,14,15,16],"next":12,"gen":"2026-11-24T21:50:51Z",
   const APP_AREAS = [{"v": "semana", "n": "Esta semana", "d": "O que fazer antes do deadline: o resumo, o onze e o banco, o capitão, as transferências e as chips.", "subs": ["Resumo", "Notícias", "Onze e banco", "Capitão", "Transferências", "Registar o que fiz", "Chips"]}, {"v": "jogos", "n": "Jogos", "d": "Os jogos da jornada, os onzes prováveis, os pontos ao vivo e quem jogou a meio da semana.", "subs": ["Jogos da jornada", "Onzes prováveis", "Ao vivo", "Europa e descanso"]}, {"v": "competicao", "n": "Rivais", "d": "A liga clássica e o H2H: classificação, previsões, adversários e o que os rivais devem fazer.", "subs": ["Classificação", "Previsão da classificação", "H2H", "Comparar equipas", "Vigiar rivais", "Equipa para ganhar a…", "Orçamentos e chips"]}, {"v": "mercado", "n": "Jogadores", "d": "Procurar, comparar e escolher jogadores.", "subs": ["Pesquisa", "Comparador", "Equipa ideal", "Equipa simulada", "Laboratório", "Em forma", "Preços e alternativas", "Lesões e castigos", "Onde a app discorda"]}, {"v": "epoca", "n": "A minha época", "d": "Como tem corrido a tua época: pontos, ranking, jornada a jornada, previsões e orçamento.", "subs": ["Evolução e ranking", "Por jornada", "Jogador a jogador", "Previsões vs real", "Orçamento do plantel"]}, {"v": "avancado", "n": "Avançado", "d": "Simulador, tabelas e referência. Tudo continua a funcionar como antes.", "subs": ["Simulador", "Hot takes", "Picks em falta", "Capitães da liga", "Plantel vs liga", "Tabelas das equipas", "Regras e fontes", "Calibração"]}];
   const APP_INDEX = [{"v": "semana", "s": "resumo", "a": "Esta semana", "n": "Resumo", "syn": ["resumo", "avisos", "alertas", "o que fazer", "início", "inicio", "números", "gráficos"]}, {"v": "semana", "s": "noticias", "a": "Esta semana", "n": "Notícias", "syn": ["notícias", "noticias", "novidades", "treinador", "treinadores", "conferência de imprensa", "imprensa", "seleções", "selecções", "o que disse", "updates", "lesões da semana"]}, {"v": "semana", "s": "onze", "a": "Esta semana", "n": "Onze e banco", "syn": ["onze", "banco", "campo", "titulares", "formação", "pontos esperados", "jogador a jogador", "próximas 5", "substituições"]}, {"v": "semana", "s": "capitao", "a": "Esta semana", "n": "Capitão", "syn": ["capitão", "braçadeira", "vice", "capitão h2h", "estratégia", "diferenciais", "triple captain"]}, {"v": "semana", "s": "transferencias", "a": "Esta semana", "n": "Transferências", "syn": ["transferências", "trocas", "compras", "vendas", "planeador", "plano automático", "plano manual", "hits", "sugestão"]}, {"v": "semana", "s": "registo", "a": "Esta semana", "n": "Registar o que fiz", "syn": ["registar", "registo", "o que fiz", "confirmar troca"]}, {"v": "semana", "s": "chips", "a": "Esta semana", "n": "Chips", "syn": ["chips", "wildcard", "free hit", "bench boost", "triple captain", "plano de chips"]}, {"v": "semana", "s": "chips", "a": "Esta semana", "n": "Duplas e brancas (J20-J38)", "h": "dgw-card", "syn": ["dupla", "duplas", "branca", "brancas", "dgw", "bgw", "jornada dupla", "jornada branca", "double gameweek", "blank gameweek", "chips segunda metade", "chips 2.ª metade", "segunda metade", "jogos adiados", "adiado", "taças"]}, {"v": "jogos", "s": "jornada", "a": "Jogos", "n": "Jogos da jornada", "syn": ["jogos", "calendário", "fixtures", "odds", "casas de apostas", "dificuldade"]}, {"v": "jogos", "s": "onzes", "a": "Jogos", "n": "Onzes prováveis", "syn": ["onzes prováveis", "titulares prováveis", "lesões", "escalações", "line-ups"]}, {"v": "jogos", "s": "aovivo", "a": "Jogos", "n": "Ao vivo", "syn": ["ao vivo", "direto", "live", "pontos ao vivo", "tempo real"]}, {"v": "jogos", "s": "europa", "a": "Jogos", "n": "Europa e descanso", "syn": ["europa", "liga dos campeões", "champions", "descanso", "taça da liga", "rotação"]}, {"v": "competicao", "s": "classificacao", "a": "Rivais", "n": "Classificação", "syn": ["classificação", "liga", "tabela", "mini-liga", "liga clássica"]}, {"v": "competicao", "s": "previsao", "a": "Rivais", "n": "Previsão da classificação", "syn": ["previsão da classificação", "previsão", "quem ganha a liga", "top 3", "simulação da liga"]}, {"v": "competicao", "s": "h2h", "a": "Rivais", "n": "H2H", "syn": ["h2h", "confronto", "adversário", "head to head", "resultados"]}, {"v": "competicao", "s": "comparar", "a": "Rivais", "n": "Comparar equipas", "syn": ["comparar equipas", "lado a lado", "comparar gestores"]}, {"v": "competicao", "s": "vigiar", "a": "Rivais", "n": "Vigiar rivais", "syn": ["vigiar rivais", "rivais", "previsão dos rivais", "o que os rivais vão fazer"]}, {"v": "competicao", "s": "ganhar", "a": "Rivais", "n": "Equipa para ganhar a…", "syn": ["equipa para ganhar", "ganhar a", "probabilidade de ganhar", "bater rivais"]}, {"v": "competicao", "s": "orcamentos", "a": "Rivais", "n": "Orçamentos e chips", "syn": ["orçamentos", "budget", "dinheiro", "valor da equipa", "chips da liga"]}, {"v": "mercado", "s": "pesquisa", "a": "Jogadores", "n": "Pesquisa", "syn": ["pesquisa", "procurar jogador", "jogadores", "filtros"]}, {"v": "mercado", "s": "comparador", "a": "Jogadores", "n": "Comparador", "syn": ["comparador", "comparar jogadores"]}, {"v": "mercado", "s": "ideal", "a": "Jogadores", "n": "Equipa ideal", "syn": ["equipa ideal", "equipa perfeita", "melhor equipa", "otimizador", "dream team"]}, {"v": "mercado", "s": "simulada", "a": "Jogadores", "n": "Equipa simulada", "syn": ["equipa simulada", "simular equipa", "montar equipa"]}, {"v": "mercado", "s": "lab", "a": "Jogadores", "n": "Laboratório", "syn": ["laboratório", "laboratorio", "lab", "experiência", "experiencia", "experiências", "experiencias", "testar equipa", "testar equipas", "testar", "experimentar", "e se", "fantasma", "equipa fantasma", "comandos", "exportar", "importar", "guardar como experiência"]}, {"v": "mercado", "s": "lab", "a": "Jogadores", "n": "Equipas fantasma", "h": "lab-ghost", "syn": ["fantasmas", "equipas fantasma", "seguir equipa", "pontos reais", "acumulado"]}, {"v": "mercado", "s": "forma", "a": "Jogadores", "n": "Em forma", "syn": ["em forma", "forma", "quentes"]}, {"v": "mercado", "s": "precos", "a": "Jogadores", "n": "Preços e alternativas", "syn": ["preços", "subidas", "descidas", "alternativas", "substitutos"]}, {"v": "mercado", "s": "lesoes", "a": "Jogadores", "n": "Lesões e castigos", "syn": ["lesão", "lesões", "lesionados", "regresso", "quando volta", "data de regresso", "amarelos", "cartões", "cartão amarelo", "vermelho", "castigo", "castigos", "suspensão", "suspensos", "disponibilidade"]}, {"v": "mercado", "s": "discorda", "a": "Jogadores", "n": "Onde a app discorda", "syn": ["discorda", "discordância", "discordâncias", "consenso", "subestimado", "subestimados", "sobrestimado", "sobrestimados", "diferencial", "diferenciais", "super diferencial", "app vs sites", "app vs fpl", "quem tem razão", "vantagem"]}, {"v": "epoca", "s": "evolucao", "a": "A minha época", "n": "Evolução e ranking", "syn": ["evolução", "ranking", "ranking geral", "gráfico de pontos"]}, {"v": "epoca", "s": "jornada", "a": "A minha época", "n": "Por jornada", "syn": ["por jornada", "jornadas anteriores", "histórico"]}, {"v": "epoca", "s": "detalhe", "a": "A minha época", "n": "Jogador a jogador", "syn": ["jogador a jogador", "onze ótimo", "pontos perdidos no banco"]}, {"v": "epoca", "s": "previsoes", "a": "A minha época", "n": "Previsões vs real", "syn": ["previsões vs real", "medir o modelo", "erro do modelo", "acerto"]}, {"v": "epoca", "s": "orcamento", "a": "A minha época", "n": "Orçamento do plantel", "syn": ["orçamento do plantel", "budget", "dinheiro", "valor do plantel", "banco"]}, {"v": "avancado", "s": "simulador", "a": "Avançado", "n": "Simulador", "syn": ["simulador", "testar trocas", "simular transferências"]}, {"v": "avancado", "s": "hot", "a": "Avançado", "n": "Hot takes", "syn": ["hot takes", "diferenciadores", "podem surpreender"]}, {"v": "avancado", "s": "lacunas", "a": "Avançado", "n": "Picks em falta", "syn": ["picks em falta", "lacunas", "template"]}, {"v": "avancado", "s": "capitaes", "a": "Avançado", "n": "Capitães da liga", "syn": ["capitães da liga", "capitães"]}, {"v": "avancado", "s": "posse", "a": "Avançado", "n": "Plantel vs liga", "syn": ["plantel vs liga", "posse", "ownership", "eo"]}, {"v": "avancado", "s": "equipas", "a": "Avançado", "n": "Tabelas das equipas", "syn": ["equipas", "saldo de xg", "xg", "forma das equipas", "criadores", "sequência", "perfil do capitão"]}, {"v": "avancado", "s": "regras", "a": "Avançado", "n": "Regras e fontes", "syn": ["regras", "pontuação", "fontes", "como funciona"]}, {"v": "avancado", "s": "calibracao", "a": "Avançado", "n": "Calibração", "syn": ["calibração", "ajustar o modelo"]}];
   const VIEW_ALIAS = {"resumo": ["semana", "resumo"], "campo": ["semana", "onze"], "pontos": ["semana", "onze"], "decisoes": ["semana", "transferencias"], "decisoes-trocas": ["semana", "transferencias"], "decisoes-capitao": ["semana", "capitao"], "decisoes-estrategia": ["semana", "capitao"], "decisoes-simulador": ["avancado", "simulador"], "decisoes-chips": ["semana", "chips"], "decisoes-hot": ["avancado", "hot"], "planeador": ["semana", "transferencias"], "planeador-plano": ["semana", "transferencias"], "planeador-registo": ["semana", "registo"], "calendario": ["jogos", "jornada"], "onzes": ["jogos", "onzes"], "aovivo": ["jogos", "aovivo"], "europa": ["jogos", "europa"], "equipas": ["avancado", "equipas"], "equipas-europa": ["jogos", "europa"], "equipas-europa-eq": ["jogos", "europa"], "historico": ["epoca", "evolucao"], "historico-evolucao": ["epoca", "evolucao"], "historico-jornada": ["epoca", "jornada"], "historico-detalhe": ["epoca", "detalhe"], "historico-previsoes": ["epoca", "previsoes"], "historico-modelo": ["epoca", "previsoes"], "plantel": ["mercado", "forma"], "plantel-forma": ["mercado", "forma"], "plantel-orcamento": ["epoca", "orcamento"], "plantel-precos": ["mercado", "precos"], "plantel-alternativas": ["mercado", "precos"], "liga": ["competicao", "classificacao"], "liga-classificacao": ["competicao", "classificacao"], "liga-posse": ["avancado", "posse"], "liga-lacunas": ["avancado", "lacunas"], "liga-capitaes": ["avancado", "capitaes"], "liga-orcamentos": ["competicao", "orcamentos"], "liga-simulacao": ["mercado", "simulada"], "h2h": ["competicao", "h2h"], "comparar": ["competicao", "comparar"], "previsao": ["competicao", "previsao"], "jogadores": ["mercado", "pesquisa"], "jogadores-pesquisa": ["mercado", "pesquisa"], "jogadores-comparar": ["mercado", "comparador"], "jogadores-ideal": ["mercado", "ideal"], "ideal": ["mercado", "ideal"], "rivais": ["competicao", "vigiar"], "ganhar": ["competicao", "ganhar"], "regras": ["avancado", "regras"], "campo-campo": ["semana", "onze"], "campo-jornada": ["semana", "onze"], "campo-plano": ["semana", "onze"], "calendario-jogos": ["jogos", "jornada"], "calendario-plantel": ["jogos", "jornada"], "h2h-calendario": ["competicao", "h2h"], "h2h-adversario": ["competicao", "h2h"], "equipas-saldo": ["avancado", "equipas"], "equipas-forma": ["avancado", "equipas"], "equipas-criadores": ["avancado", "equipas"], "equipas-sequencia": ["avancado", "equipas"], "equipas-capitao": ["avancado", "equipas"], "comparar-resumo": ["competicao", "comparar"], "comparar-grafico": ["competicao", "comparar"], "comparar-pontos": ["competicao", "comparar"], "comparar-jogadores": ["competicao", "comparar"], "comparar-orcamento": ["competicao", "comparar"], "previsao-tabela": ["competicao", "previsao"], "previsao-frente": ["competicao", "previsao"], "previsao-metodo": ["competicao", "previsao"], "aovivo-equipa": ["jogos", "aovivo"], "aovivo-h2h": ["jogos", "aovivo"], "aovivo-liga": ["jogos", "aovivo"], "regras-pontuacao": ["avancado", "regras"], "regras-fontes": ["avancado", "regras"]};
+
+  // ===== V64 (26 nov 2026): arrumação — 40 separadores em 17, 5 áreas (o Avançado sai do menu) =====
+  // Cada separador antigo é agora uma "parte" (data-part="área/separador antigo") de um separador novo: aberta, ou
+  // fechada num <details> (1 no 3.º campo). Os endereços antigos continuam a funcionar: o showView reencaminha-os
+  // (V64_REMAP), abre a parte e rola até ela; o lazyRender e os passos do tutorial usam as chaves antigas.
+  var V64_TABS = {
+    semana: [['resumo', 'Resumo', [['semana/resumo', 'Resumo']]],
+      ['onze', 'Onze e capitão', [['semana/onze', 'Onze e banco'], ['semana/capitao', 'Capitão']]],
+      ['transferencias', 'Transferências', [['semana/transferencias', 'Transferências'], ['semana/registo', 'Registar o que fiz']]],
+      ['chips', 'Chips', [['semana/chips', 'Chips']]],
+      ['noticias', 'Notícias', [['semana/noticias', 'Notícias']]]],
+    jogos: [['jornada', 'Esta jornada', [['jogos/jornada', 'Jogos da jornada'], ['jogos/onzes', 'Onzes prováveis']]],
+      ['aovivo', 'Ao vivo', [['jogos/aovivo', 'Ao vivo']]],
+      ['calendario', 'Calendário', [['avancado/equipas', 'Calendário e equipas'], ['jogos/europa', 'Europa e descanso', 1, 'Quem jogou a meio da semana e quanto descansa antes de cada jornada']]]],
+    competicao: [['classificacao', 'Classificação', [['competicao/classificacao', 'Classificação'],
+        ['competicao/previsao', 'Previsão da classificação', 1, 'Onde deves acabar daqui a 5 jornadas, com simulações'],
+        ['competicao/orcamentos', 'Orçamentos e chips', 1, 'O orçamento e as chips que cada gestor ainda tem']]],
+      ['adversario', 'Adversário', [['competicao/h2h', 'H2H'],
+        ['competicao/comparar', 'Comparar com qualquer gestor', 1, 'Lado a lado, jogador a jogador, com qualquer gestor da liga'],
+        ['competicao/ganhar', 'Equipa para ganhar a…', 1, 'A equipa com mais hipóteses de ganhar a um rival ou de o apanhar']]],
+      ['liga', 'A liga', [['competicao/vigiar', 'Vigiar rivais'],
+        ['avancado/capitaes', 'Capitães da liga', 1, 'Quem os outros 19 puseram de capitão'],
+        ['avancado/lacunas', 'Picks em falta', 1, 'Jogadores que muitos rivais têm e tu não'],
+        ['avancado/posse', 'O plantel vs. a liga', 1, 'Quantos rivais têm cada jogador do teu plantel']]]],
+    mercado: [['pesquisa', 'Pesquisa', [['mercado/pesquisa', 'Pesquisa'],
+        ['mercado/forma', 'Em forma', 1, 'Quem mais pontuou nas últimas jornadas'],
+        ['mercado/precos', 'Preços e alternativas', 1, 'Quem vai subir ou descer de preço e alternativas mais baratas'],
+        ['mercado/lesoes', 'Lesões e castigos', 1, 'Quem está lesionado ou castigado e quando volta'],
+        ['mercado/discorda', 'Onde a app discorda', 1, 'Onde a app e os sites não estão de acordo, e quem tem tido razão'],
+        ['avancado/hot', 'Diferenciais', 1, 'Jogadores que pouca gente tem e que podem surpreender']]],
+      ['comparador', 'Comparador', [['mercado/comparador', 'Comparador']]],
+      ['lab', 'Laboratório', [['mercado/lab', 'Laboratório'],
+        ['mercado/ideal', 'Equipa ideal', 1, 'Os 15 com mais pontos esperados dentro do orçamento'],
+        ['mercado/simulada', 'Equipa simulada', 1, 'Uma equipa montada de raiz, comparada com a liga'],
+        ['avancado/simulador', 'Simulador de trocas', 1, 'Testa trocas no teu plantel e vê as melhores para as próximas 5']]]],
+    epoca: [['evolucao', 'Evolução', [['epoca/evolucao', 'Evolução e ranking']]],
+      ['jornada', 'Jornada a jornada', [['epoca/jornada', 'Por jornada'], ['epoca/detalhe', 'Jogador a jogador'],
+        ['epoca/orcamento', 'Orçamento do plantel', 1, 'Para onde vai o dinheiro do plantel e quem liberta orçamento']]],
+      ['acerto', 'Acerto da app', [['epoca/previsoes', 'Previsões contra o real'],
+        ['avancado/calibracao', 'Calibração automática', 1, 'Como a app corrige sozinha as previsões']]]],
+    avancado: [['regras', 'Regras e fontes', [['avancado/regras', 'Regras e fontes']]]],
+  };
+  var V64_DESC = {
+    semana: 'O que fazer antes do deadline: o resumo, o onze e o capitão, as transferências, as chips e as notícias.',
+    jogos: 'Os jogos da jornada com os onzes prováveis, os pontos ao vivo e o calendário das próximas jornadas.',
+    competicao: 'A liga clássica e o H2H: a classificação (agora e prevista), o teu adversário e o que a liga anda a fazer.',
+    mercado: 'Procurar, comparar e experimentar jogadores e equipas.',
+    epoca: 'Como tem corrido a tua época: a evolução, jornada a jornada e quanto a app acerta.',
+    avancado: 'Como funcionam os pontos, de onde vem cada número e o histórico de versões da app.'};
+  var V64_REMAP = {};
+  Object.keys(V64_TABS).forEach(v => V64_TABS[v].forEach(([s, n, parts]) => parts.forEach(([key, title, det], i) => { V64_REMAP[key] = {v, s, part: key, i, det: !!det, title: title || n}; })));
+  function v64Key(v, s) { const R = V64_REMAP[v + '/' + (s || '')]; return R ? R.v + '/' + R.s : v + '/' + (s || ''); }
+  function v64Tok(tok) { if (!tok) return tok; const i = tok.indexOf('-'); if (i < 0) return tok; const R = V64_REMAP[tok.slice(0, i) + '/' + tok.slice(i + 1)]; return R ? R.v + '-' + R.s : tok; }
+  function v64PartEl(key) { return document.querySelector(`[data-part="${key}"]`); }
+  function v64PartVisible(key) {
+    const el = v64PartEl(key); if (!el) return null;
+    const view = el.closest('.view'), sv = el.parentElement;
+    return !!(view && !view.hidden && sv && !sv.hidden && (el.tagName !== 'DETAILS' || el.open));
+  }
+  // o que corria quando o separador antigo era aberto (lazyRender e as duas ferramentas pesadas)
+  var V64_HOOK = {'competicao/previsao': () => renderPrevisao(), 'mercado/ideal': () => idealOpen()};
+  function v64PartOpened(key) {
+    const el = v64PartEl(key); if (el) el._v64 = Date.now();
+    const LZ = window.__LAZY && window.__LAZY[key];
+    if (LZ) { delete window.__LAZY[key]; LZ.forEach(f => { try { f(); } catch (e) { console.error(e); } }); }
+    if (V64_HOOK[key]) { try { V64_HOOK[key](); } catch (e) { console.error(e); } }
+  }
+  function v64OpenPart(key, scroll) {
+    const el = v64PartEl(key); if (!el) return;
+    if (el.tagName === 'DETAILS' && !el.open) { el._v64 = Date.now(); el.open = true; }
+    v64PartOpened(key);
+    if (scroll) setTimeout(() => el.scrollIntoView({block: 'start'}), 60);
+  }
+  function v64Arrange() {
+    const OLD = {}, BADGE = {};
+    document.querySelectorAll('.view[data-view] > .subview[data-sub]').forEach(sv => { OLD[sv.closest('.view').dataset.view + '/' + sv.dataset.sub] = sv; });
+    document.querySelectorAll('.view[data-view] > .subtabs .subtab').forEach(t => { const k = t.closest('.view').dataset.view + '/' + t.dataset.sub, L = [...t.querySelectorAll('[id]')]; if (L.length) BADGE[k] = L; });
+    Object.keys(V64_TABS).forEach(v => {
+      const view = document.querySelector(`.view[data-view="${v}"]`); if (!view) return;
+      const bar = view.querySelector(':scope > .subtabs');
+      if (bar) bar.innerHTML = V64_TABS[v].map(([s, n]) => `<button class="subtab" type="button" data-sub="${s}">${n}</button>`).join('');
+      // contadores que viviam dentro dos botões antigos (ex.: #cmp-count) passam para o botão do separador novo
+      if (bar) V64_TABS[v].forEach(([s, n, parts]) => parts.forEach(([k]) => (BADGE[k] || []).forEach(e => { const t = bar.querySelector(`.subtab[data-sub="${s}"]`); if (t) { t.append(' '); t.appendChild(e); } })));
+      const hp = view.querySelector(':scope > .view-head p'); if (hp && V64_DESC[v]) hp.textContent = V64_DESC[v];
+      V64_TABS[v].forEach(([s, n, parts]) => {
+        const sv = document.createElement('div'); sv.className = 'subview'; sv.dataset.sub = s; sv.hidden = true;
+        if (parts.length > 1) sv.insertAdjacentHTML('beforeend', `<div class="parts-nav" role="group" aria-label="Nesta página"><span class="note">Nesta página:</span>${parts.map(([k, t]) => `<button type="button" class="parts-go" data-part-go="${k}">${t}</button>`).join('')}</div>`);
+        parts.forEach(([key, title, det, desc], i) => {
+          const old = OLD[key]; if (!old) { console.warn('V64: falta o separador', key); return; }
+          const w = document.createElement(det ? 'details' : 'section');
+          w.className = 'part'; w.dataset.part = key; w.id = 'part-' + key.replace('/', '-');
+          if (det) w.innerHTML = `<summary><span class="part-t">${title}</span><span class="part-i">Abrir</span>${desc ? `<span class="part-d">${desc}</span>` : ''}</summary>`;
+          else if (i > 0) w.innerHTML = `<div class="sec-div">${title}</div>`;
+          old.hidden = false; w.appendChild(old); sv.appendChild(w);
+        });
+        view.appendChild(sv);
+      });
+    });
+    // o Avançado fica só com as Regras e fontes (no ⚙ e no rodapé)
+    const av = document.querySelector('.view[data-view="avancado"]');
+    if (av) { av.dataset.title = 'Regras e fontes'; const h = av.querySelector(':scope > .view-head h1'); if (h) h.textContent = 'Regras e fontes'; }
+    // Resumo curto: o que já está noutros separadores sai daqui; as duplas e brancas ficam só nas Chips
+    ['glance', 'glance2', 'dis59-resumo', 'dgw-jogos'].forEach(id => { const e = document.getElementById(id); if (e) e.classList.add('v64-off'); });
+    // no Calendário, a tabela das próximas 6 jornadas vem primeiro
+    const fx = document.getElementById('fixture-swing-body'), eq = v64PartEl('avancado/equipas');
+    if (fx && eq) { const card = fx.closest('section.card'), body = eq.querySelector(':scope > .subview'); if (card && body) { const d = card.previousElementSibling; body.insertBefore(card, body.firstChild); if (d && d.classList.contains('sec-div')) body.insertBefore(d, card); } }
+    // abrir/fechar as partes e a linha "Nesta página"
+    document.addEventListener('click', ev => { const b = ev.target.closest('[data-part-go]'); if (b) { ev.preventDefault(); v64OpenPart(b.dataset.partGo, true); } });
+    document.addEventListener('toggle', ev => { const d = ev.target; if (d && d.matches && d.matches('details.part') && d.open && !(d._v64 && Date.now() - d._v64 < 600)) v64PartOpened(d.dataset.part); }, true);
+  }
+  v64Arrange();
+  // índice (menu, Procurar, atalhos): um item por separador novo; as partes ficam com o nome delas e "onde" estão agora
+  (function v64Index() {
+    const aName = v => v === 'avancado' ? 'Regras e fontes' : ((APP_AREAS.find(a => a.v === v) || {}).n || v);
+    const tabN = {}; Object.keys(V64_TABS).forEach(v => V64_TABS[v].forEach(([s, n]) => { tabN[v + '/' + s] = n; }));
+    const out = [], plain = x => !x.h && !x.act && x.v;
+    Object.keys(V64_TABS).forEach(v => V64_TABS[v].forEach(([s, n, parts]) => {
+      const main = APP_INDEX.find(x => plain(x) && x.v + '/' + x.s === parts[0][0]) || {syn: []};
+      const syn = [...new Set([...(main.syn || []), n.toLowerCase(), String(main.n || '').toLowerCase()].filter(Boolean))];
+      out.push(Object.assign({}, main, {v, s, a: aName(v), n, syn}));
+      parts.slice(1).forEach(([k]) => { const e = APP_INDEX.find(x => plain(x) && x.v + '/' + x.s === k); if (e) out.push(Object.assign({}, e, {a: aName(v) + ' › ' + n})); });
+    }));
+    APP_INDEX.filter(x => !plain(x)).forEach(x => { const R = x.v ? V64_REMAP[x.v + '/' + x.s] : null; out.push(R ? Object.assign({}, x, {a: aName(R.v) + ' › ' + tabN[R.v + '/' + R.s]}) : x); });
+    APP_INDEX.splice(0, APP_INDEX.length, ...out);
+    APP_AREAS.forEach(A => { if (V64_TABS[A.v]) { A.subs = V64_TABS[A.v].map(t => t[1]); if (V64_DESC[A.v]) A.d = V64_DESC[A.v]; } if (A.v === 'avancado') A.n = 'Regras e fontes'; });
+  })();
   // LEAGUE_SQUADS: plantéis, capitães, banco, valor e chips dos 20 (atualizado por _build/pool/apply_picks.py
   // depois de cada deadline e, no site, pelo live.json). (V52: aqui no início para todas as vistas o poderem ler.)
   const LEAGUE_SQUADS = {"630696":{"m":"Filipe Borges","tn":"SLB77","s":[109,115,87,31,124,13,40,68,526,166,411],"b":[1,53,175,449],"c":"Erling Haaland","vc":"Maxim De Cuyper","chip6":null,"p6":43,"tot":697,"bank":4.5,"val":103.2,"chips":[["bboost",1],["3xc",3],["wildcard",7]],"chip7":"wildcard","chip9":null,"chip10":null,"chip11":null},"2713965":{"m":"Tomás Corregedor","tn":"Bruno + 10","s":[109,87,8,115,40,68,124,53,411,166,379],"b":[496,286,175,449],"c":"Erling Haaland","vc":"Nicolas Jackson","chip6":"wildcard","p6":39,"tot":691,"bank":2.0,"val":101.1,"chips":[["3xc",3],["freehit",4],["wildcard",6]],"chip7":null,"chip9":null,"chip10":null,"chip11":null},"1885251":{"m":"Dan Robinson","tn":"CHEIRAMUCU","s":[1,115,229,31,40,68,124,236,411,166,79],"b":[496,94,87,449],"c":"Nicolas Jackson","vc":"Erling Haaland","chip6":"wildcard","p6":30,"tot":695,"bank":3.3,"val":103.8,"chips":[["freehit",4],["wildcard",6],["3xc",7]],"chip7":"3xc","chip9":null,"chip10":null,"chip11":null},"1969702":{"m":"Sergio Casinha","tn":"Estrelas D Bensafrim","s":[496,31,8,502,286,40,67,124,79,411,379],"b":[1,129,233,593],"c":"Erling Haaland","vc":"Morgan Rogers","chip6":null,"p6":44,"tot":645,"bank":4.6,"val":102.6,"chips":[["wildcard",9]],"chip7":null,"chip9":"wildcard","chip10":null,"chip11":null},"8030866":{"m":"Henrique Rodrigues","tn":"Henriquejunior","s":[1,499,390,417,356,387,542,426,68,335,25],"b":[384,371,165,55],"c":"Bruno Fernandes","vc":"Rúben dos Santos Gato Alves Dias","chip6":null,"p6":38,"tot":505,"bank":0.5,"val":98.5,"chips":[["bboost",1]],"chip7":null,"chip9":null,"chip10":null,"chip11":null},"5406100":{"m":"Frederico Borges","tn":"SL Guinness","s":[1,229,31,8,53,68,124,40,411,166,379],"b":[110,566,94,259],"c":"Erling Haaland","vc":"Nicolas Jackson","chip6":null,"p6":39,"tot":675,"bank":0.2,"val":102.8,"chips":[["3xc",3],["wildcard",7],["bboost",11]],"chip7":"wildcard","chip9":null,"chip10":null,"chip11":"bboost"},"5191766":{"m":"Bruno Carmo","tn":"Brunorussia FC","s":[109,112,8,115,399,400,40,428,411,379,79],"b":[496,101,175,176],"c":"Erling Haaland","vc":"Alexander Isak","chip6":null,"p6":34,"tot":637,"bank":0.4,"val":101.8,"chips":[["3xc",3],["wildcard",7]],"chip7":"wildcard","chip9":null,"chip10":null,"chip11":null},"5799879":{"m":"Nuno Rodrigues","tn":"olimpikos","s":[109,8,391,31,113,237,45,366,154,411,379],"b":[28,51,165,32],"c":"Erling Haaland","vc":"Ferdi Kadıoğlu","chip6":null,"p6":33,"tot":645,"bank":0.3,"val":100.4,"chips":[["3xc",7],["freehit",9]],"chip7":"3xc","chip9":"freehit","chip10":null,"chip11":null},"2347397":{"m":"Andre Gonçalves","tn":"Já fui","s":[1,8,229,115,391,68,154,124,286,138,379],"b":[572,427,449,106],"c":"Cole Palmer","vc":"Alexander Isak","chip6":"wildcard","p6":29,"tot":563,"bank":2.5,"val":100.7,"chips":[["wildcard",6]],"chip7":null,"chip9":null,"chip10":null,"chip11":null},"2330867":{"m":"Pedro Guerreiro","tn":"Guerreiro F C","s":[1,504,8,112,31,40,124,542,411,166,346],"b":[109,236,173,286],"c":"Erling Haaland","vc":"Morgan Rogers","chip6":null,"p6":36,"tot":645,"bank":3.4,"val":100.8,"chips":[["wildcard",7]],"chip7":"wildcard","chip9":null,"chip10":null,"chip11":null},"2152388":{"m":"Nelson Rodrigues","tn":"Rodri Team","s":[1,8,31,115,480,427,124,40,79,411,166],"b":[109,212,200,423],"c":"Erling Haaland","vc":"Nicolas Jackson","chip6":"wildcard","p6":30,"tot":674,"bank":0.0,"val":101.2,"chips":[["wildcard",6],["freehit",9],["3xc",11]],"chip7":null,"chip9":"freehit","chip10":null,"chip11":"3xc"},"4243640":{"m":"Tiago Guerreiro","tn":"Lups FC","s":[109,8,31,4,115,40,124,53,154,411,166],"b":[496,526,502,286],"c":"Erling Haaland","vc":"Nicolas Jackson","chip6":null,"p6":24,"tot":660,"bank":0.1,"val":102.5,"chips":[["freehit",5],["wildcard",7]],"chip7":"wildcard","chip9":null,"chip10":null,"chip11":null},"3973926":{"m":"Pedro Bengalinha","tn":"BengalinhaFC","s":[109,579,504,8,155,154,366,15,591,411,138],"b":[28,593,277,165],"c":"Erling Haaland","vc":"Florian Wirtz","chip6":null,"p6":38,"tot":549,"bank":0.6,"val":100.8,"chips":[["wildcard",3],["freehit",9]],"chip7":null,"chip9":"freehit","chip10":null,"chip11":null},"1973102":{"m":"Marco Carmo","tn":"Xarola Team","s":[1,173,504,115,427,154,124,453,166,411,249],"b":[496,565,277,418],"c":"Erling Haaland","vc":"Cole Palmer","chip6":null,"p6":27,"tot":635,"bank":2.7,"val":100.9,"chips":[["3xc",3]],"chip7":null,"chip9":null,"chip10":null,"chip11":null},"3397966":{"m":"Renato Pinela","tn":"Pinela FC","s":[496,114,8,4,290,460,15,155,156,411,79],"b":[412,556,321,175],"c":"Erling Haaland","vc":"Francisco Evanilson de Lima Barbosa","chip6":null,"p6":41,"tot":540,"bank":7.3,"val":99.2,"chips":[["bboost",2]],"chip7":null,"chip9":null,"chip10":null,"chip11":null},"7188462":{"m":"Paulo Couceiro","tn":"MitraMaxi97","s":[1,115,391,112,40,68,53,124,166,411,346],"b":[496,286,229,334],"c":"Erling Haaland","vc":"Johan Manzambi","chip6":null,"p6":42,"tot":554,"bank":0.0,"val":99.9,"chips":[["freehit",4],["wildcard",9]],"chip7":null,"chip9":"wildcard","chip10":null,"chip11":null},"2345657":{"m":"rui moreira","tn":"BADATEAM","s":[384,61,8,229,115,427,542,15,124,379,411],"b":[412,526,286,175],"c":"Erling Haaland","vc":"Alexander Isak","chip6":null,"p6":28,"tot":578,"bank":0.2,"val":100.0,"chips":[["3xc",3]],"chip7":null,"chip9":null,"chip10":null,"chip11":null},"2342874":{"m":"Miguel Bengalinha","tn":"SLBengalinha","s":[28,115,504,4,279,53,155,68,156,411,166],"b":[350,605,593,165],"c":"Erling Haaland","vc":"Emiliano Martínez Romero","chip6":null,"p6":26,"tot":522,"bank":2.0,"val":101.3,"chips":[["wildcard",3],["3xc",8]],"chip7":null,"chip9":null,"chip10":null,"chip11":null},"4159737":{"m":"Luis Pico","tn":"Pico FC","s":[1,62,390,115,428,13,15,124,166,411,249],"b":[567,315,417,581],"c":"Erling Haaland","vc":"Nicolas Jackson","chip6":null,"p6":26,"tot":595,"bank":1.1,"val":100.7,"chips":[],"chip7":null,"chip9":null,"chip10":null,"chip11":null},"2400508":{"m":"marco milhano","tn":"marco's Team","s":[572,8,362,115,127,68,453,426,79,346,411],"b":[226,586,605,330],"c":"Erling Haaland","vc":"Bruno Fernandes","chip6":null,"p6":57,"tot":608,"bank":3.6,"val":101.3,"chips":[["3xc",3],["wildcard",4]],"chip7":null,"chip9":null,"chip10":null,"chip11":null}};
@@ -6881,7 +7031,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     const [a, b] = view.split('/');
     const v = document.querySelector(`.view[data-view="${a}"]`);
     const sv = b && v ? v.querySelector(`:scope > .subview[data-sub="${b}"]`) : null;
-    if (v && !v.hidden && (!b || (sv && !sv.hidden))) { fn(); return; }
+    const pv = b ? v64PartVisible(view) : null;   // V64: as chaves antigas são partes de um separador novo
+    if (pv === true || (pv === null && v && !v.hidden && (!b || (sv && !sv.hidden)))) { fn(); return; }
     window.__LAZY = window.__LAZY || {};
     (window.__LAZY[view] = window.__LAZY[view] || new Set()).add(fn);
   }
@@ -7803,7 +7954,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     PREV.h = +b.dataset.h; document.querySelectorAll('#prev-horizon .seg-btn').forEach(x => x.setAttribute('aria-pressed', String(x === b))); renderPrevisao();
   }));
   // A simulação demora alguns décimos de segundo: só corre quando a área é aberta (ver showView).
-  const prevVisible = () => { const v = document.querySelector('.view[data-view="competicao"]'), sv = v && v.querySelector(':scope > .subview[data-sub="previsao"]'); return !!(v && !v.hidden && sv && !sv.hidden); };
+  const prevVisible = () => v64PartVisible('competicao/previsao') === true;   // V64: a previsão é uma parte da Classificação
 
 
   // ===================================================================
@@ -8447,7 +8598,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
   }
   // Esta semana › Transferências: aguentar ou vender os lesionados e castigados do plantel
   function av58PlanNote() {
-    const sv = document.querySelector('.view[data-view="semana"] > .subview[data-sub="transferencias"]'); if (!sv || !AV58.ok) return;
+    const sv = document.querySelector('[data-part="semana/transferencias"] > .subview'); if (!sv || !AV58.ok) return;
     const mgr = curMgr(), L = squadOf(mgr).filter(Boolean).map(p => [p, av58Verdict(p, mgr)]).filter(x => x[1]);
     let n = sv.querySelector('.av58-note');
     if (!L.length) { if (n) n.remove(); return; }
@@ -9229,7 +9380,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
 
   // V52: depois do deadline, avisar no separador Transferências que as sugestões eram para a jornada que já começou
   function v52DeadlineNote() {
-    const sv = document.querySelector('.view[data-view="semana"] > .subview[data-sub="transferencias"]'); if (!sv) return;
+    const sv = document.querySelector('[data-part="semana/transferencias"] > .subview'); if (!sv) return;
     let n = document.getElementById('v52-note');
     if (!v52After()) { if (n) n.remove(); return; }
     if (!n) { n = document.createElement('div'); n.id = 'v52-note'; n.className = 'callout info'; sv.insertBefore(n, sv.firstChild); }
@@ -10488,7 +10639,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
   function v57PendNote() {
     const p = (BASE_STATE[curMgr()] || {}).pend;
     ['transferencias', 'registo'].forEach(sub => {
-      const sv = document.querySelector(`.view[data-view="semana"] > .subview[data-sub="${sub}"]`); if (!sv) return;
+      const sv = document.querySelector(`[data-part="semana/${sub}"] > .subview`); if (!sv) return;
       let n = sv.querySelector('.v57-note');
       if (!p) { if (n) n.remove(); return; }
       if (!n) { n = document.createElement('div'); n.className = 'callout info v57-note'; sv.insertBefore(n, sv.firstChild); }
@@ -10556,7 +10707,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     } catch (e) { console.error(e); }
   }
   v53Texts();
-  var APP_VERSION = 'V63';
+  var APP_VERSION = 'V64';
   var TUT = {list: [], i: 0, mode: 'full', active: false, miss: []};
   const tutN = v => +(String(v || '').replace(/\D/g, '')) || 0;
   const tutSleep = ms => new Promise(r => setTimeout(r, ms));
@@ -10569,6 +10720,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     {id: 'comecar', t: 'Começar', steps: [
       {id: 'procurar', ix: 'semana/resumo', since: 'V47', sel: '#srch-q, #srch-btn', t: 'Procurar', d: () => `Escreve o que procuras: uma ferramenta ("capitão", "wildcard", "dinheiro"), um jogador (ex.: "${tutSafe(() => shortName(tutXi().cap.name), 'Haaland')}") ou um gestor da liga. No computador, a tecla / abre a pesquisa.`},
       {id: 'menu', ix: 'semana/resumo', since: 'V47', sel: '.mnav, .nav', t: 'As 5 áreas', d: () => `Esta semana (o que fazer), Jogos, Rivais, Jogadores e A minha época. Dentro de cada área há uma fila de separadores.`},
+      {id: 'arruma64', ix: 'semana/resumo', since: 'V64', sel: '.mnav, .nav', t: 'Menos separadores', d: () => 'A app foi arrumada: 5 áreas e 17 separadores. O que fazia quase o mesmo ficou junto — a Equipa ideal, a Equipa simulada e o Simulador estão dentro do Laboratório; Em forma, Preços, Lesões e Onde a app discorda estão na Pesquisa; o H2H e o Comparar equipas estão no Adversário. Nos separadores com várias partes, a linha «Nesta página» leva-te a cada uma, e as partes fechadas abrem-se ao tocar. As regras e fontes estão no ⚙.'},
       {id: 'gestor', ix: 'semana/resumo', since: 'V13', sel: '#manager-switch', t: 'Bruno ou Marco', d: () => `Escolhe a equipa: Brunorussia FC ou Xarola Team. Tudo na app passa a ser sobre essa equipa (agora: ${tutTeam()}).`},
       {id: 'ficha', ix: 'semana/resumo', since: 'V27', sel: '#todo .player-name, #todo [data-pid], .pcard', t: 'Ficha do jogador', d: () => `Toca no nome de qualquer jogador (ex.: ${tutSafe(() => tutXi().cap.name, 'o capitão')}) para abrires a ficha: pontos, jogos, preço e o que dizem os sites.`},
       {id: 'gloss', ix: 'semana/onze', since: 'V37', sel: '.qbtn', t: 'Botões "?"', d: () => 'Os botões "?" explicam as palavras difíceis (EO, xG, pontos esperados…) sem sair do sítio.'},
@@ -10601,7 +10753,6 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     ]},
     {id: 'jogos', t: 'Jogos', steps: [
       {id: 'jornada', ix: 'jogos/jornada', since: 'V23', sel: '#gw2-body', t: 'Jogos da jornada', d: () => `Os 10 jogos da J${GW_META.next}, com a dificuldade e as odds.`},
-      {id: 'dgwjogos', ix: 'jogos/jornada', since: 'V54', noSimple: true, sel: '#dgw-jogos', t: 'Duplas e brancas', d: () => 'O resumo das jornadas duplas e brancas da 2.ª metade, com a ligação para a grelha e o plano de chips.'},
       {id: 'onzes', ix: 'jogos/onzes', since: 'V15', sel: '#onzes-fixtures', t: 'Onzes prováveis', d: () => 'Os titulares prováveis de cada jogo, para saberes antes do deadline quem pode ficar de fora.'},
       {id: 'aovivo', ix: 'jogos/aovivo', since: 'V42', sel: '#av-equipa', t: 'Ao vivo', d: () => 'Durante a jornada: os teus pontos, o H2H e a liga em tempo real (atualiza de 15 em 15 minutos no site).'},
       {id: 'europa', ix: 'jogos/europa', since: 'V27', sel: '#eu-gw', t: 'Europa e descanso', d: () => 'Quem jogou a meio da semana e com quanto descanso chega à jornada (risco de rotação).'},
@@ -10643,7 +10794,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     {id: 'rotina', t: 'Ligações e rotina', steps: [
       {id: 'lig1', ix: 'mercado/pesquisa', since: 'V48', sel: '#pl-body .pc-acts', t: 'Ligações entre ferramentas', d: () => 'Os botões pequenos nos cartões levam-te à ferramenta seguinte: "Comparar" junta o jogador ao comparador; "Pôr no plano" abre o planeador com ele.'},
       {id: 'lig2', ix: 'competicao/vigiar', since: 'V48', sel: '#riv-root .riv-card .pc-acts', t: 'Mais ligações', d: () => 'Num rival: "Equipa para lhe ganhar". Num aviso de lesão: "Ver substitutos" (já filtrados pela posição e pelo teu orçamento).'},
-      {id: 'avanc', since: 'V47', noSimple: true, sel: '.nav-item.adv, .page-foot .adv-link', t: 'Avançado', d: () => 'O que se usa pouco: simulador, hot takes, picks em falta, capitães da liga, tabelas das equipas, regras e calibração.'},
+      {id: 'avanc', since: 'V47', noSimple: true, sel: '.nav-item.adv, .page-foot .adv-link', t: 'Regras e fontes', d: () => 'Como funcionam os pontos, de onde vem cada número e o histórico de versões da app. Estão aqui no rodapé e no ⚙ Definições.'},
       {id: 'rotina', since: 'V49', sel: null, t: 'A rotina da semana', d: () => '<b>Sexta:</b> abre "O que fazer". <b>Depois de fazeres a troca no site:</b> "Registar o que fiz". <b>Segunda ou terça:</b> pede ao Claude Code a atualização da jornada.'},
     ]},
     {id: 'labguia', t: 'Guia do Laboratório', steps: [
@@ -11682,10 +11833,12 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
   // ⚙ Definições (modo simples/completo, tema, tutorial). Tudo guardado no browser.
   // ===================================================================
   var V48 = {mode: 'completo'};
-  const SIMPLE_KEEP = {semana: ['resumo', 'noticias', 'onze', 'capitao', 'transferencias', 'registo'], competicao: ['classificacao', 'vigiar'], mercado: ['pesquisa', 'lesoes']};
+  const SIMPLE_KEEP = {semana: ['resumo', 'onze', 'transferencias', 'noticias'], competicao: ['classificacao', 'liga'], mercado: ['pesquisa']};   // V64
   const favK = () => 'fpl-favs-' + curMgr(), recK = () => 'fpl-recent-' + curMgr();
-  const favList = () => lsGet(favK()) || [];
-  const recList = () => lsGet(recK()) || [];
+  // V64: os atalhos guardados com separadores antigos passam para o separador novo
+  const v64Toks = L => (L || []).map(v64Tok).filter((t, i, a) => a.indexOf(t) === i);
+  const favList = () => v64Toks(lsGet(favK()));
+  const recList = () => v64Toks(lsGet(recK()));
   function tokName(tok) {
     const i = tok.indexOf('-'), v = i < 0 ? tok : tok.slice(0, i), sub = i < 0 ? '' : tok.slice(i + 1);
     const A = APP_AREAS.find(a => a.v === v); if (!A) return null;
@@ -11693,7 +11846,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     const it = APP_INDEX.find(x => x.v === v && x.s === sub);
     return it ? {v, sub, n: it.n.replace(/<[^>]+>|\(\d*\)/g, '').trim(), a: A.n} : null;
   }
-  const inSimple = (v, sub) => !!(SIMPLE_KEEP[v] && (!sub || SIMPLE_KEEP[v].includes(sub)));
+  const inSimple = (v, sub) => { if (sub) [v, sub] = v64Key(v, sub).split('/'); return !!(SIMPLE_KEEP[v] && (!sub || SIMPLE_KEEP[v].includes(sub))); };
   function toggleFav(tok) { const L = favList(); lsSet(favK(), L.includes(tok) ? L.filter(t => t !== tok) : [...L, tok]); renderShortcuts(); }
   function pushRecent(tok) { if (!tokName(tok)) return; const L = recList().filter(t => t !== tok); L.unshift(tok); lsSet(recK(), L.slice(0, 4)); }
   function chipBtn(tok, cls) { const t = tokName(tok); if (!t) return ''; return `<button type="button" class="${cls}" data-tok="${tok}" title="${t.a ? t.a + ' › ' : ''}${t.n}">${t.n}${t.a ? `<span class="a"> · ${t.a}</span>` : ''}</button>`; }
@@ -11786,7 +11939,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
       <div class="set-row"><div class="riv-lbl">Modo</div>${seg('mode', [['completo', 'Completo'], ['simples', 'Simples']], V48.mode)}
         <p class="note">${V48.mode === 'simples' ? 'Só o essencial: Esta semana, Classificação, Vigiar rivais e a pesquisa de jogadores.' : 'A app inteira.'} A pesquisa encontra sempre tudo.</p></div>
       <div class="set-row"><div class="riv-lbl">Tema</div>${seg('theme', [['light', 'Claro'], ['dark', 'Escuro']], isDarkNow() ? 'dark' : 'light')}</div>
-      <div class="set-row"><button type="button" class="btn ghost" id="set-tour">Ver o tutorial</button></div>
+      <div class="set-row"><button type="button" class="btn ghost" id="set-tour">Ver o tutorial</button> <button type="button" class="btn ghost" id="set-rules">Regras e fontes</button></div>
       <p class="note">Guardado neste browser.</p>`;
     pop.querySelectorAll('.seg[data-k="mode"] .seg-btn').forEach(b => b.addEventListener('click', () => {
       lsSet('fpl-mode', b.dataset.v); applyMode(); renderSettings();
@@ -11798,6 +11951,7 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
       renderSettings();
     }));
     pop.querySelector('#set-tour').addEventListener('click', () => { closeSettings(); startTour(true); });
+    pop.querySelector('#set-rules').addEventListener('click', () => { closeSettings(); showView('avancado', 'regras'); });
   }
   function closeSettings() { const pop = document.getElementById('set-pop'), b = document.getElementById('set-btn'); if (pop) pop.hidden = true; if (b) b.setAttribute('aria-expanded', 'false'); }
   (function settingsInit() {
@@ -12960,6 +13114,8 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
     opts = opts || {};
     // V47: as áreas antigas (e os endereços #area-separador antigos) abrem o sítio novo
     if (!viewNames.includes(name)) { const al = VIEW_ALIAS[sub ? name + '-' + sub : name] || VIEW_ALIAS[name]; if (al) { [name, sub] = al; } }
+    let openPart = null;   // V64: separadores antigos → separador novo + parte
+    { const R = V64_REMAP[name + '/' + (sub || '')]; if (R) { openPart = R; name = R.v; sub = R.s; } }
     if (!viewNames.includes(name)) name = 'semana';
     const view = views.find(v => v.dataset.view === name);
     views.forEach(v => { v.hidden = v !== view; });
@@ -12980,16 +13136,18 @@ const PROBABLE_LINEUPS_GW2 = [{"when": "Sex 27 Nov, 20:00", "h": 18, "a": 6, "ho
       sub = '';
     }
     // o que é pesado só é calculado quando a área/o separador é aberto
-    [name, name + '/' + sub].forEach(k => { const LZ = window.__LAZY && window.__LAZY[k]; if (LZ) { delete window.__LAZY[k]; LZ.forEach(f => { try { f(); } catch (e) { console.error(e); } }); } });
-    if (name === 'competicao' && sub === 'previsao') { try { renderPrevisao(); } catch (e) { console.error(e); } }
-    if (name === 'mercado' && sub === 'ideal') { try { idealOpen(); } catch (e) { console.error(e); } }
+    { const LZ = window.__LAZY && window.__LAZY[name]; if (LZ) { delete window.__LAZY[name]; LZ.forEach(f => { try { f(); } catch (e) { console.error(e); } }); } }
+    // V64: cada parte aberta do separador corre o que o separador antigo corria (lazyRender, Previsão, Equipa ideal)
+    if (openPart && openPart.det) { const pe = v64PartEl(openPart.part); if (pe && !pe.open) { pe._v64 = Date.now(); pe.open = true; } }
+    { const svNow = view.querySelector(`:scope > .subview[data-sub="${sub}"]`); if (svNow) svNow.querySelectorAll(':scope > [data-part]').forEach(pe => { if (pe.tagName !== 'DETAILS' || pe.open) v64PartOpened(pe.dataset.part); }); }
     const title = view.dataset.title || name;
-    document.getElementById('crumbs').innerHTML = subLabel ? `${title} <span aria-hidden="true">›</span> <b>${subLabel}</b>` : `<b>${title}</b>`;
+    document.getElementById('crumbs').innerHTML = subLabel ? `${title} <span aria-hidden="true">›</span> <b>${subLabel}</b>${openPart && openPart.i > 0 ? ` <span aria-hidden="true">›</span> <b>${openPart.title}</b>` : ''}` : `<b>${title}</b>`;
     const token = sub ? `${name}-${sub}` : name;
     try { history.replaceState(null, '', '#' + token); } catch (e) {}
     try { localStorage.setItem('fpl-view', token); } catch (e) {}
     try { pushRecent(token); modeNote(name, sub); renderShortcuts(); } catch (e) { console.error(e); }
     if (!opts.keepScroll) window.scrollTo(0, 0);
+    if (openPart && openPart.i > 0) { const pe = v64PartEl(openPart.part); if (pe) setTimeout(() => pe.scrollIntoView({block: 'start'}), 60); }   // V64: rola até à parte
     // ao mudar de separador no telemóvel, o separador escolhido fica à vista
     const st = view.querySelector(':scope > .subtabs .subtab[aria-selected="true"]');
     if (st && st.parentElement.scrollWidth > st.parentElement.clientWidth) { const r = st.parentElement; r.scrollLeft = st.offsetLeft - (r.clientWidth - st.clientWidth) / 2; }

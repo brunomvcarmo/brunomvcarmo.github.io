@@ -147,7 +147,7 @@ async def main():
                     if not n: errs.append(f'novidades com {val}: lista vazia')
                 await pg2.close()
             # o índice do Procurar e o tutorial não ficam desencontrados (o Avançado tem um passo próprio)
-            gaps = await pg.evaluate("APP_INDEX.filter(x => x.v && x.v !== 'avancado' && !tutAll().some(st => st.ix === x.v + '/' + x.s)).map(x => x.v + '/' + x.s)")
+            gaps = await pg.evaluate("APP_INDEX.filter(x => x.v && x.v !== 'avancado' && !tutAll().some(st => st.ix && v64Key(...st.ix.split('/')) === v64Key(x.v, x.s))).map(x => x.v + '/' + x.s)")   # V64: os passos usam as chaves antigas
             if gaps: errs.append(f'separadores sem passo no tutorial: {gaps}')
             print(f'{w} boas-vindas/entradas · ERRORS {len(errs)}'); [print('   ', e) for e in errs[:12]]
             total_err += len(errs)
